@@ -23,8 +23,11 @@ const useStyles = createStyles((theme) => ({
     }`,
   },
 
-  image: {
+  sideContent: {
     alignSelf: "flex-start",
+  },
+
+  image: {
     img: {
       borderRadius: theme.radius.sm,
       boxShadow: theme.shadows.md,
@@ -43,6 +46,7 @@ const useStyles = createStyles((theme) => ({
 
   badge: {
     alignSelf: "inherit",
+    alignItems: "flex-start",
   }
 
 }));
@@ -50,14 +54,13 @@ const useStyles = createStyles((theme) => ({
 export default function Narcis() {
   
   const { classes } = useStyles();
-  const theme = useMantineTheme();
 
   const props = {
-    imageSrc: "/[9] Твори у двох томах. Том 1 - 1994.jpg",
+    imageSrc: "/books-cover/Tvory u dvox tomax. Tom 1 - 1994.jpg",
     translatedName: "Вступні двері до християнської добронравності",
     translatorName: "Шевчук Валерій Олександрович",
     sourceName: "Сковорода, Григорій. Твори у двох томах. Том 1 - 1994 р.",
-    sourceHref: "/sources/tvory_v_dvoh_tomah_tom_1_1994",
+    sourceHref: "/sources/Tvory u dvox tomax. Tom 1 - 1994",
   };
 
   
@@ -85,12 +88,10 @@ export default function Narcis() {
             </Text>
             <Link href={props.sourceHref}><a color="dimmed" className={classes.link}>{props.sourceName}</a></Link>
 
-            <Button mt="md" fullWidth variant="light" leftIcon={<IconBookDownload />}>
-              Завантажити PDF (1.56 MB)
-            </Button>
+            <Button mt="md" fullWidth variant="light" leftIcon={<IconBookDownload />}>Завантажити PDF (1.56 MB)</Button>
           </div>
 
-          <div>
+          <div className={classes.sideContent}>
             <Badge color="gray" mb="md" rightSection={<UkraineFlagSvg className={classes.flagIcon} />} className={classes.badge}>
               Переклад
             </Badge>

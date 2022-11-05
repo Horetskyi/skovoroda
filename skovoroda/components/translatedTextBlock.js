@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { Card, Image, Text, Group, Button, createStyles, Divider, Container, Title, Badge  } from '@mantine/core';
-import UkraineFlagSvg from "./ukraineFlag.svg";
+import { Card, Image, Text, Group, Button, createStyles, Divider, Container, Title  } from '@mantine/core';
 import { IconBookDownload } from '@tabler/icons';
+import { saveAs } from "file-saver";
 
 const useStyles = createStyles((theme) => ({
 
@@ -37,32 +37,11 @@ const useStyles = createStyles((theme) => ({
     color: theme.colors.gray[8],
   },
 
-  flagIcon: {
-    borderRadius: theme.radius.sm,
-    marginLeft: theme.spacing.sm,
-    alignSelf: "center",
-  },
-
-  badge: {
-    alignSelf: "inherit",
-    alignItems: "flex-start",
-  }
-
 }));
 
-export default function TranslatedTextBlock() {
+export default function TranslatedTextBlock(props) {
   
   const { classes } = useStyles();
-
-  const props = {
-    imageSrc: "/books-cover/Tvory u dvox tomax. Tom 1 - 1994.jpg",
-    translatedName: "Вступні двері до християнської добронравності",
-    translatorName: "Шевчук Валерій Олександрович",
-    sourceName: "Сковорода, Григорій. Твори у двох томах. Том 1 - 1994 р.",
-    sourceHref: "/sources/Tvory u dvox tomax. Tom 1 - 1994",
-    fileSize: "1.56 MB",
-  };
-
   
   return (
     <Container size="md">
@@ -71,7 +50,6 @@ export default function TranslatedTextBlock() {
           
           <div className={classes.mainCardContent}>
             
-
             <Title order={2} size="xl" mt={0} mb="xs" fw={600}>
               {props.translatedName}
             </Title>
@@ -88,13 +66,12 @@ export default function TranslatedTextBlock() {
             </Text>
             <Link href={props.sourceHref}><a color="dimmed" className={classes.link}>{props.sourceName}</a></Link>
 
-            <Button mt="md" fullWidth variant="light" leftIcon={<IconBookDownload />}>Завантажити PDF ({props.fileSize})</Button>
+            <Link href={"https://skovoroda.s3.eu-west-3.amazonaws.com/sources/"+props.downloadFileName}>
+              <Button mt="md" fullWidth variant="light" leftIcon={<IconBookDownload />}>Завантажити PDF ({props.fileSize})</Button>
+            </Link>
           </div>
 
           <div className={classes.sideContent}>
-            <Badge color="gray" mb="md" rightSection={<UkraineFlagSvg className={classes.flagIcon} />} className={classes.badge}>
-              Переклад
-            </Badge>
             <Image src={props.imageSrc} alt={props.sourceName} width={120} height={180} className={classes.image}/>
           </div>
 

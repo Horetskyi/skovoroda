@@ -50,11 +50,9 @@ export default function TranslatedTextBlock(props) {
           
           <div className={classes.mainCardContent}>
             
-            <Title order={2} size="xl" mt={0} mb="xs" fw={600}>
+            <Title order={3} size="h4" mt={0} mb="xs" fw={500}>
               {props.translatedName}
             </Title>
-            
-            <Divider mt="md"/>
             
             <Text size="sm" mt="md" color="dimmed">
               Перекладач
@@ -75,7 +73,6 @@ export default function TranslatedTextBlock(props) {
               </Link>
               )}
             </Stack>
-            
             
           </div>
 

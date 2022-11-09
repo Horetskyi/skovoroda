@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Card, Image, Text, Group, Button, createStyles, Divider, Container, Title, Stack  } from '@mantine/core';
 import { IconBookDownload } from '@tabler/icons';
-import { saveAs } from "file-saver";
 
 const useStyles = createStyles((theme) => ({
 

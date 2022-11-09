@@ -66,7 +66,7 @@ export default function TranslatedTextBlock(props) {
             </Text>
             <Link href={props.sourceHref}><a color="dimmed" className={classes.link}>{props.sourceName}</a></Link>
 
-            <Link href={"https://skovoroda.s3.eu-west-3.amazonaws.com/sources/"+props.downloadFileName}>
+            <Link href={"/sources/"+props.downloadFileName}>
               <Button mt="md" fullWidth variant="light" leftIcon={<IconBookDownload />}>Завантажити PDF ({props.fileSize})</Button>
             </Link>
           </div>

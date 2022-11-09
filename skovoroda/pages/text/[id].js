@@ -2,6 +2,8 @@
 import { Stack } from '@mantine/core';
 import getSkovorodaData from '../../lib/skovorodaData';
 import TranslatedTextBlock from '../../components/translatedTextBlock';
+import getStaticPathsCommon from '../../lib/getStaticPathsCommon';
+import readDynamicIdCommon from '../../lib/readDynamicIdCommon';
 
 export default function Text({ textData }) {
 
@@ -33,30 +35,19 @@ export default function Text({ textData }) {
 export async function getStaticPaths() {
   
   const data = getSkovorodaData();
-
-  const paths = data.texts.map(text => {
-    return {
-      params: {
-        id: text.id
-      }
-    };
-  });
-  
-  return {
-    paths,
-    fallback: false,
-  };
+  const ids = data.texts.map(text => text.id);
+  return getStaticPathsCommon(ids);
 }
 
 export async function getStaticProps({ params }) {
 
+  const { id, deviceEnding } = readDynamicIdCommon(params.id);
   const data = getSkovorodaData();
-
-  const textData = data.texts.find(text => text.id === params.id);
-
+  const textData = data.texts.find(text => text.id === id);
   return {
     props: {
       textData,
+      deviceEnding,
     },
   };
 }

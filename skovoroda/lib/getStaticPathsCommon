@@ -1,0 +1,22 @@
+import { skConstants } from "./skConstants";
+
+export default async function getStaticPathsCommon(ids) {
+  
+  const paths = ids.flatMap(id => [
+    {
+      params: {
+        id: id + skConstants.desktopEnding
+      }
+    },
+    {
+      params: {
+        id: id + skConstants.mobileEnding
+      }
+    },
+  ]);
+
+  return {
+    paths,
+    fallback: false,
+  };
+}

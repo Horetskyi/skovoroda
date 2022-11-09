@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Card, Image, Text, Group, Button, createStyles, Divider, Container, Title  } from '@mantine/core';
+import { Card, Image, Text, Group, Button, createStyles, Divider, Container, Title, Stack  } from '@mantine/core';
 import { IconBookDownload } from '@tabler/icons';
 import { saveAs } from "file-saver";
 
@@ -66,9 +66,17 @@ export default function TranslatedTextBlock(props) {
             </Text>
             <Link href={props.sourceHref}><a color="dimmed" className={classes.link}>{props.sourceName}</a></Link>
 
-            <Link href={"/sources/"+props.downloadFileName}>
-              <Button mt="md" fullWidth variant="light" leftIcon={<IconBookDownload />}>Завантажити PDF ({props.fileSize})</Button>
-            </Link>
+            <Stack spacing="0">
+              {props.files.map(file => 
+              <Link href={"/sources/" + file.fileName}>
+                <Button mt="md" fullWidth variant="light" leftIcon={<IconBookDownload />} title={file.fileName}>
+                  Завантажити {file.fileExtensionUppercase} ({file.fileSize})
+                </Button>
+              </Link>
+              )}
+            </Stack>
+            
+            
           </div>
 
           <div className={classes.sideContent}>

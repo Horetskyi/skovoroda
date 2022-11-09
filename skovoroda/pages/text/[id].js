@@ -9,18 +9,18 @@ export default function Text({ textData }) {
 
   const translationBlocks = textData.translates.map((translation, index) => {
   
-    const imageSrc = "/books-cover/" + translation.source.bookCoverImageName;
+    const imageSrc = "/books-cover/" + translation.source.bookCoverImageFileName;
     const sourceHref = "/source/" + translation.source.id;
 
     return <TranslatedTextBlock 
       key={"translation-"+index}
       imageSrc={imageSrc}
-      fileSize={translation.fileSize}
       sourceHref={sourceHref}
+      fileSize={translation.fileSize}
       sourceName={translation.source.sourceName}
       translatorName={translation.translator.fullName}
       translatedName={translation.translatedName}
-      downloadFileName="Г. С. Сковорода - Повна академічна збірка - Леонід Ушкалов - 2011.pdf"
+      files={translation.files}
     />
   }); 
 

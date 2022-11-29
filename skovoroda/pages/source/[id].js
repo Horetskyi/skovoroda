@@ -13,13 +13,16 @@ export default function Source({ sourceData, deviceEnding }) {
   )
 }
 
+// Get all Source Paths
 export async function getStaticPaths() {
   
   const data = getSkovorodaData();
   const ids = data.sources.map(source => source.id);
+  console.log("All Source Ids:", ids);
   return getStaticPathsCommon(ids);
 }
 
+// Get Source Data by Id
 export async function getStaticProps({ params }) {
 
   const { id, deviceEnding } = readDynamicIdCommon(params.id);

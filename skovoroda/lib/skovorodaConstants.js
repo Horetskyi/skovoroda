@@ -1,4 +1,4 @@
-export const skConstants = {
+export const SkovorodaConstants = {
   desktopEnding: "-desktop",
   mobileEnding: "-mobile",
 };

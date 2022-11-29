@@ -1,9 +1,53 @@
 import '../styles/globals.css'
 import Head from 'next/head';
-import { MantineProvider } from '@mantine/core';
+import { Anchor, Breadcrumbs, MantineProvider } from '@mantine/core';
+import getSkovorodaData from '../lib/skovorodaData';
+import { HeaderSearch } from '../components/headerSearch';
 
 export default function App(props) {
   const { Component, pageProps } = props;
+
+  const skovorodaData = getSkovorodaData();
+  const searchAutocompleteArray = [
+    skovorodaData.translators.map(translator => translator.fullName),
+    skovorodaData.sources.map(source => source.sourceName),
+  ].flatMap(x => x);
+  
+  const links = [
+    {
+      "link": "/texts",
+      "label": "Тексти"
+    },
+    {
+      "link": "/bio",
+      "label": "Біографія"
+    },
+    {
+      "link": "/lysty",
+      "label": "Листи"
+    },
+    {
+      "link": "/doslidzennya",
+      "label": "Дослідження"
+    }
+  ];
+
+  const breadcrumbs1 = [
+    { title: 'Головна сторінка', href: '/' },
+  ];
+
+  console.log(pageProps);
+
+  if (pageProps.textData) {
+    breadcrumbs1.push({ title: 'Тексти', href: '/texts' });
+    if (pageProps.textData.id) {
+      breadcrumbs1.push({ title: pageProps.textData.original.originalName, href: '/' });
+    }
+  }
+  
+  const breadcrumbs = breadcrumbs1.map((item, index) => (
+    <Anchor href={item.href} key={index}>{item.title}</Anchor>
+  ));
 
   return (
     <>
@@ -30,10 +74,15 @@ export default function App(props) {
           globalStyles: (theme) => ({
             body: {
               backgroundColor: theme.colors.gray[0]
+            },
+            ".gray8": {
+              color: theme.colors.gray[8],
             }
           }),
         }}
       >
+        <HeaderSearch links={links} searchAutocompleteArray={searchAutocompleteArray}/>
+        <Breadcrumbs separator="→">{breadcrumbs}</Breadcrumbs>
         <Component {...pageProps} />
       </MantineProvider>
     </>

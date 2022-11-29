@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import isMobile from './lib/isMobile'
-import { skConstants } from './lib/skConstants';
+import { SkovorodaConstants } from './lib/skovorodaConstants';
 
 export function middleware(request) {
   
@@ -8,7 +8,13 @@ export function middleware(request) {
   const search = request.nextUrl.search;
   const path = pathName + search;
 
-  if (pathName.includes(".pdf")) {
+  if (
+    pathName.includes(".pdf") || 
+    pathName.includes(".doc") ||
+    pathName.includes(".docx") ||
+    pathName.includes(".djvu")
+  )
+  {
     const pdfFileUrl = new URL(path, "https://skovoroda.s3.eu-west-3.amazonaws.com/");
     return NextResponse.rewrite(pdfFileUrl);
   }
@@ -16,13 +22,14 @@ export function middleware(request) {
   const isPageRequest =
     !pathName.includes('_next/static') &&
     !pathName.includes('api') &&
+    !pathName.includes('.png') &&
     !pathName.includes('.jpg') &&
     !pathName.includes('.ico');
 
   if (isPageRequest) {
     const userAgent = request.headers.get('user-agent');
     const isMobileValue = isMobile(userAgent);
-    const deviceEnding = (isMobileValue ? skConstants.mobileEnding : skConstants.desktopEnding);
+    const deviceEnding = (isMobileValue ? SkovorodaConstants.mobileEnding : SkovorodaConstants.desktopEnding);
     const newPath = path.includes(deviceEnding) 
       ? path
       : pathName + deviceEnding + (search ? search + deviceEnding : "");

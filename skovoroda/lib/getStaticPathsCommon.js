@@ -1,16 +1,16 @@
-import { skConstants } from "./skConstants";
+import { SkovorodaConstants } from "./skovorodaConstants";
 
 export default async function getStaticPathsCommon(ids) {
   
   const paths = ids.flatMap(id => [
     {
       params: {
-        id: id + skConstants.desktopEnding
+        id: id + SkovorodaConstants.desktopEnding
       }
     },
     {
       params: {
-        id: id + skConstants.mobileEnding
+        id: id + SkovorodaConstants.mobileEnding
       }
     },
   ]);

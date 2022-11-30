@@ -38,6 +38,7 @@ const useStyles = createStyles((theme) => ({
 
   badge: {
     margin: "4px 0",
+    color: "black"
   },
 
   downloadStack: {
@@ -55,15 +56,16 @@ export default function SkovorodaTextBlockDesktop(props) {
   const { classes } = useStyles();
 
   const badgeText = props.textType === "original" ? "Оригінал" : "Переклад";
+  const color = props.textType === "original" ? "green" : "yellow";
   
   return (
     <Container size="md">
-      <Card withBorder radius="md" p="md" className={classes.card}>
+      <Card withBorder radius="md" p="md" bg={color+".0"} className={classes.card}>
         <Group>
           
           {props.imageSrc 
           ? <div className={classes.sideContent}>
-            <Badge radius="md" fullWidth={true} className={classes.badge} variant="outline" color="dark">{badgeText}</Badge>
+            <Badge radius="md" fullWidth={true} className={classes.badge} variant="filled" color={color+".2"}>{badgeText}</Badge>
             <Image mt="md" src={props.imageSrc} alt={props.sourceName} width={120} height={180} className={classes.image}/>
           </div>
           : <></>
@@ -83,7 +85,7 @@ export default function SkovorodaTextBlockDesktop(props) {
 
             <SourceV1 {...props}/>
             <div className={classes.downloadStack}>
-              <DownloadStackV1  {...props}/>
+              <DownloadStackV1 {...props} color={color}/>
             </div>
           </div>
 

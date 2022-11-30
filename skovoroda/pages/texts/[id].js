@@ -1,9 +1,9 @@
 
-import getSkovorodaData from '../../lib/skovorodaData';
 import getStaticPathsCommon from '../../lib/getStaticPathsCommon';
 import readDynamicIdCommon from '../../lib/readDynamicIdCommon';
 import { SkovorodaConstants } from '../../lib/skovorodaConstants';
 import dynamic from 'next/dynamic';
+import { SkovorodaTextsArray } from '../../lib/data/skovorodaTexts';
 const SkovorodaTextPageDesktop = dynamic(() => import('../../components/skovorodaTextPageDesktop'));
 const SkovorodaTextPageMobile = dynamic(() => import('../../components/skovorodaTextPageMobile'));
 
@@ -17,8 +17,7 @@ export default function SkovorodaText({ textData, deviceEnding }) {
 // Get all Text Paths
 export async function getStaticPaths() {
   
-  const data = getSkovorodaData();
-  const ids = data.texts.map(text => text.id);
+  const ids = SkovorodaTextsArray.map(text => text.id);
   console.log("All Text Ids:", ids);
   return getStaticPathsCommon(ids);
 }
@@ -27,8 +26,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
 
   const { id, deviceEnding } = readDynamicIdCommon(params.id);
-  const data = getSkovorodaData();
-  const textData = data.texts.find(text => text.id === id);
+  const textData = SkovorodaTextsArray.find(text => text.id === id);
   return {
     props: {
       textData,

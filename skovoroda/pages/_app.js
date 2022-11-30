@@ -1,16 +1,16 @@
 import '../styles/globals.css'
 import Head from 'next/head';
 import { Anchor, Breadcrumbs, MantineProvider } from '@mantine/core';
-import getSkovorodaData from '../lib/skovorodaData';
 import { HeaderSearch } from '../components/headerSearch';
+import { SkovorodaTranslatorsArray } from '../lib/data/skovorodaTranslators';
+import { SkovorodaSourcesArray } from '../lib/data/skovorodaSources';
 
 export default function App(props) {
   const { Component, pageProps } = props;
 
-  const skovorodaData = getSkovorodaData();
   const searchAutocompleteArray = [
-    skovorodaData.translators.map(translator => translator.fullName),
-    skovorodaData.sources.map(source => source.sourceName),
+    SkovorodaTranslatorsArray.map(translator => translator.fullName),
+    SkovorodaSourcesArray.map(source => source.sourceName),
   ].flatMap(x => x);
   
   const links = [
@@ -36,14 +36,18 @@ export default function App(props) {
     { title: 'Головна сторінка', href: '/' },
   ];
 
-  console.log(pageProps);
-
-  if (pageProps.textData) {
+  if (pageProps.textsData) {
+    breadcrumbs1.push({ title: 'Тексти', href: '/texts' });
+  }
+  else if (pageProps.textData) {
     breadcrumbs1.push({ title: 'Тексти', href: '/texts' });
     if (pageProps.textData.id) {
-      breadcrumbs1.push({ title: pageProps.textData.original.originalName, href: '/' });
+      breadcrumbs1.push({ 
+        title: pageProps.textData.original.originalName, 
+        href: '/texts/' + pageProps.textData.id
+      });
     }
-  }
+  } 
   
   const breadcrumbs = breadcrumbs1.map((item, index) => (
     <Anchor href={item.href} key={index}>{item.title}</Anchor>
@@ -70,6 +74,10 @@ export default function App(props) {
             md: '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.10) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px',
             lg: '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 0px 28px 23px -7px, rgba(0, 0, 0, 0.04) 0px 12px 12px -7px',
             xl: '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 0px 36px 28px -7px, rgba(0, 0, 0, 0.04) 0px 17px 17px -7px',
+          },
+          colors: {
+            'green': ['#F5F7EF', '#EEF1E4', '#E5EAD6', '#DDE4C9', '#D4DDBB', '#CCD6AE', '#C3CFA0', '#BBC892', '#B2C185', '#AABB77'],
+            'yellow': ['#FFF6EA', '#FFEDD6', '#FFE4C2', '#FFDCAD', '#FFD399', '#FFCA85', '#FFC170', '#FFB85C', '#FFAF47', '#FFA733'],
           },
           globalStyles: (theme) => ({
             body: {

@@ -6,6 +6,9 @@ const skovorodaTranslators = {
   v_shevchenko: {
     fullName: "Шевченко Віталій Володимирович",
   },
+  h_hoytkevych: {
+    fullName: "Хоткевич Гнат Мартинович",
+  }
 }
 
 const skovorodaTranslatorsArray = Object.values(skovorodaTranslators);

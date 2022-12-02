@@ -1,6 +1,7 @@
 import { Card, Image, Text, Group, createStyles, Container, Title, Stack, Badge  } from '@mantine/core';
 import SourceV1 from './sourceV1';
 import DownloadStackV1 from './downloadStackV1';
+import { SkovorodaConstants } from '../lib/skovorodaConstants';
 
 const useStyles = createStyles((theme) => ({
 
@@ -56,16 +57,18 @@ export default function SkovorodaTextBlockDesktop(props) {
   const { classes } = useStyles();
 
   const badgeText = props.textType === "original" ? "Оригінал" : "Переклад";
-  const color = props.textType === "original" ? "green" : "yellow";
+  const color = SkovorodaConstants.getColorByType(props.textType);
+  const bgColor = SkovorodaConstants.getBackgroundColorByType(props.textType);
+  const elColor = SkovorodaConstants.getElementsColorByType(props.textType);
   
   return (
     <Container size="md">
-      <Card withBorder radius="md" p="md" bg={color+".0"} className={classes.card}>
+      <Card withBorder radius="md" p="md" bg={bgColor} className={classes.card}>
         <Group>
           
           {props.imageSrc 
           ? <div className={classes.sideContent}>
-            <Badge radius="md" fullWidth={true} className={classes.badge} variant="filled" color={color+".2"}>{badgeText}</Badge>
+            <Badge radius="md" fullWidth={true} className={classes.badge} variant="filled" color={elColor}>{badgeText}</Badge>
             <Image mt="md" src={props.imageSrc} alt={props.sourceName} width={120} height={180} className={classes.image}/>
           </div>
           : <></>
@@ -76,7 +79,7 @@ export default function SkovorodaTextBlockDesktop(props) {
             
             { (props.textType === "translation") ? 
               <Stack spacing="0" mb="md">
-                <Text size="sm" color="dimmed">
+                <Text size="sm" color="gray.9">
                   Перекладач
                 </Text>
                 <Text fw={500}>{props.translatorName}</Text>

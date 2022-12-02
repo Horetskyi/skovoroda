@@ -5,7 +5,6 @@ const skovorodaSources = {
     id: "lovytva",
     sourceName: "Ловитва невловного птаха: життя Григорія Сковороди - Л. Ушкалов - 2017 р.",
     // TODO: Now: add cover image
-    // TODO: Future: add link to shops
   },
   tvory_u_dvox_tomax_tom_1_1994: {
     id: "tvory_u_dvox_tomax_tom_1_1994",
@@ -32,8 +31,16 @@ const skovorodaSources = {
     files: [
       SkovorodaFiles.philosophska_dumka_2014_nomer_5_pdf
     ],
-    sourceLink: "https://journal.philosophy.ua/issue/2014-no5"
+    sourceLink: "https://journal.philosophy.ua/issue/2014-no5",
   },
+  ukrainska_musa_2009: {
+    id: "ukrainska_musa_2009",
+    year: 2009,
+    // TODO: Now: add cover image
+    sourceName: 'Г. Сковорода. Вибрані твори в українських перекладах / Серія "Українська муза" у 12-ти томах, том 1 - 2009',
+    sourceFullName: 'Г. Сковорода. Вибрані твори в українських перекладах / Серія "Українська муза" у 12-ти томах, том 1 - Упорядкування текстів, передмова та примітки Л. В. Ушкалова - 2009',
+    // TODO: Now: add file
+  }
 }
 
 const sourcesArray = Object.values(skovorodaSources);

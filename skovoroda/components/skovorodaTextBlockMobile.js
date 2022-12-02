@@ -1,6 +1,7 @@
 import { Image, Text, createStyles, Title, Stack, Badge  } from '@mantine/core';
 import SourceV1 from './sourceV1';
 import DownloadStackV1 from './downloadStackV1';
+import { SkovorodaConstants } from '../lib/skovorodaConstants';
 
 const useStyles = createStyles((theme) => ({
 
@@ -25,7 +26,8 @@ export default function SkovorodaTextBlockMobile(props) {
   
   const { classes } = useStyles();
   const badgeText = props.textType === "original" ? "Оригінал" : "Переклад";
-  
+  const color = SkovorodaConstants.getColorByType(props.textType);
+
   return <>
   
     <Title order={3} size="h4" mt={0} mb="xs" fw={500}>{props.textName}</Title>
@@ -39,7 +41,7 @@ export default function SkovorodaTextBlockMobile(props) {
 
     { (props.textType === "translation") ? 
       <Stack spacing="0" mb="md">
-        <Text size="sm" color="dimmed">
+        <Text size="sm" color="gray.9">
           Перекладач
         </Text>
         <Text fw={500}>{props.translatorName}</Text>
@@ -48,7 +50,7 @@ export default function SkovorodaTextBlockMobile(props) {
 
     <SourceV1 {...props}/>
     <div className={classes.downloadStack}>
-      <DownloadStackV1  {...props}/>
+      <DownloadStackV1  {...props} color={color}/>
     </div>
 
   </>;

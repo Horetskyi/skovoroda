@@ -28,8 +28,8 @@ export default function TextSourceLinkWithTooltip(props) {
   const tooltipLabel = linkString + " " + source.sourceName + (page ? " - " + page : "");
 
   const tooltipElement = source.sourceHref
-   ? <a href={source.sourceHref} className={"gray8 "+classes.linkString}>{linkString}</a>
-   : <span className={"gray8 "+classes.linkString}>{linkString}</span>
+   ? <a href={source.sourceHref} className={"grayForText "+classes.linkString}>{linkString}</a>
+   : <span className={"grayForText "+classes.linkString}>{linkString}</span>
 
    return <Tooltip 
     label={tooltipLabel}

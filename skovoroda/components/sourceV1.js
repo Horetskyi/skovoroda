@@ -8,12 +8,12 @@ props.sourceHref
 export default function SourceV1(props) {
   
   return <>
-    <Text size="sm" color="dimmed">
+    <Text size="sm" color="gray.9">
       Джерело
     </Text>
     {props.sourceHref 
-    ? <Link href={props.sourceHref}><a color="dimmed" className="gray8">{props.sourceName}</a></Link>
-    : <div color="dimmed" className="gray8">{props.sourceName}</div>
+    ? <Link href={props.sourceHref}><a color="gray.9" className="grayForText">{props.sourceName}</a></Link>
+    : <div color="gray.9" className="grayForText">{props.sourceName}</div>
     }
   </>
 }

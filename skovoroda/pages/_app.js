@@ -32,24 +32,32 @@ export default function App(props) {
     }
   ];
 
-  const breadcrumbs1 = [
+  const breadcrumbs = [
     { title: 'Головна сторінка', href: '/' },
   ];
+  const breadcrumbTexts = { title: 'Тексти', href: '/texts' };
 
   if (pageProps.textsData) {
-    breadcrumbs1.push({ title: 'Тексти', href: '/texts' });
+    breadcrumbs.push(breadcrumbTexts);
   }
   else if (pageProps.textData) {
-    breadcrumbs1.push({ title: 'Тексти', href: '/texts' });
+    breadcrumbs.push(breadcrumbTexts);
     if (pageProps.textData.id) {
-      breadcrumbs1.push({ 
+      breadcrumbs.push({ 
         title: pageProps.textData.original.originalName, 
         href: '/texts/' + pageProps.textData.id
       });
     }
-  } 
+  }
+  else if (pageProps.sadData) {
+    breadcrumbs.push(breadcrumbTexts);
+    breadcrumbs.push({ 
+      title: pageProps.sadData.originalName, 
+      href: '/sad/' + pageProps.sadData.id
+    });
+  }
   
-  const breadcrumbs = breadcrumbs1.map((item, index) => (
+  const breadcrumbsElement = breadcrumbs.map((item, index) => (
     <Anchor href={item.href} key={index}>{item.title}</Anchor>
   ));
 
@@ -78,19 +86,23 @@ export default function App(props) {
           colors: {
             'green': ['#F5F7EF', '#EEF1E4', '#E5EAD6', '#DDE4C9', '#D4DDBB', '#CCD6AE', '#C3CFA0', '#BBC892', '#B2C185', '#AABB77'],
             'yellow': ['#FFF6EA', '#FFEDD6', '#FFE4C2', '#FFDCAD', '#FFD399', '#FFCA85', '#FFC170', '#FFB85C', '#FFAF47', '#FFA733'],
+            'gray': [
+              '#F7F6F5', '#EDEBE8', '#E4E0DD', '#DBD6D2', '#D2CCC6', 
+              '#C9C2BB', '#BFB8B0', '#B6ADA4', '#ADA399', '#A4998E', 
+              '#9B8F82', '#928577', '#887A6D', '#7D7064', '#71665B'],
           },
           globalStyles: (theme) => ({
             body: {
               backgroundColor: theme.colors.gray[0]
             },
-            ".gray8": {
-              color: theme.colors.gray[8],
+            ".grayForText": {
+              color: theme.colors.gray[13],
             }
           }),
         }}
       >
         <HeaderSearch links={links} searchAutocompleteArray={searchAutocompleteArray}/>
-        <Breadcrumbs separator="→">{breadcrumbs}</Breadcrumbs>
+        <Breadcrumbs separator="→" mb="lg" ml="xl">{breadcrumbsElement}</Breadcrumbs>
         <Component {...pageProps} />
       </MantineProvider>
     </>

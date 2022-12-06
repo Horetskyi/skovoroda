@@ -7,6 +7,7 @@ import { forwardRef, useState } from 'react';
 import { SkovorodaConstants } from '../../lib/skovorodaConstants';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
+import { getFullSongId, getOriginalSongId, getSongId } from '../../lib/sadIds';
 
 const useStyles = createStyles((theme) => ({
 
@@ -40,98 +41,80 @@ const useStyles = createStyles((theme) => ({
 
 }));
 
-function idToSongId(id) {
-  return id.split("-")[1];
-}
-
-function prepareSelectSadSongsArray(allSadData) {
-  const selectSadSongsArray = [];
-  allSadData.forEach(data => {
-    const songId = idToSongId(data.id);
-    if (selectSadSongsArray.findIndex(song => song.value === songId) !== -1) {
+function prepareDropdownSadSongs(allSongsShortData) {
+  const result = [];
+  allSongsShortData.forEach(data => {
+    if (result.findIndex(song => song.value === data.songId) !== -1) {
       return;
     }
-    selectSadSongsArray.push({
-      value: songId,
+    result.push({
+      value: data.songId,
       label: data.shortName,
-      hrefItem: data.id,
+      hrefItem: getFullSongId(data.songId),
     });
   });
-  return selectSadSongsArray;
+  // TODO: Sort
+  return result;
 }
 
-function prepareSelectSadTypeArray(sadData) {
-  const selectSadTypeArray = [
+// "original" and translations
+function prepareDropdownSadTypes(sadData) {
+  const result = [
     { value: "original", label: "Оригінал", hrefItem: sadData.id },
   ];
-  sadData.translates.forEach(translate => {
-    const translatorName = translate.translator.fullName;
-    const label = "Переклад - " + translatorName + " - " + translate.source.year + " р.";
-    selectSadTypeArray.push({
+  sadData.translates.forEach(translation => {
+    const translatorName = translation.translator.fullName;
+    const label = "Переклад - " + translatorName;
+    result.push({
       value: translatorName,
       label: label,
-      hrefItem: translate.id 
+      hrefItem: translation.id 
     });
   });
-  return selectSadTypeArray;
+  return result;
 }
 
-function getSelectSadType(sadData, selectedId) {
+// "original" or some translation
+function getDropdownSelectedSadType(sadData, selectedId) {
   if (sadData.id === selectedId) {
     return "original";
   }
   return sadData.translates.find(translate => translate.id === selectedId).translator.fullName;
 }
 
-export default function SkovorodaSadPage({ sadData, allSadData, selectedId, deviceEnding }) {
+export default function SkovorodaSadPage({ sadData, allSongsShortData, selectedId, deviceEnding }) {
 
   const { classes } = useStyles();
   const router = useRouter();
 
-  console.log("selectedId", selectedId);
+  const dropdownSadSongs = prepareDropdownSadSongs(allSongsShortData);
+  const [selectedSadSongId, selectDropdownSadSongInner] = useState(getSongId(selectedId));
 
-  // Songs Dropdown Data
-  const selectSadSongsArray = prepareSelectSadSongsArray(allSadData);
-  const [selectedSadSong, setSelectedSadSongInner] = useState(idToSongId(selectedId));
-
-  // Types Dropdown Data
-  const selectSadTypeArray = prepareSelectSadTypeArray(sadData);
-  // const [selectSadTypeArray, setSelectSadTypeArray] = useState(prepareSelectSadTypeArray(sadData));
-  // if (!selectSadTypeArray.some(type => idToSongId(type.hrefItem) === idToSongId(selectedId))) {
-  //   setSelectSadTypeArray(prepareSelectSadTypeArray(sadData));
-  // }
-  const [selectedSadType, setSelectedSadTypeInner] = useState(getSelectSadType(sadData, selectedId));
-  if (selectSadTypeArray.every(type => type.value !== selectedSadType)) {
-    setSelectedSadTypeInner(getSelectSadType(sadData, selectedId));
+  const dropdownSadTypes = prepareDropdownSadTypes(sadData);
+  const [selectedSadTypeValue, selectDropdownSadTypeInner] = useState(getDropdownSelectedSadType(sadData, selectedId));
+  if (dropdownSadTypes.every(type => type.value !== selectedSadTypeValue)) {
+    selectDropdownSadTypeInner(getDropdownSelectedSadType(sadData, selectedId));
   }
 
-  // Songs Dropdown Logic
-  async function setSelectedSadSong(songId) {
-    if (songId === idToSongId(selectedId)) {
+  async function selectDropdownSadSong(songId) {
+    if (songId === getSongId(selectedId)) {
       return;
     }
-    const id = selectSadSongsArray.find(type => type.value === songId).hrefItem;
-    router.push("/sad/"+id, undefined, { scroll: false, shallow: false });
-    setSelectedSadSongInner(songId);
-    // window.location = "/sad/"+id;
-    // const response = await fetch("/api/getSadSongData/"+songId);
-    // const data = await response.json();
-    // const newDefaultSelectedSadType = selectSadTypeArray.find(data => data.hrefItem === id).value;
-    // setSelectedSadType(newDefaultSelectedSadType);
+    const fullSongId = dropdownSadSongs.find(type => type.value === songId).hrefItem;
+    router.push("/sad/"+fullSongId, undefined, { scroll: false, shallow: false });
+    selectDropdownSadSongInner(songId);
   }
 
-  // Types Dropdown Logic
   function setSelectedSadType(value) {
-    const id = selectSadTypeArray.find(type => type.value === value).hrefItem;
-    router.push("/sad/"+id, undefined, { scroll: false, shallow: true });
-    setSelectedSadTypeInner(value);
-    // TODO: change selectSadSongsArray according to selected translate/original
+    const fullSongId = dropdownSadTypes.find(type => type.value === value).hrefItem;
+    router.push("/sad/"+fullSongId, undefined, { scroll: false, shallow: true });
+    selectDropdownSadTypeInner(value);
   }
 
   // Data processing (Text and Title)
-  const selectedTranslate = selectedSadType === "original" 
+  const selectedTranslate = selectedSadTypeValue === "original" 
     ? undefined 
-    : sadData.translates.find(translate => translate.translator.fullName === selectedSadType);
+    : sadData.translates.find(translate => translate.translator.fullName === selectedSadTypeValue);
   const selectedText = selectedTranslate ? selectedTranslate.text : sadData.text;
   const selectedNotes = selectedTranslate ? selectedTranslate.notes : sadData.notes;
   const selectedTitle = selectedTranslate ? selectedTranslate.translatedName : sadData.originalName;
@@ -158,7 +141,7 @@ export default function SkovorodaSadPage({ sadData, allSadData, selectedId, devi
   selectedNotes.forEach(addToTextBlock);
 
   // Styling
-  const bgColor = SkovorodaConstants.getBackgroundColorByType(selectedSadType);
+  const bgColor = SkovorodaConstants.getBackgroundColorByType(selectedSadTypeValue);
 
   // Tech
   const LinkInsideSelect = forwardRef(function LinkInsideSelect({ hrefItem, label, ...others }, ref) { 
@@ -174,16 +157,16 @@ export default function SkovorodaSadPage({ sadData, allSadData, selectedId, devi
           variant='filled' 
           itemComponent={LinkInsideSelect} 
           mb="lg" 
-          data={selectSadSongsArray} 
-          value={selectedSadSong}
-          onChange={setSelectedSadSong}>
+          data={dropdownSadSongs} 
+          value={selectedSadSongId}
+          onChange={selectDropdownSadSong}>
         </Select>
         <Select 
           variant='filled' 
           itemComponent={LinkInsideSelect} 
           mb="lg" 
-          data={selectSadTypeArray} 
-          value={selectedSadType}
+          data={dropdownSadTypes} 
+          value={selectedSadTypeValue}
           onChange={setSelectedSadType}>
         </Select>
         <Container size={600}>
@@ -214,18 +197,16 @@ export async function getStaticProps({ params }) {
 
   const skovorodaSad = await SkovorodaSad();
   const { id, deviceEnding } = readDynamicIdCommon(params.id);
-  const idParts = id.split('-');
-  const originalId = idParts[0]+'-'+idParts[1];
+  const originalId = getOriginalSongId(id);
   const sadData = skovorodaSad.array.find(sad => sad.id === originalId);
-  const allSadData = skovorodaSad.array.map(sad => { return {
-    id: sad.id,
-    shortName: sad.shortName,
-    type: sad.type,
+  const allSongsShortData = skovorodaSad.array.map(sad => { return {
+    songId: getSongId(sad.id),
+    shortName: sad.shortName
   }});
   return {
     props: {
       sadData,
-      allSadData,
+      allSongsShortData,
       selectedId: id,
       deviceEnding,
     },

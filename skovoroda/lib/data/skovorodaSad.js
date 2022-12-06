@@ -1,6 +1,7 @@
 import fs from "fs";
 import mammoth from "mammoth";
 import path from "path";
+import { getFullSongId } from "../sadIds";
 import { SkovorodaSources } from "./skovorodaSources";
 import { SkovorodaTranslatorsArray } from "./skovorodaTranslators";
 
@@ -128,7 +129,8 @@ function parseDocxSadFile(content) {
 }
 
 function fileNameToId(fileName) {
-  return "pisnya-" + fileName.replace(".docx", "");
+  const songId = fileName.replace(".docx", "");
+  return getFullSongId(songId);
 }
 
 export async function SkovorodaSad() {

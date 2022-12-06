@@ -19,22 +19,50 @@ const lineFormats = [
   },
 ];
 
-function parseDocxSadFile(content) {
+function internalCleanSplitDocx(content) {
   const split = content.split('\n');
+
+  // Remove last empty lines
   if (!split[split.length - 1]) {
-    split.pop();
+    split.pop(); 
   }
-  const result = {};
-  result.type = "original";
-  var section = undefined;
-  var pretext = [];
-  var text = [];
-  var notes = [];
+
+  const cleanSplit = [];
   var emptyLineCount = 0;
+  split.forEach(line => {
+    const isEmptyLine = !line || !(line.trim());
+    if (isEmptyLine) {
+      emptyLineCount++;
+    } else {
+      emptyLineCount = 0;
+    }
+    if (emptyLineCount === 2){
+      cleanSplit.push("");
+    } else if (emptyLineCount === 0) {
+      cleanSplit.push(line);
+    }
+  });
+  return cleanSplit;
+}
+
+function nameToShortName(name) {
+  return name.split("(")[0].trim();
+}
+
+function parseDocxSadFile(content) {
+  
+  const split = internalCleanSplitDocx(content);
+  const result = {
+    type: "original"
+  };
+  const text = [];
+  const notes = [];
+  var section = undefined;
+
   split.forEach((line, index) => {
 
     const isEmptyLine = !line || !(line.trim());
-    const lineObject = { text: line }; // lineObject: { text, format }
+    const lineObject = { text: line };
     lineFormats.some(lineFormat => {
       if (lineObject.text.includes(lineFormat.formatInDoc)) {
         lineObject.text = lineObject.text.replace(lineFormat.formatInDoc, "").trim();
@@ -43,29 +71,6 @@ function parseDocxSadFile(content) {
       }
       return false;
     });
-
-    if (isEmptyLine) {
-      emptyLineCount++;
-    } else {
-      emptyLineCount = 0;
-    }
-    
-    // Section "pretext"
-    if (section === "pretext") {
-      if (!pretext.length && isEmptyLine) {
-        return;
-      }
-      if (isEmptyLine && emptyLineCount === 2) {
-        section = "text";
-        return;
-      } 
-      if (emptyLineCount === 2){
-        pretext.push({ text: "" });
-      } else if (emptyLineCount === 0) {
-        pretext.push(lineObject);
-      }
-      return;
-    }
 
     // Section "text"
     if (section === "text") {
@@ -76,11 +81,7 @@ function parseDocxSadFile(content) {
         section = "notes";
         return;
       }
-      if (emptyLineCount === 2){
-        text.push({ text: "" });
-      } else if (emptyLineCount === 0) {
-        text.push(lineObject);
-      }
+      text.push(lineObject);
       return;
     }
 
@@ -89,11 +90,7 @@ function parseDocxSadFile(content) {
       if (!notes.length && isEmptyLine) {
         return;
       }
-      if (emptyLineCount === 2){
-        notes.push({ text: "" });
-      } else if (emptyLineCount === 0) {
-        notes.push(lineObject);
-      }
+      notes.push(lineObject);
       return;
     }
     
@@ -115,7 +112,7 @@ function parseDocxSadFile(content) {
       if (sourceEncoded && sourceEncoded.includes("[10]")) {
         result.source = SkovorodaSources.ukrainska_musa_2009;
       }
-      section = "pretext";
+      section = "text";
       return;
     }
   });
@@ -124,8 +121,8 @@ function parseDocxSadFile(content) {
   } else if (result.type === "original") {
     result.originalName = result.name;
   }
+  result.shortName = nameToShortName(result.name);
   result.text = text;
-  result.pretext = pretext;
   result.notes = notes;
   return result;
 }

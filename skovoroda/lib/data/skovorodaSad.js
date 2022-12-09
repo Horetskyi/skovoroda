@@ -6,19 +6,28 @@ import { SkovorodaSources } from "./skovorodaSources";
 import { SkovorodaTranslatorsArray } from "./skovorodaTranslators";
 
 const lineFormats = [
-  {
-    formatInDoc: "[Center]",
-    format: "center"
-  },
-  {
-    formatInDoc: "[Right]",
-    format: "right"
-  },
-  {
-    formatInDoc: "[Tabs3]",
-    format: "tabs3"
-  },
-];
+  ["[Center]", "center"],
+  ["[Right]", "right"],
+  ["[Tabs3]", "tabs3"],
+  ["[Tab6]", "tabs6"],
+  ["[Tab5]", "tabs5"],
+  ["[Tab4]", "tabs4"],
+  ["[Tab3]", "tabs3"],
+  ["[Tab2]", "tabs2"],
+  ["[Tab1]", "tabs1"],
+  ["[LeftNum9]", "leftNum9"],
+  ["[LeftNum8]", "leftNum8"],
+  ["[LeftNum7]", "leftNum7"],
+  ["[LeftNum6]", "leftNum6"],
+  ["[LeftNum5]", "leftNum5"],
+  ["[LeftNum4]", "leftNum4"],
+  ["[LeftNum3]", "leftNum3"],
+  ["[LeftNum2]", "leftNum2"],
+  ["[LeftNum1]", "leftNum1"],
+].map(value => { return {
+  formatInDoc: value[0],
+  format: value[1],
+}});
 
 function internalCleanSplitDocx(content) {
   const split = content.split('\n');
@@ -56,9 +65,12 @@ function parseDocxSadFile(content) {
   const result = {
     type: "original"
   };
+  const textBefore = [];
+  const textAfter = [];
   const text = [];
   const notes = [];
   var section = undefined;
+  var mainSectionStatus = 0;
 
   split.forEach((line, index) => {
 
@@ -73,16 +85,50 @@ function parseDocxSadFile(content) {
       return false;
     });
 
+    if ((index !== (split.length - 1)) && !split[index + 1]) {
+      lineObject.isEnterLine = true;
+    }
+
+    // Irmologion font
+    if (!isEmptyLine) {
+      const irmSplit = lineObject.text.split("[Irm]");
+      if (irmSplit.length > 1) {
+        var irmResult = [];
+        irmSplit.forEach((text, index) => {
+          if (!text) {
+            return;
+          }
+          if (index % 2 === 0) {
+            irmResult.push({ text: text });
+          } else {
+            irmResult.push({ text: text, format: "irmologion" });
+          }
+        });
+        lineObject.text = irmResult;
+      }
+    }
+
     // Section "text"
     if (section === "text") {
-      if (!text.length && isEmptyLine) {
-        return;
-      }
+      
       if (line.includes("Примітки")) {
         section = "notes";
         return;
       }
-      text.push(lineObject);
+      if (line.includes("[MainSection]")) {
+        mainSectionStatus++;
+        return;
+      }
+      var workingArray = text;
+      if (mainSectionStatus === 0)
+        workingArray = textBefore;
+      else if (mainSectionStatus === 1)
+        workingArray = text;
+      else if (mainSectionStatus === 2)
+        workingArray = textAfter;
+      if (workingArray.length || !isEmptyLine) {
+        workingArray.push(lineObject);
+      }
       return;
     }
 
@@ -123,6 +169,8 @@ function parseDocxSadFile(content) {
     result.originalName = result.name;
   }
   result.shortName = nameToShortName(result.name);
+  result.textAfter = textAfter;
+  result.textBefore = textBefore;
   result.text = text;
   result.notes = notes;
   return result;
@@ -133,8 +181,14 @@ function fileNameToId(fileName) {
   return getFullSongId(songId);
 }
 
+var skovorodaSad = undefined;
+
 export async function SkovorodaSad() {
   
+  if (skovorodaSad) {
+    return skovorodaSad;
+  }
+
   const sadArray = [];
 
   const sadDirectoryPath = path.join(process.cwd(), "lib", "data", "sad");
@@ -161,12 +215,16 @@ export async function SkovorodaSad() {
     const text = await mammoth.extractRawText({path: filePath});
     const parsed = parseDocxSadFile(text.value);
     const sadObject = sadArray.find(x => x.id === id);
-    parsed.id = id + "-hotkevych";
+    const translationId = "hotkevych";
+    parsed.translationId = translationId;
+    parsed.id = id + "-" + translationId;
     sadObject.translates.push(parsed);
   }));
 
-  return {
+  skovorodaSad = {
     originalName: "Сад божественных пѣсней, прозябшій из зерн Священнаго Писанія",
     array: sadArray,
   };
+
+  return skovorodaSad;
 }

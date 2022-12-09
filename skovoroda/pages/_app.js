@@ -1,9 +1,14 @@
 import '../styles/globals.css'
 import Head from 'next/head';
-import { Anchor, Breadcrumbs, MantineProvider } from '@mantine/core';
+import { Anchor, Breadcrumbs, Container, Group, MantineProvider } from '@mantine/core';
 import { HeaderSearch } from '../components/headerSearch';
 import { SkovorodaTranslatorsArray } from '../lib/data/skovorodaTranslators';
 import { SkovorodaSourcesArray } from '../lib/data/skovorodaSources';
+import { CustomFonts } from '../components/customFonts';
+import { getTranslationId } from '../lib/sadIds';
+import { pathJoinWithoutEndSlash, pathWithoutEndSlash, SkovorodaSadPath, SkovorodaTextsPath } from '../lib/skovorodaPath';
+
+
 
 export default function App(props) {
   const { Component, pageProps } = props;
@@ -12,15 +17,19 @@ export default function App(props) {
     SkovorodaTranslatorsArray.map(translator => translator.fullName),
     SkovorodaSourcesArray.map(source => source.sourceName),
   ].flatMap(x => x);
+
+  const textsLabel = "Твори";
+  const sadPath = SkovorodaSadPath;
+  const textsPath = SkovorodaTextsPath;
   
   const links = [
     {
-      "link": "/texts",
-      "label": "Тексти"
-    },
-    {
       "link": "/bio",
       "label": "Біографія"
+    },
+    {
+      "link": pathWithoutEndSlash(textsPath),
+      "label": textsLabel
     },
     {
       "link": "/lysty",
@@ -31,11 +40,10 @@ export default function App(props) {
       "label": "Дослідження"
     }
   ];
-
   const breadcrumbs = [
     { title: 'Головна сторінка', href: '/' },
   ];
-  const breadcrumbTexts = { title: 'Тексти', href: '/texts' };
+  const breadcrumbTexts = { title: textsLabel, href: pathWithoutEndSlash(textsPath) };
 
   if (pageProps.textsData) {
     breadcrumbs.push(breadcrumbTexts);
@@ -45,15 +53,21 @@ export default function App(props) {
     if (pageProps.textData.id) {
       breadcrumbs.push({ 
         title: pageProps.textData.original.originalName, 
-        href: '/texts/' + pageProps.textData.id
+        href: textsPath + pageProps.textData.id
       });
     }
   }
   else if (pageProps.sadData) {
+    const onFlySelectedId = props.router._inFlightRoute ? props.router._inFlightRoute.replace(SkovorodaSadPath, "") : pageProps.selectedId;
+    const translationId = getTranslationId(onFlySelectedId);
     breadcrumbs.push(breadcrumbTexts);
     breadcrumbs.push({ 
-      title: pageProps.sadData.originalName, 
-      href: '/sad/' + pageProps.sadData.id
+      title: translationId ? 'Сад божественних пісень' : 'Сад божественных пѣсней', 
+      href: pathWithoutEndSlash(sadPath) 
+    });
+    breadcrumbs.push({ 
+      title: translationId ? pageProps.sadData.translates.find(t => t.translationId === translationId).name : pageProps.sadData.originalName, 
+      href: pathJoinWithoutEndSlash(sadPath, onFlySelectedId)
     });
   }
   
@@ -84,25 +98,31 @@ export default function App(props) {
             xl: '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 0px 36px 28px -7px, rgba(0, 0, 0, 0.04) 0px 17px 17px -7px',
           },
           colors: {
-            'green': ['#F5F7EF', '#EEF1E4', '#E5EAD6', '#DDE4C9', '#D4DDBB', '#CCD6AE', '#C3CFA0', '#BBC892', '#B2C185', '#AABB77'],
-            'yellow': ['#FFF6EA', '#FFEDD6', '#FFE4C2', '#FFDCAD', '#FFD399', '#FFCA85', '#FFC170', '#FFB85C', '#FFAF47', '#FFA733'],
+            'green': [
+              '#FCFDFB', '#F5F7EF', '#EEF1E4', '#E5EAD6', '#DDE4C9', 
+              '#CCD6AE', '#C3CFA0', '#BBC892', '#B2C185', '#AABB77'],
+            'yellow': [
+              '#FFF8EF', '#FFF6EA', '#FFEDD6', '#FFE4C2', '#FFDCAD', 
+              '#FFCA85', '#FFC170', '#FFB85C', '#FFAF47', '#FFA733'],
             'gray': [
               '#F7F6F5', '#EDEBE8', '#E4E0DD', '#DBD6D2', '#D2CCC6', 
-              '#C9C2BB', '#BFB8B0', '#B6ADA4', '#ADA399', '#A4998E', 
               '#9B8F82', '#928577', '#887A6D', '#7D7064', '#71665B'],
           },
           globalStyles: (theme) => ({
             body: {
-              backgroundColor: theme.colors.gray[0]
+              backgroundColor: "white"
             },
             ".grayForText": {
-              color: theme.colors.gray[13],
+              color: theme.colors.gray[9],
             }
           }),
         }}
       >
+        <CustomFonts />
         <HeaderSearch links={links} searchAutocompleteArray={searchAutocompleteArray}/>
-        <Breadcrumbs separator="→" mb="lg" ml="xl">{breadcrumbsElement}</Breadcrumbs>
+        <Container>
+            <Breadcrumbs separator=">" mb="lg">{breadcrumbsElement}</Breadcrumbs>
+        </Container>
         <Component {...pageProps} />
       </MantineProvider>
     </>

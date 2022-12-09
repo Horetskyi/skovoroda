@@ -11,7 +11,7 @@ const useStyles = createStyles((theme) => ({
   inner: {
     height: 56,
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
 
@@ -33,7 +33,7 @@ const useStyles = createStyles((theme) => ({
     padding: '8px 12px',
     borderRadius: theme.radius.sm,
     textDecoration: 'none',
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
+    color: "black",
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
 
@@ -44,7 +44,6 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function HeaderSearch({ links, searchAutocompleteArray }) {
-  const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles();
 
   const items = links.map((link) => (
@@ -61,12 +60,7 @@ export function HeaderSearch({ links, searchAutocompleteArray }) {
   return (
     <Header height={56} className={classes.header} mb="lg">
       <div className={classes.inner}>
-        <Group>
-          <Burger opened={opened} onClick={toggle} size="sm" />
-          {/* <MantineLogo size={28} /> */}
-        </Group>
-
-        <Group>
+        <Group position='right'>
           <Group ml={50} spacing={5} className={classes.links}>
             {items}
           </Group>

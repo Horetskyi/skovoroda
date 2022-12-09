@@ -1,6 +1,6 @@
 
-export function getFullSongId(songId) {
-  return "pisnya-" + songId;
+export function getFullSongId(songId, translationId) {
+  return "pisnya-" + songId + (translationId ? "-"+translationId : "");
 }
 
 export function getOriginalSongId(fullSongId) {
@@ -11,4 +11,9 @@ export function getOriginalSongId(fullSongId) {
 
 export function getSongId(fullSongId) {
   return fullSongId.split("-")[1];;
+}
+
+export function getTranslationId(fullSongId) {
+  const split = fullSongId.split("-");
+  return split.length > 2 ? split[2] : "";
 }

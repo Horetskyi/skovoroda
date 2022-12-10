@@ -132,12 +132,12 @@ export default function App(props) {
             },
             "button:focus": {
               outline: 'none !important',
-              border: 'none',
+              borderColor: 'transparent !important',
               boxShadow: theme.shadows.xs,
             },
             "input:focus": {
               outline: 'none !important',
-              border: 'none',
+              borderColor: 'transparent !important',
               boxShadow: theme.shadows.xs,
             },
           }),

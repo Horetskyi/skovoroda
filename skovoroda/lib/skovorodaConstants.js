@@ -3,7 +3,7 @@ export const SkovorodaConstants = {
   mobileEnding: "-mobile",
 
   getColorByType: function(type) {
-    return type === "original" ? "green" : "yellow";
+    return type === "original" ? "green" : "magnolia";
   },
   getBackgroundColorByType: function(type) {
     return this.getColorByType(type)+".1";
@@ -12,10 +12,10 @@ export const SkovorodaConstants = {
     return this.getColorByType(type)+".1";
   },
   getElementsColorByType: function(type) {
-    return this.getColorByType(type)+".3";
+    return this.getColorByType(type)+".2";
   },
   getElementsHoverColorByType: function(type) {
-    return this.getColorByType(type)+".2";
+    return this.getColorByType(type)+".1";
   },
   getColorInTheme: function(color, theme) {
     const split = color.split('.');

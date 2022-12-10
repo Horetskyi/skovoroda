@@ -151,7 +151,7 @@ const useStyles = createStyles((theme) => {
       fontSize: theme.fontSizes.md,
       paddingTop: theme.spacing.xs,
       paddingBottom: theme.spacing.xs,
-      paddingLeft: `${theme.spacing.sm} !important`,
+      paddingLeft: `${theme.spacing.md} !important`,
     },
 
     originalSelect: {
@@ -358,7 +358,7 @@ export default function SkovorodaSadPage({ sadData, allSongsShortData, selectedI
 
   return <>
     <Container mb="xl">
-      <Title ta={'left'} mt="lg" mb="lg" order={1}>{header1Text}</Title>
+      <Title ta={'center'} mt="lg" mb="lg" order={1}>{header1Text}</Title>
       <Flex
         justify="flex-start"
         align="center"

@@ -100,13 +100,28 @@ export default function App(props) {
           colors: {
             'green': [
               '#FCFDFB', '#F5F7EF', '#EEF1E4', '#E5EAD6', '#DDE4C9', 
-              '#CCD6AE', '#C3CFA0', '#BBC892', '#B2C185', '#AABB77'],
-            'yellow': [
+              '#CCD6AE', '#C3CFA0', '#BBC892', '#B2C185', '#AABB77'
+            ],
+            'pink': [
+              '#FEF5FC', '#FDECFA', '#FBDAF4', '#F9C7EF', '#F8B5E9',
+              '#F6A2E4', '#F490DE', '#F27DD9', '#F06AD3', '#EE58CE'
+            ],
+            'lilac': [
+              '#F6F5FC', '#F1EFFA', '#E3E0F6', '#D5D0F1', '#C7C0EC',
+              '#B9B0E8', '#ABA1E3', '#9D91DE', '#8F81D9', '#8072D5'
+            ],
+            'magnolia': [
+              '#FCF5F8', '#FAEFF4', '#F6E0E9', '#F1D0DE', '#ECC0D3',
+              '#E8B0C8', '#E3A1BD', '#DE91B2', '#D981A8', '#D5729D'
+            ],
+            'orange': [
               '#FFF8EF', '#FFF6EA', '#FFEDD6', '#FFE4C2', '#FFDCAD', 
-              '#FFCA85', '#FFC170', '#FFB85C', '#FFAF47', '#FFA733'],
+              '#FFCA85', '#FFC170', '#FFB85C', '#FFAF47', '#FFA733'
+            ],
             'gray': [
               '#F7F6F5', '#EDEBE8', '#E4E0DD', '#DBD6D2', '#D2CCC6', 
-              '#9B8F82', '#928577', '#887A6D', '#7D7064', '#71665B'],
+              '#9B8F82', '#928577', '#887A6D', '#7D7064', '#71665B'
+            ],
           },
           globalStyles: (theme) => ({
             body: {
@@ -114,7 +129,17 @@ export default function App(props) {
             },
             ".grayForText": {
               color: theme.colors.gray[9],
-            }
+            },
+            "button:focus": {
+              outline: 'none !important',
+              border: 'none',
+              boxShadow: theme.shadows.xs,
+            },
+            "input:focus": {
+              outline: 'none !important',
+              border: 'none',
+              boxShadow: theme.shadows.xs,
+            },
           }),
         }}
       >

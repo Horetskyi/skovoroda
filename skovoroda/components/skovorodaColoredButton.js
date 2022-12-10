@@ -4,7 +4,7 @@ import { SkovorodaConstants } from "../lib/skovorodaConstants";
 const useStyles = createStyles((theme) => ({
   coloredButton: {
     color: "black",
-    padding: "0 12px",
+    padding: "0 12px"
   }
 }));
 

@@ -336,7 +336,12 @@ export default function SkovorodaSadPage({ sadData, allSongsShortData, selectedI
   selectedData.textBefore.forEach(addToTextBeforeBlock);
   selectedData.text.forEach(addToTextBlock);
   selectedData.textAfter.forEach(addToTextAfterBlock);
-  selectedNotes.forEach(addToNotesBlock);
+  selectedNotes.forEach((note, index) => {
+    addToNotesBlock(note);
+    if (index !== (selectedNotes.length-1)) {
+      addToNotesBlock({ text: "" });
+    }
+  });
 
   const header1Text = selectedSadTypeValue === "original" 
     ? "Сад божественных пѣсней, прозябшій из зерн Священнаго Писанія"

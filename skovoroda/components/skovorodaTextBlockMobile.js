@@ -25,8 +25,7 @@ const useStyles = createStyles((theme) => ({
 export default function SkovorodaTextBlockMobile(props) {
   
   const { classes } = useStyles();
-  const badgeText = props.textType === "original" ? "Оригінал" : "Переклад";
-  const color = SkovorodaConstants.getColorByType(props.textType);
+  const badgeText = SkovorodaConstants.getTypeText(props.textType);
 
   return <>
   
@@ -50,7 +49,7 @@ export default function SkovorodaTextBlockMobile(props) {
 
     <SourceV1 {...props}/>
     <div className={classes.downloadStack}>
-      <DownloadStackV1  {...props} color={color}/>
+      <DownloadStackV1  {...props} colortype={props.textType}/>
     </div>
 
   </>;

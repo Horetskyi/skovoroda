@@ -56,14 +56,13 @@ export default function SkovorodaTextBlockDesktop(props) {
   
   const { classes } = useStyles();
 
-  const badgeText = props.textType === "original" ? "Оригінал" : "Переклад";
-  const color = SkovorodaConstants.getColorByType(props.textType);
-  const bgColor = SkovorodaConstants.getBackgroundColorByType(props.textType);
-  const elColor = SkovorodaConstants.getElementsColorByType(props.textType);
+  const badgeText = SkovorodaConstants.getTypeText(props.textType);
+  const bgColor = SkovorodaConstants.getTextBackgroundColorByType(props.textType);
+  const elColor = SkovorodaConstants.getBlockElementsColorByType(props.textType);
   
   return (
     <Container size="md">
-      <Card withBorder radius="md" p="md" bg={bgColor} className={classes.card}>
+      <Card radius="md" p="md" bg={bgColor} className={classes.card}>
         <Group>
           
           {props.imageSrc 
@@ -88,7 +87,7 @@ export default function SkovorodaTextBlockDesktop(props) {
 
             <SourceV1 {...props}/>
             <div className={classes.downloadStack}>
-              <DownloadStackV1 {...props} color={color}/>
+              <DownloadStackV1 {...props} colortype={props.textType}/>
             </div>
           </div>
 

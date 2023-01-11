@@ -1,6 +1,6 @@
 import { SkovorodaConstants } from "./skovorodaConstants";
 
-export default async function getStaticPathsCommon(ids) {
+export default function getStaticPathsCommon(ids) {
   
   const paths = ids.flatMap(id => [
     {

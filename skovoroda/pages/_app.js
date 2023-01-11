@@ -89,13 +89,20 @@ export default function App(props) {
         withNormalizeCSS
         theme={{
           colorScheme: 'light',
-          fontFamily: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji",
+          fontFamily: "Montserrat,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji",
           shadows: {
             xs: '0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1)',
             sm: '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 0px 10px 15px -5px, rgba(0, 0, 0, 0.04) 0px 7px 7px -5px',
             md: '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.10) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px',
             lg: '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 0px 28px 23px -7px, rgba(0, 0, 0, 0.04) 0px 12px 12px -7px',
             xl: '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 0px 36px 28px -7px, rgba(0, 0, 0, 0.04) 0px 17px 17px -7px',
+          },
+          fontSizes: {
+            xs: "12px",
+            sm: "16px",
+            md: "20px",
+            lg: "24px",
+            xl: "28px"
           },
           colors: {
             'green': [
@@ -120,12 +127,15 @@ export default function App(props) {
             ],
             'gray': [
               '#F7F6F5', '#EDEBE8', '#E4E0DD', '#DBD6D2', '#D2CCC6', 
-              '#9B8F82', '#928577', '#887A6D', '#7D7064', '#71665B'
+              '#9B8F82', '#4A4A45', '#40403B', '#353531', '#2A2A27'
             ],
           },
           globalStyles: (theme) => ({
             body: {
-              backgroundColor: "white"
+              backgroundColor: "white",
+              fontWeight: "400",
+              letterSpacing: "-0.06px",
+              textRendering: "optimizelegibility",
             },
             ".grayForText": {
               color: theme.colors.gray[9],

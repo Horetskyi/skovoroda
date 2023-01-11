@@ -11,10 +11,11 @@ const useStyles = createStyles((theme) => ({
 export default function SkovorodaColoredButton(props) {
 
   const colorType = props.colortype;
+  const backgroundType = props.backgroundType;
   const { classes } = useStyles();
 
-  const elementColor = SkovorodaConstants.getElementsColorByType(colorType);
-  const elementHoverColor = SkovorodaConstants.getElementsHoverColorByType(colorType);
+  const elementColor = SkovorodaConstants.getElementsColorByType(colorType, backgroundType);
+  const elementHoverColor = SkovorodaConstants.getElementsHoverColorByType(colorType, backgroundType);
 
   return <Button 
     {...props}  

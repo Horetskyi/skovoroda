@@ -28,4 +28,5 @@ export function pathJoinWithoutEndSlash(...pathArray) {
 }
 
 export const SkovorodaTextsPath = "/texts/";
-export const SkovorodaSadPath = pathJoin(SkovorodaTextsPath, "/sad/");
+export const SkovorodaSadPath = pathJoin(SkovorodaTextsPath, "/garden/");
+export const SkovorodaLettersFromPath = pathJoin(SkovorodaTextsPath, "/letters-from/");

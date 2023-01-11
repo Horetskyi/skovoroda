@@ -4,6 +4,15 @@ const useStyles = createStyles((theme) => ({
 
   linkString: {
     padding: "0 4px",
+    textDecoration: 'none',
+
+    "&:hover": {
+      color: theme.colors.blue[5],
+    },
+
+    "&:focus": {
+      color: theme.colors.gray[9],
+    }
   }
 
 }));
@@ -24,16 +33,15 @@ export default function TextSourceLinkWithTooltip(props) {
     pageLinkIndexes.lastIndex += 1;
   }
   const linkString = "[" + pageLinkIndexes[source.sourceName] + "]";
-  
   const tooltipLabel = linkString + " " + source.sourceName + (page ? " - " + page : "");
 
   const tooltipElement = source.sourceHref
-   ? <a href={source.sourceHref} className={"grayForText "+classes.linkString}>{linkString}</a>
-   : <span className={"grayForText "+classes.linkString}>{linkString}</span>
+   ? <a href={source.sourceHref} color="gray.9" className={classes.linkString}>{linkString}</a>
+   : <span color="gray.9" className={classes.linkString}>{linkString}</span>
 
    return <Tooltip 
     label={tooltipLabel}
-    color="gray"
+    color="gray.8"
     position="top"
     withArrow
     transition="fade"

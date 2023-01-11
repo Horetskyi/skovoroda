@@ -185,11 +185,11 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, ...other
     
     // Simple formatting
     if (!Array.isArray(text)) {
-      if (lineObject.isNoteBeginning) {
-        id = "note"+lineObject.noteNumber;
+      if (lineObject.noteNumber) {
+        id = (lineObject.isNoteBeginning ? "note" : "noteInText") + lineObject.noteNumber;
       }
       if (lineObject.isNoteBeginning && lineObject.noteNumber) {
-        block.push(<span key={block.length} className={classes.noteInNotesBlock}>{getNoteNumberString(lineObject.noteNumber)}</span>);
+        pushNoteInNotesBlock(block, lineObject, classes);
       }
       if (lineObject.isEnterLine) {
         block.push(<p key={block.length} id={id} className={normalClassName}>{text}</p>);
@@ -202,29 +202,37 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, ...other
     // Multi formatting
     const spans = text.map((subText, index) => {
 
-      const subTextText = subText.text;
       const noteNumber = lineObject.noteNumber ? lineObject.noteNumber : subText.noteNumber;
 
-      if (index === 0 && lineObject.isNoteBeginning) {
-        id = "note"+noteNumber;
+      if (index === 0 && noteNumber) {
+        id = (lineObject.isNoteBeginning ? "note" : "noteInText") + noteNumber;
       }
-
       const subFormatClassName = subText.format ? formatClasses[subText.format] : "";
 
       if (noteNumber && !lineObject.isNoteBeginning) {
+        const subId = "noteInText" + noteNumber;
         return <Link key={block.length} href={"#note"+noteNumber}>
-          <a color="gray.9" className={classes.noteLink + " grayForText " + subFormatClassName}>{subTextText}</a>
+          <a id={subId} color="gray.9" className={classes.noteLink + " grayForText " + subFormatClassName}>{subText.text}</a>
         </Link>;
       }
-
-      return <span key={index} className={subFormatClassName}>{subTextText}</span>;
+      return <span key={index} className={subFormatClassName}>{subText.text}</span>;
     });
     if (lineObject.isNoteBeginning && lineObject.noteNumber) {
-      block.push(<span key={block.length} className={classes.noteInNotesBlock}>{getNoteNumberString(lineObject.noteNumber)}</span>);
+      pushNoteInNotesBlock(block, lineObject, classes);
     }
     block.push(<span id={id} key={block.length} className={normalClassName}>{spans}</span>);
   });
   return <div className={classes.textContentBlock} {...others}>{block}</div>;
+}
+
+function pushNoteInNotesBlock(block, lineObject, classes) {
+  block.push(
+    <Link key={block.length} href={"#noteInText"+lineObject.noteNumber}>
+      <a color="gray.9" className={classes.noteInNotesBlock + " " + classes.noteLink + " grayForText"}>
+        {getNoteNumberString(lineObject.noteNumber)}
+      </a>
+    </Link>
+  );
 }
 
 function getNoteNumberString(noteNumber) {

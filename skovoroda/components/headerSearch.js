@@ -1,6 +1,7 @@
 import { createStyles, Header, Autocomplete, Group, Burger } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconSearch } from '@tabler/icons';
+import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -44,25 +45,21 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function HeaderSearch({ links, searchAutocompleteArray }) {
+  
   const { classes } = useStyles();
 
-  const items = links.map((link) => (
-    <a
-      key={link.label}
-      href={link.link}
-      className={classes.link}
-      onClick={(event) => event.preventDefault()}
-    >
-      {link.label}
-    </a>
-  ));
+  const linkItems = links.map(link => 
+    <Link key={link.label} href={link.link}>
+      <a className={classes.link}>{link.label}</a>
+    </Link>
+  );
 
   return (
     <Header height={56} className={classes.header} mb="lg">
       <div className={classes.inner}>
         <Group position='right'>
           <Group ml={50} spacing={5} className={classes.links}>
-            {items}
+            {linkItems}
           </Group>
           <Autocomplete
             className={classes.search}

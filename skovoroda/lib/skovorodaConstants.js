@@ -33,3 +33,13 @@ export const SkovorodaConstants = {
     return theme.colors[split[0]][+split[1]];
   }
 };
+
+export const homePageKey = { pageKey: "Home" }; 
+export const textsPageKey = { pageKey: "Texts", parent: homePageKey };
+export const treatisePageKey = { pageKey: "Treatise", parent: textsPageKey };
+export const treatiseSelectedPageKey = { pageKey: "TreatiseSelected", parent: treatisePageKey };
+export const gardenPageKey = { pageKey: "Garden", parent: textsPageKey };
+export const gardenSelectedPageKey = { pageKey: "GardenSelected", parent: gardenPageKey };
+export const lettersPageKey = { pageKey: "Letters", parent: homePageKey };
+export const lettersFromPageKey = { pageKey: "LettersFrom", parent: lettersPageKey };
+export const lettersToPageKey = { pageKey: "LettersTo", parent: lettersPageKey };

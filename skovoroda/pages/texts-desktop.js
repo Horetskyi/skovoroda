@@ -1,29 +1,69 @@
+import { Container, createStyles, Stack, Text, Title } from '@mantine/core';
 import Link from 'next/link';
-import { SkovorodaSad } from '../lib/data/skovorodaSad';
-import { SkovorodaTextsArray } from '../lib/data/skovorodaTexts';
+import { textsPageKey } from '../lib/skovorodaConstants';
+import { SkovorodaDifferentPath, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaOtherPoemsPath, SkovorodaTranslatationsPath, SkovorodaTreatisePath } from '../lib/skovorodaPath';
 
-export default function SkovorodaTextsPageDesktop({ textsData, sadData }) {
+const useStyles = createStyles((theme) => ({
+
+}));
+
+export default function SkovorodaTextsPageDesktop({ }) {
   
-  return <>
-    <h1>Texts</h1>
+  const { classes } = useStyles();
 
-    <h2>{sadData.originalName}</h2>
-    {sadData.array.map((data, index) => {
-      return <Link key={index} href={"/sad/" + data.id}>{data.originalName}</Link>
-    })}
+  const items = [
+    {
+      path: SkovorodaTreatisePath,
+      label: "Трактати, Діалоги, Притчі",
+      progress: "в процесі",
+    },
+    {
+      path: SkovorodaGardenPath,
+      label: "Сад божественних пісень",
+      progress: "в процесі",
+    },
+    {
+      path: SkovorodaOtherPoemsPath,
+      label: "Інші поезії",
+      progress: "в майбутньому",
+    },
+    {
+      path: SkovorodaFablesPath,
+      label: "Байки Харківські",
+      progress: "в майбутньому",
+    },
+    {
+      path: SkovorodaTranslatationsPath,
+      label: "Переклади",
+      progress: "в майбутньому",
+    },
+    {
+      path: SkovorodaDifferentPath,
+      label: "Різне",
+      progress: "в майбутньому",
+    },
+  ];
 
-    {textsData.map((textData, index) => {
-      return <Link key={index} href={"/texts/" + textData.id}>{textData.original.originalName}</Link>
-    })}
-  </>
+  return <Container>
+    <Title order={1} mb="md">Твори</Title>
+    <Stack>
+      {items.map((item, index) => {
+        return <div key={index}>
+          <Link href={item.path}><a>{item.label}</a></Link>
+          <Text span ml="xs">{"("+item.progress+")"}</Text>
+        </div>
+      })}
+    </Stack>
+  </Container>
 }
 
 export async function getStaticProps({ params }) {
 
   return {
     props: {
-      textsData: SkovorodaTextsArray,
-      sadData: await SkovorodaSad(),
+      pageKey: textsPageKey,
+      metadataTitle: "Твори - Григорій Савич Сковорода",
+      metadataDescription: "Твори - Григорій Савич Сковорода",
     },
   };
 }

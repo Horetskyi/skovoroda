@@ -1,3 +1,5 @@
+import { NOTES_NUMBERS_SYMBOLS_MAP } from "./notesNumbersSymbols";
+
 export const TextLineFormats = [
   ["[Center]", "center"],
   ["[Right]", "right"],
@@ -28,13 +30,9 @@ export const TextLineFormats = [
   format: value[1],
 }});
 const IRM_FORMAT = "[Irm]";
-const NOTE_NUMBER_FORMAT = "[NoteNumber]";
+const NOTE_NUMBER_FORMAT = "[NoteNumber]"; 
+const MAIN_SECTION_FORMAT = "[MainSection]"; 
 function getNotesRegex() { return new RegExp("[¹²³⁴⁵⁶⁷⁸⁹⁰]+", 'g'); }
-export const NOTES_NUMBERS_SYMBOLS_ARRAY = [..."⁰¹²³⁴⁵⁶⁷⁸⁹"];
-export const NOTES_NUMBERS_SYMBOLS_MAP = new Map();
-NOTES_NUMBERS_SYMBOLS_ARRAY.forEach((symbol, index) => {
-  NOTES_NUMBERS_SYMBOLS_MAP.set(symbol, index);
-});
 
 
 function transformLineObjectWithNotes(lineObject, notesMetadata) { 
@@ -107,10 +105,25 @@ function parseNotesNumber(text) {
   return +result;
 }
 
+function removeEmptyLinesAtTheEnd(parsedContent) {
+  while (parsedContent.length > 0) {
+    const lastLineObject = parsedContent[parsedContent.length - 1];
+    if (!lastLineObject || !lastLineObject.text || (!Array.isArray(lastLineObject.text) && !lastLineObject.text.trim())) {
+      parsedContent.pop();
+    } else {
+      break;
+    }
+  }
+}
+
 export function parseFileContent(content) {
   
   const parsedContent = [];
+  const parsedMainSection = [];
+  const parsedAfterMainSection = [];
   let lastNoteNumber = undefined;
+  let isMainSection = false;
+  let isMainSectionMode = false;
 
   content.split('\n').forEach(line => {
 
@@ -136,6 +149,12 @@ export function parseFileContent(content) {
       lineObject.isNoteBeginning = true;
       lineObject.text = splitByNoteNumber[2].trim();
       lastNoteNumber = lineObject.noteNumber;
+    }
+
+    if (!isEmptyLine && lineObject.text.includes(MAIN_SECTION_FORMAT)) {
+      isMainSection = !isMainSection;
+      isMainSectionMode = true;
+      return;
     }
 
     if (!isEmptyLine) {
@@ -164,18 +183,28 @@ export function parseFileContent(content) {
     }
 
     if (parsedContent.length || !isEmptyLine) {
-      parsedContent.push(lineObject);
+      if (!isMainSectionMode) {
+        parsedContent.push(lineObject);
+      } else if (isMainSection) {
+        parsedMainSection.push(lineObject);
+      } else if (!isMainSection) {
+        parsedAfterMainSection.push(lineObject);
+      }
     }
   });
 
-  // Remove empty lines at the end
-  while (parsedContent.length > 0) {
-    const lastLineObject = parsedContent[parsedContent.length - 1];
-    if (!lastLineObject || !lastLineObject.text || (!Array.isArray(lastLineObject.text) && !lastLineObject.text.trim())) {
-      parsedContent.pop();
-    } else {
-      break;
-    }
+  if (!isMainSectionMode) {
+    removeEmptyLinesAtTheEnd(parsedContent);
+  } else {
+    removeEmptyLinesAtTheEnd(parsedAfterMainSection);
+  }
+ 
+  if (isMainSectionMode) {
+    return {
+      beforeMain: parsedContent,
+      main: parsedMainSection,
+      afterMain: parsedAfterMainSection
+    };
   }
 
   return parsedContent;

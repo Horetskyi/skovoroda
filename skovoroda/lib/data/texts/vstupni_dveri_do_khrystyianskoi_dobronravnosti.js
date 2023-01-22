@@ -18,6 +18,7 @@ export const vstupni_dveri_do_khrystyianskoi_dobronravnosti = {
       },
     ],
   },
+  manuscriptCover: "vstupni_dveri_do_khrystyianskoi_dobronravnosti.jpg",
   original: {
     source: SkovorodaSources.povna_akademichna_zbirka_2011,
     originalName: "Начальная Дверь ко Христіанскому Добронравію",
@@ -25,12 +26,13 @@ export const vstupni_dveri_do_khrystyianskoi_dobronravnosti = {
       SkovorodaFiles.vstupni_dveri_do_khrystyianskoi_dobronravnosti.original_pdf,
     ]
   },
-  translates: [
+  translations: [
     {
       source: SkovorodaSources.tvory_u_dvox_tomax_tom_1_1994,
       translator: SkovorodaTranslators.v_shevchuk, 
       translatedName: "Вступні двері до християнської добронравності",
       files: [
+        SkovorodaFiles.vstupni_dveri_do_khrystyianskoi_dobronravnosti.shevchuk_pdf,
         SkovorodaFiles.vstupni_dveri_do_khrystyianskoi_dobronravnosti.shevchuk_doc,
       ]
     },
@@ -39,6 +41,7 @@ export const vstupni_dveri_do_khrystyianskoi_dobronravnosti = {
       translator: SkovorodaTranslators.v_shevchenko, 
       translatedName: "Вступні двері до християнської доброчесності",
       files: [
+        SkovorodaFiles.vstupni_dveri_do_khrystyianskoi_dobronravnosti.shevchenko_pdf,
         SkovorodaFiles.vstupni_dveri_do_khrystyianskoi_dobronravnosti.shevchenko_doc,
       ]
     },

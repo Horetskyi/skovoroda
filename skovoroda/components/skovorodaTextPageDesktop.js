@@ -1,7 +1,7 @@
 
 import { Container, Stack, Text, Title } from '@mantine/core';
 import SkovorodaTextBlockDesktop from './skovorodaTextBlockDesktop';
-import TextSourceLinkWithTooltip from './textSourceLinkWithTooltip';
+import LinkToSource from './textSourceLinkWithTooltip';
 
 export default function SkovorodaTextPageDesktop({ textData }) {
 
@@ -10,13 +10,13 @@ export default function SkovorodaTextPageDesktop({ textData }) {
   const writtenDateInfoBlock = textData.writtenDateInfo.dates.map((date, index) => {
     return <Text key={"date-"+index}>
       {date.text}
-      <TextSourceLinkWithTooltip source={date.source} page={date.page} pageLinkIndexes={pageLinkIndexes}/>
+      <LinkToSource source={date.source} page={date.page} pageLinkIndexes={pageLinkIndexes}/>
     </Text>
   });
 
   const originalBlock = createOriginalBlock(textData.original);
 
-  const translationBlocks = textData.translates.map((translation, index) => {
+  const translationBlocks = textData.translations.map((translation, index) => {
     return <SkovorodaTextBlockDesktop 
       key={"translation-"+index}
       imageSrc={translation.source.bookCoverImageSrc}

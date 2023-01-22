@@ -1,86 +1,122 @@
 import '../styles/globals.css'
 import Head from 'next/head';
-import { Anchor, Breadcrumbs, Container, Group, MantineProvider } from '@mantine/core';
+import { Anchor, Breadcrumbs, Container, createStyles, MantineProvider } from '@mantine/core';
 import { HeaderSearch } from '../components/headerSearch';
 import { SkovorodaTranslatorsArray } from '../lib/data/skovorodaTranslators';
 import { SkovorodaSourcesArray } from '../lib/data/skovorodaSources';
 import { CustomFonts } from '../components/customFonts';
-import { getTranslationId } from '../lib/sadIds';
-import { pathJoinWithoutEndSlash, pathWithoutEndSlash, SkovorodaSadPath, SkovorodaTextsPath } from '../lib/skovorodaPath';
+import { pathJoinWithoutEndSlash, pathWithoutEndSlash, SkovorodaBioPath, SkovorodaGardenPath, SkovorodaHomePath, SkovorodaLettersFromPath, SkovorodaLettersPath, SkovorodaLettersToPath, SkovorodaTextsPath, SkovorodaTreatisePath } from '../lib/skovorodaPath';
+import { gardenPageKey, gardenSelectedPageKey, homePageKey, lettersFromPageKey, lettersPageKey, lettersToPageKey, textsPageKey, treatisePageKey, treatiseSelectedPageKey } from '../lib/skovorodaConstants';
+import Link from 'next/link';
 
+const HEADER_MENU_LINKS = [
+  {
+    "link": pathWithoutEndSlash(SkovorodaBioPath),
+    "label": "Біографія"
+  },
+  {
+    "link": pathWithoutEndSlash(SkovorodaTextsPath),
+    "label": "Твори"
+  },
+  {
+    "link": pathWithoutEndSlash(SkovorodaLettersPath),
+    "label": "Листи"
+  },
+];
 
+const useStyles = createStyles((theme) => ({
+  breadcrumbs: {
+    flexWrap: "wrap",
+    gap: theme.spacing.sm,
+
+    "div": {
+      margin: 0,
+    }
+  }
+}));
+
+const breadcrumbsHrefsMap = new Map([
+  [homePageKey.pageKey, SkovorodaHomePath],
+  [textsPageKey.pageKey, SkovorodaTextsPath],
+  [treatisePageKey.pageKey, SkovorodaTreatisePath],
+  [treatiseSelectedPageKey.pageKey, SkovorodaTreatisePath],
+  [gardenPageKey.pageKey, SkovorodaGardenPath],
+  [gardenSelectedPageKey.pageKey, SkovorodaGardenPath],
+  [lettersPageKey.pageKey, SkovorodaLettersPath],
+  [lettersFromPageKey.pageKey, SkovorodaLettersFromPath],
+  [lettersToPageKey.pageKey, SkovorodaLettersToPath],
+]);
+
+const breadcrumbsLabelsMap = new Map([
+  [homePageKey.pageKey, "Головна сторінка"],
+  [treatisePageKey.pageKey, "Трактати, Діалоги, Притчі"],
+  [textsPageKey.pageKey, "Твори"],
+  [gardenPageKey.pageKey, "Сад божественних пісень"],
+  [lettersPageKey.pageKey, "Листи"],
+]);
+
+function getBreadcrumbLabel(pageKey) {
+  const breadcrumLabel = breadcrumbsLabelsMap.get(pageKey);
+  if (!breadcrumLabel) {
+    throw new Error(`You forgot to implement breadcrumb LABEL for page with key: ${pageKey}`);
+  } 
+  return breadcrumLabel;
+} 
+
+function getBreadcrumbs(pageProps) {
+  const breadcrumbs = [];
+  let currentPageKey = pageProps.pageKey;
+  while (currentPageKey) {
+
+    const breadcrumHref = breadcrumbsHrefsMap.get(currentPageKey.pageKey);
+    if (!breadcrumHref) {
+      throw new Error(`You forgot to implement breadcrumb HREF for page with key: ${currentPageKey.pageKey}`);
+    } 
+
+    const breadcrumb = { 
+      title: pageProps.breadcrumbLabel && !breadcrumbs.length
+        ? pageProps.breadcrumbLabel
+        : getBreadcrumbLabel(currentPageKey.pageKey), 
+      href: pageProps.selectedId && !breadcrumbs.length
+        ? pathJoinWithoutEndSlash(breadcrumHref, pageProps.selectedId)
+        : breadcrumHref
+    };
+    breadcrumbs.push(breadcrumb);
+    currentPageKey = currentPageKey.parent;
+    continue;
+  }
+  breadcrumbs.reverse();
+  return breadcrumbs;
+}
 
 export default function App(props) {
+
+  const { classes } = useStyles();
   const { Component, pageProps } = props;
+  
+  if (!pageProps.metadataTitle) {
+    throw new Error(`You forgot to implement metadata title for current page`);
+  }
+  if (!pageProps.metadataDescription) {
+    throw new Error(`You forgot to implement metadata title for current page`);
+  }
 
   const searchAutocompleteArray = [
     SkovorodaTranslatorsArray.map(translator => translator.fullName),
     SkovorodaSourcesArray.map(source => source.sourceName),
   ].flatMap(x => x);
 
-  const textsLabel = "Твори";
-  const sadPath = SkovorodaSadPath;
-  const textsPath = SkovorodaTextsPath;
-  
-  const links = [
-    {
-      "link": "/bio",
-      "label": "Біографія"
-    },
-    {
-      "link": pathWithoutEndSlash(textsPath),
-      "label": textsLabel
-    },
-    {
-      "link": "/lysty",
-      "label": "Листи"
-    },
-    {
-      "link": "/doslidzennya",
-      "label": "Дослідження"
-    }
-  ];
-  const breadcrumbs = [
-    { title: 'Головна сторінка', href: '/' },
-  ];
-  const breadcrumbTexts = { title: textsLabel, href: pathWithoutEndSlash(textsPath) };
-
-  if (pageProps.textsData) {
-    breadcrumbs.push(breadcrumbTexts);
-  }
-  else if (pageProps.textData) {
-    breadcrumbs.push(breadcrumbTexts);
-    if (pageProps.textData.id) {
-      breadcrumbs.push({ 
-        title: pageProps.textData.original.originalName, 
-        href: textsPath + pageProps.textData.id
-      });
-    }
-  }
-  else if (pageProps.sadData) {
-    const onFlySelectedId = props.router._inFlightRoute ? props.router._inFlightRoute.replace(SkovorodaSadPath, "") : pageProps.selectedId;
-    const translationId = getTranslationId(onFlySelectedId);
-    breadcrumbs.push(breadcrumbTexts);
-    breadcrumbs.push({ 
-      title: translationId ? 'Сад божественних пісень' : 'Сад божественных пѣсней', 
-      href: pathWithoutEndSlash(sadPath) 
-    });
-    breadcrumbs.push({ 
-      title: translationId ? pageProps.sadData.translates.find(t => t.translationId === translationId).name : pageProps.sadData.originalName, 
-      href: pathJoinWithoutEndSlash(sadPath, onFlySelectedId)
-    });
-  }
-  
-  const breadcrumbsElement = breadcrumbs.map((item, index) => (
-    <Anchor href={item.href} key={index}>{item.title}</Anchor>
+  const breadcrumbs = getBreadcrumbs(pageProps);
+  const breadcrumbsElements = breadcrumbs.map((item, index) => (
+    <Link href={item.href} key={index}>{item.title}</Link>
   ));
 
   return (
     <>
       <Head>
-        <title>Page title</title>
+        <title>{pageProps.metadataTitle}</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-        <meta name="description" content="Test 1 Page Description" />
+        <meta name="description" content={pageProps.metadataDescription} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -154,9 +190,9 @@ export default function App(props) {
         }}
       >
         <CustomFonts />
-        <HeaderSearch links={links} searchAutocompleteArray={searchAutocompleteArray}/>
+        <HeaderSearch links={HEADER_MENU_LINKS} searchAutocompleteArray={searchAutocompleteArray}/>
         <Container>
-            <Breadcrumbs separator=">" mb="lg">{breadcrumbsElement}</Breadcrumbs>
+          <Breadcrumbs separator=">" mb="lg" className={classes.breadcrumbs}>{breadcrumbsElements}</Breadcrumbs>
         </Container>
         <Component {...pageProps} />
       </MantineProvider>

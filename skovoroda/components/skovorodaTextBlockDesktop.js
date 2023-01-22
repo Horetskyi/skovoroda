@@ -74,7 +74,7 @@ export default function SkovorodaTextBlockDesktop(props) {
           }
 
           <div className={classes.mainCardContent}>
-            <Title order={3} size="h4" mt={0} mb="xs" fw={500}>{props.textName}</Title>
+            <Title order={2} size="h3" mt={0} mb="xs" fw={500}>{props.textName}</Title>
             
             { (props.textType === "translation") ? 
               <Stack spacing="0" mb="md">

@@ -1,6 +1,6 @@
 import { createStyles } from "@mantine/core";
 import Link from "next/link";
-import { NOTES_NUMBERS_SYMBOLS_ARRAY, NOTES_NUMBERS_SYMBOLS_MAP } from "../lib/data/utils/readingTextsUtils";
+import { NOTES_NUMBERS_SYMBOLS_ARRAY } from "../lib/data/utils/notesNumbersSymbols";
 
 const useStyles = createStyles((theme) => {
 
@@ -142,6 +142,10 @@ const useStyles = createStyles((theme) => {
 });
 
 export default function SkovorodaTextContentBlockDesktop({ textContent, ...others}) {
+
+  if (!textContent || !textContent.length) {
+    return <></>;
+  }
 
   const { classes } = useStyles();
 

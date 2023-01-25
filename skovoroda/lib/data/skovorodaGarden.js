@@ -34,7 +34,27 @@ function readSongs() {
   return allParsedSongs;
 }
 
+function readNotes() {
+  const directoryPath = path.join(process.cwd(), "lib", "data", "gardenRefactored");
+  const fileNames = fs.readdirSync(directoryPath);
+  return fileNames.filter(fileName => fileName.includes(".json") && fileName.includes("Примітки")).map(jsonFileName => {
+    
+    const jsonFilePath = path.join(directoryPath, jsonFileName);
+    const txtFilePath = jsonFilePath.replace(".json", ".txt");
+    
+    const notesMetadata = JSON.parse(fs.readFileSync(jsonFilePath).toString());
+    const notesString = fs.readFileSync(txtFilePath).toString();
+    const notes = parseFileContent(notesString);
+
+    return {
+      notes: notes,
+      notesMetadata: notesMetadata
+    };
+  });
+}
+
 export const SkovorodaGardenRefactored = {
   allSongs: readSongs(),
+  allNotes: readNotes(),
   originalGardenName: "Сад божественных пѣсней, прозябшій из зерн Священнаго Писанія"
 };

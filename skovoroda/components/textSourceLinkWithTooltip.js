@@ -1,5 +1,5 @@
 import { createStyles, Tooltip } from "@mantine/core";
-import { numberToNotesString } from "../lib/data/utils/notesNumbersSymbols";
+import { getNoteNumberString } from "../lib/data/utils/notesNumbersSymbols";
 
 const useStyles = createStyles((theme) => ({
 
@@ -34,7 +34,7 @@ export default function LinkToSource(props) {
     pageLinkIndexes.lastIndex += 1;
   }
   const linkNumber = pageLinkIndexes[source.sourceName];
-  const linkString = "⁽" + numberToNotesString(linkNumber) + "⁾";
+  const linkString = "⁽" + getNoteNumberString(linkNumber) + "⁾";
   const tooltipLabel = linkString + " " + source.sourceName + (page ? " - " + page : "");
 
   const tooltipElement = source.sourceHref

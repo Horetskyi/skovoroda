@@ -5,6 +5,7 @@ import { SkovorodaLettersFrom } from '../../../lib/data/skovorodaLetters';
 import { SkovorodaSourcesArray } from '../../../lib/data/skovorodaSources';
 import SkovorodaLetterPageDesktop from '../../../components/skovorodaLetterPageDesktop';
 import { lettersFromPageKey } from '../../../lib/skovorodaConstants';
+import getSelectedNoteNumbersByContent from '../../../lib/getSelectedNoteNumbersByContent';
 
 export default function SkovorodaLetterFromPage({ ...params }) {
   return <SkovorodaLetterPageDesktop {...params} letterType="from" />
@@ -25,25 +26,14 @@ export function getStaticProps({ params }) {
   const selectedLetter = SkovorodaLettersFrom.allLetters.find(letter => letter.letterMetadata.id == id);
   const allLettersMetadata = SkovorodaLettersFrom.allLetters.map(letter => letter.letterMetadata);
   const selectedLetterSource = SkovorodaSourcesArray.find(source => source.devNumber == selectedLetter.letterMetadata.source);
-
-  const selectedNoteNumbers = selectedLetter.letterContent.map(lineObject => {
-      if (!Array.isArray(lineObject.text)) {
-        return false;
-      }
-      const lineNoteNumbers = lineObject.text.filter(subText => subText.noteNumber)
-        .map(subText => subText.noteNumber);
-      if (!lineNoteNumbers || !lineNoteNumbers.length) {
-        return false;
-      }
-      return lineNoteNumbers;
-    })
-    .filter(noteNumbers => noteNumbers).flat();
+  const selectedNoteNumbers = getSelectedNoteNumbersByContent(selectedLetter.letterContent);
 
   const selectedNotes = SkovorodaLettersFrom.allNotes.filter(notes => 
     notes.notesMetadata.source == selectedLetter.letterMetadata.source &&
     notes.notesMetadata.name == selectedLetter.letterMetadata.name)
     .flatMap(notes => notes.notes)
-    .filter(lineObject => selectedNoteNumbers.includes(lineObject.noteNumber));
+    .filter(lineObject => selectedNoteNumbers.includes(lineObject.noteNumber) ||
+      lineObject.letterNumber == selectedLetter.letterMetadata.number);
 
   // Map translatorName:
   selectedLetter.letterMetadata.translatorName = mapTranslatorName(selectedLetter.letterMetadata.translatorName);
@@ -54,7 +44,7 @@ export function getStaticProps({ params }) {
   return {
     props: {
       pageKey: lettersFromPageKey,
-      breadcrumbLabel: selectedLetter.letterMetadata.name + " - " + selectedLetter.letterMetadata.number,
+      breadcrumbLabel: selectedLetter.letterMetadata.name + " - Лист № " + selectedLetter.letterMetadata.number,
       selectedId: id,
       metadataTitle: selectedLetter.letterMetadata.name + " - " + selectedLetter.letterMetadata.number + " - Григорій Савич Сковорода",
       metadataDescription: selectedLetter.letterMetadata.name + " - " + selectedLetter.letterMetadata.number + " - Григорій Савич Сковорода",

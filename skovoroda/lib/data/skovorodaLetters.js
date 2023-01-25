@@ -40,6 +40,7 @@ function readLetters(letterType) {
       letterContent: content,
     };
   });
+  allParsedLetters.sort((a,b) => a.letterMetadata.number - b.letterMetadata.number);
   return allParsedLetters;
 }
 

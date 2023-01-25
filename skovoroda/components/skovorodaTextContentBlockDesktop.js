@@ -1,6 +1,6 @@
-import { createStyles } from "@mantine/core";
+import { Card, Container, createStyles } from "@mantine/core";
 import Link from "next/link";
-import { NOTES_NUMBERS_SYMBOLS_ARRAY } from "../lib/data/utils/notesNumbersSymbols";
+import { getNoteNumberString, getNoteNumberUpperString } from "../lib/data/utils/notesNumbersSymbols";
 
 const useStyles = createStyles((theme) => {
 
@@ -30,8 +30,14 @@ const useStyles = createStyles((theme) => {
       lineHeight: "32px",
     },
   
+    formatUnderline: {
+      textDecoration: "underline"
+    },
     formatItalic: {
       fontStyle: "italic",
+    },
+    formatBold: {
+      fontWeight: "600",
     },
     formatRight: {
       textAlign: 'right',
@@ -143,6 +149,18 @@ const useStyles = createStyles((theme) => {
 
 export default function SkovorodaTextContentBlockDesktop({ textContent, ...others}) {
 
+  if (textContent && !Array.isArray(textContent)) {
+    return <>
+      <SkovorodaTextContentBlockDesktop textContent={textContent.beforeMain} />
+      <Container size="fit-content">
+        <Card p="0">
+          <SkovorodaTextContentBlockDesktop textContent={textContent.main} />
+        </Card>
+      </Container>
+      <SkovorodaTextContentBlockDesktop textContent={textContent.afterMain} />
+    </>
+  }
+
   if (!textContent || !textContent.length) {
     return <></>;
   }
@@ -171,6 +189,8 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, ...other
     "default": classes.formatDefault,
     "indent": classes.formatIndent,
     "italic": classes.formatItalic,
+    "underline": classes.formatUnderline,
+    "bold": classes.formatBold,
   };
 
   const block = [];
@@ -190,7 +210,7 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, ...other
     // Simple formatting
     if (!Array.isArray(text)) {
       if (lineObject.noteNumber) {
-        id = (lineObject.isNoteBeginning ? "note" : "noteInText") + lineObject.noteNumber;
+        id = (lineObject.isNoteBeginning ? "note" : "noteInText") + getNoteNumberUpperString(lineObject.noteNumber);
       }
       if (lineObject.isNoteBeginning && lineObject.noteNumber) {
         pushNoteInNotesBlock(block, lineObject, classes);
@@ -209,13 +229,13 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, ...other
       const noteNumber = lineObject.noteNumber ? lineObject.noteNumber : subText.noteNumber;
 
       if (index === 0 && noteNumber) {
-        id = (lineObject.isNoteBeginning ? "note" : "noteInText") + noteNumber;
+        id = (lineObject.isNoteBeginning ? "note" : "noteInText") + getNoteNumberUpperString(noteNumber);
       }
       const subFormatClassName = subText.format ? formatClasses[subText.format] : "";
 
       if (noteNumber && !lineObject.isNoteBeginning) {
-        const subId = "noteInText" + noteNumber;
-        return <Link key={block.length} href={"#note"+noteNumber}>
+        const subId = "noteInText" + getNoteNumberUpperString(noteNumber);
+        return <Link key={index} href={"#note"+getNoteNumberUpperString(noteNumber)}>
           <a id={subId} color="gray.9" className={classes.noteLink + " grayForText " + subFormatClassName}>{subText.text}</a>
         </Link>;
       }
@@ -231,14 +251,10 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, ...other
 
 function pushNoteInNotesBlock(block, lineObject, classes) {
   block.push(
-    <Link key={block.length} href={"#noteInText"+lineObject.noteNumber}>
+    <Link key={block.length} href={"#noteInText"+getNoteNumberUpperString(lineObject.noteNumber)}>
       <a color="gray.9" className={classes.noteInNotesBlock + " " + classes.noteLink + " grayForText"}>
         {getNoteNumberString(lineObject.noteNumber)}
       </a>
     </Link>
   );
-}
-
-function getNoteNumberString(noteNumber) {
-  return [...(""+noteNumber)].map(symbol => NOTES_NUMBERS_SYMBOLS_ARRAY[+symbol]).join("");
 }

@@ -14,12 +14,11 @@ export default function DownloadStackV1(props) {
 
   const { classes } = useStyles();
 
-  return <Stack spacing="0">
+  return <Stack spacing="md">
     {props.files.map(file => 
     <Link key={"link-"+file.fileName} href={"/sources/" + file.fileName}>
       <SkovorodaColoredButton 
         width={260}
-        mt="md"
         leftIcon={<IconBookDownload/>} 
         title={file.fileName}
         colortype={props.colortype}

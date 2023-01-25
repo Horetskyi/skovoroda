@@ -1,5 +1,5 @@
 
-import { Card, Container, Select, Title } from '@mantine/core';
+import { Card, Container, Select, Text, Title } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { LinkInsideSelect } from '../../../components/auxiliary/linkInsideSelectItem';
@@ -8,6 +8,7 @@ import SkovorodaSourceBlockDesktop from '../../../components/skovorodaSourceBloc
 import SkovorodaTextContentBlockDesktop from '../../../components/skovorodaTextContentBlockDesktop';
 import { SkovorodaGardenRefactored } from '../../../lib/data/skovorodaGarden';
 import { SkovorodaSourcesArray } from '../../../lib/data/skovorodaSources';
+import getSelectedNoteNumbersByContent from '../../../lib/getSelectedNoteNumbersByContent';
 import getStaticPathsCommon from '../../../lib/getStaticPathsCommon';
 import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';
 import { gardenSelectedPageKey } from '../../../lib/skovorodaConstants';
@@ -17,6 +18,7 @@ export default function SkovorodaGardenPageRefactored({
   selectedSong,
   allSongsMetadata,
   selectedSongSource,
+  selectedNotes,
   selectedId,
   deviceEnding
 }) 
@@ -65,37 +67,49 @@ export default function SkovorodaGardenPageRefactored({
 
   return <>
     <Container mb="xl">
-      <Select 
-        size="md"
-        searchable
-        mb="md"
-        itemComponent={LinkInsideSelect} 
-        data={translationsDropdownItems} 
-        value={selectedTranslationDropdownValue}
-        onChange={selectTranslationDropdownValue}>
-      </Select>
-      <Select 
-        size="md"
-        searchable
-        mb="md"
-        itemComponent={LinkInsideSelect} 
-        data={songsDropdownItems} 
-        value={selectedSongDropdownValue}
-        onChange={selectSongDropdownValue}>
-      </Select>
-      <Title ta={'center'} mt="0" mb="md" order={1}>{selectedMetadata.name}</Title>
 
-      <SkovorodaTextContentBlockDesktop textContent={selectedSong.songContent.beforeMain} />
-      <Container size="fit-content">
-        <Card p="0">
-          <SkovorodaTextContentBlockDesktop textContent={selectedSong.songContent.main} />
-        </Card>
-      </Container>
-      <SkovorodaTextContentBlockDesktop textContent={selectedSong.songContent.afterMain} />
+      <Card radius="md" mb="xl" bg="gray.1" p="lg" withBorder={true} w="640px" mx={'auto'}>
+
+        <Text fw="500" mb="xs" size="sm">Оберіть переклад</Text>
+        <Select 
+          size="md"
+          withinPortal={true}
+          searchable
+          mb="lg"
+          itemComponent={LinkInsideSelect} 
+          data={translationsDropdownItems} 
+          value={selectedTranslationDropdownValue}
+          onChange={selectTranslationDropdownValue}>
+        </Select>
+       
+
+        <Text fw="500" mb="xs" size="sm">Оберіть пісню</Text>
+        <Select 
+          size="md"
+          withinPortal={true}
+          searchable
+          itemComponent={LinkInsideSelect} 
+          data={songsDropdownItems} 
+          value={selectedSongDropdownValue}
+          onChange={selectSongDropdownValue}>
+        </Select>
+
+      </Card>
       
+      <Card p="md" radius="md" withBorder={true}>
+        <Title ta={'center'} mt="0" mb="md" order={1}>{selectedMetadata.name}</Title>
+        <SkovorodaTextContentBlockDesktop textContent={selectedSong.songContent} />
+      </Card>      
       
-      <Title ta={'center'} mt="md" mb="md" order={2}>Джерело</Title>
-      <SkovorodaSourceBlockDesktop source={selectedSongSource} mt="md" />
+      {(selectedNotes && selectedNotes.length) ? <>
+        <Title ta={'center'} mt="md" mb="md" order={2}>Примітки</Title>
+        <SkovorodaTextContentBlockDesktop textContent={selectedNotes} />
+      </> : <></>}
+
+      <Card p="md" mt="md" radius="md" withBorder={true}>
+        <Title ta={'center'} mb="md" order={2}>Джерело</Title>
+        <SkovorodaSourceBlockDesktop source={selectedSongSource} mt="md" />
+      </Card>
 
       <Title ta={'center'} mt="md" mb="md" order={2}>Від розробників сайту</Title>
       <SkovorodaFomattingInfoBlockDesktop mt="md" />
@@ -167,6 +181,13 @@ export async function getStaticProps({ params }) {
   const selectedSong = SkovorodaGardenRefactored.allSongs.find(song => song.songMetadata.id == id);
   const allSongsMetadata = SkovorodaGardenRefactored.allSongs.map(song => song.songMetadata);
   const selectedSongSource = SkovorodaSourcesArray.find(source => source.devNumber == selectedSong.songMetadata.source);
+  const selectedNoteNumbers = getSelectedNoteNumbersByContent(selectedSong.songContent);
+  
+  const selectedNotes = SkovorodaGardenRefactored.allNotes.filter(notes => 
+    notes.notesMetadata.source == selectedSong.songMetadata.source &&
+    notes.notesMetadata.translatorName == selectedSong.songMetadata.translatorName)
+    .flatMap(notes => notes.notes)
+    .filter(lineObject => selectedNoteNumbers.includes(lineObject.noteNumber));
 
   return {
     props: {
@@ -176,6 +197,7 @@ export async function getStaticProps({ params }) {
       metadataTitle: selectedSong.songMetadata.name + " - Григорій Савич Сковорода",
       metadataDescription: selectedSong.songMetadata.name + " - Григорій Савич Сковорода",
       selectedSong,
+      selectedNotes,
       allSongsMetadata,
       selectedSongSource,
       deviceEnding,

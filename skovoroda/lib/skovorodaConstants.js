@@ -35,6 +35,7 @@ export const SkovorodaConstants = {
 };
 
 export const homePageKey = { pageKey: "Home" }; 
+export const utils1PageKey = { pageKey: "Utils1", parent: homePageKey };
 export const textsPageKey = { pageKey: "Texts", parent: homePageKey };
 export const treatisePageKey = { pageKey: "Treatise", parent: textsPageKey };
 export const treatiseSelectedPageKey = { pageKey: "TreatiseSelected", parent: treatisePageKey };

@@ -30,9 +30,11 @@ export const TextLineFormats = [
   format: value[1],
 }});
 const IRM_FORMAT = "[Irm]";
+const LETTER_NUMBER_FORMAT = "[LetterNumber]"; 
+const SKOVORODA_NOTE_NUMBER_FORMAT = "[SkovorodaNoteNumber]"; 
 const NOTE_NUMBER_FORMAT = "[NoteNumber]"; 
 const MAIN_SECTION_FORMAT = "[MainSection]"; 
-function getNotesRegex() { return new RegExp("[¹²³⁴⁵⁶⁷⁸⁹⁰]+", 'g'); }
+function getNotesRegex() { return new RegExp("[¹²³⁴⁵⁶⁷⁸⁹⁰ᵃᵇᵉᵈᵍ]+", 'g'); }
 
 
 function transformLineObjectWithNotes(lineObject, notesMetadata) { 
@@ -94,7 +96,9 @@ function transformLineObjectWithIrmologionEtcInner(lineObject, formatInFile, for
 
 export function transformLineObjectWithIrmologionEtc(lineObject) {
   transformLineObjectWithIrmologionEtcInner(lineObject, IRM_FORMAT, "irmologion");
+  transformLineObjectWithIrmologionEtcInner(lineObject, "[Underline]", "underline");
   transformLineObjectWithIrmologionEtcInner(lineObject, "[Italic]", "italic");
+  transformLineObjectWithIrmologionEtcInner(lineObject, "[Bold]", "bold");
 }
 
 function parseNotesNumber(text) {
@@ -102,7 +106,7 @@ function parseNotesNumber(text) {
   [...text].forEach(symbol => {
     result += NOTES_NUMBERS_SYMBOLS_MAP.get(symbol);
   });
-  return +result;
+  return result;
 }
 
 function removeEmptyLinesAtTheEnd(parsedContent) {
@@ -143,9 +147,19 @@ export function parseFileContent(content) {
       lineObject.noteNumber = lastNoteNumber;
     }
 
+    if (lineObject.text.includes(SKOVORODA_NOTE_NUMBER_FORMAT)) {
+      const splitByNoteNumber = lineObject.text.split(SKOVORODA_NOTE_NUMBER_FORMAT);
+      lineObject.noteNumber = splitByNoteNumber[1].trim();
+      const s2 = splitByNoteNumber[2].trim();
+      const splitByLetterNumber = s2.split(LETTER_NUMBER_FORMAT);
+      lineObject.letterNumber = +(splitByLetterNumber[1].trim());
+      lineObject.text = splitByLetterNumber[2].trim();
+      lineObject.isNoteBeginning = true;
+    }
+
     if (lineObject.text.includes(NOTE_NUMBER_FORMAT)) {
       const splitByNoteNumber = lineObject.text.split(NOTE_NUMBER_FORMAT);
-      lineObject.noteNumber = +(splitByNoteNumber[1].trim());
+      lineObject.noteNumber = splitByNoteNumber[1].trim();
       lineObject.isNoteBeginning = true;
       lineObject.text = splitByNoteNumber[2].trim();
       lastNoteNumber = lineObject.noteNumber;

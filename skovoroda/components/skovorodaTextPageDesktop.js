@@ -1,23 +1,32 @@
 
-import { Container, Stack, Text, Title } from '@mantine/core';
-import SkovorodaTextBlockDesktop from './skovorodaTextBlockDesktop';
+import { Card, Container, Stack, Text, Title } from '@mantine/core';
+import SkovorodaTreatiseSmallBlockDesktop from './SkovorodaTreatiseSmallBlockDesktop';
 import LinkToSource from './textSourceLinkWithTooltip';
 
 export default function SkovorodaTextPageDesktop({ textData }) {
 
   const pageLinkIndexes = {};
 
-  const writtenDateInfoBlock = textData.writtenDateInfo.dates.map((date, index) => {
-    return <Text key={"date-"+index}>
-      {date.text}
-      <LinkToSource source={date.source} page={date.page} pageLinkIndexes={pageLinkIndexes}/>
+  const writtenDateInfoBlock = <Card radius="md" p="md" m="0" bg="gray.1">
+    <Text key="label" size="sm" color="gray.9">
+      Дата написання
     </Text>
-  });
+    {textData.writtenDateInfo.dates.map((date, index) => {
+      return <Text key={"date-"+index}>
+        {date.text}
+        <LinkToSource source={date.source} page={date.page} pageLinkIndexes={pageLinkIndexes}/>
+      </Text>
+    })}
+
+  </Card>
+  
+  
+  
 
   const originalBlock = createOriginalBlock(textData.original);
 
   const translationBlocks = textData.translations.map((translation, index) => {
-    return <SkovorodaTextBlockDesktop 
+    return <SkovorodaTreatiseSmallBlockDesktop 
       key={"translation-"+index}
       imageSrc={translation.source.bookCoverImageSrc}
       sourceHref={translation.source.sourceHref}
@@ -44,7 +53,7 @@ export default function SkovorodaTextPageDesktop({ textData }) {
 }
 
 function createOriginalBlock(original) {
-  return <SkovorodaTextBlockDesktop
+  return <SkovorodaTreatiseSmallBlockDesktop
     key={"original"}
     imageSrc={original.source.bookCoverImageSrc}
     sourceHref={original.source.sourceHref}

@@ -1,6 +1,7 @@
 
 export const SkovorodaHomePath = "/";
 export const SkovorodaBioPath = "/bio/";
+export const SkovorodaUtils1Path = "/utils1";
 export const SkovorodaTextsPath = "/texts/";
 export const SkovorodaTreatisePath = pathJoin(SkovorodaTextsPath, "/treatise/");
 export const SkovorodaGardenPath = pathJoin(SkovorodaTextsPath, "/garden/");

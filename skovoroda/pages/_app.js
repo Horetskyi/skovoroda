@@ -5,8 +5,8 @@ import { HeaderSearch } from '../components/headerSearch';
 import { SkovorodaTranslatorsArray } from '../lib/data/skovorodaTranslators';
 import { SkovorodaSourcesArray } from '../lib/data/skovorodaSources';
 import { CustomFonts } from '../components/customFonts';
-import { pathJoinWithoutEndSlash, pathWithoutEndSlash, SkovorodaBioPath, SkovorodaGardenPath, SkovorodaHomePath, SkovorodaLettersFromPath, SkovorodaLettersPath, SkovorodaLettersToPath, SkovorodaTextsPath, SkovorodaTreatisePath } from '../lib/skovorodaPath';
-import { gardenPageKey, gardenSelectedPageKey, homePageKey, lettersFromPageKey, lettersPageKey, lettersToPageKey, textsPageKey, treatisePageKey, treatiseSelectedPageKey } from '../lib/skovorodaConstants';
+import { pathJoinWithoutEndSlash, pathWithoutEndSlash, SkovorodaBioPath, SkovorodaGardenPath, SkovorodaHomePath, SkovorodaLettersFromPath, SkovorodaLettersPath, SkovorodaLettersToPath, SkovorodaTextsPath, SkovorodaTreatisePath, SkovorodaUtils1Path } from '../lib/skovorodaPath';
+import { gardenPageKey, gardenSelectedPageKey, homePageKey, lettersFromPageKey, lettersPageKey, lettersToPageKey, textsPageKey, treatisePageKey, treatiseSelectedPageKey, utils1PageKey } from '../lib/skovorodaConstants';
 import Link from 'next/link';
 
 const HEADER_MENU_LINKS = [
@@ -37,6 +37,7 @@ const useStyles = createStyles((theme) => ({
 
 const breadcrumbsHrefsMap = new Map([
   [homePageKey.pageKey, SkovorodaHomePath],
+  [utils1PageKey.pageKey, SkovorodaUtils1Path],
   [textsPageKey.pageKey, SkovorodaTextsPath],
   [treatisePageKey.pageKey, SkovorodaTreatisePath],
   [treatiseSelectedPageKey.pageKey, SkovorodaTreatisePath],
@@ -49,6 +50,7 @@ const breadcrumbsHrefsMap = new Map([
 
 const breadcrumbsLabelsMap = new Map([
   [homePageKey.pageKey, "Головна сторінка"],
+  [utils1PageKey.pageKey, "Development Utils 1"],
   [treatisePageKey.pageKey, "Трактати, Діалоги, Притчі"],
   [textsPageKey.pageKey, "Твори"],
   [gardenPageKey.pageKey, "Сад божественних пісень"],
@@ -175,6 +177,16 @@ export default function App(props) {
             },
             ".grayForText": {
               color: theme.colors.gray[9],
+            },
+            ".undecoratedLink": {
+              textDecoration: "none",
+
+              ":hover": {
+                color: theme.colors.blue[5]
+              }
+            },
+            ".blackLink": {
+              color: "black",
             },
             "button:focus": {
               outline: 'none !important',

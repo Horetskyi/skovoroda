@@ -1,5 +1,5 @@
 
-import { Container, Select, Title } from '@mantine/core';
+import { Card, Container, Select, Title } from '@mantine/core';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
 import SkovorodaTextContentBlockDesktop from '../components/skovorodaTextContentBlockDesktop';
@@ -79,9 +79,14 @@ export default function SkovorodaLetterPageDesktop({
         value={selectedPersonDropdownValue}
         onChange={selectPersonDropdownValue}>
       </Select>
-      <Title ta={'center'} mt="0" mb="md" order={1}>{selectedMetadata.name}</Title>
-      <Title ta={'center'} mt="0" mb="md" order={2}>{selectedMetadata.number}</Title>
-      <SkovorodaTextContentBlockDesktop textContent={selectedLetter.letterContent} />
+
+      <Card p="md" mt="md" radius="md" withBorder={true}>
+        <Title ta={'center'} mt="0" mb="md" order={1}>{selectedMetadata.name}</Title>
+        <Title ta={'center'} mt="0" mb="xl" order={2}>{"Лист № " + selectedMetadata.number}</Title>
+        <SkovorodaTextContentBlockDesktop textContent={selectedLetter.letterContent} />
+      </Card>
+
+      
       
       {(selectedNotes && selectedNotes.length) ? <>
         <Title ta={'center'} mt="md" mb="md" order={2}>Примітки</Title>
@@ -116,7 +121,7 @@ function prepareLettersDropdownItems(allLettersMetadata, selectedTranlsatorName,
   return result.map(letterMetadata => {
     return {
       value: newSelectedPersonValue(letterMetadata, letterType),
-      label: letterMetadata.name + " - " + letterMetadata.number,
+      label: letterMetadata.name + " - Лист № " + letterMetadata.number,
       id: letterMetadata.id,
       disabled: false,
     };
@@ -151,5 +156,5 @@ function prepareTranslationsDropdownItems(allLettersMetadata, personDropdownValu
 
 // Auxiliary
 function newSelectedPersonValue(letterMetadata, letterType) {
-  return (letterType == "from" ? letterMetadata.to : letterMetadata.from) + " - " + letterMetadata.number;
+  return (letterType == "from" ? letterMetadata.to : letterMetadata.from) + " - Лист № " + letterMetadata.number;
 }

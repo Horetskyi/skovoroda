@@ -1,0 +1,20 @@
+[Center] Gregorius Sabbin
+[Center] Michaёli suo gaudium in Domino precatur.
+
+[MainSection]
+О vitae via dulcis, ubi bene conscia mens est!
+[Tab2] Attica mella super nectar et ambrosiam!
+Hinc hilaris vultus, spes vivida fronte relucet,
+[Tab2] Hinc sunt perpetuo gaudia tanta piis.
+Non spes in morbo, non ipsa in morte relinquit,
+[Tab2] Imo et defunctis os hilarescit eis.
+О Michaёl, Michaёl! culpa¸ mihi disce vacare
+[Tab2] Α teneris, carus si cupis esse Deo.
+Heus extra te ipsum bona maxima quaerere noli:
+[Tab2] Intra nos Christus Σκῆπτρα Dei esse docet¹¹².
+[MainSection]
+
+[Indent] Scribendi occasionem dedit hodiernus dies τοῦ ἐν ἁγίοις πατρὸς ἡμῶν Ioannis Chrysostomi¹¹³, cujus hanc auream sententiam mitto tibi munusculo:
+[Indent] Οὐδὲν ἡμᾶς οὕτως εὐφραίνειν οἴωθενа, ὡς τὸ συνειδὸς καθαρὸν, καὶ ἐλπίδες ἀγαθαί¹¹⁴.
+[Indent] Nihil nos ita laetificare consuevit, quam conscientia pura et spes bonae.
+[Center] Vale, carissime!

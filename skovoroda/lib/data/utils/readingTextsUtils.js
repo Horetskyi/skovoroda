@@ -31,6 +31,7 @@ export const TextLineFormats = [
 }});
 const IRM_FORMAT = "[Irm]";
 const LETTER_NUMBER_FORMAT = "[LetterNumber]"; 
+const LETTER_NOTE_FORMAT = "[LetterNote]"; 
 const SKOVORODA_NOTE_NUMBER_FORMAT = "[SkovorodaNoteNumber]"; 
 const NOTE_NUMBER_FORMAT = "[NoteNumber]"; 
 const MAIN_SECTION_FORMAT = "[MainSection]"; 
@@ -145,6 +146,17 @@ export function parseFileContent(content) {
 
     if (lastNoteNumber) {
       lineObject.noteNumber = lastNoteNumber;
+    }
+
+    
+    if (lineObject.text.includes(LETTER_NOTE_FORMAT)) {
+      const splitByLetterNote = lineObject.text.split(LETTER_NOTE_FORMAT);
+      lineObject.noteNumber = "0";
+      const s2 = splitByLetterNote[1].trim();
+      const splitByLetterNumber = s2.split(LETTER_NUMBER_FORMAT);
+      lineObject.letterNumber = +(splitByLetterNumber[1].trim());
+      lineObject.text = splitByLetterNumber[2].trim();
+      lineObject.isNoteBeginning = true;
     }
 
     if (lineObject.text.includes(SKOVORODA_NOTE_NUMBER_FORMAT)) {

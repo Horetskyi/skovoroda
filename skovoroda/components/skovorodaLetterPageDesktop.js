@@ -1,17 +1,17 @@
 
-import { Card, Container, createStyles, Flex, Group, Select, Text, Title } from '@mantine/core';
-import { useEffect, useRef, useState } from 'react';
+import { Card, Container, createStyles, Group, Text, Title } from '@mantine/core';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/router'
 import SkovorodaTextContentBlockDesktop from '../components/skovorodaTextContentBlockDesktop';
 import { SkovorodaLettersFromPath, pathJoin } from '../lib/skovorodaPath';
-import { LinkInsideSelect } from '../components/auxiliary/linkInsideSelectItem';
 import SkovorodaFomattingInfoBlockDesktop from '../components/skovorodaFomattingInfoBlockDesktop';
 import SkovorodaSourceBlockDesktop from '../components/skovorodaSourceBlockDesktop';
 import CardWithTwoSelectors from './cardWithTwoSelectors';
 import Draggable from 'react-draggable';
-import { IconArrowsCross, IconCross, IconCrosshair, IconCrossOff, IconMail, IconX } from '@tabler/icons';
+import { IconX } from '@tabler/icons';
 import { gsap } from "gsap/dist/gsap";
-import { getNoteNumberString, getNoteNumberUpperString } from '../lib/data/utils/notesNumbersSymbols';
+import { getNoteNumberUpperString } from '../lib/data/utils/notesNumbersSymbols';
+import SkovorodaLeftNavMenuDesktop from './skovorodaLeftNavMenuDesktop';
 
 const useStyles = createStyles((theme) => ({
   draggableNoteBlock: {
@@ -192,7 +192,33 @@ export default function SkovorodaLetterPageDesktop({
   const draggableNoteBlockClass = classes.draggableNoteBlock + " " +
     (!draggableNoteBlockData.visible ? (classes.hidden + " ") : "");
 
+  const isAnyNotes = selectedNotes && selectedNotes.length;
+
+  const leftNavMenuItems = [
+    {
+      id: "card-with-two-selectors",
+      label: "Панель керування"
+    },
+    {
+      id: "main-content",
+      label: "Лист",
+    },
+  ];
+  if (isAnyNotes) {
+    leftNavMenuItems.push({
+      id: "notes-content",
+      label: "Примітки",
+    });
+  }
+  leftNavMenuItems.push({
+    id: "source-content",
+    label: "Джерело"
+  });
+
   return <>
+
+    <SkovorodaLeftNavMenuDesktop items={leftNavMenuItems} />
+
     <Container mb="xl">
 
       <CardWithTwoSelectors
@@ -210,7 +236,7 @@ export default function SkovorodaLetterPageDesktop({
         }}
       />
 
-      <Card p="md" mt="md" radius="md" withBorder={true} ref={root} className={classes.contentCard}>
+      <Card id="main-content" p="md" mt="md" radius="md" withBorder={true} ref={root} className={classes.contentCard}>
         <Title ta={'center'} mt="0" mb="md" order={1}>{selectedMetadata.name}</Title>
         <Title ta={'center'} mt="0" mb="xl" order={2}>{"Лист № " + selectedMetadata.number}</Title>
         
@@ -257,8 +283,8 @@ export default function SkovorodaLetterPageDesktop({
         <SkovorodaTextContentBlockDesktop onTextNoteClick={onTextNoteClick} textContent={selectedLetter.letterContent} />
       </Card>
       
-      {(selectedNotes && selectedNotes.length) ? <>
-        <Title ta={'center'} mt="md" mb="md" order={2}>Примітки</Title>
+      {isAnyNotes ? <>
+        <Title id="notes-content" ta={'center'} mt="md" mb="md" order={2}>Примітки</Title>
         <SkovorodaTextContentBlockDesktop textContent={selectedNotes} />
       </> : <></>}
 
@@ -267,6 +293,7 @@ export default function SkovorodaLetterPageDesktop({
       <Title ta={'center'} mt="md" mb="md" order={2}>Від розробників сайту</Title>
       <SkovorodaFomattingInfoBlockDesktop mt="md" />
     </Container>
+    
   </>;
 }
 

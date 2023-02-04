@@ -3,7 +3,7 @@ import { LinkInsideSelect } from "./auxiliary/linkInsideSelectItem";
 
 export default function CardWithTwoSelectors({ dropdown1, dropdown2}) {
   
-  return <Card radius="md" mb="xl" bg="blue.0" p="lg" withBorder={true} >
+  return <Card radius="md" mb="xl" bg="blue.0" p="lg" withBorder={true} id="card-with-two-selectors" >
     <Card bg="blue.0" p="0" w="640px" mx={'auto'}>
 
       <Text fw="500" mb="xs" size="sm">{dropdown1.label}</Text>

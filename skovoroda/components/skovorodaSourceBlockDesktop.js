@@ -23,7 +23,7 @@ export default function SkovorodaSourceBlockDesktop({source}) {
 
   const { classes } = useStyles();
 
-  return <Card p="md" mt="md" radius="md" withBorder={true}>
+  return <Card id="source-content" p="md" mt="md" radius="md" withBorder={true}>
     <Title ta={'center'} mb="md" order={2}>Джерело</Title>
     { 
       source.bookCoverImageSrc ? <>

@@ -110,7 +110,7 @@ export default function SkovorodaTreatisePageDesktop({ textsData }) {
       <Title ta="center" order={1} mb="xl">Трактати, Діалоги, Притчі</Title>
     </Container>
 
-    <SkovorodaLeftNavMenuDesktop items={textsData.map(textData => {
+    <SkovorodaLeftNavMenuDesktop withOrderNumbers={true} items={textsData.map(textData => {
       return {
         label: textData.original.originalName,
         id: textData.id

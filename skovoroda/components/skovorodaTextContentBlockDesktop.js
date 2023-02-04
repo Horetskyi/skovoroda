@@ -21,6 +21,9 @@ const useStyles = createStyles((theme) => {
       position: "relative",
       height: "inherit",
     },
+    textContentBlockLeftNotesEnabled: {
+      marginLeft: theme.spacing.lg,
+    },
 
     emptyLine: {
       height: "32px",
@@ -202,6 +205,8 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, onTextNo
     "bold": classes.formatBold,
   };
 
+  const isNotesBlock = textContent.some(lineObject => lineObject.isNoteBeginning);
+
   const block = [];
   textContent.forEach(lineObject => {
     const text = lineObject.text;
@@ -277,7 +282,12 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, onTextNo
     }
     block.push(<span id={id} key={block.length} className={normalClassName}>{spans}</span>);
   });
-  return <div className={classes.textContentBlock + (plusClassName ? ` ${plusClassName}` : "")} {...others}>{block}</div>;
+
+  const allContentClassName = classes.textContentBlock + 
+    (plusClassName ? ` ${plusClassName} ` : "") +
+    ((isLeftNotesEnabled && isNotesBlock) ? ` ${classes.textContentBlockLeftNotesEnabled} ` : "");
+
+  return <div className={allContentClassName} {...others}>{block}</div>;
 }
 
 function pushNoteInNotesBlock(block, lineObject, classes) {

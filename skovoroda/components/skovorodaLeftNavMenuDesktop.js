@@ -1,5 +1,4 @@
 import { Button, Card, Container, createStyles, Stack } from "@mantine/core";
-import CustomEase from "gsap/dist/CustomEase";
 import { gsap } from "gsap/dist/gsap";
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
 import { useEffect } from "react";

@@ -1,0 +1,175 @@
+import Draggable from 'react-draggable';
+import { IconX } from '@tabler/icons';
+import { gsap } from "gsap/dist/gsap";
+import { getNoteNumberUpperString } from '../lib/data/utils/notesNumbersSymbols';
+import { cloneElement, useRef, useState } from 'react';
+import { Card, createStyles, Group, Text } from '@mantine/core';
+import SkovorodaTextContentBlockDesktop from './skovorodaTextContentBlockDesktop';
+
+const useStyles = createStyles((theme) => ({
+  draggableNoteBlock: {
+    position: 'absolute',
+    zIndex: 100,
+    width: "700px",
+    maxHeight: "235px",
+    cursor: "move",
+  },
+  draggableNoteBlockInside: {
+    maxHeight: "150px",
+    overflow: "auto",
+    cursor: "auto",
+  },
+  draggableNoteBlockHeader: {
+    borderTopLeftRadius: theme.radius.md,
+    borderTopRightRadius: theme.radius.md,
+    marginLeft: 3-theme.spacing.xl,
+    marginRight: -theme.spacing.xl,
+    marginTop: -theme.spacing.xl,
+    marginBottom: 0,
+    flexDirection: "row",
+  },
+  draggableNoteBlockLabel: {
+    cursor: "move",
+  },
+  draggableNoteBlockCrossIcon: {
+    cursor: "pointer",
+
+    ":hover": {
+      color: theme.colors.blue[7],
+    }
+  },
+  contentCard: {
+    overflow: "visible"
+  },
+  hidden: {
+    visibility: "hidden",
+  },
+}));
+
+export default function SkovorodaDraggableNotesDesktop({ children, selectedNotes }) {
+
+  const nodeRef = useRef(null);
+  const { classes } = useStyles();
+  const [xy, setXy] = useState({ x: 0, y: 0 });
+  const [draggableNoteBlockData, setDraggableNoteBlockData] = useState({ 
+    visible: false, 
+    note: undefined 
+  });
+  
+  function onDraggableStop(event, data) {
+    setXy({ x: data.x, y: data.y });
+  }
+
+  function closeDraggableNotesBlock() {
+
+    setDraggableNoteBlockData({
+      visible: false,
+      note: undefined,
+    });
+  }
+  
+  function getDraggableMoveTo(event) {
+    const draggableElement = document.getElementById("draggable-notes-block");
+    const heightAfter = draggableElement.clientHeight;
+    const moveToX = event.target.offsetLeft - draggableElement.clientWidth / 2;
+    const moveToY = event.target.offsetTop - heightAfter - 20;
+    const moveTo = {x: moveToX, y: moveToY};
+    return moveTo;
+  }
+
+  function onTextNoteClick(event, noteNumber) {
+
+    const wasVisible = draggableNoteBlockData.visible;
+    const selectedNote = selectedNotes.find(note => note.noteNumber === noteNumber);
+    
+    if (!wasVisible) {
+      setDraggableNoteBlockData({
+        visible: false,
+        note: selectedNote,
+      });
+      setTimeout(() => {
+        const moveTo = getDraggableMoveTo(event);
+        setXy(moveTo);
+        setDraggableNoteBlockData({
+          visible: true,
+          note: selectedNote,
+        });
+      }, 50);
+      return;
+    } 
+
+    setDraggableNoteBlockData({
+      visible: true,
+      note: selectedNote,
+    });
+
+    setTimeout(() => {
+
+      const moveTo = getDraggableMoveTo(event)
+      let animation;
+      animation = gsap.fromTo("#draggable-notes-block", 
+        { 
+          x: xy.x, 
+          y: xy.y,
+        }, 
+        { 
+          x: moveTo.x, 
+          y: moveTo.y, 
+          duration: 1, 
+          ease: "power2.out",
+          onComplete: () => {
+            setXy(moveTo);
+            animation.invalidate();
+            animation.kill();
+          }
+        });
+
+    },50);
+  }
+
+  const draggableNoteBlockClass = classes.draggableNoteBlock + " " +
+    (!draggableNoteBlockData.visible ? (classes.hidden + " ") : "");
+
+  return <>
+    <Draggable 
+      position={xy} 
+      nodeRef={nodeRef} 
+      onStop={onDraggableStop} 
+      cancel={"."+classes.draggableNoteBlockInside}
+    >
+      <Card 
+        className={draggableNoteBlockClass}
+        id="draggable-notes-block"
+        bg="blue.1"
+        radius="md"
+        withBorder={true}
+        ref={nodeRef}
+        p="xl"
+        shadow="xs"
+      >
+          {draggableNoteBlockData.note ? <>
+          
+            <Group position="apart" className={classes.draggableNoteBlockHeader}>
+              <Text p="lg" pb="xs" fw={500} span={true} className={classes.draggableNoteBlockLabel}>
+                Примітка {getNoteNumberUpperString(draggableNoteBlockData.note.noteNumber)}
+              </Text>
+              <Text p="lg" pb="xs" span={true} className={classes.draggableNoteBlockCrossIcon}
+                onClick={closeDraggableNotesBlock}
+              >
+                <IconX size={24}/>
+              </Text>
+            </Group>
+            <div className={classes.draggableNoteBlockInside}>
+              <SkovorodaTextContentBlockDesktop 
+                textContent={[draggableNoteBlockData.note]}
+                disableLeftNotesDisplaying={true} 
+                isMarginDisabled={true}
+              />
+            </div>
+          
+          </> : <></>}
+      </Card>
+    </Draggable>
+    {cloneElement(children, { onTextNoteClick: onTextNoteClick })}
+  </>
+}

@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import Head from 'next/head';
-import { Anchor, Breadcrumbs, Container, createStyles, MantineProvider } from '@mantine/core';
+import { Anchor, Breadcrumbs, Button, Container, createStyles, MantineProvider, NavLink } from '@mantine/core';
 import { HeaderSearch } from '../components/headerSearch';
 import { SkovorodaTranslatorsArray } from '../lib/data/skovorodaTranslators';
 import { SkovorodaSourcesArray } from '../lib/data/skovorodaSources';
@@ -32,6 +32,9 @@ const useStyles = createStyles((theme) => ({
     "div": {
       margin: 0,
     }
+  },
+  breadcrumbLink: {
+    textDecoration: "none",
   }
 }));
 
@@ -110,7 +113,15 @@ export default function App(props) {
 
   const breadcrumbs = getBreadcrumbs(pageProps);
   const breadcrumbsElements = breadcrumbs.map((item, index) => (
-    <Link href={item.href} key={index}>{item.title}</Link>
+    <Button 
+      href={item.href}
+      component="a"
+      key={index}
+      className={classes.breadcrumbLink}
+      variant="light"
+    >
+      {item.title}
+    </Button> 
   ));
 
   
@@ -217,7 +228,7 @@ export default function App(props) {
         <CustomFonts />
         <HeaderSearch links={HEADER_MENU_LINKS} searchAutocompleteArray={searchAutocompleteArray}/>
         <Container>
-          <Breadcrumbs separator=">" mb="lg" className={classes.breadcrumbs}>{breadcrumbsElements}</Breadcrumbs>
+          <Breadcrumbs separator=">" mb="xl" className={classes.breadcrumbs}>{breadcrumbsElements}</Breadcrumbs>
         </Container>
         <Component {...pageProps} />
       </MantineProvider>

@@ -1,4 +1,5 @@
 import { SkovorodaFiles } from "../skovorodaFiles";
+import { SkovorodaKeyIdeas } from "../skovorodaKeyIdeas";
 import { SkovorodaSources } from "../skovorodaSources";
 import { SkovorodaTranslators } from "../skovorodaTranslators";
 
@@ -31,4 +32,8 @@ export const prokynuvshys_pobachyly_slavu_yoho = {
       ]
     },
   ],
+  keyIdeas: [
+    SkovorodaKeyIdeas.scho_e_spravznya_ludyna,
+    SkovorodaKeyIdeas.voskresinnya,
+  ]
 }

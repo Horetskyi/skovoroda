@@ -113,6 +113,8 @@ export default function App(props) {
     <Link href={item.href} key={index}>{item.title}</Link>
   ));
 
+  
+
   return (
     <>
       <Head>
@@ -163,10 +165,6 @@ export default function App(props) {
               '#FFF8EF', '#FFF6EA', '#FFEDD6', '#FFE4C2', '#FFDCAD', 
               '#FFCA85', '#FFC170', '#FFB85C', '#FFAF47', '#FFA733'
             ],
-            'gray': [
-              '#F7F6F5', '#EDEBE8', '#E4E0DD', '#DBD6D2', '#D2CCC6', 
-              '#9B8F82', '#4A4A45', '#40403B', '#353531', '#2A2A27'
-            ],
           },
           globalStyles: (theme) => ({
             body: {
@@ -174,6 +172,21 @@ export default function App(props) {
               fontWeight: "400",
               letterSpacing: "-0.06px",
               textRendering: "optimizelegibility",
+            },
+            ".st0": {
+              fill: theme.colors.blue[2]
+            },
+            ".st1": {
+              fill: theme.colors.orange[2]
+            },
+            ".st2": {
+              fill: theme.colors.orange[9]
+            },
+            ".st3": {
+              fill: theme.colors.blue[4]
+            },
+            ".st4": {
+              fill: theme.colors.blue[4]
             },
             ".grayForText": {
               color: theme.colors.gray[9],

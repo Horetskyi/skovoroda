@@ -12,10 +12,14 @@ const useStyles = createStyles((theme) => {
     noteLink: {
       textDecoration: "none",
     },
+    cursorPointer: {
+      cursor: 'pointer',
+    },
 
     textContentBlock: {
       textAlign: "justify",
       position: "relative",
+      height: "inherit",
     },
 
     emptyLine: {
@@ -140,30 +144,35 @@ const useStyles = createStyles((theme) => {
       marginTop: "2px",
       marginRight: theme.spacing.xs,
     },
-    noteBlock: {
+    noteBlockMarginBottom: {
       marginBottom: theme.spacing.md,
-    }
+    },
 
   };
 });
 
-export default function SkovorodaTextContentBlockDesktop({ textContent, ...others}) {
+export default function SkovorodaTextContentBlockDesktop({ textContent, onTextNoteClick, ...others}) {
 
   if (textContent && !Array.isArray(textContent)) {
     return <>
-      <SkovorodaTextContentBlockDesktop textContent={textContent.beforeMain} />
+      <SkovorodaTextContentBlockDesktop textContent={textContent.beforeMain} others={others} onTextNoteClick={onTextNoteClick} />
       <Container size="fit-content">
         <Card p="0">
-          <SkovorodaTextContentBlockDesktop textContent={textContent.main} />
+          <SkovorodaTextContentBlockDesktop textContent={textContent.main} others={others} onTextNoteClick={onTextNoteClick} />
         </Card>
       </Container>
-      <SkovorodaTextContentBlockDesktop textContent={textContent.afterMain} />
+      <SkovorodaTextContentBlockDesktop textContent={textContent.afterMain} others={others} onTextNoteClick={onTextNoteClick} />
     </>
   }
 
   if (!textContent || !textContent.length) {
     return <></>;
   }
+
+  const disableLeftNotesDisplaying = others.disableLeftNotesDisplaying;
+  const isLeftNotesEnabled = !disableLeftNotesDisplaying;
+
+  const plusClassName = others.plusClassName;
 
   const { classes } = useStyles();
 
@@ -197,9 +206,11 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, ...other
   textContent.forEach(lineObject => {
     const text = lineObject.text;
     let id = undefined;
+    let onClick = undefined;
     const formatClassName = lineObject.format ? formatClasses[lineObject.format] : formatClasses["default"];
     const normalClassName = formatClassName + " " + classes.blockTextLine + " " +
-      (lineObject.isNoteBeginning ? classes.noteBlock : "");
+      ((lineObject.isNoteBeginning && !others.isMarginDisabled) ? (classes.noteBlockMarginBottom + " ") : "");
+
     
     // Empty line
     if (!text || (!Array.isArray(text) && !text.trim())) {
@@ -212,13 +223,20 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, ...other
       if (lineObject.noteNumber) {
         id = (lineObject.isNoteBeginning ? "note" : "noteInText") + getNoteNumberUpperString(lineObject.noteNumber);
       }
-      if (lineObject.isNoteBeginning && lineObject.noteNumber) {
+      if (lineObject.isNoteBeginning && lineObject.noteNumber && isLeftNotesEnabled) {
         pushNoteInNotesBlock(block, lineObject, classes);
       }
+
+      const noteClassName = (lineObject.noteNumber && !lineObject.isNoteBeginning) 
+        ? classes.cursorPointer
+        : "";
+
+      const totalClassName = `${normalClassName} ${noteClassName}`;
+
       if (lineObject.isEnterLine) {
-        block.push(<p key={block.length} id={id} className={normalClassName}>{text}</p>);
+        block.push(<p key={block.length} id={id} className={totalClassName}>{text}</p>);
       } else {
-        block.push(<span key={block.length} id={id} className={normalClassName}>{text}</span>);
+        block.push(<span key={block.length} id={id} className={totalClassName}>{text}</span>);
       }
       return;
     }
@@ -235,18 +253,31 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, ...other
 
       if (noteNumber && !lineObject.isNoteBeginning) {
         const subId = "noteInText" + getNoteNumberUpperString(noteNumber);
+
+        if (onTextNoteClick) {
+          return <span 
+            key={index}
+            id={subId}
+            color="gray.9"
+            onClick={(event) => onTextNoteClick(event, noteNumber)}
+            className={classes.noteLink + " grayForText " + subFormatClassName + " " + classes.cursorPointer}
+          >
+            {subText.text}
+          </span>
+        }
+
         return <Link key={index} href={"#note"+getNoteNumberUpperString(noteNumber)}>
           <a id={subId} color="gray.9" className={classes.noteLink + " grayForText " + subFormatClassName}>{subText.text}</a>
         </Link>;
       }
-      return <span key={index} className={subFormatClassName}>{subText.text}</span>;
+      return <span key={index} className={subFormatClassName} onClick={onClick}>{subText.text}</span>;
     });
-    if (lineObject.isNoteBeginning && lineObject.noteNumber) {
+    if (lineObject.isNoteBeginning && lineObject.noteNumber && isLeftNotesEnabled) {
       pushNoteInNotesBlock(block, lineObject, classes);
     }
     block.push(<span id={id} key={block.length} className={normalClassName}>{spans}</span>);
   });
-  return <div className={classes.textContentBlock} {...others}>{block}</div>;
+  return <div className={classes.textContentBlock + (plusClassName ? ` ${plusClassName}` : "")} {...others}>{block}</div>;
 }
 
 function pushNoteInNotesBlock(block, lineObject, classes) {

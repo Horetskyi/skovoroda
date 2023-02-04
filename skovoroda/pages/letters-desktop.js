@@ -1,12 +1,43 @@
 import { Container, createStyles, Stack, Table, Text, Title } from '@mantine/core';
 import { IconMail, IconMessage, IconSquareLetterU } from '@tabler/icons';
 import Link from 'next/link';
+import AnimatedMailComponent from '../components/animatedMailComponent';
 import { SkovorodaLettersFrom, SkovorodaLettersTo } from '../lib/data/skovorodaLetters';
 import { SkovorodaTextsArray } from '../lib/data/skovorodaTexts';
 import { lettersPageKey, textsPageKey } from '../lib/skovorodaConstants';
 import { pathJoin, pathJoinWithoutEndSlash, SkovorodaLettersFromPath, SkovorodaTextsPath } from '../lib/skovorodaPath';
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
+  table: {
+    "thead": {
+      position: "sticky",
+      top: "0",
+      background: "white",
+      "tr": {
+        "th:nth-child(1)": {
+          minWidth: "360px"
+        },
+        "th:nth-child(2)": {
+          minWidth: "100px"
+        },
+      }
+    },
+    "tbody": {
+      "tr": {
+        "td:nth-child(2)": {
+          textAlign: 'right',
+          paddingRight: theme.spacing.lg,
+        },
+        "td:nth-child(n+3)": {
+          textAlign: 'center',
+          margin: "auto",
+        },
+      },
+      "tr:hover": {
+        background: theme.colors.blue[0]
+      }
+    }
+  }
 }));
 
 export default function SkovorodaLettersPageDesktop({ allLettersFrom }) {
@@ -34,7 +65,7 @@ export default function SkovorodaLettersPageDesktop({ allLettersFrom }) {
 
   const tableFromRows = letterKeys.map((letterKey, index) => {
     return <tr key={index}>
-      <td>{letterKey.name}</td>
+      <td>{letterKey.to}</td>
       <td>{letterKey.number}</td>
       {translatorNamesArray.map(translatorName => {
         const foundLetter = allLettersFrom.find(letter => 
@@ -43,9 +74,11 @@ export default function SkovorodaLettersPageDesktop({ allLettersFrom }) {
           letter.translatorName == translatorName);
         return <td>{foundLetter 
           ? <Link href={pathJoin(SkovorodaLettersFromPath, foundLetter.id)}>
-            <a><IconMail /></a>
+            <a>
+              <AnimatedMailComponent uniqueId={foundLetter.id} />
+            </a>
           </Link>
-          : "NO"
+          : "-"
         }</td>
       })}
     </tr>
@@ -55,13 +88,16 @@ export default function SkovorodaLettersPageDesktop({ allLettersFrom }) {
     <Title order={1} mb="md">Григорій Савич Сковорода - Листи</Title>
     <Title order={2} mb="md">Листи від Сковороди</Title>
 
-    <Table>
+    <Table withBorder withColumnBorders className={classes.table} fontSize="md">
       <thead>
         <tr>
           <th>Отримувач</th>
           <th>Лист №</th>
           {translatorNamesArray.map((value, index) => {
-            return <th key={index}>{value}</th>
+            if (value == "Оригінал") {
+              return <th key={index}>{value}</th>
+            }
+            return <th key={index}><Text>Переклад:</Text><Text>{value}</Text></th>
           })}
         </tr>
       </thead>

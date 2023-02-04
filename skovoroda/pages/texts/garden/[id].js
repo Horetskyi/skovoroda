@@ -3,6 +3,7 @@ import { Card, Container, Select, Text, Title } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { LinkInsideSelect } from '../../../components/auxiliary/linkInsideSelectItem';
+import CardWithTwoSelectors from '../../../components/cardWithTwoSelectors';
 import SkovorodaFomattingInfoBlockDesktop from '../../../components/skovorodaFomattingInfoBlockDesktop';
 import SkovorodaSourceBlockDesktop from '../../../components/skovorodaSourceBlockDesktop';
 import SkovorodaTextContentBlockDesktop from '../../../components/skovorodaTextContentBlockDesktop';
@@ -68,34 +69,21 @@ export default function SkovorodaGardenPageRefactored({
   return <>
     <Container mb="xl">
 
-      <Card radius="md" mb="xl" bg="gray.1" p="lg" withBorder={true} w="640px" mx={'auto'}>
+      <CardWithTwoSelectors 
+        dropdown1={{
+          label: "Оберіть переклад",
+          data: translationsDropdownItems,
+          selectedValue: selectedTranslationDropdownValue,
+          onChange: selectTranslationDropdownValue
+        }} 
+        dropdown2={{
+          label: "Оберіть пісню",
+          data: songsDropdownItems,
+          selectedValue: selectedSongDropdownValue,
+          onChange: selectSongDropdownValue
+        }}
+      />
 
-        <Text fw="500" mb="xs" size="sm">Оберіть переклад</Text>
-        <Select 
-          size="md"
-          withinPortal={true}
-          searchable
-          mb="lg"
-          itemComponent={LinkInsideSelect} 
-          data={translationsDropdownItems} 
-          value={selectedTranslationDropdownValue}
-          onChange={selectTranslationDropdownValue}>
-        </Select>
-       
-
-        <Text fw="500" mb="xs" size="sm">Оберіть пісню</Text>
-        <Select 
-          size="md"
-          withinPortal={true}
-          searchable
-          itemComponent={LinkInsideSelect} 
-          data={songsDropdownItems} 
-          value={selectedSongDropdownValue}
-          onChange={selectSongDropdownValue}>
-        </Select>
-
-      </Card>
-      
       <Card p="md" radius="md" withBorder={true}>
         <Title ta={'center'} mt="0" mb="md" order={1}>{selectedMetadata.name}</Title>
         <SkovorodaTextContentBlockDesktop textContent={selectedSong.songContent} />
@@ -106,10 +94,7 @@ export default function SkovorodaGardenPageRefactored({
         <SkovorodaTextContentBlockDesktop textContent={selectedNotes} />
       </> : <></>}
 
-      <Card p="md" mt="md" radius="md" withBorder={true}>
-        <Title ta={'center'} mb="md" order={2}>Джерело</Title>
-        <SkovorodaSourceBlockDesktop source={selectedSongSource} mt="md" />
-      </Card>
+      <SkovorodaSourceBlockDesktop source={selectedSongSource} />
 
       <Title ta={'center'} mt="md" mb="md" order={2}>Від розробників сайту</Title>
       <SkovorodaFomattingInfoBlockDesktop mt="md" />
@@ -187,7 +172,10 @@ export async function getStaticProps({ params }) {
     notes.notesMetadata.source == selectedSong.songMetadata.source &&
     notes.notesMetadata.translatorName == selectedSong.songMetadata.translatorName)
     .flatMap(notes => notes.notes)
-    .filter(lineObject => selectedNoteNumbers.includes(lineObject.noteNumber));
+    .filter(lineObject => selectedNoteNumbers.includes(lineObject.noteNumber) ||
+      lineObject.songNumber == selectedSong.songMetadata.number);
+
+  allSongsMetadata.sort((a,b) => a.number - b.number);
 
   return {
     props: {

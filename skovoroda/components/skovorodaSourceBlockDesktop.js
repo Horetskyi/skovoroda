@@ -1,4 +1,4 @@
-import { createStyles, Image } from "@mantine/core";
+import { Card, createStyles, Image, Title } from "@mantine/core";
 import Link from "next/link";
 
 const useStyles = createStyles((theme) => ({
@@ -22,16 +22,22 @@ export default function SkovorodaSourceBlockDesktop({source}) {
   }
 
   const { classes } = useStyles();
-  return <>
+
+  return <Card p="md" mt="md" radius="md" withBorder={true}>
+    <Title ta={'center'} mb="md" order={2}>Джерело</Title>
     { 
       source.bookCoverImageSrc ? <>
-      
       <div className={classes.imageContainer}>
-        <Image mt="md" mb="md" radius="md" className={classes.image} src={source.bookCoverImageSrc} alt={source.sourceName} width={240} height={360} />
+        <Image mt="md" mb="md" radius="md" 
+          className={classes.image}
+          src={source.bookCoverImageSrc} 
+          alt={source.sourceName} 
+          width={240} 
+          height={360} 
+        />
       </div>
-
       </> : <></>
     }
     <Link href={source.sourceHref}><a color="gray.9" className="grayForText">{source.sourceName}</a></Link>
-  </>
+  </Card>
 }

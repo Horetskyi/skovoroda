@@ -31,6 +31,7 @@ export const TextLineFormats = [
 }});
 const IRM_FORMAT = "[Irm]";
 const LETTER_NUMBER_FORMAT = "[LetterNumber]"; 
+const SONG_NUMBER_FORMAT = "[SongNumber]"; 
 const LETTER_NOTE_FORMAT = "[LetterNote]"; 
 const SKOVORODA_NOTE_NUMBER_FORMAT = "[SkovorodaNoteNumber]"; 
 const NOTE_NUMBER_FORMAT = "[NoteNumber]"; 
@@ -163,10 +164,17 @@ export function parseFileContent(content) {
       const splitByNoteNumber = lineObject.text.split(SKOVORODA_NOTE_NUMBER_FORMAT);
       lineObject.noteNumber = splitByNoteNumber[1].trim();
       const s2 = splitByNoteNumber[2].trim();
-      const splitByLetterNumber = s2.split(LETTER_NUMBER_FORMAT);
-      lineObject.letterNumber = +(splitByLetterNumber[1].trim());
-      lineObject.text = splitByLetterNumber[2].trim();
-      lineObject.isNoteBeginning = true;
+      if (s2.includes(LETTER_NUMBER_FORMAT)) {
+        const splitByLetterNumber = s2.split(LETTER_NUMBER_FORMAT);
+        lineObject.letterNumber = +(splitByLetterNumber[1].trim());
+        lineObject.text = splitByLetterNumber[2].trim();
+        lineObject.isNoteBeginning = true;
+      } else if (s2.includes(SONG_NUMBER_FORMAT)) {
+        const splitBySongNumber = s2.split(SONG_NUMBER_FORMAT);
+        lineObject.songNumber = +(splitBySongNumber[1].trim());
+        lineObject.text = splitBySongNumber[2].trim();
+        lineObject.isNoteBeginning = true;
+      }
     }
 
     if (lineObject.text.includes(NOTE_NUMBER_FORMAT)) {
@@ -208,7 +216,7 @@ export function parseFileContent(content) {
       transformLineObjectWithIrmologionEtc(lineObject);
     }
 
-    if (parsedContent.length || !isEmptyLine) {
+    if (parsedContent.length || parsedMainSection.length || parsedAfterMainSection.length || !isEmptyLine) {
       if (!isMainSectionMode) {
         parsedContent.push(lineObject);
       } else if (isMainSection) {

@@ -1,48 +1,15 @@
 import { Button, Card, Container, createStyles, Flex, Group, List, Stack, Text, Title } from '@mantine/core';
 import Link from 'next/link';
-import { useEffect } from 'react';
 import LinkToSource from '../../components/textSourceLinkWithTooltip';
 import { SkovorodaTextsArray } from '../../lib/data/skovorodaTexts';
 import { treatisePageKey } from '../../lib/skovorodaConstants';
-import { pathJoinWithoutEndSlash, SkovorodaTextsPath, SkovorodaTreatisePath } from '../../lib/skovorodaPath';
-import { gsap } from "gsap/dist/gsap";
-import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
+import { pathJoinWithoutEndSlash, SkovorodaTreatisePath } from '../../lib/skovorodaPath';
+import SkovorodaLeftNavMenuDesktop from '../../components/skovorodaLeftNavMenuDesktop';
 
 const useStyles = createStyles((theme) => ({
   
   textLink: {
     color: theme.colors.blue[8]
-  },
-
-  leftNavMenu3: {
-    position: "sticky",
-    top: theme.spacing.xl,
-    left: 0,
-    width: "100%",
-  },
-
-  leftNavMenu2: {
-    position: "absolute",
-    width: `calc(50% - 480px - ${theme.spacing.xl}px - 10px)`,
-    top: 0,
-    left: theme.spacing.xl,
-  },
-
-  leftNavButton: {
-    textAlign: "left",
-    alignSelf: "flex-start",
-    width: "100%",
-
-    ".mantine-Button-inner": {
-      minWidth: 0,
-      justifyContent: "flex-start",
-    },
-
-    ".mantine-Button-label": {
-      display: "block",
-      textOverflow: "ellipsis",
-      height: "auto",
-    }
   },
 
   keyIdeaText: {
@@ -137,46 +104,18 @@ export default function SkovorodaTreatisePageDesktop({ textsData }) {
     </Card>
   }
 
-  function getLeftNavBlock(textData, index) {
-    return <Button key={index} className={`skovoroda-left-nav-button ${classes.leftNavButton}`} 
-      variant="subtle"
-      size='sm'  
-    >
-      {"" + (index+1) + ". " + textData.original.originalName}
-    </Button>
-  }
-
-  gsap.registerPlugin(ScrollToPlugin);
-  useEffect(() => {
-    document.querySelectorAll(".skovoroda-left-nav-button").forEach((button, index) => {
-      if (textsData[index].isRegistered) {
-        return;
-      }
-      const id = textsData[index].id
-      console.log("REGISTER: "+id);
-      button.addEventListener("click", () => {
-        console.log("CLICK: "+id);
-        gsap.to(window, {duration: 1, scrollTo:{ y: "#" + id, offsetY: 16}});
-      });
-      textsData[index].isRegistered = true;
-    });
-  });
-
   return <>
     
     <Container>
       <Title ta="center" order={1} mb="xl">Трактати, Діалоги, Притчі</Title>
     </Container>
 
-    <div className={classes.leftNavMenu3}>
-      <div className={classes.leftNavMenu2}>
-          <Card bg="blue.1" radius="md" px="0" py="md" >
-            <Stack spacing="0">
-              {textsData.map(getLeftNavBlock)}
-            </Stack>
-          </Card>
-      </div>
-    </div>
+    <SkovorodaLeftNavMenuDesktop items={textsData.map(textData => {
+      return {
+        label: textData.original.originalName,
+        id: textData.id
+      };
+    })} />
 
     <Container>
       <Stack spacing="xl">

@@ -1,7 +1,6 @@
 import { Button, createStyles, Stack } from "@mantine/core";
 import { IconBookDownload } from "@tabler/icons";
 import Link from "next/link";
-import SkovorodaColoredButton from "./skovorodaColoredButton";
 
 const useStyles = createStyles((theme) => ({
   downloadButton: {
@@ -17,15 +16,14 @@ export default function DownloadStackV1(props) {
   return <Stack spacing="md">
     {props.files.map(file => 
     <Link key={"link-"+file.fileName} href={"/sources/" + file.fileName}>
-      <SkovorodaColoredButton 
+      <Button 
         width={260}
         leftIcon={<IconBookDownload/>} 
         title={file.fileName}
-        colortype={props.colortype}
-        backgroundType="block"
-      >
+        variant="light"
+        className={classes.coloredButton}>
         Завантажити {file.fileExtensionUppercase} ({file.fileSize})
-      </SkovorodaColoredButton>
+      </Button>
       {/* <Button 
         bg={color+".2"} 
         className={classes.downloadButton}

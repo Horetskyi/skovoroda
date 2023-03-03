@@ -55,7 +55,7 @@ export function HeaderSearch({ links, searchAutocompleteArray }) {
   );
 
   return (
-    <Header height={56} className={classes.header} mb="lg">
+    <Header height={56} className={classes.header}>
       <div className={classes.inner}>
         <Group position='right'>
           <Group ml={50} spacing={5} className={classes.links}>

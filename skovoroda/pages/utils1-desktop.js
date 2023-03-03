@@ -1,4 +1,4 @@
-import { Button, Card, Checkbox, Container, createStyles, Slider, Space, Text, Textarea, Title } from "@mantine/core";
+import { Button, Card, Checkbox, Container, createStyles, Select, Slider, Space, Text, Textarea, Title } from "@mantine/core";
 import { useEffect, useState } from "react";
 import AnimatedMailComponent from "../components/animatedMailComponent";
 import { getNoteNumberString } from "../lib/data/utils/notesNumbersSymbols";
@@ -32,6 +32,7 @@ export default function Utils1({ }) {
     timeline.progress(progressValue);
   }
 
+  const [selectedMode, setMode] = useState("note");
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
   const [noteString, setNoteString] = useState('');
@@ -49,17 +50,25 @@ export default function Utils1({ }) {
     setOutputText(processInputText(newInputText));
   }
 
+
   function makeNote() {
     const selectedText = document.getSelection().toString();
     if (!selectedText) {
       return;
     }
+    if (selectedMode == "italic") {
+      const italicText =  `[Italic]${selectedText}[Italic]`;
+      navigator.clipboard.writeText(italicText);
+      return;
+    }
+
     const newNoteString = getNoteNumberString(selectedText).trim();
     if (!newNoteString) {
       return;
     }
     setNoteString(newNoteString);
     navigator.clipboard.writeText(newNoteString);
+
   }
 
   return <Container>
@@ -85,13 +94,35 @@ export default function Utils1({ }) {
     </Card>
 
     <Space />
-    <Checkbox checked={shouldRemoveEnters} onChange={(event) => setShouldRemoveEnters(event.currentTarget.checked)} label="Забирати ентери" />
+    
+    <Checkbox checked={shouldRemoveEnters} 
+      onChange={(event) => setShouldRemoveEnters(event.currentTarget.checked)} 
+      label="Забирати ентери"
+      mb="md" />
+
+    
+    
     <Textarea minRows={10} maxRows={10} mb="md" value={inputText} onChange={(event) => setInputTextFacade(event.currentTarget.value)} />
     {/* <Card>
       {[...outputText].map((value, index) => {
         return <span key={index}>{value}</span>
       })}
     </Card> */}
+
+    <Select 
+      data={[
+        {
+          value: "note",
+          label: "note",
+        },
+        {
+          value: "italic",
+          label: "italic",
+        },
+      ]} 
+      value={selectedMode}
+      onChange={(value) => setMode(value)}
+    />
 
     <Textarea id="output" minRows={10} maxRows={10} mb="md" value={outputText} 
       onChange={(event) => setOutputText(event.currentTarget.value)} 

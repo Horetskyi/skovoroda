@@ -11,22 +11,22 @@ export const SkovorodaConstants = {
   },
 
   getColorByType: function(type) {
-    return this.isOriginal(type) ? "green" : "lilac";
+    return this.isOriginal(type) ? "green" : "yellow";
   },
   getBackgroundColorByType: function(type) {
-    return this.getColorByType(type)+".1";
+    return this.getColorByType(type)+".0";
   },
   getTextBackgroundColorByType: function(type) {
-    return this.getColorByType(type)+".1";
+    return this.getColorByType(type)+".0";
   },
   getBlockElementsColorByType: function(type) {
-    return this.getColorByType(type)+".3";
+    return this.getColorByType(type)+".1";
   },
   getElementsColorByType: function(type, backgroundType) {
-    return this.getColorByType(type) + (backgroundType === "block" ? ".3" : ".2");
+    return this.getColorByType(type) + (backgroundType === "block" ? ".2" : ".1");
   },
   getElementsHoverColorByType: function(type, backgroundType) {
-    return this.getColorByType(type) + (backgroundType === "block" ? ".2" : ".1");
+    return this.getColorByType(type) + (backgroundType === "block" ? ".1" : ".0");
   },
   getColorInTheme: function(color, theme) {
     const split = color.split('.');

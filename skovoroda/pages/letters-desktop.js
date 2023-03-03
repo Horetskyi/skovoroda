@@ -65,14 +65,14 @@ export default function SkovorodaLettersPageDesktop({ allLettersFrom }) {
 
   const tableFromRows = letterKeys.map((letterKey, index) => {
     return <tr key={index}>
-      <td>{letterKey.to}</td>
-      <td>{letterKey.number}</td>
+      <td key="to">{letterKey.to}</td>
+      <td key="number">{letterKey.number}</td>
       {translatorNamesArray.map(translatorName => {
         const foundLetter = allLettersFrom.find(letter => 
           letter.to == letterKey.to && 
           letter.number == letterKey.number &&
           letter.translatorName == translatorName);
-        return <td>{foundLetter 
+        return <td key={translatorName}>{foundLetter 
           ? <Link href={pathJoin(SkovorodaLettersFromPath, foundLetter.id)}>
             <a>
               <AnimatedMailComponent uniqueId={foundLetter.id} />
@@ -108,7 +108,7 @@ export default function SkovorodaLettersPageDesktop({ allLettersFrom }) {
   </Container>
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps(params) {
 
   const allLettersFrom = SkovorodaLettersFrom.allLetters.map(letter => letter.letterMetadata);
   const allLettersTo = SkovorodaLettersTo.allLetters.map(letter => letter.letterMetadata);

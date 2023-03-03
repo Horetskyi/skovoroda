@@ -1,4 +1,5 @@
 import { SkovorodaFiles } from "../skovorodaFiles";
+import { SkovorodaKeyIdeas } from "../skovorodaKeyIdeas";
 import { SkovorodaSources } from "../skovorodaSources";
 import { SkovorodaTranslators } from "../skovorodaTranslators";
 
@@ -30,5 +31,9 @@ export const khai_tsiluie_mene_potsilunkamy_ust_svoikh = {
         SkovorodaFiles.khai_tsiluie_mene_potsilunkamy_ust_svoikh.kashuba_doc,
       ]
     },
+  ],
+  keyIdeas: [
+    SkovorodaKeyIdeas.scho_e_spravznya_ludyna,
+    SkovorodaKeyIdeas.voskresinnya,
   ],
 }

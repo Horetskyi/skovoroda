@@ -5,6 +5,10 @@ import { SkovorodaConstants } from '../lib/skovorodaConstants';
 
 const useStyles = createStyles((theme) => ({
 
+  group: {
+    flexWrap: "nowrap",
+  },
+
   card: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
     margin: "auto",
@@ -31,14 +35,14 @@ const useStyles = createStyles((theme) => ({
 
   image: {
     img: {
-      borderRadius: theme.radius.sm,
+      borderRadius: theme.radius.md,
       boxShadow: theme.shadows.md,
     }
   },
 
   badge: {
     margin: "4px 0",
-    color: "black"
+    color: "black",
   },
 
   downloadStack: {
@@ -59,20 +63,46 @@ export default function SkovorodaTreatiseSmallBlockDesktop(props) {
   const badgeText = SkovorodaConstants.getTypeText(props.textType);
   const bgColor = SkovorodaConstants.getTextBackgroundColorByType(props.textType);
   const elColor = SkovorodaConstants.getBlockElementsColorByType(props.textType);
+  const color = SkovorodaConstants.getColorByType(props.textType);
   
-  return <Card radius="md" p="md" m="0" bg={bgColor} className={classes.card}>
-    <Group>
+  return <Card radius="md" p="md" m="0" bg="gray.0" mb="xl" withBorder={true} className={classes.card}>
+    <Group className={classes.group}>
       
       {props.imageSrc 
       ? <div className={classes.sideContent}>
-        <Badge radius="sm" fullWidth={true} className={classes.badge} variant="filled" color={elColor}>{badgeText}</Badge>
-        <Image radius="sm" mt="md" src={props.imageSrc} alt={props.sourceName} width={120} height={180} className={classes.image}/>
+        <Badge 
+          radius="md" 
+          fullWidth={true} 
+          className={classes.badge} 
+          py="sm"
+          variant="light"
+          bg={elColor}
+        >
+          {badgeText}
+        </Badge>
+        <Image 
+          radius="md"
+          mt="md"
+          src={props.imageSrc}
+          alt={props.sourceName}
+          width={180}
+          height={270}
+          className={classes.image}
+        />
       </div>
       : <></>
       }
 
       <div className={classes.mainCardContent}>
-        <Title order={2} size="h3" mt={0} mb="xs" fw={500}>{props.textName}</Title>
+        <Title 
+          order={2}
+          mt={0}
+          mb="xs"
+          fw={500}
+          className="fontFamilyOldUa"
+          >
+          {props.textName}
+        </Title>
         
         { (props.textType === "translation") ? 
           <Stack spacing="0" mb="md">
@@ -86,7 +116,7 @@ export default function SkovorodaTreatiseSmallBlockDesktop(props) {
         <SourceV1 {...props}/>
 
         <div className={classes.downloadStack}>
-          <DownloadStackV1 {...props} colortype={props.textType}/>
+          <DownloadStackV1 {...props}/>
         </div>
       </div>
 

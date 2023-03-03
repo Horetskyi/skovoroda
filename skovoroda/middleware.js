@@ -22,6 +22,8 @@ export function middleware(request) {
   const isPageRequest =
     !pathName.includes('_next/static') &&
     !pathName.includes('api') &&
+    !pathName.includes('.woff2') &&
+    !pathName.includes('.webp') &&
     !pathName.includes('.png') &&
     !pathName.includes('.jpg') &&
     !pathName.includes('.ico');

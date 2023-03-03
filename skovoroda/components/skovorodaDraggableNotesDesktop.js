@@ -1,7 +1,7 @@
 import Draggable from 'react-draggable';
 import { IconX } from '@tabler/icons';
 import { gsap } from "gsap/dist/gsap";
-import { getNoteNumberUpperString } from '../lib/data/utils/notesNumbersSymbols';
+import { getNoteNumberString, getNoteNumberUpperString } from '../lib/data/utils/notesNumbersSymbols';
 import { cloneElement, useRef, useState } from 'react';
 import { Card, createStyles, Group, Text } from '@mantine/core';
 import SkovorodaTextContentBlockDesktop from './skovorodaTextContentBlockDesktop';
@@ -38,9 +38,6 @@ const useStyles = createStyles((theme) => ({
       color: theme.colors.blue[7],
     }
   },
-  contentCard: {
-    overflow: "visible"
-  },
   hidden: {
     visibility: "hidden",
   },
@@ -69,10 +66,19 @@ export default function SkovorodaDraggableNotesDesktop({ children, selectedNotes
   }
   
   function getDraggableMoveTo(event) {
+
     const draggableElement = document.getElementById("draggable-notes-block");
     const heightAfter = draggableElement.clientHeight;
-    const moveToX = event.target.offsetLeft - draggableElement.clientWidth / 2;
-    const moveToY = event.target.offsetTop - heightAfter - 20;
+    
+    let moveToX = event.target.offsetLeft - draggableElement.clientWidth / 2;
+    let moveToY = event.target.offsetTop - heightAfter - 20;
+    
+    const parentElement = event.target.offsetParent.offsetParent;
+    if (parentElement.id !== "main-content") {
+      moveToX += parentElement.offsetLeft;
+      moveToY += (parentElement.offsetTop / 2) - 30;
+    }
+
     const moveTo = {x: moveToX, y: moveToY};
     return moveTo;
   }
@@ -80,7 +86,7 @@ export default function SkovorodaDraggableNotesDesktop({ children, selectedNotes
   function onTextNoteClick(event, noteNumber) {
 
     const wasVisible = draggableNoteBlockData.visible;
-    const selectedNote = selectedNotes.find(note => note.noteNumber === noteNumber);
+    const selectedNote = selectedNotes.find(note => getNoteNumberUpperString(note.noteNumber) == noteNumber);
     
     if (!wasVisible) {
       setDraggableNoteBlockData({
@@ -166,7 +172,7 @@ export default function SkovorodaDraggableNotesDesktop({ children, selectedNotes
                 isMarginDisabled={true}
               />
             </div>
-          
+
           </> : <></>}
       </Card>
     </Draggable>

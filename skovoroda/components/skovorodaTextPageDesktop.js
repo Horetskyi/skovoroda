@@ -19,9 +19,6 @@ export default function SkovorodaTextPageDesktop({ textData }) {
     })}
 
   </Card>
-  
-  
-  
 
   const originalBlock = createOriginalBlock(textData.original);
 
@@ -38,18 +35,21 @@ export default function SkovorodaTextPageDesktop({ textData }) {
     />
   }); 
 
-  return (
-    <Container>
-      <Stack mt="md">
-        <Title order={1}>{textData.original.originalName}</Title>
-        <Stack justify="flex-start" spacing="xs">
-          {writtenDateInfoBlock}
-        </Stack>
-        {originalBlock}
-        {translationBlocks}
-      </Stack>
-    </Container>
-  )
+  return <Container>
+    <Title 
+      order={1} 
+      ta="center"
+      mb="xl"
+      className='fontFamilyOldUa bigH1'
+    >
+      {textData.original.originalName}
+    </Title>
+    {originalBlock}
+    {translationBlocks}
+    <Stack justify="flex-start" spacing="xs">
+      {writtenDateInfoBlock}
+    </Stack>
+  </Container>
 }
 
 function createOriginalBlock(original) {

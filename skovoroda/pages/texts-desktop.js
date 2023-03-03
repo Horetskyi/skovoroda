@@ -1,9 +1,25 @@
-import { Container, createStyles, Stack, Text, Title } from '@mantine/core';
+import { Card, Container, createStyles, Grid, Image, SimpleGrid, Stack, Text, Title } from '@mantine/core';
 import Link from 'next/link';
 import { textsPageKey } from '../lib/skovorodaConstants';
 import { SkovorodaDifferentPath, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaOtherPoemsPath, SkovorodaTranslatationsPath, SkovorodaTreatisePath } from '../lib/skovorodaPath';
 
 const useStyles = createStyles((theme) => ({
+  
+  link: {
+    ":hover > div": {
+      boxShadow: theme.shadows.xl,
+      color: theme.colors.blue[6],
+      "img": {
+        opacity: 0.95
+      }
+    }
+  },
+  card: {
+    transition: "all 0.4s ease"
+  },
+  image: {
+    transition: "all 0.4s ease",
+  },
 
 }));
 
@@ -15,45 +31,54 @@ export default function SkovorodaTextsPageDesktop({ }) {
     {
       path: SkovorodaTreatisePath,
       label: "Трактати, Діалоги, Притчі",
-      progress: "в процесі",
+      imageSrc: "/images/books1.jpg",
     },
     {
       path: SkovorodaGardenPath,
       label: "Сад божественних пісень",
-      progress: "в процесі",
+      imageSrc: "/images/garden1.jpg",
     },
     {
       path: SkovorodaOtherPoemsPath,
       label: "Інші поезії",
-      progress: "в майбутньому",
+      imageSrc: "/images/pero.jpg",
     },
     {
       path: SkovorodaFablesPath,
       label: "Байки Харківські",
-      progress: "в майбутньому",
+      imageSrc: "/images/aesops_fables.jpg",
     },
     {
       path: SkovorodaTranslatationsPath,
       label: "Переклади",
-      progress: "в майбутньому",
+      imageSrc: "/images/old-latin.webp",
     },
     {
       path: SkovorodaDifferentPath,
       label: "Різне",
-      progress: "в майбутньому",
+      imageSrc: "/images/others.jpg",
     },
   ];
 
   return <Container>
-    <Title order={1} mb="md">Твори</Title>
-    <Stack>
+    <Title className="fontFamilyOldUa bigH1" order={1} mx={"auto"} ta="center" mb="xl">Твори</Title>
+    <SimpleGrid cols={2} spacing="xl" verticalSpacing="xl" mb="xl">
       {items.map((item, index) => {
-        return <div key={index}>
-          <Link href={item.path}><a>{item.label}</a></Link>
-          <Text span ml="xs">{"("+item.progress+")"}</Text>
-        </div>
+        return <Link key={index} href={item.path}>
+          <a className={`undecoratedLink blackLink ${classes.link}`}>
+            <Card radius="md" p="0" withBorder={true} shadow="md" className={classes.card}>
+              <Image 
+                className={classes.image}
+                src={item.imageSrc}
+                alt={item.label}
+                height={300}
+              />
+              <Title className='fontFamilyOldUa' order={2} ta="center" py="md" bg="green.0">{item.label}</Title>
+            </Card>
+          </a>
+        </Link>
       })}
-    </Stack>
+    </SimpleGrid>
   </Container>
 }
 

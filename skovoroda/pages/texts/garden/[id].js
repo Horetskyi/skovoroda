@@ -2,8 +2,7 @@
 import { Card, Container, Select, Text, Title } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { LinkInsideSelect } from '../../../components/auxiliary/linkInsideSelectItem';
-import CardWithTwoSelectors from '../../../components/cardWithTwoSelectors';
+import CardWithTwoSelectorsDesktop from '../../../components/cardWithTwoSelectorsDesktop';
 import SkovorodaFomattingInfoBlockDesktop from '../../../components/skovorodaFomattingInfoBlockDesktop';
 import SkovorodaSourceBlockDesktop from '../../../components/skovorodaSourceBlockDesktop';
 import SkovorodaTextContentBlockDesktop from '../../../components/skovorodaTextContentBlockDesktop';
@@ -69,7 +68,7 @@ export default function SkovorodaGardenPageRefactored({
   return <>
     <Container mb="xl">
 
-      <CardWithTwoSelectors 
+      <CardWithTwoSelectorsDesktop 
         dropdown1={{
           label: "Оберіть переклад",
           data: translationsDropdownItems,

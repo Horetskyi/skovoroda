@@ -5,6 +5,9 @@ import { SkovorodaTextsArray } from '../../lib/data/skovorodaTexts';
 import { treatisePageKey } from '../../lib/skovorodaConstants';
 import { pathJoinWithoutEndSlash, SkovorodaTreatisePath } from '../../lib/skovorodaPath';
 import SkovorodaLeftNavMenuDesktop from '../../components/skovorodaLeftNavMenuDesktop';
+import { useState } from 'react';
+import { SkovorodaKeyIdeasArray, SkovorodaKeyIdeasMap } from '../../lib/data/skovorodaKeyIdeas';
+import { IconX } from '@tabler/icons';
 
 const useStyles = createStyles((theme) => ({
   
@@ -14,6 +17,7 @@ const useStyles = createStyles((theme) => ({
 
   keyIdeaText: {
     borderRadius: theme.radius.md,
+    color: "black"
   },
 
   moreButton: {
@@ -30,13 +34,58 @@ export default function SkovorodaTreatisePageDesktop({ textsData }) {
   const { classes } = useStyles();
   const pageLinkIndexes = {};
 
+  const [filteredKeyIdeaIds, setFilteredKeyIdeaIds] = useState([]);
+
+  function onKeyIdeaClick(keyIdeaId) {
+    if (filteredKeyIdeaIds.includes(keyIdeaId)) {
+      const newFilteredKeyIdeaIds = filteredKeyIdeaIds.filter(id => id !== keyIdeaId);
+      setFilteredKeyIdeaIds(newFilteredKeyIdeaIds);
+      return;
+    }
+    const newFilteredKeyIdeaIds = [...filteredKeyIdeaIds, keyIdeaId];
+    newFilteredKeyIdeaIds.sort((a,b) => SkovorodaKeyIdeasMap.get(a).index - SkovorodaKeyIdeasMap.get(b).index);
+    setFilteredKeyIdeaIds(newFilteredKeyIdeaIds);
+  }
+
+  function getKeyIdeaButton(keyIdea) {
+    
+    const isFiltered = filteredKeyIdeaIds.includes(keyIdea.id);
+
+    const rightIcon = isFiltered 
+      ? <IconX color='black' size={20} m="0" p="0" />
+      : undefined;
+    
+    return <Button 
+        className={classes.keyIdeaText} 
+        key={keyIdea.id} 
+        color={`${keyIdea.color}.1`} 
+        variant="filled"
+        size="sm"
+        onClick={() => onKeyIdeaClick(keyIdea.id)}
+        rightIcon={rightIcon}
+      >
+        {keyIdea.name}
+      </Button>
+  }
+
+  function filterTextData(textData) {
+    if (!filteredKeyIdeaIds || !filteredKeyIdeaIds.length) {
+      return true; // filter disabled
+    }
+    if (!textData.keyIdeas || !textData.keyIdeas.length) {
+      return false;
+    }
+    const textDataKeyIdeasIds = textData.keyIdeas.map(idea => idea.id);
+    return filteredKeyIdeaIds.every(id => textDataKeyIdeasIds.includes(id));
+  }
+
   function getTextBlock(textData, index) {
     
     let translationBlock = <></>;
     if (textData.translations && textData.translations.length) {
       translationBlock = <>
-        <Text fw="500" mb="0" size="md">{"Переклади"}</Text>
-        <List withPadding={true} listStyleType="none">
+        <Text fw="400" mb="0" size="md" color="gray.7">{"Переклади:"}</Text>
+        <List withPadding={true} listStyleType="circle">
           {textData.translations.map(translation => {
             return <List.Item key={translation.id}>
               <Text span>{translation.translatedName}</Text>
@@ -50,7 +99,7 @@ export default function SkovorodaTreatisePageDesktop({ textsData }) {
     let writtenDateInfoBlock = undefined;
     if (textData.writtenDateInfo && textData.writtenDateInfo.dates && textData.writtenDateInfo.dates.length) {
       writtenDateInfoBlock = <>
-        <Text mt="sm" fw="500" mb="0" size="md">Дата написання</Text>
+        <Text mt="sm" fw="400" mb="0" size="md">Дата написання:</Text>
         <List withPadding={true} listStyleType="circle">
           {textData.writtenDateInfo.dates.map((date, dateIndex) => {
             return <List.Item key={"date-"+dateIndex}>
@@ -67,59 +116,72 @@ export default function SkovorodaTreatisePageDesktop({ textsData }) {
     let ideasBlock = <></>;
     if (textData.keyIdeas && textData.keyIdeas.length) {
       ideasBlock = <>
-        <Text mt="sm" fw="500" mb="sm" size="md">Ключові теми</Text>
-        <Flex gap="md" ml="md">
-          {textData.keyIdeas.map(keyIdea => {
-            const color = keyIdea.color + ".0";
-            return <Text py="5px" px="md" className={classes.keyIdeaText} 
-              key={keyIdea.id} 
-              bg={color} 
-              size="sm" 
-              fw={500}
-            >
-              {keyIdea.name}
-            </Text>
-          })}
+        <Text mt="sm" fw="400" mb="sm" size="md">Ключові теми:</Text>
+        <Flex gap="md" wrap="wrap">
+          {textData.keyIdeas.map(getKeyIdeaButton)}
         </Flex>
       </>
     }
 
     const href = pathJoinWithoutEndSlash(SkovorodaTreatisePath, textData.id);
-    return <Card key={index} py="md" px="xl" radius="md" bg='blue.0' id={textData.id}>
+    return <Card key={index} p="md" radius="md" bg="gray.0" withBorder={true} id={textData.id}>
+      
+      <Title order={2} mb="md" ta="left" fw={400}>
+        <Link key={index} href={href}>
+          <a className={"undecoratedLink blackLink " + classes.textLink}>
+            <span>{"" + (index + 1) + ". "}</span>
+            <span className='fontFamilyOldUa'>{textData.original.originalName}</span>
+          </a>
+        </Link>
+      </Title>
+      
       <Group>
+        
         <Stack spacing="0">
-          <Title order={3} mb="md">
-            <Link key={index} href={href}>
-              <a className={"undecoratedLink blackLink " + classes.textLink}>{"" + (index+1) + ". " + textData.original.originalName}</a>
-            </Link>
-          </Title>
           {translationBlock}
           {writtenDateInfoBlock}
           {ideasBlock}
         </Stack>
+
         <Link href={href}>
-          <Button className={classes.moreButton} variant='outline'>Завантажити</Button>
+          <a className={classes.moreButton}>
+            <Button className={classes.moreButton} variant='light'>Завантажити</Button>
+          </a>
         </Link>
+      
       </Group>
     </Card>
   }
 
+  const filteredTextsData = textsData.filter(filterTextData);
+
   return <>
     
     <Container>
-      <Title ta="center" order={1} mb="xl">Трактати, Діалоги, Притчі</Title>
+      <Title ta="center" order={1} mb="xl" className='bigH1 fontFamilyOldUa'>Трактати, Діалоги, Притчі</Title>
     </Container>
 
-    <SkovorodaLeftNavMenuDesktop withOrderNumbers={true} items={textsData.map(textData => {
+    <SkovorodaLeftNavMenuDesktop withOrderNumbers={true} items={filteredTextsData.map(textData => {
       return {
         label: textData.original.originalName,
         id: textData.id
       };
     })} />
 
+    { filteredKeyIdeaIds.length ? <>
+      <Container mb="xl">
+        <Flex gap="md" wrap="wrap">
+          {filteredKeyIdeaIds.map(keyIdeaId => {
+            const keyIdea = SkovorodaKeyIdeasMap.get(keyIdeaId);
+            return getKeyIdeaButton(keyIdea);
+          })}
+        </Flex>
+      </Container>
+    </> : <></>}
+
     <Container>
       <Stack spacing="xl">
-        {textsData.map(getTextBlock)}
+        {filteredTextsData.map(getTextBlock)}
       </Stack>
     </Container>
   </>

@@ -6,13 +6,14 @@ import SkovorodaTextContentBlockDesktop from '../components/skovorodaTextContent
 import { SkovorodaLettersFromPath, pathJoin } from '../lib/skovorodaPath';
 import SkovorodaFomattingInfoBlockDesktop from '../components/skovorodaFomattingInfoBlockDesktop';
 import SkovorodaSourceBlockDesktop from '../components/skovorodaSourceBlockDesktop';
-import CardWithTwoSelectors from './cardWithTwoSelectors';
+import CardWithTwoSelectorsDesktop from './cardWithTwoSelectorsDesktop';
 import Draggable from 'react-draggable';
 import { IconX } from '@tabler/icons';
 import { gsap } from "gsap/dist/gsap";
 import { getNoteNumberUpperString } from '../lib/data/utils/notesNumbersSymbols';
 import SkovorodaLeftNavMenuDesktop from './skovorodaLeftNavMenuDesktop';
 import SkovorodaDraggableNotesDesktop from './skovorodaDraggableNotesDesktop';
+import { languagesToShortString, parseLanguages } from '../lib/skovorodaLanguagesLogic';
 
 const useStyles = createStyles((theme) => ({
   draggableNoteBlock: {
@@ -45,7 +46,7 @@ const useStyles = createStyles((theme) => ({
     }
   },
   contentCard: {
-    overflow: "visible"
+    overflow: "visible",
   },
   hidden: {
     visibility: "hidden",
@@ -130,13 +131,15 @@ export default function SkovorodaLetterPageDesktop({
     label: "Джерело"
   });
 
+  
+
   return <>
 
     <SkovorodaLeftNavMenuDesktop items={leftNavMenuItems} />
 
     <Container mb="xl">
 
-      <CardWithTwoSelectors
+      <CardWithTwoSelectorsDesktop
         dropdown1={{
           label: "Оберіть переклад",
           data: translationsDropdownItems,
@@ -151,7 +154,7 @@ export default function SkovorodaLetterPageDesktop({
         }}
       />
 
-      <Card id="main-content" p="md" mt="md" radius="md" withBorder={true} className={classes.contentCard}>
+      <Card id="main-content" p="md" mt="md" radius="md" withBorder={true} className={`specialBorder ${classes.contentCard}`}>
         <Title ta={'center'} mt="0" mb="md" order={1}>{selectedMetadata.name}</Title>
         <Title ta={'center'} mt="0" mb="xl" order={2}>{"Лист № " + selectedMetadata.number}</Title>    
         <SkovorodaDraggableNotesDesktop selectedNotes={selectedNotes}>
@@ -160,13 +163,14 @@ export default function SkovorodaLetterPageDesktop({
       </Card>
       
       {isAnyNotes ? <>
-        <Title id="notes-content" ta={'center'} mt="md" mb="md" order={2}>Примітки</Title>
-        <SkovorodaTextContentBlockDesktop textContent={selectedNotes} />
+        <Card id="notes-content" mt="md" p="md" withBorder={true} className='specialBorder'>
+          <Title ta={'center'} mb="md" order={2}>Примітки</Title>
+          <SkovorodaTextContentBlockDesktop textContent={selectedNotes} />
+        </Card>
       </> : <></>}
 
       <SkovorodaSourceBlockDesktop source={selectedLetterSource} mt="md" />
 
-      <Title ta={'center'} mt="md" mb="md" order={2}>Від розробників сайту</Title>
       <SkovorodaFomattingInfoBlockDesktop mt="md" />
     </Container>
     
@@ -190,9 +194,15 @@ function prepareLettersDropdownItems(allLettersMetadata, selectedTranlsatorName,
   set.clear();
 
   return result.map(letterMetadata => {
+
+    const languages = parseLanguages(letterMetadata.languages);
+    const label = letterMetadata.name + " - Лист № " + letterMetadata.number;
+    
     return {
       value: newSelectedPersonValue(letterMetadata, letterType),
-      label: letterMetadata.name + " - Лист № " + letterMetadata.number,
+      label: languages.length 
+        ? `${languagesToShortString(languages)} ${label}` 
+        : label,
       id: letterMetadata.id,
       disabled: false,
     };
@@ -202,9 +212,6 @@ function prepareLettersDropdownItems(allLettersMetadata, selectedTranlsatorName,
 // Auxiliary
 function prepareTranslationsDropdownItems(allLettersMetadata, personDropdownValue, letterType) {
   
-  // Original, Peleh, Uskalov
-  // to-kovalynskii-2
-
   const result = allLettersMetadata
     .filter(metadata => newSelectedPersonValue(metadata, letterType) == personDropdownValue);
 
@@ -216,9 +223,12 @@ function prepareTranslationsDropdownItems(allLettersMetadata, personDropdownValu
   });
 
   return result.map(letterMetadata => {
+    const languages = parseLanguages(letterMetadata.languages);
     return {
       value: letterMetadata.translatorName,
-      label: letterMetadata.translatorName,
+      label: languages.length 
+        ? `${languagesToShortString(languages)} ${letterMetadata.translatorName}` 
+        : letterMetadata.translatorName,
       id: letterMetadata.id,
       disabled: false,
     };

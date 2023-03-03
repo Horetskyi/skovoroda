@@ -59,7 +59,7 @@ export default function AnimatedMailComponent({ uniqueId }) {
 
     return () => ctx.revert();
 
-  }, []);
+  }, [uniqueClassName]);
 
  
   return <Container ref={root} onClick={() => setIsPlayed(true) } className={uniqueClassName + " " + classes.container} >

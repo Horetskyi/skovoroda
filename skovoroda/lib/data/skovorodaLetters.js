@@ -21,6 +21,14 @@ function getLetterId(letter, letterType) {
   return originalId + "-" + translatorNamesIdsMap.get(letter.translatorName);
 }
 
+function readJsonOrDefault(jsonFilePath) {
+  try {
+    return JSON.parse(fs.readFileSync(jsonFilePath).toString());
+  } catch {
+    return undefined;
+  }
+}
+
 function readLetters(letterType) {
   const lettersDirectoryPath = getLettersDirectoryPath(letterType);
   const lettersFileNames = fs.readdirSync(lettersDirectoryPath);
@@ -29,7 +37,11 @@ function readLetters(letterType) {
     const jsonFilePath = path.join(lettersDirectoryPath, jsonFileName);
     const txtFilePath = jsonFilePath.replace(".json", ".txt");
     
-    const letterMetadata = JSON.parse(fs.readFileSync(jsonFilePath).toString());
+    const letterMetadata = readJsonOrDefault(jsonFilePath);
+    if (!letterMetadata) {
+      return undefined;
+    }
+
     letterMetadata.id = getLetterId(letterMetadata, letterType);
     
     const contentString = fs.readFileSync(txtFilePath).toString();
@@ -39,7 +51,7 @@ function readLetters(letterType) {
       letterMetadata: letterMetadata,
       letterContent: content,
     };
-  });
+  }).filter(x => x);
   allParsedLetters.sort((a,b) => a.letterMetadata.number - b.letterMetadata.number);
   return allParsedLetters;
 }

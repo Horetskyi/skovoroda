@@ -1,6 +1,7 @@
 import { createStyles } from "@mantine/core";
 import Link from "next/link";
 import { forwardRef } from "react";
+import { languagesToShortString } from "../../lib/skovorodaLanguagesLogic";
 
 const useStyles = createStyles(() => {
   return {

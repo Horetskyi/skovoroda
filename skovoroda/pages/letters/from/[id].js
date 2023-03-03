@@ -3,12 +3,17 @@ import getStaticPathsCommon from '../../../lib/getStaticPathsCommon';
 import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';
 import { SkovorodaLettersFrom } from '../../../lib/data/skovorodaLetters';
 import { SkovorodaSourcesArray } from '../../../lib/data/skovorodaSources';
-import SkovorodaLetterPageDesktop from '../../../components/skovorodaLetterPageDesktop';
-import { lettersFromPageKey } from '../../../lib/skovorodaConstants';
+import { lettersFromPageKey, SkovorodaConstants } from '../../../lib/skovorodaConstants';
 import getSelectedNoteNumbersByContent from '../../../lib/getSelectedNoteNumbersByContent';
+import dynamic from 'next/dynamic';
+const SkovorodaLetterPageDesktop = dynamic(() => import('../../../components/skovorodaLetterPageDesktop'));
+const SkovorodaLetterPageMobile = dynamic(() => import('../../../components/skovorodaLetterPageMobile'));
 
 export default function SkovorodaLetterFromPage({ ...params }) {
-  return <SkovorodaLetterPageDesktop {...params} letterType="from" />
+
+  return params.deviceEnding === SkovorodaConstants.desktopEnding 
+    ? <SkovorodaLetterPageDesktop {...params} letterType="from" />
+    : <SkovorodaLetterPageMobile {...params} letterType="from" />
 }
 
 // Get all Letters From Paths
@@ -59,8 +64,8 @@ export function getStaticProps({ params }) {
 
 // Auxiliary
 const translatorNamesMap = new Map([
-  ["Леонід Ушкалов", 'Редактор перекладів - Леонід Ушкалов'],
-  ["Петро Пелех", "Перекладач - Петро Пелех"],
+  // ["Леонід Ушкалов", 'Редактор перекладів - Леонід Ушкалов'], 
+  // ["Петро Пелех", "Перекладач - Петро Пелех"],
 ]);
 function mapTranslatorName(translatorName) {
   if (translatorNamesMap.has(translatorName)) {

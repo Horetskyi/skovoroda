@@ -4,23 +4,18 @@ import SkovorodaTextBlockMobile from './skovorodaTextBlockMobile';
 
 const useStyles = createStyles((theme) => ({
 
-  textBlock: {
-  },
-
 }));
 
 export default function SkovorodaTextPageMobile({ textData }) {
 
   const { classes } = useStyles();
 
-  const pageLinkIndexes = {};
-
   const originalBlock = createOriginalBlock(textData.original);
 
-  const translationBlocks = textData.translates.map((translation, index) => {
+  const translationBlocks = textData.translations ? textData.translations.map((translation, index) => {
     return <div  key={"translation-"+index}>
       {index === 0 ? <></> : <Divider size="sm" mb="md" />}
-      <Container className={classes.textBlock}>
+      <Container>
         <SkovorodaTextBlockMobile
           imageSrc={translation.source.bookCoverImageSrc}
           sourceHref={translation.source.sourceHref}
@@ -32,8 +27,7 @@ export default function SkovorodaTextPageMobile({ textData }) {
         />
       </Container>
     </div>
-   
-  }); 
+  }) : <></>; 
 
   return <>
     <Container>

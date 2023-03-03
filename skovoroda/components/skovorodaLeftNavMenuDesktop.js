@@ -33,7 +33,7 @@ const useStyles = createStyles((theme) => ({
     ".mantine-Button-label": {
       display: "block",
       textOverflow: "ellipsis",
-      height: "auto",
+      height: "20px",
     }
   },
 
@@ -77,7 +77,7 @@ export default function SkovorodaLeftNavMenuDesktop({items, withOrderNumbers}) {
     <Container></Container>
     <div className={classes.leftNavMenu3}>
       <div className={classes.leftNavMenu2}>
-          <Card bg="blue.1" radius="md" px="0" py="md" >
+          <Card bg="blue.0" radius="md" px="0" py="md" >
             <Stack spacing="0">
               {items.map(getLeftNavBlock)}
             </Stack>

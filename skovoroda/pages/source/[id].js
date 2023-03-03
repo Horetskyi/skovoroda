@@ -29,7 +29,9 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       sourceData,
-      deviceEnding
+      deviceEnding,
+      metadataTitle: "Джерела",
+      metadataDescription: "Джерела",
     },
   };
 }

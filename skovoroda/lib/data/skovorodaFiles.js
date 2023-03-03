@@ -76,5 +76,15 @@ export const SkovorodaFiles = {
     original_pdf: file("", ""),
     kashuba_pdf: file("", "", [], 
       sourceLink_piznai_ludynu),
-  }
+  },
+  besida_1sha_nazvana_observatorium_sion: {
+    original_pdf: file("", ""),
+    kashuba_pdf: file("", "", [], 
+      sourceLink_piznai_ludynu),
+  },
+  besida_2ha_nazvana_observatorium_specula_poievreisky_sion: {
+    original_pdf: file("", ""),
+    kashuba_pdf: file("", "", [], 
+      sourceLink_piznai_ludynu),
+  },
 }

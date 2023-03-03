@@ -12,18 +12,18 @@ const useStyles = createStyles((theme) => ({
       borderRadius: theme.radius.sm,
       boxShadow: theme.shadows.md,
     }
-  }
+  },
 }));
 
 export default function SkovorodaSourceBlockDesktop({source}) {
+
+  const { classes } = useStyles();
 
   if (!source) {
     return <></>;
   }
 
-  const { classes } = useStyles();
-
-  return <Card id="source-content" p="md" mt="md" radius="md" withBorder={true}>
+  return <Card id="source-content" p="md" mt="md" radius="md" withBorder={true} className="specialBorder">
     <Title ta={'center'} mb="md" order={2}>Джерело</Title>
     { 
       source.bookCoverImageSrc ? <>

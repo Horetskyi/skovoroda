@@ -1,6 +1,9 @@
 import { Card, Container, createStyles } from "@mantine/core";
 import Link from "next/link";
 import { getNoteNumberString, getNoteNumberUpperString } from "../lib/data/utils/notesNumbersSymbols";
+import { gsap } from "gsap/dist/gsap";
+import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
+import { useEffect } from "react";
 
 const useStyles = createStyles((theme) => {
 
@@ -146,6 +149,7 @@ const useStyles = createStyles((theme) => {
       right: "100%",
       marginTop: "2px",
       marginRight: theme.spacing.xs,
+      cursor: "pointer",
     },
     noteBlockMarginBottom: {
       marginBottom: theme.spacing.md,
@@ -156,8 +160,10 @@ const useStyles = createStyles((theme) => {
 
 export default function SkovorodaTextContentBlockDesktop({ textContent, onTextNoteClick, ...others}) {
 
+  const { classes } = useStyles();
+
   if (textContent && !Array.isArray(textContent)) {
-    return <>
+    return <div>
       <SkovorodaTextContentBlockDesktop textContent={textContent.beforeMain} others={others} onTextNoteClick={onTextNoteClick} />
       <Container size="fit-content">
         <Card p="0">
@@ -165,7 +171,7 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, onTextNo
         </Card>
       </Container>
       <SkovorodaTextContentBlockDesktop textContent={textContent.afterMain} others={others} onTextNoteClick={onTextNoteClick} />
-    </>
+    </div>
   }
 
   if (!textContent || !textContent.length) {
@@ -177,7 +183,16 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, onTextNo
 
   const plusClassName = others.plusClassName;
 
-  const { classes } = useStyles();
+
+  gsap.registerPlugin(ScrollToPlugin);
+  
+  function onBlockNoteClick(id) {
+    gsap.to(window, {
+      duration: 0.8, 
+      scrollTo:{ y: "#" + id, offsetY: 24},
+      ease: "power1.out",
+    });
+  }
 
   const formatClasses = {
     "center": classes.formatCenter,
@@ -229,7 +244,7 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, onTextNo
         id = (lineObject.isNoteBeginning ? "note" : "noteInText") + getNoteNumberUpperString(lineObject.noteNumber);
       }
       if (lineObject.isNoteBeginning && lineObject.noteNumber && isLeftNotesEnabled) {
-        pushNoteInNotesBlock(block, lineObject, classes);
+        pushNoteInNotesBlock(block, lineObject, classes, onBlockNoteClick);
       }
 
       const noteClassName = (lineObject.noteNumber && !lineObject.isNoteBeginning) 
@@ -278,7 +293,7 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, onTextNo
       return <span key={index} className={subFormatClassName} onClick={onClick}>{subText.text}</span>;
     });
     if (lineObject.isNoteBeginning && lineObject.noteNumber && isLeftNotesEnabled) {
-      pushNoteInNotesBlock(block, lineObject, classes);
+      pushNoteInNotesBlock(block, lineObject, classes, onBlockNoteClick);
     }
     block.push(<span id={id} key={block.length} className={normalClassName}>{spans}</span>);
   });
@@ -290,7 +305,24 @@ export default function SkovorodaTextContentBlockDesktop({ textContent, onTextNo
   return <div className={allContentClassName} {...others}>{block}</div>;
 }
 
-function pushNoteInNotesBlock(block, lineObject, classes) {
+function pushNoteInNotesBlock(block, lineObject, classes, onBlockNoteClick) {
+  
+  const isLinkVersion = false;
+  if (!isLinkVersion) {
+    const id = "noteInText"+getNoteNumberUpperString(lineObject.noteNumber);
+    block.push(
+      <span 
+        key={block.length} 
+        color="gray.9"
+        onClick={() => onBlockNoteClick(id)} 
+        className={classes.noteInNotesBlock + " " + classes.noteLink + " grayForText"}
+      >
+        {getNoteNumberString(lineObject.noteNumber)}
+      </span>
+    );
+    return;
+  }
+
   block.push(
     <Link key={block.length} href={"#noteInText"+getNoteNumberUpperString(lineObject.noteNumber)}>
       <a color="gray.9" className={classes.noteInNotesBlock + " " + classes.noteLink + " grayForText"}>

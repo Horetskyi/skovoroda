@@ -4,6 +4,8 @@ import { khai_tsiluie_mene_potsilunkamy_ust_svoikh } from "./texts/khai_tsiluie_
 import { narcis } from "./texts/narcis";
 import { askhan } from "./texts/askhan";
 import { besida_nazvana_dvoie } from "./texts/besida_nazvana_dvoie";
+import { besida_1sha_nazvana_observatorium_sion } from "./texts/besida_1sha_nazvana_observatorium_sion";
+import { besida_2ha_nazvana_observatorium_specula_poievreisky_sion } from "./texts/besida_2ha_nazvana_observatorium_specula_poievreisky_sion";
 
 const skovorodaTexts = {
   prokynuvshys_pobachyly_slavu_yoho,
@@ -12,6 +14,8 @@ const skovorodaTexts = {
   narcis,
   askhan,
   besida_nazvana_dvoie,
+  besida_1sha_nazvana_observatorium_sion,
+  besida_2ha_nazvana_observatorium_specula_poievreisky_sion,
 }
 
 const textsArray = Object.values(skovorodaTexts);

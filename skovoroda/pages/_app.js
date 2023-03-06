@@ -57,8 +57,10 @@ export default function App(props) {
         <title>{pageProps.metadataTitle}</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <meta name="description" content={pageProps.metadataDescription} />
+        <meta name="robots" content="noindex, nofollow" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
 
       <MantineProvider
         withGlobalStyles

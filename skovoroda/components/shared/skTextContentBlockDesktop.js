@@ -27,6 +27,12 @@ const useStyles = createStyles((theme) => {
       position: "relative",
       height: "inherit",
     },
+    textContentBlockMobile: {
+      textAlign: "left",
+      position: "relative",
+      height: "inherit",
+    },
+
     textContentBlockLeftNotesEnabled: {
       marginLeft: theme.spacing.lg,
     },
@@ -210,6 +216,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
   const isLeftNotesEnabled = !disableLeftNotesDisplaying;
 
   const plusClassName = others.plusClassName;
+  const isMobile = others.isMobile;
 
   gsap.registerPlugin(ScrollToPlugin);
   
@@ -328,7 +335,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     block.push(<span id={id} key={block.length} className={normalClassName}>{spans}</span>);
   });
 
-  const allContentClassName = classes.textContentBlock + 
+  const allContentClassName = (isMobile ? classes.textContentBlockMobile : classes.textContentBlock) + 
     (plusClassName ? ` ${plusClassName} ` : "") +
     ((isLeftNotesEnabled && isNotesBlock) ? ` ${classes.textContentBlockLeftNotesEnabled} ` : "");
 

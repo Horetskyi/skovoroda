@@ -68,10 +68,10 @@ export default function App(props) {
         withNormalizeCSS
         theme={{
           colorScheme: 'light',
-          fontFamily: "Roboto", 
+          fontFamily: "Roboto,Montserrat,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji", 
           fontStyle: "normal",
           headings: {
-            fontFamily: "Roboto",
+            fontFamily: "Roboto,Montserrat,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji",
           },
           shadows: {
             sm: '3px 4px 8px 1px rgba(0, 0, 0, 0.15)',
@@ -115,12 +115,13 @@ export default function App(props) {
               fontWeight: 300,
               fontSize: "20px",
               lineHeight: "23px",
-              textAlign: "justify",
+              textAlign: "left",
               letterSpacing: "0.03em",
               textIndent: "24px",
             },
-            ".normalContentText_withoutJustify": {
-              textAlign: "unset",
+            ".normalContentText_center": {
+              textAlign: "center",
+              textIndent: 0,
             },
             ".normalContentText_withoutIndent": {
               textIndent: 0,
@@ -182,6 +183,14 @@ export default function App(props) {
             ".specialBorder": {
               borderWidth: "2px",
               borderColor: theme.colors.blue[0],
+            },
+            ".textOverflow": {
+              textOverflow: "ellipsis",
+              overflowX: "hidden",
+            },
+            ".mantine-Input-input": {
+              textOverflow: "ellipsis",
+              overflowX: "hidden",
             }
           }),
         }}

@@ -24,7 +24,7 @@ export default function FablesPage({ allFables }) {
           {fables.map(fable => {
             const href = pathJoin(SkovorodaFablesPath, fable.urlId);
             return <List.Item key={fable.urlId}>
-              <SkTextLink text={fable.fableTitle} title={getFableLinkTitle(fable)} href={href} disableStyles={true}>
+              <SkTextLink text={fable.fableTitle} title={getFableLinkTitle(fable)} href={href} disableStyles={false}>
               </SkTextLink>
             </List.Item>
           })}

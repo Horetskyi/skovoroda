@@ -7,6 +7,9 @@ const useStyles = createStyles((theme) => ({
     boxShadow: theme.shadows.sm,
     borderRadius: theme.radius.md,
     paddingRight: theme.spacing.md,
+    paddingTop: theme.spacing.sm,
+    paddingBottom: theme.spacing.sm,
+    textAlign: "left",
   },
 
   quotemark: {
@@ -24,6 +27,7 @@ const useStyles = createStyles((theme) => ({
 
   text: {
     alignSelf: "center",
+    textAlign: "left",
     marginLeft: "60px",
   },
 
@@ -33,7 +37,7 @@ export default function SkQuoteDesktop({text,mb}) {
   const { classes } = useStyles();
 
   return <>
-    <Flex bg={"white"} className={classes.container} h={64} mb={mb}>
+    <Flex bg={"white"} className={classes.container} mih={64} mb={mb}>
       <Text className={classes.quotemark} color={"gray.6"}>“</Text>
       <Text className={`normalContentText normalContentText_withoutIndent ${classes.text}`}>
         {text}

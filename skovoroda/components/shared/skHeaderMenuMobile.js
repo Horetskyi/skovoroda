@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
     letterSpacing: "0.16em",
   },
   titleLink: {
-    marginLeft: theme.spacing.xs,
+    marginLeft: 0,
     marginRight: "auto", 
   },
   buttonText: {
@@ -56,7 +56,8 @@ const useStyles = createStyles((theme) => ({
   svgs: {
     position: "relative",
     scale: "0.9",
-    marginLeft: "12px",
+    marginLeft: theme.spacing.xs,
+    marginRight: theme.spacing.xs,
   }
 }));
 
@@ -68,7 +69,7 @@ export default function SkHeaderMenuMobile() {
 
   return <Container fluid={true} h={87} px={"sm"} className={classes.container}>
     <Flex 
-      gap="sm" 
+      gap={0} 
       justify="flex-start"
       align="center"
       direction="row"

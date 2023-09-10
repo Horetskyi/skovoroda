@@ -24,9 +24,9 @@ export default function SkTextLink({text, href, disableStyles, title}) {
   
   const { classes } = useStyles();
 
-  const className = disableStyles 
+  const className = (disableStyles 
     ? classes.linkWithoutStyles 
-    : classes.link;
+    : classes.link);
 
   var linkTitle = title;
   if (!linkTitle || !linkTitle.length) {

@@ -20,7 +20,7 @@ export const SkImages = {
     fableNumber: 3,
   },
   fable4byOlenka: {
-    imageUrl: "/images/fables/Fable4 by Olenka.jpg",
+    imageUrl: "/images/fables/Fable4 by Olenka cs6.jpg",
     alt: standardOlenkaAltAndTitle,
     title: standardOlenkaAltAndTitle,
     fableNumber: 4,
@@ -32,13 +32,13 @@ export const SkImages = {
     fableNumber: 5,
   },
   fable6byOlenka: {
-    imageUrl: "/images/fables/Fable6 by Olenka.png",
+    imageUrl: "/images/fables/Fable6 by Olenka cs6.png",
     alt: standardOlenkaAltAndTitle,
     title: standardOlenkaAltAndTitle,
     fableNumber: 6,
   },
   fable7byOlenka: {
-    imageUrl: "/images/fables/Fable7 by Olenka.png",
+    imageUrl: "/images/fables/Fable7 by Olenka cs6.png",
     alt: standardOlenkaAltAndTitle,
     title: standardOlenkaAltAndTitle,
     fableNumber: 7,

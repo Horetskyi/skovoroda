@@ -46,6 +46,6 @@ export default function SkImage({ image, imageUrl, width, height, shadow, disabl
   }
 
   return <div className={classes.image} style={styleObj}>
-    <Image src={imageUrl} width={width} height={height} style={styleObj} alt={alt} title={title} />
+    <Image src={imageUrl} width={width} height={height} style={styleObj} alt={alt} title={title} priority />
   </div>
 }

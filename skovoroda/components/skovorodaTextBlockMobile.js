@@ -34,7 +34,7 @@ export default function SkovorodaTextBlockMobile(props) {
     <Badge radius="md" width={300} variant="outline" color="dark">{badgeText}</Badge>
 
     {props.imageSrc 
-    ? <Image mt="md" mb="md" src={props.imageSrc} alt={props.sourceName} width={120} height={180} className={classes.image}/>
+    ? <Image mt="md" mb="md" src={props.imageSrc} alt={props.sourceName} width={120} height={180} className={classes.image} />
     : <></>
     }
 

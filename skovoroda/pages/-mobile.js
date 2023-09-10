@@ -39,7 +39,7 @@ export default function HomePageMobile() {
       <Space h={"md"}/>
       <Title order={1} className={classes.h1} ta={"center"}>{homePageContent.titleLine}</Title>
       <Text mt={"sm"} className={classes.subTitle} ta={"center"}>{homePageContent.birthLine}</Text>
-      <Text mt={"md"} className='normalContentText'>{homePageContent.shortBio}</Text>
+      <Text mt={"md"} className='normalContentText normalContentText_center'>{homePageContent.shortBio}</Text>
     </Container>
     <Space h={"md"}/>
     <SkColoredContainerMobile color={"indigo.0"} ta={"center"}>

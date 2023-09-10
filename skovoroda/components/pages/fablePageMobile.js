@@ -102,18 +102,18 @@ export default function FablePageMobile({
     <Space h="md"/>
     {isFableImageExists ? <>
       <Center>
-        <SkImage imageUrl={selectedMetadata.fableImage.imageUrl} width={211} height={306} shadow={"md"} alt={selectedMetadata.fableImage.alt} title={selectedMetadata.fableImage.title} />
+        <SkImage imageUrl={selectedMetadata.fableImage.imageUrl} width={221} height={306} shadow={"md"} alt={selectedMetadata.fableImage.alt} title={selectedMetadata.fableImage.title} />
       </Center>
       <Space h="md"/>
     </> : null}
     <Container px={"md"}>
-      <SkTextContentBlockDesktop textContent={selectedFable.content} isv2={true} />
+      <SkTextContentBlockDesktop textContent={selectedFable.content} isv2={true} isMobile={true} />
       <SkH2Mobile mt="md" mb="sm" text={"Сила"}/>
-      <SkTextContentBlockDesktop textContent={selectedFable.powerContent} isv2={true} />
+      <SkTextContentBlockDesktop textContent={selectedFable.powerContent} isv2={true} isMobile={true} />
       <Space h="md" />
       {(selectedNotes && selectedNotes.length) ? <>
         <SkH2Mobile mb="sm" text={"Примітки"}/>
-        <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} />
+        <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} isMobile={true} />
       </> : null}
     </Container>
     <SkColoredContainerMobile color={"indigo.0"}>
@@ -137,7 +137,7 @@ export default function FablePageMobile({
           linkTitle: "Instagram Олени Лещенко"
         }}/>
       </> : null}
-      <Text px="md" mt="lg" className='normalContentText normalContentText_withoutJustify'>{commonContent.textValidityWarning}</Text>
+      <Text px="md" mt="lg" className='normalContentText'>{commonContent.textValidityWarning}</Text>
     </SkColoredContainerMobile>
   </>
 }

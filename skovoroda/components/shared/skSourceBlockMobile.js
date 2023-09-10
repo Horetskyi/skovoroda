@@ -15,7 +15,7 @@ export default function SkSourceBlockMobile(params) {
   if (!params.sourceValue) {
     return null;
   }
-  const paragraphClassName = "normalContentText normalContentText_withoutIndent normalContentText_withoutJustify " + classes.paragraph;
+  const paragraphClassName = "normalContentText normalContentText_withoutIndent textOverflow " + classes.paragraph;
   const isLinkAndTextTheSame = (params.sourceHref && !params.sourceHrefAnchorText);
   
   return <>

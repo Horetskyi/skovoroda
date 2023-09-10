@@ -126,7 +126,14 @@ export default function FablePageDesktop({
 
         {isFableImageExists ? 
           <div className={classes.fableImage}>
-            <Image src={selectedMetadata.fableImage.imageUrl} width={250} height={360} alt={selectedMetadata.fableImage.alt} title={selectedMetadata.fableImage.title} />
+            <Image 
+              src={selectedMetadata.fableImage.imageUrl} 
+              width={260} 
+              height={360} 
+              alt={selectedMetadata.fableImage.alt}
+              title={selectedMetadata.fableImage.title} 
+              priority
+            />
           </div>
           : null}
 

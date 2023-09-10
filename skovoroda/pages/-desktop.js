@@ -71,12 +71,13 @@ export default function HomePageDesktop() {
             title={homePageContent.imageTitle}
             width={332}
             height={406}
+            priority
           />
         </div>
         <div className={classes.bioContent}>
           <Title order={1} className={classes.h1}>{homePageContent.titleLine}</Title>
           <Text mt={"sm"} className={classes.subTitle}>{homePageContent.birthLine}</Text>
-          <Text mt={"sm"} className='normalContentText'>{homePageContent.shortBio}</Text>
+          <Text mt={"sm"} className='normalContentText normalContentText_center'>{homePageContent.shortBio}</Text>
           {SkovorodaConstants.isProduction ? null : <>
             <Group position="right" className={classes.bioButtons} mt={"auto"} mb={0}>
               <SkTextLink text={"Біографія детальніше"} href={SkovorodaBioPath}/>

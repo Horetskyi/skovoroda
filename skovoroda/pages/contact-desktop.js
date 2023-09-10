@@ -7,7 +7,7 @@ export default function ContactPage(props) {
   return <>
     <SkH1Desktop text="Контакти" mt={"lg"} />
     <SkColoredContainerDesktop>
-      <Text className="normalContentText normalContentText_withoutJustify normalContentText_withoutIndent">
+      <Text className="normalContentText normalContentText_withoutIndent">
         <span>Для звязку пишіть в телеграм: </span>
         <a href="https://t.me/Horetskyi_Dima" title="Телеграм для звязку">https://t.me/Horetskyi_Dima</a>
       </Text>

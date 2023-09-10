@@ -1,4 +1,4 @@
-import { Breadcrumbs, Button, createStyles } from "@mantine/core";
+import { Anchor, Breadcrumbs, Text, createStyles } from "@mantine/core";
 import { getBreadcrumbs } from "../lib/getBreadcrumbs";
 
 const useStyles = createStyles((theme) => ({
@@ -8,28 +8,41 @@ const useStyles = createStyles((theme) => ({
 
     "div": {
       margin: 0,
-    }
+    },
+    
   },
   breadcrumbLink: {
     textDecoration: "none",
-  }
+  },
+  breadcrumbLinkInactive: {
+    
+  },
 }));
 
 export default function SkovorodaBreadcrumbsDesktop(pageProps) {
 
   const { classes } = useStyles();
   const breadcrumbs = getBreadcrumbs(pageProps);
-  const breadcrumbsElements = breadcrumbs.map((item, index) => (
-    <Button 
+  const breadcrumbsElements = breadcrumbs.map(item => {
+    
+    if (item.isInactive) {
+      return <Text
+        key={item.href}
+        color="gray.6"
+      >
+        {item.title}
+      </Text>
+    }
+
+    return <Anchor 
+      key={item.href}
       href={item.href}
-      component="a"
-      key={index}
-      className={classes.breadcrumbLink}
-      variant="light"
+      title={item.title}
+      className={classes.breadcrumbLink} 
     >
       {item.title}
-    </Button> 
-  ));
+    </Anchor> 
+  });
 
-  return <Breadcrumbs separator=">" mt="xl" mb="xl" className={classes.breadcrumbs}>{breadcrumbsElements}</Breadcrumbs>
+  return <Breadcrumbs separator=">" ml="md" mt="md" mb="md" className={classes.breadcrumbs}>{breadcrumbsElements}</Breadcrumbs>
 }

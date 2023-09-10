@@ -1,6 +1,8 @@
 export const SkovorodaConstants = {
   desktopEnding: "-desktop",
   mobileEnding: "-mobile",
+  isProduction: true,
+  recommendedMetaDescriptionLength: 200,
 
   isOriginal: function(type) {
     return type === "original" || type === "Original";
@@ -35,10 +37,14 @@ export const SkovorodaConstants = {
 };
 
 export const homePageKey = { pageKey: "Home" }; 
+export const aboutUsPageKey = { pageKey: "AboutUs", parent: homePageKey };
+export const contactPageKey = { pageKey: "Contact", parent: homePageKey };
 export const utils1PageKey = { pageKey: "Utils1", parent: homePageKey };
 export const textsPageKey = { pageKey: "Texts", parent: homePageKey };
 export const treatisePageKey = { pageKey: "Treatise", parent: textsPageKey };
 export const treatiseSelectedPageKey = { pageKey: "TreatiseSelected", parent: treatisePageKey };
+export const fablesPageKey = { pageKey: "Fables", parent: textsPageKey };
+export const fableSelectedPageKey = { pageKey: "FableSelected", parent: fablesPageKey };
 export const gardenPageKey = { pageKey: "Garden", parent: textsPageKey };
 export const gardenSelectedPageKey = { pageKey: "GardenSelected", parent: gardenPageKey };
 export const lettersPageKey = { pageKey: "Letters", parent: homePageKey };

@@ -70,6 +70,24 @@ const skovorodaSources = {
     // TODO: Now: add cover image
     files: [], // TODO: add file
   },
+  baiki_harkivski_fedorak_2019: {
+    devNumber: 17,
+    id: "baiki_harkivski_fedorak_2019",
+    year: 2019,
+    sourceName: "Байки Харківські [Текст] / Григорій Сковорода; пер. Назара Федорака. - Львів:Видавництво Terra Incognita, 2019. - 108с - (Серія \"Українська езотерика\"). ISBN 978-966-97596-8-9)",
+    files: [], 
+    bookCoverImageFileName: "fables1.jpg",
+    shortTitle: "Байки Харківські",
+  },
+  baiki_harkivski_shevchuk: {
+    devNumber: 18,
+    id: "baiki_harkivski_shevchuk",
+    year: 0,
+    sourceName: "Григорій Савич Сковорода. Байки Харківські (збірка). Переклад Валерія Шевчука.",
+    files: [], // TODO: add file
+    // TODO: Now: add cover image
+    shortTitle: "Байки Харківські",
+  },
 }
 
 const sourcesArray = Object.values(skovorodaSources);
@@ -78,6 +96,16 @@ sourcesArray.forEach(source => {
   source.bookCoverImageSrc = !source.bookCoverImageFileName ? "" : "/books-cover/" + source.bookCoverImageFileName;
   if (!source.sourceFullName) {
     source.sourceFullName = source.sourceName;
+  }
+  if (source.bookCoverImageSrc) {
+    source.bookCoverImage = {
+      imageUrl: source.bookCoverImageSrc,
+      alt: source.sourceFullName,
+      title: source.sourceFullName,
+    }
+  }
+  if (!source.shortTitle) {
+    source.shortTitle = source.sourceName;
   }
 });
 

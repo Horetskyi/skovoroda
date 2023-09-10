@@ -22,11 +22,16 @@ export function middleware(request) {
   const isPageRequest =
     !pathName.includes('_next/static') &&
     !pathName.includes('api') &&
+    !pathName.includes('_next/image') &&
     !pathName.includes('.woff2') &&
     !pathName.includes('.webp') &&
     !pathName.includes('.png') &&
+    !pathName.includes('.xml') &&
     !pathName.includes('.jpg') &&
+    !pathName.includes('.jpeg') &&
     !pathName.includes('.ico');
+
+  // console.log(`isPageRequest: ${isPageRequest} for ${path}`)
 
   if (isPageRequest) {
     const userAgent = request.headers.get('user-agent');

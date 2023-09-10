@@ -1,36 +1,20 @@
 import '../styles/globals.css'
 import Head from 'next/head';
-import { Container, MantineProvider } from '@mantine/core';
-import { HeaderSearch } from '../components/headerSearch';
-import { SkovorodaTranslatorsArray } from '../lib/data/skovorodaTranslators';
-import { SkovorodaSourcesArray } from '../lib/data/skovorodaSources';
+import { MantineProvider } from '@mantine/core';
 import { CustomFonts } from '../components/customFonts';
-import { pathWithoutEndSlash, SkovorodaBioPath, SkovorodaLettersPath, SkovorodaTextsPath } from '../lib/skovorodaPath';
+import { SkovorodaConstants } from '../lib/skovorodaConstants';
 import dynamic from 'next/dynamic';
-import { homePageKey, SkovorodaConstants } from '../lib/skovorodaConstants';
-const SkovorodaBreadcrumbsDesktop = dynamic(() => import('../components/skovorodaBreadcrumbsDesktop'));
-const SkovorodaBreadcrumbsMobile = dynamic(() => import('../components/skovorodaBreadcrumbsMobile'));
+import Script from 'next/script';
 
-const HEADER_MENU_LINKS = [
-  {
-    "link": pathWithoutEndSlash(SkovorodaBioPath),
-    "label": "Біографія"
-  },
-  {
-    "link": pathWithoutEndSlash(SkovorodaTextsPath),
-    "label": "Твори"
-  },
-  {
-    "link": pathWithoutEndSlash(SkovorodaLettersPath),
-    "label": "Листи"
-  },
-];
+const SkHeaderMenuDesktop = dynamic(() => import('../components/shared/skHeaderMenuDesktop'));
+const SkHeaderMenuMobile = dynamic(() => import('../components/shared/skHeaderMenuMobile'));
+
+const SkFooterDesktop = dynamic(() => import('../components/shared/skFooterDesktop'));
+const SkFooterMobile = dynamic(() => import('../components/shared/skFooterMobile'));
 
 export default function App(props) {
 
   const { Component, pageProps } = props;
-
-  const isHomePage = pageProps.pageKey && pageProps.pageKey.pageKey === homePageKey.pageKey; // props.router && (props.router.asPath === "/");
 
   let deviceEnding = pageProps.deviceEnding;
   if (!deviceEnding) {
@@ -38,43 +22,62 @@ export default function App(props) {
       ? SkovorodaConstants.desktopEnding 
       : SkovorodaConstants.mobileEnding;
   }
+  const isMobile = deviceEnding === SkovorodaConstants.mobileEnding;
+  const isDektop = !isMobile;
   
   if (!pageProps.metadataTitle) {
-    console.warn(`You forgot to implement metadata title for current page`);
+    console.warn(`You forgot to implement metadata title for current page ${pageProps.pageKey}`);
   }
   if (!pageProps.metadataDescription) {
-    console.warn(`You forgot to implement metadata title for current page`);
+    console.warn(`You forgot to implement metadata title for current page ${pageProps.pageKey}`);
   }
 
-  const searchAutocompleteArray = [
-    SkovorodaTranslatorsArray.map(translator => translator.fullName),
-    SkovorodaSourcesArray.map(source => source.sourceName),
-  ].flatMap(x => x);
+  // const searchAutocompleteArray = [
+  //   SkovorodaTranslatorsArray.map(translator => translator.fullName),
+  //   SkovorodaSourcesArray.map(source => source.sourceName),
+  // ].flatMap(x => x);
 
+  // "Montserrat,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji",
+  
   return (
     <>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-JL0EM7690R"/>
+      <Script id="gtagScript">{`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JL0EM7690R');
+      `}</Script>
       <Head>
         <title>{pageProps.metadataTitle}</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <meta name="description" content={pageProps.metadataDescription} />
-        <meta name="robots" content="noindex, nofollow" />
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="icon" href="/favicon.ico" />
+        
+        {pageProps.shouldBeIndexed ? null :
+          <meta name="robots" content="noindex, nofollow" />}
+       
+        {(pageProps.metadataKeywords && pageProps.metadataKeywords.length) ? 
+          <meta name="keywords" content={pageProps.metadataKeywords.join(",")} /> : null}
+       
+        {(pageProps.metadataAuthorUrl ? 
+          <link rel="author" href={pageProps.metadataAuthorUrl} /> : null)}
       </Head>
-
-
       <MantineProvider
         withGlobalStyles
         withNormalizeCSS
         theme={{
           colorScheme: 'light',
-          fontFamily: "Montserrat,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji",
-          // shadows: {
-          //   xs: '0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1)',
-          //   sm: '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 0px 10px 15px -5px, rgba(0, 0, 0, 0.04) 0px 7px 7px -5px',
-          //   md: '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.10) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px',
-          //   lg: '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 0px 28px 23px -7px, rgba(0, 0, 0, 0.04) 0px 12px 12px -7px',
-          //   xl: '0 1px 3px rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 0px 36px 28px -7px, rgba(0, 0, 0, 0.04) 0px 17px 17px -7px',
-          // },
+          fontFamily: "Roboto", 
+          fontStyle: "normal",
+          headings: {
+            fontFamily: "Roboto",
+          },
+          shadows: {
+            sm: '3px 4px 8px 1px rgba(0, 0, 0, 0.15)',
+            md: '2px 2px 12px rgba(0, 0, 0, 0.15)',
+            lg: '4px 7px 20px rgba(0, 0, 0, 0.25)',
+          },
           fontSizes: {
             xs: "12px",
             sm: "16px",
@@ -82,13 +85,55 @@ export default function App(props) {
             lg: "24px",
             xl: "28px"
           },
+          radius: {
+            md: "12px",
+          },
+          spacing: {
+            xs: "6px",
+            sm: "12px",
+            md: "24px",
+            lg: "36px",
+            xl: "48px",
+          },
           colors: {},
           globalStyles: (theme) => ({
             body: {
               backgroundColor: "white",
               fontWeight: "400",
+              fontSize: "20px",
               letterSpacing: "-0.06px",
               textRendering: "optimizelegibility",
+              position: "relative",
+              minHeight: "100vh",
+            },
+            "body::after": {
+              content: '""',
+              display: "block",
+              height: "120px", /* Set same as footer's height */
+            },
+            ".normalContentText": {
+              fontWeight: 300,
+              fontSize: "20px",
+              lineHeight: "23px",
+              textAlign: "justify",
+              letterSpacing: "0.03em",
+              textIndent: "24px",
+            },
+            ".normalContentText_withoutJustify": {
+              textAlign: "unset",
+            },
+            ".normalContentText_withoutIndent": {
+              textIndent: 0,
+            },
+            ".normalContentText_withoutFirstIndent:first-of-type": {
+              textIndent: 0,
+            },
+            ".mantine-Select-item": {
+              fontWeight: 300,
+              fontSize: "20px",
+              lineHeight: "23px",
+              letterSpacing: "0.04em",
+              padding: "10px 12px",
             },
             ".st0": {
               fill: theme.colors.blue[2]
@@ -142,19 +187,17 @@ export default function App(props) {
         }}
       >
         <CustomFonts />
-        <HeaderSearch links={HEADER_MENU_LINKS} searchAutocompleteArray={searchAutocompleteArray}/>
-
-        { isHomePage ? <></> : <>
-          <Container>
-            { 
-              deviceEnding === SkovorodaConstants.desktopEnding 
-              ? <SkovorodaBreadcrumbsDesktop {...pageProps} />
-              : <SkovorodaBreadcrumbsMobile {...pageProps} />
-            }
-          </Container>
-        </>}
+        
+        {isDektop ? 
+          <SkHeaderMenuDesktop /> : 
+          <SkHeaderMenuMobile />}
         
         <Component {...pageProps} />
+
+        {isDektop ? 
+          <SkFooterDesktop /> : 
+          <SkFooterMobile />}
+
       </MantineProvider>
     </>
   );

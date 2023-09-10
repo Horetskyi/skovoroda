@@ -20,7 +20,11 @@ function readSongs() {
     const jsonFilePath = path.join(gardenDirectoryPath, jsonFileName);
     const txtFilePath = jsonFilePath.replace(".json", ".txt");
     
-    const songMetadata = JSON.parse(fs.readFileSync(jsonFilePath).toString());
+    const songMetadataFileContent = fs.readFileSync(jsonFilePath).toString();
+    if (!songMetadataFileContent || !songMetadataFileContent.length) {
+      return undefined;
+    }
+    const songMetadata = JSON.parse(songMetadataFileContent);
     songMetadata.id = getSongId(songMetadata);
     
     const contentString = fs.readFileSync(txtFilePath).toString();
@@ -30,7 +34,7 @@ function readSongs() {
       songMetadata: songMetadata,
       songContent: content,
     };
-  });
+  }).filter(x => x);
   return allParsedSongs;
 }
 

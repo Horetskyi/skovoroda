@@ -32,6 +32,7 @@ export const TextLineFormats = [
 const IRM_FORMAT = "[Irm]";
 const LETTER_NUMBER_FORMAT = "[LetterNumber]"; 
 const SONG_NUMBER_FORMAT = "[SongNumber]"; 
+const FABLE_NUMBER_FORMAT = "[FableNumber]"; 
 const LETTER_NOTE_FORMAT = "[LetterNote]"; 
 const SKOVORODA_NOTE_NUMBER_FORMAT = "[SkovorodaNoteNumber]"; 
 const NOTE_NUMBER_FORMAT = "[NoteNumber]"; 
@@ -173,6 +174,11 @@ export function parseFileContent(content) {
         const splitBySongNumber = s2.split(SONG_NUMBER_FORMAT);
         lineObject.songNumber = +(splitBySongNumber[1].trim());
         lineObject.text = splitBySongNumber[2].trim();
+        lineObject.isNoteBeginning = true;
+      } else if (s2.includes(FABLE_NUMBER_FORMAT)) {
+        const splitByFableNumber = s2.split(FABLE_NUMBER_FORMAT);
+        lineObject.fableNumber = +(splitByFableNumber[1].trim());
+        lineObject.text = splitByFableNumber[2].trim();
         lineObject.isNoteBeginning = true;
       }
     }

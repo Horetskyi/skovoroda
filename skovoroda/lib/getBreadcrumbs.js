@@ -54,5 +54,8 @@ export function getBreadcrumbs(pageProps) {
     continue;
   }
   breadcrumbs.reverse();
+  if (breadcrumbs && breadcrumbs.length) {
+    breadcrumbs.at(-1).isInactive = true;
+  }
   return breadcrumbs;
 }

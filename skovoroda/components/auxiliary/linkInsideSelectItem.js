@@ -2,6 +2,7 @@ import { createStyles } from "@mantine/core";
 import Link from "next/link";
 import { forwardRef } from "react";
 import { languagesToShortString } from "../../lib/skovorodaLanguagesLogic";
+import { getLinkTitle } from "../../lib/skovorodaPath";
 
 const useStyles = createStyles(() => {
   return {
@@ -11,7 +12,7 @@ const useStyles = createStyles(() => {
   };
 });
 
-export default function LinkInsideSelectItem({ id, disabled, label, ...others }, ref) {
+export default function LinkInsideSelectItem({ id, disabled, label, linkTitle, ...others }, ref) {
 
   const { classes } = useStyles();
 
@@ -19,7 +20,7 @@ export default function LinkInsideSelectItem({ id, disabled, label, ...others },
   if (disabled) {
     return <span ref={ref} {...others}>{label}</span>
   }
-  return <Link ref={ref} href={id}><a {...others}>{label}</a></Link>
+  return <Link ref={ref} href={id}><a {...others} href={id} title={linkTitle}>{label}</a></Link>
 }
 
 export const LinkInsideSelect = forwardRef(function LinkInsideSelect({ ...others }, ref) { 

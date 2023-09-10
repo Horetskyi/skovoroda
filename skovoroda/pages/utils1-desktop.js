@@ -37,10 +37,58 @@ export default function Utils1({ }) {
   const [outputText, setOutputText] = useState('');
   const [noteString, setNoteString] = useState('');
   const [shouldRemoveEnters, setShouldRemoveEnters] = useState(true);
+  const [shouldDoAccents, setShouldDoAccents] = useState(true);
+  const accentsReplaces = [
+    
+    ['а´','á'],
+    ['ю´','ю́'],
+    ['э´','э́'],
+    ['ы´','ы́'],
+    ['у´','у́'],
+    ['о´','ó'],
+    ['и´','и́'],
+    ['е´','é'],
+    ['я´','я́'],
+
+    [ 'у ́' , 'у́' ],
+    [ 'а ́' , 'á' ],
+    [ 'ю ́' , 'ю́' ],
+    [ 'э ́' , 'э́' ],
+    [ 'ы ́' , 'ы́' ],
+    [ 'о ́' , 'ó' ],
+    [ 'и ́' , 'и́' ],
+    [ 'е ́' , 'é' ],
+    [ 'я ́' , 'я́' ],
+
+    [ 'А´' , 'А́' ],
+    [ 'Е´' , 'Е́' ],
+    [ 'И´' , 'И́' ],
+    [ 'О´' , 'О́' ],
+    [ 'У´' , 'У́' ],
+    [ 'Ы´' , 'Ы́' ],
+    [ 'Э´' , 'Э́' ],
+    [ 'Ю´' , 'Ю́' ],
+    [ 'Я´' , 'Я́' ],
+
+    [ 'А ́' , 'А́' ],
+    [ 'Е ́' , 'Е́' ],
+    [ 'И ́' , 'И́' ],
+    [ 'О ́' , 'О́' ],
+    [ 'У ́' , 'У́' ],
+    [ 'Ы ́' , 'Ы́' ],
+    [ 'Э ́' , 'Э́' ],
+    [ 'Ю ́' , 'Ю́' ],
+    [ 'Я ́' , 'Я́' ],
+  ];
 
   function processInputText(text) {
     if (shouldRemoveEnters) {
-      return text.replaceAll('\n', ' ');
+      text = text.replaceAll('\n', ' ');
+    }
+    if (shouldDoAccents) {
+      accentsReplaces.forEach(replaces => {
+        text = text.replaceAll(replaces[0], replaces[1]);
+      });
     }
     return text;
   }
@@ -100,6 +148,10 @@ export default function Utils1({ }) {
       label="Забирати ентери"
       mb="md" />
 
+    <Checkbox checked={shouldDoAccents} 
+      onChange={(event) => setShouldDoAccents(event.currentTarget.checked)} 
+      label="Фіксати апострофи"
+      mb="md" />
     
     
     <Textarea minRows={10} maxRows={10} mb="md" value={inputText} onChange={(event) => setInputTextFacade(event.currentTarget.value)} />

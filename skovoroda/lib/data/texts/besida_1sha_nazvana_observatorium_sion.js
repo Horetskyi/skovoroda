@@ -28,6 +28,7 @@ export const besida_1sha_nazvana_observatorium_sion = {
       translatedName: "Бесіда 1-ша, названа Observatorium (Сіон)",
       files: [
         SkovorodaFiles.besida_1sha_nazvana_observatorium_sion.kashuba_pdf,
+        SkovorodaFiles.besida_1sha_nazvana_observatorium_sion.kashuba_doc,
       ]
     },
   ],

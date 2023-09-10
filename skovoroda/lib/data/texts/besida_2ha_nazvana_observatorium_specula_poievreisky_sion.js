@@ -28,6 +28,7 @@ export const besida_2ha_nazvana_observatorium_specula_poievreisky_sion = {
       translatedName: "Бесіда 2-га, названа Observatorium Specula, по-єврейськи Сіон",
       files: [
         SkovorodaFiles.besida_2ha_nazvana_observatorium_specula_poievreisky_sion.kashuba_pdf,
+        SkovorodaFiles.besida_2ha_nazvana_observatorium_specula_poievreisky_sion.kashuba_doc,
       ]
     },
   ],

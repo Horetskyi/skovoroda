@@ -99,7 +99,6 @@ export default function SkovorodaTreatiseSmallBlockDesktop(props) {
           mt={0}
           mb="xs"
           fw={500}
-          className="fontFamilyOldUa"
           >
           {props.textName}
         </Title>

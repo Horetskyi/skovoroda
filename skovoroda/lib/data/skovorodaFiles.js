@@ -69,22 +69,36 @@ export const SkovorodaFiles = {
   },
   askhan: {
     original_pdf: file("1.3 MB", "Г. С. Сковорода - Симфоніа, нареченная Книга Асхань о Познаніи самаго себе - Л. Ушкалов.pdf"),
-    kashuba_pdf: file("551.1 KB", "Г. С. Сковорода - Симфонія, названа книга Асхань, про пізнання самого себе - М. Кашуба.pdf", [], 
-      sourceLink_piznai_ludynu),
+    kashuba_pdf: file("551.1 KB", "Г. С. Сковорода - Симфонія, названа книга Асхань, про пізнання самого себе - М. Кашуба.pdf", [], sourceLink_piznai_ludynu),
   },
   besida_nazvana_dvoie: {
-    original_pdf: file("", ""),
-    kashuba_pdf: file("", "", [], 
-      sourceLink_piznai_ludynu),
+    original_pdf: file("829 KB", "Г. С. Сковорода - Беседа, нареченная Двое о том, что Блаженным быть легко - Л. Ушкалов.pdf"),
+    kashuba_pdf: file("370 KB", "Г. С. Сковорода - Бесіда, названа Двоє, про те, що легко бути блаженним - М. Кашуба.pdf", [], sourceLink_piznai_ludynu),
+    kashuba_doc: file("71 KB", "Г. С. Сковорода - Бесіда, названа Двоє, про те, що легко бути блаженним - М. Кашуба.docx", [], sourceLink_piznai_ludynu),
   },
   besida_1sha_nazvana_observatorium_sion: {
-    original_pdf: file("", ""),
-    kashuba_pdf: file("", "", [], 
-      sourceLink_piznai_ludynu),
+    original_pdf: file("782 KB", "Г. С. Сковорода - Беседа 1-я, нареченная Observatorium. (Сіон) - Л. Ушкалов.pdf"),
+    kashuba_pdf: file("298 KB", "Г. С. Сковорода - Бесіда 1-ша, названа Observatorium (Сіон) - М. Кашуба.pdf", [], sourceLink_piznai_ludynu),
+    kashuba_doc: file("57 KB", "Г. С. Сковорода - Бесіда 1-ша, названа Observatorium (Сіон) - М. Кашуба.docx", [], sourceLink_piznai_ludynu),
   },
   besida_2ha_nazvana_observatorium_specula_poievreisky_sion: {
-    original_pdf: file("", ""),
-    kashuba_pdf: file("", "", [], 
-      sourceLink_piznai_ludynu),
+    original_pdf: file("724 KB", "Г. С. Сковорода - Беседа 2-я, нареченная Observatorium. Specula. Eврейски. Сіон - Л. Ушкалов.pdf"),
+    kashuba_pdf: file("300 KB", "Г. С. Сковорода - Бесіда 2-га, названа Observatorium Specula, по-єврейськи Сіон - М. Кашуба.pdf", [], sourceLink_piznai_ludynu),
+    kashuba_doc: file("72 KB", "Г. С. Сковорода - Бесіда 2-га, названа Observatorium Specula, по-єврейськи Сіон - М. Кашуба.docx", [], sourceLink_piznai_ludynu),
+  },
+  dialoh_ymia_emu_potop_zmiyn: {
+    original_pdf: file("977 KB", "Г. С. Сковорода - Діалог. Имя Ему — Потоп Зміин - Л. Ушкалов.pdf"),
+    kashuba_pdf: file("471 KB", "Г. С. Сковорода - Діалог. Назва його - Потоп зміїний - М. Кашуба.pdf"),
+    kashuba_doc: file("128 KB", "Г. С. Сковорода - Діалог. Назва його - Потоп зміїний - М. Кашуба.doc"),
+  },
+  ubohii_zhaivoronok: {
+    original_pdf: file("596 KB", "Г. С. Сковорода - Убогій Жайворонок - Л. Ушкалов.pdf"),
+    shevchuk_pdf: file("293 KB", "Г. С. Сковорода - Убогий Жайворонок - В. Шевчук.pdf"),
+    shevchuk_doc: file("68 KB", "Г. С. Сковорода - Убогий Жайворонок - В. Шевчук.docx"),
+  },
+  blahodarnyi_erodii: {
+    original_pdf: file("663 KB", "Г. С. Сковорода - Благодарный Еродій - Л. Ушкалов.pdf"),
+    shevchuk_pdf: file("317 KB", "Г. С. Сковорода - Вдячний Еродій - В. Шевчук.pdf"),
+    shevchuk_doc: file("80 KB", "Г. С. Сковорода - Вдячний Еродій - В. Шевчук.docx"),
   },
 }

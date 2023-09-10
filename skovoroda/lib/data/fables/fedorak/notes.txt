@@ -1,0 +1,7 @@
+[SkovorodaNoteNumber] ᵃ [SkovorodaNoteNumber][FableNumber] 18 [FableNumber] Слово еллінське. Означає: мавпа, статури та зрозсту великих.
+[SkovorodaNoteNumber] ᵃ [SkovorodaNoteNumber][FableNumber] 21 [FableNumber] Найдобріше діло є нудним без відпочинку, а само тільки безділля робити у сто разів нудніше.
+[SkovorodaNoteNumber] ᵃ [SkovorodaNoteNumber][FableNumber] 25 [FableNumber] Се Хамове плем'я сміється з наготи отчої.
+[SkovorodaNoteNumber] ᵃ [SkovorodaNoteNumber][FableNumber] 30 [FableNumber] Лише Бог — сiяч дружби.
+[SkovorodaNoteNumber] ᵇ [SkovorodaNoteNumber][FableNumber] 30 [FableNumber] Тобто: Подібного до подібного веде Бог.
+[SkovorodaNoteNumber] ᵉ [SkovorodaNoteNumber][FableNumber] 30 [FableNumber] Рiзнiсть, або Протиприхильність.
+[SkovorodaNoteNumber] ᵈ [SkovorodaNoteNumber][FableNumber] 30 [FableNumber] Рівностерпність, або Суприхильність.

@@ -1,6 +1,9 @@
-
 export const SkovorodaHomePath = "/";
 export const SkovorodaBioPath = "/bio/";
+export const SkovorodaAboutUsPath = "/about-us/";
+export const SkovorodaContactPath = "/contact/";
+export const SkovorodaQuotesPath = "/quotes/";
+export const SkovorodaSymbolsPath = "/symbols/";
 export const SkovorodaUtils1Path = "/utils1";
 export const SkovorodaTextsPath = "/texts/";
 export const SkovorodaTreatisePath = pathJoin(SkovorodaTextsPath, "/treatise/");
@@ -40,4 +43,30 @@ export function pathJoin(...pathArray) {
 
 export function pathJoinWithoutEndSlash(...pathArray) {
   return pathWithoutEndSlash(pathJoin(...pathArray));
+}
+
+const linkTitles = new Map([
+  [SkovorodaHomePath, "Сковорода Григорій Савич"],
+  [SkovorodaBioPath, "Біографія Сковороди"],
+  [SkovorodaAboutUsPath, "Про нас"],
+  [SkovorodaContactPath, "Контакти"],
+  [SkovorodaQuotesPath, "Цитати Сковороди"],
+  [SkovorodaSymbolsPath, "Символи Сковороди"],
+  [SkovorodaUtils1Path, "Інструменти"],
+  [SkovorodaTextsPath, "Твори Сковороди"],
+  [SkovorodaTreatisePath, "Трактати Сковороди"],
+  [SkovorodaGardenPath, "Сад Божественних Пісень"],
+  [SkovorodaOtherPoemsPath, "Поезія Сковороди"],
+  [SkovorodaFablesPath, "Байки Харківські"],
+  [SkovorodaTranslatationsPath, "Перекладачі"],
+  [SkovorodaDifferentPath, "Інше від Сковороди"],
+  [SkovorodaLettersPath, "Листи Сковороди"],
+  [SkovorodaLettersFromPath, "Листи від Сковороди"],
+  [SkovorodaLettersToPath, "Листи до Сковороди"],
+]);
+export function getLinkTitle(path) {
+  return linkTitles.has(path) ? linkTitles.get(path) : "Сковорода Григорій Савич";
+}
+export function getFableLinkTitle(fableMetadata) {
+  return `Байка ${fableMetadata.fableNumber} – ${fableMetadata.fableTitle}`;
 }

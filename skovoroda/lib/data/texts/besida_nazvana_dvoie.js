@@ -26,6 +26,7 @@ export const besida_nazvana_dvoie = {
       translatedName: "Бесіда, названа Двоє, про те, що легко бути блаженним",
       files: [
         SkovorodaFiles.besida_nazvana_dvoie.kashuba_pdf,
+        SkovorodaFiles.besida_nazvana_dvoie.kashuba_doc,
       ]
     },
   ],

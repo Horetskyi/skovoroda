@@ -28,7 +28,11 @@ const nextConfig = {
     });
     return config;
   },
-  
+  // i18n: {
+  //   locales: ['uk'],
+  //   defaultLocale: 'uk',
+  //   localeDetection: false,
+  // },
 }
 
 module.exports = nextConfig

@@ -5,7 +5,6 @@ import { useState } from 'react';
 import CardWithTwoSelectorsDesktop from '../../../components/cardWithTwoSelectorsDesktop';
 import SkovorodaFomattingInfoBlockDesktop from '../../../components/skovorodaFomattingInfoBlockDesktop';
 import SkovorodaSourceBlockDesktop from '../../../components/skovorodaSourceBlockDesktop';
-import SkovorodaTextContentBlockDesktop from '../../../components/skovorodaTextContentBlockDesktop';
 import { SkovorodaGardenRefactored } from '../../../lib/data/skovorodaGarden';
 import { SkovorodaSourcesArray } from '../../../lib/data/skovorodaSources';
 import getSelectedNoteNumbersByContent from '../../../lib/getSelectedNoteNumbersByContent';
@@ -13,6 +12,7 @@ import getStaticPathsCommon from '../../../lib/getStaticPathsCommon';
 import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';
 import { gardenSelectedPageKey } from '../../../lib/skovorodaConstants';
 import { pathJoin, SkovorodaGardenPath } from '../../../lib/skovorodaPath';
+import SkTextContentBlockDesktop from '../../../components/shared/skTextContentBlockDesktop';
 
 export default function SkovorodaGardenPageRefactored({ 
   selectedSong,
@@ -85,12 +85,12 @@ export default function SkovorodaGardenPageRefactored({
 
       <Card p="md" radius="md" withBorder={true}>
         <Title ta={'center'} mt="0" mb="md" order={1}>{selectedMetadata.name}</Title>
-        <SkovorodaTextContentBlockDesktop textContent={selectedSong.songContent} />
+        <SkTextContentBlockDesktop isv2={true} textContent={selectedSong.songContent} />
       </Card>      
       
       {(selectedNotes && selectedNotes.length) ? <>
         <Title ta={'center'} mt="md" mb="md" order={2}>Примітки</Title>
-        <SkovorodaTextContentBlockDesktop textContent={selectedNotes} />
+        <SkTextContentBlockDesktop isv3={true} textContent={selectedNotes} />
       </> : <></>}
 
       <SkovorodaSourceBlockDesktop source={selectedSongSource} />

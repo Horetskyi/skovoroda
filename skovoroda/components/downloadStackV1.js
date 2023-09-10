@@ -24,24 +24,25 @@ export default function DownloadStackV1(props) {
         className={classes.coloredButton}>
         Завантажити {file.fileExtensionUppercase} ({file.fileSize})
       </Button>
-      {/* <Button 
-        bg={color+".2"} 
-        className={classes.downloadButton}
-        mt="md"
-        variant="filled"
-        styles={(theme) => ({
-          root: {
-            '&:hover': {
-              backgroundColor: theme.colors[color][3],
-            },
-          },
-        })} 
-        leftIcon={<IconBookDownload/>} 
-        title={file.fileName}
-      >
-        Завантажити {file.fileExtensionUppercase} ({file.fileSize})
-      </Button> */}
     </Link>
     )}
   </Stack>
 }
+
+{/* <Button 
+  bg={color+".2"} 
+  className={classes.downloadButton}
+  mt="md"
+  variant="filled"
+  styles={(theme) => ({
+    root: {
+      '&:hover': {
+        backgroundColor: theme.colors[color][3],
+      },
+    },
+  })} 
+  leftIcon={<IconBookDownload/>} 
+  title={file.fileName}
+>
+  Завантажити {file.fileExtensionUppercase} ({file.fileSize})
+</Button> */}

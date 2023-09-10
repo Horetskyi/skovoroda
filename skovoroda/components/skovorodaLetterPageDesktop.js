@@ -2,7 +2,6 @@
 import { Card, Container, createStyles, Group, Text, Title } from '@mantine/core';
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/router'
-import SkovorodaTextContentBlockDesktop from '../components/skovorodaTextContentBlockDesktop';
 import { SkovorodaLettersFromPath, pathJoin } from '../lib/skovorodaPath';
 import SkovorodaFomattingInfoBlockDesktop from '../components/skovorodaFomattingInfoBlockDesktop';
 import SkovorodaSourceBlockDesktop from '../components/skovorodaSourceBlockDesktop';
@@ -14,6 +13,7 @@ import { getNoteNumberUpperString } from '../lib/data/utils/notesNumbersSymbols'
 import SkovorodaLeftNavMenuDesktop from './skovorodaLeftNavMenuDesktop';
 import SkovorodaDraggableNotesDesktop from './skovorodaDraggableNotesDesktop';
 import { languagesToShortString, parseLanguages } from '../lib/skovorodaLanguagesLogic';
+import SkTextContentBlockDesktop from './shared/skTextContentBlockDesktop';
 
 const useStyles = createStyles((theme) => ({
   draggableNoteBlock: {
@@ -158,14 +158,14 @@ export default function SkovorodaLetterPageDesktop({
         <Title ta={'center'} mt="0" mb="md" order={1}>{selectedMetadata.name}</Title>
         <Title ta={'center'} mt="0" mb="xl" order={2}>{"Лист № " + selectedMetadata.number}</Title>    
         <SkovorodaDraggableNotesDesktop selectedNotes={selectedNotes}>
-          <SkovorodaTextContentBlockDesktop textContent={selectedLetter.letterContent} />
+          <SkTextContentBlockDesktop textContent={selectedLetter.letterContent} />
         </SkovorodaDraggableNotesDesktop>
       </Card>
       
       {isAnyNotes ? <>
         <Card id="notes-content" mt="md" p="md" withBorder={true} className='specialBorder'>
           <Title ta={'center'} mb="md" order={2}>Примітки</Title>
-          <SkovorodaTextContentBlockDesktop textContent={selectedNotes} />
+          <SkTextContentBlockDesktop textContent={selectedNotes} />
         </Card>
       </> : <></>}
 

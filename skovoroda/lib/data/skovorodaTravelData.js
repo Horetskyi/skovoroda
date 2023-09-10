@@ -1,5 +1,5 @@
 
-const skovorodaPlaces = {
+export const skovorodaPlaces = {
   chornuhy: {
     id: "chornuhy",
     title: "Чорнухи",
@@ -20,7 +20,7 @@ const skovorodaPlaces = {
   },
 };
 
-const skovorodaStates = {
+export const skovorodaStates = {
   child: {
     id: "child",
   },
@@ -38,8 +38,56 @@ const skovorodaStates = {
   },
 };
 
-function date(year, month, day) {
+const monthNames = new Map([
+  ["january", 1],
+  ["february", 2],
+  ["march", 3],
+  ["april", 4],
+  ["may", 5],
+  ["june", 6],
+  ["july", 7],
+  ["august", 8],
+  ["september", 9],
+  ["octover", 10],
+  ["november", 11],
+  ["december", 11],
+]);
 
+const seasonNames = new Map([
+  ["winter", [1-2]],
+  ["spring", [3-5]],
+  ["summer", [6-8]],
+  ["autumn", [9-11]],
+]);
+
+function date(year, month, day) {
+  
+  const result = {
+    year: year
+  };
+
+  if (month) {
+    if (typeof month === 'string' || month instanceof String) {
+      if (monthNames.has(month)) {
+        result.month = monthNames.get(month);
+      }
+    } else {
+      result.month = month;
+    }
+  }
+
+  if (day) {
+    if (typeof day === 'string' || day instanceof String) { 
+      if (day.includes("-")) {
+        const daySplit = day.split("-");
+        result.day = [daySplit[0], daySplit[1]];
+      }
+    } else {
+      result.day = day;
+    }
+  }
+  
+  return result;
 }
 
 const timePoints = [
@@ -75,6 +123,7 @@ const timePoints = [
 
   {
     id: "student_at_kyiv_1",
+    moveDays: 7,
     date: date(1734, "august"),
     endDate: date(1741, "december", "6-8"), // [1] 90 c.
     state: skovorodaStates.student_at_kyiv,
@@ -173,14 +222,14 @@ const timePoints = [
 
   // Невдовзі відкрилося місце вчителя поезії в Переяславі, куди він і вирушив на запрошення тамтешнього єпископа
 
-  {
-
-  },
-
-
   // ...
 
   // "Сон" 1758 р. написав Сковорода перебуваючи у селі Кавраї [16] 43 c.
+
+  {
+    id: "death",
+    date: date(1794, "november", 9),
+  },
 
 ];
 

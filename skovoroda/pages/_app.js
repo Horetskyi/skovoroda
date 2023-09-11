@@ -12,6 +12,13 @@ const SkHeaderMenuMobile = dynamic(() => import('../components/shared/skHeaderMe
 const SkFooterDesktop = dynamic(() => import('../components/shared/skFooterDesktop'));
 const SkFooterMobile = dynamic(() => import('../components/shared/skFooterMobile'));
 
+import { Roboto } from '@next/font/google'
+const roboto = Roboto({
+  weight: ['100', '300', '400', '500', '700'],
+  subsets: ["cyrillic", "latin", "greek"],
+})
+
+
 export default function App(props) {
 
   const { Component, pageProps } = props;
@@ -105,6 +112,7 @@ export default function App(props) {
               textRendering: "optimizelegibility",
               position: "relative",
               minHeight: "100vh",
+              width: "100vw",
             },
             "body::after": {
               content: '""',
@@ -118,6 +126,9 @@ export default function App(props) {
               textAlign: "left",
               letterSpacing: "0.03em",
               textIndent: "24px",
+            },
+            ".normalContentText_justify": {
+              textAlign: "justify",
             },
             ".normalContentText_center": {
               textAlign: "center",
@@ -191,21 +202,30 @@ export default function App(props) {
             ".mantine-Input-input": {
               textOverflow: "ellipsis",
               overflowX: "hidden",
-            }
+            },
+            ".mantine-List-itemWrapper": {
+              textOverflow: "ellipsis",
+              overflowX: "hidden",
+              width: "calc(100% - 20px)",
+            },
           }),
         }}
       >
         <CustomFonts />
         
-        {isDektop ? 
-          <SkHeaderMenuDesktop /> : 
-          <SkHeaderMenuMobile />}
-        
-        <Component {...pageProps} />
+        <main className={roboto.className}>
 
-        {isDektop ? 
-          <SkFooterDesktop /> : 
-          <SkFooterMobile />}
+          {isDektop ? 
+            <SkHeaderMenuDesktop /> : 
+            <SkHeaderMenuMobile />}
+          
+          <Component {...pageProps} />
+
+          {isDektop ? 
+            <SkFooterDesktop /> : 
+            <SkFooterMobile />}
+
+        </main>
 
       </MantineProvider>
     </>

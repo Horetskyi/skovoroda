@@ -37,6 +37,7 @@ export const SkovorodaConstants = {
 };
 
 export const homePageKey = { pageKey: "Home" }; 
+export const copyrightPageKey = { pageKey: "Copyright", parent: homePageKey };
 export const aboutUsPageKey = { pageKey: "AboutUs", parent: homePageKey };
 export const contactPageKey = { pageKey: "Contact", parent: homePageKey };
 export const utils1PageKey = { pageKey: "Utils1", parent: homePageKey };

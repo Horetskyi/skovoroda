@@ -39,7 +39,7 @@ export default function Source({ sourceData, deviceEnding }) {
 
       {isImageExists ? <>
         <Container ta={"center"} mb={"lg"}>
-          <SkImage width={imageWidth} height={imageHeight} alt={image.alt} title={image.title} imageUrl={image.imageUrl} styleAction={styleObj => {styleObj.margin = "auto"}} />
+          <SkImage priority={true} width={imageWidth} height={imageHeight} alt={image.alt} title={image.title} imageUrl={image.imageUrl} styleAction={styleObj => {styleObj.margin = "auto"}} />
         </Container>
       </> : null}
       

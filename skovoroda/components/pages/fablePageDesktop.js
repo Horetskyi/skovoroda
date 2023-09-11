@@ -12,6 +12,7 @@ import SkColoredContainerDesktop from '../shared/skColoredContainerDesktop';
 import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
 import SkSourceBlockDesktop from '../shared/skSourceBlockDesktop';
 import { commonContent } from '../../lib/pagesContent/commonContent';
+import SkSourcesContainerDesktop from '../shared/skSourcesContainerDesktop';
 
 const useStyles = createStyles((theme) => ({
   
@@ -102,6 +103,26 @@ export default function FablePageDesktop({
   const h1Text = `${fableString} ${selectedMetadata.fableNumber} – ${selectedMetadata.fableTitle}`;
   const isFableImageExists = selectedMetadata.fableImage && selectedMetadata.fableImage.imageUrl && selectedMetadata.fableImage.imageUrl.length > 0;
 
+  const sourcesParams = [
+    {
+      sourceType: "Текст" + (selectedNotes ? " і Примітки" : ""),
+      sourceValue: selectedFable.source.sourceFullName,
+      sourceHref: selectedFable.source.sourceHref,
+      image: selectedFable.source.bookCoverImage,
+      linkTitle: selectedFable.source.sourceFullName,
+    },
+  ];
+  if (isFableImageExists) {
+    sourcesParams.push({
+      sourceType: "Ілюстрація",
+      sourceValue: "Олена Лещенко",
+      sourceHref: "https://instagram.com/olenka_art_vision",
+      sourceHrefAnchorText: "https://instagram.com/olenka_art_vision",
+      image: selectedMetadata.fableImage,
+      linkTitle: "Instagram Олени Лещенко"
+    });
+  }
+
   return <>
     <Container py="lg">
       <SkCardWithTwoSelectorsDesktopV2 
@@ -149,28 +170,6 @@ export default function FablePageDesktop({
         <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} />
       </> : null}
     </Container>
-    <SkColoredContainerDesktop color={"indigo.0"}>
-      <SkH2Desktop text="Джерела"/>
-      <Space h="lg"/>
-      <SkSourceBlockDesktop {...{
-        sourceType: "Текст" + (selectedNotes ? " і Примітки" : ""),
-        sourceValue: selectedFable.source.sourceFullName,
-        sourceHref: selectedFable.source.sourceHref,
-        image: selectedFable.source.bookCoverImage,
-        linkTitle: selectedFable.source.sourceFullName,
-      }}/>
-      {isFableImageExists ? <>
-        <Space h="md"/>
-        <SkSourceBlockDesktop {...{
-          sourceType: "Ілюстрація",
-          sourceValue: "Олена Лещенко",
-          sourceHref: "https://instagram.com/olenka_art_vision",
-          sourceHrefAnchorText: "https://instagram.com/olenka_art_vision",
-          image: selectedMetadata.fableImage,
-          linkTitle: "Instagram Олени Лещенко"
-        }}/>
-      </> : null}
-      <Text mt="lg" className='normalContentText'>{commonContent.textValidityWarning}</Text>
-    </SkColoredContainerDesktop>
+    <SkSourcesContainerDesktop sources={sourcesParams} includeTextValidityWarning={true} />
   </>;
 }

@@ -21,7 +21,7 @@ const useStyles = createStyles((theme, params) => {
   };
 });
 
-export default function SkImage({ image, imageUrl, width, height, shadow, disableBottomRadius, alt, title, styleAction }) {
+export default function SkImage({ image, imageUrl, width, height, shadow, disableBottomRadius, alt, title, styleAction, priority }) {
 
   const { classes } = useStyles({shadow});
 
@@ -46,6 +46,6 @@ export default function SkImage({ image, imageUrl, width, height, shadow, disabl
   }
 
   return <div className={classes.image} style={styleObj}>
-    <Image src={imageUrl} width={width} height={height} style={styleObj} alt={alt} title={title} priority />
+    <Image src={imageUrl} width={width} height={height} style={styleObj} alt={alt} title={title} priority={priority} />
   </div>
 }

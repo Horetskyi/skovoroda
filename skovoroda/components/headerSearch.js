@@ -49,8 +49,8 @@ export function HeaderSearch({ links, searchAutocompleteArray }) {
   const { classes } = useStyles();
 
   const linkItems = links.map(link => 
-    <Link key={link.label} href={link.link}>
-      <a className={classes.link}>{link.label}</a>
+    <Link key={link.label} href={link.link} className={classes.link}>
+      {link.label}
     </Link>
   );
 

@@ -30,19 +30,17 @@ export default function SkFilledButtonDesktop({href, text, width}) {
 
   return <>
     <Link key={"href-"+href} href={href}>
-      <a>
-        <Button 
-          radius={"md"} 
-          variant="filled"
-          miw={180}
-          w={width ? width : "100%"}
-          h={52}
-          className={classes.button}
-          color="indigo"
-        >
-          <Text className={classes.buttonText}>{text}</Text>
-        </Button>
-      </a>
+      <Button 
+        radius={"md"} 
+        variant="filled"
+        miw={180}
+        w={width ? width : "100%"}
+        h={52}
+        className={classes.button}
+        color="indigo"
+      >
+        <Text className={classes.buttonText}>{text}</Text>
+      </Button>
     </Link>
   </>
 }

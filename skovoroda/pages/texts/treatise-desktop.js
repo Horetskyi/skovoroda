@@ -127,11 +127,9 @@ export default function SkovorodaTreatisePageDesktop({ textsData }) {
     return <Card key={index} p="md" radius="md" bg="gray.0" withBorder={true} id={textData.id}>
       
       <Title order={2} mb="md" ta="left" fw={400}>
-        <Link key={index} href={href}>
-          <a className={"undecoratedLink blackLink " + classes.textLink}>
-            <span>{"" + (index + 1) + ". "}</span>
-            <span className='fontFamilyOldUa'>{textData.original.originalName}</span>
-          </a>
+        <Link key={index} href={href} className={"undecoratedLink blackLink " + classes.textLink}>
+          <span>{"" + (index + 1) + ". "}</span>
+          <span className='fontFamilyOldUa'>{textData.original.originalName}</span>
         </Link>
       </Title>
       
@@ -143,10 +141,8 @@ export default function SkovorodaTreatisePageDesktop({ textsData }) {
           {ideasBlock}
         </Stack>
 
-        <Link href={href}>
-          <a className={classes.moreButton}>
-            <Button className={classes.moreButton} variant='light'>Завантажити</Button>
-          </a>
+        <Link href={href} className={classes.moreButton}>
+          <Button className={classes.moreButton} variant='light'>Завантажити</Button>
         </Link>
       
       </Group>

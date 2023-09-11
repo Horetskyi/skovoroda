@@ -4,6 +4,7 @@ import SkImage from "../components/shared/skImage";
 import SkH1Desktop from "../components/shared/skH1Desktop";
 import SkColoredContainerDesktop from "../components/shared/skColoredContainerDesktop";
 import { getAboutUsPageProps } from "../lib/pagesContent/aboutUsStatic";
+import SkH2Desktop from "../components/shared/skH2Desktop";
 
 const useStyles = createStyles((theme) => ({
   personBlock: {
@@ -24,12 +25,12 @@ export default function AboutUsPage(props) {
   function AboutPerson(description, image, color) {
     return <>
       <Flex className={classes.personBlock} bg={color}>
-        <SkImage image={image} width={180} height={180} shadow={"sm"} styleAction={styleObj => {
+        <SkImage image={image} width={180} height={180} shadow={"sm"} priority={true} styleAction={styleObj => {
           styleObj.borderRadius = "180px";
         }} />
         <div className={classes.personDescription}>
           {description.map(text => {
-            return <Text key={text} className="normalContentText normalContentText_withoutFirstIndent">{text}</Text>
+            return <Text key={text} className="normalContentText normalContentText_justify normalContentText_withoutFirstIndent">{text}</Text>
           })}
         </div>
       </Flex>
@@ -42,8 +43,14 @@ export default function AboutUsPage(props) {
       <SkH1Desktop text={aboutUsContent.title}/>
     </Center>
     <SkColoredContainerDesktop>
+      {aboutUsContent.mainText.map(text => {
+        return <Text key={text} className="normalContentText">{text}</Text>
+      })}
+      <Space h={"lg"}/>
+      <SkH2Desktop text={aboutUsContent.title2}/>
+      <Space h={"lg"}/>
       {AboutPerson(aboutUsContent.dimaDescription, aboutUsContent.dimaImage, "gray.0")}
-      <Space h={"md"}/>
+      <Space h={"lg"}/>
       {AboutPerson(aboutUsContent.olenkaDescription, aboutUsContent.olenkaImage, "indigo.0")}
     </SkColoredContainerDesktop>
   </>

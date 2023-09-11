@@ -14,8 +14,8 @@ export default function SkComponentLink({children, href}) {
   
   const { classes } = useStyles();
 
-  return <Link href={href}>
-    <a className={classes.link}>{children}</a>
+  return <Link href={href} className={classes.link}>
+    {children}
   </Link>
 }
 

@@ -25,7 +25,7 @@ export async function getStaticPaths() {
   
   const {allFables} = readAllFables();
   const allFablesUrlIds = allFables.map(fable => fable.metadata.urlId);
-  console.log("All Fables Url Ids:", allFablesUrlIds);
+  // console.log("All Fables Url Ids:", allFablesUrlIds);
   return getStaticPathsCommon(allFablesUrlIds);
 }
 

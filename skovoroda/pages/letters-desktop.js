@@ -74,9 +74,7 @@ export default function SkovorodaLettersPageDesktop({ allLettersFrom }) {
           letter.translatorName == translatorName);
         return <td key={translatorName}>{foundLetter 
           ? <Link href={pathJoin(SkovorodaLettersFromPath, foundLetter.id)}>
-            <a>
-              <AnimatedMailComponent uniqueId={foundLetter.id} />
-            </a>
+            <AnimatedMailComponent uniqueId={foundLetter.id} />
           </Link>
           : "-"
         }</td>

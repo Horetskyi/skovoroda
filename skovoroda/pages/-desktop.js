@@ -9,6 +9,7 @@ import SkH2Desktop from '../components/shared/skH2Desktop';
 import SkTextLink from '../components/shared/skTextLink';
 import SkQuoteDesktop from '../components/shared/skQuoteDesktop';
 import { getHomePageProps, homePageContent } from '../lib/pagesContent/home';
+import SkSourcesContainerDesktop from '../components/shared/skSourcesContainerDesktop';
 
 const useStyles = createStyles((theme) => ({
 
@@ -60,7 +61,6 @@ const useStyles = createStyles((theme) => ({
 export default function HomePageDesktop() {
 
   const { classes } = useStyles();
-
   return <>
     <SkColoredContainerDesktop color={"gray.0"}>
       <Group spacing={"md"} position="apart" className={classes.bioGroup} >
@@ -77,7 +77,7 @@ export default function HomePageDesktop() {
         <div className={classes.bioContent}>
           <Title order={1} className={classes.h1}>{homePageContent.titleLine}</Title>
           <Text mt={"sm"} className={classes.subTitle}>{homePageContent.birthLine}</Text>
-          <Text mt={"sm"} className='normalContentText normalContentText_center'>{homePageContent.shortBio}</Text>
+          <Text mt={"sm"} className='normalContentText normalContentText_justify normalContentText_withoutIndent'>{homePageContent.shortBio}</Text>
           {SkovorodaConstants.isProduction ? null : <>
             <Group position="right" className={classes.bioButtons} mt={"auto"} mb={0}>
               <SkTextLink text={"Біографія детальніше"} href={SkovorodaBioPath}/>
@@ -100,11 +100,12 @@ export default function HomePageDesktop() {
     <SkColoredContainerDesktop color={"white"} ta={"center"}>
       <SkH2Desktop text={"Символи"} mb={"lg"} />
       <SkFountain />
-      <Text mt="sm" mb="md" className='normalContentText'>{homePageContent.symbolsText}</Text>
+      <Text mt="sm" mb="md" className='normalContentText normalContentText_justify normalContentText_withoutIndent'>{homePageContent.symbolsText}</Text>
       {SkovorodaConstants.isProduction ? null : <>
         <SkFilledButtonDesktop text={"Більше символів"} href={SkovorodaSymbolsPath} width={267}/>
       </>}
     </SkColoredContainerDesktop>
+    <SkSourcesContainerDesktop sources={homePageContent.sourcesParams} />
   </> 
 }
 

@@ -38,6 +38,6 @@ export default function SkovorodaSourceBlockDesktop({source}) {
       </div>
       </> : <></>
     }
-    <Link href={source.sourceHref}><a color="gray.9" className="grayForText">{source.sourceName}</a></Link>
+    <Link href={source.sourceHref} color="gray.9" className="grayForText">{source.sourceName}</Link>
   </Card>
 }

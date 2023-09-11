@@ -65,17 +65,13 @@ export default function SkHeaderMenuDesktop() {
       direction="row"
       h={100}
     >
-      <Link href={'/'}>
-        <a href={'/'} title={getLinkTitle("/")} className={classes.svgs}>
-          <SkSkovorodaLogo className={classes.svg} width={92} height={98} />
-          <SkDoveLogo className={`${classes.svg} ${classes.dove}`} width={50} height={50}></SkDoveLogo>
-        </a>
+      <Link href={'/'} title={getLinkTitle("/")} className={classes.svgs}>
+        <SkSkovorodaLogo className={classes.svg} width={92} height={98} />
+        <SkDoveLogo className={`${classes.svg} ${classes.dove}`} width={50} height={50}></SkDoveLogo>
       </Link>
 
-      <Link href={'/'}>
-        <a href={'/'} title={getLinkTitle("/")} className={"undecoratedLink blackLink "+classes.titleLink}>
-          <Text className={classes.title}>Сковорода</Text>
-        </a>
+      <Link href={'/'} title={getLinkTitle("/")} className={"undecoratedLink blackLink "+classes.titleLink}>
+        <Text className={classes.title}>Сковорода</Text>
       </Link>
       
       {SkovorodaConstants.isProduction ? null : LinkButton(SkovorodaBioPath, "Біографія", classes)}
@@ -95,17 +91,15 @@ function LinkButton(href, text, classes) {
   const linkTitle = getLinkTitle(href);
   return <>
     <Link key={"href-"+href} href={href} title={linkTitle}>
-      <a title={linkTitle}>
-        <Button 
-          radius={"md"} 
-          variant="light"
-          w={180}
-          h={52}
-          color="indigo"
-        >
-          <Text className={classes.buttonText}>{text}</Text>
-        </Button>
-      </a>
+      <Button 
+        radius={"md"} 
+        variant="light"
+        w={180}
+        h={52}
+        color="indigo"
+      >
+        <Text className={classes.buttonText}>{text}</Text>
+      </Button>
     </Link>
   </>
 }

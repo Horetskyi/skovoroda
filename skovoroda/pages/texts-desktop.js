@@ -64,18 +64,16 @@ export default function SkovorodaTextsPageDesktop({ }) {
     <Title className="fontFamilyOldUa bigH1" order={1} mx={"auto"} ta="center" mb="xl">Твори</Title>
     <SimpleGrid cols={2} spacing="xl" verticalSpacing="xl" mb="xl">
       {items.map((item, index) => {
-        return <Link key={index} href={item.path}>
-          <a className={`undecoratedLink blackLink ${classes.link}`}>
-            <Card radius="md" p="0" withBorder={true} shadow="md" className={classes.card}>
-              <Image 
-                className={classes.image}
-                src={item.imageSrc}
-                alt={item.label}
-                height={300}
-              />
-              <Title className='fontFamilyOldUa' order={2} ta="center" py="md" bg="green.0">{item.label}</Title>
-            </Card>
-          </a>
+        return <Link key={index} href={item.path} className={`undecoratedLink blackLink ${classes.link}`}>
+          <Card radius="md" p="0" withBorder={true} shadow="md" className={classes.card}>
+            <Image 
+              className={classes.image}
+              src={item.imageSrc}
+              alt={item.label}
+              height={300}
+            />
+            <Title className='fontFamilyOldUa' order={2} ta="center" py="md" bg="green.0">{item.label}</Title>
+          </Card>
         </Link>
       })}
     </SimpleGrid>

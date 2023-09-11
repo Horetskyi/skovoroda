@@ -20,21 +20,21 @@ const useStyles = createStyles((theme) => ({
   
 }));
 
-export default function SkTextLink({text, href, disableStyles, title}) {
+export default function SkTextLink({text, href, disableStyles, title, className}) {
   
   const { classes } = useStyles();
 
-  const className = (disableStyles 
+  const pClassName = (disableStyles 
     ? classes.linkWithoutStyles 
-    : classes.link);
+    : classes.link) + (className ? (" " + className) : "");
 
   var linkTitle = title;
   if (!linkTitle || !linkTitle.length) {
     linkTitle = getLinkTitle(href);
   }
 
-  return <Link href={href} title={linkTitle}>
-    <a className={className} title={linkTitle}>{text}</a>
+  return <Link href={href} title={linkTitle} className={pClassName}>
+    {text}
   </Link>
 }
 

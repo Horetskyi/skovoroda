@@ -20,7 +20,9 @@ export default function LinkInsideSelectItem({ id, disabled, label, linkTitle, .
   if (disabled) {
     return <span ref={ref} {...others}>{label}</span>
   }
-  return <Link ref={ref} href={id}><a {...others} href={id} title={linkTitle}>{label}</a></Link>
+  return <Link ref={ref} href={id} legacyBehavior>
+    <a href={id} {...others} title={linkTitle}>{label}</a>
+  </Link>
 }
 
 export const LinkInsideSelect = forwardRef(function LinkInsideSelect({ ...others }, ref) { 

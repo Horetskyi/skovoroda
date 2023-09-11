@@ -8,6 +8,7 @@ function generateSiteMap() {
     baseUrl,
     sp.pathJoin(baseUrl, sp.SkovorodaAboutUsPath),
     sp.pathJoin(baseUrl, sp.SkovorodaContactPath),
+    sp.pathJoin(baseUrl, sp.SkovorodaCopyrightPath),
     // sp.pathJoin(baseUrl, sp.SkovorodaBioPath),
     // sp.pathJoin(baseUrl, sp.SkovorodaQuotesPath),
     // sp.pathJoin(baseUrl, sp.SkovorodaSymbolsPath),

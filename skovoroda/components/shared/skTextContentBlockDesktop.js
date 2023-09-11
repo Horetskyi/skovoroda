@@ -323,8 +323,8 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
           </span>
         }
 
-        return <Link key={index} href={"#note"+getNoteNumberUpperString(noteNumber)}>
-          <a id={subId} color="gray.9" className={classes.noteLink + " grayForText " + subFormatClassName + " " + classes.noteFont} title={`Примітка ${noteNumber}`}>{subText.text}</a>
+        return <Link key={index} href={"#note"+getNoteNumberUpperString(noteNumber)} id={subId} color="gray.9" className={classes.noteLink + " grayForText " + subFormatClassName + " " + classes.noteFont} title={`Примітка ${noteNumber}`}>
+          {subText.text}
         </Link>;
       }
       return <span key={index} className={subFormatClassName} onClick={onClick}>{subText.text}</span>;
@@ -361,10 +361,8 @@ function pushNoteInNotesBlock(block, lineObject, classes, onBlockNoteClick) {
   }
 
   block.push(
-    <Link key={block.length} href={"#noteInText"+getNoteNumberUpperString(lineObject.noteNumber)}>
-      <a color="gray.9" className={classes.noteInNotesBlock + " " + classes.noteLink + " grayForText " + classes.noteFont} title={`Примітка ${noteNumber}`}>
-        {getNoteNumberString(lineObject.noteNumber)}
-      </a>
+    <Link key={block.length} href={"#noteInText"+getNoteNumberUpperString(lineObject.noteNumber)} color="gray.9" className={classes.noteInNotesBlock + " " + classes.noteLink + " grayForText " + classes.noteFont} title={`Примітка ${noteNumber}`}>
+      {getNoteNumberString(lineObject.noteNumber)}
     </Link>
   );
 }

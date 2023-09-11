@@ -5,6 +5,7 @@ import SkColoredContainerMobile from "../components/shared/skColoredContainerMob
 import SkH2Desktop from "../components/shared/skH2Desktop";
 import SkQuoteDesktop from "../components/shared/skQuoteDesktop";
 import SkFountain from "../components/shared/skFountain";
+import SkSourcesContainerMobile from "../components/shared/skSourcesContainerMobile";
 
 const useStyles = createStyles((theme) => ({
   h1: {
@@ -34,12 +35,13 @@ export default function HomePageMobile() {
           title={homePageContent.imageTitle}
           imageUrl={homePageContent.imageUrl}
           shadow={"md"}
+          priority={true}
         />
       </Center>
       <Space h={"md"}/>
       <Title order={1} className={classes.h1} ta={"center"}>{homePageContent.titleLine}</Title>
       <Text mt={"sm"} className={classes.subTitle} ta={"center"}>{homePageContent.birthLine}</Text>
-      <Text mt={"md"} className='normalContentText normalContentText_center'>{homePageContent.shortBio}</Text>
+      <Text mt={"md"} className='normalContentText normalContentText_justify'>{homePageContent.shortBio}</Text>
     </Container>
     <Space h={"md"}/>
     <SkColoredContainerMobile color={"indigo.0"} ta={"center"}>
@@ -54,9 +56,10 @@ export default function HomePageMobile() {
       <SkH2Desktop text={"Символи"} mb={"lg"} />
       <Container px={"md"}>
         <SkFountain isMobile={true}/>
-        <Text mt="sm" className='normalContentText'>{homePageContent.symbolsText}</Text>
+        <Text mt="sm" className='normalContentText normalContentText_justify'>{homePageContent.symbolsText}</Text>
       </Container>
     </SkColoredContainerMobile>
+    <SkSourcesContainerMobile sources={homePageContent.sourcesParams} />
   </>
 }
 

@@ -75,17 +75,13 @@ export default function SkHeaderMenuMobile() {
       direction="row"
       h={87}
     >
-      <Link href={'/'}>
-        <a href={'/'} title={getLinkTitle("/")} className={`${classes.logoLink} ${classes.svgs}`}>
-          <SkSkovorodaLogo className={classes.svg} width={70} height={75} />
-          <SkDoveLogo className={classes.dove} width={40} height={40} />
-        </a>
+      <Link href={'/'} title={getLinkTitle("/")} className={`${classes.logoLink} ${classes.svgs}`}>
+        <SkSkovorodaLogo className={classes.svg} width={70} height={75} />
+        <SkDoveLogo className={classes.dove} width={40} height={40} />
       </Link>
 
-      <Link href={'/'}>
-        <a href={'/'} title={getLinkTitle("/")} className={"undecoratedLink blackLink "+classes.titleLink}>
-          <Text className={classes.title}>Сковорода</Text>
-        </a>
+      <Link href={'/'} title={getLinkTitle("/")} className={"undecoratedLink blackLink "+classes.titleLink}>
+        <Text className={classes.title}>Сковорода</Text>
       </Link>
       
       <Popover shadow="md" width={200} position="bottom-end" opened={opened} onChange={setOpened}>
@@ -96,10 +92,8 @@ export default function SkHeaderMenuMobile() {
         </Popover.Target>
         <Popover.Dropdown >
           <Stack onClick={() => setOpened((o) => !o)} spacing={0}>
-            <Link href={SkovorodaFablesPath} >
-              <a href={SkovorodaFablesPath} title={linkTitle} className={classes.buttonText}>
-                Байки
-              </a>
+            <Link href={SkovorodaFablesPath} title={linkTitle} className={classes.buttonText}>
+              Байки
             </Link>
             <Tooltip label="Додамо трактати, пісні, поезію, переклади, біографію..." position="bottom" color="gray.9" p={"sm"}>
               <Text py={'sm'} ta={"center"} className={classes.inProgressText}>Буде більше!</Text>

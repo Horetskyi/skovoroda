@@ -6,6 +6,7 @@ export const SkovorodaQuotesPath = "/quotes/";
 export const SkovorodaSymbolsPath = "/symbols/";
 export const SkovorodaUtils1Path = "/utils1";
 export const SkovorodaTextsPath = "/texts/";
+export const SkovorodaCopyrightPath = "/copyright/";
 export const SkovorodaTreatisePath = pathJoin(SkovorodaTextsPath, "/treatise/");
 export const SkovorodaGardenPath = pathJoin(SkovorodaTextsPath, "/garden/");
 export const SkovorodaOtherPoemsPath = pathJoin(SkovorodaTextsPath, "/other-poems/");
@@ -53,6 +54,7 @@ const linkTitles = new Map([
   [SkovorodaQuotesPath, "Цитати Сковороди"],
   [SkovorodaSymbolsPath, "Символи Сковороди"],
   [SkovorodaUtils1Path, "Інструменти"],
+  [SkovorodaCopyrightPath, "Авторське право"],
   [SkovorodaTextsPath, "Твори Сковороди"],
   [SkovorodaTreatisePath, "Трактати Сковороди"],
   [SkovorodaGardenPath, "Сад Божественних Пісень"],

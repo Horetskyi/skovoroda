@@ -31,7 +31,7 @@ export default function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2}) 
     <Select 
       size="sm"
       withinPortal={true}
-      searchable
+      searchable={false}
       mb="md"
       itemComponent={LinkInsideSelect} 
       data={dropdown1.data} 
@@ -44,7 +44,7 @@ export default function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2}) 
     <Select 
       size="sm"
       withinPortal={true}
-      searchable
+      searchable={false}
       itemComponent={LinkInsideSelect} 
       data={dropdown2.data} 
       value={dropdown2.selectedValue}

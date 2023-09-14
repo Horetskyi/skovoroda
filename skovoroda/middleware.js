@@ -34,10 +34,11 @@ export function middleware(request) {
   // console.log(`isPageRequest: ${isPageRequest} for ${path}`)
 
   if (isPageRequest) {
+    
     const userAgent = request.headers.get('user-agent');
     const isMobileValue = isMobile(userAgent);
     const deviceEnding = (isMobileValue ? SkovorodaConstants.mobileEnding : SkovorodaConstants.desktopEnding);
-    const newPath = path.includes(deviceEnding) 
+    const newPath = path.includes(SkovorodaConstants.mobileEnding) || path.includes(SkovorodaConstants.desktopEnding) 
       ? path
       : pathName + deviceEnding + (search ? search + deviceEnding : "");
     console.log("REWRITE: ", path, newPath);

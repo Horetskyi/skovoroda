@@ -1,6 +1,6 @@
-import { Container, Group, Text, Title, createStyles } from '@mantine/core';
+import { Group, Text, Title, createStyles } from '@mantine/core';
 import SkFountain from '../components/shared/skFountain';
-import { SkovorodaConstants, homePageKey } from '../lib/skovorodaConstants';
+import { SkovorodaConstants } from '../lib/skovorodaConstants';
 import Image from 'next/image';
 import SkFilledButtonDesktop from '../components/shared/skFilledButtonDesktop';
 import { SkovorodaBioPath, SkovorodaQuotesPath, SkovorodaSymbolsPath } from '../lib/skovorodaPath';

@@ -1,8 +1,17 @@
-import * as Parser from "ua-parser-js";
+import UAParser from "ua-parser-js";
 
 export default function isMobile(userAgent) {
+    if (!userAgent || !userAgent.length) {
+        return false;
+    }
 
-    const parserResult = Parser(userAgent || '');
+    // https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers
+    const userAgentLower = userAgent.toLocaleLowerCase();
+    if ((userAgentLower.includes('bot') || userAgentLower.includes('inspectiontool')) && userAgentLower.includes('google')) {
+        return userAgentLower.includes('mobile'); 
+    }
+
+    const parserResult = UAParser(userAgent);
     return parserResult?.device?.type === "mobile";
 
 }

@@ -22,8 +22,9 @@ export default function AboutUsPage(props) {
         }} />
       </Center>
       <Space h="md"/>
-      {description.map(text => {
-        return <Text key={text} mb={"sm"} className="normalContentText">{text}</Text>
+      {description.map((text, index) => {
+        const className = "normalContentText" + ((index == 0) ? " normalContentText_withoutIndent" : "");
+        return <Text key={text} mb={"sm"} className={className}>{text}</Text>
       })}
     </>
   }

@@ -41,7 +41,7 @@ export default function HomePageMobile() {
       <Space h={"md"}/>
       <Title order={1} className={classes.h1} ta={"center"}>{homePageContent.titleLine}</Title>
       <Text mt={"sm"} className={classes.subTitle} ta={"center"}>{homePageContent.birthLine}</Text>
-      <Text mt={"md"} className='normalContentText normalContentText_justify'>{homePageContent.shortBio}</Text>
+      <Text mt={"md"} className='normalContentText'>{homePageContent.shortBio}</Text>
     </Container>
     <Space h={"md"}/>
     <SkColoredContainerMobile color={"indigo.0"} ta={"center"}>
@@ -56,7 +56,7 @@ export default function HomePageMobile() {
       <SkH2Desktop text={"Символи"} mb={"lg"} />
       <Container px={"md"}>
         <SkFountain isMobile={true}/>
-        <Text mt="sm" className='normalContentText normalContentText_justify'>{homePageContent.symbolsText}</Text>
+        <Text mt="sm" className='normalContentText'>{homePageContent.symbolsText}</Text>
       </Container>
     </SkColoredContainerMobile>
     <SkSourcesContainerMobile sources={homePageContent.sourcesParams} />

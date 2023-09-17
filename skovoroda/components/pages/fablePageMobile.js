@@ -98,7 +98,9 @@ export default function FablePageMobile({
         onChange: selectFableDropdownValue
       }}
     />
-    <SkH1Mobile text={h1Text} />
+    <Container px="md">
+      <SkH1Mobile text={h1Text} />
+    </Container>
     <Space h="md"/>
     {isFableImageExists ? <>
       <Center>

@@ -4,9 +4,10 @@ import { getNoteNumberString, getNoteNumberUpperString } from "../../lib/data/ut
 import { gsap } from "gsap/dist/gsap";
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
 
-const useStyles = createStyles((theme) => {
+const useStyles = createStyles((theme, params) => {
 
-  const tabSize = 36; 
+  const isMobile = params.isMobile;
+  const tabSize = isMobile ? 12 : 36; 
   const leftNumSpacing = 100;
 
   return {
@@ -194,7 +195,7 @@ const useStyles = createStyles((theme) => {
 
 export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick, ...others}) {
 
-  const { classes } = useStyles();
+  const { classes } = useStyles({ isMobile: others.isMobile });
 
   if (textContent && !Array.isArray(textContent)) {
     return <div>

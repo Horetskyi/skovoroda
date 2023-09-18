@@ -1,5 +1,5 @@
 
-import { Container, Group, Space, Text, createStyles } from '@mantine/core';
+import { Container, Group, Space, createStyles } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Image from 'next/image';
@@ -8,10 +8,7 @@ import { SkovorodaFablesPath, pathJoin } from '../../lib/skovorodaPath';
 import SkCardWithTwoSelectorsDesktopV2 from '../shared/skCardWithTwoSelectorsDesktopV2';
 import SkH1Desktop from '../shared/skH1Desktop';
 import SkH2Desktop from '../shared/skH2Desktop';
-import SkColoredContainerDesktop from '../shared/skColoredContainerDesktop';
 import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
-import SkSourceBlockDesktop from '../shared/skSourceBlockDesktop';
-import { commonContent } from '../../lib/pagesContent/commonContent';
 import SkSourcesContainerDesktop from '../shared/skSourcesContainerDesktop';
 import SkButtonDesktop from '../shared/skButtonDesktop';
 import { randomNumberInRangeExcept } from '../../lib/auxiliary';

@@ -1,5 +1,4 @@
-import { createStyles, Header, Autocomplete, Group, Burger } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { createStyles, Header, Autocomplete, Group } from '@mantine/core';
 import { IconSearch } from '@tabler/icons';
 import Link from 'next/link';
 

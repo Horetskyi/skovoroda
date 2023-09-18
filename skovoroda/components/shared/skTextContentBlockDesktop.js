@@ -54,8 +54,8 @@ const useStyles = createStyles((theme, params) => {
       marginTop: 0,
       marginBottom: 0,
       fontWeight: 300,
-      fontSize: "20px",
-      lineHeight: "24px",
+      fontSize: isMobile ? "16px" : "20px",
+      lineHeight: isMobile ? "22px" : "24px",
       letterSpacing: "0.02em",
       textIndent: theme.spacing.md,
     
@@ -68,8 +68,8 @@ const useStyles = createStyles((theme, params) => {
       marginTop: 0,
       marginBottom: 0,
       fontWeight: 300,
-      fontSize: "20px",
-      lineHeight: "24px",
+      fontSize: isMobile ? "16px" : "20px",
+      lineHeight: isMobile ? "22px" : "24px",
       letterSpacing: "0.02em",
     },
   
@@ -110,7 +110,7 @@ const useStyles = createStyles((theme, params) => {
     },
     formatIrmologion: {
       fontFamily: 'Irmologion ieUcs',
-      fontSize: "24px",
+      fontSize: isMobile ? "16px" : "18px",
     },
     formatLeftNum9: {
       "::before": {

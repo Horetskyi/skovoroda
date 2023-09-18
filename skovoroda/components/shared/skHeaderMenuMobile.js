@@ -23,11 +23,8 @@ const useStyles = createStyles((theme) => ({
     marginRight: "auto", 
   },
   buttonText: {
-    fontStyle: "normal",
-    fontWeight: 300,
-    fontSize: "20px",
-    lineHeight: "23px",
     textAlign: 'center',
+    fontWeight: 500,
     letterSpacing: "0.165em",
     color: "black",
     paddingTop: theme.spacing.sm,
@@ -38,11 +35,9 @@ const useStyles = createStyles((theme) => ({
     marginTop: theme.spacing.sm,
   },
   inProgressText: {
-    fontWeight: 300,
-    fontSize: "20px",
-    lineHeight: "23px",
     letterSpacing: "0.03em",
-    color: "#202a54"
+    color: "#202a54",
+    margin: "auto",
   },
   svg: {
     filter: "drop-shadow(3px 1px 8px rgba(0, 0, 0, 0.15));",
@@ -92,11 +87,11 @@ export default function SkHeaderMenuMobile() {
         </Popover.Target>
         <Popover.Dropdown >
           <Stack onClick={() => setOpened((o) => !o)} spacing={0}>
-            <Link href={SkovorodaFablesPath} title={linkTitle} className={classes.buttonText}>
+            <Link href={SkovorodaFablesPath} title={linkTitle} className={classes.buttonText + " normalContentText normalContentText_withoutIndent"}>
               Байки
             </Link>
             <Tooltip label="Додамо трактати, пісні, поезію, переклади, біографію..." position="bottom" color="gray.9" p={"sm"}>
-              <Text py={'sm'} ta={"center"} className={classes.inProgressText}>Буде більше!</Text>
+              <Text py={'sm'} ta={"center"} className={classes.inProgressText + " normalContentText normalContentText_withoutIndent"}>Буде більше!</Text>
             </Tooltip>
           </Stack>
           

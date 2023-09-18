@@ -6,10 +6,6 @@ import { getLinkTitle } from "../../lib/skovorodaPath";
 const useStyles = createStyles((theme) => ({
 
   link: {
-    fontWeight: 300,
-    fontSize: "20px",
-    lineHeight: "23px",
-    letterSpacing: "0.02em",
     textDecorationLine: "underline",
     color: "#0e3457",
   },

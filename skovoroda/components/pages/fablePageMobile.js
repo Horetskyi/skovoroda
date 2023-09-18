@@ -1,4 +1,4 @@
-import { Center, Container, Group, Space, Text, createStyles } from "@mantine/core";
+import { Center, Container, Group, Space, createStyles } from "@mantine/core";
 import { prepareFablesDropdownItems, prepareTranslatorsDropdownItems } from "../../lib/pagesContent/fableLogic";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -8,11 +8,9 @@ import SkH1Mobile from "../shared/skH1Mobile";
 import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
 import SkImage from "../shared/skImage";
 import SkH2Mobile from "../shared/skH2Mobile";
-import SkColoredContainerMobile from "../shared/skColoredContainerMobile";
-import { commonContent } from "../../lib/pagesContent/commonContent";
-import SkSourceBlockMobile from "../shared/skSourceBlockMobile";
 import SkButtonMobile from "../shared/skButtonMobile";
-import { randomNumberInRange, randomNumberInRangeExcept } from "../../lib/auxiliary";
+import { randomNumberInRangeExcept } from "../../lib/auxiliary";
+import SkSourcesContainerMobile from "../shared/skSourcesContainerMobile";
 
 const useStyles = createStyles((theme) => ({
   
@@ -93,6 +91,26 @@ export default function FablePageMobile({
   const nextFableNumber = selectedMetadata.fableNumber + 1;
   const randomFableNumber = randomNumberInRangeExcept(1, 30, selectedMetadata.fableNumber);
 
+  const sourcesParams = [
+    {
+      sourceType: "Текст" + (selectedNotes ? " і Примітки" : ""),
+      sourceValue: selectedFable.source.sourceFullName,
+      sourceHref: selectedFable.source.sourceHref,
+      image: selectedFable.source.bookCoverImage,
+      linkTitle: selectedFable.source.sourceFullName,
+    },
+  ];
+  if (isFableImageExists) {
+    sourcesParams.push({
+      sourceType: "Ілюстрація",
+      sourceValue: "Олена Лещенко",
+      sourceHref: "https://instagram.com/olenka_art_vision",
+      sourceHrefAnchorText: "https://instagram.com/olenka_art_vision",
+      image: selectedMetadata.fableImage,
+      linkTitle: "Instagram Олени Лещенко"
+    });
+  }
+
   return <>
     <Space h="md"/>
     <SkCardWithTwoSelectorsMobileV2 
@@ -135,28 +153,6 @@ export default function FablePageMobile({
         <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} isMobile={true} />
       </> : null}
     </Container>
-    <SkColoredContainerMobile color={"indigo.0"}>
-      <SkH2Mobile text="Джерела"/>
-      <Space h="sm"/>
-      <SkSourceBlockMobile {...{
-        sourceType: "Текст" + (selectedNotes ? " і Примітки" : ""),
-        sourceValue: selectedFable.source.sourceFullName,
-        sourceHref: selectedFable.source.sourceHref,
-        image: selectedFable.source.bookCoverImage,
-        linkTitle: selectedFable.source.sourceFullName,
-      }}/>
-      {isFableImageExists ? <>
-        <Space h="sm"/>
-        <SkSourceBlockMobile {...{
-          sourceType: "Ілюстрація",
-          sourceValue: "Олена Лещенко",
-          sourceHref: "https://instagram.com/olenka_art_vision",
-          sourceHrefAnchorText: "https://instagram.com/olenka_art_vision",
-          image: selectedMetadata.fableImage,
-          linkTitle: "Instagram Олени Лещенко"
-        }}/>
-      </> : null}
-      <Text px="md" mt="lg" className='normalContentText'>{commonContent.textValidityWarning}</Text>
-    </SkColoredContainerMobile>
+    <SkSourcesContainerMobile sources={sourcesParams} includeTextValidityWarning={true}/>
   </>
 }

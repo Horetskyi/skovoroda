@@ -1,5 +1,5 @@
-import { Container, Flex, Text, createStyles } from "@mantine/core";
-import { SkovorodaAboutUsPath, SkovorodaBioPath, SkovorodaContactPath, SkovorodaCopyrightPath } from "../../lib/skovorodaPath";
+import { Container, Flex, createStyles } from "@mantine/core";
+import { SkovorodaAboutUsPath, SkovorodaContactPath, SkovorodaCopyrightPath } from "../../lib/skovorodaPath";
 import SkTextLink from "./skTextLink";
 
 const useStyles = createStyles((theme) => ({
@@ -23,6 +23,7 @@ export default function SkFooterMobile() {
       align="center"
       direction="column"
       h={120}
+      className="normalContentText normalContentText_withoutIndent"
     >
       <SkTextLink href={SkovorodaAboutUsPath} text={"Про нас"} />
       <SkTextLink href={SkovorodaContactPath} text={"Контакти"} />

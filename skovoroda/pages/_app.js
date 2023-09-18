@@ -121,9 +121,8 @@ export default function App(props) {
             },
             ".normalContentText": {
               fontWeight: 300,
-              fontSize: "20px",
-              lineHeight: "23px",
-              textAlign: "left",
+              fontSize: isMobile ? "16px" : "20px",
+              lineHeight: isMobile ? "22px" : "23px",
               letterSpacing: "0.03em",
               textIndent: "24px",
             },

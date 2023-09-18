@@ -2,22 +2,22 @@ import { Center, Container, Space, Text, Title, createStyles } from "@mantine/co
 import { getHomePageProps, homePageContent } from "../lib/pagesContent/home";
 import SkImage from "../components/shared/skImage";
 import SkColoredContainerMobile from "../components/shared/skColoredContainerMobile";
-import SkH2Desktop from "../components/shared/skH2Desktop";
 import SkQuoteDesktop from "../components/shared/skQuoteDesktop";
 import SkFountain from "../components/shared/skFountain";
 import SkSourcesContainerMobile from "../components/shared/skSourcesContainerMobile";
+import SkH2Mobile from "../components/shared/skH2Mobile";
 
 const useStyles = createStyles((theme) => ({
   h1: {
     fontWeight: 300,
     fontSize: "24px",
-    lineHeight: "28px",
+    lineHeight: "32px",
     letterSpacing: "0.065em",
   },
   subTitle: {
-    fontWeight: 200,
+    fontWeight: 300,
     fontSize: "18px",
-    lineHeight: "21px",
+    lineHeight: "24px",
     letterSpacing: "0.02em",
   },
 }));
@@ -41,11 +41,11 @@ export default function HomePageMobile() {
       <Space h={"md"}/>
       <Title order={1} className={classes.h1} ta={"center"}>{homePageContent.titleLine}</Title>
       <Text mt={"sm"} className={classes.subTitle} ta={"center"}>{homePageContent.birthLine}</Text>
-      <Text mt={"md"} className='normalContentText'>{homePageContent.shortBio}</Text>
+      <Text mt={"sm"} className='normalContentText'>{homePageContent.shortBio}</Text>
     </Container>
     <Space h={"md"}/>
     <SkColoredContainerMobile color={"indigo.0"} ta={"center"}>
-      <SkH2Desktop text={"Цитати"} mb={"md"} />
+      <SkH2Mobile text={"Цитати"} mb={"md"} />
       <Container px={"md"}>
         <SkQuoteDesktop mb="sm" text={"Як ліки не завжди приємні, так і істина буває сувора."} /> 
         <SkQuoteDesktop mb="sm" text={"Все минає, але любов після всього зостається."} /> 
@@ -53,7 +53,7 @@ export default function HomePageMobile() {
       </Container>
     </SkColoredContainerMobile>
     <SkColoredContainerMobile color={"white"} ta={"center"}>
-      <SkH2Desktop text={"Символи"} mb={"lg"} />
+      <SkH2Mobile text={"Символи"} mb={"lg"} />
       <Container px={"md"}>
         <SkFountain isMobile={true}/>
         <Text mt="sm" className='normalContentText'>{homePageContent.symbolsText}</Text>

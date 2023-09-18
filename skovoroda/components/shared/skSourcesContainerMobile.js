@@ -13,8 +13,8 @@ export default function SkSourcesContainerMobile({ sources, includeTextValidityW
 
   return <>
     <SkColoredContainerMobile color={"indigo.0"}>
-      <SkH2Mobile text="Джерела"/>
-      <Space h="md"/>
+      <SkH2Mobile text="Джерела" />
+      <Space h={"md"}/>
       {sources.map((source, index) => {
         return <div key={source.sourceValue}>
           <SkSourceBlockMobile {...source}/>
@@ -22,7 +22,7 @@ export default function SkSourcesContainerMobile({ sources, includeTextValidityW
 
         </div>
       })}
-      {includeTextValidityWarning ? <Text mt="md" className='normalContentText'>{commonContent.textValidityWarning}</Text> : null}
+      {includeTextValidityWarning ? <Text px={"md"} mt="md" className='normalContentText'>{commonContent.textValidityWarning}</Text> : null}
     </SkColoredContainerMobile>
   </>
 }

@@ -1,3 +1,4 @@
+import { fixText } from "../../dataReaders/auxiliary";
 import { NOTES_NUMBERS_SYMBOLS_MAP } from "./notesNumbersSymbols";
 
 export const TextLineFormats = [
@@ -125,6 +126,8 @@ function removeEmptyLinesAtTheEnd(parsedContent) {
 
 export function parseFileContent(content) {
   
+  content = fixText(content);
+
   const parsedContent = [];
   const parsedMainSection = [];
   const parsedAfterMainSection = [];

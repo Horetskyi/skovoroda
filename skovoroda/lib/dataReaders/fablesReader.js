@@ -3,6 +3,7 @@ import path from "path";
 import { skTranslatorsV2 } from "../data/skovorodaTranslators";
 import { parseFileContent } from "../data/utils/readingTextsUtils";
 import { SkImagesArray } from "../data/images/skImages";
+import { fixText } from "./auxiliary";
 
 const fablesImages = SkImagesArray.filter(image => image.fableNumber);
 
@@ -28,10 +29,11 @@ function readAllFablesInDirectory(directoryName) {
       // File 3. "fable 1 power.txt"
       const txtPowerFilePath = jsonFilePath.replace(".json", " power.txt");
      
-      const metadataFileContent = fs.readFileSync(jsonFilePath).toString();
+      let metadataFileContent = fs.readFileSync(jsonFilePath).toString();
       if (!metadataFileContent || !metadataFileContent.length) {
         return undefined;
       }
+      metadataFileContent = fixText(metadataFileContent);
       const metadata = JSON.parse(metadataFileContent);
       const translator = skTranslatorsV2.find(translator => translator.translatorId === metadata.translatorId);
       metadata.urlId = `fable-${metadata.fableNumber}-${translator.urlId}`;
@@ -40,7 +42,7 @@ function readAllFablesInDirectory(directoryName) {
         metadata.fableImage.alt = `Байка ${metadata.fableNumber} - ${metadata.fableTitle}`
       }
 
-      const contentString = fs.readFileSync(txtFilePath).toString();
+      let contentString = fs.readFileSync(txtFilePath).toString();
       if (!contentString || !contentString.length) {
         return undefined;
       }

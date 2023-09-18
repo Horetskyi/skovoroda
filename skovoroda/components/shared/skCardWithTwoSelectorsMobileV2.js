@@ -5,16 +5,16 @@ const useStyles = createStyles((theme) => ({
 
   labelText: {
     fontWeight: 300,
-    fontSize: "12px",
-    lineHeight: "14px",
+    fontSize: "14px",
+    lineHeight: "16px",
     letterSpacing: "0",
   },
 
   card: {
     ".mantine-Select-input": {
       fontWeight: 300,
-      fontSize: "12px",
-      lineHeight: "14px",
+      fontSize: "14px",
+      lineHeight: "16px",
       letterSpacing: "0",
     },
   },

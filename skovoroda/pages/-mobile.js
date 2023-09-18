@@ -14,12 +14,6 @@ const useStyles = createStyles((theme) => ({
     lineHeight: "32px",
     letterSpacing: "0.065em",
   },
-  subTitle: {
-    fontWeight: 300,
-    fontSize: "18px",
-    lineHeight: "24px",
-    letterSpacing: "0.02em",
-  },
 }));
 
 export default function HomePageMobile() {
@@ -40,7 +34,7 @@ export default function HomePageMobile() {
       </Center>
       <Space h={"md"}/>
       <Title order={1} className={classes.h1} ta={"center"}>{homePageContent.titleLine}</Title>
-      <Text mt={"sm"} className={classes.subTitle} ta={"center"}>{homePageContent.birthLine}</Text>
+      <Text mt={"sm"} className='normalContentText normalContentText_withoutIndent' ta={"center"}>{homePageContent.birthLine}</Text>
       <Text mt={"sm"} className='normalContentText'>{homePageContent.shortBio}</Text>
     </Container>
     <Space h={"md"}/>
@@ -56,7 +50,7 @@ export default function HomePageMobile() {
       <SkH2Mobile text={"Символи"} mb={"lg"} />
       <Container px={"md"}>
         <SkFountain isMobile={true}/>
-        <Text mt="sm" className='normalContentText'>{homePageContent.symbolsText}</Text>
+        <Text mt="sm" className='normalContentText' ta={"left"}>{homePageContent.symbolsText}</Text>
       </Container>
     </SkColoredContainerMobile>
     <SkSourcesContainerMobile sources={homePageContent.sourcesParams} />

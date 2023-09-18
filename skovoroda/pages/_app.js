@@ -75,10 +75,10 @@ export default function App(props) {
         withNormalizeCSS
         theme={{
           colorScheme: 'light',
-          fontFamily: "Roboto,Montserrat,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji", 
+          fontFamily: roboto.style.fontFamily, 
           fontStyle: "normal",
           headings: {
-            fontFamily: "Roboto,Montserrat,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji",
+            fontFamily: roboto.style.fontFamily,
           },
           shadows: {
             sm: '3px 4px 8px 1px rgba(0, 0, 0, 0.15)',

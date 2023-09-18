@@ -5,17 +5,17 @@ const useStyles = createStyles((theme) => ({
 
   labelText: {
     fontWeight: 300,
-    fontSize: "20px",
-    lineHeight: "23px",
-    letterSpacing: "0.04em",
+    fontSize: "12px",
+    lineHeight: "14px",
+    letterSpacing: "0",
   },
 
   card: {
     ".mantine-Select-input": {
       fontWeight: 300,
-      fontSize: "20px",
-      lineHeight: "23px",
-      letterSpacing: "0.04em",
+      fontSize: "12px",
+      lineHeight: "14px",
+      letterSpacing: "0",
     },
   },
 
@@ -25,14 +25,14 @@ export default function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2}) 
   
   const { classes } = useStyles();
 
-  return <Card className={classes.card} withBorder={false} w="100%" px="md" py="md" m="0" >
+  return <Card className={classes.card} withBorder={false} w="100%" px="md" py="0" m="0" >
 
     <Text mb="xs" className={classes.labelText}>{dropdown1.label}</Text>
     <Select 
-      size="sm"
+      size="xs"
       withinPortal={true}
       searchable={false}
-      mb="md"
+      mb="sm"
       itemComponent={LinkInsideSelect} 
       data={dropdown1.data} 
       value={dropdown1.selectedValue}
@@ -42,7 +42,7 @@ export default function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2}) 
 
     <Text mb="xs" className={classes.labelText}>{dropdown2.label}</Text>
     <Select 
-      size="sm"
+      size="xs"
       withinPortal={true}
       searchable={false}
       itemComponent={LinkInsideSelect} 

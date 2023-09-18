@@ -1,4 +1,4 @@
-import { Center, Container, Space, Text, createStyles } from "@mantine/core";
+import { Center, Container, Group, Space, Text, createStyles } from "@mantine/core";
 import { prepareFablesDropdownItems, prepareTranslatorsDropdownItems } from "../../lib/pagesContent/fableLogic";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -11,6 +11,8 @@ import SkH2Mobile from "../shared/skH2Mobile";
 import SkColoredContainerMobile from "../shared/skColoredContainerMobile";
 import { commonContent } from "../../lib/pagesContent/commonContent";
 import SkSourceBlockMobile from "../shared/skSourceBlockMobile";
+import SkButtonMobile from "../shared/skButtonMobile";
+import { randomNumberInRange, randomNumberInRangeExcept } from "../../lib/auxiliary";
 
 const useStyles = createStyles((theme) => ({
   
@@ -24,6 +26,10 @@ const useStyles = createStyles((theme) => ({
     marginBottom: theme.spacing.sm,
     marginLeft: "auto",
     marginRight: "auto",
+  },
+
+  groupOfButtons: {
+    gap: theme.spacing.sm,
   },
 
 }));
@@ -83,7 +89,12 @@ export default function FablePageMobile({
   const h1Text = `${fableString} ${selectedMetadata.fableNumber} – ${selectedMetadata.fableTitle}`;
   const isFableImageExists = selectedMetadata.fableImage && selectedMetadata.fableImage.imageUrl && selectedMetadata.fableImage.imageUrl.length > 0;
 
+  const prevFableNumber = selectedMetadata.fableNumber - 1;
+  const nextFableNumber = selectedMetadata.fableNumber + 1;
+  const randomFableNumber = randomNumberInRangeExcept(1, 30, selectedMetadata.fableNumber);
+
   return <>
+    <Space h="md"/>
     <SkCardWithTwoSelectorsMobileV2 
       dropdown1={{
         label: "Оберіть переклад",
@@ -98,6 +109,12 @@ export default function FablePageMobile({
         onChange: selectFableDropdownValue
       }}
     />
+    <Group mt={"sm"} mx={"md"} mb={"md"} grow gap={"sm"} className={classes.groupOfButtons}>
+      <SkButtonMobile text={"<"} onClick={() => selectFableDropdownValue(prevFableNumber)} disabled={prevFableNumber === 0}/>
+      <SkButtonMobile text={"Байка на щастя"} onClick={() => selectFableDropdownValue(randomFableNumber)}/>
+      <SkButtonMobile text={">"} onClick={() => selectFableDropdownValue(nextFableNumber)} disabled={nextFableNumber === 31}/>
+    </Group>
+    
     <Container px="md">
       <SkH1Mobile text={h1Text} />
     </Container>

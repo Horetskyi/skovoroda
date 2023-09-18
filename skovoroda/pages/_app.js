@@ -142,9 +142,9 @@ export default function App(props) {
             },
             ".mantine-Select-item": {
               fontWeight: 300,
-              fontSize: "20px",
-              lineHeight: "23px",
-              letterSpacing: "0.04em",
+              fontSize: isMobile ? "12px" : "20px",
+              lineHeight: isMobile ? "14px" : "23px",
+              letterSpacing: isMobile ? "0" : "0.04em",
               padding: "10px 12px",
             },
             ".st0": {

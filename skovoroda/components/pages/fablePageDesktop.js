@@ -1,5 +1,5 @@
 
-import { Container, Space, Text, createStyles } from '@mantine/core';
+import { Container, Group, Space, Text, createStyles } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Image from 'next/image';
@@ -13,6 +13,8 @@ import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
 import SkSourceBlockDesktop from '../shared/skSourceBlockDesktop';
 import { commonContent } from '../../lib/pagesContent/commonContent';
 import SkSourcesContainerDesktop from '../shared/skSourcesContainerDesktop';
+import SkButtonDesktop from '../shared/skButtonDesktop';
+import { randomNumberInRangeExcept } from '../../lib/auxiliary';
 
 const useStyles = createStyles((theme) => ({
   
@@ -44,6 +46,10 @@ const useStyles = createStyles((theme) => ({
     marginBottom: theme.spacing.sm,
     marginLeft: "auto",
     marginRight: "auto",
+  },
+
+  groupOfButtons: {
+
   },
 
 }));
@@ -123,6 +129,10 @@ export default function FablePageDesktop({
     });
   }
 
+  const prevFableNumber = selectedMetadata.fableNumber - 1;
+  const nextFableNumber = selectedMetadata.fableNumber + 1;
+  const randomFableNumber = randomNumberInRangeExcept(1, 30, selectedMetadata.fableNumber);
+
   return <>
     <Container py="lg">
       <SkCardWithTwoSelectorsDesktopV2 
@@ -139,6 +149,11 @@ export default function FablePageDesktop({
           onChange: selectFableDropdownValue
         }}
       />
+      <Group mt={"md"} mx={0} mb={0} grow className={classes.groupOfButtons} w={560}>
+        <SkButtonDesktop text={"<"} onClick={() => selectFableDropdownValue(prevFableNumber)} disabled={prevFableNumber === 0}/>
+        <SkButtonDesktop text={"Байка на щастя"} onClick={() => selectFableDropdownValue(randomFableNumber)}/>
+        <SkButtonDesktop text={">"} onClick={() => selectFableDropdownValue(nextFableNumber)} disabled={nextFableNumber === 31}/>
+      </Group>
       <Space h="lg"/>
       <SkH1Desktop text={h1Text} />
       <Space h="lg"/>
@@ -148,6 +163,7 @@ export default function FablePageDesktop({
         {isFableImageExists ? 
           <div className={classes.fableImage}>
             <Image 
+              key={selectedMetadata.fableImage.imageUrl}
               src={selectedMetadata.fableImage.imageUrl} 
               width={260} 
               height={360} 

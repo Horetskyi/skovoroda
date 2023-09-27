@@ -16,8 +16,9 @@ export default function SkRelatedThemesDesktop(props) {
     return null;
   }
 
+  const text = "Пов'язані теми:";
   return <div className="normalContentText normalContentText_withoutIndent">
-    <Text fw={400}>Пов&apos;язані теми:</Text>
+    <Text fw={400}>{text}</Text>
     <List className="normalContentText normalContentText_withoutIndent">
       {props.themes.map(theme => {
         return <List.Item key={theme}><Text>{theme}</Text></List.Item>

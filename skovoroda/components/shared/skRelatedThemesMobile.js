@@ -16,8 +16,7 @@ export default function SkRelatedThemesMobile(props) {
     return null;
   }
 
-  const text = "Пов&apos;язані теми:";
-
+  const text = "Пов'язані теми:";
   return <div className="normalContentText normalContentText_withoutIndent">
     <Text fw={400}>{text}</Text>
     <List className="normalContentText normalContentText_withoutIndent">

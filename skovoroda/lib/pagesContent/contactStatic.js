@@ -9,6 +9,7 @@ export function getContactPageProps() {
       metadataKeywords: ["Контакти"],
       metadataAuthorUrl: "https://www.linkedin.com/in/dmytro-horetskyi/",
       shouldBeIndexed: true,
+      canonicalPageUrl: "https://www.skovoroda.club/contact",
     },
   };
 }

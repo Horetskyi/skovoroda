@@ -108,6 +108,8 @@ export async function getStaticProps({ params }) {
       shouldBeIndexed: true,
       selectedComment, selectedComment,
       selectedCommonMetadata, selectedCommonMetadata,
+      canonicalPageUrl: "https://www.skovoroda.club/texts/fables/" + id,
+      facebookImageUrl: selectedFable.metadata.fableImage ? selectedFable.metadata.fableImage.imageUrl : null,
     },
   };
 }

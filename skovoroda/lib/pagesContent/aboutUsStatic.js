@@ -25,6 +25,7 @@ export function getAboutUsPageProps() {
       metadataAuthorUrl: "https://www.linkedin.com/in/dmytro-horetskyi/",
       shouldBeIndexed: true,
       parsedContent: parsedContent,
+      canonicalPageUrl: "https://www.skovoroda.club/about-us",
     },
   };
 }

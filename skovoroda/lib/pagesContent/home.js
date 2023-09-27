@@ -8,6 +8,8 @@ export function getHomePageProps() {
       metadataDescription: "Філософ-містик, богослов, поет, педагог і композитор літургійної музики. Мав значний вплив на сучасників і подальші покоління своїми байками, піснями, філософськими творами, а також способом життя, через що його називають ”Українським Сократом”.",
       metadataKeywords: ["Григорій Савич Сковорода", "Григорій Сковорода","Український філософ","Філософія Сковороди"],
       shouldBeIndexed: true,
+      canonicalPageUrl: "https://www.skovoroda.club/",
+      facebookImageUrl: "https://www.skovoroda.club/images/SkovorodaPortrait2.jpg",
     },
   };
 }

@@ -11,6 +11,7 @@ export function getFablesPageProps() {
       metadataDescription: "Байки Харківські - Григорій Савич Сковорода",
       metadataKeywords: ["Байки Харківські", "Байки Сковороди", "Байки Сковороди в перекладі"],
       shouldBeIndexed: true,
+      canonicalPageUrl: "https://www.skovoroda.club/texts/fables",
     },
   };
 }

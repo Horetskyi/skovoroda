@@ -69,6 +69,22 @@ export default function App(props) {
        
         {(pageProps.metadataAuthorUrl ? 
           <link rel="author" href={pageProps.metadataAuthorUrl} /> : null)}
+
+        {(pageProps.canonicalPageUrl ?
+          <link rel="canonical" href={pageProps.canonicalPageUrl} /> : null)}
+
+        {(pageProps.canonicalPageUrl ?
+          <meta property="og:url" content={pageProps.canonicalPageUrl} /> : null)}
+
+        {(pageProps.metadataTitle ?
+          <meta property="og:title" content={pageProps.metadataTitle} /> : null)}
+
+        {(pageProps.metadataDescription ?
+          <meta property="og:description" content={pageProps.metadataDescription} /> : null)}
+
+        {(pageProps.facebookImageUrl ?
+          <meta property="og:image" content={pageProps.facebookImageUrl} /> : null)}
+
       </Head>
       <MantineProvider
         withGlobalStyles

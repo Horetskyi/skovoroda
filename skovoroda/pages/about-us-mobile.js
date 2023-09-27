@@ -5,6 +5,7 @@ import SkColoredContainerMobile from "../components/shared/skColoredContainerMob
 import { aboutUsContent } from "../lib/pagesContent/aboutUsContent";
 import { getAboutUsPageProps } from "../lib/pagesContent/aboutUsStatic";
 import SkH2Mobile from "../components/shared/skH2Mobile";
+import SkTextContentBlockDesktop from "../components/shared/skTextContentBlockDesktop";
 
 const useStyles = createStyles((theme) => ({
 
@@ -36,9 +37,7 @@ export default function AboutUsPage(props) {
     </Center>
     <SkColoredContainerMobile>
       <Container px={"md"}>
-        {aboutUsContent.mainText.map(text => {
-          return <Text key={text} className="normalContentText" mb={"sm"}>{text}</Text>
-        })}
+        <SkTextContentBlockDesktop textContent={props.parsedContent} isv2={true} isMobile={true} />
         <Space h={"md"}/>
         <SkH2Mobile text={aboutUsContent.title2}/>
         <Space h={"md"}/>

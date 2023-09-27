@@ -5,6 +5,7 @@ import SkH1Desktop from "../components/shared/skH1Desktop";
 import SkColoredContainerDesktop from "../components/shared/skColoredContainerDesktop";
 import { getAboutUsPageProps } from "../lib/pagesContent/aboutUsStatic";
 import SkH2Desktop from "../components/shared/skH2Desktop";
+import SkTextContentBlockDesktop from "../components/shared/skTextContentBlockDesktop";
 
 const useStyles = createStyles((theme) => ({
   personBlock: {
@@ -43,9 +44,7 @@ export default function AboutUsPage(props) {
       <SkH1Desktop text={aboutUsContent.title}/>
     </Center>
     <SkColoredContainerDesktop>
-      {aboutUsContent.mainText.map(text => {
-        return <Text key={text} className="normalContentText">{text}</Text>
-      })}
+      <SkTextContentBlockDesktop textContent={props.parsedContent} isv2={true} />
       <Space h={"lg"}/>
       <SkH2Desktop text={aboutUsContent.title2}/>
       <Space h={"lg"}/>

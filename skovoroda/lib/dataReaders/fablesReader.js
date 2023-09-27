@@ -75,6 +75,40 @@ function readNotesInDirectory(directoryName) {
   return content;
 }
 
+function readCommentsInDirectory(directoryName) {
+  const directoryPath = path.join(process.cwd(), "lib", "data", "fables", directoryName);
+  const fileNames = fs.readdirSync(directoryPath);
+  const allComments = fileNames.map(fileName => {
+    const filePath = path.join(directoryPath, fileName); 
+    const contentString = fs.readFileSync(filePath).toString();
+    if (!contentString || !contentString.length) {
+      return undefined;
+    }
+    const content = parseFileContent(contentString);
+    return {
+      content: content,
+      fableNumber: +(fileName.replace('.txt', '')),
+    }
+  }).filter(item => item);
+  return allComments;
+}
+
+function readCommonMetadataInDirectory(directoryName) {
+  const directoryPath = path.join(process.cwd(), "lib", "data", "fables", directoryName);
+  const fileNames = fs.readdirSync(directoryPath);
+  const allCommonMetadata = fileNames.map(fileName => {
+    const filePath = path.join(directoryPath, fileName); 
+    let fileString = fs.readFileSync(filePath).toString();
+    if (!fileString || !fileString.length) {
+      return undefined;
+    }
+    fileString = fixText(fileString);
+    const metadata = JSON.parse(fileString);
+    return metadata;
+  }).filter(item => item);
+  return allCommonMetadata;
+}
+
 export function readAllFables() {
 
   const directories = ["fedorak", "original"];
@@ -90,5 +124,7 @@ export function readAllFables() {
       return fables;
     })
     .flat(1);
-  return {allFables,allNotes};
+  const allComments = readCommentsInDirectory("comments");
+  const allCommonMetadata = readCommonMetadataInDirectory("commonMetadata");
+  return {allFables,allNotes,allComments,allCommonMetadata};
 } 

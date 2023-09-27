@@ -35,7 +35,7 @@ export async function getStaticProps({ params }) {
   const { id, deviceEnding } = readDynamicIdCommon(params.id);
   
   // Fables
-  const {allFables, allNotes} = readAllFables();
+  const {allFables, allNotes, allComments, allCommonMetadata} = readAllFables();
   const allFablesMetadata = allFables.map(fable => fable.metadata);
   allFablesMetadata.sort((a,b) => a.fableNumber - b.fableNumber);
   const selectedFable = allFables.find(fable => fable.metadata.urlId == id);
@@ -56,6 +56,17 @@ export async function getStaticProps({ params }) {
       note.fableNumber == selectedFable.metadata.fableNumber);
   }
   
+  // Comment
+  const selectedCommentObj = allComments.find(comment => comment.fableNumber === selectedFable.metadata.fableNumber);
+  const selectedComment = selectedCommentObj ? selectedCommentObj.content : null;
+
+  // Common Metadata
+  let selectedCommonMetadata = allCommonMetadata.find(metadata => metadata.fableNumber === selectedFable.metadata.fableNumber);
+  if (!selectedCommonMetadata) {
+    selectedCommonMetadata = null;
+  }
+  
+
   const isOriginal = selectedFableTranslator.translatorId ? false : true;
 
   const recommendedDescriptionLength = SkovorodaConstants.recommendedMetaDescriptionLength;
@@ -95,6 +106,8 @@ export async function getStaticProps({ params }) {
       selectedNotes,
       allTranslators: skTranslatorsV2,
       shouldBeIndexed: true,
+      selectedComment, selectedComment,
+      selectedCommonMetadata, selectedCommonMetadata,
     },
   };
 }

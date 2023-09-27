@@ -21,7 +21,11 @@ const useStyles = createStyles((theme, params) => {
   };
 });
 
-export default function SkImage({ image, imageUrl, width, height, shadow, disableBottomRadius, alt, title, styleAction, priority }) {
+export default function SkImage({ image, imageUrl, width, height, shadow, disableBottomRadius, alt, title, styleAction, priority, 
+  additionalClassName, 
+  onClick,
+  fullScreenMode 
+}) {
 
   const { classes } = useStyles({shadow});
 
@@ -45,7 +49,12 @@ export default function SkImage({ image, imageUrl, width, height, shadow, disabl
     styleAction(styleObj);
   }
 
-  return <div className={classes.image} style={styleObj}>
-    <Image key={imageUrl} src={imageUrl} width={width} height={height} style={styleObj} alt={alt} title={title} priority={priority} />
+  let className = classes.image;
+  if (additionalClassName) {
+    className += " " + additionalClassName;
+  }
+
+  return <div className={className} style={styleObj}>
+    <Image key={imageUrl} src={imageUrl} width={width} height={height} style={styleObj} alt={alt} title={title} priority={priority} onClick={onClick} />
   </div>
 }

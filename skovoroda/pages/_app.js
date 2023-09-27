@@ -207,6 +207,14 @@ export default function App(props) {
               overflowX: "hidden",
               width: "calc(100% - 20px)",
             },
+            ".mantine-Overlay-root.mantine-Modal-overlay": {
+              background: "white",
+              opacity: 0.7,
+            },
+            ".mantine-Modal-body": {
+              width: "520px",
+              position: "relative",
+            }
           }),
         }}
       >

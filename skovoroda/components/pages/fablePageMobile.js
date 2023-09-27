@@ -11,6 +11,9 @@ import SkH2Mobile from "../shared/skH2Mobile";
 import SkButtonMobile from "../shared/skButtonMobile";
 import { randomNumberInRangeExcept } from "../../lib/auxiliary";
 import SkSourcesContainerMobile from "../shared/skSourcesContainerMobile";
+import SkColoredContainerMobile from "../shared/skColoredContainerMobile";
+import SkCommentAuthorMobile from "../shared/skCommentAuthorMobile";
+import SkRelatedThemesMobile from "../shared/skRelatedThemesMobile";
 
 const useStyles = createStyles((theme) => ({
   
@@ -37,6 +40,8 @@ export default function FablePageMobile({
   allFablesMetadata,
   allTranslators,
   selectedNotes,
+  selectedComment,
+  selectedCommonMetadata,
   selectedId,
   deviceEnding
 }) {
@@ -112,6 +117,7 @@ export default function FablePageMobile({
   }
 
   return <>
+
     <Space h="md"/>
     <SkCardWithTwoSelectorsMobileV2 
       dropdown1={{
@@ -139,7 +145,8 @@ export default function FablePageMobile({
     <Space h="md"/>
     {isFableImageExists ? <>
       <Center>
-        <SkImage imageUrl={selectedMetadata.fableImage.imageUrl} width={221} height={306} shadow={"md"} alt={selectedMetadata.fableImage.alt} title={selectedMetadata.fableImage.title} priority={true} />
+        <SkImage imageUrl={selectedMetadata.fableImage.imageUrl} width={221} height={306} 
+          shadow={"md"} alt={selectedMetadata.fableImage.alt} title={selectedMetadata.fableImage.title} priority={true} />
       </Center>
       <Space h="md"/>
     </> : null}
@@ -149,10 +156,22 @@ export default function FablePageMobile({
       <SkTextContentBlockDesktop textContent={selectedFable.powerContent} isv2={true} isMobile={true} />
       <Space h="md" />
       {(selectedNotes && selectedNotes.length) ? <>
-        <SkH2Mobile mb="sm" text={"Примітки"}/>
-        <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} isMobile={true} />
-      </> : null}
+          <SkH2Mobile mb="sm" text={"Примітки"}/>
+          <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} isMobile={true} />
+          <Space h="md" />
+        </> : null}
     </Container>
+    {(selectedComment && selectedComment.length) ? <>
+      <SkColoredContainerMobile color={"gray.0"} px={"md"}>
+        <SkH2Mobile mb="sm" text={"Коментар"}/>
+        <SkCommentAuthorMobile />
+        <SkTextContentBlockDesktop textContent={selectedComment} isv2={true} isMobile={true} />
+        {selectedCommonMetadata ? <>
+          <Space h="md" />
+          <SkRelatedThemesMobile themes={selectedCommonMetadata.relatedThemes} />
+        </> : null}
+      </SkColoredContainerMobile>
+      </> : null}
     <SkSourcesContainerMobile sources={sourcesParams} includeTextValidityWarning={true}/>
   </>
 }

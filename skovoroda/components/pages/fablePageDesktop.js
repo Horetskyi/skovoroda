@@ -1,5 +1,5 @@
 
-import { Container, Group, Space, createStyles } from '@mantine/core';
+import { Container, Group, Modal, Space, createStyles } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Image from 'next/image';
@@ -12,6 +12,12 @@ import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
 import SkSourcesContainerDesktop from '../shared/skSourcesContainerDesktop';
 import SkButtonDesktop from '../shared/skButtonDesktop';
 import { randomNumberInRangeExcept } from '../../lib/auxiliary';
+import SkColoredContainerDesktop from '../shared/skColoredContainerDesktop';
+import SkCommentAuthorDesktop from '../shared/skCommentAuthorDesktop';
+import SkRelatedThemesDesktop from '../shared/skRelatedThemesDesktop';
+import { useDisclosure } from '@mantine/hooks';
+import SkImage from '../shared/skImage';
+import SkTextLink from '../shared/skTextLink';
 
 const useStyles = createStyles((theme) => ({
   
@@ -49,6 +55,20 @@ const useStyles = createStyles((theme) => ({
 
   },
 
+  modalLink: {
+    position: 'absolute',
+    bottom: "-64px",
+    right: "0",
+    background: theme.colors.indigo[1],
+    padding: "8px 16px",
+    borderRadius: theme.radius.md,
+    textDecoration: "none",
+    outline: "none",
+  },
+
+  fableImageInModal: {
+  },
+
 }));
 
 export default function FablePageDesktop({ 
@@ -56,6 +76,8 @@ export default function FablePageDesktop({
   allFablesMetadata,
   allTranslators,
   selectedNotes,
+  selectedComment,
+  selectedCommonMetadata,
   selectedId,
   deviceEnding
 }) 
@@ -83,6 +105,9 @@ export default function FablePageDesktop({
   if (fablesDropdownItems.every(item => item.value !== selectedFableDropdownValue)) {
     selectFableDropdownValueInner(selectedMetadata.fableNumber);
   }
+
+  // Image Modal hook
+  const [opened, { open, close }] = useDisclosure(false);
 
   // Dropdown 1
   function selectTranslatorDropdownValue(value) {
@@ -130,7 +155,23 @@ export default function FablePageDesktop({
   const nextFableNumber = selectedMetadata.fableNumber + 1;
   const randomFableNumber = randomNumberInRangeExcept(1, 30, selectedMetadata.fableNumber);
 
+
   return <>
+  
+    {isFableImageExists ? <>
+      <Modal opened={opened} onClose={close} padding={0} withCloseButton={false} radius={24} keepMounted={true} width={520} mt={"xl"}>
+        <SkImage 
+          key={selectedMetadata.fableImage.imageUrl}
+          width={520} 
+          height={720} 
+          additionalClassName={classes.fableImageInModal}
+          image={selectedMetadata.fableImage} />
+        <SkTextLink href={"https://instagram.com/olenka_art_vision"} text={"Автор: Олена Лещенко"} title={"Instagram"} 
+          className={classes.modalLink + " normalContentText normalContentText_withoutIndent"} 
+          isBlank={true} />
+      </Modal>
+    </> : null}
+    
     <Container py="lg">
       <SkCardWithTwoSelectorsDesktopV2 
         dropdown1={{
@@ -167,6 +208,7 @@ export default function FablePageDesktop({
               alt={selectedMetadata.fableImage.alt}
               title={selectedMetadata.fableImage.title} 
               priority
+              onClick={() => open()}
             />
           </div>
           : null}
@@ -183,6 +225,17 @@ export default function FablePageDesktop({
         <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} />
       </> : null}
     </Container>
+    {(selectedComment && selectedComment.length) ? <>
+      <SkColoredContainerDesktop color={"gray.0"}>
+        <SkH2Desktop mb="sm" text={"Коментар"}/>
+        <SkCommentAuthorDesktop />
+        <SkTextContentBlockDesktop textContent={selectedComment} isv2={true}/>
+        {selectedCommonMetadata ? <>
+          <Space h="md" />
+          <SkRelatedThemesDesktop themes={selectedCommonMetadata.relatedThemes} />
+        </> : null}
+      </SkColoredContainerDesktop>
+      </> : null}
     <SkSourcesContainerDesktop sources={sourcesParams} includeTextValidityWarning={true} />
   </>;
 }

@@ -16,7 +16,7 @@ const useStyles = createStyles((theme) => ({
   
 }));
 
-export default function SkTextLink({text, href, disableStyles, title, className}) {
+export default function SkTextLink({text, href, disableStyles, title, className, isBlank}) {
   
   const { classes } = useStyles();
 
@@ -29,7 +29,7 @@ export default function SkTextLink({text, href, disableStyles, title, className}
     linkTitle = getLinkTitle(href);
   }
 
-  return <Link href={href} title={linkTitle} className={pClassName}>
+  return <Link href={href} title={linkTitle} className={pClassName} target={isBlank ? "_blank" : "_self"} >
     {text}
   </Link>
 }

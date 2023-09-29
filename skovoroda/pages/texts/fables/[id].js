@@ -73,12 +73,19 @@ export async function getStaticProps({ params }) {
   var metaDescription = (isOriginal ? "В оригіналі." : "Перекладач: " + selectedFableTranslator.lastName + " " + selectedFableTranslator.firstName + " " + selectedFableTranslator.byFatherName + ".");
   var contentIndex = 0;
   while (metaDescription.length < recommendedDescriptionLength && contentIndex < selectedFable.content.length) {
-    const text = selectedFable.content[contentIndex].text;
+    const content = selectedFable.content[contentIndex];
+    const contentArray = Array.isArray(content.text) ? content.text : [content];
+
+    const text = contentArray
+      .filter(line => !line.noteNumber && !line.isNoteBeginning)
+      .map(line => line.text)
+      .join("");
+
     if (text.length + metaDescription.length <= recommendedDescriptionLength) {
       metaDescription += " " + text;
     } else {
       metaDescription += " " + text.substring(0, recommendedDescriptionLength - metaDescription.length) + "...";
-      break;
+      break ;
     }
     contentIndex++;
   }

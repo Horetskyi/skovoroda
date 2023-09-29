@@ -75,7 +75,6 @@ export async function getStaticProps({ params }) {
   while (metaDescription.length < recommendedDescriptionLength && contentIndex < selectedFable.content.length) {
     const content = selectedFable.content[contentIndex];
     const contentArray = Array.isArray(content.text) ? content.text : [content];
-
     const text = contentArray
       .filter(line => !line.noteNumber && !line.isNoteBeginning)
       .map(line => line.text)
@@ -96,7 +95,7 @@ export async function getStaticProps({ params }) {
     "Сковорода байка " + selectedFable.metadata.fableTitle,
   ];
 
-  const metaTitle = selectedFable.metadata.fableTitle + " – Байка Сковороди Григорія Савича";
+  const metaTitle = selectedFable.metadata.fableTitle + " – Байка " + selectedFable.metadata.fableNumber + " Сковороди Григорія Савича";
 
   return {
     props: {

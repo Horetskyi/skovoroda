@@ -1,11 +1,9 @@
-import { Container, createStyles, Stack, Table, Text, Title } from '@mantine/core';
-import { IconMail, IconMessage, IconSquareLetterU } from '@tabler/icons';
+import { Container, createStyles, Table, Text, Title } from '@mantine/core';
 import Link from 'next/link';
 import AnimatedMailComponent from '../components/animatedMailComponent';
 import { SkovorodaLettersFrom, SkovorodaLettersTo } from '../lib/data/skovorodaLetters';
-import { SkovorodaTextsArray } from '../lib/data/skovorodaTexts';
-import { lettersPageKey, textsPageKey } from '../lib/skovorodaConstants';
-import { pathJoin, pathJoinWithoutEndSlash, SkovorodaLettersFromPath, SkovorodaTextsPath } from '../lib/skovorodaPath';
+import { lettersPageKey } from '../lib/skovorodaConstants';
+import { pathJoin, SkovorodaLettersFromPath } from '../lib/skovorodaPath';
 
 const useStyles = createStyles((theme) => ({
   table: {

@@ -75,6 +75,7 @@ const skovorodaSources = {
     id: "tvory_u_dvox_tomax_tom_2_1994",
     sourceName: "Сковорода, Григорій. Твори у двох томах. Том 2 - 1994 р.",
     productionYear: 1994,
+    bookCoverImageFileName: "Tvory u dvox tomax. Tom 2 - 1994.png",
     // TODO: Now: add cover image
     files: [], // TODO: add file
   },
@@ -102,6 +103,12 @@ const skovorodaSources = {
     id: "seminaryi",
     sourceName: "Григорій Сковорода: семінарій. – Ушкалов Л.В. – Харків: Майдан, 2004",
     productionYear: 2004,
+  },
+  evgen_glyva_ontologial_theory: {
+    devNumber: 28,
+    id: "evgen_glyva_ontologial_theory",
+    sourceName: "Євген Глива: Онтологічний образ людини в творчості Григорія Сковороди.: – К.: Видавництво ТОВ \"КММ\", 2006",
+    productionYear: 2006,
   },
 }
 

@@ -1,33 +1,15 @@
-import { Container, Group, Space, Stack, Text, createStyles } from "@mantine/core";
-import SkColoredContainerDesktop from "../shared/skColoredContainerDesktop";
-import SkH1Desktop from "../shared/skH1Desktop";
-import SkH2Desktop from "../shared/skH2Desktop";
+import { Center, Container, Group, Space, Stack, Text, createStyles } from "@mantine/core";
 import SkImage from "../shared/skImage";
 import Link from "next/link";
 import SkDownloadButtonDesktop from "../shared/skDownloadButtonDesktop";
+import SkColoredContainerMobile from "../shared/skColoredContainerMobile";
+import SkH1Mobile from "../shared/skH1Mobile";
+import SkH2Mobile from "../shared/skH2Mobile";
 
 const useStyles = createStyles((theme) => ({
-  
-  bookContainer: {
-    display: "flex",
-  },
-  bookImage: {
-    borderRadius: theme.radius.md,
-    boxShadow: theme.shadows.lg,
-    minWidth: "max-content",
-    lineHeight: 0,
-    width: 170,
-    height: 246,
-    img: {
-      borderRadius: theme.radius.md,
-      objectFit: "cover",
-    },
-    marginRight: theme.spacing.md, 
-  },
-
 }));
 
-export default function SkTreatisePageDesktop({ treatise, sources, translators }) {
+export default function SkTreatisePageMobile({ treatise, sources, translators }) {
   
   const { classes } = useStyles();
 
@@ -41,8 +23,8 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
   function TreatisVersionBlock(version, source) {
     const isTranslation = version.translatorId ? true : false;
     const translator = translators.find(t => t.translatorId == version.translatorId);
-    return <Container className={classes.bookContainer} key={version.urlId}>
-      <div className={classes.bookImage}>
+    return <Container key={version.urlId}>
+      <Center>
         <SkImage 
           key={source.bookCoverImage.imageUrl}
           image={source.bookCoverImage} 
@@ -50,7 +32,9 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
           height={246} 
           priority
         />
-      </div>
+      </Center>
+      <Space h="md"/>
+      
       <Stack p="0" m="0" ta="left" spacing="xs">
         <Text className="normalContentText normalContentText_withoutIndent">Назва: {version.title}</Text>
         {isTranslation ? 
@@ -72,18 +56,18 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
   }
 
   return <>
-    <SkColoredContainerDesktop>
-      <SkH1Desktop text={preferedTitle} mb="lg" />
-      <SkH2Desktop text="Оригінал" mb="md" />
+    <SkColoredContainerMobile>
+      <SkH1Mobile text={preferedTitle} mb="md"/>
+      <SkH2Mobile text="Оригінал" mb="md" />
       {TreatisVersionBlock(original, originalSource)}
       <Space h="md"/>
-      <SkH2Desktop text="Переклади" mb="md" />
+      <SkH2Mobile text="Переклади" mb="md" />
       {treatise.versions.filter(v => v.translatorId).map((v, index, array) => {
         return <div key={"t"+v.translatorId}>
           {TreatisVersionBlock(v, sources.find(s => s.sourceId === v.sourceId))}
           {(index !== array.length - 1) ? <Space h="md"/> : null}
         </div>
       })}
-    </SkColoredContainerDesktop>
+    </SkColoredContainerMobile>
   </>
 }

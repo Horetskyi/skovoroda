@@ -23,11 +23,11 @@ export function readAllTreatises() {
       metadataFileContent = fixText(metadataFileContent);
       const metadata = JSON.parse(metadataFileContent);
 
-      const introContentString = fs.readFileSync(txtIntroFilePath).toString();
+      let introContentString = fs.readFileSync(txtIntroFilePath).toString();
       if (!introContentString || !introContentString.length) {
-        return undefined;
+        introContentString = null;
       }
-      const introContent = parseFileContent(introContentString);
+      const introContent = introContentString ? parseFileContent(introContentString) : null;
       metadata.introContent = introContent;
 
       return metadata;

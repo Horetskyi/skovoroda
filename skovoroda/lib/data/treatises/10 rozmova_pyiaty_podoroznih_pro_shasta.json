@@ -1,0 +1,37 @@
+{
+  "urlId": "rozmova_pyiaty_podoroznih_pro_shasta",
+  "orderNumber": 10,
+  "treatiseType": "Діалог",
+  "writtenDate": [
+    {
+      "year": 1770,
+      "text": "написаний на початку 1770-х",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Разговор Пяти путников о истинном щастіи в жизни",
+      "fileNames": [
+      ]
+    },
+    {
+      "translatorId": 4,
+      "sourceId": 4,
+      "title": "Розмова п'яти подорожніх про справжнє щастя в житті",
+      "fileNames": [
+      ],
+      "preferedVersion": true
+    },
+    {
+      "translatorId": 2,
+      "sourceId": 9,
+      "title": "Розмова п'яти подорожніх про істинне щастя в житті",
+      "fileNames": [
+      ]
+    }
+  ],
+  "introSourceId": 28
+}

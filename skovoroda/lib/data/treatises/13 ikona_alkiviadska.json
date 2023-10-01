@@ -1,0 +1,35 @@
+{
+  "urlId": "ikona_alkiviadska",
+  "orderNumber": 13,
+  "treatiseType": "Діалог",
+  "writtenDate": [
+    {
+      "year": 1776,
+      "text": "перша редакція 1776 р.",
+      "sourceId": 3
+    },
+    {
+      "year": 1780,
+      "text": "друга редакція 1780 р.",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Книжечка, называемая Silenus Alcibiadis. Сирѣчь Икона Алківіадская",
+      "fileNames": [
+      ]
+    },
+    {
+      "translatorId": 4,
+      "sourceId": 13,
+      "title": "Книжечка, що називається Silenus Alcibiadis, тобто Ікона Алківіадська (Ізраїльський змій)",
+      "fileNames": [
+      ],
+      "preferedVersion": true
+    }
+  ],
+  "introSourceId": 27
+}

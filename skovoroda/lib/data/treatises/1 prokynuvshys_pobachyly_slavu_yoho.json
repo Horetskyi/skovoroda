@@ -1,0 +1,33 @@
+{
+  "urlId": "prokynuvshys_pobachyly_slavu_yoho",
+  "orderNumber": 1,
+  "treatiseType": "Трактат",
+  "writtenDate": [
+    {
+      "year": 1755,
+      "text": "написаний наприкінці 1750-1760-х рр.",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Убуждшеся видѣша славу его",
+      "fileNames": [
+        "Г. С. Сковорода - Убуждшеся видеша славу его - Л. Ушкалов.pdf"
+      ]
+    },
+    {
+      "translatorId": 4,
+      "sourceId": 4,
+      "title": "Прокинувшись, побачили славу його",
+      "fileNames": [
+        "Г. С. Сковорода - Прокинувшись, побачили славу його - М. Кашуба.pdf",
+        "Г. С. Сковорода - Прокинувшись, побачили славу його - М. Кашуба.docx"
+      ],
+      "preferedVersion": true
+    }
+  ],
+  "introSourceId": 28
+}

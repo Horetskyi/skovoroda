@@ -1,0 +1,33 @@
+{
+  "urlId": "besida_2ha_nazvana_observatorium_sion",
+  "orderNumber": 8,
+  "treatiseType": "Діалог",
+  "writtenDate": [
+    {
+      "year": 1770,
+      "text": "написаний на початку 1770-х",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Бесѣда 2-я, нареченная Observatorium. Specula. Eврейски: Сіон",
+      "fileNames": [
+        "Г. С. Сковорода - Беседа 2-я, нареченная Observatorium. Specula. Eврейски. Сіон - Л. Ушкалов.pdf"
+      ]
+    },
+    {
+      "translatorId": 4,
+      "sourceId": 4,
+      "title": "Бесіда 2-га, названа Observatorium Specula, по-єврейськи Сіон",
+      "fileNames": [
+        "Г. С. Сковорода - Бесіда 2-га, названа Observatorium Specula, по-єврейськи Сіон - М. Кашуба.pdf",
+        "Г. С. Сковорода - Бесіда 2-га, названа Observatorium Specula, по-єврейськи Сіон - М. Кашуба.docx"
+      ],
+      "preferedVersion": true
+    }
+  ],
+  "introSourceId": 28
+}

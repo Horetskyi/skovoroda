@@ -1,39 +1,40 @@
 import { Checkbox, Container, Group, Stack, Text, Title, createStyles } from '@mantine/core';
-import SkH1Desktop from '../../components/shared/skH1Desktop';
 import Link from 'next/link';
 import { SkovorodaTreatisePath, pathJoin } from '../../lib/skovorodaPath';
 import SkTextContentBlockDesktop from '../../components/shared/skTextContentBlockDesktop';
-import SkH2Desktop from '../../components/shared/skH2Desktop';
-import SkColoredContainerDesktop from '../../components/shared/skColoredContainerDesktop';
 import SkNote from '../../components/shared/skNote';
 import { useState } from 'react';
 import { getTreatisesPageProps } from '../../lib/pagesContent/trearisesStatic';
 import { trearisesContent } from '../../lib/pagesContent/treatisesContent';
 import { IconChevronRight } from '@tabler/icons';
+import SkH1Mobile from '../../components/shared/skH1Mobile';
+import SkColoredContainerMobile from '../../components/shared/skColoredContainerMobile';
+import SkH2Mobile from '../../components/shared/skH2Mobile';
 
 const useStyles = createStyles((theme) => ({
-  treatiseContainer: {
-    borderRadius: theme.radius.md,
-    boxShadow: theme.shadows.md,
-  },
   h2Link: {
     fontSize: "24px !important",
-    fontWeight: "400 !important",
-    lineHeight: "24px",
     color: theme.colors.blue[9],
     textDecoration: "none",
+    "span": {
+      lineHeight: "20px",
+    }
+  },
+  linkIcon: {
+    marginLeft: theme.spacing.xs,
+    marginBottom: "-4px",
   },
   dates: {
     borderLeftColor: theme.colors.blue[2],
     borderLeftStyle: "solid",
-    borderLeftWidth: "12px",
+    borderLeftWidth: "8px",
   },
   dateBoxContainer: {
     position: "relative"
   },
   dateBox: {
     background: theme.colors.blue[2],
-    width: "24px",
+    width: "12px",
     height: "12px",
     position: "absolute",
     top: 0,
@@ -43,13 +44,9 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "space-between",
     gap: 0,
   },
-  linkIcon: {
-    marginLeft: theme.spacing.xs,
-    marginBottom: "-4px",
-  },
 }));
 
-export default function SkTreatisePageDesktop({ treatises, sourcesTextContent }) {
+export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) {
   
   const { classes } = useStyles();
   
@@ -69,10 +66,10 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
 
   return <>
 
-    <SkH1Desktop text={trearisesContent.h1} mt="lg" />
+    <SkH1Mobile text={trearisesContent.h1} mt="md" />
 
     {/* Filters */}
-    <SkColoredContainerDesktop>
+    <SkColoredContainerMobile px="md">
       <Text mb="sm" className='normalContentText normalContentText_withoutIndent'>{trearisesContent.filtersByTypesLabel}</Text>
       <Stack spacing={"xs"} mb="sm">
         {filters.map(filter => {
@@ -87,7 +84,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
         })}
       </Stack>
       <Text className='normalContentText normalContentText_withoutIndent'>{trearisesContent.filtersByTypesLabelNote}</Text>
-    </SkColoredContainerDesktop>
+    </SkColoredContainerMobile>
 
     {/* List */}
     {filtered.map((treatise, index) => {
@@ -99,21 +96,26 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
       const writtenDate = treatise.writtenDate;
       writtenDate.sort((a,b) => a.year - b.year);
       const linkTitle = `${preferedTitle} скачати переклади, оригінал`;
-
-      return <Container key={treatise.urlId} w={900} bg={"white"} className={classes.treatiseContainer} p={"md"} mb={"lg"}>
+      
+      const bg = (index % 2 === 0) ? "gray.0" : "white";
+      
+      return <Container key={treatise.urlId} px="md" py="md" bg={bg}>
         
         {/* H2 */}
         <Title order={2} pb="sm">
-          <Link href={href} title={linkTitle} className={classes.h2Link + " normalContentText"}>{preferedTitle}<IconChevronRight className={classes.linkIcon}/></Link>
+          <Link href={href} title={linkTitle} className={classes.h2Link + " normalContentText"}>
+            <Text component='span'>{preferedTitle}</Text>
+            <IconChevronRight className={classes.linkIcon}/>
+          </Link>
         </Title>
 
         {/* Intro Content */}
-        <SkTextContentBlockDesktop textContent={introContent} isv2={true} />
+        <SkTextContentBlockDesktop textContent={introContent} isv2={true} isMobile={true} />
         
         {/* Dates Text */}
         <Container my="sm" px="0" py="6px" className={classes.dates}>
           {writtenDate.map(date => {
-            return <Text key={date.text} className='normalContentText'>
+            return <Text key={date.text} className={'normalContentText normalContentText_withoutIndent'} ml="sm">
               {date.text}
               {date.noteNumber ? <SkNote noteNumber={date.noteNumber} /> : null}
             </Text>
@@ -136,10 +138,10 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
     })}
 
     {/* Notes */}
-    <SkColoredContainerDesktop color={"gray.1"}>
-      <SkH2Desktop text={trearisesContent.h2Notes} mb="lg"/>
-      <SkTextContentBlockDesktop textContent={sourcesTextContent} isv3={true} />
-    </SkColoredContainerDesktop>
+    <SkColoredContainerMobile color={"gray.0"} px="md">
+      <SkH2Mobile text={trearisesContent.h2Notes} mb="md"/>
+      <SkTextContentBlockDesktop textContent={sourcesTextContent} isv3={true} isMobile={true} />
+    </SkColoredContainerMobile>
   </>
 }
 

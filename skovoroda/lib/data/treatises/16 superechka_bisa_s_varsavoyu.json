@@ -1,0 +1,30 @@
+{
+  "urlId": "superechka_bisa_s_varsavoyu",
+  "orderNumber": 16,
+  "treatiseType": "Солілоквій",
+  "writtenDate": [
+    {
+      "year": 1783,
+      "text": "написаний 1783 р.",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Пря Бѣсу со Варсавою",
+      "fileNames": [
+      ]
+    },
+    {
+      "translatorId": 4,
+      "sourceId": 4,
+      "title": "Суперечка Біса з Варсавою",
+      "fileNames": [
+      ],
+      "preferedVersion": true
+    }
+  ],
+  "introSourceId": 27
+}

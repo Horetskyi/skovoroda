@@ -1,9 +1,8 @@
 
-import { Container, Space, Stack } from '@mantine/core';
+import { Container, Space, Stack, Title } from '@mantine/core';
 import { SkovorodaSourcesArray } from '../../lib/data/skovorodaSources';
 import getStaticPathsCommon from '../../lib/getStaticPathsCommon';
 import readDynamicIdCommon from '../../lib/readDynamicIdCommon';
-import SkH1Desktop from '../../components/shared/skH1Desktop';
 import SkImage from '../../components/shared/skImage';
 import SkTextLink from '../../components/shared/skTextLink';
 import DownloadStackV1 from '../../components/downloadStackV1';
@@ -15,17 +14,14 @@ export default function Source({ sourceData, deviceEnding }) {
   const image = sourceData.bookCoverImage;
   const isImageExists = (image && image.imageUrl && image.imageUrl.length > 0) ? true : false; 
 
-  const imageWidth = isMobile ? 250 : 500;
-  const imageHeight = isMobile ? (900/2) : 900;
+  const imageWidth = isMobile ? 250 : 600;
+  const imageHeight = isMobile ? (900/(600/250)) : 900;
 
   return <>
     <Container py="lg" ta={"left"}>
-      <SkH1Desktop text={sourceData.shortTitle} />
 
-      {(sourceData.sourceFullName && sourceData.sourceFullName.length) ? <>
-        <p className='normalContentText normalContentText_withoutIndent'>{sourceData.sourceFullName}</p>
-      </> : null}
-      
+      <Title mb="md" order={1} className='normalContentText normalContentText_withoutIndent'>{sourceData.shortTitle}</Title>
+
       {(sourceData.sourceLink && sourceData.sourceLink.length) ? <>
         <SkTextLink text={sourceData.sourceLink} href={sourceData.sourceLink} />
         <Space h={"md"}/>
@@ -64,8 +60,10 @@ export async function getStaticProps({ params }) {
     props: {
       sourceData,
       deviceEnding,
-      metadataTitle: "Джерела",
-      metadataDescription: "Джерела",
+      metadataTitle: sourceData.sourceFullName,
+      metadataDescription: sourceData.sourceFullName,
+      shouldBeIndexed: true,
+      canonicalPageUrl: "https://www.skovoroda.club/source/" + id,
     },
   };
 }

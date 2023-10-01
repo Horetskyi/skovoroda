@@ -1,0 +1,33 @@
+{
+  "urlId": "khai_tsiluie_mene_potsilunkamy_ust_svoikh",
+  "orderNumber": 2,
+  "treatiseType": "Трактат",
+  "writtenDate": [
+    {
+      "year": 1755,
+      "text": "написаний наприкінці 1750-1760-х рр.",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Да лобжет мя от лобзаній уст своих!",
+      "fileNames": [
+        "Г. С. Сковорода - Да лобжет мя от лобзаній уст своих - Л. Ушкалов.pdf"
+      ]
+    },
+    {
+      "translatorId": 4,
+      "sourceId": 4,
+      "title": "Хай цілує мене поцілунками уст своїх",
+      "fileNames": [
+        "Г. С. Сковорода - Хай цілує мене поцілунками уст своїх - М. Кашуба.pdf",
+        "Г. С. Сковорода - Хай цілує мене поцілунками уст своїх - М. Кашуба.docx"
+      ],
+      "preferedVersion": true
+    }
+  ],
+  "introSourceId": 28
+}

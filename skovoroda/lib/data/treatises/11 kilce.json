@@ -1,0 +1,30 @@
+{
+  "urlId": "kilce",
+  "orderNumber": 11,
+  "treatiseType": "Діалог",
+  "writtenDate": [
+    {
+      "year": 1774,
+      "text": "написаний наприкінці 1773-го або на початку 1774 р",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Кольцо",
+      "fileNames": [
+      ]
+    },
+    {
+      "translatorId": 4,
+      "sourceId": 4,
+      "title": "Кільце",
+      "fileNames": [
+      ],
+      "preferedVersion": true
+    }
+  ],
+  "introSourceId": 28
+}

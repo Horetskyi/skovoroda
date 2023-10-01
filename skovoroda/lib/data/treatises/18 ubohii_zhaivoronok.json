@@ -1,0 +1,40 @@
+{
+  "urlId": "ubohii_zhaivoronok",
+  "orderNumber": 18,
+  "treatiseType": "Притча",
+  "writtenDate": [
+    {
+      "year": 1787,
+      "text": "написаний 1787 р.",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Убогій Жайворонок",
+      "fileNames": [
+        "Г. С. Сковорода - Убогій Жайворонок - Л. Ушкалов.pdf"
+      ]
+    },
+    {
+      "translatorId": 4,
+      "sourceId": 4,
+      "title": "Убогий Жайворонок",
+      "fileNames": [
+      ]
+    },
+    {
+      "translatorId": 2,
+      "sourceId": 13,
+      "title": "Убогий Жайворонок",
+      "fileNames": [
+        "Г. С. Сковорода - Убогий Жайворонок - В. Шевчук.pdf",
+        "Г. С. Сковорода - Убогий Жайворонок - В. Шевчук.docx"
+      ],
+      "preferedVersion": true
+    }
+  ],
+  "introSourceId": 27
+}

@@ -1,0 +1,37 @@
+{
+  "urlId": "bukvar_myru",
+  "orderNumber": 12,
+  "treatiseType": "Діалог",
+  "writtenDate": [
+    {
+      "year": 1775,
+      "text": "написана 1775 р.",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Разговор, называемый Алфавит, или Букварь Мира",
+      "fileNames": [
+      ]
+    },
+    {
+      "translatorId": 4,
+      "sourceId": 4,
+      "title": "Розмова, що називається Алфавіт, або Буквар миру",
+      "fileNames": [
+      ]
+    },
+    {
+      "translatorId": 2,
+      "sourceId": 9,
+      "title": "Розмова, названа Алфавіт, або Буквар миру",
+      "fileNames": [
+      ],
+      "preferedVersion": true
+    }
+  ],
+  "introSourceId": 28
+}

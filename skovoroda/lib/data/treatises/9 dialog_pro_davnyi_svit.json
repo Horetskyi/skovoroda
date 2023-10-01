@@ -1,0 +1,35 @@
+{
+  "urlId": "dialog_pro_davnyi_svit",
+  "orderNumber": 9,
+  "treatiseType": "Діалог",
+  "writtenDate": [
+    {
+      "year": 1772,
+      "text": "написаний 1772 р.",
+      "sourceId": 3
+    },
+    {
+      "year": 1778,
+      "text": "нова редакція для Ковалинського 1778 р.",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Діалог, или Разглагол о древнем мірѣ",
+      "fileNames": [
+      ]
+    },
+    {
+      "translatorId": 4,
+      "sourceId": 4,
+      "title": "Діалог, або Розмова про давній світ",
+      "fileNames": [
+      ],
+      "preferedVersion": true
+    }
+  ],
+  "introSourceId": 28
+}

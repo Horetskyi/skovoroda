@@ -15,7 +15,7 @@ export default function DownloadStackV1(props) {
 
   return <Stack spacing="md">
     {props.files.map(file => 
-    <Link key={"link-"+file.fileName} href={"/sources/" + file.fileName}>
+    <Link key={"link-"+file.fileName} href={"/sources/" + file.fileName} title={file.fileName}>
       <Button 
         width={260}
         leftIcon={<IconBookDownload/>} 

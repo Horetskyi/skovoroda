@@ -53,7 +53,14 @@ export const skTranslatorsV2 = [
     lastName: "Шевченко",
     byFatherName: "Володимирович",
     urlId: "shevchenko",
-  }
+  },
+  {
+    translatorId: 4,
+    firstName: "Марія",
+    lastName: "Кашуба",
+    byFatherName: "Василівна",
+    urlId: "kashuba",
+  },
 ].map(translator => {
   if (translator.translatorId === 0) {
     translator.fullName3 = "Оригінал";

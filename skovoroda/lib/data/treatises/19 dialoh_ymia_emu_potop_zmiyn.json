@@ -1,0 +1,33 @@
+{
+  "urlId": "dialoh_ymia_emu_potop_zmiyn",
+  "orderNumber": 19,
+  "treatiseType": "Діалог",
+  "writtenDate": [
+    {
+      "year": 1791,
+      "text": "написаний 1791 р.",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Діалог. Имя Ему — Потоп Зміин",
+      "fileNames": [
+        "Г. С. Сковорода - Діалог. Имя Ему — Потоп Зміин - Л. Ушкалов.pdf"
+      ]
+    },
+    {
+      "translatorId": 4,
+      "sourceId": 4,
+      "title": "Діалог. Назва його — Потоп зміїний",
+      "fileNames": [
+        "Г. С. Сковорода - Діалог. Назва його - Потоп зміїний - М. Кашуба.pdf",
+        "Г. С. Сковорода - Діалог. Назва його - Потоп зміїний - М. Кашуба.doc"
+      ],
+      "preferedVersion": true
+    }
+  ],
+  "introSourceId": 0
+}

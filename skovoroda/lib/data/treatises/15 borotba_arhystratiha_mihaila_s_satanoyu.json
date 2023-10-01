@@ -1,0 +1,30 @@
+{
+  "urlId": "borotba_arhystratiha_mihaila_s_satanoyu",
+  "orderNumber": 15,
+  "treatiseType": "Солілоквій",
+  "writtenDate": [
+    {
+      "year": 1783,
+      "text": "написаний 1783 р.",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Брань Архистратига Михаила со Сатаною о сем: Легко быть Благим",
+      "fileNames": [
+      ]
+    },
+    {
+      "translatorId": 4,
+      "sourceId": 4,
+      "title": "Боротьба Архистратига Михаїла зі Сатаною про те: легко бути добрим",
+      "fileNames": [
+      ],
+      "preferedVersion": true
+    }
+  ],
+  "introSourceId": 27
+}

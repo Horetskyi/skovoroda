@@ -1,0 +1,40 @@
+{
+  "urlId": "blahodarnyi_erodii",
+  "orderNumber": 17,
+  "treatiseType": "Притча",
+  "writtenDate": [
+    {
+      "year": 1787,
+      "text": "написаний 1787 р.",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Благодарный Еродій",
+      "fileNames": [
+        "Г. С. Сковорода - Благодарный Еродій - Л. Ушкалов.pdf"
+      ]
+    },
+    {
+      "translatorId": 4,
+      "sourceId": 4,
+      "title": "Вдячний Єродій",
+      "fileNames": [
+      ]
+    },
+    {
+      "translatorId": 2,
+      "sourceId": 13,
+      "title": "Вдячний Еродій",
+      "fileNames": [
+        "Г. С. Сковорода - Вдячний Еродій - В. Шевчук.pdf",
+        "Г. С. Сковорода - Вдячний Еродій - В. Шевчук.docx"
+      ],
+      "preferedVersion": true
+    }
+  ],
+  "introSourceId": 27
+}

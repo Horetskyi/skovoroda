@@ -7,13 +7,13 @@ import { readAllTreatises } from '../../../lib/dataReaders/treatisesReader';
 import { SkovorodaSourcesArray } from '../../../lib/data/skovorodaSources';
 import { skTranslatorsV2 } from '../../../lib/data/skovorodaTranslators';
 const SkTreatisePageDesktop = dynamic(() => import('../../../components/pages/skTreatisePageDesktop'));
-const SkovorodaTextPageMobile = dynamic(() => import('../../../components/skovorodaTextPageMobile'));
+const SkTreatisePageMobile = dynamic(() => import('../../../components/pages/skTreatisePageMobile'));
 
 export default function SkovorodaText(params) {
 
   return params.deviceEnding === SkovorodaConstants.desktopEnding 
     ? <SkTreatisePageDesktop {...params} />
-    : <SkovorodaTextPageMobile {...params} />;
+    : <SkTreatisePageMobile {...params} />;
 }
 
 export async function getStaticPaths() {
@@ -46,16 +46,22 @@ export async function getStaticProps({ params }) {
 
   const translators = skTranslatorsV2.filter(t => treatise.versions.some(v => v.translatorId == t.translatorId));
 
+  const preferedVersion = treatise.versions.find(v => v.preferedVersion);
+  const metadataTitle = `${preferedVersion.title}`
+  const metadataDescription = `${treatise.treatiseType} Сковороди: ${preferedVersion.title} ${treatise.writtenDate.map(x => x.text).join(", ")}`
+
   return {
     props: {
       pageKey: treatiseSelectedPageKey,
       selectedId: id,
-      metadataTitle: "TODO Title",
-      metadataDescription: "TODO Description",
+      metadataTitle: metadataTitle,
+      metadataDescription: metadataDescription,
       treatise,
       sources,
       translators,
       deviceEnding,
+      shouldBeIndexed: true,
+      canonicalPageUrl: "https://www.skovoroda.club/texts/treatise/" + treatise.urlId,
     },
   };
 }

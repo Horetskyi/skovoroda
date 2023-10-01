@@ -2,7 +2,7 @@ import { ActionIcon, Container, Flex, Popover, Stack, Text, Tooltip, createStyle
 import SkSkovorodaLogo from "./skSkovorodaLogo3.svg";
 import SkDoveLogo from "./skDoveLogo3.svg";
 import Link from "next/link";
-import { SkovorodaFablesPath, getLinkTitle } from "../../lib/skovorodaPath";
+import { SkovorodaFablesPath, SkovorodaTreatisePath, getLinkTitle } from "../../lib/skovorodaPath";
 import { IconMenu2 } from "@tabler/icons";
 import { useState } from "react";
 
@@ -59,8 +59,17 @@ const useStyles = createStyles((theme) => ({
 export default function SkHeaderMenuMobile() {
   
   const { classes } = useStyles();
-  const linkTitle = getLinkTitle(SkovorodaFablesPath);
   const [opened, setOpened] = useState(false);
+  const links = [
+    {
+      text: "Трактати",
+      href: SkovorodaTreatisePath
+    },
+    {
+      text: "Байки",
+      href: SkovorodaFablesPath
+    }
+  ];
 
   return <Container fluid={true} h={87} px={"sm"} className={classes.container}>
     <Flex 
@@ -87,9 +96,12 @@ export default function SkHeaderMenuMobile() {
         </Popover.Target>
         <Popover.Dropdown >
           <Stack onClick={() => setOpened((o) => !o)} spacing={0}>
-            <Link href={SkovorodaFablesPath} title={linkTitle} className={classes.buttonText + " normalContentText normalContentText_withoutIndent"}>
-              Байки
-            </Link>
+            {links.map(link => {
+              const linkTitle = getLinkTitle(link.href);
+              return <Link key={link.href} href={link.href} title={linkTitle} className={classes.buttonText + " normalContentText normalContentText_withoutIndent"}>
+                {link.text}
+              </Link>
+            })}
             <Tooltip label="Додамо трактати, пісні, поезію, переклади, біографію..." position="bottom" color="gray.9" p={"sm"}>
               <Text py={'sm'} ta={"center"} className={classes.inProgressText + " normalContentText normalContentText_withoutIndent"}>Буде більше!</Text>
             </Tooltip>

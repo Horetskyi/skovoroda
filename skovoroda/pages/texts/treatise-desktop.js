@@ -1,196 +1,227 @@
-import { Button, Card, Container, createStyles, Flex, Group, List, Stack, Text, Title } from '@mantine/core';
-import Link from 'next/link';
-import LinkToSource from '../../components/textSourceLinkWithTooltip';
-import { SkovorodaTextsArray } from '../../lib/data/skovorodaTexts';
+import { Checkbox, Container, Group, Space, Stack, Text, Title, createStyles } from '@mantine/core';
 import { treatisePageKey } from '../../lib/skovorodaConstants';
-import { pathJoinWithoutEndSlash, SkovorodaTreatisePath } from '../../lib/skovorodaPath';
-import SkovorodaLeftNavMenuDesktop from '../../components/skovorodaLeftNavMenuDesktop';
+import SkH1Desktop from '../../components/shared/skH1Desktop';
+import { readAllTreatises } from '../../lib/dataReaders/treatisesReader';
+import Link from 'next/link';
+import { SkovorodaTreatisePath, pathJoin } from '../../lib/skovorodaPath';
+import SkTextContentBlockDesktop from '../../components/shared/skTextContentBlockDesktop';
+import SkH2Desktop from '../../components/shared/skH2Desktop';
+import SkColoredContainerDesktop from '../../components/shared/skColoredContainerDesktop';
+import { getNoteNumberString } from '../../lib/data/utils/notesNumbersSymbols';
+import SkNote from '../../components/shared/skNote';
+import { SkovorodaSourcesArray } from '../../lib/data/skovorodaSources';
 import { useState } from 'react';
-import { SkovorodaKeyIdeasArray, SkovorodaKeyIdeasMap } from '../../lib/data/skovorodaKeyIdeas';
-import { IconX } from '@tabler/icons';
 
 const useStyles = createStyles((theme) => ({
-  
-  textLink: {
-    color: theme.colors.blue[8]
-  },
-
-  keyIdeaText: {
+  treatiseContainer: {
     borderRadius: theme.radius.md,
-    color: "black"
   },
+  h2: {
+    fontSize: "24px",
+    lineHeight: "24px",
+  },
+  h2Link: {
+    fontSize: "24px !important",
+    lineHeight: "24px",
+    color: theme.colors.blue[9],
 
-  moreButton: {
-    justifyContent: "flex-end",
-    alignSelf: "flex-end",
-    marginLeft: "auto",
-    width: "300px",
+    "&:visited": {
+      color: theme.colors.blue[9],
+    },
+  },
+  dates: {
+    borderLeftColor: theme.colors.blue[2],
+    borderLeftStyle: "solid",
+    borderLeftWidth: "12px",
+  },
+  dateBoxContainer: {
+    position: "relative"
+  },
+  dateBox: {
+    background: theme.colors.blue[2],
+    width: "24px",
+    height: "12px",
+    position: "absolute",
+    top: 0,
+    content: "''",
+  },
+  dateBoxTexts: {
+    justifyContent: "space-between",
+    gap: 0,
   }
-
 }));
 
-export default function SkovorodaTreatisePageDesktop({ textsData }) {
+export default function SkovorodaTreatisePageDesktop({ treatises, sourcesTextContent }) {
   
   const { classes } = useStyles();
-  const pageLinkIndexes = {};
 
-  const [filteredKeyIdeaIds, setFilteredKeyIdeaIds] = useState([]);
+  treatises.sort((a,b) => a.orderNumber - b.orderNumber);
+  
+  const [filters, setFilters] = useState([
+    {
+      key: "Діалог",
+      text: "Діалоги",
+      checked: true,
+    },
+    {
+      key: "Притча",
+      text: "Притчі",
+      checked: true,
+    },
+    {
+      key: "Солілоквій",
+      text: "Солілоквії *",
+      checked: true,
+    },
+    {
+      key: "Катехізис",
+      text: "Катехізис",
+      checked: true,
+    },
+  ]);
 
-  function onKeyIdeaClick(keyIdeaId) {
-    if (filteredKeyIdeaIds.includes(keyIdeaId)) {
-      const newFilteredKeyIdeaIds = filteredKeyIdeaIds.filter(id => id !== keyIdeaId);
-      setFilteredKeyIdeaIds(newFilteredKeyIdeaIds);
-      return;
-    }
-    const newFilteredKeyIdeaIds = [...filteredKeyIdeaIds, keyIdeaId];
-    newFilteredKeyIdeaIds.sort((a,b) => SkovorodaKeyIdeasMap.get(a).index - SkovorodaKeyIdeasMap.get(b).index);
-    setFilteredKeyIdeaIds(newFilteredKeyIdeaIds);
+  function setChecked(filterKey, checked) {
+    const newFilters = [...filters];
+    const index = newFilters.findIndex(filter => filter.key === filterKey);
+    newFilters[index] = { ...newFilters[index], checked: checked }; 
+    setFilters(newFilters);
   }
 
-  function getKeyIdeaButton(keyIdea) {
-    
-    const isFiltered = filteredKeyIdeaIds.includes(keyIdea.id);
-
-    const rightIcon = isFiltered 
-      ? <IconX color='black' size={20} m="0" p="0" />
-      : undefined;
-    
-    return <Button 
-        className={classes.keyIdeaText} 
-        key={keyIdea.id} 
-        color={`${keyIdea.color}.1`} 
-        variant="filled"
-        size="sm"
-        onClick={() => onKeyIdeaClick(keyIdea.id)}
-        rightIcon={rightIcon}
-      >
-        {keyIdea.name}
-      </Button>
-  }
-
-  function filterTextData(textData) {
-    if (!filteredKeyIdeaIds || !filteredKeyIdeaIds.length) {
-      return true; // filter disabled
-    }
-    if (!textData.keyIdeas || !textData.keyIdeas.length) {
-      return false;
-    }
-    const textDataKeyIdeasIds = textData.keyIdeas.map(idea => idea.id);
-    return filteredKeyIdeaIds.every(id => textDataKeyIdeasIds.includes(id));
-  }
-
-  function getTextBlock(textData, index) {
-    
-    let translationBlock = <></>;
-    if (textData.translations && textData.translations.length) {
-      translationBlock = <>
-        <Text fw="400" mb="0" size="md" color="gray.7">{"Переклади:"}</Text>
-        <List withPadding={true} listStyleType="circle">
-          {textData.translations.map(translation => {
-            return <List.Item key={translation.id}>
-              <Text span>{translation.translatedName}</Text>
-              <LinkToSource source={translation.source} pageLinkIndexes={pageLinkIndexes} />
-            </List.Item>
-          })}
-        </List>
-      </>;
-    }
-    
-    let writtenDateInfoBlock = undefined;
-    if (textData.writtenDateInfo && textData.writtenDateInfo.dates && textData.writtenDateInfo.dates.length) {
-      writtenDateInfoBlock = <>
-        <Text mt="sm" fw="400" mb="0" size="md">Дата написання:</Text>
-        <List withPadding={true} listStyleType="circle">
-          {textData.writtenDateInfo.dates.map((date, dateIndex) => {
-            return <List.Item key={"date-"+dateIndex}>
-              <Text>
-                {date.text}
-                <LinkToSource source={date.source} page={date.page} pageLinkIndexes={pageLinkIndexes}/>
-              </Text>
-            </List.Item>
-          })}
-        </List>
-      </>
-    }
-
-    let ideasBlock = <></>;
-    if (textData.keyIdeas && textData.keyIdeas.length) {
-      ideasBlock = <>
-        <Text mt="sm" fw="400" mb="sm" size="md">Ключові теми:</Text>
-        <Flex gap="md" wrap="wrap">
-          {textData.keyIdeas.map(getKeyIdeaButton)}
-        </Flex>
-      </>
-    }
-
-    const href = pathJoinWithoutEndSlash(SkovorodaTreatisePath, textData.id);
-    return <Card key={index} p="md" radius="md" bg="gray.0" withBorder={true} id={textData.id}>
-      
-      <Title order={2} mb="md" ta="left" fw={400}>
-        <Link key={index} href={href} className={"undecoratedLink blackLink " + classes.textLink}>
-          <span>{"" + (index + 1) + ". "}</span>
-          <span className='fontFamilyOldUa'>{textData.original.originalName}</span>
-        </Link>
-      </Title>
-      
-      <Group>
-        
-        <Stack spacing="0">
-          {translationBlock}
-          {writtenDateInfoBlock}
-          {ideasBlock}
-        </Stack>
-
-        <Link href={href} className={classes.moreButton}>
-          <Button className={classes.moreButton} variant='light'>Завантажити</Button>
-        </Link>
-      
-      </Group>
-    </Card>
-  }
-
-  const filteredTextsData = textsData.filter(filterTextData);
+  const filteredTreatiseTypes = filters.filter(f => f.checked).map(f => f.key);
+  const filtered = treatises.filter(x => filteredTreatiseTypes.includes(x.treatiseType));
 
   return <>
-    
-    <Container>
-      <Title ta="center" order={1} mb="xl" className='bigH1 fontFamilyOldUa'>Трактати, Діалоги, Притчі</Title>
-    </Container>
-
-    <SkovorodaLeftNavMenuDesktop withOrderNumbers={true} items={filteredTextsData.map(textData => {
-      return {
-        label: textData.original.originalName,
-        id: textData.id
-      };
-    })} />
-
-    { filteredKeyIdeaIds.length ? <>
-      <Container mb="xl">
-        <Flex gap="md" wrap="wrap">
-          {filteredKeyIdeaIds.map(keyIdeaId => {
-            const keyIdea = SkovorodaKeyIdeasMap.get(keyIdeaId);
-            return getKeyIdeaButton(keyIdea);
-          })}
-        </Flex>
-      </Container>
-    </> : <></>}
-
-    <Container>
-      <Stack spacing="xl">
-        {filteredTextsData.map(getTextBlock)}
+    <SkH1Desktop text="Трактати" mt="lg" />
+    <SkColoredContainerDesktop>
+      <Text mb="sm" className='normalContentText normalContentText_withoutIndent'>Фільтр по типах:</Text>
+      <Stack spacing={"xs"} mb="sm">
+        {filters.map(filter => {
+          return <Checkbox 
+            key={filter.key}
+            checked={filter.checked}
+            onChange={(event) => setChecked(filter.key, event.currentTarget.checked)} 
+            className='normalContentText normalContentText_withoutIndent' 
+            label={filter.text} 
+          />
+        })}
       </Stack>
-    </Container>
+      <Text className='normalContentText normalContentText_withoutIndent'>* Солілоквій – мова, адресована до самого себе.</Text>
+    </SkColoredContainerDesktop>
+    {filtered.map(treatise => {
+
+      const href = pathJoin(SkovorodaTreatisePath, treatise.urlId);
+      const preferedVersion = treatise.versions.find(v => v.preferedVersion);
+      const preferedTitle = preferedVersion.title;
+      const introContent = treatise.introContent;
+      const writtenDate = treatise.writtenDate;
+      writtenDate.sort((a,b) => a.year - b.year);
+      
+      return <Container key={treatise.urlId} w={900} bg={"gray.0"} className={classes.treatiseContainer} p={"md"} mb={"lg"}>
+        <Title order={2} pb="sm" className={classes.h2}>
+          <Link href={href} className={classes.h2Link + " normalContentText"}>{preferedTitle}</Link>
+        </Title>
+        <SkTextContentBlockDesktop textContent={introContent} isv2={true} />
+        <Container my="sm" px="0" py="6px" className={classes.dates}>
+          {writtenDate.map(date => {
+            return <Text key={date.text} className='normalContentText'>
+              {date.text}
+              {date.noteNumber ? <SkNote noteNumber={date.noteNumber} /> : null}
+            </Text>
+          })}
+        </Container>
+        <Group className={classes.dateBoxTexts + ' normalContentText normalContentText_withoutIndent'} w={"100%"}>
+          <Text>1722 р.</Text>
+          <Text>1794 р.</Text>
+        </Group>
+        <Container p="0" bg="gray.2" h={"12px"} w={"100%"} className={classes.dateBoxContainer}>
+          {writtenDate.map(date => {
+            const leftPercent = ((date.year - 1722) * 100.0) / 72.0;
+            const leftCss = `${leftPercent}%`;
+            return <div key={date.text} className={classes.dateBox} style={{ left: leftCss }} />
+          })}
+        </Container>
+      </Container>
+    })}
+    <SkColoredContainerDesktop color={"gray.1"}>
+      <SkH2Desktop text="Посилання" mb="lg"/>
+      <SkTextContentBlockDesktop textContent={sourcesTextContent} isv3={true} />
+    </SkColoredContainerDesktop>
   </>
 }
 
 export async function getStaticProps({ params }) {
 
+  const treatises = readAllTreatises();
+
+  const sourceIds = new Set();
+  treatises.forEach(treatise => {
+    if (treatise.introSourceId) {
+      sourceIds.add(treatise.introSourceId)
+    }
+    treatise.writtenDate.forEach(date => {
+      if (date.sourceId) {
+        sourceIds.add(date.sourceId)
+      }
+    });
+  });
+  const sources = SkovorodaSourcesArray.filter(source => sourceIds.has(source.devNumber));
+
+  const sourcesTextContent = [];
+  let lastNoteNumber = 0;
+  function addNote(sourceId) {
+    if (!sourceId) {
+      return;
+    }
+    const found = sourcesTextContent.find(x => x.sourceId == sourceId);
+    if (found) {
+      return found.noteNumber; // already exists
+    }
+    const source = sources.find(x => x.devNumber == sourceId);
+    if (!source) {
+      return; // source not found
+    }
+    lastNoteNumber++;
+    sourcesTextContent.push({
+      noteNumber: lastNoteNumber,
+      sourceId: sourceId,
+      text: source.sourceFullName,
+      isNoteBeginning: true,
+    });
+    return lastNoteNumber;
+  }
+
+  treatises.forEach(treatise => {
+    if (treatise.introSourceId) {
+      const noteNumber = addNote(treatise.introSourceId);
+      if (noteNumber) {
+        treatise.introContent[0].text = [
+          {
+            text: treatise.introContent[0].text,
+          },
+          { 
+            noteNumber: noteNumber,
+            text: " "+getNoteNumberString(noteNumber),
+          }
+        ];
+      }
+    }
+    treatise.writtenDate.forEach(date => {
+      if (date.sourceId) {
+        const noteNumber = addNote(date.sourceId);
+        if (noteNumber) {
+          date.noteNumber = noteNumber;
+        }
+      }
+    })
+  });
+
   return {
     props: {
       pageKey: treatisePageKey,
-      textsData: SkovorodaTextsArray,
-      metadataTitle: "Григорій Савич Сковорода - Трактати, Діалоги, Притчі",
-      metadataDescription: "Григорій Савич Сковорода - Трактати, Діалоги, Притчі",
+      treatises: treatises,
+      sourcesTextContent: sourcesTextContent,
+      metadataTitle: "Трактати, Діалоги, Притчі - Григорій Савич Сковорода",
+      metadataDescription: "Трактати, Діалоги, Притчі - Григорій Савич Сковорода",
     },
   };
 }

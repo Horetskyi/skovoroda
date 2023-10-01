@@ -2,7 +2,7 @@ import { Button, Container, Flex, Text, Tooltip, createStyles } from "@mantine/c
 import SkSkovorodaLogo from "./skSkovorodaLogo3.svg";
 import SkDoveLogo from "./skDoveLogo3.svg";
 import Link from "next/link";
-import { SkovorodaBioPath, SkovorodaFablesPath, SkovorodaTextsPath, getLinkTitle } from "../../lib/skovorodaPath";
+import { SkovorodaBioPath, SkovorodaFablesPath, SkovorodaTextsPath, SkovorodaTreatisePath, getLinkTitle } from "../../lib/skovorodaPath";
 import { SkovorodaConstants } from "../../lib/skovorodaConstants";
 
 const useStyles = createStyles((theme) => ({
@@ -81,7 +81,8 @@ export default function SkHeaderMenuDesktop() {
         <Text mr="md" className={classes.inProgressText}>Буде більше!</Text>
       </Tooltip>
 
-      {!SkovorodaConstants.isProduction ? null : LinkButton(SkovorodaFablesPath, "Байки", classes)}
+      {LinkButton(SkovorodaTreatisePath, "Трактати", classes)}
+      {LinkButton(SkovorodaFablesPath, "Байки", classes)}
     
     </Flex>
   </Container>

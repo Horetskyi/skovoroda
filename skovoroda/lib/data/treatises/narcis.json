@@ -1,0 +1,42 @@
+{
+  "urlId": "narcis",
+  "orderNumber": 2,
+  "treatiseType": "Діалог",
+  "writtenDate": [
+    {
+      "year": 1769,
+      "text": "напиcаний 1769-1771 рр.",
+      "sourceId": 3
+    },
+    {
+      "year": 1780,
+      "text": "нова редакція твору в середині 1780-x",
+      "sourceId": 3
+    },
+    {
+      "year": 1793,
+      "text": "дописаний пролог 1793-1794 рр.",
+      "sourceId": 3
+    }
+  ],
+  "versions": [
+    {
+      "translatorId": 0,
+      "sourceId": 3,
+      "title": "Наркісс. Разглагол о том: Узнай Себе",
+      "fileNames": [
+        "Г. С. Сковорода - Наркісс. Разглагол о Том. Узнай себе - Л. Ушкалов.pdf"
+      ]
+    },
+    {
+      "translatorId": 2,
+      "sourceId": 9,
+      "title": "Наркіс. Розмова про те: Пізнай себе",
+      "fileNames": [
+        "Г. С. Сковорода - Наркіс. Розмова про Те. Пізнай себе - В. Шевчук.pdf"
+      ],
+      "preferedVersion": true
+    }
+  ],
+  "introSourceId": 27
+}

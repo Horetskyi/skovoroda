@@ -5,6 +5,7 @@ const skovorodaSources = {
     devNumber: 1,
     id: "lovytva",
     sourceName: "Ловитва невловного птаха: життя Григорія Сковороди - Л. Ушкалов - 2017 р.",
+    productionYear: 2017,
     // TODO: Now: add cover image
   },
   povna_akademichna_zbirka_2011: {
@@ -15,6 +16,7 @@ const skovorodaSources = {
     files: [
       SkovorodaFiles.zbirka_pdf,
     ],
+    productionYear: 2011,
   },
   piznai_v_sobi_liudynu_1995: {
     devNumber: 4,
@@ -24,6 +26,7 @@ const skovorodaSources = {
     files: [
       SkovorodaFiles.piznai_v_sobi_liudynu_1995_doc,
     ], 
+    productionYear: 1995,
   },
   philosophska_dumka_2014_nomer_5: {
     devNumber: 7,
@@ -35,6 +38,7 @@ const skovorodaSources = {
       SkovorodaFiles.philosophska_dumka_2014_nomer_5_pdf
     ],
     sourceLink: "https://journal.philosophy.ua/issue/2014-no5",
+    productionYear: 2014,
   },
   tvory_u_dvox_tomax_tom_1_1994: {
     devNumber: 9,
@@ -45,11 +49,13 @@ const skovorodaSources = {
       SkovorodaFiles.tvory_u_dvox_tomax_tom_1_1994_pdf,
       SkovorodaFiles.tvory_u_dvox_tomax_tom_1_1994_djvu,
     ],
+    productionYear: 1994,
   },
   ukrainska_musa_2009: {
     devNumber: 10,
     id: "ukrainska_musa_2009",
     year: 2009,
+    productionYear: 2009,
     sourceName: 'Г. Сковорода. Вибрані твори в українських перекладах / Серія "Українська муза" у 12-ти томах, том 1 - 2009',
     sourceFullName: 'Г. Сковорода. Вибрані твори в українських перекладах / Серія "Українська муза" у 12-ти томах, том 1 - Упорядкування текстів, передмова та примітки Л. В. Ушкалова - 2009',
     // TODO: Now: add cover image
@@ -59,6 +65,7 @@ const skovorodaSources = {
     devNumber: 12,
     id: "povne_zibrannya_tvoriv_1973_tom_2",
     year: 1997,
+    productionYear: 1973,
     // TODO: Now: add cover image
     // TODO: Now: add file
     sourceName: "Григорій Сковорода. Повне зібрання творів: У 2-х т. — К., 1973 — Т. 2.",
@@ -67,6 +74,7 @@ const skovorodaSources = {
     devNumber: 13,
     id: "tvory_u_dvox_tomax_tom_2_1994",
     sourceName: "Сковорода, Григорій. Твори у двох томах. Том 2 - 1994 р.",
+    productionYear: 1994,
     // TODO: Now: add cover image
     files: [], // TODO: add file
   },
@@ -78,6 +86,7 @@ const skovorodaSources = {
     files: [], 
     bookCoverImageFileName: "fables1.jpg",
     shortTitle: "Байки Харківські",
+    productionYear: 2019,
   },
   baiki_harkivski_shevchuk: {
     devNumber: 18,
@@ -87,6 +96,12 @@ const skovorodaSources = {
     files: [], // TODO: add file
     // TODO: Now: add cover image
     shortTitle: "Байки Харківські",
+  },
+  baiki_harkivski_shevchuk: {
+    devNumber: 27,
+    id: "seminaryi",
+    sourceName: "Григорій Сковорода: семінарій. – Ушкалов Л.В. – Харків: Майдан, 2004",
+    productionYear: 2004,
   },
 }
 
@@ -106,6 +121,9 @@ sourcesArray.forEach(source => {
   }
   if (!source.shortTitle) {
     source.shortTitle = source.sourceName;
+  }
+  if (source.devNumber) {
+    source.sourceId = source.devNumber;
   }
 });
 

@@ -31,7 +31,7 @@ const useStyles = createStyles((theme) => {
   }
 });
 
-export default function SkovorodaTextPageDesktop({ textData }) {
+export default function SkovorodaTextPageDesktop({ treatise }) {
 
   const { classes } = useStyles();
   const pageLinkIndexes = {};

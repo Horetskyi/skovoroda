@@ -40,6 +40,20 @@ export const skTranslatorsV2 = [
     byFatherName: "Любомирович",
     urlId: "fedorak",
   },
+  {
+    translatorId: 2,
+    firstName: "Валерій",
+    lastName: "Шевчук",
+    byFatherName: "Олександрович",
+    urlId: "shevchuk",
+  },
+  {
+    translatorId: 3,
+    firstName: "Віталій",
+    lastName: "Шевченко",
+    byFatherName: "Володимирович",
+    urlId: "shevchenko",
+  }
 ].map(translator => {
   if (translator.translatorId === 0) {
     translator.fullName3 = "Оригінал";

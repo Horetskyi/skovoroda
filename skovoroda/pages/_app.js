@@ -131,13 +131,14 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
               position: "relative",
               minHeight: "100vh",
               width: "100vw",
+              overflowX: "clip",
             },
             "body::after": {
               content: '""',
               display: "block",
               height: "120px", /* Set same as footer's height */
             },
-            ".normalContentText": {
+            ".normalContentText, .normalContentText label": {
               fontWeight: 300,
               fontSize: isMobile ? "16px" : "20px",
               lineHeight: isMobile ? "22px" : "23px",
@@ -151,7 +152,7 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
               textAlign: "center",
               textIndent: 0,
             },
-            ".normalContentText_withoutIndent": {
+            ".normalContentText_withoutIndent, .normalContentText_withoutIndent label": {
               textIndent: 0,
             },
             ".normalContentText_withoutFirstIndent:first-of-type": {

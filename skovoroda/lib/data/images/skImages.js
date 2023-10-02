@@ -67,5 +67,11 @@ export const SkImages = {
     title: standardOlenkaAltAndTitle,
     fableNumber: 11,
   },
+  fable12byOlenka: {
+    imageUrl: "/images/fables/Fable12 by Olenka.jpg",
+    alt: standardOlenkaAltAndTitle,
+    title: standardOlenkaAltAndTitle,
+    fableNumber: 12,
+  },
 };
 export const SkImagesArray = Object.values(SkImages);

@@ -42,6 +42,7 @@ export const aboutUsPageKey = { pageKey: "AboutUs", parent: homePageKey };
 export const contactPageKey = { pageKey: "Contact", parent: homePageKey };
 export const utils1PageKey = { pageKey: "Utils1", parent: homePageKey };
 export const textsPageKey = { pageKey: "Texts", parent: homePageKey };
+export const testPageKey = { pageKey: "Test", parent: homePageKey };
 export const treatisePageKey = { pageKey: "Treatise", parent: textsPageKey };
 export const treatiseSelectedPageKey = { pageKey: "TreatiseSelected", parent: treatisePageKey };
 export const fablesPageKey = { pageKey: "Fables", parent: textsPageKey };

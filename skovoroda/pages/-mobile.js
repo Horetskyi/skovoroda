@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
 export default function HomePageMobile() {
   const { classes } = useStyles();
   return <>
-    <Container px={"sm"}>
+    <Container px={"md"}>
       <Space h={"md"}/>
       <Center>
         <SkImage 

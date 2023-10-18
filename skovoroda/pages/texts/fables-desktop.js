@@ -1,14 +1,13 @@
-import { Card, List, SimpleGrid, Space, Text, createStyles } from "@mantine/core";
+import { Container, List, Space, Text, createStyles } from "@mantine/core";
 import SkH1Desktop from "../../components/shared/skH1Desktop";
 import SkColoredContainerDesktop from "../../components/shared/skColoredContainerDesktop";
-import { SkovorodaConstants } from "../../lib/skovorodaConstants";
-import SkImage from "../../components/shared/skImage";
-import SkComponentLink from "../../components/shared/skComponentLink";
 import { SkovorodaFablesPath, getFableLinkTitle, pathJoin } from "../../lib/skovorodaPath";
 import SkTextLink from "../../components/shared/skTextLink";
 import { getFablesPageProps } from "../../lib/pagesContent/fablesStatic";
 import { prepareFables } from "../../lib/pagesContent/fablesLogic";
 import { fablesPageContent } from "../../lib/pagesContent/fablesContent";
+import SkH2Desktop from "../../components/shared/skH2Desktop";
+import SkTextContentBlockDesktop from "../../components/shared/skTextContentBlockDesktop";
 
 const useStyles = createStyles((theme) => ({
   grid: {
@@ -29,44 +28,77 @@ const useStyles = createStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+  list: {
+    columnCount: 3,
+  }
 }));
 
-export default function FablesPage({ allFables }) {
+export default function FablesPage({ allFables, fablesTopContent, allSources }) {
   const { classes } = useStyles();
   const fables = prepareFables(allFables);
+  allSources.sort((a,b) => a.sourceId - b.sourceId);
+  fablesTopContent.sort((a,b) => fablesPageContent.contentOrder.indexOf(a.key) - fablesPageContent.contentOrder.indexOf(b.key));
+  
+  function getListOfFables(from, to) {
+    return <List type="ordered" className={`normalContentText normalContentText_withoutIndent ${classes.list}`}>
+      {fables.slice(from, to).map(fable => {
+        const href = pathJoin(SkovorodaFablesPath, fable.urlId);
+        return <List.Item key={fable.urlId}>
+          <SkTextLink text={fable.fableTitle} title={getFableLinkTitle(fable)} href={href} disableStyles={false}>
+          </SkTextLink>
+        </List.Item>
+      })}
+    </List>
+  }
+  
   return <>
+    {/* H1 */}
+    <Space h="lg"/>
+    <SkH1Desktop text="Байки Харківські"/>
+
+    {/* Fables Links */}
     <SkColoredContainerDesktop>
-      <SkH1Desktop text="Байки Харківські"/>
-      <div className="normalContentText">
-        <p>{fablesPageContent.introText}</p>
-      </div>
-      
-      <List type="ordered" className="normalContentText normalContentText_withoutIndent">
-        {fables.map(fable => {
-          const href = pathJoin(SkovorodaFablesPath, fable.urlId);
-          return <List.Item key={fable.urlId}>
-            <SkTextLink text={fable.fableTitle} title={getFableLinkTitle(fable)} href={href} disableStyles={false}>
-            </SkTextLink>
-          </List.Item>
-        })}
-      </List>
-      
-      {SkovorodaConstants.isProduction ? null : <>
-        <Space h="lg"/>
-        <SimpleGrid  cols={5} spacing={"md"} className={classes.grid} >
-          {fables.map(fable => {
-            const href = pathJoin(SkovorodaFablesPath, fable.urlId);
-            return <SkComponentLink href={href} key={fable.urlId}>
-              <Card shadow="md" p="0" m="0" radius={"md"}>
-                <SkImage disableBottomRadius={true} imageUrl={fable.imageUrl} width={162} height={226} shadow={"0"} />
-                <Text className={classes.fableGrayText} mx="auto" ta="center">Байка {fable.fableNumber}</Text>
-                <Text className={classes.fableTitle + " normalContentText normalContentText_withoutIndent"} mx="auto" ta="center">{fable.fableTitle}</Text>
-              </Card>
-            </SkComponentLink>
-          })}
-        </SimpleGrid>
-      </>}
-      
+      {getListOfFables(0,30)}
+    </SkColoredContainerDesktop>
+
+    {/* FAQ */}
+    {fablesTopContent.map((group,index) => {
+      function contentBlock(content) {
+        return <SkTextContentBlockDesktop key={group.key + content.key} textContent={content.content} isv2={true} />
+      }
+      const question = group.contents.find(content => content.key === "question");
+      const answer1 = group.contents.find(content => content.key === "answer1");
+      const answer2 = group.contents.find(content => content.key === "answer2");
+      const answer3 = group.contents.find(content => content.key === "answer3");
+      const color = index % 2 === 0 ? "indigo" : "gray";
+      return <Container key={group.key} p="0">
+        <SkColoredContainerDesktop color={color+".0"} py="0">
+          <Space h="lg"/>
+          <SkH2Desktop text={question.content[0].text} type="qa" />
+        </SkColoredContainerDesktop>
+        {answer1 ? <SkColoredContainerDesktop color={color+".0"} pt="md" pb="lg">
+          {contentBlock(answer1)}
+        </SkColoredContainerDesktop> : null}
+        {answer2 ? <SkColoredContainerDesktop color={color+".1"} pt="md" pb="lg">
+          {contentBlock(answer2)}
+        </SkColoredContainerDesktop> : null}
+        {answer3 ? <SkColoredContainerDesktop color={color+".2"} pt="md" pb="lg">
+          {contentBlock(answer3)}
+        </SkColoredContainerDesktop> : null}
+      </Container> 
+    })}
+
+    {/* Sources */}
+    <SkColoredContainerDesktop color="gray.1" py="0" my="0">
+      <Space h="lg"/>
+      <SkH2Desktop text="Джерела" />
+      <Space h="lg"/>
+      {allSources.map((source,index) => {
+        const text = `[${source.sourceId}] ${source.sourceFullName}`;
+        const mt = index ? "sm" : "0";
+        return <Text id={"sourceId"+source.sourceId} key={"source"+source.sourceId} className="normalContentText normalContentText_withoutIndent" mt={mt}>{text}</Text>
+      })}
+      <Space h="lg"/>
     </SkColoredContainerDesktop>
   </>
 }

@@ -39,7 +39,35 @@ const SKOVORODA_NOTE_NUMBER_FORMAT = "[SkovorodaNoteNumber]";
 const NOTE_NUMBER_FORMAT = "[NoteNumber]"; 
 const MAIN_SECTION_FORMAT = "[MainSection]"; 
 function getNotesRegex() { return new RegExp("[¹²³⁴⁵⁶⁷⁸⁹⁰ᵃᵇᵉᵈᵍ]+", 'g'); }
+// original : "\[\d+\s—\s[А-ЯІ]+\.?\s\d+\]|\[\d+\]"
+function getOurSourcesNotesRegex() { return new RegExp("\\[\\d+\\s—\\s[А-ЯІ]+\\.?\\s\\d+\\]|\\[\\d+\\]", 'giu'); }
 
+function transformLineObjectWithOurSourceNotes(lineObject, notesMetadata) {
+  if (notesMetadata.length == 0) {
+    return;
+  }
+
+  notesMetadata.reverse();
+  let text = lineObject.text;
+  const results = [];
+  notesMetadata.forEach(note => {
+    if (results.length != 0) {
+      results.pop();
+    }
+    if (!text) {
+      return;
+    }
+    const beforeNotePart = text.substring(0, note.index);
+    const notePart = text.substring(note.index, note.index + note.length);
+    const afterNotePart = text.substring(note.index + note.length);
+    results.push({ text: afterNotePart });
+    results.push({ text: notePart, sourceId: note.sourceId });
+    results.push({ text: beforeNotePart });
+    text = beforeNotePart;
+  });
+  results.reverse();
+  lineObject.text = results;
+}
 
 function transformLineObjectWithNotes(lineObject, notesMetadata) { 
   if (notesMetadata.length == 0) {
@@ -113,6 +141,17 @@ function parseNotesNumber(text) {
   return result;
 }
 
+function parseSourceIdFromRegex(inputString) {
+  const regex = /\[(\d+)(?:\s—\s[А-ЯІ]+\.?\s\d+)?\]/;
+  const match = inputString.match(regex);
+  if (match) {
+    const numberMatch = match[1];
+    const number = parseInt(numberMatch);
+    return number;
+  } 
+  return 0;
+}
+
 function removeEmptyLinesAtTheEnd(parsedContent) {
   while (parsedContent.length > 0) {
     const lastLineObject = parsedContent[parsedContent.length - 1];
@@ -134,6 +173,7 @@ export function parseFileContent(content) {
   let lastNoteNumber = undefined;
   let isMainSection = false;
   let isMainSectionMode = false;
+  let isAllIsList = false;
 
   content.split('\n').forEach(line => {
 
@@ -153,6 +193,10 @@ export function parseFileContent(content) {
       lineObject.noteNumber = lastNoteNumber;
     }
 
+    if (lineObject.text.includes("[AllIsList]")) {
+      isAllIsList = true;
+      return;
+    }
     
     if (lineObject.text.includes(LETTER_NOTE_FORMAT)) {
       const splitByLetterNote = lineObject.text.split(LETTER_NOTE_FORMAT);
@@ -201,20 +245,46 @@ export function parseFileContent(content) {
     }
 
     if (!isEmptyLine) {
+
+      // Source notes like [29 — C. 101] or [3]
+      const outSourcesNotesRegex = getOurSourcesNotesRegex();
+      const sourcesNotesMetadata = [];
+      while(true) {
+        const regexResults = outSourcesNotesRegex.exec(lineObject.text);
+        if (!regexResults) {
+          break;
+        }
+        regexResults.forEach(regexResult => {
+          const index = outSourcesNotesRegex.lastIndex;
+          const sourceId = parseSourceIdFromRegex(regexResult);
+          if (!sourceId) {
+            return;
+          }
+          const noteMetadata = { 
+            sourceId: sourceId, 
+            index: index - regexResult.length, 
+            length: regexResult.length 
+          };
+          sourcesNotesMetadata.push(noteMetadata);
+        });
+      }
+      if (sourcesNotesMetadata.length) {
+        transformLineObjectWithOurSourceNotes(lineObject, sourcesNotesMetadata);
+      } 
+
       const notesRegex = getNotesRegex();
       const notesMetadata = [];
       while(true) {
         const regexResults = notesRegex.exec(lineObject.text);
-        if (regexResults) {
-          regexResults.forEach(regexResult => {
-            const index = notesRegex.lastIndex;
-            const notesNumber = parseNotesNumber(regexResult);
-            const noteMetadata = { notesNumber: notesNumber, index: index - regexResult.length, length: regexResult.length };
-            notesMetadata.push(noteMetadata);
-          });
-        } else {
+        if (!regexResults) {
           break;
-        }
+        } 
+        regexResults.forEach(regexResult => {
+          const index = notesRegex.lastIndex;
+          const notesNumber = parseNotesNumber(regexResult);
+          const noteMetadata = { notesNumber: notesNumber, index: index - regexResult.length, length: regexResult.length };
+          notesMetadata.push(noteMetadata);
+        });
       }
       if (notesMetadata.length) {
         transformLineObjectWithNotes(lineObject, notesMetadata);
@@ -246,8 +316,12 @@ export function parseFileContent(content) {
     return {
       beforeMain: parsedContent,
       main: parsedMainSection,
-      afterMain: parsedAfterMainSection
+      afterMain: parsedAfterMainSection,
     };
+  }
+
+  if (parsedContent.length) {
+    parsedContent[0].isAllIsList = isAllIsList;
   }
 
   return parsedContent;

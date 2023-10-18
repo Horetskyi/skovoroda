@@ -128,3 +128,63 @@ export function readAllFables() {
   const allCommonMetadata = readCommonMetadataInDirectory("commonMetadata");
   return {allFables,allNotes,allComments,allCommonMetadata};
 } 
+
+export function readFablesTopContent() {
+  const directoryPath = path.join(process.cwd(), "lib", "data", "fables", "topContent");
+  const fileNames = fs.readdirSync(directoryPath);
+  const allContentGroups = [];
+  fileNames.forEach(fileName => {
+    const filePath = path.join(directoryPath, fileName); 
+    const fileString = fs.readFileSync(filePath).toString();
+    if (!fileString || !fileString.length) {
+      return undefined;
+    }
+    const content = parseFileContent(fileString);
+    if (!content) {
+      return undefined;
+    }
+
+    const fileNameSplit = fileName.split("_");
+    const groupKey = fileNameSplit[0];
+    const contentKey = fileNameSplit[1].replace(".txt", "");
+    let group = allContentGroups.find(group => group.key == groupKey);
+    if (!group) {
+      group = {
+        key: groupKey,
+        contents: [],
+      };
+      allContentGroups.push(group);
+    }
+    group.contents.push({
+      key: contentKey,
+      content: content,
+    });
+  });
+
+  const allSourceIdsSet = new Set();
+  function tryAddSourceId(sourceId) {
+    if (sourceId && !allSourceIdsSet.has(sourceId)) {
+      allSourceIdsSet.add(sourceId);
+    } 
+  }
+  allContentGroups.forEach(group => {
+    group.contents.forEach(content => {
+      content.content.forEach(lineObject => {
+        const text = lineObject.text;
+        if (Array.isArray(text)) {
+          text.forEach(subLineObject => {
+            tryAddSourceId(subLineObject.sourceId);  
+          });
+        } else {
+          tryAddSourceId(text.sourceId);
+        }
+      });
+    });
+  });
+  const allSourceIds = Array.from(allSourceIdsSet);
+
+  return { 
+    fablesTopContent: allContentGroups, 
+    allSourceIds: allSourceIds 
+  };
+}

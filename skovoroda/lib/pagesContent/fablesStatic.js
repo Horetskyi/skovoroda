@@ -1,15 +1,20 @@
-import { readAllFables } from "../dataReaders/fablesReader";
+import { SkovorodaSourcesArray } from "../data/skovorodaSources";
+import { readAllFables, readFablesTopContent } from "../dataReaders/fablesReader";
 import { fablesPageKey } from "../skovorodaConstants";
 
 export function getFablesPageProps() {
   const allFables = readAllFables().allFables.map(fable => fable.metadata);
+  const {fablesTopContent, allSourceIds} = readFablesTopContent();
+  const allSources = SkovorodaSourcesArray.filter(source => allSourceIds.includes(source.devNumber));
   return {
     props: {
+      allSources,
+      fablesTopContent,
       allFables,
       pageKey: fablesPageKey,
       metadataTitle: "Байки Сковороди - Байки Харківські",
-      metadataDescription: "Байки Харківські - Григорій Савич Сковорода",
-      metadataKeywords: ["Байки Харківські", "Байки Сковороди", "Байки Сковороди в перекладі"],
+      metadataDescription: "Перші півтора десятка байок Сковорода написав «полишивши вчительську посаду й усамітнившись у лісах, полях, садах, селах, хуторах та пасіках, що лежать довкруж Харкова». Другу половину байок написав в селі Бабаях.",
+      metadataKeywords: ["Байки Харківські", "Байки Сковороди", "Байки Сковороди переклад на українську", "Байки в оригіналі", "Про байки"],
       shouldBeIndexed: true,
       canonicalPageUrl: "https://www.skovoroda.club/texts/fables",
     },

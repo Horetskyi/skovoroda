@@ -1,4 +1,4 @@
-import { Card, Container, createStyles } from "@mantine/core";
+import { Card, Container, List, createStyles } from "@mantine/core";
 import Link from "next/link";
 import { getNoteNumberString, getNoteNumberUpperString } from "../../lib/data/utils/notesNumbersSymbols";
 import { gsap } from "gsap/dist/gsap";
@@ -189,13 +189,23 @@ const useStyles = createStyles((theme, params) => {
     noteBlockMarginBottom: {
       marginBottom: theme.spacing.md,
     },
-
   };
 });
 
 export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick, ...others}) {
 
   const { classes } = useStyles({ isMobile: others.isMobile });
+
+  if (textContent && textContent.length && textContent[0].isAllIsList) {
+    return <List listStyleType="circle">
+      {textContent.map((lineObject, index) => {
+        const key = "listItem"+index;
+        return <List.Item key={key}>
+          <SkTextContentBlockDesktop textContent={[{text:lineObject.text}]} {...others} onTextNoteClick={onTextNoteClick} />
+        </List.Item> 
+      })}
+    </List>
+  }
 
   if (textContent && !Array.isArray(textContent)) {
     return <div>
@@ -278,6 +288,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     
     // Simple formatting
     if (!Array.isArray(text)) {
+
       if (lineObject.noteNumber) {
         id = (lineObject.isNoteBeginning ? "note" : "noteInText") + getNoteNumberUpperString(lineObject.noteNumber);
       }
@@ -312,6 +323,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
       if (noteNumber && !lineObject.isNoteBeginning) {
         const subId = "noteInText" + getNoteNumberUpperString(noteNumber);
 
+        // Note as a clickable text
         if (onTextNoteClick) {
           return <span 
             key={index}
@@ -324,10 +336,23 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
           </span>
         }
 
+        // Note as a Link
         return <Link key={index} href={"#note"+getNoteNumberUpperString(noteNumber)} id={subId} color="gray.9" className={classes.noteLink + " grayForText " + subFormatClassName + " " + classes.noteFont} title={`Примітка ${noteNumber}`}>
           {subText.text}
         </Link>;
       }
+
+      const sourceId = lineObject.sourceId ? lineObject.sourceId : subText.sourceId;
+      if (sourceId) {
+        const htmlSourceId = "sourceIdInText" + sourceId;
+
+        // Source as a Link
+        return <Link key={index} href={"#sourceId"+sourceId} id={htmlSourceId} color="blue.9" className={classes.noteLink + " " + subFormatClassName} title={`Джерело: ${sourceId}}`}>
+          {subText.text}
+        </Link>;
+      }
+
+      // Normal Text
       return <span key={index} className={subFormatClassName} onClick={onClick}>{subText.text}</span>;
     });
     if (lineObject.isNoteBeginning && lineObject.noteNumber && isLeftNotesEnabled) {

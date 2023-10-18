@@ -23,7 +23,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
   function TreatisVersionBlock(version, source) {
     const isTranslation = version.translatorId ? true : false;
     const translator = translators.find(t => t.translatorId == version.translatorId);
-    return <Container key={version.urlId}>
+    return <Container key={version.urlId} p="0">
       <Center>
         <SkImage 
           key={source.bookCoverImage.imageUrl}
@@ -56,7 +56,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
   }
 
   return <>
-    <SkColoredContainerMobile>
+    <SkColoredContainerMobile px="md">
       <SkH1Mobile text={preferedTitle} mb="md"/>
       <SkH2Mobile text="Оригінал" mb="md" />
       {TreatisVersionBlock(original, originalSource)}

@@ -6,7 +6,12 @@ const skovorodaSources = {
     id: "lovytva",
     sourceName: "Ловитва невловного птаха: життя Григорія Сковороди - Л. Ушкалов - 2017 р.",
     productionYear: 2017,
-    // TODO: Now: add cover image
+  },
+  uchytel_zyttia: {
+    devNumber: 2,
+    id: "uchytel_zyttia",
+    sourceName: "Учитель Життя - Володимир Стадниченко - 2016",
+    productionYear: 2016,
   },
   povna_akademichna_zbirka_2011: {
     devNumber: 3,
@@ -58,16 +63,12 @@ const skovorodaSources = {
     productionYear: 2009,
     sourceName: 'Г. Сковорода. Вибрані твори в українських перекладах / Серія "Українська муза" у 12-ти томах, том 1 - 2009',
     sourceFullName: 'Г. Сковорода. Вибрані твори в українських перекладах / Серія "Українська муза" у 12-ти томах, том 1 - Упорядкування текстів, передмова та примітки Л. В. Ушкалова - 2009',
-    // TODO: Now: add cover image
-    // TODO: Now: add file
   },
   povne_zibrannya_tvoriv_1973_tom_2: {
     devNumber: 12,
     id: "povne_zibrannya_tvoriv_1973_tom_2",
     year: 1997,
     productionYear: 1973,
-    // TODO: Now: add cover image
-    // TODO: Now: add file
     sourceName: "Григорій Сковорода. Повне зібрання творів: У 2-х т. — К., 1973 — Т. 2.",
   },
   tvory_u_dvox_tomax_tom_2_1994: {
@@ -76,8 +77,7 @@ const skovorodaSources = {
     sourceName: "Сковорода, Григорій. Твори у двох томах. Том 2 - 1994 р.",
     productionYear: 1994,
     bookCoverImageFileName: "Tvory u dvox tomax. Tom 2 - 1994.png",
-    // TODO: Now: add cover image
-    files: [], // TODO: add file
+    files: [], 
   },
   baiki_harkivski_fedorak_2019: {
     devNumber: 17,
@@ -94,8 +94,7 @@ const skovorodaSources = {
     id: "baiki_harkivski_shevchuk",
     year: 0,
     sourceName: "Григорій Савич Сковорода. Байки Харківські (збірка). Переклад Валерія Шевчука.",
-    files: [], // TODO: add file
-    // TODO: Now: add cover image
+    files: [],
     shortTitle: "Байки Харківські",
   },
   baiki_harkivski_shevchuk: {
@@ -110,6 +109,13 @@ const skovorodaSources = {
     sourceName: "Євген Глива: Онтологічний образ людини в творчості Григорія Сковороди.: – К.: Видавництво ТОВ \"КММ\", 2006",
     productionYear: 2006,
   },
+  piznanyi_ne_piznanyi_sphinks: {
+    devNumber: 29,
+    id: "piznanyi_ne_piznanyi_sphinks",
+    sourceName: "Валерій Шевчук. Пізнаний і непізнаний Сфінкс: Григорій Сковорода – Видавництво Пульсари 2008",
+    isbn: "ISBN 978-966-2171-04-4",
+    productionYear: 2008,
+  }
 }
 
 const sourcesArray = Object.values(skovorodaSources);

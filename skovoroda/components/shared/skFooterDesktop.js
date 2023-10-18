@@ -7,7 +7,7 @@ const useStyles = createStyles((theme) => ({
     position: "absolute",
     bottom: 0,
     width: "100%",
-    height: "120px",
+    height: "144px",
   },
 }));
 
@@ -15,14 +15,14 @@ export default function SkFooterDesktop() {
   
   const { classes } = useStyles();
 
-  return <Container fluid={true} h={120} bg={"indigo.1"} ta={"center"} w={"100%"} className={classes.footer}>
+  return <Container fluid={true} h={144} bg={"indigo.1"} ta={"center"} w={"100%"} className={classes.footer}>
     <Flex 
       ta={"center"}
       gap="sm" 
       justify={"center"}
       align="center"
       direction="row"
-      h={120}
+      h={144}
       className="normalContentText normalContentText_withoutIndent"
     >
       <SkTextLink href={SkovorodaAboutUsPath} text={"Про нас"} />

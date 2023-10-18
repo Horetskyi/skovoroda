@@ -62,7 +62,7 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
         <title>{pageProps.metadataTitle}</title>
         <meta name="description" content={pageProps.metadataDescription} />
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon2.png" />
         
         {pageProps.shouldBeIndexed ? null :
           <meta name="robots" content="noindex, nofollow" />}
@@ -137,7 +137,7 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
             "body::after": {
               content: '""',
               display: "block",
-              height: "120px", /* Set same as footer's height */
+              height: "144px", /* Set same as footer's height */
             },
             ".normalContentText, .normalContentText label": {
               fontWeight: 300,

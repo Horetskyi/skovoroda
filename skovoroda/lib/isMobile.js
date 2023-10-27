@@ -11,6 +11,10 @@ export default function isMobile(userAgent) {
         return userAgentLower.includes('mobile'); 
     }
 
+    if (userAgentLower.includes('mobile')) {
+        return true;
+    }
+
     const parserResult = UAParser(userAgent);
     return parserResult?.device?.type === "mobile";
 

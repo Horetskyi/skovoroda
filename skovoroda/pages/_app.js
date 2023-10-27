@@ -64,7 +64,7 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         
         {/* Icons */}
-        <link rel="shortcut icon" href="/favicon.ico?v=3" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico?v=4" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3" />
         <link rel="icon" type="image/png" sizes="24x24" href="/favicon2-24x24.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3" />

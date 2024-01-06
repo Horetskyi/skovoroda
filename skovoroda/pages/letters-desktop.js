@@ -1,46 +1,12 @@
-import { Container, createStyles, Table, Text, Title } from '@mantine/core';
+import { Container, Table, Text, Title } from '@mantine/core';
 import Link from 'next/link';
 import AnimatedMailComponent from '../components/animatedMailComponent';
 import { SkovorodaLettersFrom, SkovorodaLettersTo } from '../lib/data/skovorodaLetters';
 import { lettersPageKey } from '../lib/skovorodaConstants';
 import { pathJoin, SkovorodaLettersFromPath } from '../lib/skovorodaPath';
-
-const useStyles = createStyles((theme) => ({
-  table: {
-    "thead": {
-      position: "sticky",
-      top: "0",
-      background: "white",
-      "tr": {
-        "th:nth-child(1)": {
-          minWidth: "360px"
-        },
-        "th:nth-child(2)": {
-          minWidth: "100px"
-        },
-      }
-    },
-    "tbody": {
-      "tr": {
-        "td:nth-child(2)": {
-          textAlign: 'right',
-          paddingRight: theme.spacing.lg,
-        },
-        "td:nth-child(n+3)": {
-          textAlign: 'center',
-          margin: "auto",
-        },
-      },
-      "tr:hover": {
-        background: theme.colors.blue[0]
-      }
-    }
-  }
-}));
+import classes from './letters-desktop.module.scss';
 
 export default function SkovorodaLettersPageDesktop({ allLettersFrom }) {
-  
-  const { classes } = useStyles();
 
   const translatorNamesSet = new Set();
   allLettersFrom.forEach(letter => {

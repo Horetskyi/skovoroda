@@ -2,7 +2,6 @@
 import { Card, Container, Select, Text, Title } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import CardWithTwoSelectorsDesktop from '../../../components/cardWithTwoSelectorsDesktop';
 import SkovorodaFomattingInfoBlockDesktop from '../../../components/skovorodaFomattingInfoBlockDesktop';
 import SkovorodaSourceBlockDesktop from '../../../components/skovorodaSourceBlockDesktop';
 import { SkovorodaGardenRefactored } from '../../../lib/data/skovorodaGarden';
@@ -13,6 +12,7 @@ import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';
 import { gardenSelectedPageKey } from '../../../lib/skovorodaConstants';
 import { pathJoin, SkovorodaGardenPath } from '../../../lib/skovorodaPath';
 import SkTextContentBlockDesktop from '../../../components/shared/skTextContentBlockDesktop';
+import SkCardWithTwoSelectorsDesktopV2 from '../../../components/shared/skCardWithTwoSelectorsDesktopV2';
 
 export default function SkovorodaGardenPageRefactored({ 
   selectedSong,
@@ -30,6 +30,7 @@ export default function SkovorodaGardenPageRefactored({
   }
 
   const selectedMetadata = selectedSong.songMetadata;
+  return <div>SKIP</div>;
 
   // Dropdown 1 hooks
   const [selectedTranslationDropdownValue, selectTranslationDropdownValueInner] = useState(selectedMetadata.translatorName);
@@ -68,7 +69,7 @@ export default function SkovorodaGardenPageRefactored({
   return <>
     <Container mb="xl">
 
-      <CardWithTwoSelectorsDesktop 
+      <SkCardWithTwoSelectorsDesktopV2 
         dropdown1={{
           label: "Оберіть переклад",
           data: translationsDropdownItems,
@@ -120,7 +121,7 @@ function prepareSongsDropdownItems(allSongsMetadata, selectedTranlsatorName) {
 
   return result.map(letterMetadata => {
     return {
-      value: letterMetadata.number,
+      value: "" + letterMetadata.number,
       label: letterMetadata.number + " - " + letterMetadata.name,
       id: letterMetadata.id,
       disabled: false,
@@ -142,7 +143,7 @@ function prepareTranslationsDropdownItems(allSongsMetadata, songNumber) {
 
   return result.map(songMetadata => {
     return {
-      value: songMetadata.translatorName,
+      value: "" + songMetadata.translatorName,
       label: songMetadata.translatorName,
       id: songMetadata.id,
       disabled: false,

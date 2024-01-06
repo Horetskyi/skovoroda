@@ -1,36 +1,14 @@
-import { Container, Group, Space, Stack, Text, createStyles } from "@mantine/core";
+import { Container, Group, Space, Stack, Text } from "@mantine/core";
 import SkColoredContainerDesktop from "../shared/skColoredContainerDesktop";
 import SkH1Desktop from "../shared/skH1Desktop";
 import SkH2Desktop from "../shared/skH2Desktop";
 import SkImage from "../shared/skImage";
 import Link from "next/link";
 import SkDownloadButtonDesktop from "../shared/skDownloadButtonDesktop";
-
-const useStyles = createStyles((theme) => ({
-  
-  bookContainer: {
-    display: "flex",
-  },
-  bookImage: {
-    borderRadius: theme.radius.md,
-    boxShadow: theme.shadows.lg,
-    minWidth: "max-content",
-    lineHeight: 0,
-    width: 170,
-    height: 246,
-    img: {
-      borderRadius: theme.radius.md,
-      objectFit: "cover",
-    },
-    marginRight: theme.spacing.md, 
-  },
-
-}));
+import classes from './skTreatisePageDesktop.module.scss';
 
 export default function SkTreatisePageDesktop({ treatise, sources, translators }) {
   
-  const { classes } = useStyles();
-
   const preferedVersion = treatise.versions.find(v => v.preferedVersion);
   const preferedTitle = preferedVersion.title;
   const original = treatise.versions.find(v => v.translatorId === 0);
@@ -51,7 +29,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
           priority
         />
       </div>
-      <Stack p="0" m="0" ta="left" spacing="xs">
+      <Stack p="0" m="0" ta="left" gap={"xs"}>
         <Text className="normalContentText normalContentText_withoutIndent">Назва: {version.title}</Text>
         {isTranslation ? 
           <Text className="normalContentText normalContentText_withoutIndent">{translatorLabel}
@@ -84,6 +62,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
           {(index !== array.length - 1) ? <Space h="md"/> : null}
         </div>
       })}
+      <Space h="xl"/>
     </SkColoredContainerDesktop>
   </>
 }

@@ -1,30 +1,11 @@
-import { Image, Text, createStyles, Title, Stack, Badge  } from '@mantine/core';
+import { Image, Text, Title, Stack, Badge  } from '@mantine/core';
 import SourceV1 from './sourceV1';
 import DownloadStackV1 from './downloadStackV1';
 import { SkovorodaConstants } from '../lib/skovorodaConstants';
-
-const useStyles = createStyles((theme) => ({
-
-  image: {
-    img: {
-      borderRadius: theme.radius.sm,
-      boxShadow: theme.shadows.md,
-    }
-  },
-
-  downloadStack: {
-    display: "flex",
-    justifyContent: "flex-start",
-    flexDirection: "column",
-    alignSelf: "flex-start",
-    flexGrow: 1,
-  }
-
-}));
+import classes from './skovorodaTextBlockMobile.module.scss';
 
 export default function SkovorodaTextBlockMobile(props) {
   
-  const { classes } = useStyles();
   const badgeText = SkovorodaConstants.getTypeText(props.textType);
 
   return <>

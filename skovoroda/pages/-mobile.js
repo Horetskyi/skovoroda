@@ -1,4 +1,4 @@
-import { Center, Container, Space, Text, Title, createStyles } from "@mantine/core";
+import { Center, Container, Space, Text, Title } from "@mantine/core";
 import { getHomePageProps, homePageContent } from "../lib/pagesContent/home";
 import SkImage from "../components/shared/skImage";
 import SkColoredContainerMobile from "../components/shared/skColoredContainerMobile";
@@ -6,18 +6,9 @@ import SkQuoteDesktop from "../components/shared/skQuoteDesktop";
 import SkFountain from "../components/shared/skFountain";
 import SkSourcesContainerMobile from "../components/shared/skSourcesContainerMobile";
 import SkH2Mobile from "../components/shared/skH2Mobile";
-
-const useStyles = createStyles((theme) => ({
-  h1: {
-    fontWeight: 300,
-    fontSize: "24px",
-    lineHeight: "32px",
-    letterSpacing: "0.065em",
-  },
-}));
+import classes from './mobile.module.scss';
 
 export default function HomePageMobile() {
-  const { classes } = useStyles();
   return <>
     <Container px={"md"}>
       <Space h={"md"}/>

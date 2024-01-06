@@ -1,32 +1,14 @@
-import { Card, Container, createStyles, Slider, Space, Title } from "@mantine/core";
+import { Card, Container, Slider, Space, Title } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { gsap } from "gsap/dist/gsap";
 import SkovorodaBioMapComponent from "../components/skovorodaBioMapComponent";
 import FirstHouseComponent from "../components/firstHouseComponent";
 import { skovorodaPlaces, SkovorodaTravelData } from "../lib/data/skovorodaTravelData";
 import { CSSPlugin } from "gsap";
-
-const useStyles = createStyles((theme) => ({
-  
-  svgMapContainer: {
-    transform: "translateZ(0)",
-  },
-
-  svgMap: {
-    position: "absolute",
-    overflow: "visible  !important",
-
-    "*": {
-      visibility: "visible",
-    }
-  },
-
-}));
+import classes from './bio-experimental-desktop.module.scss';
 
 export default function HSBioExperimentalPageDesktop({ }) {
   
-  const { classes } = useStyles();
-
   // Constants
   const maxDuration = 100;
   const mapId = "skovoroda-bio-map";

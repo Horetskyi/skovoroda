@@ -30,6 +30,8 @@ export function middleware(request) {
     !pathName.includes('.jpg') &&
     !pathName.includes('iframes') &&
     !pathName.includes('.jpeg') &&
+    !pathName.includes('.css') &&
+    !pathName.includes('.scss') &&
     !pathName.includes('.ico');
 
   // console.log(`isPageRequest: ${isPageRequest} for ${path}`)

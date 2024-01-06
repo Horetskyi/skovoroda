@@ -1,16 +1,9 @@
-import { Center, Container, Stack, createStyles } from "@mantine/core";
+import { Center, Container, Stack } from "@mantine/core";
 import SkImage from "./skImage";
 import SkTextLink from "./skTextLink";
-
-const useStyles = createStyles((theme) => ({
-  paragraph: {
-    margin: 0,
-  }
-}));
+import classes from './skSourceBlockMobile.module.scss';
 
 export default function SkSourceBlockMobile(params) {
-
-  const { classes } = useStyles();
 
   if (!params.sourceValue) {
     return null;
@@ -20,7 +13,7 @@ export default function SkSourceBlockMobile(params) {
   
   return <>
     <Container px={"md"}>
-      <Stack spacing="2px">
+      <Stack gap="2px">
         <p className={paragraphClassName}>{params.sourceType}:</p>
 
         {!isLinkAndTextTheSame ? <p className={paragraphClassName}>{params.sourceValue}</p> : null}

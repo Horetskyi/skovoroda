@@ -1,0 +1,204 @@
+
+$tab-size: 36; 
+$mantine-breakpoint-sm: 900px;
+@media (max-width: $mantine-breakpoint-sm) {
+  $tab-size: 12;
+}
+$left-num-spacing: 100;
+
+.noteFont {
+  font-family: 'Nonito';
+}
+
+.noteLink {
+  text-decoration: none;
+};
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.textContentBlock {
+  text-align: justify;
+  position: relative;
+  height: inherit;
+}
+
+.textContentBlockMobile {
+  text-align: left;
+  position: relative;
+  height: inherit;
+}
+
+.textContentBlockLeftNotesEnabled {
+  margin-left: var(--mantine-spacing-lg);
+}
+
+.emptyLine {
+  height: 32px;
+  margin: 0;
+}
+
+.blockTextLine {
+  display: block;
+  font-size: var(--mantine-font-size-md);
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 32px;
+}
+
+.blockTextLineV2 {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  text-indent: var(--mantine-spacing-md);
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  &:first-of-type {
+    text-indent: 0;
+  }
+}
+
+.blockTextLineV3 {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.formatUnderline {
+  text-decoration: underline;
+}
+.formatItalic {
+  font-style: italic;
+}
+.formatBold {
+  font-weight: 600;
+}
+.formatRight {
+  text-align: right;
+}
+.formatCenter {
+  text-align: center;
+}
+.formatTabs6 {
+  margin-left: ($tab-size*6) + "px";
+}
+.formatTabs5 {
+  margin-left: ($tab-size)*5 + "px";
+}
+.formatTabs4 {
+  margin-left: ($tab-size)*4 + "px";
+}
+.formatTabs3 {
+  margin-left: ($tab-size)*3 + "px";
+}
+.formatTabs2 {
+  margin-left: ($tab-size)*2 + "px";
+}
+.formatTabs1 {
+  margin-left: ($tab-size)*1 + "px";
+}
+.formatIrmologion {
+  font-family: 'Irmologion ieUcs';
+  font-size: 18px;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    font-size: 16px;
+  }
+}
+.formatLeftNum9 {
+  &::before {
+    content: "9.";
+    position: absolute;
+    left: -var($left-num-spacing) + "px";
+  }
+}
+.formatLeftNum8 {
+  &::before {
+    content: "8.";
+    position: absolute;
+    left: -var($left-num-spacing) + "px";
+  }
+}
+.formatLeftNum7 {
+  &::before {
+    content: "7.";
+    position: absolute;
+    left: -var($left-num-spacing) + "px";
+  }
+}
+.formatLeftNum6 {
+  &::before {
+    content: "6.";
+    position: absolute;
+    left: -var($left-num-spacing) + "px";
+  }
+}
+.formatLeftNum5 {
+  &::before {
+    content: "5.";
+    position: absolute;
+    left: -var($left-num-spacing) + "px";
+  }
+}
+.formatLeftNum4 {
+  &::before {
+    content: "4.";
+    position: absolute;
+    left: -var($left-num-spacing) + "px";
+  }
+}
+.formatLeftNum3 {
+  &::before {
+    content: "3.";
+    position: absolute;
+    left: -var($left-num-spacing) + "px";
+  }
+}
+.formatLeftNum2 {
+  &::before {
+    content: "2.";
+    position: absolute;
+    left: -var($left-num-spacing) + "px";
+  }
+}
+.formatLeftNum1 {
+  &::before {
+    content: "1.";
+    position: absolute;
+    left: -var($left-num-spacing) + "px";
+  }
+}
+.formatIndent {
+  text-indent: var($tab-size) + "px";
+}
+
+.noteInNotesBlock {
+  position: absolute;
+  right: 100%;
+  margin-top: -6px;
+  margin-right: var(--mantine-spacing-sm);
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.noteBlockMarginBottom {
+  margin-bottom: var(--mantine-spacing-md);
+}

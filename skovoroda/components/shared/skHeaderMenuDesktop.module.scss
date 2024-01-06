@@ -1,0 +1,43 @@
+.container {
+  border-bottom: 1px #BCBCBC solid;
+}
+.title {
+  font-style: normal;
+  font-weight: 100;
+  font-size: 36px;
+  line-height: 42px;
+  letter-spacing: 0.5em;
+}
+.titleLink {
+  margin-left: var(--mantine-spacing-sm);
+  margin-right: auto; 
+}
+.buttonText {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  letter-spacing: 0.165em;
+  color: black;
+}
+.inProgressText {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.03em;
+  color: #202a54;
+}
+.svg {
+  filter: drop-shadow(3px 1px 8px rgba(0, 0, 0, 0.15));
+}
+.dove {
+  position: absolute;
+  top: 41px;
+  left: -8px;
+  filter: drop-shadow(3px 1px 8px rgba(0, 0, 0, 0.15));
+}
+.svgs {
+  position: relative;
+  scale: 0.8;
+}

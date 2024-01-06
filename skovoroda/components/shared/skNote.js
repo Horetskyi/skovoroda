@@ -1,18 +1,8 @@
 import Link from "next/link";
 import { getNoteNumberString, getNoteNumberUpperString } from "../../lib/data/utils/notesNumbersSymbols";
-import { createStyles } from "@mantine/core";
-
-const useStyles = createStyles((theme) => ({
-  note: {
-    cursor: "pointer",
-    fontWeight: 400,
-    fontFamily: 'Nonito',
-    textDecoration: "none",
-  },
-}));
+import classes from './skNote.module.scss';
 
 export default function SkNote({noteNumber}) {
-  const { classes } = useStyles();
   const id = "noteInText" + getNoteNumberUpperString(noteNumber);
   return <Link 
     id={id} 

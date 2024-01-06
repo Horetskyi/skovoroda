@@ -6,16 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/server": "^11.10.0",
-    "@mantine/core": "^5.7.0",
-    "@mantine/dates": "^5.7.0",
-    "@mantine/hooks": "^5.7.0",
-    "@mantine/next": "^5.7.0",
-    "@next/font": "^13.4.19",
+    "@mantine/core": "^7.1.7",
+    "@mantine/dates": "^7.1.7",
+    "@mantine/hooks": "^7.1.7",
+    "@mantine/next": "^6.0.21",
+    "@next/font": "^14.0.1",
     "@svgr/webpack": "^6.5.1",
     "@tabler/icons": "^1.110.0",
     "any-text": "^1.2.0",
@@ -23,7 +24,7 @@
     "fs": "0.0.1-security",
     "gsap": "^3.11.4",
     "mammoth": "^1.5.1",
-    "next": "^13.4.19",
+    "next": "^14.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.5",
@@ -31,7 +32,12 @@
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
+    "cypress": "^13.6.0",
     "eslint": "8.26.0",
-    "eslint-config-next": "^13.4.19"
+    "eslint-config-next": "^13.4.19",
+    "gulp": "^4.0.2",
+    "gulp-webp": "^5.0.0",
+    "postcss-simple-vars": "^7.0.1",
+    "sass": "^1.69.5"
   }
 }

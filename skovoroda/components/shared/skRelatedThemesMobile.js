@@ -1,17 +1,7 @@
-import { List, Text, createStyles } from "@mantine/core";
-
-const useStyles = createStyles((theme) => ({
-
-  group: {
-    gap: theme.spacing.sm,
-  },
-
-}));
+import { List, Text } from "@mantine/core";
 
 export default function SkRelatedThemesMobile(props) {
 
-  const { classes } = useStyles();
- 
   if (!props.themes || !props.themes.length) {
     return null;
   }

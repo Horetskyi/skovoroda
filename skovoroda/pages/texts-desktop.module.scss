@@ -1,0 +1,15 @@
+.link {
+  &:hover > div {
+    box-shadow: var(--mantine-shadow-xl);
+    color: var(--mantine-color-blue-6);
+    img {
+      opacity: 0.95;
+    }
+  }
+}
+.card {
+  transition: all 0.4s ease;
+}
+.image {
+  transition: all 0.4s ease;
+}

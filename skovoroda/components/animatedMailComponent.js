@@ -1,20 +1,11 @@
 import AnimatedMailSvg from "./animatedMail.svg";
 import { gsap } from "gsap/dist/gsap";
-import { useContext, useEffect, useId, useRef, useState } from "react";
-import { Card, Container, createStyles } from "@mantine/core";
-
-
-const useStyles = createStyles((theme) => ({
-
-  container: {
-    textAlign: "center"
-  }
-
-}));
+import { useEffect, useRef, useState } from "react";
+import { Container } from "@mantine/core";
+import classes from './animatedMailComponent.module.scss';
 
 export default function AnimatedMailComponent({ uniqueId }) {
   
-  const { classes } = useStyles();
   const root = useRef();
   const uniqueClassName = "animated-mail-id-"+uniqueId;
   var [isPlayed, setIsPlayed] = useState(false);

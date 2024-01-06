@@ -1,19 +1,10 @@
-import { Button, createStyles } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { IconFileDownload } from "@tabler/icons";
 import Link from "next/link";
-
-const useStyles = createStyles((theme) => ({
-  link: {
-    "span": {
-      color: "black",
-    }
-  },
-}));
+import classes from './skDownloadButtonDesktop.module.scss'; 
 
 export default function SkDownloadButtonDesktop({ fileName }) {
   
-  const { classes } = useStyles();
-
   const fileExtension = getFileExtensionUppercase(fileName);
 
   return <Link key={fileName} href={"/sources/" + fileName} title={fileName} className={classes.link}>

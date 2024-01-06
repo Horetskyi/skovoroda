@@ -1,28 +1,12 @@
-import { Card, createStyles, Image, Title } from "@mantine/core";
+import { Card, Image, Title } from "@mantine/core";
 import Link from "next/link";
-
-const useStyles = createStyles((theme) => ({
-  imageContainer: {
-    width: "100%",
-    textAlign: "center",
-  },
-  image: {
-    margin: 'auto',
-    img: {
-      borderRadius: theme.radius.sm,
-      boxShadow: theme.shadows.md,
-    }
-  },
-}));
+import classes from './skovorodaSourceBlockDesktop.module.scss';
 
 export default function SkovorodaSourceBlockDesktop({source}) {
-
-  const { classes } = useStyles();
 
   if (!source) {
     return <></>;
   }
-
   return <Card id="source-content" p="md" mt="md" radius="md" withBorder={true} className="specialBorder">
     <Title ta={'center'} mb="md" order={2}>Джерело</Title>
     { 

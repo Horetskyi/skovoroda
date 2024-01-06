@@ -1,0 +1,13 @@
+
+.svgMapContainer {
+  transform: translateZ(0);
+}
+
+.svgMap {
+  position: absolute;
+  overflow: visible  !important;
+
+  * {
+    visibility: visible;
+  }
+}

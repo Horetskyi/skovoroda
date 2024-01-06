@@ -18,7 +18,7 @@ export function prepareFablesDropdownItems(allFablesMetadata, selectedTranlsator
 
   return result.map(metadata => {
     return {
-      value: metadata.fableNumber,
+      value: ""+metadata.fableNumber,
       label: metadata.fableNumber + " – " + metadata.fableTitle,
       urlId: metadata.urlId,
       id: metadata.urlId,
@@ -32,7 +32,7 @@ export function prepareFablesDropdownItems(allFablesMetadata, selectedTranlsator
 export function prepareTranslatorsDropdownItems(allFablesMetadata, fableNumber, allTranslators) {
   
   // Example: [ original-fable-3, fedorak-fable-3, shevchuk-fable-3 ]
-  const selectedFableTranslations = allFablesMetadata.filter(metadata => metadata.fableNumber === fableNumber);
+  const selectedFableTranslations = allFablesMetadata.filter(metadata => metadata.fableNumber == fableNumber);
   
   allFablesMetadata.forEach(metadata => {
     if (selectedFableTranslations.some(translationMetadata => translationMetadata.translatorName == metadata.translatorName)) {
@@ -43,9 +43,9 @@ export function prepareTranslatorsDropdownItems(allFablesMetadata, fableNumber, 
   });
 
   return selectedFableTranslations.map(metadata => {
-    const translator = allTranslators.find(translator => translator.translatorId === metadata.translatorId);
+    const translator = allTranslators.find(translator => translator.translatorId == metadata.translatorId);
     return {
-      value: translator.translatorId,
+      value: ""+translator.translatorId,
       label: translator.fullName3,
       urlId: metadata.urlId,
       id: metadata.urlId,

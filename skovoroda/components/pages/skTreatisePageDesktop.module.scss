@@ -1,0 +1,16 @@
+.bookContainer {
+  display: flex;
+}
+.bookImage {
+  border-radius: var(--mantine-radius-md);
+  box-shadow: var(--mantine-shadow-lg);
+  min-width: max-content;
+  line-height: 0;
+  width: 170px;
+  height: 246px;
+  img: {
+    border-radius: var(--mantine-radius-md);
+    object-fit: cover;
+  }
+  margin-right: var(--mantine-spacing-md); 
+}

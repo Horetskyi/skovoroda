@@ -1,26 +1,8 @@
-import { Title, createStyles } from "@mantine/core";
-
-const useStyles = createStyles((theme) => ({
-
-  titleH2: {
-    fontWeight: 200,
-    fontSize: "36px",
-    lineHeight: "42px",
-    letterSpacing: "0.04em",
-  },
-  titleH2Qa: {
-    fontWeight: 300,
-    fontSize: "24px",
-    lineHeight: "28px",
-    letterSpacing: "0.04em",
-  },
-
-}));
+import { Title } from "@mantine/core";
+import classes from './skH2Desktop.module.scss';
 
 // Mobile the same
 export default function SkH2Desktop(props) {
-
-  const { classes } = useStyles();
 
   if (props.type === "qa") {
     return <Title order={2} ta={"left"} {...props} className={classes.titleH2Qa}>

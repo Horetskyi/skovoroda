@@ -1,4 +1,4 @@
-import { Container, List, Space, Text, createStyles } from "@mantine/core";
+import { Container, List, Space, Text } from "@mantine/core";
 import SkH1Desktop from "../../components/shared/skH1Desktop";
 import SkColoredContainerDesktop from "../../components/shared/skColoredContainerDesktop";
 import { SkovorodaFablesPath, getFableLinkTitle, pathJoin } from "../../lib/skovorodaPath";
@@ -8,33 +8,9 @@ import { prepareFables } from "../../lib/pagesContent/fablesLogic";
 import { fablesPageContent } from "../../lib/pagesContent/fablesContent";
 import SkH2Desktop from "../../components/shared/skH2Desktop";
 import SkTextContentBlockDesktop from "../../components/shared/skTextContentBlockDesktop";
-
-const useStyles = createStyles((theme) => ({
-  grid: {
-    gap: theme.spacing.md,
-  },
-  fableGrayText: {
-    color: theme.colors.gray[6],
-    fontWeight: 300,
-    fontSize: "16px",
-    lineHeight: "19px",
-    letterSpacing: "0.02em",
-    paddingTop: "8px",
-  },
-  fableTitle: {
-    textAlign: "center !important",
-    minHeight: "60px",
-    display: 'flex',
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  list: {
-    columnCount: 3,
-  }
-}));
+import classes from './fables-desktop.module.scss';
 
 export default function FablesPage({ allFables, fablesTopContent, allSources }) {
-  const { classes } = useStyles();
   const fables = prepareFables(allFables);
   allSources.sort((a,b) => a.sourceId - b.sourceId);
   fablesTopContent.sort((a,b) => fablesPageContent.contentOrder.indexOf(a.key) - fablesPageContent.contentOrder.indexOf(b.key));
@@ -43,7 +19,7 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
     return <List type="ordered" className={`normalContentText normalContentText_withoutIndent ${classes.list}`}>
       {fables.slice(from, to).map(fable => {
         const href = pathJoin(SkovorodaFablesPath, fable.urlId);
-        return <List.Item key={fable.urlId}>
+        return <List.Item key={fable.urlId} mb="xs">
           <SkTextLink text={fable.fableTitle} title={getFableLinkTitle(fable)} href={href} disableStyles={false}>
           </SkTextLink>
         </List.Item>
@@ -98,7 +74,7 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
         const mt = index ? "sm" : "0";
         return <Text id={"sourceId"+source.sourceId} key={"source"+source.sourceId} className="normalContentText normalContentText_withoutIndent" mt={mt}>{text}</Text>
       })}
-      <Space h="lg"/>
+      <Space h="xl"/>
     </SkColoredContainerDesktop>
   </>
 }

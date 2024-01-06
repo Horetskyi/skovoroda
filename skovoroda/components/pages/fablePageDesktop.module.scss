@@ -1,0 +1,40 @@
+.fableContainer {
+  display: flex;
+}
+
+.fableImage {
+  border-radius: var(--mantine-radius-md);
+  box-shadow: var(--mantine-shadow-lg);
+  min-width: max-content;
+  line-height: 0;
+  width: 250px;
+  height: 360px;
+  img: {
+    border-radius: var(--mantine-radius-md);
+    object-fit: cover;
+  }
+  margin-right: var(--mantine-spacing-md);
+}
+
+.fablePowerTitle {
+  font-weight: 200;
+  font-size: 36px;
+  line-height: 33px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin-top: var(--mantine-spacing-md);
+  margin-bottom: var(--mantine-spacing-sm);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modalLink {
+  position: absolute;
+  bottom: -64px;
+  right: 0;
+  background: var(--mantine-color-indigo-1);
+  padding: 8px 16px;
+  border-radius: var(--mantine-radius-md);
+  text-decoration: none;
+  outline: none;
+}

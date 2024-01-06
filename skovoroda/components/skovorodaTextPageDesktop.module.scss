@@ -1,0 +1,25 @@
+
+.h1 {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.h1Divider {
+  margin-left: -var(--mantine-spacing-md);
+  margin-right: -var(--mantine-spacing-md);
+  margin-top: var(--mantine-spacing-sm);
+}
+
+.downloadButton {
+  width: 100%;
+}
+.downloadButtonIcon {
+  display: flex
+}
+.downloadButtonExtensionName {
+  display: flex;
+}
+.downloadButtonFileSize {
+  display: flex;
+}

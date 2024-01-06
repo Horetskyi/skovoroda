@@ -1,0 +1,49 @@
+.container {
+  border-bottom: 1px #BCBCBC solid;
+}
+.title {
+  font-style: normal;
+  font-weight: 200;
+  font-size: 28px;
+  line-height: 33px;
+  letter-spacing: 0.16em;
+}
+.titleLink {
+  margin-left: 0;
+  margin-right: auto;
+}
+.buttonText {
+  text-align: center;
+  font-weight: 200;
+  font-size: 24px;
+  letter-spacing: 0.165em;
+  color: black;
+  padding-top: var(--mantine-spacing-sm);
+  padding-bottom: var(--mantine-spacing-sm);
+  text-decoration: none;
+}
+.logoLink {
+  margin-top: var(--mantine-spacing-sm);
+}
+.inProgressText {
+  font-weight: 200;
+  font-size: 20px;
+  letter-spacing: 0.065em;
+  color: #202a54;
+  margin: auto;
+}
+.svg {
+  filter: drop-shadow(3px 1px 8px rgba(0, 0, 0, 0.15));
+}
+.dove {
+  position: absolute;
+  top: 34px;
+  left: -8px;
+  filter: drop-shadow(3px 1px 8px rgba(0, 0, 0, 0.15));
+}
+.svgs {
+  position: relative;
+  scale: 0.9;
+  margin-left: var(--mantine-spacing-xs);
+  margin-right: var(--mantine-spacing-xs);
+}

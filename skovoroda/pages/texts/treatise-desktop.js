@@ -1,4 +1,4 @@
-import { Checkbox, Container, Group, Stack, Text, Title, createStyles } from '@mantine/core';
+import { Checkbox, Container, Group, Space, Stack, Text, Title, createStyles } from '@mantine/core';
 import SkH1Desktop from '../../components/shared/skH1Desktop';
 import Link from 'next/link';
 import { SkovorodaTreatisePath, pathJoin } from '../../lib/skovorodaPath';
@@ -10,48 +10,9 @@ import { useState } from 'react';
 import { getTreatisesPageProps } from '../../lib/pagesContent/trearisesStatic';
 import { trearisesContent } from '../../lib/pagesContent/treatisesContent';
 import { IconChevronRight } from '@tabler/icons';
-
-const useStyles = createStyles((theme) => ({
-  treatiseContainer: {
-    borderRadius: theme.radius.md,
-    boxShadow: theme.shadows.md,
-  },
-  h2Link: {
-    fontSize: "24px !important",
-    fontWeight: "400 !important",
-    lineHeight: "24px",
-    color: theme.colors.blue[9],
-    textDecoration: "none",
-  },
-  dates: {
-    borderLeftColor: theme.colors.blue[2],
-    borderLeftStyle: "solid",
-    borderLeftWidth: "12px",
-  },
-  dateBoxContainer: {
-    position: "relative"
-  },
-  dateBox: {
-    background: theme.colors.blue[2],
-    width: "24px",
-    height: "12px",
-    position: "absolute",
-    top: 0,
-    content: "''",
-  },
-  dateBoxTexts: {
-    justifyContent: "space-between",
-    gap: 0,
-  },
-  linkIcon: {
-    marginLeft: theme.spacing.xs,
-    marginBottom: "-4px",
-  },
-}));
+import classes from './treatise-desktop.module.scss';
 
 export default function SkTreatisePageDesktop({ treatises, sourcesTextContent }) {
-  
-  const { classes } = useStyles();
   
   const [filters, setFilters] = useState(trearisesContent.filtersByTypes);
   function setChecked(filterKey, checked) {
@@ -74,7 +35,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
     {/* Filters */}
     <SkColoredContainerDesktop>
       <Text mb="sm" className='normalContentText normalContentText_withoutIndent'>{trearisesContent.filtersByTypesLabel}</Text>
-      <Stack spacing={"xs"} mb="sm">
+      <Stack gap={"xs"} mb="sm">
         {filters.map(filter => {
           return <Checkbox 
             color="blue.2"
@@ -139,6 +100,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
     <SkColoredContainerDesktop color={"gray.1"}>
       <SkH2Desktop text={trearisesContent.h2Notes} mb="lg"/>
       <SkTextContentBlockDesktop textContent={sourcesTextContent} isv3={true} />
+      <Space h='md'/>
     </SkColoredContainerDesktop>
   </>
 }

@@ -1,0 +1,11 @@
+.image {
+  border-radius: var(--mantine-radius-md);
+  box-shadow: var(--mantine-shadow-lg);
+  min-width: max-content;
+  line-height: 0;
+  
+  img {
+    border-radius: var(--mantine-radius-md);
+    object-fit: cover;
+  }
+}

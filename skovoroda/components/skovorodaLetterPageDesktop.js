@@ -1,58 +1,15 @@
 
-import { Card, Container, createStyles, Group, Text, Title } from '@mantine/core';
-import { useRef, useState } from 'react';
+import { Card, Container, Title } from '@mantine/core';
+import { useState } from 'react';
 import { useRouter } from 'next/router'
 import { SkovorodaLettersFromPath, pathJoin } from '../lib/skovorodaPath';
 import SkovorodaFomattingInfoBlockDesktop from '../components/skovorodaFomattingInfoBlockDesktop';
 import SkovorodaSourceBlockDesktop from '../components/skovorodaSourceBlockDesktop';
-import CardWithTwoSelectorsDesktop from './cardWithTwoSelectorsDesktop';
-import Draggable from 'react-draggable';
-import { IconX } from '@tabler/icons';
-import { gsap } from "gsap/dist/gsap";
-import { getNoteNumberUpperString } from '../lib/data/utils/notesNumbersSymbols';
-import SkovorodaLeftNavMenuDesktop from './skovorodaLeftNavMenuDesktop';
 import SkovorodaDraggableNotesDesktop from './skovorodaDraggableNotesDesktop';
 import { languagesToShortString, parseLanguages } from '../lib/skovorodaLanguagesLogic';
 import SkTextContentBlockDesktop from './shared/skTextContentBlockDesktop';
-
-const useStyles = createStyles((theme) => ({
-  draggableNoteBlock: {
-    position: 'absolute',
-    zIndex: 100,
-    width: "700px",
-    maxHeight: "235px",
-  },
-  draggableNoteBlockInside: {
-    maxHeight: "150px",
-    overflow: "auto",
-  },
-  draggableNoteBlockHeader: {
-    borderTopLeftRadius: theme.radius.md,
-    borderTopRightRadius: theme.radius.md,
-    marginLeft: 3-theme.spacing.xl,
-    marginRight: -theme.spacing.xl,
-    marginTop: -theme.spacing.xl,
-    marginBottom: 0,
-    flexDirection: "row",
-  },
-  draggableNoteBlockLabel: {
-    cursor: "default",
-  },
-  draggableNoteBlockCrossIcon: {
-    cursor: "pointer",
-
-    ":hover": {
-      color: theme.colors.blue[7],
-    }
-  },
-  contentCard: {
-    overflow: "visible",
-  },
-  hidden: {
-    visibility: "hidden",
-  },
-
-}));
+import classes from './skovorodaLetterPageDesktop.module.scss';
+import SkCardWithTwoSelectorsDesktopV2 from './shared/skCardWithTwoSelectorsDesktopV2';
 
 export default function SkovorodaLetterPageDesktop({ 
   selectedLetter,
@@ -63,7 +20,6 @@ export default function SkovorodaLetterPageDesktop({
   letterType }) 
 {
 
-  const { classes } = useStyles();
   const router = useRouter();
   function changeRouterPath(id) {
     const newPath = pathJoin(SkovorodaLettersFromPath, id);
@@ -135,11 +91,9 @@ export default function SkovorodaLetterPageDesktop({
 
   return <>
 
-    <SkovorodaLeftNavMenuDesktop items={leftNavMenuItems} />
-
     <Container mb="xl">
 
-      <CardWithTwoSelectorsDesktop
+      <SkCardWithTwoSelectorsDesktopV2
         dropdown1={{
           label: "Оберіть переклад",
           data: translationsDropdownItems,

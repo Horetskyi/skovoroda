@@ -1,19 +1,9 @@
-import { Stack, createStyles } from "@mantine/core";
+import { Stack } from "@mantine/core";
 import SkImage from "./skImage";
 import SkTextLink from "./skTextLink";
-
-const useStyles = createStyles((theme) => ({
-  rowContainer: {
-    display: "flex",
-  },
-  paragraph: {
-    margin: 0,
-  }
-}));
+import classes from './skSourceBlockDesktop.module.scss';
 
 export default function SkSourceBlockDesktop(params) {
-
-  const { classes } = useStyles();
 
   if (!params.sourceValue) {
     return null;
@@ -24,7 +14,7 @@ export default function SkSourceBlockDesktop(params) {
   return <>
     <div className={classes.rowContainer}>
       <SkImage imageUrl={params.image.imageUrl} width={120} height={200} shadow={"md"} alt={params.image.alt} title={params.image.title} />
-      <Stack pl={"md"} spacing="2px">
+      <Stack pl={"md"} gap={"2px"}>
         <p className={paragraphClassName}>{params.sourceType}:</p>
 
         {!isLinkAndTextTheSame ? <p className={paragraphClassName}>{params.sourceValue}</p> : null}

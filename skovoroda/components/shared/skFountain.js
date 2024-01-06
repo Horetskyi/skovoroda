@@ -1,19 +1,9 @@
-import { createStyles } from "@mantine/core";
 import FountainSvg from "./skFountain.svg";
 import { gsap } from "gsap/dist/gsap";
 import { useEffect } from "react";
-
-const useStyles = createStyles(() => ({
-
-  fountainSvg: {
-    marginTop: "-34px",
-  },
-
-}));
+import classes from './skFountain.module.scss'; 
 
 export default function SkFountain({ isMobile }) {
-
-  const { classes } = useStyles();
 
   useEffect(() => {
 

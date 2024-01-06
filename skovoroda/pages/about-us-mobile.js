@@ -1,4 +1,4 @@
-import { Center, Container, Space, Text, createStyles } from "@mantine/core";
+import { Center, Container, Space, Text } from "@mantine/core";
 import SkImage from "../components/shared/skImage";
 import SkH1Mobile from "../components/shared/skH1Mobile";
 import SkColoredContainerMobile from "../components/shared/skColoredContainerMobile";
@@ -7,13 +7,7 @@ import { getAboutUsPageProps } from "../lib/pagesContent/aboutUsStatic";
 import SkH2Mobile from "../components/shared/skH2Mobile";
 import SkTextContentBlockDesktop from "../components/shared/skTextContentBlockDesktop";
 
-const useStyles = createStyles((theme) => ({
-
- 
-}));
-
 export default function AboutUsPage(props) {
-  const { classes } = useStyles();
 
   function AboutPerson(description, image, color) {
     return <>

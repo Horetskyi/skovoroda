@@ -1,14 +1,9 @@
 
-import { Container, createStyles, Divider, Space, Stack, Title } from '@mantine/core';
+import { Container, Divider, Space, Stack, Title } from '@mantine/core';
 import SkovorodaTextBlockMobile from './skovorodaTextBlockMobile';
 
-const useStyles = createStyles((theme) => ({
-
-}));
 
 export default function SkovorodaTextPageMobile({ textData }) {
-
-  const { classes } = useStyles();
 
   const originalBlock = createOriginalBlock(textData.original);
 

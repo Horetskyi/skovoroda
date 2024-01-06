@@ -1,53 +1,45 @@
-import { Card, Select, Text, createStyles } from "@mantine/core";
-import { LinkInsideSelect } from "../auxiliary/linkInsideSelectItem";
+import { Card, Select, Text } from "@mantine/core";
+import classes from './skCardWithTwoSelectorsDesktopV2.module.scss'; 
 
-const useStyles = createStyles((theme) => ({
+function ItemChildren(children) {
+  return children;
+} 
 
-  labelText: {
-    fontWeight: 300,
-    fontSize: "20px",
-    lineHeight: "23px",
-    letterSpacing: "0.04em",
-  },
-
-  card: {
-    ".mantine-Select-input": {
-      fontWeight: 300,
-      fontSize: "20px",
-      lineHeight: "23px",
-      letterSpacing: "0.04em",
-    },
-  },
-
-}));
-
-export default function SkCardWithTwoSelectorsDesktopV2({ dropdown1, dropdown2}) {
+export default function SkCardWithTwoSelectorsDesktopV2({ dropdown1, dropdown2, idSuffix}) {
   
-  const { classes } = useStyles();
+  if (!idSuffix || !idSuffix.length) {
+    idSuffix = "normal";
+  }
 
-  return <Card className={classes.card} withBorder={false} w="560px" p="0" m="0" >
+  return <Card withBorder={false} w="560px" p="0" m="0" >
 
     <Text mb="sm" className={classes.labelText}>{dropdown1.label}</Text>
     <Select 
+      id={"dropdown1-"+idSuffix}
       size="md"
       withinPortal={true}
       searchable
       mb="md"
-      itemComponent={LinkInsideSelect} 
       data={dropdown1.data} 
       value={dropdown1.selectedValue}
+      classNames={{
+        input: classes.mantineSelectInput
+      }}
       onChange={dropdown1.onChange}>
     </Select>
       
 
     <Text mb="sm" className={classes.labelText}>{dropdown2.label}</Text>
     <Select 
+      id={"dropdown2-"+idSuffix}
       size="md"
       withinPortal={true}
       searchable
-      itemComponent={LinkInsideSelect} 
       data={dropdown2.data} 
       value={dropdown2.selectedValue}
+      classNames={{
+        input: classes.mantineSelectInput
+      }}
       onChange={dropdown2.onChange}
       >
     </Select>

@@ -1,32 +1,11 @@
-import { Card, Container, createStyles, Grid, Image, SimpleGrid, Stack, Text, Title } from '@mantine/core';
+import { Card, Container, Image, SimpleGrid, Title } from '@mantine/core';
 import Link from 'next/link';
 import { textsPageKey } from '../lib/skovorodaConstants';
 import { SkovorodaDifferentPath, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaOtherPoemsPath, SkovorodaTranslatationsPath, SkovorodaTreatisePath } from '../lib/skovorodaPath';
-
-const useStyles = createStyles((theme) => ({
-  
-  link: {
-    ":hover > div": {
-      boxShadow: theme.shadows.xl,
-      color: theme.colors.blue[6],
-      "img": {
-        opacity: 0.95
-      }
-    }
-  },
-  card: {
-    transition: "all 0.4s ease"
-  },
-  image: {
-    transition: "all 0.4s ease",
-  },
-
-}));
+import classes from './texts-desktop.module.scss';
 
 export default function SkovorodaTextsPageDesktop({ }) {
   
-  const { classes } = useStyles();
-
   const items = [
     {
       path: SkovorodaTreatisePath,

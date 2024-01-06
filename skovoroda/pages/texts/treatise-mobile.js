@@ -1,4 +1,4 @@
-import { Checkbox, Container, Group, Stack, Text, Title, createStyles } from '@mantine/core';
+import { Checkbox, Container, Group, Space, Stack, Text, Title } from '@mantine/core';
 import Link from 'next/link';
 import { SkovorodaTreatisePath, pathJoin } from '../../lib/skovorodaPath';
 import SkTextContentBlockDesktop from '../../components/shared/skTextContentBlockDesktop';
@@ -10,45 +10,9 @@ import { IconChevronRight } from '@tabler/icons';
 import SkH1Mobile from '../../components/shared/skH1Mobile';
 import SkColoredContainerMobile from '../../components/shared/skColoredContainerMobile';
 import SkH2Mobile from '../../components/shared/skH2Mobile';
-
-const useStyles = createStyles((theme) => ({
-  h2Link: {
-    fontSize: "24px !important",
-    color: theme.colors.blue[9],
-    textDecoration: "none",
-    "span": {
-      lineHeight: "20px",
-    }
-  },
-  linkIcon: {
-    marginLeft: theme.spacing.xs,
-    marginBottom: "-4px",
-  },
-  dates: {
-    borderLeftColor: theme.colors.blue[2],
-    borderLeftStyle: "solid",
-    borderLeftWidth: "8px",
-  },
-  dateBoxContainer: {
-    position: "relative"
-  },
-  dateBox: {
-    background: theme.colors.blue[2],
-    width: "12px",
-    height: "12px",
-    position: "absolute",
-    top: 0,
-    content: "''",
-  },
-  dateBoxTexts: {
-    justifyContent: "space-between",
-    gap: 0,
-  },
-}));
+import classes from './treatise-mobile.module.scss';
 
 export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) {
-  
-  const { classes } = useStyles();
   
   const [filters, setFilters] = useState(trearisesContent.filtersByTypes);
   function setChecked(filterKey, checked) {
@@ -71,7 +35,7 @@ export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) 
     {/* Filters */}
     <SkColoredContainerMobile px="md">
       <Text mb="sm" className='normalContentText normalContentText_withoutIndent'>{trearisesContent.filtersByTypesLabel}</Text>
-      <Stack spacing={"xs"} mb="sm">
+      <Stack gap={"xs"} mb="sm">
         {filters.map(filter => {
           return <Checkbox 
             color="blue.2"

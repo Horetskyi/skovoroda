@@ -1,4 +1,4 @@
-import { Center, Container, Group, Space, Stack, Text, createStyles } from "@mantine/core";
+import { Center, Container, Group, Space, Stack, Text } from "@mantine/core";
 import SkImage from "../shared/skImage";
 import Link from "next/link";
 import SkDownloadButtonDesktop from "../shared/skDownloadButtonDesktop";
@@ -6,12 +6,7 @@ import SkColoredContainerMobile from "../shared/skColoredContainerMobile";
 import SkH1Mobile from "../shared/skH1Mobile";
 import SkH2Mobile from "../shared/skH2Mobile";
 
-const useStyles = createStyles((theme) => ({
-}));
-
 export default function SkTreatisePageMobile({ treatise, sources, translators }) {
-  
-  const { classes } = useStyles();
 
   const preferedVersion = treatise.versions.find(v => v.preferedVersion);
   const preferedTitle = preferedVersion.title;
@@ -35,7 +30,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
       </Center>
       <Space h="md"/>
       
-      <Stack p="0" m="0" ta="left" spacing="xs">
+      <Stack p="0" m="0" ta="left" gap="xs">
         <Text className="normalContentText normalContentText_withoutIndent">Назва: {version.title}</Text>
         {isTranslation ? 
           <Text className="normalContentText normalContentText_withoutIndent">{translatorLabel}

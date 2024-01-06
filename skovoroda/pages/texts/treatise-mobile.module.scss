@@ -1,0 +1,32 @@
+.h2Link {
+  font-size: 24px !important;
+  color: var(--mantine-color-blue-9);
+  text-decoration: none;
+  span {
+    line-height: 20px;
+  }
+}
+.linkIcon {
+  margin-left: var(--mantine-spacing-xs);
+  margin-bottom: -4px;
+};
+.dates {
+  border-left-color: var(--mantine-color-blue-2);
+  border-left-style: solid;
+  border-left-width: 8px;
+}
+.dateBoxContainer {
+  position: relative
+}
+.dateBox {
+  background: var(--mantine-color-blue-2);
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 0;
+  content: '';
+}
+.dateBoxTexts {
+  justify-content: space-between;
+  gap: 0;
+}

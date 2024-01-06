@@ -1,0 +1,21 @@
+.grid {
+  gap: var(--mantine-spacing-md);
+}
+.fableGrayText {
+  color: var(--mantine-color-gray-6);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+  padding-top: 8px;
+}
+.fableTitle {
+  text-align: center !important;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.list {
+  column-count: 3;
+}

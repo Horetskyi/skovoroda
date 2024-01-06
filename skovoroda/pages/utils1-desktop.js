@@ -1,20 +1,13 @@
-import { Button, Card, Checkbox, Container, createStyles, Select, Slider, Space, Text, Textarea, Title } from "@mantine/core";
+import { Card, Checkbox, Container, Select, Slider, Space, Textarea, Title } from "@mantine/core";
 import { useEffect, useState } from "react";
-import AnimatedMailComponent from "../components/animatedMailComponent";
 import { getNoteNumberString } from "../lib/data/utils/notesNumbersSymbols";
-import { textsPageKey, utils1PageKey } from "../lib/skovorodaConstants";
+import { utils1PageKey } from "../lib/skovorodaConstants";
 import { gsap } from "gsap/dist/gsap";
 import { IconMail } from "@tabler/icons";
-
-const useStyles = createStyles((theme) => ({
-
-}));
 
 var timeline = undefined;
 
 export default function Utils1({ }) {
-  
-  const { classes } = useStyles();
 
   const [timeSliderValue, setTimeSliderValue] = useState(1722);
 

@@ -1,5 +1,5 @@
 
-import { Container, Group, Modal, Space, createStyles } from '@mantine/core';
+import { Container, Group, Modal, Space } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Image from 'next/image';
@@ -18,58 +18,7 @@ import SkRelatedThemesDesktop from '../shared/skRelatedThemesDesktop';
 import { useDisclosure } from '@mantine/hooks';
 import SkImage from '../shared/skImage';
 import SkTextLink from '../shared/skTextLink';
-
-const useStyles = createStyles((theme) => ({
-  
-  fableContainer: {
-    display: "flex",
-  },
-
-  fableImage: {
-    borderRadius: theme.radius.md,
-    boxShadow: theme.shadows.lg,
-    minWidth: "max-content",
-    lineHeight: 0,
-    width: 250,
-    height: 360,
-    img: {
-      borderRadius: theme.radius.md,
-      objectFit: "cover",
-    },
-    marginRight: theme.spacing.md, 
-  },
-
-  fablePowerTitle: {
-    fontWeight: 200,
-    fontSize: "36px",
-    lineHeight: "33px",
-    letterSpacing: "0.04em",
-    textAlign: "center",
-    marginTop: theme.spacing.md,
-    marginBottom: theme.spacing.sm,
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-
-  groupOfButtons: {
-
-  },
-
-  modalLink: {
-    position: 'absolute',
-    bottom: "-64px",
-    right: "0",
-    background: theme.colors.indigo[1],
-    padding: "8px 16px",
-    borderRadius: theme.radius.md,
-    textDecoration: "none",
-    outline: "none",
-  },
-
-  fableImageInModal: {
-  },
-
-}));
+import classes from './fablePageDesktop.module.scss';
 
 export default function FablePageDesktop({ 
   selectedFable,
@@ -82,8 +31,6 @@ export default function FablePageDesktop({
   deviceEnding
 }) 
 {
-  const { classes } = useStyles();
-
   const router = useRouter();
   function changeRouterPath(urlId) {
     const newPath = pathJoin(SkovorodaFablesPath, urlId);
@@ -93,17 +40,17 @@ export default function FablePageDesktop({
   const selectedMetadata = selectedFable.metadata;
 
   // Dropdown 1 hooks
-  const [selectedTranslatorDropdownValue, selectTranslatorDropdownValueInner] = useState(selectedMetadata.translatorId);
+  const [selectedTranslatorDropdownValue, selectTranslatorDropdownValueInner] = useState(""+selectedMetadata.translatorId);
   const [translationsDropdownItems, changeTranslationDropdownItems] = useState(prepareTranslatorsDropdownItems(allFablesMetadata, selectedMetadata.fableNumber, allTranslators));
-  if (translationsDropdownItems.every(item => item.value !== selectedTranslatorDropdownValue)) {
-    selectTranslatorDropdownValueInner(selectedMetadata.translatorId);
+  if (translationsDropdownItems.every(item => item.value != selectedTranslatorDropdownValue)) {
+    selectTranslatorDropdownValueInner(""+selectedMetadata.translatorId);
   }
 
   // Dropdown 2 hooks
   const [fablesDropdownItems, changeFablesDropdownItems] = useState(prepareFablesDropdownItems(allFablesMetadata, selectedMetadata.translatorId));
-  const [selectedFableDropdownValue, selectFableDropdownValueInner] = useState(selectedMetadata.fableNumber);
-  if (fablesDropdownItems.every(item => item.value !== selectedFableDropdownValue)) {
-    selectFableDropdownValueInner(selectedMetadata.fableNumber);
+  const [selectedFableDropdownValue, selectFableDropdownValueInner] = useState(""+selectedMetadata.fableNumber);
+  if (fablesDropdownItems.every(item => item.value != selectedFableDropdownValue)) {
+    selectFableDropdownValueInner(""+selectedMetadata.fableNumber);
   }
 
   // Image Modal hook
@@ -111,18 +58,18 @@ export default function FablePageDesktop({
 
   // Dropdown 1
   function selectTranslatorDropdownValue(value) {
-    const urlId = translationsDropdownItems.find(item => item.value === value).urlId;
+    const urlId = translationsDropdownItems.find(item => item.value == value).urlId;
     changeRouterPath(urlId).then(() => {
-      selectTranslatorDropdownValueInner(value);
+      selectTranslatorDropdownValueInner(""+value);
       changeFablesDropdownItems(prepareFablesDropdownItems(allFablesMetadata, value));
     });
   }
 
   // Dropdown 2
   function selectFableDropdownValue(value) {
-    const urlId = fablesDropdownItems.find(item => item.value === value).urlId;
+    const urlId = fablesDropdownItems.find(item => item.value == value).urlId;
     changeRouterPath(urlId).then(() => {
-      selectFableDropdownValueInner(value);
+      selectFableDropdownValueInner(""+value);
       changeTranslationDropdownItems(prepareTranslatorsDropdownItems(allFablesMetadata, value, allTranslators));
     });
   }  
@@ -157,7 +104,6 @@ export default function FablePageDesktop({
 
 
   return <>
-  
     {isFableImageExists ? <>
       <Modal opened={opened} onClose={close} padding={0} withCloseButton={false} radius={24} keepMounted={true} width={520} mt={"xl"}>
         <SkImage 
@@ -186,11 +132,12 @@ export default function FablePageDesktop({
           selectedValue: selectedFableDropdownValue,
           onChange: selectFableDropdownValue
         }}
+        idSuffix="fable"
       />
-      <Group mt={"md"} mx={0} mb={0} grow className={classes.groupOfButtons} w={560}>
-        <SkButtonDesktop text={"<"} onClick={() => selectFableDropdownValue(prevFableNumber)} disabled={prevFableNumber === 0}/>
+      <Group mt={"md"} mx={0} mb={0} grow className={classes.groupOfButtons} w={560} preventGrowOverflow={false}>
+        <SkButtonDesktop text={"<"} onClick={() => selectFableDropdownValue(prevFableNumber)} disabled={prevFableNumber == 0}/>
         <SkButtonDesktop text={"Байка на щастя"} onClick={() => selectFableDropdownValue(randomFableNumber)}/>
-        <SkButtonDesktop text={">"} onClick={() => selectFableDropdownValue(nextFableNumber)} disabled={nextFableNumber === 31}/>
+        <SkButtonDesktop text={">"} onClick={() => selectFableDropdownValue(nextFableNumber)} disabled={nextFableNumber == 31}/>
       </Group>
       <Space h="lg"/>
       <SkH1Desktop text={h1Text} />
@@ -200,13 +147,10 @@ export default function FablePageDesktop({
 
         {isFableImageExists ? 
           <div className={classes.fableImage}>
-            <Image 
-              key={selectedMetadata.fableImage.imageUrl}
-              src={selectedMetadata.fableImage.imageUrl} 
+            <SkImage 
+              image={selectedMetadata.fableImage} 
               width={260} 
               height={360} 
-              alt={selectedMetadata.fableImage.alt}
-              title={selectedMetadata.fableImage.title} 
               priority
               onClick={() => open()}
             />

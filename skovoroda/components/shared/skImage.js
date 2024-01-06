@@ -1,33 +1,31 @@
-import { createStyles } from "@mantine/core";
 import Image from "next/image";
+import classes from './skImage.module.scss';
 
-const useStyles = createStyles((theme, params) => {
-  if (!params.shadow) {
-    params.shadow = "lg";
-  }
-  return {
+// const useStyles = createStyles((theme, params) => {
+//   if (!params.shadow) {
+//     params.shadow = "lg";
+//   }
+//   return {
 
-    image: {
-      borderRadius: theme.radius.md,
-      boxShadow: theme.shadows[params.shadow],
-      minWidth: "max-content",
-      lineHeight: 0,
-      img: {
-        borderRadius: theme.radius.md,
-        objectFit: "cover",
-      }
-    },
+//     image: {
+//       borderRadius: theme.radius.md,
+//       boxShadow: theme.shadows[params.shadow],
+//       minWidth: "max-content",
+//       lineHeight: 0,
+//       img: {
+//         borderRadius: theme.radius.md,
+//         objectFit: "cover",
+//       }
+//     },
   
-  };
-});
+//   };
+// });
 
 export default function SkImage({ image, imageUrl, width, height, shadow, disableBottomRadius, alt, title, styleAction, priority, 
   additionalClassName, 
   onClick,
   fullScreenMode 
 }) {
-
-  const { classes } = useStyles({shadow});
 
   if (image) {
     imageUrl = image.imageUrl;
@@ -55,6 +53,17 @@ export default function SkImage({ image, imageUrl, width, height, shadow, disabl
   }
 
   return <div className={className} style={styleObj}>
-    <Image key={imageUrl} src={imageUrl} width={width} height={height} style={styleObj} alt={alt} title={title} priority={priority} onClick={onClick} />
+    <Image 
+      key={imageUrl} 
+      src={imageUrl} 
+      width={width} 
+      height={height} 
+      style={styleObj}
+      alt={alt}
+      title={title}
+      priority={priority}
+      onClick={onClick}
+      unoptimized={true} 
+    />
   </div>
 }

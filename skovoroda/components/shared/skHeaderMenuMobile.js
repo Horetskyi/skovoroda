@@ -1,64 +1,14 @@
-import { ActionIcon, Container, Flex, Popover, Stack, Text, Tooltip, createStyles } from "@mantine/core";
+import { ActionIcon, Container, Flex, Popover, Stack, Text, Tooltip } from "@mantine/core";
 import SkSkovorodaLogo from "./skSkovorodaLogo3.svg";
 import SkDoveLogo from "./skDoveLogo3.svg";
 import Link from "next/link";
 import { SkovorodaFablesPath, SkovorodaTreatisePath, getLinkTitle } from "../../lib/skovorodaPath";
 import { IconMenu2 } from "@tabler/icons";
 import { useState } from "react";
-
-const useStyles = createStyles((theme) => ({
-
-  container: {
-    borderBottom: "1px #BCBCBC solid"
-  },
-  title: {
-    fontStyle: "normal",
-    fontWeight: 200,
-    fontSize: "28px",
-    lineHeight: "33px",
-    letterSpacing: "0.16em",
-  },
-  titleLink: {
-    marginLeft: 0,
-    marginRight: "auto", 
-  },
-  buttonText: {
-    textAlign: 'center',
-    fontWeight: 500,
-    letterSpacing: "0.165em",
-    color: "black",
-    paddingTop: theme.spacing.sm,
-    paddingBottom: theme.spacing.sm,
-    textDecoration: "none",
-  },
-  logoLink: {
-    marginTop: theme.spacing.sm,
-  },
-  inProgressText: {
-    letterSpacing: "0.03em",
-    color: "#202a54",
-    margin: "auto",
-  },
-  svg: {
-    filter: "drop-shadow(3px 1px 8px rgba(0, 0, 0, 0.15));",
-  },
-  dove: {
-    position: "absolute",
-    top: "34px",
-    left: "-8px",
-    filter: "drop-shadow(3px 1px 8px rgba(0, 0, 0, 0.15));",
-  },
-  svgs: {
-    position: "relative",
-    scale: "0.9",
-    marginLeft: theme.spacing.xs,
-    marginRight: theme.spacing.xs,
-  }
-}));
+import classes from './skHeaderMenuMobile.module.scss';
 
 export default function SkHeaderMenuMobile() {
   
-  const { classes } = useStyles();
   const [opened, setOpened] = useState(false);
   const links = [
     {

@@ -1,4 +1,4 @@
-import { Center, Container, Group, Space, createStyles } from "@mantine/core";
+import { Center, Container, Group, Space } from "@mantine/core";
 import { prepareFablesDropdownItems, prepareTranslatorsDropdownItems } from "../../lib/pagesContent/fableLogic";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -14,26 +14,7 @@ import SkSourcesContainerMobile from "../shared/skSourcesContainerMobile";
 import SkColoredContainerMobile from "../shared/skColoredContainerMobile";
 import SkCommentAuthorMobile from "../shared/skCommentAuthorMobile";
 import SkRelatedThemesMobile from "../shared/skRelatedThemesMobile";
-
-const useStyles = createStyles((theme) => ({
-  
-  fablePowerTitle: {
-    fontWeight: 200,
-    fontSize: "36px",
-    lineHeight: "33px",
-    letterSpacing: "0.04em",
-    textAlign: "center",
-    marginTop: theme.spacing.md,
-    marginBottom: theme.spacing.sm,
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-
-  groupOfButtons: {
-    gap: theme.spacing.sm,
-  },
-
-}));
+import classes from './fablePageMobile.module.scss';
 
 export default function FablePageMobile({ 
   selectedFable,
@@ -45,9 +26,6 @@ export default function FablePageMobile({
   selectedId,
   deviceEnding
 }) {
-  
-  const { classes } = useStyles();
-
   const router = useRouter();
   function changeRouterPath(urlId) {
     const newPath = pathJoin(SkovorodaFablesPath, urlId);
@@ -57,38 +35,38 @@ export default function FablePageMobile({
   const selectedMetadata = selectedFable.metadata;
 
   // Dropdown 1 hooks
-  const [selectedTranslatorDropdownValue, selectTranslatorDropdownValueInner] = useState(selectedMetadata.translatorId);
+  const [selectedTranslatorDropdownValue, selectTranslatorDropdownValueInner] = useState(""+selectedMetadata.translatorId);
   const [translationsDropdownItems, changeTranslationDropdownItems] = useState(prepareTranslatorsDropdownItems(allFablesMetadata, selectedMetadata.fableNumber, allTranslators));
-  if (translationsDropdownItems.every(item => item.value !== selectedTranslatorDropdownValue)) {
-    selectTranslatorDropdownValueInner(selectedMetadata.translatorId);
+  if (translationsDropdownItems.every(item => item.value != selectedTranslatorDropdownValue)) {
+    selectTranslatorDropdownValueInner(""+selectedMetadata.translatorId);
   }
 
   // Dropdown 2 hooks
   const [fablesDropdownItems, changeFablesDropdownItems] = useState(prepareFablesDropdownItems(allFablesMetadata, selectedMetadata.translatorId));
-  const [selectedFableDropdownValue, selectFableDropdownValueInner] = useState(selectedMetadata.fableNumber);
-  if (fablesDropdownItems.every(item => item.value !== selectedFableDropdownValue)) {
-    selectFableDropdownValueInner(selectedMetadata.fableNumber);
+  const [selectedFableDropdownValue, selectFableDropdownValueInner] = useState(""+selectedMetadata.fableNumber);
+  if (fablesDropdownItems.every(item => item.value != selectedFableDropdownValue)) {
+    selectFableDropdownValueInner(""+selectedMetadata.fableNumber);
   }
 
   // Dropdown 1
   function selectTranslatorDropdownValue(value) {
-    const urlId = translationsDropdownItems.find(item => item.value === value).urlId;
+    const urlId = translationsDropdownItems.find(item => item.value == value).urlId;
     changeRouterPath(urlId).then(() => {
-      selectTranslatorDropdownValueInner(value);
+      selectTranslatorDropdownValueInner(""+value);
       changeFablesDropdownItems(prepareFablesDropdownItems(allFablesMetadata, value));
     });
   }
 
   // Dropdown 2
   function selectFableDropdownValue(value) {
-    const urlId = fablesDropdownItems.find(item => item.value === value).urlId;
+    const urlId = fablesDropdownItems.find(item => item.value == value).urlId;
     changeRouterPath(urlId).then(() => {
-      selectFableDropdownValueInner(value);
+      selectFableDropdownValueInner(""+value);
       changeTranslationDropdownItems(prepareTranslatorsDropdownItems(allFablesMetadata, value, allTranslators));
     });
   }  
 
-  const fableString = selectedMetadata.translatorId === 0 ? "Басня" : "Байка";
+  const fableString = selectedMetadata.translatorId == 0 ? "Басня" : "Байка";
   const h1Text = `${fableString} ${selectedMetadata.fableNumber} – ${selectedMetadata.fableTitle}`;
   const isFableImageExists = selectedMetadata.fableImage && selectedMetadata.fableImage.imageUrl && selectedMetadata.fableImage.imageUrl.length > 0;
 
@@ -132,11 +110,12 @@ export default function FablePageMobile({
         selectedValue: selectedFableDropdownValue,
         onChange: selectFableDropdownValue
       }}
+      idSuffix="fable"
     />
-    <Group mt={"sm"} mx={"md"} mb={"md"} grow gap={"sm"} className={classes.groupOfButtons}>
-      <SkButtonMobile text={"<"} onClick={() => selectFableDropdownValue(prevFableNumber)} disabled={prevFableNumber === 0}/>
+    <Group mt={"sm"} mx={"md"} mb={"md"} grow gap={"sm"} className={classes.groupOfButtons} preventGrowOverflow={false}>
+      <SkButtonMobile text={"<"} onClick={() => selectFableDropdownValue(prevFableNumber)} disabled={prevFableNumber == 0}/>
       <SkButtonMobile text={"Байка на щастя"} onClick={() => selectFableDropdownValue(randomFableNumber)}/>
-      <SkButtonMobile text={">"} onClick={() => selectFableDropdownValue(nextFableNumber)} disabled={nextFableNumber === 31}/>
+      <SkButtonMobile text={">"} onClick={() => selectFableDropdownValue(nextFableNumber)} disabled={nextFableNumber == 31}/>
     </Group>
     
     <Container px="md">

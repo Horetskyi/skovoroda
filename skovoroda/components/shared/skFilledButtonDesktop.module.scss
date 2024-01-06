@@ -1,0 +1,18 @@
+.button {
+  background: var(--mantine-color-indigo-2);
+  box-shadow: var(--mantine-shadow-md);
+
+  &:hover {
+    background: var(--mantine-color-indigo-2);
+  }
+}
+
+.buttonText {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  letter-spacing: 0.165em;
+  color: black;
+}

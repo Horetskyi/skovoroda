@@ -1,0 +1,42 @@
+.portraitImage {
+  width: 332px;
+  height: 406px;
+  min-width: max-content;
+  border-radius: var(--mantine-radius-md);
+  box-shadow: var(--mantine-shadow-lg);
+  line-height: 0;
+  img {
+    border-radius: var(--mantine-radius-md);
+    object-fit: cover;
+  }
+}
+
+.h1 {
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 33px;
+  letter-spacing: 0.235em;
+}
+
+.subTitle {
+  font-weight: 300;
+  line-height: 23px;
+  letter-spacing: 0.02em;
+}
+
+.bioGroup {
+  flex-flow: row;
+}
+
+.bioContent {
+  text-align: center;
+  align-self: flex-start;
+  min-height: 406px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bioButtons {
+  align-self: end;
+  width: 100%;
+}

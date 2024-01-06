@@ -1,20 +1,10 @@
-import { Container, Flex, Text, createStyles } from "@mantine/core";
+import { Container, Flex, Text } from "@mantine/core";
 import { SkovorodaAboutUsPath, SkovorodaContactPath, SkovorodaCopyrightPath } from "../../lib/skovorodaPath";
 import SkTextLink from "./skTextLink";
-
-const useStyles = createStyles((theme) => ({
-  footer: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-    height: "144px",
-  },
-}));
+import classes from './skFooterDesktop.module.scss'; 
 
 export default function SkFooterDesktop() {
   
-  const { classes } = useStyles();
-
   return <Container fluid={true} h={144} bg={"indigo.1"} ta={"center"} w={"100%"} className={classes.footer}>
     <Flex 
       ta={"center"}

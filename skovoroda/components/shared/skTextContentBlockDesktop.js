@@ -1,200 +1,23 @@
-import { Card, Container, List, createStyles } from "@mantine/core";
+import { Card, Container, List } from "@mantine/core";
 import Link from "next/link";
 import { getNoteNumberString, getNoteNumberUpperString } from "../../lib/data/utils/notesNumbersSymbols";
 import { gsap } from "gsap/dist/gsap";
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
+import classes from './skTextContentBlockDesktop.module.scss';
 
-const useStyles = createStyles((theme, params) => {
+// const useStyles = createStyles((theme, params) => {
 
-  const isMobile = params.isMobile;
-  const tabSize = isMobile ? 12 : 36; 
-  const leftNumSpacing = 100;
+//   const isMobile = params.isMobile;
+//   const tabSize = isMobile ? 12 : 36; 
+//   const leftNumSpacing = 100;
 
-  return {
+//   return {
 
-    noteFont: {
-      fontFamily: 'Nonito',
-    },
-
-    noteLink: {
-      textDecoration: "none",
-    },
-    cursorPointer: {
-      cursor: 'pointer',
-    },
-
-    textContentBlock: {
-      textAlign: "justify",
-      position: "relative",
-      height: "inherit",
-    },
-    textContentBlockMobile: {
-      textAlign: "left",
-      position: "relative",
-      height: "inherit",
-    },
-
-    textContentBlockLeftNotesEnabled: {
-      marginLeft: theme.spacing.lg,
-    },
-
-    emptyLine: {
-      height: "32px",
-      margin: "0",
-    },
-    blockTextLine: {
-      display: 'block',
-      fontSize: theme.fontSizes.md,
-      marginTop: 0,
-      marginBottom: 0,
-      lineHeight: "32px",
-    },
-    blockTextLineV2: {
-      display: 'block',
-      marginTop: 0,
-      marginBottom: 0,
-      fontWeight: 300,
-      fontSize: isMobile ? "16px" : "20px",
-      lineHeight: isMobile ? "22px" : "24px",
-      letterSpacing: "0.02em",
-      textIndent: theme.spacing.md,
     
-      "&:first-of-type": {
-        textIndent: 0,
-      },
-    },
-    blockTextLineV3: {
-      display: 'block',
-      marginTop: 0,
-      marginBottom: 0,
-      fontWeight: 300,
-      fontSize: isMobile ? "16px" : "20px",
-      lineHeight: isMobile ? "22px" : "24px",
-      letterSpacing: "0.02em",
-    },
-  
-    formatUnderline: {
-      textDecoration: "underline"
-    },
-    formatItalic: {
-      fontStyle: "italic",
-    },
-    formatBold: {
-      fontWeight: "600",
-    },
-    formatRight: {
-      textAlign: 'right',
-    },
-    formatCenter: {
-      textAlign: 'center',
-    },
-    formatTabs6: {
-      marginLeft: `${tabSize*6}px`,
-    },
-    formatTabs5: {
-      marginLeft: `${tabSize*5}px`,
-    },
-    formatTabs4: {
-      marginLeft: `${tabSize*4}px`,
-    },
-    formatTabs3: {
-      marginLeft: `${tabSize*3}px`,
-    },
-    formatTabs2: {
-      marginLeft: `${tabSize*2}px`,
-    },
-    formatTabs1: {
-      marginLeft: `${tabSize}px`,
-    },
-    formatDefault: {
-    },
-    formatIrmologion: {
-      fontFamily: 'Irmologion ieUcs',
-      fontSize: isMobile ? "16px" : "18px",
-    },
-    formatLeftNum9: {
-      "::before": {
-        content: '"9."',
-        position: 'absolute',
-        left: `-${leftNumSpacing}px`,
-      }
-    },
-    formatLeftNum8: {
-      "::before": {
-        content: '"8."',
-        position: 'absolute',
-        left: `-${leftNumSpacing}px`,
-      }
-    },
-    formatLeftNum7: {
-      "::before": {
-        content: '"7."',
-        position: 'absolute',
-        left: `-${leftNumSpacing}px`,
-      }
-    },
-    formatLeftNum6: {
-      "::before": {
-        content: '"6."',
-        position: 'absolute',
-        left: `-${leftNumSpacing}px`,
-      }
-    },
-    formatLeftNum5: {
-      "::before": {
-        content: '"5."',
-        position: 'absolute',
-        left: `-${leftNumSpacing}px`,
-      }
-    },
-    formatLeftNum4: {
-      "::before": {
-        content: '"4."',
-        position: 'absolute',
-        left: `-${leftNumSpacing}px`,
-      }
-    },
-    formatLeftNum3: {
-      "::before": {
-        content: '"3."',
-        position: 'absolute',
-        left: `-${leftNumSpacing}px`,
-      }
-    },
-    formatLeftNum2: {
-      "::before": {
-        content: '"2."',
-        position: 'absolute',
-        left: `-${leftNumSpacing}px`,
-      }
-    },
-    formatLeftNum1: {
-      "::before": {
-        content: '"1."',
-        position: 'absolute',
-        left: `-${leftNumSpacing}px`,
-      }
-    },
-    formatIndent: {
-      textIndent: `${tabSize}px`,
-    },
-    noteInNotesBlock: {
-      position: 'absolute',
-      right: "100%",
-      marginTop: "-6px",
-      marginRight: theme.spacing.sm,
-      cursor: "pointer",
-      fontWeight: 400,
-    },
-    noteBlockMarginBottom: {
-      marginBottom: theme.spacing.md,
-    },
-  };
-});
+//   };
+// });
 
 export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick, ...others}) {
-
-  const { classes } = useStyles({ isMobile: others.isMobile });
 
   if (textContent && textContent.length && textContent[0].isAllIsList) {
     return <List listStyleType="circle">

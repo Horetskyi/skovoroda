@@ -1,53 +1,41 @@
-import { Card, Select, Text, createStyles } from "@mantine/core";
-import { LinkInsideSelect } from "../auxiliary/linkInsideSelectItem";
+import { Card, Select, Text } from "@mantine/core";
+import classes from './skCardWithTwoSelectorsMobileV2.module.scss'; 
 
-const useStyles = createStyles((theme) => ({
-
-  labelText: {
-    fontWeight: 300,
-    fontSize: "14px",
-    lineHeight: "16px",
-    letterSpacing: "0",
-  },
-
-  card: {
-    ".mantine-Select-input": {
-      fontWeight: 300,
-      fontSize: "14px",
-      lineHeight: "16px",
-      letterSpacing: "0",
-    },
-  },
-
-}));
-
-export default function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2}) {
+export default function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2, idSuffix}) {
   
-  const { classes } = useStyles();
+  if (!idSuffix || !idSuffix.length) {
+    idSuffix = "normal";
+  }
 
-  return <Card className={classes.card} withBorder={false} w="100%" px="md" py="0" m="0" >
+  return <Card withBorder={false} w="100%" px="md" py="0" m="0" >
 
     <Text mb="xs" className={classes.labelText}>{dropdown1.label}</Text>
     <Select 
+      id={"dropdown1-"+idSuffix}
       size="xs"
       withinPortal={true}
       searchable={false}
       mb="sm"
-      itemComponent={LinkInsideSelect} 
       data={dropdown1.data} 
       value={dropdown1.selectedValue}
+      classNames={{
+        input: classes.mantineSelectInput
+      }}
       onChange={dropdown1.onChange}>
     </Select>
       
 
     <Text mb="xs" className={classes.labelText}>{dropdown2.label}</Text>
     <Select 
+      id={"dropdown2-"+idSuffix}
       size="xs"
       withinPortal={true}
       searchable={false}
-      itemComponent={LinkInsideSelect} 
       data={dropdown2.data} 
       value={dropdown2.selectedValue}
+      classNames={{
+        input: classes.mantineSelectInput
+      }}
       onChange={dropdown2.onChange}
       >
     </Select>

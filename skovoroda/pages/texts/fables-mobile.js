@@ -1,4 +1,4 @@
-import { Container, List, Space, Spoiler, Text, createStyles } from "@mantine/core";
+import { Container, List, Space, Spoiler, Text } from "@mantine/core";
 import SkH1Mobile from "../../components/shared/skH1Mobile";
 import { SkovorodaFablesPath, getFableLinkTitle, pathJoin } from "../../lib/skovorodaPath";
 import SkTextLink from "../../components/shared/skTextLink";
@@ -8,26 +8,16 @@ import SkColoredContainerMobile from "../../components/shared/skColoredContainer
 import SkH2Mobile from "../../components/shared/skH2Mobile";
 import SkTextContentBlockDesktop from "../../components/shared/skTextContentBlockDesktop";
 import { fablesPageContent } from "../../lib/pagesContent/fablesContent";
-
-const useStyles = createStyles((theme) => ({
-  rootContainer: {
-    ".mantine-Spoiler-control": {
-      marginTop: theme.spacing.xs,
-      textDecoration: "underline",
-      fontWeight: 400,
-    }
-  }
-}));
+import classes from './fables-mobile.module.scss';
 
 export default function FablesPage({ allFables, fablesTopContent, allSources }) {
-  const { classes } = useStyles();
   const fables = prepareFables(allFables);
   allSources.sort((a,b) => a.sourceId - b.sourceId);
   fablesTopContent.sort((a,b) => fablesPageContent.contentOrder.indexOf(a.key) - fablesPageContent.contentOrder.indexOf(b.key));
 
   return <>
     <SkColoredContainerMobile py={0}>
-      <Container p={0} className={classes.rootContainer}>
+      <Container p={0}>
 
         {/* H1 */}
         <Space h="md" />
@@ -35,7 +25,12 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
         <Space h="md" />
 
         {/* Fables Links */}
-        <Spoiler px="md" maxHeight={120} showLabel="Більше..." hideLabel="Менше" className="normalContentText normalContentText_withoutIndent">
+        <Spoiler px="md" maxHeight={120} showLabel="Більше..." hideLabel="Менше" 
+          className="normalContentText normalContentText_withoutIndent"
+          classNames={{
+            "control": classes.spoilerControlButton
+          }}
+        >
           <List type="ordered" className="normalContentText normalContentText_withoutIndent">
             {fables.map(fable => {
               const href = pathJoin(SkovorodaFablesPath, fable.urlId);

@@ -1,25 +1,10 @@
 
-import { createStyles } from "@mantine/core";
 import Link from "next/link";
 import { getLinkTitle } from "../../lib/skovorodaPath";
-
-const useStyles = createStyles((theme) => ({
-
-  link: {
-    textDecorationLine: "underline",
-    color: "#0e3457",
-  },
-  linkWithoutStyles: {
-    textDecorationLine: "none",
-    color: "black",
-  }
-  
-}));
+import classes from './skTextLink.module.scss';
 
 export default function SkTextLink({text, href, disableStyles, title, className, isBlank}) {
   
-  const { classes } = useStyles();
-
   const pClassName = (disableStyles 
     ? classes.linkWithoutStyles 
     : classes.link) + (className ? (" " + className) : "");

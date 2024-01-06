@@ -10,6 +10,7 @@ const SkovorodaLetterPageDesktop = dynamic(() => import('../../../components/sko
 const SkovorodaLetterPageMobile = dynamic(() => import('../../../components/skovorodaLetterPageMobile'));
 
 export default function SkovorodaLetterFromPage({ ...params }) {
+  return <div>SKIP</div>;
 
   return params.deviceEnding === SkovorodaConstants.desktopEnding 
     ? <SkovorodaLetterPageDesktop {...params} letterType="from" />

@@ -1,39 +1,12 @@
 
-import { Button, Card, Container, Divider, Flex, Stack, Table, Text, Title, createStyles } from '@mantine/core';
+import { Button, Card, Container, Divider, Flex, Stack, Table, Text, Title } from '@mantine/core';
 import SkovorodaTreatiseSmallBlockDesktop from './SkovorodaTreatiseSmallBlockDesktop';
 import LinkToSource from './textSourceLinkWithTooltip';
 import { IconBookDownload } from '@tabler/icons';
-
-const useStyles = createStyles((theme) => {
-  return {
-    h1: {
-      width: "fit-content",
-      marginLeft: "auto",
-      marginRight: "auto",
-    },
-    h1Divider: {
-      marginLeft: theme.spacing.md * -1,
-      marginRight: theme.spacing.md * -1,
-      marginTop: theme.spacing.sm,
-    },
-    downloadButton: {
-      width: "100%",
-    },
-    downloadButtonIcon: {
-      display: "flex"
-    },
-    downloadButtonExtensionName: {
-      display: "flex",
-    },
-    downloadButtonFileSize: {
-      display: "flex",
-    },
-  }
-});
+import classes from './skovorodaTextPageDesktop.module.scss';
 
 export default function SkovorodaTextPageDesktop({ treatise }) {
 
-  const { classes } = useStyles();
   const pageLinkIndexes = {};
   const descriptionBlock = <Card radius="md" p="md" m="0" mb="xl" bg="gray.0" shadow='xs'>
     <Text key="label">

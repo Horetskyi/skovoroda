@@ -3,50 +3,13 @@ import { IconX } from '@tabler/icons';
 import { gsap } from "gsap/dist/gsap";
 import { getNoteNumberUpperString } from '../lib/data/utils/notesNumbersSymbols';
 import { cloneElement, useRef, useState } from 'react';
-import { Card, createStyles, Group, Text } from '@mantine/core';
+import { Card, Group, Text } from '@mantine/core';
 import SkTextContentBlockDesktop from './shared/skTextContentBlockDesktop';
-
-const useStyles = createStyles((theme) => ({
-  draggableNoteBlock: {
-    position: 'absolute',
-    zIndex: 100,
-    width: "700px",
-    maxHeight: "235px",
-    cursor: "move",
-  },
-  draggableNoteBlockInside: {
-    maxHeight: "150px",
-    overflow: "auto",
-    cursor: "auto",
-  },
-  draggableNoteBlockHeader: {
-    borderTopLeftRadius: theme.radius.md,
-    borderTopRightRadius: theme.radius.md,
-    marginLeft: 3-theme.spacing.xl,
-    marginRight: -theme.spacing.xl,
-    marginTop: -theme.spacing.xl,
-    marginBottom: 0,
-    flexDirection: "row",
-  },
-  draggableNoteBlockLabel: {
-    cursor: "move",
-  },
-  draggableNoteBlockCrossIcon: {
-    cursor: "pointer",
-
-    ":hover": {
-      color: theme.colors.blue[7],
-    }
-  },
-  hidden: {
-    visibility: "hidden",
-  },
-}));
+import classes from './skovorodaDraggableNotesDesktop.module.scss';
 
 export default function SkovorodaDraggableNotesDesktop({ children, selectedNotes }) {
 
   const nodeRef = useRef(null);
-  const { classes } = useStyles();
   const [xy, setXy] = useState({ x: 0, y: 0 });
   const [draggableNoteBlockData, setDraggableNoteBlockData] = useState({ 
     visible: false, 

@@ -1,14 +1,8 @@
-import { Card, createStyles, Flex, Text } from "@mantine/core";
+import { Card, Flex, Text } from "@mantine/core";
 import { IconInfoCircle } from "@tabler/icons";
-
-const useStyles = createStyles(() => ({
-  text: {
-    textAlign: "justify",
-  }
-}));
+import classes from './skovorodaFomattingInfoBlockDesktop.module.scss';
 
 export default function SkovorodaFomattingInfoBlockDesktop({...others}) {
-  const { classes } = useStyles();
   return <>
     <Card bg="blue.0" {...others} className={classes.text}>
       <Flex>

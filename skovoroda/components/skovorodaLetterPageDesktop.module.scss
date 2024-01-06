@@ -1,0 +1,42 @@
+
+.draggableNoteBlock {
+  position: absolute;
+  z-index: 100;
+  width: 700px;
+  max-height: 235px;
+}
+
+.draggableNoteBlockInside {
+  max-height: 150px;
+  overflow: auto;
+}
+
+.draggableNoteBlockHeader {
+  border-top-left-radius: var(--mantine-radius-md);
+  border-top-right-radius: var(--mantine-radius-md);
+  margin-left: calc(3 - var(--mantine-spacing-xl));
+  margin-right: -var(--mantine-spacing-xl);
+  margin-top: -var(--mantine-spacing-xl);
+  margin-bottom: 0;
+  flex-direction: row;
+}
+
+.draggableNoteBlockLabel {
+  cursor: default;
+}
+
+.draggableNoteBlockCrossIcon {
+  cursor: pointer;
+
+  :hover {
+    color: var(--mantine-color-blue-7);
+  }
+}
+
+.contentCard {
+  overflow: visible;
+}
+
+.hidden{
+  visibility: hidden;
+}

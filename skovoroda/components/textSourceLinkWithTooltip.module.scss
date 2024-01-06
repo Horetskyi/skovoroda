@@ -1,0 +1,12 @@
+.linkString {
+  padding: 0 4px;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--mantine-color-blue-5);
+  }
+
+  &:focus {
+    color: var(--mantine-color-gray-9);
+  }
+}

@@ -1,17 +1,12 @@
-import { Space, Text, createStyles } from "@mantine/core";
+import { Space, Text } from "@mantine/core";
 import SkColoredContainerDesktop from "./skColoredContainerDesktop";
 import SkH2Desktop from "./skH2Desktop";
 import SkSourceBlockDesktop from "./skSourceBlockDesktop";
 import { commonContent } from "../../lib/pagesContent/commonContent";
 
-const useStyles = createStyles((theme) => ({
-}));
-
 export default function SkSourcesContainerDesktop({ sources, includeTextValidityWarning }) {
 
-  const { classes } = useStyles();
-
-  return <>
+  return <> 
     <SkColoredContainerDesktop color={"indigo.0"}>
       <SkH2Desktop text="Джерела"/>
       <Space h="lg"/>

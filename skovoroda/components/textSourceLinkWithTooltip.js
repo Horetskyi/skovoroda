@@ -1,27 +1,9 @@
-import { createStyles, Tooltip } from "@mantine/core";
+import { Tooltip } from "@mantine/core";
 import { getNoteNumberString } from "../lib/data/utils/notesNumbersSymbols";
-
-const useStyles = createStyles((theme) => ({
-
-  linkString: {
-    padding: "0 4px",
-    textDecoration: 'none',
-
-    "&:hover": {
-      color: theme.colors.blue[5],
-    },
-
-    "&:focus": {
-      color: theme.colors.gray[9],
-    }
-  }
-
-}));
+import classes from './textSourceLinkWithTooltip.module.scss';
 
 export default function LinkToSource(props) {
   
-  const { classes } = useStyles();
-
   const source = props.source;
   const page = props.page;
   const pageLinkIndexes = props.pageLinkIndexes;

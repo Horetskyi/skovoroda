@@ -1,0 +1,35 @@
+.treatiseContainer {
+  border-radius: var(--mantine-radius-md);
+  box-shadow: var(--mantine-shadow-md);
+}
+.h2Link {
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  line-height: 24px;
+  color: var(--mantine-color-blue-9);
+  text-decoration: none;
+}
+.dates {
+  border-left-color: var(--mantine-color-blue-2);
+  border-left-style: solid;
+  border-left-width: 12px;
+}
+.dateBoxContainer {
+  position: relative
+}
+.dateBox {
+  background: var(--mantine-color-blue-2);
+  width: 24px;
+  height: 12px;
+  position: absolute;
+  top: 0;
+  content: '';
+}
+.dateBoxTexts {
+  justify-content: space-between;
+  gap: 0;
+}
+.linkIcon {
+  margin-left: var(--mantine-spacing-xs);
+  margin-bottom: -4px;
+}

@@ -1,17 +1,9 @@
-import { Button, createStyles, Stack } from "@mantine/core";
+import { Button, Stack } from "@mantine/core";
 import { IconBookDownload } from "@tabler/icons";
 import Link from "next/link";
-
-const useStyles = createStyles((theme) => ({
-  downloadButton: {
-    width: "260px",
-    color: "black",
-  }
-}));
+import classes from './downloadStackV1.module.scss';
 
 export default function DownloadStackV1(props) {
-
-  const { classes } = useStyles();
 
   return <Stack spacing="md">
     {props.files.map(file => 

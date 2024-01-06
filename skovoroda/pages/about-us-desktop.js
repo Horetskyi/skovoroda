@@ -1,4 +1,4 @@
-import { Center, Flex, Group, Space, Text, createStyles } from "@mantine/core";
+import { Center, Flex, Space, Text } from "@mantine/core";
 import { aboutUsContent } from "../lib/pagesContent/aboutUsContent";
 import SkImage from "../components/shared/skImage";
 import SkH1Desktop from "../components/shared/skH1Desktop";
@@ -6,22 +6,9 @@ import SkColoredContainerDesktop from "../components/shared/skColoredContainerDe
 import { getAboutUsPageProps } from "../lib/pagesContent/aboutUsStatic";
 import SkH2Desktop from "../components/shared/skH2Desktop";
 import SkTextContentBlockDesktop from "../components/shared/skTextContentBlockDesktop";
-
-const useStyles = createStyles((theme) => ({
-  personBlock: {
-    borderRadius: "180px",
-    boxShadow: theme.shadows.xl,
-  },
-  personDescription: {
-    paddingRight: "80px",
-    paddingLeft: theme.spacing.md,
-    paddingTop: theme.spacing.md,
-  }
-}));
+import classes from './about-us-desktop.module.scss';
 
 export default function AboutUsPage(props) {
-
-  const { classes } = useStyles();
 
   function AboutPerson(description, image, color) {
     return <>
@@ -51,6 +38,7 @@ export default function AboutUsPage(props) {
       {AboutPerson(aboutUsContent.dimaDescription, aboutUsContent.dimaImage, "gray.0")}
       <Space h={"lg"}/>
       {AboutPerson(aboutUsContent.olenkaDescription, aboutUsContent.olenkaImage, "indigo.0")}
+      <Space h={"xl"}/>
     </SkColoredContainerDesktop>
   </>
 }

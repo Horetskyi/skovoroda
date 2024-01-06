@@ -1,64 +1,10 @@
-import { Card, Image, Text, Group, createStyles, Container, Title, Stack, Badge, Space  } from '@mantine/core';
+import { Card, Image, Text, Group, Container, Title, Stack, Badge, Space  } from '@mantine/core';
 import SourceV1 from './sourceV1';
 import DownloadStackV1 from './downloadStackV1';
 import { SkovorodaConstants } from '../lib/skovorodaConstants';
-
-const useStyles = createStyles((theme) => ({
-
-  group: {
-    flexWrap: "nowrap",
-  },
-
-  card: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-    margin: "auto",
-  },
-
-  mainCardContent: {
-    alignSelf: "flex-start",
-    flexGrow: "1 !important",
-    alignSelf: "stretch",
-    flexDirection: "column",
-    display: "flex",
-  },
-  
-  section: {
-    padding: theme.spacing.md,
-    borderTop: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
-  },
-
-  sideContent: {
-    alignSelf: "flex-start",
-  },
-
-  image: {
-    img: {
-      borderRadius: theme.radius.md,
-      boxShadow: theme.shadows.md,
-    }
-  },
-
-  badge: {
-    margin: "4px 0",
-    color: "black",
-  },
-
-  downloadStack: {
-    display: "flex",
-    justifyContent: "flex-end",
-    flexDirection: "column",
-    alignSelf: "flex-end",
-    flexGrow: 1,
-    marginTop: theme.spacing.md,
-  }
-
-}));
+import classes from './SkovorodaTreatiseSmallBlockDesktop.module.scss';
 
 export default function SkovorodaTreatiseSmallBlockDesktop(props) {
-  
-  const { classes } = useStyles();
 
   const badgeText = SkovorodaConstants.getTypeText(props.textType);
   const bgColor = SkovorodaConstants.getTextBackgroundColorByType(props.textType);

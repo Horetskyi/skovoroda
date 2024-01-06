@@ -1,0 +1,148 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+$mantine-breakpoint-sm: 900px;
+
+body {
+  background-color: white;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: -0.06px;
+  text-rendering: optimizelegibility;
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: clip;
+  height: auto !important;
+}
+
+.normalContentText, .normalContentText label {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.03em;
+  text-indent: 24px;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+.normalContentText_justify {
+  text-align: justify;
+}
+.normalContentText_center {
+  text-align: center;
+  text-indent: 0;
+}
+.normalContentText_withoutIndent, .normalContentText_withoutIndent label {
+  text-indent: 0;
+}
+.normalContentText_withoutFirstIndent:first-of-type {
+  text-indent: 0,
+}
+.mantine-Select-item,.mantine-Select-option {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.04em;
+  padding: 10px 12px;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0;
+  }
+}
+.st0 {
+  fill: var(--mantine-color-blue-2);
+}
+.st1 {
+  fill: var(--mantine-color-orange-2);
+}
+.st2 {
+  fill: var(--mantine-color-orange-9);
+}
+.st3 {
+  fill: var(--mantine-color-blue-4);
+}
+.st4 {
+  fill: var(--mantine-color-blue-4);
+}
+.grayForText {
+  color: var(--mantine-color-gray-9);
+}
+.undecoratedLink {
+  text-decoration: none;
+
+  &:hover {
+    color: var(--mantine-color-blue-5);
+  }
+}
+.blackLink {
+  color: black;
+}
+button:focus {
+  outline: none !important;
+  border-color: transparent !important;
+  box-shadow: var(--mantine-shadow-xs);
+}
+input:focus {
+  outline: none !important;
+  border-color: transparent !important;
+  box-shadow: var(--mantine-shadow-xs);
+}
+.fontFamilyOldUa {
+  font-family: "Pelagy, Yermak";
+}
+.bigH1 {
+  font-size: 40px;
+}
+.specialBorder {
+  border-width: 2px;
+  border-color: var(--mantine-color-blue-0);
+}
+.textOverflow {
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+.mantine-Input-input {
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+.mantine-List-itemWrapper {
+  text-overflow: ellipsis;
+  overflow-x: clip;
+  width: calc(100% - 20px);
+}
+.mantine-Overlay-root.mantine-Modal-overlay {
+  background: white;
+  opacity: 0.7;
+}
+.mantine-Modal-body {
+  width: 520px;
+  position: relative;
+}
+
+@font-face {
+  font-family: 'Irmologion ieUcs';
+  src: url('/IrmIEUcs.woff2') format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+.mantine-Text-root {
+  font-weight: 300;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}

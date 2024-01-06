@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+  box-shadow: var(--mantine-shadow-sm);
+  border-radius: var(--mantine-radius-md);
+  padding-right: var(--mantine-spacing-md);
+  padding-top: var(--mantine-spacing-sm);
+  padding-bottom: var(--mantine-spacing-sm);
+  text-align: left;
+}
+
+.quotemark {
+  height: 35px;
+  position: absolute;
+  width: 19.53px;
+  left: 24px;
+  top: 8px;
+  font-weight: 300;
+  font-size: 60px;
+  line-height: 70px;
+  text-align: justify;
+  letter-spacing: 0.02em;
+}
+
+.text {
+  align-self: center;
+  text-align: left;
+  margin-left: 60px;
+}

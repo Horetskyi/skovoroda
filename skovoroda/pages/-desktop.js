@@ -1,4 +1,4 @@
-import { Group, Text, Title, createStyles } from '@mantine/core';
+import { Group, Text, Title } from '@mantine/core';
 import SkFountain from '../components/shared/skFountain';
 import { SkovorodaConstants } from '../lib/skovorodaConstants';
 import Image from 'next/image';
@@ -10,57 +10,10 @@ import SkTextLink from '../components/shared/skTextLink';
 import SkQuoteDesktop from '../components/shared/skQuoteDesktop';
 import { getHomePageProps, homePageContent } from '../lib/pagesContent/home';
 import SkSourcesContainerDesktop from '../components/shared/skSourcesContainerDesktop';
+import classes from './destop.module.scss';
 
-const useStyles = createStyles((theme) => ({
+export default function HomePageDesktop() { 
 
-  portraitImage: {
-    borderRadius: theme.radius.md,
-    boxShadow: theme.shadows.lg,
-    lineHeight: 0,
-    width: 332,
-    height: 406,
-    minWidth: "max-content",
-    img: {
-      borderRadius: theme.radius.md,
-      objectFit: "cover",
-    }
-  },
-
-  h1: {
-    fontWeight: 300,
-    fontSize: "28px",
-    lineHeight: "33px",
-    letterSpacing: "0.235em",
-  },
-
-  subTitle: {
-    fontWeight: 300,
-    lineHeight: "23px",
-    letterSpacing: "0.02em",
-  },
-
-  bioGroup: {
-    flexFlow: "row",
-  },
-
-  bioContent: {
-    textAlign: "center",
-    alignSelf: "flex-start",
-    minHeight: 406,
-    display: "flex",
-    flexDirection: "column",
-  },
-
-  bioButtons: {
-    alignSelf: "end",
-    width: "100%",
-  },
-
-}));
-
-export default function HomePageDesktop() {
-
-  const { classes } = useStyles();
   return <>
     <SkColoredContainerDesktop color={"gray.0"}>
       <Group spacing={"md"} position="apart" className={classes.bioGroup} >
@@ -109,6 +62,6 @@ export default function HomePageDesktop() {
   </> 
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }) { 
   return getHomePageProps();
 }

@@ -1,15 +1,16 @@
 import fs from "fs";
 import path from "path";
-import { translatorNamesIdsMap } from "./skovorodaTranslators";
+import { skTranslatorsV2 } from "./skovorodaTranslators";
 import { parseFileContent } from "./utils/readingTextsUtils";
 
 function getSongId(songMetadata) {
-  const isOriginal = songMetadata.translatorType === "Original";
-  const originalId = "song-" + songMetadata.number;
+  const baseId = "song-" + songMetadata.number;
+  const isOriginal = songMetadata.translatorId === 0;
   if (isOriginal) {
-    return originalId;
+    return baseId;
   }
-  return originalId + "-" + translatorNamesIdsMap.get(songMetadata.translatorName);
+  const translator = skTranslatorsV2.find(translator => translator.translatorId === songMetadata.translatorId);
+  return baseId + "-" + translator.urlId;
 }
 
 function readSongs() {

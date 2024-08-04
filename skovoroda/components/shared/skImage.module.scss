@@ -9,3 +9,12 @@
     object-fit: cover;
   }
 }
+
+.imageWithoutShadow {
+  min-width: max-content;
+  line-height: 0;
+  
+  img {
+    object-fit: cover;
+  }
+}

@@ -2,7 +2,6 @@
 import { Container, Group, Modal, Space } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import Image from 'next/image';
 import { prepareFablesDropdownItems, prepareTranslatorsDropdownItems } from '../../lib/pagesContent/fableLogic';
 import { SkovorodaFablesPath, pathJoin } from '../../lib/skovorodaPath';
 import SkCardWithTwoSelectorsDesktopV2 from '../shared/skCardWithTwoSelectorsDesktopV2';

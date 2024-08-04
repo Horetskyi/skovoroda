@@ -1,8 +1,8 @@
-import { ActionIcon, Container, Flex, Popover, Stack, Text, Tooltip } from "@mantine/core";
+import { ActionIcon, Container, Flex, Popover, Stack, Text } from "@mantine/core";
 import SkSkovorodaLogo from "./skSkovorodaLogo3.svg";
 import SkDoveLogo from "./skDoveLogo3.svg";
 import Link from "next/link";
-import { SkovorodaFablesPath, SkovorodaTreatisePath, getLinkTitle } from "../../lib/skovorodaPath";
+import { SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaTreatisePath, getLinkTitle } from "../../lib/skovorodaPath";
 import { IconMenu2 } from "@tabler/icons";
 import { useState } from "react";
 import classes from './skHeaderMenuMobile.module.scss';
@@ -14,6 +14,10 @@ export default function SkHeaderMenuMobile() {
     {
       text: "Трактати",
       href: SkovorodaTreatisePath
+    },
+    {
+      text: "Сад Пісень",
+      href: SkovorodaGardenPath
     },
     {
       text: "Байки",
@@ -52,9 +56,6 @@ export default function SkHeaderMenuMobile() {
                 {link.text}
               </Link>
             })}
-            <Tooltip label="Додамо трактати, пісні, поезію, переклади, біографію..." position="bottom" color="gray.9" p={"sm"}>
-              <Text py={'sm'} ta={"center"} className={classes.inProgressText + " normalContentText normalContentText_withoutIndent"}>Буде більше!</Text>
-            </Tooltip>
           </Stack>
           
         </Popover.Dropdown>

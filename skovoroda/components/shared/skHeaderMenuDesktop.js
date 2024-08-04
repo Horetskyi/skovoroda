@@ -1,8 +1,8 @@
-import { Button, Container, Flex, Text, Tooltip } from "@mantine/core";
+import { Button, Container, Flex, Text } from "@mantine/core";
 import SkSkovorodaLogo from "./skSkovorodaLogo3.svg";
 import SkDoveLogo from "./skDoveLogo3.svg";
 import Link from "next/link";
-import { SkovorodaBioPath, SkovorodaFablesPath, SkovorodaTextsPath, SkovorodaTreatisePath, getLinkTitle } from "../../lib/skovorodaPath";
+import { SkovorodaBioPath, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaTextsPath, SkovorodaTreatisePath, getLinkTitle } from "../../lib/skovorodaPath";
 import { SkovorodaConstants } from "../../lib/skovorodaConstants";
 import classes from './skHeaderMenuDesktop.module.scss';
 
@@ -28,11 +28,8 @@ export default function SkHeaderMenuDesktop() {
       {SkovorodaConstants.isProduction ? null : LinkButton(SkovorodaBioPath, "Біографія", classes)}
       {SkovorodaConstants.isProduction ? null : LinkButton(SkovorodaTextsPath, "Твори", classes)}
       
-      <Tooltip label="Додамо трактати, пісні, поезію, переклади, біографію..." position="bottom" color="gray.9" p={"sm"}>
-        <Text mr="md" className={classes.inProgressText}>Буде більше!</Text>
-      </Tooltip>
-
       {LinkButton(SkovorodaTreatisePath, "Трактати", classes)}
+      {LinkButton(SkovorodaGardenPath, "Сад Пісень", classes)}
       {LinkButton(SkovorodaFablesPath, "Байки", classes)}
     
     </Flex>

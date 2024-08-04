@@ -59,6 +59,7 @@ const skovorodaSources = {
   ukrainska_musa_2009: {
     devNumber: 10,
     id: "ukrainska_musa_2009",
+    bookCoverImageFileName: "ukrainska_musa_2009.jpg",
     year: 2009,
     productionYear: 2009,
     sourceName: 'Г. Сковорода. Вибрані твори в українських перекладах / Серія "Українська муза" у 12-ти томах, том 1 - 2009',

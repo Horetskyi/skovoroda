@@ -21,11 +21,24 @@ import classes from './skImage.module.scss';
 //   };
 // });
 
-export default function SkImage({ image, imageUrl, width, height, shadow, disableBottomRadius, alt, title, styleAction, priority, 
+export default function SkImage({ 
+  image, 
+  imageUrl, 
+  width, 
+  height, 
+  disableBottomRadius,
+  alt, 
+  title, 
+  styleAction, 
+  priority, 
   additionalClassName, 
   onClick,
-  fullScreenMode 
+  shadow,
 }) {
+
+  if (shadow !== false) {
+    shadow = true;
+  }
 
   if (image) {
     imageUrl = image.imageUrl;
@@ -47,7 +60,7 @@ export default function SkImage({ image, imageUrl, width, height, shadow, disabl
     styleAction(styleObj);
   }
 
-  let className = classes.image;
+  let className = shadow ? classes.image : classes.imageWithoutShadow;
   if (additionalClassName) {
     className += " " + additionalClassName;
   }
@@ -63,7 +76,7 @@ export default function SkImage({ image, imageUrl, width, height, shadow, disabl
       title={title}
       priority={priority}
       onClick={onClick}
-      unoptimized={true} 
+      quality={100}
     />
   </div>
 }

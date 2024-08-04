@@ -1,12 +1,12 @@
 import { Center, List, Space } from "@mantine/core";
 import { pathJoinWithoutEndSlash, SkovorodaGardenPath } from "../../lib/skovorodaPath";
-import SkH1Desktop from "../../components/shared/skH1Desktop";
-import SkColoredContainerDesktop from "../../components/shared/skColoredContainerDesktop";
 import SkTextLink from "../../components/shared/skTextLink";
 import { getGardenPageProps } from "../../lib/pagesContent/gardenStatic";
+import SkColoredContainerMobile from "../../components/shared/skColoredContainerMobile";
+import SkH1Mobile from "../../components/shared/skH1Mobile";
 import SkImage from "../../components/shared/skImage";
 
-export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenImageByOlenka }) {
+export default function SkovorodaGardenPageMobile({ allSongsMetadata, gardenImageByOlenka }) {
   
   const translatedSongsMetadataMap = new Map();
   allSongsMetadata.forEach(songMetadata => {
@@ -29,19 +29,17 @@ export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenIma
   translatedSongsMetadataArray.sort((a,b) => a.number - b.number)
 
   return <>
-
     {/* H1 */}
     <Space h="lg"/>
-    <SkH1Desktop text="Сад Божественних Пісень"/>
+    <SkH1Mobile text="Сад Божественних Пісень"/>
     {/* Сад божественных пѣсней, прозябшій из зерн Священнаго Писанія */}
-  
-    {/* Garden Links */}
-    <SkColoredContainerDesktop>
-      
-      <Center mr={20} mb={"lg"}>
-        <SkImage image={gardenImageByOlenka} width={607} height={642} priority={true} shadow={false} />
-      </Center>
 
+    <Center mr={20} mt={"sm"}>
+      <SkImage image={gardenImageByOlenka} width={290} height={310} priority={true} shadow={false} />
+    </Center>
+
+    {/* Garden Links */}
+    <SkColoredContainerMobile px="md">
       <List type="ordered" className={`normalContentText normalContentText_withoutIndent`}>
         {translatedSongsMetadataArray.map((song, index) => {
           const href = pathJoinWithoutEndSlash(SkovorodaGardenPath, song.id);
@@ -50,7 +48,7 @@ export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenIma
           </List.Item>
         })}
       </List>
-    </SkColoredContainerDesktop>
+    </SkColoredContainerMobile>
   </>
 }
 

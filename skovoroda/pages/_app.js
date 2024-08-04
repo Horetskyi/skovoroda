@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import '@mantine/core/styles.layer.css';
 import './app.styles.scss';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const SkHeaderMenuDesktop = dynamic(() => import('../components/shared/skHeaderMenuDesktop'));
 const SkHeaderMenuMobile = dynamic(() => import('../components/shared/skHeaderMenuMobile'));
@@ -134,6 +135,8 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
       <MantineProvider theme={theme}>
         
         <main className={roboto.className}>
+
+          <SpeedInsights />
 
           {isDektop ? 
             <SkHeaderMenuDesktop /> : 

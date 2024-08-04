@@ -80,7 +80,7 @@ export const SkImages = {
     fableNumber: 13,
   },
   gardenByOlenka: {
-    imageUrl: "/images/garden/Skovoroda Garden of Divine Songs by Olenka.png",
+    imageUrl: "/images/garden/Skovoroda Garden of Divine Songs by Olenka.webp",
     alt: "Сад Божественних Пісень - Григорій Сковорода",
     title: "Сад Божественних Пісень",
   },

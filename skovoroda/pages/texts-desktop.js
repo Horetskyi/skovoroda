@@ -10,35 +10,29 @@ export default function SkovorodaTextsPageDesktop({ }) {
     {
       path: SkovorodaTreatisePath,
       label: "Трактати, Діалоги, Притчі",
-      imageSrc: "/images/books1.jpg",
     },
     {
       path: SkovorodaGardenPath,
       label: "Сад божественних пісень",
-      imageSrc: "/images/garden1.jpg",
     },
     {
       path: SkovorodaOtherPoemsPath,
       label: "Інші поезії",
-      imageSrc: "/images/pero.jpg",
     },
     {
       path: SkovorodaFablesPath,
       label: "Байки Харківські",
-      imageSrc: "/images/aesops_fables.jpg",
     },
     {
       path: SkovorodaTranslatationsPath,
       label: "Переклади",
-      imageSrc: "/images/old-latin.webp",
     },
     {
       path: SkovorodaDifferentPath,
       label: "Різне",
-      imageSrc: "/images/others.jpg",
     },
   ];
-
+  return <div>SKIP</div>
   return <Container>
     <Title className="fontFamilyOldUa bigH1" order={1} mx={"auto"} ta="center" mb="xl">Твори</Title>
     <SimpleGrid cols={2} spacing="xl" verticalSpacing="xl" mb="xl">

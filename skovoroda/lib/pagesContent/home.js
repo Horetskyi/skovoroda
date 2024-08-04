@@ -9,13 +9,13 @@ export function getHomePageProps() {
       metadataKeywords: ["Григорій Савич Сковорода", "Григорій Сковорода","Український філософ","Філософія Сковороди"],
       shouldBeIndexed: true,
       canonicalPageUrl: "https://www.skovoroda.club/",
-      facebookImageUrl: "https://www.skovoroda.club/images/SkovorodaPortrait2.jpg",
+      facebookImageUrl: "https://www.skovoroda.club/images/SkovorodaPortrait2.webp",
     },
   };
 }
 
 const homePageImage = {
-  imageUrl: "/images/SkovorodaPortrait2.jpg",
+  imageUrl: "/images/SkovorodaPortrait2.webp",
   alt: "Портрет Сковороди",
   title: "Портрет Сковороди",
 }

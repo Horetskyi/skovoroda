@@ -16,7 +16,7 @@ const skovorodaSources = {
   povna_akademichna_zbirka_2011: {
     devNumber: 3,
     id: "povna_akademichna_zbirka_2011",
-    bookCoverImageFileName: "Povna akademichna zbirka - 2011.jpg",
+    bookCoverImageFileName: "Povna akademichna zbirka - 2011.webp",
     sourceName: "Григорій Сковорода: Повна академічна збірка творів - Леонід Ушкалов - 2011 р.",
     files: [
       SkovorodaFiles.zbirka_pdf,
@@ -26,7 +26,7 @@ const skovorodaSources = {
   piznai_v_sobi_liudynu_1995: {
     devNumber: 4,
     id: "piznai_v_sobi_liudynu_1995",
-    bookCoverImageFileName: "Piznai v sobi liudynu - 1995.jpg",
+    bookCoverImageFileName: "Piznai v sobi liudynu - 1995.webp",
     sourceName: "Пізнай в собі людину - М. Кашуба - 1995",
     files: [
       SkovorodaFiles.piznai_v_sobi_liudynu_1995_doc,
@@ -36,7 +36,7 @@ const skovorodaSources = {
   philosophska_dumka_2014_nomer_5: {
     devNumber: 7,
     id: "source_philosophska_dumka_2014_nomer_5",
-    bookCoverImageFileName: "Philosophska dumka - 2014 - 5.png",
+    bookCoverImageFileName: "Philosophska dumka - 2014 - 5.webp",
     sourceName: "Філософська думка 2014 № 5",
     sourceFullName: "ISSN 0235-7941. Філософська думка, 2014, № 5",
     files: [
@@ -48,7 +48,7 @@ const skovorodaSources = {
   tvory_u_dvox_tomax_tom_1_1994: {
     devNumber: 9,
     id: "tvory_u_dvox_tomax_tom_1_1994",
-    bookCoverImageFileName: "Tvory u dvox tomax. Tom 1 - 1994.jpg",
+    bookCoverImageFileName: "Tvory u dvox tomax. Tom 1 - 1994.webp",
     sourceName: "Сковорода, Григорій. Твори у двох томах. Том 1 - 1994 р.",
     files: [
       SkovorodaFiles.tvory_u_dvox_tomax_tom_1_1994_pdf,
@@ -59,7 +59,7 @@ const skovorodaSources = {
   ukrainska_musa_2009: {
     devNumber: 10,
     id: "ukrainska_musa_2009",
-    bookCoverImageFileName: "ukrainska_musa_2009.jpg",
+    bookCoverImageFileName: "ukrainska_musa_2009.webp",
     year: 2009,
     productionYear: 2009,
     sourceName: 'Г. Сковорода. Вибрані твори в українських перекладах / Серія "Українська муза" у 12-ти томах, том 1 - 2009',
@@ -77,7 +77,7 @@ const skovorodaSources = {
     id: "tvory_u_dvox_tomax_tom_2_1994",
     sourceName: "Сковорода, Григорій. Твори у двох томах. Том 2 - 1994 р.",
     productionYear: 1994,
-    bookCoverImageFileName: "Tvory u dvox tomax. Tom 2 - 1994.png",
+    bookCoverImageFileName: "Tvory u dvox tomax. Tom 2 - 1994.webp",
     files: [], 
   },
   baiki_harkivski_fedorak_2019: {
@@ -86,7 +86,7 @@ const skovorodaSources = {
     year: 2019,
     sourceName: "Байки Харківські [Текст] / Григорій Сковорода; пер. Назара Федорака. - Львів:Видавництво Terra Incognita, 2019. - 108с - (Серія \"Українська езотерика\"). ISBN 978-966-97596-8-9)",
     files: [], 
-    bookCoverImageFileName: "fables1.jpg",
+    bookCoverImageFileName: "fables1.webp",
     shortTitle: "Байки Харківські",
     productionYear: 2019,
   },

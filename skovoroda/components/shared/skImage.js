@@ -77,6 +77,7 @@ export default function SkImage({
       priority={priority}
       onClick={onClick}
       quality={100}
+      unoptimized={true}
     />
   </div>
 }

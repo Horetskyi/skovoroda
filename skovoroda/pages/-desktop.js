@@ -1,7 +1,6 @@
 import { Group, Text, Title } from '@mantine/core';
 import SkFountain from '../components/shared/skFountain';
 import { SkovorodaConstants } from '../lib/skovorodaConstants';
-import Image from 'next/image';
 import SkFilledButtonDesktop from '../components/shared/skFilledButtonDesktop';
 import { SkovorodaBioPath, SkovorodaQuotesPath, SkovorodaSymbolsPath } from '../lib/skovorodaPath';
 import SkColoredContainerDesktop from '../components/shared/skColoredContainerDesktop';
@@ -11,6 +10,7 @@ import SkQuoteDesktop from '../components/shared/skQuoteDesktop';
 import { getHomePageProps, homePageContent } from '../lib/pagesContent/home';
 import SkSourcesContainerDesktop from '../components/shared/skSourcesContainerDesktop';
 import classes from './destop.module.scss';
+import SkImage from '../components/shared/skImage';
 
 export default function HomePageDesktop() { 
 
@@ -18,13 +18,15 @@ export default function HomePageDesktop() {
     <SkColoredContainerDesktop color={"gray.0"}>
       <Group spacing={"md"} position="apart" className={classes.bioGroup} >
         <div className={classes.portraitImage} >
-          <Image 
-            src={homePageContent.imageUrl} 
+          <SkImage 
+            imageUrl={homePageContent.imageUrl} 
             alt={homePageContent.imageAlt}
             title={homePageContent.imageTitle}
             width={332}
             height={406}
             priority
+            shadow={false}
+            optimize={true}
           />
         </div>
         <div className={classes.bioContent}>

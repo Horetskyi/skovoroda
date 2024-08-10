@@ -39,12 +39,6 @@ export default function SkovorodaTextsPageDesktop({ }) {
       {items.map((item, index) => {
         return <Link key={index} href={item.path} className={`undecoratedLink blackLink ${classes.link}`}>
           <Card radius="md" p="0" withBorder={true} shadow="md" className={classes.card}>
-            <Image 
-              className={classes.image}
-              src={item.imageSrc}
-              alt={item.label}
-              height={300}
-            />
             <Title className='fontFamilyOldUa' order={2} ta="center" py="md" bg="green.0">{item.label}</Title>
           </Card>
         </Link>

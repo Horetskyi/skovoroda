@@ -25,7 +25,8 @@ export default function SkCardWithTwoSelectorsDesktopV2({ dropdown1, dropdown2, 
       classNames={{
         input: classes.mantineSelectInput
       }}
-      onChange={dropdown1.onChange}>
+      onChange={dropdown1.onChange}
+      aria-label={dropdown1.label}>
     </Select>
       
 
@@ -41,6 +42,7 @@ export default function SkCardWithTwoSelectorsDesktopV2({ dropdown1, dropdown2, 
         input: classes.mantineSelectInput
       }}
       onChange={dropdown2.onChange}
+      aria-label={dropdown2.label}
       >
     </Select>
 

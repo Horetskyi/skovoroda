@@ -102,7 +102,6 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
         <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png?v=3" />
         {/* Special Icons */}
-        <link rel="manifest" href="/site.webmanifest?v=3" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg?v=3" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff"></meta>

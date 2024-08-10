@@ -21,7 +21,8 @@ export default function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2, i
       classNames={{
         input: classes.mantineSelectInput
       }}
-      onChange={dropdown1.onChange}>
+      onChange={dropdown1.onChange}
+      aria-label={dropdown1.label}>
     </Select>
       
 
@@ -37,6 +38,7 @@ export default function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2, i
         input: classes.mantineSelectInput
       }}
       onChange={dropdown2.onChange}
+      aria-label={dropdown2.label}
       >
     </Select>
 

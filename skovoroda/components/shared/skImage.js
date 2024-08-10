@@ -48,6 +48,8 @@ export default function SkImage({
 
   const unoptimized = optimize ? false : true;
 
+  const decoding = priority ? "sync" : "async";
+
   return <div className={className} style={styleObj}>
     <Image 
       key={imageUrl} 
@@ -62,6 +64,7 @@ export default function SkImage({
       quality={100}
       unoptimized={unoptimized}
       layout="fixed"
+      decoding={decoding}
     />
   </div>
 }

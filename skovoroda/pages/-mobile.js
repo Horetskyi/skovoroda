@@ -1,4 +1,4 @@
-import { Center, Container, Space, Text, Title } from "@mantine/core";
+import { Center, Container, Flex, Space, Text, Title } from "@mantine/core";
 import { getHomePageProps, homePageContent } from "../lib/pagesContent/home";
 import SkImage from "../components/shared/skImage";
 import SkColoredContainerMobile from "../components/shared/skColoredContainerMobile";
@@ -7,8 +7,10 @@ import SkFountain from "../components/shared/skFountain";
 import SkSourcesContainerMobile from "../components/shared/skSourcesContainerMobile";
 import SkH2Mobile from "../components/shared/skH2Mobile";
 import classes from './mobile.module.scss';
+import Link from "next/link";
 
 export default function HomePageMobile() {
+
   return <>
     <Container px={"md"}>
       <Space h={"md"}/>
@@ -44,6 +46,24 @@ export default function HomePageMobile() {
         <SkFountain isMobile={true}/>
         <Text mt="sm" className='normalContentText' ta={"left"}>{homePageContent.symbolsText}</Text>
       </Container>
+    </SkColoredContainerMobile>
+    <SkColoredContainerMobile color={"gray.0"}>
+      <SkH2Mobile text={homePageContent.textsTitle} mb={"md"} />
+      <Flex 
+        gap="md" 
+        mb="sm"
+        direction="column"
+      >
+        {homePageContent.textsLinks.map(link => {
+          return <>
+            <Title ml="0" order={3} className="normalContentText">
+              <Link key={link.href} href={link.href} title={link.title} className={classes.headerLink}>
+                {link.text}
+              </Link>
+            </Title>
+          </>;
+        })}
+      </Flex>
     </SkColoredContainerMobile>
     <SkSourcesContainerMobile sources={homePageContent.sourcesParams} />
   </>

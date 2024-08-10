@@ -1,4 +1,5 @@
 import { homePageKey } from "../skovorodaConstants";
+import { getLinkTitle, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaTreatisePath } from "../skovorodaPath";
 
 export function getHomePageProps() {
   return {
@@ -37,4 +38,22 @@ export const homePageContent = {
       linkTitle: "Facebook Катерини Ткаченко"
     }
   ],
+  textsTitle: "Творчість Сковороди",
+  textsLinks: [
+    {
+      text: "Трактати",
+      href: SkovorodaTreatisePath
+    },
+    {
+      text: "Сад Божественних Пісень",
+      href: SkovorodaGardenPath
+    },
+    {
+      text: "Байки Харківські",
+      href: SkovorodaFablesPath
+    }
+  ].map(link => {
+    link.title = getLinkTitle(link.href);
+    return link;
+  }),
 };

@@ -1,4 +1,4 @@
-import { Group, Text, Title } from '@mantine/core';
+import { Flex, Group, Text, Title } from '@mantine/core';
 import SkFountain from '../components/shared/skFountain';
 import { SkovorodaConstants } from '../lib/skovorodaConstants';
 import SkFilledButtonDesktop from '../components/shared/skFilledButtonDesktop';
@@ -11,6 +11,7 @@ import { getHomePageProps, homePageContent } from '../lib/pagesContent/home';
 import SkSourcesContainerDesktop from '../components/shared/skSourcesContainerDesktop';
 import classes from './destop.module.scss';
 import SkImage from '../components/shared/skImage';
+import Link from 'next/link';
 
 export default function HomePageDesktop() { 
 
@@ -60,6 +61,26 @@ export default function HomePageDesktop() {
         <SkFilledButtonDesktop text={"Більше символів"} href={SkovorodaSymbolsPath} width={267}/>
       </>}
     </SkColoredContainerDesktop>
+
+    <SkColoredContainerDesktop color={"gray.0"}>
+      <SkH2Desktop text={homePageContent.textsTitle} mb={"md"} />
+      <Flex 
+        gap="md" 
+        mb="sm"
+        direction="column"
+      >
+        {homePageContent.textsLinks.map(link => {
+          return <>
+            <Title ml="0" order={3} className="normalContentText">
+              <Link key={link.href} href={link.href} title={link.title} className={classes.headerLink}>
+                {link.text}
+              </Link>
+            </Title>
+          </>;
+        })}
+      </Flex>
+    </SkColoredContainerDesktop>
+
     <SkSourcesContainerDesktop sources={homePageContent.sourcesParams} />
   </> 
 }

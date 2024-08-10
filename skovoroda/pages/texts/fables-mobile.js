@@ -25,22 +25,15 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
         <Space h="md" />
 
         {/* Fables Links */}
-        <Spoiler px="md" maxHeight={120} showLabel="Більше..." hideLabel="Менше" 
-          className="normalContentText normalContentText_withoutIndent"
-          classNames={{
-            "control": classes.spoilerControlButton
-          }}
-        >
-          <List type="ordered" className="normalContentText normalContentText_withoutIndent">
-            {fables.map(fable => {
-              const href = pathJoin(SkovorodaFablesPath, fable.urlId);
-              return <List.Item key={fable.urlId}>
-                <SkTextLink text={fable.fableTitle} title={getFableLinkTitle(fable)} href={href} disableStyles={false}>
-                </SkTextLink>
-              </List.Item>
-            })}
-          </List>
-        </Spoiler>
+        <List ml="md" type="ordered" className="normalContentText normalContentText_withoutIndent">
+          {fables.map(fable => {
+            const href = pathJoin(SkovorodaFablesPath, fable.urlId);
+            return <List.Item key={fable.urlId}>
+              <SkTextLink text={fable.fableTitle} title={getFableLinkTitle(fable)} href={href} disableStyles={false}>
+              </SkTextLink>
+            </List.Item>
+          })}
+        </List>
         <Space h="md" />
 
         {/* FAQ */}

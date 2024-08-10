@@ -12,7 +12,7 @@ export default function SkCommentAuthorMobile(props) {
   return <Group gap="sm" mb="sm">
     <SkImage height={48} width={48} image={image} shadow="sm" key={image.imageUrl} styleAction={style => {
       style.borderRadius = "48px";
-    }} />
+    }} optimize={true} />
     <Text className="normalContentText normalContentText_withoutIndent">
       <Text component="span">Горецький Дмитро</Text>
       <Text component="span" c="gray.6">розробник сайту</Text>

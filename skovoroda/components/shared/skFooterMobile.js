@@ -5,21 +5,19 @@ import classes from './skFooterMobile.module.scss';
 
 export default function SkFooterMobile() {
   
-  return <Container fluid={true} h={144} bg={"gray.1"} ta={"center"} w={"100%"} className={classes.footer}>
+  return <Container fluid={true} h={160} bg={"gray.1"} ta={"center"} w={"100%"} className={classes.footer}>
     <Flex 
       ta={"center"}
-      gap="sm" 
+      gap="0.15rem" 
       justify={"center"}
       align="center"
       direction="column"
-      h={144}
+      h={160}
       className="normalContentText normalContentText_withoutIndent"
     >
-      <Space h="xs"/>
-      <SkTextLink href={SkovorodaAboutUsPath} text={"Про нас"} />
-      <SkTextLink href={SkovorodaContactPath} text={"Контакти"} />
-      <SkTextLink href={SkovorodaCopyrightPath} text={"Правовласникам"} />
-      <Space h="md"/>
+      <SkTextLink href={SkovorodaAboutUsPath} text={"Про нас"} className={classes.footerLink}/>
+      <SkTextLink href={SkovorodaContactPath} text={"Контакти"}  className={classes.footerLink}/>
+      <SkTextLink href={SkovorodaCopyrightPath} text={"Правовласникам"}  className={classes.footerLink}/>
     </Flex>
   </Container>
 }

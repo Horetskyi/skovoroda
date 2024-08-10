@@ -2,6 +2,7 @@ import { Card, Image, Title } from "@mantine/core";
 import Link from "next/link";
 import classes from './skovorodaSourceBlockDesktop.module.scss';
 
+// DEPRECATED
 export default function SkovorodaSourceBlockDesktop({source}) {
 
   if (!source) {

@@ -35,7 +35,7 @@ export default function SkovorodaGardenPageMobile({ allSongsMetadata, gardenImag
     {/* Сад божественных пѣсней, прозябшій из зерн Священнаго Писанія */}
 
     <Center mr={20} mt={"sm"}>
-      <SkImage image={gardenImageByOlenka} width={290} height={310} priority={true} shadow={false} />
+      <SkImage image={gardenImageByOlenka} width={290} height={310} priority={true} shadow={false} optimize={true} />
     </Center>
 
     {/* Garden Links */}

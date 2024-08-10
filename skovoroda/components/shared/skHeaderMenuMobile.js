@@ -44,7 +44,7 @@ export default function SkHeaderMenuMobile() {
       
       <Popover shadow="md" width={200} position="bottom-end" opened={opened} onChange={setOpened}>
         <Popover.Target>
-          <ActionIcon variant="transparent" color="gray" radius={"xl"} w={60} h={60} spacing={0} onClick={() => setOpened((o) => !o)}>
+          <ActionIcon variant="transparent" color="gray" radius={"xl"} w={60} h={60} spacing={0} onClick={() => setOpened((o) => !o)} aria-label="Головне Меню">
             <IconMenu2 size="40px" strokeWidth={1} />
           </ActionIcon>
         </Popover.Target>

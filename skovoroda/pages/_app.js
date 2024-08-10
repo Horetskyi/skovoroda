@@ -76,16 +76,16 @@ export default function App(props) {
 
   return (
     <>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-JL0EM7690R"/>
-      <Script id="gtagScript">{`
+      {/* <Script src="https://plugin-api-4.nytroseo.com/api/site/c9f32217-5c9a-49d3-aa3a-9e912cb4f07c/nytroseo.min.js" /> */}
+      {/* <Script type="text/javascript" src="data:text/javascript;base64,
+LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxzLG8sZixqcyxmanMpIHt3WydBbGxpSlNXaWRnZXQnXT1vO3dbb10gPSB3W29dIHx8IGZ1bmN0aW9uICgpIHsgKHdbb10ucSA9IHdbb10ucSB8fCBbXSkucHVzaChhcmd1bWVudHMpIH07anMgPSBkLmNyZWF0ZUVsZW1lbnQocyksIGZqcyA9IGQuZ2V0RWxlbWVudHNCeVRhZ05hbWUocylbMF07anMuaWQgPSBvOyBqcy5zcmMgPSBmOyBqcy5hc3luYyA9IDE7IGZqcy5wYXJlbnROb2RlLmluc2VydEJlZm9yZShqcywgZmpzKTt9KHdpbmRvdywgZG9jdW1lbnQsICdzY3JpcHQnLCAnYWxsaScsICdodHRwczovL3N0YXRpYy5hbGxpYWkuY29tL3dpZGdldC92MS5qcycpKTthbGxpKCdpbml0JywgJ3NpdGVfZFhVV3BncGlvWVhlVm1rOCcpO2FsbGkoJ29wdGltaXplJywgJ2FsbCcpOw==" /> */}
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-JL0EM7690R" strategy='lazyOnload'/>
+      <Script id="gtagScript" strategy='lazyOnload'>{`
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-JL0EM7690R');
       `}</Script>
-      {/* <Script src="https://plugin-api-4.nytroseo.com/api/site/c9f32217-5c9a-49d3-aa3a-9e912cb4f07c/nytroseo.min.js" /> */}
-      {/* <Script type="text/javascript" src="data:text/javascript;base64,
-LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxzLG8sZixqcyxmanMpIHt3WydBbGxpSlNXaWRnZXQnXT1vO3dbb10gPSB3W29dIHx8IGZ1bmN0aW9uICgpIHsgKHdbb10ucSA9IHdbb10ucSB8fCBbXSkucHVzaChhcmd1bWVudHMpIH07anMgPSBkLmNyZWF0ZUVsZW1lbnQocyksIGZqcyA9IGQuZ2V0RWxlbWVudHNCeVRhZ05hbWUocylbMF07anMuaWQgPSBvOyBqcy5zcmMgPSBmOyBqcy5hc3luYyA9IDE7IGZqcy5wYXJlbnROb2RlLmluc2VydEJlZm9yZShqcywgZmpzKTt9KHdpbmRvdywgZG9jdW1lbnQsICdzY3JpcHQnLCAnYWxsaScsICdodHRwczovL3N0YXRpYy5hbGxpYWkuY29tL3dpZGdldC92MS5qcycpKTthbGxpKCdpbml0JywgJ3NpdGVfZFhVV3BncGlvWVhlVm1rOCcpO2FsbGkoJ29wdGltaXplJywgJ2FsbCcpOw==" /> */}
       <Head>
         <title>{pageProps.metadataTitle}</title>
         <meta name="description" content={pageProps.metadataDescription} />

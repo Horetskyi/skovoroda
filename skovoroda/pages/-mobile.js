@@ -21,6 +21,7 @@ export default function HomePageMobile() {
           imageUrl={homePageContent.imageUrl}
           shadow={"md"}
           priority={true}
+          optimize={true}
         />
       </Center>
       <Space h={"md"}/>

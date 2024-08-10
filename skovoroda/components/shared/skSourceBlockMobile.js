@@ -23,7 +23,8 @@ export default function SkSourceBlockMobile(params) {
           </p> : null}
       </Stack>
       <Center mt={"sm"}>
-        <SkImage imageUrl={params.image.imageUrl} width={120} height={200} shadow={"md"} alt={params.image.alt} title={params.image.title} />
+        <SkImage imageUrl={params.image.imageUrl} width={120} height={200} shadow={"md"} 
+          alt={params.image.alt} title={params.image.title} optimize={true} />
       </Center>
     </Container>
   </>

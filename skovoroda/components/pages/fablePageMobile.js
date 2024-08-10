@@ -125,7 +125,8 @@ export default function FablePageMobile({
     {isFableImageExists ? <>
       <Center>
         <SkImage imageUrl={selectedMetadata.fableImage.imageUrl} width={221} height={306} 
-          shadow={"md"} alt={selectedMetadata.fableImage.alt} title={selectedMetadata.fableImage.title} priority={true} />
+          shadow={"md"} alt={selectedMetadata.fableImage.alt} title={selectedMetadata.fableImage.title} 
+          priority={true} optimize={true} />
       </Center>
       <Space h="md"/>
     </> : null}

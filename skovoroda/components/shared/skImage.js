@@ -34,6 +34,7 @@ export default function SkImage({
   additionalClassName, 
   onClick,
   shadow,
+  optimize
 }) {
 
   if (shadow !== false) {
@@ -65,6 +66,8 @@ export default function SkImage({
     className += " " + additionalClassName;
   }
 
+  const unoptimized = optimize ? false : true;
+
   return <div className={className} style={styleObj}>
     <Image 
       key={imageUrl} 
@@ -77,7 +80,7 @@ export default function SkImage({
       priority={priority}
       onClick={onClick}
       quality={100}
-      unoptimized={true}
+      unoptimized={unoptimized}
     />
   </div>
 }

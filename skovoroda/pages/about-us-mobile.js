@@ -14,7 +14,7 @@ export default function AboutUsPage(props) {
       <Center>
         <SkImage image={image} width={120} height={120} shadow={"lg"} priority={true} styleAction={styleObj => {
           styleObj.borderRadius = "120px";
-        }} />
+        }} optimize={true} />
       </Center>
       <Space h="md"/>
       {description.map((text, index) => {

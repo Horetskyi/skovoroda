@@ -9,7 +9,7 @@ export default function SkDownloadButtonDesktop({ fileName }) {
 
   return <Link key={fileName} href={"/sources/" + fileName} title={fileName} className={classes.link}>
     <Button
-      rightIcon={<IconFileDownload/>}
+      rightSection={<IconFileDownload/>}
       radius={"md"} 
       variant="filled"
       w={140}

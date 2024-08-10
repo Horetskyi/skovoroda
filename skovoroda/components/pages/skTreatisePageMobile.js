@@ -26,6 +26,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
           width={170} 
           height={246} 
           priority
+          optimize={true}
         />
       </Center>
       <Space h="md"/>
@@ -34,7 +35,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
         <Text className="normalContentText normalContentText_withoutIndent">Назва: {version.title}</Text>
         {isTranslation ? 
           <Text className="normalContentText normalContentText_withoutIndent">{translatorLabel}
-            <Text fw={400} component="span">{translator.fullName3}</Text>
+            <Text fw={400} component="span" className="normalContentText normalContentText_withoutIndent">{translator.fullName3}</Text>
           </Text>
         : null}
         <Text className="normalContentText normalContentText_withoutIndent">Рік видання: {source.productionYear} р.</Text>

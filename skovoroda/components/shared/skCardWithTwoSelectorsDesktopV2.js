@@ -1,10 +1,6 @@
 import { Card, Select, Text } from "@mantine/core";
 import classes from './skCardWithTwoSelectorsDesktopV2.module.scss'; 
 
-function ItemChildren(children) {
-  return children;
-} 
-
 export default function SkCardWithTwoSelectorsDesktopV2({ dropdown1, dropdown2, idSuffix}) {
   
   if (!idSuffix || !idSuffix.length) {

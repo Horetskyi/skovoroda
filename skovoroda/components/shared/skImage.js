@@ -63,7 +63,6 @@ export default function SkImage({
       onClick={onClick}
       quality={100}
       unoptimized={unoptimized}
-      layout="fixed"
       decoding={decoding}
     />
   </div>

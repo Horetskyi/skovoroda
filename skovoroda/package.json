@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:profile": "cross-env REACT_PROFILE=true next build",
     "start": "next start",
     "lint": "next lint",
     "cypress:open": "cypress open"
@@ -31,6 +32,7 @@
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "cypress": "^13.6.0",
     "eslint": "8.26.0",
     "eslint-config-next": "^13.4.19",

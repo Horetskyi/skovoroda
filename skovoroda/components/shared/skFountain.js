@@ -1,11 +1,52 @@
 import FountainSvg from "./skFountain.svg";
-import { gsap } from "gsap/dist/gsap";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import classes from './skFountain.module.scss'; 
 
 export default function SkFountain({ isMobile }) {
 
+  const [gsapLoaded, setGsapLoaded] = useState(false);
+
+  // useEffect(() => {
+  //   if (window.gsap) {
+  //     setGsapLoaded(true);
+  //   }
+  // }, []);
+
   useEffect(() => {
+    if (gsapLoaded) {
+      return;
+    }
+
+    const loadGSAP = () => {
+      if (gsapLoaded) {
+        return;
+      }
+      console.log("CUSTOM: add gsap script {");
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
+      script.onload = () => setGsapLoaded(true);
+      document.body.appendChild(script);
+      console.log("CUSTOM: add gsap script }");
+    };
+
+    const handleScroll = () => {
+      loadGSAP();
+      window.removeEventListener('scroll', handleScroll); // Remove the listener after GSAP is loaded
+    };
+
+    console.log("CUSTOM: add gsap scroll event listener");
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [gsapLoaded]);
+
+  useEffect(() => {
+
+    if (!gsapLoaded) {
+      return;
+    }
+
+    console.log("CUSTOM: gsap fountain");
 
     const svg = document.getElementById("fountain-svg");
     if (!svg.classList.contains(classes.fountainSvg)) {
@@ -35,7 +76,7 @@ export default function SkFountain({ isMobile }) {
       });
       
     });
-  });
+  }, [gsapLoaded]);
 
   const width = isMobile ? "100%" : "900px";
 

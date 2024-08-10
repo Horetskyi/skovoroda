@@ -5,18 +5,6 @@ import { gsap } from "gsap/dist/gsap";
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
 import classes from './skTextContentBlockDesktop.module.scss';
 
-// const useStyles = createStyles((theme, params) => {
-
-//   const isMobile = params.isMobile;
-//   const tabSize = isMobile ? 12 : 36; 
-//   const leftNumSpacing = 100;
-
-//   return {
-
-    
-//   };
-// });
-
 export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick, ...others}) {
 
   if (textContent && textContent.length && textContent[0].isAllIsList) {

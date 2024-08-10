@@ -1,26 +1,6 @@
 import Image from "next/image";
 import classes from './skImage.module.scss';
 
-// const useStyles = createStyles((theme, params) => {
-//   if (!params.shadow) {
-//     params.shadow = "lg";
-//   }
-//   return {
-
-//     image: {
-//       borderRadius: theme.radius.md,
-//       boxShadow: theme.shadows[params.shadow],
-//       minWidth: "max-content",
-//       lineHeight: 0,
-//       img: {
-//         borderRadius: theme.radius.md,
-//         objectFit: "cover",
-//       }
-//     },
-  
-//   };
-// });
-
 export default function SkImage({ 
   image, 
   imageUrl, 
@@ -81,6 +61,7 @@ export default function SkImage({
       onClick={onClick}
       quality={100}
       unoptimized={unoptimized}
+      layout="fixed"
     />
   </div>
 }

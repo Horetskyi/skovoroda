@@ -1,7 +1,7 @@
 
 import { Container, Group, Space } from '@mantine/core';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { SkovorodaGardenPath, pathJoin } from '../../lib/skovorodaPath';
 import SkH2Desktop from '../shared/skH2Desktop';
 import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
@@ -23,10 +23,10 @@ export default function GardenSongPageMobile({
 }) 
 {
   const router = useRouter();
-  function changeRouterPath(urlId) {
+  const changeRouterPath = useCallback((urlId) => {
     const newPath = pathJoin(SkovorodaGardenPath, urlId);
     return router.push(newPath, undefined, { scroll: false, shallow: false });
-  }
+  }, [router]);
 
   const selectedMetadata = selectedSong.songMetadata;
 
@@ -45,22 +45,22 @@ export default function GardenSongPageMobile({
   }
 
   // Dropdown 1
-  function selectTranslatorDropdownValue(value) {
+  const selectTranslatorDropdownValue = useCallback((value) => {
     const urlId = translationsDropdownItems.find(item => item.value == value).id;
     changeRouterPath(urlId).then(() => {
       selectTranslatorDropdownValueInner(""+value);
       changeSongsDropdownItems(prepareGardenSongsDropdownItems(allSongsMetadata, value));
     });
-  }
+  }, [translationsDropdownItems, changeRouterPath, allSongsMetadata]);
 
   // Dropdown 2
-  function selectSongDropdownValue(value) {
+  const selectSongDropdownValue = useCallback((value) => {
     const urlId = songsDropdownItems.find(item => item.value == value).id;
     changeRouterPath(urlId).then(() => {
       selectSongDropdownValueInner(""+value);
       changeTranslationDropdownItems(prepareGardenSongsTranslatorsDropdownItems(allSongsMetadata, value, allTranslators));
     });
-  }  
+  }, [songsDropdownItems, changeRouterPath, allSongsMetadata, allTranslators]);
 
   const h1Text = selectedMetadata.name;
 
@@ -74,13 +74,15 @@ export default function GardenSongPageMobile({
     },
   ];
 
-  const availableSongNumbers = allSongsMetadata
-    .filter(metadata => metadata.translatorId === selectedMetadata.translatorId)
-    .map(metadata => metadata.number);
-  availableSongNumbers.sort((a,b) => a - b);
-  const prevSongNumber = prevAvailableNumber(selectedMetadata.number, availableSongNumbers);
-  const nextSongNumber = nextAvailableNumber(selectedMetadata.number, availableSongNumbers);
-  const randomSongNumber = randomNumberInRangeExcept(1, 30, selectedMetadata.number, availableSongNumbers);
+  const availableSongNumbers = useMemo(() => {
+    return allSongsMetadata
+      .filter(metadata => metadata.translatorId === selectedMetadata.translatorId)
+      .map(metadata => metadata.number)
+      .sort((a,b) => a - b);
+  }, [allSongsMetadata, selectedMetadata.translatorId]);
+  const prevSongNumber = useMemo(() => prevAvailableNumber(selectedMetadata.number, availableSongNumbers), [selectedMetadata.number, availableSongNumbers]);
+  const nextSongNumber = useMemo(() => nextAvailableNumber(selectedMetadata.number, availableSongNumbers), [selectedMetadata.number, availableSongNumbers]);
+  const randomSongNumber = useMemo(() => randomNumberInRangeExcept(1, 30, selectedMetadata.number, availableSongNumbers), [selectedMetadata.number, availableSongNumbers]);
 
   return <>
     <Container py="lg">

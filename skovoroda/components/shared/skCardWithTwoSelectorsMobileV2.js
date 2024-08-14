@@ -1,7 +1,8 @@
 import { Card, Select, Text } from "@mantine/core";
 import classes from './skCardWithTwoSelectorsMobileV2.module.scss'; 
+import { memo } from "react";
 
-export default function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2, idSuffix}) {
+const SkCardWithTwoSelectorsMobileV2 = memo(function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2, idSuffix}) {
   
   if (!idSuffix || !idSuffix.length) {
     idSuffix = "normal";
@@ -13,7 +14,6 @@ export default function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2, i
     <Select 
       id={"dropdown1-"+idSuffix}
       size="xs"
-      withinPortal={true}
       searchable={false}
       mb="sm"
       data={dropdown1.data} 
@@ -22,6 +22,7 @@ export default function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2, i
         input: classes.mantineSelectInput
       }}
       onChange={dropdown1.onChange}
+      comboboxProps={{ keepMounted: true, middlewares: { flip: false, shift: false } }}
       aria-label={dropdown1.label}>
     </Select>
       
@@ -30,7 +31,6 @@ export default function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2, i
     <Select 
       id={"dropdown2-"+idSuffix}
       size="xs"
-      withinPortal={true}
       searchable={false}
       data={dropdown2.data} 
       value={dropdown2.selectedValue}
@@ -38,9 +38,10 @@ export default function SkCardWithTwoSelectorsMobileV2({ dropdown1, dropdown2, i
         input: classes.mantineSelectInput
       }}
       onChange={dropdown2.onChange}
-      aria-label={dropdown2.label}
-      >
+      comboboxProps={{ keepMounted: true, middlewares: { flip: false, shift: false } }}
+      aria-label={dropdown2.label}>
     </Select>
 
   </Card>
-}
+});
+export default SkCardWithTwoSelectorsMobileV2;

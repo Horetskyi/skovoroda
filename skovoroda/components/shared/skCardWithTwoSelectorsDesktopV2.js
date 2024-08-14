@@ -1,7 +1,8 @@
 import { Card, Select, Text } from "@mantine/core";
 import classes from './skCardWithTwoSelectorsDesktopV2.module.scss'; 
+import { memo } from "react";
 
-export default function SkCardWithTwoSelectorsDesktopV2({ dropdown1, dropdown2, idSuffix}) {
+const SkCardWithTwoSelectorsDesktopV2 = memo(function SkCardWithTwoSelectorsDesktopV2({ dropdown1, dropdown2, idSuffix}) {
   
   if (!idSuffix || !idSuffix.length) {
     idSuffix = "normal";
@@ -13,7 +14,6 @@ export default function SkCardWithTwoSelectorsDesktopV2({ dropdown1, dropdown2, 
     <Select 
       id={"dropdown1-"+idSuffix}
       size="md"
-      withinPortal={true}
       searchable
       mb="md"
       data={dropdown1.data} 
@@ -22,6 +22,7 @@ export default function SkCardWithTwoSelectorsDesktopV2({ dropdown1, dropdown2, 
         input: classes.mantineSelectInput
       }}
       onChange={dropdown1.onChange}
+      comboboxProps={{ keepMounted: true, middlewares: { flip: false, shift: false } }}
       aria-label={dropdown1.label}>
     </Select>
       
@@ -30,7 +31,6 @@ export default function SkCardWithTwoSelectorsDesktopV2({ dropdown1, dropdown2, 
     <Select 
       id={"dropdown2-"+idSuffix}
       size="md"
-      withinPortal={true}
       searchable
       data={dropdown2.data} 
       value={dropdown2.selectedValue}
@@ -38,9 +38,10 @@ export default function SkCardWithTwoSelectorsDesktopV2({ dropdown1, dropdown2, 
         input: classes.mantineSelectInput
       }}
       onChange={dropdown2.onChange}
-      aria-label={dropdown2.label}
-      >
+      comboboxProps={{ keepMounted: true, middlewares: { flip: false, shift: false } }}
+      aria-label={dropdown2.label}>
     </Select>
 
   </Card>
-}
+});
+export default SkCardWithTwoSelectorsDesktopV2;

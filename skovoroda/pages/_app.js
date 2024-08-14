@@ -133,21 +133,19 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
       </Head>
       <MantineProvider theme={theme}>
         
+        <SpeedInsights />
+
+        {isDektop ? 
+          <SkHeaderMenuDesktop /> : 
+          <SkHeaderMenuMobile />}
+
         <main className={roboto.className}>
-
-          <SpeedInsights />
-
-          {isDektop ? 
-            <SkHeaderMenuDesktop /> : 
-            <SkHeaderMenuMobile />}
-          
           <Component {...pageProps} />
-
-          {isDektop ? 
-            <SkFooterDesktop /> : 
-            <SkFooterMobile />}
-
         </main>
+
+        {isDektop ? 
+          <SkFooterDesktop /> : 
+          <SkFooterMobile />}
 
       </MantineProvider>
     </>

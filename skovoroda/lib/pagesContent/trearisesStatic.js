@@ -17,6 +17,7 @@ export function getTreatisesPageProps() {
         sourceIds.add(date.sourceId)
       }
     });
+    treatise.quotes = []; // free memory
   });
   const sources = SkovorodaSourcesArray.filter(source => sourceIds.has(source.devNumber));
 

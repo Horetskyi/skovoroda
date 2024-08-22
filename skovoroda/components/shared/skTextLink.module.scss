@@ -7,3 +7,11 @@
   text-decoration-line: none;
   color: black;
 }
+.linkWidthLimited {
+  width: fit-content;
+}
+.linkThick {
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-decoration-thickness: from-font;
+}

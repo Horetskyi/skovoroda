@@ -26,13 +26,13 @@ body {
 .normalContentText, .normalContentText label {
   font-weight: 300;
   font-size: 20px;
-  line-height: 23px;
+  line-height: 29px;
   letter-spacing: 0.03em;
   text-indent: 24px;
 
   @media (max-width: $mantine-breakpoint-sm) {
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 18px;
+    line-height: 24px;
   }
 }
 .normalContentText_justify {

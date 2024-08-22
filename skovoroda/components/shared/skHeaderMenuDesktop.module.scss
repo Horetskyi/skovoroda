@@ -41,3 +41,26 @@
   position: relative;
   scale: 0.8;
 }
+.svgBaroque1 {
+  display: block;
+  position: sticky;
+  top: 18px;
+  fill: #b0bee3;
+}
+.svgBaroque1ContainerLeft {
+  svg {
+    transform: scale(-1, -1);
+  }
+  left: 18px;
+}
+.svgBaroque1ContainerRight {
+  svg {
+    transform: scale(1, -1);
+  }
+  right: 32px;
+}
+.svgBaroque1Container {
+  position: absolute;
+  top: 117px;
+  height: calc(100% - 144px);
+}

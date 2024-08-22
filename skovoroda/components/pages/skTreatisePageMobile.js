@@ -1,10 +1,11 @@
-import { Center, Container, Group, Space, Stack, Text } from "@mantine/core";
+import { Center, Container, Flex, Group, Space, Stack, Text } from "@mantine/core";
 import SkImage from "../shared/skImage";
 import Link from "next/link";
 import SkDownloadButtonDesktop from "../shared/skDownloadButtonDesktop";
 import SkColoredContainerMobile from "../shared/skColoredContainerMobile";
 import SkH1Mobile from "../shared/skH1Mobile";
 import SkH2Mobile from "../shared/skH2Mobile";
+import SkPageNavMenu from "../shared/skPageNavMenu";
 
 export default function SkTreatisePageMobile({ treatise, sources, translators }) {
 
@@ -14,6 +15,20 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
   const originalSource = sources.find(s => s.sourceId === original.sourceId);
   const sourceLabel = "Джерело: ";
   const translatorLabel = "Перекладач: ";
+  const isQuotesAvailable = treatise.quotes && treatise.quotes.length;
+  const links = [];
+  if (isQuotesAvailable) {
+    links.push({
+      href: "#quotes",
+      text: "Цитати",
+      title: "Цитати - " + preferedTitle,
+    });
+  }
+  links.push({
+    href: "#downloads",
+    text: "Скачати",
+    title: "Скачати - " + preferedTitle,
+  });
 
   function TreatisVersionBlock(version, source) {
     const isTranslation = version.translatorId ? true : false;
@@ -51,10 +66,22 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
     </Container>
   }
 
+  function Quote(quote, text, index) {
+    const key = "quote_" + quote.translatorId + "_" + index;
+    return <Text key={key} className="normalContentText">{text}</Text>
+  }
+
   return <>
     <SkColoredContainerMobile px="md">
-      <SkH1Mobile text={preferedTitle} mb="md"/>
-      <SkH2Mobile text="Оригінал" mb="md" />
+      <SkH1Mobile text={preferedTitle} mb="md" isBaroque={true} />
+      <SkPageNavMenu links={links} isDesktop={false}/>
+      { isQuotesAvailable ? <>
+        <SkH2Mobile id="quotes" text="Цитати" mb="md" />
+        <Flex direction="column" gap="lg" mb="lg">
+          { treatise.quotes.flatMap(quote => quote.texts.map((text, index) => Quote(quote, text, index)))}
+        </Flex>
+      </> : null}
+      <SkH2Mobile text="Оригінал" mb="md" id="downloads" />
       {TreatisVersionBlock(original, originalSource)}
       <Space h="md"/>
       <SkH2Mobile text="Переклади" mb="md" />

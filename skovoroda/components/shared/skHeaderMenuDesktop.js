@@ -5,6 +5,7 @@ import Link from "next/link";
 import { SkovorodaBioPath, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaTextsPath, SkovorodaTreatisePath, getLinkTitle } from "../../lib/skovorodaPath";
 import { SkovorodaConstants } from "../../lib/skovorodaConstants";
 import classes from './skHeaderMenuDesktop.module.scss';
+import SkBaroque1 from "./skBaroque1.svg";
 
 export default function SkHeaderMenuDesktop() {
   
@@ -44,6 +45,12 @@ export default function SkHeaderMenuDesktop() {
         </nav>
       
       </Flex>
+      {/* <div className={`${classes.svgBaroque1Container} ${classes.svgBaroque1ContainerLeft}`}>
+        <SkBaroque1 className={`${classes.svgBaroque1}`} width="160" height="160" />
+      </div>
+      <div className={`${classes.svgBaroque1Container} ${classes.svgBaroque1ContainerRight}`}>
+        <SkBaroque1 className={`${classes.svgBaroque1}`} width="160" height="160" />
+      </div> */}
     </Container>
   </header>
 }

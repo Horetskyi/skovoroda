@@ -29,11 +29,12 @@ export async function getStaticProps({ params }) {
 
   const treatises = readAllTreatises();
   const treatise = treatises.find(treatise => treatise.urlId === id);
+  treatise.introContent = ""; // free memory
 
   const sourceIds = new Set();
-  if (treatise.introSourceId) {
-    sourceIds.add(treatise.introSourceId)
-  }
+  // if (treatise.introSourceId) {
+  //   sourceIds.add(treatise.introSourceId)
+  // }
   treatise.writtenDate.forEach(date => {
     if (date.sourceId) {
       sourceIds.add(date.sourceId)

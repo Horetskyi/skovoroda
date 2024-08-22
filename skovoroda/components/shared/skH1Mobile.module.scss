@@ -7,3 +7,25 @@
   text-align: center;
   color: black;
 }
+.titleH1Baroque {
+  display: inline-block;
+}
+.containerBaroque {
+  position: relative;
+  text-align: center;
+}
+.svg {
+  display: block;
+  position: absolute;
+  fill: #b0bee3;
+}
+.svgLeft {
+  transform: scale(-1, -1) rotate(-22deg);
+  top: -14px;
+  left: -14px;
+}
+.svgRight {
+  transform: scale(1, -1) rotate(-22deg);
+  top: -14px;
+  right: -14px;
+}

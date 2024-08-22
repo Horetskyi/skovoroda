@@ -1,0 +1,4 @@
+.limitWidth {
+  width: fit-content;
+  min-width: 240px;
+}

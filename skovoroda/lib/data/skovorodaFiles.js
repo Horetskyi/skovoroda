@@ -66,6 +66,7 @@ export const SkovorodaFiles = {
         href: "http://sites.utoronto.ca/elul/Main-Ukr.html",
         type: sourceLinkType_exact
       }),
+    shevchuk_fb2: file("348.8 KB", "Г. С. Сковорода Наркіс. Розмова про Те. Пізнай себе В. Шевчук.fb2"),
   },
   askhan: {
     original_pdf: file("1.3 MB", "Г. С. Сковорода - Симфоніа, нареченная Книга Асхань о Познаніи самаго себе - Л. Ушкалов.pdf"),

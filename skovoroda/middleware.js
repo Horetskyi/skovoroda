@@ -9,14 +9,19 @@ export function middleware(request) {
   const path = pathName + search;
 
   if (
+    pathName.includes(".fb2") || 
     pathName.includes(".pdf") || 
     pathName.includes(".doc") ||
     pathName.includes(".docx") ||
     pathName.includes(".djvu")
   )
   {
-    const pdfFileUrl = new URL(path, "https://skovoroda.s3.eu-west-3.amazonaws.com/");
-    return NextResponse.rewrite(pdfFileUrl);
+    const documentFileUrl = new URL(path, "https://skovoroda.s3.eu-west-3.amazonaws.com/");
+    const response = NextResponse.rewrite(documentFileUrl);
+    if (pathName.includes('.fb2')) {
+      response.headers.set('Content-Type', 'application/fb2+xml');
+    }
+    return response;
   }
 
   const isPageRequest =

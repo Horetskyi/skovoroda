@@ -30,6 +30,9 @@ function getFileExtensionLabel(fileName) {
   if (fileName.includes(".pdf")) {
     return ".PDF";
   }
+  if (fileName.includes(".fb2")) {
+    return ".FB2";
+  }
   if (fileName.includes(".doc")) {
     return ".DOC";
   }

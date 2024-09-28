@@ -1,16 +1,15 @@
-.container {
-  border-bottom: 1px #BCBCBC solid;
-}
 .title {
   font-style: normal;
   font-weight: 200;
   font-size: 28px;
   line-height: 33px;
   letter-spacing: 0.16em;
+  z-index: 0;
 }
 .titleLink {
   margin-left: 0;
   margin-right: auto;
+  z-index: 0;
 }
 .buttonText {
   text-align: center;
@@ -21,6 +20,7 @@
   padding-top: var(--mantine-spacing-sm);
   padding-bottom: var(--mantine-spacing-sm);
   text-decoration: none;
+  z-index: 0;
 }
 .logoLink {
   margin-top: var(--mantine-spacing-sm);
@@ -46,4 +46,22 @@
   scale: 0.9;
   margin-left: var(--mantine-spacing-xs);
   margin-right: var(--mantine-spacing-xs);
+}
+
+.svgHeaderBlockContainer {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: -19px;
+  height: 116px;
+  width: 1350px;
+}
+.svgHeaderBlock {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  stroke: var(--mantine-color-indigo-2);
+  fill: var(--mantine-color-indigo-0);
+  filter: drop-shadow(2px 3px 8px rgba(182, 193, 226, 0.05));
 }

@@ -6,6 +6,8 @@ import SkColoredContainerMobile from "../shared/skColoredContainerMobile";
 import SkH1Mobile from "../shared/skH1Mobile";
 import SkH2Mobile from "../shared/skH2Mobile";
 import SkPageNavMenu from "../shared/skPageNavMenu";
+import classes from './skTreatisePageMobile.module.scss';
+import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
 
 export default function SkTreatisePageMobile({ treatise, sources, translators }) {
 
@@ -26,8 +28,8 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
   }
   links.push({
     href: "#downloads",
-    text: "Скачати",
-    title: "Скачати - " + preferedTitle,
+    text: "Завантажити",
+    title: "Завантажити - " + preferedTitle,
   });
 
   function TreatisVersionBlock(version, source) {
@@ -47,7 +49,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
       <Space h="md"/>
       
       <Stack p="0" m="0" ta="left" gap="xs">
-        <Text className="normalContentText normalContentText_withoutIndent">Назва: {version.title}</Text>
+        <Text className="normalContentText normalContentText_withoutIndent">Назва: <Text fw={400} component="span" className="normalContentText normalContentText_withoutIndent">{version.title}</Text></Text>
         {isTranslation ? 
           <Text className="normalContentText normalContentText_withoutIndent">{translatorLabel}
             <Text fw={400} component="span" className="normalContentText normalContentText_withoutIndent">{translator.fullName3}</Text>
@@ -68,22 +70,38 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
 
   function Quote(quote, text, index) {
     const key = "quote_" + quote.translatorId + "_" + index;
-    return <Text key={key} className="normalContentText">{text}</Text>
+    return <Text key={key} className={`normalContentText`}>{text}</Text>
   }
 
   return <>
     <SkColoredContainerMobile px="md">
       <SkH1Mobile text={preferedTitle} mb="md" isBaroque={true} />
+
+      {treatise.image ? 
+        <div className={classes.imageContainer}>
+          <SkImage image={treatise.image} priority={true} gentlyShadow={true} fullWidth={true} />
+        </div>
+        : null}
+
+      {treatise.introContent2 && treatise.introContent2.length ? <>
+        <SkTextContentBlockDesktop textContent={treatise.introContent2} isMobile={true} isv2={true} justify={false} />
+        <Space h="lg" />
+      </> : null}
+      
       <SkPageNavMenu links={links} isDesktop={false}/>
+     
       { isQuotesAvailable ? <>
         <SkH2Mobile id="quotes" text="Цитати" mb="md" />
-        <Flex direction="column" gap="lg" mb="lg">
+        <Flex direction="column" gap="md" mb="lg" className={classes.quotesContainer}>
           { treatise.quotes.flatMap(quote => quote.texts.map((text, index) => Quote(quote, text, index)))}
         </Flex>
       </> : null}
+
       <SkH2Mobile text="Оригінал" mb="md" id="downloads" />
       {TreatisVersionBlock(original, originalSource)}
-      <Space h="md"/>
+      
+      <Space h="xl"/>
+      
       <SkH2Mobile text="Переклади" mb="md" />
       {treatise.versions.filter(v => v.translatorId).map((v, index, array) => {
         return <div key={"t"+v.translatorId}>
@@ -91,6 +109,9 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
           {(index !== array.length - 1) ? <Space h="md"/> : null}
         </div>
       })}
+
+      <Space h="lg"/>
+
     </SkColoredContainerMobile>
   </>
 }

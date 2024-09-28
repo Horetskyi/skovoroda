@@ -28,7 +28,7 @@ export const trearisesContent = {
     },
   ],
   h1: "Трактати",
-  filtersByTypesLabel: "Фільтр по типах:",
+  filtersByTypesLabel: "Фільтри:",
   filtersByTypesLabelNote: "* Солілоквій – мова, адресована до самого себе.",
   birthYearText: "1722 р.",
   deathYearText: "1794 р.",

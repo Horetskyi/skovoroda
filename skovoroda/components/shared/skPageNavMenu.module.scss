@@ -1,0 +1,16 @@
+.limitWidth {
+  width: fit-content;
+  min-width: 200px;
+}
+.card {
+  background-color: var(--mantine-color-indigo-0);
+  position: sticky;
+  top: 24px;
+  box-shadow: 3px 4px 12px 0px #e8ebf5;
+}
+.cardContainer {
+  position: absolute;
+  top: 233px;
+  left: 97px;
+  height: calc(100% - 233px);
+}

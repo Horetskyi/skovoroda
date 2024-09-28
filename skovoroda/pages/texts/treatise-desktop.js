@@ -1,4 +1,4 @@
-import { Checkbox, Container, Group, Space, Stack, Text, Title, createStyles } from '@mantine/core';
+import { Accordion, Checkbox, Container, Group, Space, Stack, Text, TextInput, Title, createStyles } from '@mantine/core';
 import SkH1Desktop from '../../components/shared/skH1Desktop';
 import Link from 'next/link';
 import { SkovorodaTreatisePath, pathJoin } from '../../lib/skovorodaPath';
@@ -9,45 +9,86 @@ import SkNote from '../../components/shared/skNote';
 import { useState } from 'react';
 import { getTreatisesPageProps } from '../../lib/pagesContent/trearisesStatic';
 import { trearisesContent } from '../../lib/pagesContent/treatisesContent';
-import { IconChevronRight } from '@tabler/icons';
+import { IconChevronRight, IconSearch } from '@tabler/icons';
 import classes from './treatise-desktop.module.scss';
 
 export default function SkTreatisePageDesktop({ treatises, sourcesTextContent }) {
   
+  const [searchText, setSearchText] = useState('');
   const [filters, setFilters] = useState(trearisesContent.filtersByTypes);
-  function setChecked(filterKey, checked) {
+  function setFilterChecked(filterKey, checked) {
     const newFilters = [...filters];
     const index = newFilters.findIndex(filter => filter.key === filterKey);
     newFilters[index] = { ...newFilters[index], checked: checked }; 
     setFilters(newFilters);
   }
   
+  // Apply filters and searchText
   const filteredTreatiseKeys = filters.filter(f => f.checked).map(f => f.key);
-  const filtered = !filteredTreatiseKeys.length 
+  let filtered = !filteredTreatiseKeys.length 
     ? treatises 
     : treatises.filter(treatise => filteredTreatiseKeys.includes(treatise.treatiseType));
+  if (searchText && searchText.length) {
+    filtered = filtered.filter(treatise => treatise.versions.some(v => v.title.toLowerCase().includes(searchText.toLowerCase())));
+  }
   filtered.sort((a,b) => a.orderNumber - b.orderNumber);
+
+  const icon = <IconSearch style={{ width: 24, height: 24 }} />;
 
   return <>
 
-    <SkH1Desktop text={trearisesContent.h1} mt="lg" />
+    <SkH1Desktop text={trearisesContent.h1} mt="xl" />
 
-    {/* Filters */}
+    {/* Search and Filters*/}
     <SkColoredContainerDesktop>
-      <Text mb="sm" className='normalContentText normalContentText_withoutIndent'>{trearisesContent.filtersByTypesLabel}</Text>
-      <Stack gap={"xs"} mb="sm">
-        {filters.map(filter => {
-          return <Checkbox 
-            color="blue.2"
-            key={filter.key}
-            checked={filter.checked}
-            onChange={(event) => setChecked(filter.key, event.currentTarget.checked)} 
-            className='normalContentText normalContentText_withoutIndent' 
-            label={filter.text} 
-          />
-        })}
-      </Stack>
-      <Text className='normalContentText normalContentText_withoutIndent'>{trearisesContent.filtersByTypesLabelNote}</Text>
+      
+      <TextInput 
+        placeholder='Наприклад: "Наркіс"'
+        label="Пошук за назвою:"
+        aria-label="Пошук трактату за назвою"
+        radius="md"
+        size="lg"
+        mb="md"
+        className={classes.searchBox}
+        classNames={{
+          section: classes.searchBoxIconSection,
+          input: 'normalContentText normalContentText_withoutIndent',
+          label: 'normalContentText normalContentText_withoutIndent',
+        }}
+        rightSectionPointerEvents="none"
+        rightSection={icon}
+        value={searchText}
+        onChange={(event) => setSearchText(event.currentTarget.value)} />
+
+      <Accordion variant="contained" radius="md" className={classes.filtersAccordion}
+        classNames={{
+          chevron: classes.filtersAccordionChevron,
+          control: classes.filtersAccordionControl,
+          item: classes.filtersAccordionItem,
+          content: classes.filtersAccordionContent,
+          panel: classes.filtersAccordionPanel,
+        }}>
+        <Accordion.Item value="filters" color='indigo.0'>
+          <Accordion.Control bg={"indigo.0"}>
+            <Text className='normalContentText normalContentText_withoutIndent'>{trearisesContent.filtersByTypesLabel}</Text>
+          </Accordion.Control>
+          <Accordion.Panel bg={"gray.0"}>
+            <Stack gap={"xs"} mb="sm" mt="sm">
+              {filters.map(filter => {
+                return <Checkbox 
+                  color="blue.2"
+                  key={filter.key}
+                  checked={filter.checked}
+                  onChange={(event) => setFilterChecked(filter.key, event.currentTarget.checked)} 
+                  className='normalContentText normalContentText_withoutIndent' 
+                  label={filter.text} 
+                />
+              })}
+            </Stack>
+            <Text className='normalContentText normalContentText_withoutIndent'>{trearisesContent.filtersByTypesLabelNote}</Text>
+          </Accordion.Panel>
+        </Accordion.Item>
+      </Accordion>
     </SkColoredContainerDesktop>
 
     {/* List */}
@@ -61,7 +102,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
       writtenDate.sort((a,b) => a.year - b.year);
       const linkTitle = `${preferedTitle} скачати переклади, оригінал`;
 
-      return <Container key={treatise.urlId} w={900} bg={"white"} className={classes.treatiseContainer} p={"md"} mb={"lg"}>
+      return <div key={treatise.urlId} className={classes.treatiseContainer2}><Container w={900} bg={"white"} className={classes.treatiseContainer} p={"md"} mb={"xl"}>
         
         {/* H2 */}
         <Title order={2} pb="sm">
@@ -93,7 +134,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
             return <div key={date.text} className={classes.dateBox} style={{ left: leftCss }} />
           })}
         </Container>
-      </Container>
+      </Container></div>
     })}
 
     {/* Notes */}

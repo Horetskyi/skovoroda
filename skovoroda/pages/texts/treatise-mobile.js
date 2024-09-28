@@ -1,4 +1,4 @@
-import { Checkbox, Container, Group, Space, Stack, Text, Title } from '@mantine/core';
+import { Checkbox, Container, Group, Space, Stack, Text, TextInput, Title } from '@mantine/core';
 import Link from 'next/link';
 import { SkovorodaTreatisePath, pathJoin } from '../../lib/skovorodaPath';
 import SkTextContentBlockDesktop from '../../components/shared/skTextContentBlockDesktop';
@@ -6,7 +6,7 @@ import SkNote from '../../components/shared/skNote';
 import { useState } from 'react';
 import { getTreatisesPageProps } from '../../lib/pagesContent/trearisesStatic';
 import { trearisesContent } from '../../lib/pagesContent/treatisesContent';
-import { IconChevronRight } from '@tabler/icons';
+import { IconChevronRight, IconSearch } from '@tabler/icons';
 import SkH1Mobile from '../../components/shared/skH1Mobile';
 import SkColoredContainerMobile from '../../components/shared/skColoredContainerMobile';
 import SkH2Mobile from '../../components/shared/skH2Mobile';
@@ -14,6 +14,7 @@ import classes from './treatise-mobile.module.scss';
 
 export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) {
   
+  const [searchText, setSearchText] = useState('');
   const [filters, setFilters] = useState(trearisesContent.filtersByTypes);
   function setChecked(filterKey, checked) {
     const newFilters = [...filters];
@@ -22,18 +23,43 @@ export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) 
     setFilters(newFilters);
   }
   
+  // Apply filters and searchText
   const filteredTreatiseKeys = filters.filter(f => f.checked).map(f => f.key);
-  const filtered = !filteredTreatiseKeys.length 
+  let filtered = !filteredTreatiseKeys.length 
     ? treatises 
     : treatises.filter(treatise => filteredTreatiseKeys.includes(treatise.treatiseType));
+  if (searchText && searchText.length) {
+    filtered = filtered.filter(treatise => treatise.versions.some(v => v.title.toLowerCase().includes(searchText.toLowerCase())));
+  }
   filtered.sort((a,b) => a.orderNumber - b.orderNumber);
+
+  const icon = <IconSearch style={{ width: 24, height: 24 }} />;
 
   return <>
 
     <SkH1Mobile text={trearisesContent.h1} mt="md" />
 
-    {/* Filters */}
+    {/* Search and Filters */}
     <SkColoredContainerMobile px="md">
+      
+      <TextInput 
+        placeholder='Наприклад: "Наркіс"' 
+        label="Пошук за назвою:"
+        aria-label="Пошук трактату за назвою"
+        radius="md"
+        size="lg"
+        mb="md"
+        className={classes.searchBox}
+        classNames={{
+          section: classes.searchBoxIconSection,
+          input: 'normalContentText normalContentText_withoutIndent',
+          label: 'normalContentText normalContentText_withoutIndent',
+        }}
+        rightSectionPointerEvents="none"
+        rightSection={icon}
+        value={searchText}
+        onChange={(event) => setSearchText(event.currentTarget.value)} />
+
       <Text mb="sm" className='normalContentText normalContentText_withoutIndent'>{trearisesContent.filtersByTypesLabel}</Text>
       <Stack gap={"xs"} mb="sm">
         {filters.map(filter => {

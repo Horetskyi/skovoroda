@@ -1,3 +1,21 @@
+
+.searchBox {
+  input {
+    background: var(--mantine-color-indigo-0);
+    border-color: var(--mantine-color-indigo-2);
+    font-weight: 300;
+    padding-left: 24px;
+    
+    &::placeholder {
+      color: #9b9b9b;
+      font-weight: 300;
+    }
+  }
+}
+.searchBoxIconSection {
+  color: var(--mantine-color-indigo-2) !important;
+}
+
 .h2Link {
   font-size: 24px !important;
   color: var(--mantine-color-blue-9);

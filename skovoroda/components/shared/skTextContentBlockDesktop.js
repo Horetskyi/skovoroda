@@ -39,6 +39,10 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 
   const plusClassName = others.plusClassName;
   const isMobile = others.isMobile;
+  if (others.justify !== false) {
+    others.justify = true;
+  }
+  const isJustifyEnabled = others.justify;
 
   gsap.registerPlugin(ScrollToPlugin);
   
@@ -174,7 +178,8 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 
   const allContentClassName = (isMobile ? classes.textContentBlockMobile : classes.textContentBlock) + 
     (plusClassName ? ` ${plusClassName} ` : "") +
-    ((isLeftNotesEnabled && isNotesBlock) ? ` ${classes.textContentBlockLeftNotesEnabled} ` : "");
+    ((isLeftNotesEnabled && isNotesBlock) ? ` ${classes.textContentBlockLeftNotesEnabled} ` : "") +
+    (!isMobile && isJustifyEnabled ? ` ${classes.textContentBlockJustify} ` : "");
 
   return <div className={allContentClassName}>{block}</div>;
 }

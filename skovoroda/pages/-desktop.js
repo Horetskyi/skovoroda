@@ -17,7 +17,7 @@ export default function HomePageDesktop() {
 
   return <>
     <SkColoredContainerDesktop color={"gray.0"}>
-      <Group spacing={"md"} position="apart" className={classes.bioGroup} >
+      <Group mt={"sm"} spacing={"md"} position="apart" className={classes.bioGroup} >
         <div className={classes.portraitImage} >
           <SkImage 
             imageUrl={homePageContent.imageUrl} 

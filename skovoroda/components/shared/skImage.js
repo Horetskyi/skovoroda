@@ -14,10 +14,13 @@ export default function SkImage({
   additionalClassName, 
   onClick,
   shadow,
-  optimize
+  optimize,
+  proportionWidth,
+  gentlyShadow,
+  fullWidth
 }) {
 
-  if (shadow !== false) {
+  if (shadow !== false && !gentlyShadow) {
     shadow = true;
   }
 
@@ -25,13 +28,33 @@ export default function SkImage({
     imageUrl = image.imageUrl;
     alt = image.imageAlt ? image.imageAlt : image.alt;
     title = image.imageTitle ? image.imageTitle : image.title;
+    if (image.width) {
+      width = image.width;
+    }
+    if (image.height) {
+      height = image.height;
+    }
+  }
+
+  if (proportionWidth) {
+    const ratioDifference = width / proportionWidth;
+    width = proportionWidth;
+    height = height / ratioDifference;
   }
 
 
   if (!imageUrl || !imageUrl.length) {
     return null;
   }
-  const styleObj = { width: width, height: height };
+ 
+  let styleObj = { width: width, height: height };
+  if (fullWidth) {
+    styleObj = {
+      width: "calc(100vw - 50px)",
+      height: "fit-content",
+    };
+  }
+
   if (disableBottomRadius) {
     styleObj.borderBottomLeftRadius = "none";
     styleObj.borderBottomRightRadius = "none";
@@ -41,7 +64,10 @@ export default function SkImage({
     styleAction(styleObj);
   }
 
-  let className = shadow ? classes.image : classes.imageWithoutShadow;
+  let className = (shadow || gentlyShadow)
+    ? (classes.imageV1 + " " + (gentlyShadow ? classes.imageShadowV2 : classes.imageShadowV1))
+    : classes.imageWithoutShadow;
+  
   if (additionalClassName) {
     className += " " + additionalClassName;
   }

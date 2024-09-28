@@ -1,6 +1,61 @@
+
+.searchBox {
+  input {
+    background: var(--mantine-color-indigo-0);
+    border-color: var(--mantine-color-indigo-2);
+    font-weight: 300;
+    padding-left: 24px;
+    
+    &::placeholder {
+      color: #9b9b9b;
+      font-weight: 300;
+    }
+  }
+}
+.searchBoxIconSection {
+  color: var(--mantine-color-indigo-2) !important;
+}
+
+.filtersAccordion {
+  border-color: var(--mantine-color-indigo-2) !important;
+}
+.filtersAccordionItem {
+  border-color: var(--mantine-color-indigo-2) !important;
+}
+.filtersAccordionChevron {
+  width: 28px !important;
+  margin-right: -13px;
+  font-weight: 100;
+  color: var(--mantine-color-indigo-2);
+
+  svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
+.filtersAccordionControl {
+  border-color: var(--mantine-color-indigo-2) !important;
+}
+.filtersAccordionContent {
+  border-radius: var(--mantine-radius-md);
+}
+.filtersAccordionPanel {
+  border-radius: var(--mantine-radius-md);
+}
+
 .treatiseContainer {
   border-radius: var(--mantine-radius-md);
   box-shadow: var(--mantine-shadow-md);
+}
+.treatiseContainer2 {
+  margin: 0 auto;
+
+  // &:nth-child(odd) {
+  //   padding-left: var(--mantine-spacing-xl);
+  // }
+  // &:nth-child(even) {
+  //   padding-right: var(--mantine-spacing-xl);
+  // }
 }
 .h2Link {
   font-size: 24px !important;

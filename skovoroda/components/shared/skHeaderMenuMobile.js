@@ -6,6 +6,7 @@ import { SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaTreatisePath, getLin
 import { IconMenu2 } from "@tabler/icons";
 import { useState } from "react";
 import classes from './skHeaderMenuMobile.module.scss';
+import HeaderBlockSvg from "./../svgs/headerBlockMobile.svg";
 
 export default function SkHeaderMenuMobile() {
   
@@ -26,7 +27,12 @@ export default function SkHeaderMenuMobile() {
   ];
 
   return <header>
-    <Container fluid={true} h={87} px={"sm"} className={classes.container}>
+
+    <div className={classes.svgHeaderBlockContainer}>
+      <HeaderBlockSvg className={classes.svgHeaderBlock} />
+    </div>
+
+    <Container fluid={true} h={87} px={"sm"}>
       <Flex 
         gap={0} 
         justify="flex-start"

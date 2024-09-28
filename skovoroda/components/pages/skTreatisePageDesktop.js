@@ -7,6 +7,7 @@ import Link from "next/link";
 import SkDownloadButtonDesktop from "../shared/skDownloadButtonDesktop";
 import classes from './skTreatisePageDesktop.module.scss';
 import SkPageNavMenu from "../shared/skPageNavMenu";
+import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
 
 export default function SkTreatisePageDesktop({ treatise, sources, translators }) {
   
@@ -27,8 +28,8 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
   }
   links.push({
     href: "#downloads",
-    text: "Скачати",
-    title: "Скачати - " + preferedTitle,
+    text: "Завантажити",
+    title: "Завантажити - " + preferedTitle,
   });
 
   function TreatisVersionBlock(version, source) {
@@ -45,7 +46,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
         />
       </div>
       <Stack p="0" m="0" ta="left" gap={"xs"}>
-        <Text className="normalContentText normalContentText_withoutIndent">Назва: {version.title}</Text>
+        <Text className="normalContentText normalContentText_withoutIndent">Назва: <Text fw={400} component="span">{version.title}</Text></Text>
         {isTranslation ? 
           <Text className="normalContentText normalContentText_withoutIndent">{translatorLabel}
             <Text fw={400} component="span">{translator.fullName3}</Text>
@@ -55,7 +56,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
         <Text className="normalContentText normalContentText_withoutIndent">{sourceLabel}
           <Link href={source.sourceHref} title={source.sourceFullName}>{source.sourceFullName}</Link>
         </Text>
-        <Group mt="sm" spacing={"sm"}>
+        <Group mt="md" spacing={"sm"}>
           {version.fileNames.map(fileName => {
             return <SkDownloadButtonDesktop key={fileName} fileName={fileName}/>
           })}
@@ -71,11 +72,24 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
 
   return <>
     <SkColoredContainerDesktop>
-      <SkH1Desktop text={preferedTitle} mb="lg" />
+      <SkH1Desktop text={preferedTitle} mb="lg" mt="sm" />
+      
       <SkPageNavMenu links={links} isDesktop={true}/>
+
+      <div className={classes.imageAndIntroContainer}>
+        {treatise.image ? 
+          <div className={classes.imageContainer}>
+            <SkImage image={treatise.image} priority={true} shadow={true} proportionWidth={350} />
+          </div>
+          : null}
+        <div>
+          <SkTextContentBlockDesktop textContent={treatise.introContent2} isv2={true} justify={false} />
+        </div>
+      </div>
+
       { isQuotesAvailable ? <>
         <SkH2Desktop text="Цитати" mb="lg" id="quotes" />
-        <Flex direction="column" gap="lg" mb="lg">
+        <Flex direction="column" gap="lg" mb="lg" className={classes.quotesContainer}>
           { treatise.quotes.flatMap(quote => quote.texts.map((text, index) => Quote(quote, text, index)))}
         </Flex>
       </> : null}

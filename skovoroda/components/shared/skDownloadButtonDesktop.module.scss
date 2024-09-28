@@ -3,3 +3,15 @@
     color: black;
   }
 }
+.iconSection {
+  color: black !important;
+  vertical-align: middle;
+
+  svg { 
+    stroke-width: 1px;
+    margin-top: -1px;
+  }
+}
+.button {
+  box-shadow: var(--mantine-shadow-xs);
+}

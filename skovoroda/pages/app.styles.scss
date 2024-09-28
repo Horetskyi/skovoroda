@@ -21,12 +21,22 @@ body {
   width: 100vw;
   overflow-x: clip;
   height: auto !important;
+
+  a {
+    text-decoration-thickness: 1px;
+  }
+}
+
+@media (min-width: $mantine-breakpoint-sm) {
+  header {
+    height: 98px; // By default it's 100px, but because of special desktop wave header we decrease it
+  }
 }
 
 .normalContentText, .normalContentText label {
   font-weight: 300;
   font-size: 20px;
-  line-height: 29px;
+  line-height: 28px;
   letter-spacing: 0.03em;
   text-indent: 24px;
 
@@ -140,9 +150,4 @@ input:focus {
 
 .mantine-Text-root {
   font-weight: 300;
-
-  // @media (max-width: $mantine-breakpoint-sm) {
-  //   font-size: 16px;
-  //   line-height: 22px;
-  // }
 }

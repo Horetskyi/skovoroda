@@ -1,4 +1,4 @@
-import AnimatedMailSvg from "./animatedMail.svg";
+import AnimatedMailSvg from "./svgs/animatedMail.svg";
 import { gsap } from "gsap/dist/gsap";
 import { useEffect, useRef, useState } from "react";
 import { Container } from "@mantine/core";

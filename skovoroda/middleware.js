@@ -28,6 +28,7 @@ export function middleware(request) {
     !pathName.includes('.png') &&
     !pathName.includes('.xml') &&
     !pathName.includes('.jpg') &&
+    !pathName.includes('.svg') &&
     !pathName.includes('iframes') &&
     !pathName.includes('.jpeg') &&
     !pathName.includes('.css') &&

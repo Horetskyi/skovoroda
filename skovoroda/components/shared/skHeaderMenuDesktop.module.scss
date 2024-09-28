@@ -1,16 +1,15 @@
-.container {
-  border-bottom: 1px #BCBCBC solid;
-}
 .title {
   font-style: normal;
   font-weight: 100;
   font-size: 36px;
   line-height: 42px;
   letter-spacing: 0.5em;
+  z-index: 0;
 }
 .titleLink {
   margin-left: var(--mantine-spacing-sm);
   margin-right: auto; 
+  z-index: 0;
 }
 .buttonText {
   font-style: normal;
@@ -21,46 +20,71 @@
   letter-spacing: 0.165em;
   color: black;
 }
-.inProgressText {
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 23px;
-  letter-spacing: 0.03em;
-  color: #202a54;
+.logoSvgs {
+  position: relative;
+  scale: 0.8;
+  margin-top: 12px;
 }
-.svg {
+.logoSvg {
   filter: drop-shadow(3px 1px 8px rgba(0, 0, 0, 0.15));
 }
-.dove {
+.logoSvgDove {
   position: absolute;
   top: 41px;
   left: -8px;
   filter: drop-shadow(3px 1px 8px rgba(0, 0, 0, 0.15));
 }
-.svgs {
-  position: relative;
-  scale: 0.8;
-}
-.svgBaroque1 {
+.svgHeaderBlockContainer {
   display: block;
-  position: sticky;
-  top: 18px;
-  fill: #b0bee3;
-}
-.svgBaroque1ContainerLeft {
-  svg {
-    transform: scale(-1, -1);
-  }
-  left: 18px;
-}
-.svgBaroque1ContainerRight {
-  svg {
-    transform: scale(1, -1);
-  }
-  right: 32px;
-}
-.svgBaroque1Container {
   position: absolute;
-  top: 117px;
-  height: calc(100% - 144px);
+  left: 0;
+  top: 0;
+  height: 116px;
+  width: 100%;
 }
+.svgHeaderBlock {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  stroke: var(--mantine-color-indigo-2);
+  fill: var(--mantine-color-indigo-0);
+  filter: drop-shadow(2px 3px 8px rgba(182, 193, 226, 0.05));
+}
+
+// EXPERIMENTAL HEADER WITH SHADOW:
+// .svgHeaderBlock2 {
+//   display: block;
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   height: 110px;
+//   width: 100%;
+//   filter: drop-shadow(2px 3px 8px rgba(182, 193, 226, 0.05));
+//   overflow: visible;
+// }
+
+// EXPERIMENTAL BAROQUE ELEMENTS:
+// .svgBaroque1 {
+//   display: block;
+//   position: sticky;
+//   top: 18px;
+//   fill: #b0bee3;
+// }
+// .svgBaroque1ContainerLeft {
+//   svg {
+//     transform: scale(-1, -1);
+//   }
+//   left: 18px;
+// }
+// .svgBaroque1ContainerRight {
+//   svg {
+//     transform: scale(1, -1);
+//   }
+//   right: 32px;
+// }
+// .svgBaroque1Container {
+//   position: absolute;
+//   top: 117px;
+//   height: calc(100% - 144px);
+// }

@@ -1,6 +1,5 @@
-.image {
+.imageV1 {
   border-radius: var(--mantine-radius-md);
-  box-shadow: var(--mantine-shadow-lg);
   min-width: max-content;
   line-height: 0;
   
@@ -8,6 +7,12 @@
     border-radius: var(--mantine-radius-md);
     object-fit: cover;
   }
+}
+.imageShadowV1 {
+  box-shadow: var(--mantine-shadow-lg);
+}
+.imageShadowV2 {
+  box-shadow: 7px 3px 12px 1px #dee1eb;
 }
 
 .imageWithoutShadow {

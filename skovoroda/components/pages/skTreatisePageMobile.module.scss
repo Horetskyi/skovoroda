@@ -1,0 +1,19 @@
+
+.imageContainer {
+  border-radius: var(--mantine-radius-md);
+  line-height: 0;
+  height: max-content;
+  margin-top: var(--mantine-spacing-md);
+  margin-bottom: var(--mantine-spacing-lg);
+
+  img: {
+    border-radius: var(--mantine-radius-md);
+    object-fit: cover;
+  }
+}
+
+.quotesContainer {
+  p::first-letter {
+    font-weight: 400;
+  }
+}

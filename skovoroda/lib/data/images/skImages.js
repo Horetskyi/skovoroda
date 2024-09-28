@@ -84,5 +84,13 @@ export const SkImages = {
     alt: "Сад Божественних Пісень - Григорій Сковорода",
     title: "Сад Божественних Пісень",
   },
+  narcisByOlenka: {
+    imageUrl: "/images/treatise/NarcisOlenkaImg1.webp",
+    alt: "Малюнок до твору Григорія Сковороди - Наркіс. Розмова про те: Пізнай себе. Авторка: Олена Лещенко.",
+    title: "Наркіс. Розмова про те: Пізнай себе",
+    treatiseUrlId: "narcis",
+    width: 900,
+    height: 1125,
+  },
 };
 export const SkImagesArray = Object.values(SkImages);

@@ -91,6 +91,21 @@ export default function Utils1({ }) {
     [ 'ї·' , 'ї' ],
   ];
 
+  const formatTemplates = [
+    {
+      name: "[Center]",
+      description: "вирівнюти текст по центру",
+    },
+    {
+      name: "[Right]",
+      description: "вирівнюти текст по праву сторону",
+    },
+    {
+      name: "[Tab1], [Tab2], [Tab3], [Tab4], [Tab5], [Tab6]",
+      description: "відступи",
+    },
+  ];
+
   function processInputText(text) {
     if (shouldRemoveEnters) {
       text = text.replaceAll('\n', ' ');
@@ -190,6 +205,15 @@ export default function Utils1({ }) {
       onChange={(event) => setOutputText(event.currentTarget.value)} 
       onSelectCapture={() => makeNote()}
     />
+
+    <h2>Шаблони форматування</h2>
+
+    {formatTemplates.map(t => {
+      return <p key={t.name}>
+        <b>{t.name}</b> - <span>{t.description}</span>
+      </p>
+    })}
+
   </Container>
 }
 export async function getStaticProps({ params }) {

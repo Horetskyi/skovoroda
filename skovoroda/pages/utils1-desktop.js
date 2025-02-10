@@ -4,6 +4,7 @@ import { getNoteNumberString } from "../lib/data/utils/notesNumbersSymbols";
 import { utils1PageKey } from "../lib/skovorodaConstants";
 import { gsap } from "gsap/dist/gsap";
 import { IconMail } from "@tabler/icons";
+import classes from './utils1-destop.module.scss';
 
 var timeline = undefined;
 
@@ -132,7 +133,7 @@ export default function Utils1({ }) {
     <Title my="xl" order={1}>Utils</Title>
     <Space />
 
-    <Card w={600} p="xl" withBorder={true} bg="blue.1">
+    {/* <Card w={600} p="xl" withBorder={true} bg="blue.1">
       <IconMail id="skovoroda-image" size={40} />
       <Space h={100} />
       <Slider 
@@ -150,7 +151,7 @@ export default function Utils1({ }) {
       />
     </Card>
 
-    <Space />
+    <Space /> */}
     
     <Checkbox checked={shouldRemoveEnters} 
       onChange={(event) => setShouldRemoveEnters(event.currentTarget.checked)} 
@@ -163,7 +164,7 @@ export default function Utils1({ }) {
       mb="md" />
     
     
-    <Textarea minRows={10} maxRows={10} mb="md" value={inputText} onChange={(event) => setInputTextFacade(event.currentTarget.value)} />
+    <Textarea h={350} classNames={{input: classes.utilsTextArea}} className={classes.utilsTextArea} minRows={10} maxRows={10} mb="md" value={inputText} onChange={(event) => setInputTextFacade(event.currentTarget.value)} />
     {/* <Card>
       {[...outputText].map((value, index) => {
         return <span key={index}>{value}</span>
@@ -185,7 +186,7 @@ export default function Utils1({ }) {
       onChange={(value) => setMode(value)}
     />
 
-    <Textarea id="output" minRows={10} maxRows={10} mb="md" value={outputText} 
+    <Textarea h={350} classNames={{input: classes.utilsTextArea}} className={classes.utilsTextArea} id="output" minRows={10} maxRows={10} mb="md" value={outputText} 
       onChange={(event) => setOutputText(event.currentTarget.value)} 
       onSelectCapture={() => makeNote()}
     />

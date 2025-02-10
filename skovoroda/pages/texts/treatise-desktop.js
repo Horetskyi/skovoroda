@@ -1,4 +1,4 @@
-import { Accordion, Checkbox, Container, Group, Space, Stack, Text, TextInput, Title, createStyles } from '@mantine/core';
+import { Accordion, Checkbox, Container, Group, Space, Stack, Text, TextInput, Title } from '@mantine/core';
 import SkH1Desktop from '../../components/shared/skH1Desktop';
 import Link from 'next/link';
 import { SkovorodaTreatisePath, pathJoin } from '../../lib/skovorodaPath';
@@ -6,34 +6,21 @@ import SkTextContentBlockDesktop from '../../components/shared/skTextContentBloc
 import SkH2Desktop from '../../components/shared/skH2Desktop';
 import SkColoredContainerDesktop from '../../components/shared/skColoredContainerDesktop';
 import SkNote from '../../components/shared/skNote';
-import { useState } from 'react';
 import { getTreatisesPageProps } from '../../lib/pagesContent/trearisesStatic';
 import { trearisesContent } from '../../lib/pagesContent/treatisesContent';
 import { IconChevronRight, IconSearch } from '@tabler/icons';
 import classes from './treatise-desktop.module.scss';
+import useTreatiseFilter from '../../hooks/useTreatiseFilter';
 
 export default function SkTreatisePageDesktop({ treatises, sourcesTextContent }) {
   
-  const [searchText, setSearchText] = useState('');
-  const [filters, setFilters] = useState(trearisesContent.filtersByTypes);
-  function setFilterChecked(filterKey, checked) {
-    const newFilters = [...filters];
-    const index = newFilters.findIndex(filter => filter.key === filterKey);
-    newFilters[index] = { ...newFilters[index], checked: checked }; 
-    setFilters(newFilters);
-  }
-  
-  // Apply filters and searchText
-  const filteredTreatiseKeys = filters.filter(f => f.checked).map(f => f.key);
-  let filtered = !filteredTreatiseKeys.length 
-    ? treatises 
-    : treatises.filter(treatise => filteredTreatiseKeys.includes(treatise.treatiseType));
-  if (searchText && searchText.length) {
-    filtered = filtered.filter(treatise => treatise.versions.some(v => v.title.toLowerCase().includes(searchText.toLowerCase())));
-  }
-  filtered.sort((a,b) => a.orderNumber - b.orderNumber);
-
-  const icon = <IconSearch style={{ width: 24, height: 24 }} />;
+  const {
+    searchText,
+    setSearchText,
+    filters,
+    setFilterChecked,
+    filteredTreatises
+  } = useTreatiseFilter(treatises, trearisesContent.filtersByTypes);
 
   return <>
 
@@ -56,7 +43,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
           label: 'normalContentText normalContentText_withoutIndent',
         }}
         rightSectionPointerEvents="none"
-        rightSection={icon}
+        rightSection={<IconSearch style={{ width: 24, height: 24 }} />}
         value={searchText}
         onChange={(event) => setSearchText(event.currentTarget.value)} />
 
@@ -92,7 +79,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
     </SkColoredContainerDesktop>
 
     {/* List */}
-    {filtered.map((treatise, index) => {
+    {filteredTreatises.map((treatise, index) => {
 
       const href = pathJoin(SkovorodaTreatisePath, treatise.urlId);
       const preferedVersion = treatise.versions.find(v => v.preferedVersion);

@@ -5,6 +5,7 @@ import { utils1PageKey } from "../lib/skovorodaConstants";
 import { gsap } from "gsap/dist/gsap";
 import { IconMail } from "@tabler/icons";
 import classes from './utils1-destop.module.scss';
+import SkImage from "../components/shared/skImage";
 
 var timeline = undefined;
 
@@ -144,9 +145,14 @@ export default function Utils1({ }) {
 
   }
 
+  const imageScale = 0.25;
+
   return <Container>
     <Title my="xl" order={1}>Utils</Title>
     <Space />
+
+    {/* <SkImage imageUrl={"/images/Screenshot_1.png"} width={2150 * imageScale} height={1316 * imageScale} priority={true} shadow={false} />
+    <SkImage imageUrl={"/images/Screenshot_1 copy.png"} width={2150 * imageScale} height={1316 * imageScale} priority={true} shadow={false} /> */}
 
     {/* <Card w={600} p="xl" withBorder={true} bg="blue.1">
       <IconMail id="skovoroda-image" size={40} />

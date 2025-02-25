@@ -6,14 +6,13 @@ import classes from './skDownloadButtonDesktop.module.scss';
 export default function SkDownloadButtonDesktop({ fileName }) {
   
   const fileExtension = getFileExtensionLabel(fileName);
-  const buttonLabel = `Завантажити ${fileExtension}`;
 
   return <Link key={fileName} href={"/sources/" + fileName} title={fileName} className={classes.link}>
     <Button
       rightSection={<IconFileDownload/>}
       radius={"md"} 
       variant="filled"
-      w={240}
+      w={260}
       h={50}
       color="indigo.1"
       className={`normalContentText normalContentText_withoutIndent ${classes.button}`}
@@ -21,7 +20,7 @@ export default function SkDownloadButtonDesktop({ fileName }) {
         section: classes.iconSection
       }}
     >
-      {buttonLabel}
+      <span>Завантажити <strong>{fileExtension}</strong></span>
     </Button>
   </Link> 
 }
@@ -35,6 +34,9 @@ function getFileExtensionLabel(fileName) {
   }
   if (fileName.includes(".doc")) {
     return ".DOC";
+  }
+  if (fileName.includes(".epub")) {
+    return ".EPUB";
   }
   return "FILE";
 }

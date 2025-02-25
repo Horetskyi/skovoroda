@@ -9,7 +9,7 @@ export default function DownloadStackV1(props) {
     {props.files.map(file => 
     <Link key={"link-"+file.fileName} href={"/sources/" + file.fileName} title={file.fileName}>
       <Button 
-        width={260}
+        width={280}
         leftIcon={<IconBookDownload/>} 
         title={file.fileName}
         variant="light"
@@ -20,21 +20,3 @@ export default function DownloadStackV1(props) {
     )}
   </Stack>
 }
-
-{/* <Button 
-  bg={color+".2"} 
-  className={classes.downloadButton}
-  mt="md"
-  variant="filled"
-  styles={(theme) => ({
-    root: {
-      '&:hover': {
-        backgroundColor: theme.colors[color][3],
-      },
-    },
-  })} 
-  leftIcon={<IconBookDownload/>} 
-  title={file.fileName}
->
-  Завантажити {file.fileExtensionUppercase} ({file.fileSize})
-</Button> */}

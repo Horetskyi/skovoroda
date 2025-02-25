@@ -47,8 +47,10 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  stroke: var(--mantine-color-indigo-2);
-  fill: var(--mantine-color-indigo-0);
+  // stroke: var(--mantine-color-indigo-2);
+  // fill: var(--mantine-color-indigo-0);
+  fill: #f9fbff;
+  stroke: #636363;
   filter: drop-shadow(2px 3px 8px rgba(182, 193, 226, 0.05));
 }
 

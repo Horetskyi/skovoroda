@@ -59,15 +59,6 @@ export const SkovorodaFiles = {
       fileWarning_noBookmarks
     ]),
   },
-  narcis: {
-    original_pdf: file("1.0 MB", "Г. С. Сковорода - Наркісс. Разглагол о Том. Узнай себе - Л. Ушкалов.pdf"),
-    shevchuk_pdf: file("867.4 KB", "Г. С. Сковорода - Наркіс. Розмова про Те. Пізнай себе - В. Шевчук.pdf",[],
-      {
-        href: "http://sites.utoronto.ca/elul/Main-Ukr.html",
-        type: sourceLinkType_exact
-      }),
-    shevchuk_fb2: file("348.8 KB", "Г. С. Сковорода Наркіс. Розмова про Те. Пізнай себе В. Шевчук.fb2"),
-  },
   askhan: {
     original_pdf: file("1.3 MB", "Г. С. Сковорода - Симфоніа, нареченная Книга Асхань о Познаніи самаго себе - Л. Ушкалов.pdf"),
     kashuba_pdf: file("551.1 KB", "Г. С. Сковорода - Симфонія, названа книга Асхань, про пізнання самого себе - М. Кашуба.pdf", [], sourceLink_piznai_ludynu),
@@ -86,11 +77,6 @@ export const SkovorodaFiles = {
     original_pdf: file("724 KB", "Г. С. Сковорода - Беседа 2-я, нареченная Observatorium. Specula. Eврейски. Сіон - Л. Ушкалов.pdf"),
     kashuba_pdf: file("300 KB", "Г. С. Сковорода - Бесіда 2-га, названа Observatorium Specula, по-єврейськи Сіон - М. Кашуба.pdf", [], sourceLink_piznai_ludynu),
     kashuba_doc: file("72 KB", "Г. С. Сковорода - Бесіда 2-га, названа Observatorium Specula, по-єврейськи Сіон - М. Кашуба.docx", [], sourceLink_piznai_ludynu),
-  },
-  dialoh_ymia_emu_potop_zmiyn: {
-    original_pdf: file("977 KB", "Г. С. Сковорода - Діалог. Имя Ему — Потоп Зміин - Л. Ушкалов.pdf"),
-    kashuba_pdf: file("471 KB", "Г. С. Сковорода - Діалог. Назва його - Потоп зміїний - М. Кашуба.pdf"),
-    kashuba_doc: file("128 KB", "Г. С. Сковорода - Діалог. Назва його - Потоп зміїний - М. Кашуба.doc"),
   },
   ubohii_zhaivoronok: {
     original_pdf: file("596 KB", "Г. С. Сковорода - Убогій Жайворонок - Л. Ушкалов.pdf"),

@@ -6,6 +6,7 @@ import FirstHouseComponent from "../components/firstHouseComponent";
 import { skovorodaPlaces, SkovorodaTravelData } from "../lib/data/skovorodaTravelData";
 import { CSSPlugin } from "gsap";
 import classes from './bio-experimental-desktop.module.scss';
+import SkBioInfographicsDesktop from "../components/shared/skBioInfographicsDesktop";
 
 export default function HSBioExperimentalPageDesktop({ }) {
   
@@ -150,7 +151,12 @@ export default function HSBioExperimentalPageDesktop({ }) {
     document.bioTimeline.progress(progressValue);
   }
 
-  return <Container>
+  return <Container mt={"xl"}>
+    
+    <SkBioInfographicsDesktop />
+
+    <Space h={1000}/>
+
     <Title order={1} mb="md">Григорій Савич Сковорода - Біографія</Title>
 
     <Card w={900} h={500} mb="xl" p="0" withBorder={true}>

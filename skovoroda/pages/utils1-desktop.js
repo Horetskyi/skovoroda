@@ -151,8 +151,8 @@ export default function Utils1({ }) {
     <Title my="xl" order={1}>Utils</Title>
     <Space />
 
-    {/* <SkImage imageUrl={"/images/Screenshot_1.png"} width={2150 * imageScale} height={1316 * imageScale} priority={true} shadow={false} />
-    <SkImage imageUrl={"/images/Screenshot_1 copy.png"} width={2150 * imageScale} height={1316 * imageScale} priority={true} shadow={false} /> */}
+    <SkImage imageUrl={"/images/Screenshot_1.png"} width={2150 * imageScale} height={1316 * imageScale} priority={true} shadow={false} />
+    <SkImage imageUrl={"/images/Screenshot_1 copy.png"} width={2150 * imageScale} height={1316 * imageScale} priority={true} shadow={false} />
 
     {/* <Card w={600} p="xl" withBorder={true} bg="blue.1">
       <IconMail id="skovoroda-image" size={40} />

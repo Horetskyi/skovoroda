@@ -4,7 +4,7 @@ const through = require("through2");
 const path = require("path");
 // const cv = require("opencv4nodejs");
 
-const darkPixelThreshold = 180;
+const darkPixelThreshold = 180; 
 
 function makeTransparent(image) {
     return image.scan(0, 0, image.bitmap.width, image.bitmap.height, function (x, y, idx) {
@@ -40,12 +40,14 @@ function processImages() {
 
                         // Apply transformations
                         image = image.greyscale();
-                        image = scale(image, 2);
+                        image = scale(image, 0.5);
+                        // image = scale(image, 2);
                         image = image.threshold({ max: darkPixelThreshold });
-                        image = makeTotalBlack(image);
+                        image = makeTotalBlack(image); // bolder
                         image = image.gaussian(1); // needed to make image more smooth
                         image = makeTransparent(image);
                         image = makeTotalBlack(image);
+                        image = scale(image, 0.5);
                         // image = image.dilate(0.2);
                         // image = image.resize({w: image.bitmap.width * 2, h: image.bitmap.height * 2}) // Upscale 2x
                         // image = image.contrast(0) // 0.5

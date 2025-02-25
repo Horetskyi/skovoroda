@@ -10,6 +10,7 @@ export function middleware(request) {
 
   if (
     pathName.includes(".fb2") || 
+    pathName.includes(".epub") || 
     pathName.includes(".pdf") || 
     pathName.includes(".doc") ||
     pathName.includes(".docx") ||
@@ -20,6 +21,9 @@ export function middleware(request) {
     const response = NextResponse.rewrite(documentFileUrl);
     if (pathName.includes('.fb2')) {
       response.headers.set('Content-Type', 'application/fb2+xml');
+    }
+    if (pathName.includes('.epub')) {
+      response.headers.set('Content-Type', 'application/epub+zip');
     }
     return response;
   }

@@ -45,6 +45,14 @@ body {
     line-height: 24px;
   }
 }
+.normalContentText {
+  strong {
+    font-weight: 400;
+  }
+}
+.normalContentText_lower, .normalContentText_lower * {
+  font-size: 18px !important;
+}
 .normalContentText_justify {
   text-align: justify;
 }

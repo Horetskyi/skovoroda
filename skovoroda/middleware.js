@@ -40,6 +40,7 @@ export function middleware(request) {
     !pathName.includes('.svg') &&
     !pathName.includes('iframes') &&
     !pathName.includes('.jpeg') &&
+    !pathName.includes('.mp4') &&
     !pathName.includes('.css') &&
     !pathName.includes('.scss') &&
     !pathName.includes('.ico');

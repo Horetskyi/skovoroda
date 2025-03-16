@@ -1,0 +1,13 @@
+.chip {
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+}
+.srodnist {
+  label { background: var(--mantine-color-green-0); }
+  span { color: var(--mantine-color-green-7); }
+}
+.parable {
+  label { background: var(--mantine-color-blue-0); }
+  span { color: var(--mantine-color-blue-7); }
+}

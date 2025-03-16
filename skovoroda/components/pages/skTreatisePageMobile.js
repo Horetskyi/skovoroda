@@ -1,4 +1,4 @@
-import { Center, Container, Flex, Group, Space, Stack, Text } from "@mantine/core";
+import { Center, Container, Flex, Group, List, Space, Stack, Text } from "@mantine/core";
 import SkImage from "../shared/skImage";
 import Link from "next/link";
 import SkDownloadButtonDesktop from "../shared/skDownloadButtonDesktop";
@@ -8,6 +8,9 @@ import SkH2Mobile from "../shared/skH2Mobile";
 import SkPageNavMenu from "../shared/skPageNavMenu";
 import classes from './skTreatisePageMobile.module.scss';
 import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
+import getTreatiseMenuLinks from "./details/getTreatiseMenuLinks";
+import ZmistBullet from "./details/ZmistBullet";
+import { ZmistItem } from "../shared/zmistItem";
 
 export default function SkTreatisePageMobile({ treatise, sources, translators }) {
 
@@ -18,19 +21,8 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
   const sourceLabel = "Джерело: ";
   const translatorLabel = "Перекладач: ";
   const isQuotesAvailable = treatise.quotes && treatise.quotes.length;
-  const links = [];
-  if (isQuotesAvailable) {
-    links.push({
-      href: "#quotes",
-      text: "Цитати",
-      title: "Цитати - " + preferedTitle,
-    });
-  }
-  links.push({
-    href: "#downloads",
-    text: "Завантажити",
-    title: "Завантажити - " + preferedTitle,
-  });
+  const isZmistAvailable = treatise.zmist && treatise.zmist.list && treatise.zmist.list.length;
+  const links = getTreatiseMenuLinks(treatise);
 
   function TreatisVersionBlock(version, source) {
     const isTranslation = version.translatorId ? true : false;
@@ -90,6 +82,16 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
       
       <SkPageNavMenu links={links} isDesktop={false}/>
      
+      {/* Зміст */}
+      { isZmistAvailable ? <>
+        <SkH2Mobile text="Зміст твору" mb="lg" id="zmist" />
+        <List spacing="md" mb="lg" size="sm" className={classes.zmistList} icon={<ZmistBullet />}>
+          { treatise.zmist.list.map((item, index) => {
+            return <ZmistItem key={`zmist_${index}`} index={index} item={item} />;
+          })}
+        </List>
+      </> : null}
+
       { isQuotesAvailable ? <>
         <SkH2Mobile id="quotes" text="Цитати" mb="md" />
         <Flex direction="column" gap="md" mb="lg" className={classes.quotesContainer}>

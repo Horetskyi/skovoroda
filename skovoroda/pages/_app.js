@@ -106,8 +106,9 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff"></meta>
         
-        {pageProps.shouldBeIndexed ? null :
-          <meta name="robots" content="noindex, nofollow" />}
+        {pageProps.shouldBeIndexed 
+          ? <meta name="robots" content="index, follow" /> 
+          : <meta name="robots" content="noindex, nofollow" />}
        
         {(pageProps.metadataKeywords && pageProps.metadataKeywords.length) ? 
           <meta name="keywords" content={pageProps.metadataKeywords.join(",")} /> : null}

@@ -103,19 +103,21 @@ export async function getStaticProps({ params }) {
       selectedId: id,
       pageKey: fableSelectedPageKey,
       breadcrumbLabel: selectedFable.metadata.fableTitle,
+
+      shouldBeIndexed: true,
       metadataTitle: metaTitle,
       metadataDescription: metaDescription,
       metadataKeywords: metaKeywords,
       metadataAuthorUrl: "https://uk.wikipedia.org/wiki/Сковорода_Григорій_Савич",
+      canonicalPageUrl: "https://www.skovoroda.club/texts/fables/" + id,
+      facebookImageUrl: selectedFable.metadata.fableImage ? selectedFable.metadata.fableImage.imageUrl : null,
+      
       allFablesMetadata,
       selectedFable,
       selectedNotes,
       allTranslators: skTranslatorsV2,
-      shouldBeIndexed: true,
       selectedComment, selectedComment,
       selectedCommonMetadata, selectedCommonMetadata,
-      canonicalPageUrl: "https://www.skovoroda.club/texts/fables/" + id,
-      facebookImageUrl: selectedFable.metadata.fableImage ? selectedFable.metadata.fableImage.imageUrl : null,
     },
   };
 }

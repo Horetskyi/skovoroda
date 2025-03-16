@@ -1,0 +1,18 @@
+.readImage {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 24px;
+  overflow: hidden;
+  border-radius: var(--mantine-radius-md);
+    
+  float: left;
+  margin-right: 24px; 
+  shape-outside: inset(0px 0px 0px 0px);
+  clip-path: inset(0px 0px 0px 0px);
+}
+
+.textContainer {
+  overflow: hidden; /* Ensures text below doesn’t wrap around */
+}

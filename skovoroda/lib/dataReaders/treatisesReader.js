@@ -3,6 +3,7 @@ import path from "path";
 import { fixText } from "./auxiliary";
 import { parseFileContent } from "../data/utils/readingTextsUtils";
 import { SkImagesArray } from "../data/images/skImages";
+import readFileSyncOrDefault from "./readFileSyncOrDefault";
 
 export function readAllTreatises() {
   const directoryPath = path.join(process.cwd(), "lib", "data", "treatises");
@@ -20,6 +21,11 @@ export function readAllTreatises() {
       }
       metadataFileContent = fixText(metadataFileContent);
       const metadata = JSON.parse(metadataFileContent);
+
+      // Transform zmist.list
+      if (metadata.zmist && Array.isArray(metadata.zmist.list) && metadata.zmist.list.length) {
+        metadata.zmist.list = transformZmistList(metadata.zmist.list);
+      }
 
       // File 2. "vstupni_dveri_do_khrystyianskoi_dobronravnosti INTRO.txt"
       const txtIntroFilePath = jsonFilePath.replace(".json", " INTRO.txt");
@@ -54,10 +60,23 @@ export function readAllTreatises() {
   return allParsedItems;
 }
 
-function readFileSyncOrDefault(path) {
-  try {
-    return fs.readFileSync(path).toString();
-  } catch (error) {
-    return null;
-  }
+// DDD
+function transformZmistList(zmistList) {
+  return zmistList.map(item => {
+    if (typeof item === "string") {
+      return { title: item };
+    } else if (typeof item === "object" && item.title) {
+
+      if (item.illustration) {
+        item.illustration = {
+          imageUrl: `/images/treatise/${item.illustration}`,
+          imageTitle: `Ілюстрація до притчі "${item.title}"`,
+          imageAlt: `Ілюстрація до притчі "${item.title}"`,
+        };
+      }
+
+      return item;
+    }
+    return item;
+  });
 }

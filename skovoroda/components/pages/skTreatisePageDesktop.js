@@ -1,4 +1,4 @@
-import { Card, Container, Flex, Group, Space, Stack, Text } from "@mantine/core";
+import { Container, Flex, Group, List, Space, Stack, Text } from "@mantine/core";
 import SkColoredContainerDesktop from "../shared/skColoredContainerDesktop";
 import SkH1Desktop from "../shared/skH1Desktop";
 import SkH2Desktop from "../shared/skH2Desktop";
@@ -8,6 +8,9 @@ import SkDownloadButtonDesktop from "../shared/skDownloadButtonDesktop";
 import classes from './skTreatisePageDesktop.module.scss';
 import SkPageNavMenu from "../shared/skPageNavMenu";
 import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
+import { ZmistItem } from "../shared/zmistItem";
+import getTreatiseMenuLinks from "./details/getTreatiseMenuLinks";
+import ZmistBullet from "./details/ZmistBullet";
 
 export default function SkTreatisePageDesktop({ treatise, sources, translators }) {
   
@@ -18,19 +21,8 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
   const sourceLabel = "Джерело: ";
   const translatorLabel = "Перекладач: ";
   const isQuotesAvailable = treatise.quotes && treatise.quotes.length;
-  const links = [];
-  if (isQuotesAvailable) {
-    links.push({
-      href: "#quotes",
-      text: "Цитати",
-      title: "Цитати - " + preferedTitle,
-    });
-  }
-  links.push({
-    href: "#downloads",
-    text: "Завантажити",
-    title: "Завантажити - " + preferedTitle,
-  });
+  const isZmistAvailable = treatise.zmist && treatise.zmist.list && treatise.zmist.list.length;
+  const links = getTreatiseMenuLinks(treatise);
 
   function TreatisVersionBlock(version, source) {
     const isTranslation = version.translatorId ? true : false;
@@ -87,12 +79,24 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
         </div>
       </div>
 
+      {/* Зміст */}
+      { isZmistAvailable ? <>
+        <SkH2Desktop text="Зміст твору" mb="lg" id="zmist" />
+        <List spacing="md" mb="lg" size="sm" className={classes.zmistList} icon={<ZmistBullet />}>
+          { treatise.zmist.list.map((item, index) => {
+            return <ZmistItem key={`zmist_${index}`} index={index} item={item} />;
+          })}
+        </List>
+      </> : null}
+
+      {/* Цитати */}
       { isQuotesAvailable ? <>
         <SkH2Desktop text="Цитати" mb="lg" id="quotes" />
         <Flex direction="column" gap="lg" mb="lg" className={classes.quotesContainer}>
           { treatise.quotes.flatMap(quote => quote.texts.map((text, index) => Quote(quote, text, index)))}
         </Flex>
       </> : null}
+
       <SkH2Desktop text="Оригінал" mb="lg" id="downloads" />
       {TreatisVersionBlock(original, originalSource)}
       <Space h="md"/>

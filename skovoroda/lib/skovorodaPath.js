@@ -7,6 +7,7 @@ export const SkovorodaSymbolsPath = "/symbols/";
 export const SkovorodaUtils1Path = "/utils1";
 export const SkovorodaTextsPath = "/texts/";
 export const SkovorodaCopyrightPath = "/copyright/";
+export const SkovorodaReadsPath = pathJoin(SkovorodaTextsPath, "/reads/");
 export const SkovorodaTreatisePath = pathJoin(SkovorodaTextsPath, "/treatise/");
 export const SkovorodaGardenPath = pathJoin(SkovorodaTextsPath, "/garden/");
 export const SkovorodaOtherPoemsPath = pathJoin(SkovorodaTextsPath, "/other-poems/");
@@ -71,4 +72,10 @@ export function getLinkTitle(path) {
 }
 export function getFableLinkTitle(fableMetadata) {
   return `Байка ${fableMetadata.fableNumber} – ${fableMetadata.fableTitle}`;
+}
+export function getTreatisePath(urlId) {
+  return pathJoinWithoutEndSlash(SkovorodaTreatisePath, urlId);
+}
+export function getReadPath(urlId) {
+  return pathJoinWithoutEndSlash(SkovorodaReadsPath, urlId);
 }

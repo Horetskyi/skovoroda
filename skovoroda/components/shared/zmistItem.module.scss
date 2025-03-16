@@ -1,0 +1,22 @@
+
+.specialIcon {
+  margin-left: 12px;
+}
+
+.listItem {
+  padding: 8px 16px;
+  border: 1px solid #ebebeb;
+  border-radius: 6px;
+  box-shadow: 6px 6px 10px #e9eff7, -6px -6px 10px #ffffff;
+}
+
+.link {
+  text-decoration: none !important;
+  color: var(--mantine-color-blue-6);
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

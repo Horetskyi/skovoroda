@@ -10,7 +10,7 @@ import SkPageNavMenu from "../shared/skPageNavMenu";
 import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
 import { ZmistItem } from "../shared/zmistItem";
 import getTreatiseMenuLinks from "./details/getTreatiseMenuLinks";
-import ZmistBullet from "./details/ZmistBullet";
+import ZmistBullet from "./details/zmistBullet";
 
 export default function SkTreatisePageDesktop({ treatise, sources, translators }) {
   

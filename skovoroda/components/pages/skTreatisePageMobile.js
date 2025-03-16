@@ -9,7 +9,7 @@ import SkPageNavMenu from "../shared/skPageNavMenu";
 import classes from './skTreatisePageMobile.module.scss';
 import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
 import getTreatiseMenuLinks from "./details/getTreatiseMenuLinks";
-import ZmistBullet from "./details/ZmistBullet";
+import ZmistBullet from "./details/zmistBullet";
 import { ZmistItem } from "../shared/zmistItem";
 
 export default function SkTreatisePageMobile({ treatise, sources, translators }) {

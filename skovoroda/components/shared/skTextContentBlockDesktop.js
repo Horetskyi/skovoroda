@@ -4,6 +4,8 @@ import { getNoteNumberString, getNoteNumberUpperString } from "../../lib/data/ut
 import { gsap } from "gsap/dist/gsap";
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
 import classes from './skTextContentBlockDesktop.module.scss';
+import SkH2Mobile from "./skH2Mobile";
+import SkH2Desktop from "./skH2Desktop";
 
 export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick, ...others}) {
 
@@ -78,6 +80,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     "italic": classes.formatItalic,
     "underline": classes.formatUnderline,
     "bold": classes.formatBold,
+    "header2": classes.formatHeader2
   };
 
   const isNotesBlock = textContent.some(lineObject => lineObject.isNoteBeginning);
@@ -98,6 +101,21 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     // Empty line
     if (!text || (!Array.isArray(text) && !text.trim())) {
       block.push(<p key={block.length} className={classes.emptyLine}></p>);
+      return;
+    }
+
+    // H2
+    if (lineObject.format === "header2") {
+      if (isMobile) {
+        block.push(
+          <SkH2Mobile key={block.length} mt="md" mb="md" text={lineObject.text}/>
+        );
+      } else {
+        block.push(
+          <SkH2Desktop key={block.length} mt="md" mb="md" text={lineObject.text}/>
+        );
+      }
+      
       return;
     }
     

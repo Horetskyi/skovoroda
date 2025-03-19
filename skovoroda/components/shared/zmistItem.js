@@ -9,7 +9,7 @@ export function ZmistItem({ item, index }) {
   const hasReadLink = item.read && item.read.length;
   
   const titleContent = hasReadLink ? (
-    <Text className={`normalContentText normalContentText_withoutIndent`}>
+    <Text className={`normalContentText normalContentText_withoutIndent`} mb="sm">
       <SkTextLink href={getReadPath(item.read)} text={item.title} title={`Читати \"${item.title}\"`} />
     </Text>
   ) : (

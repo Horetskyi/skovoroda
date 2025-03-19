@@ -5,7 +5,10 @@ import { parseFileContent } from "../data/utils/readingTextsUtils";
 import { SkImagesArray } from "../data/images/skImages";
 import readFileSyncOrDefault from "./readFileSyncOrDefault";
 
-export function readAllTreatises() {
+export function readAllTreatises(options) {
+
+  const isExcludeContent = options && options.excludeContent ? true : false;
+
   const directoryPath = path.join(process.cwd(), "lib", "data", "treatises");
   const fileNames = fs.readdirSync(directoryPath);
   const skImagesArray = SkImagesArray;
@@ -27,24 +30,26 @@ export function readAllTreatises() {
         metadata.zmist.list = transformZmistList(metadata.zmist.list);
       }
 
-      // File 2. "vstupni_dveri_do_khrystyianskoi_dobronravnosti INTRO.txt"
-      const txtIntroFilePath = jsonFilePath.replace(".json", " INTRO.txt");
-      let introContentString = fs.readFileSync(txtIntroFilePath).toString();
-      if (!introContentString || !introContentString.length) {
-        introContentString = null;
-      }
-      const introContent = introContentString ? parseFileContent(introContentString) : null;
-      metadata.introContent = introContent;
+      if (!isExcludeContent) {
+        // File 2. "vstupni_dveri_do_khrystyianskoi_dobronravnosti INTRO.txt"
+        const txtIntroFilePath = jsonFilePath.replace(".json", " INTRO.txt");
+        let introContentString = fs.readFileSync(txtIntroFilePath).toString();
+        if (!introContentString || !introContentString.length) {
+          introContentString = null;
+        }
+        const introContent = introContentString ? parseFileContent(introContentString) : null;
+        metadata.introContent = introContent;
 
-      // File 3. "vstupni_dveri_do_khrystyianskoi_dobronravnosti INTRO-2.txt"
-      const txtIntro2FilePath = jsonFilePath.replace(".json", " INTRO-2.txt");
-      let introContentString2 = readFileSyncOrDefault(txtIntro2FilePath);
-      if (!introContentString2 || !introContentString2.length) {
-        introContentString2 = null;
-      }
-      const introContent2 = introContentString2 ? parseFileContent(introContentString2) : null;
-      if (introContent2) {
-        metadata.introContent2 = introContent2;
+        // File 3. "vstupni_dveri_do_khrystyianskoi_dobronravnosti INTRO-2.txt"
+        const txtIntro2FilePath = jsonFilePath.replace(".json", " INTRO-2.txt");
+        let introContentString2 = readFileSyncOrDefault(txtIntro2FilePath);
+        if (!introContentString2 || !introContentString2.length) {
+          introContentString2 = null;
+        }
+        const introContent2 = introContentString2 ? parseFileContent(introContentString2) : null;
+        if (introContent2) {
+          metadata.introContent2 = introContent2;
+        }
       }
 
       // Image
@@ -52,7 +57,7 @@ export function readAllTreatises() {
       if (image) {
         metadata.image = image;
       }
-
+      
       return metadata;
     })
     .filter(item => item);

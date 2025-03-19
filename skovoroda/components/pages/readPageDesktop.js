@@ -4,9 +4,10 @@ import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
 import SkImage from "../shared/skImage";
 import classes from "./readPageDesktop.module.scss";
 import SkReadSource from "./details/skReadSource";
-import { adjustImageHeight, getBookSourceParam, getIllustrationSourceParam } from "./details/pureFunctions";
+import { getBookSourceParam, getIllustrationSourceParam } from "./details/pureFunctions";
 import SkSourcesContainerDesktop from "../shared/skSourcesContainerDesktop";
 import SkRelatedTags from "../shared/skRelatedTags";
+import { adjustImageHeight } from "../functions/imageFunctions";
 
 export default function ReadPageDesktop({ selectedRead }) {
 

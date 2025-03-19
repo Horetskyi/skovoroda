@@ -18,6 +18,7 @@ import { useDisclosure } from '@mantine/hooks';
 import SkImage from '../shared/skImage';
 import SkTextLink from '../shared/skTextLink';
 import classes from './fablePageDesktop.module.scss';
+import { adjustImageHeight } from '../functions/imageFunctions';
 
 export default function FablePageDesktop({ 
   selectedFable,
@@ -101,14 +102,13 @@ export default function FablePageDesktop({
   const nextFableNumber = selectedMetadata.fableNumber + 1;
   const randomFableNumber = randomNumberInRangeExcept(1, 30, selectedMetadata.fableNumber);
 
+  adjustImageHeight(selectedMetadata.fableImage, 360, 520, 720);
 
   return <>
     {isFableImageExists ? <>
       <Modal opened={opened} onClose={close} padding={0} withCloseButton={false} radius={24} keepMounted={true} width={520} mt={"xl"}>
         <SkImage 
           key={selectedMetadata.fableImage.imageUrl}
-          width={520} 
-          height={720} 
           additionalClassName={classes.fableImageInModal}
           image={selectedMetadata.fableImage} />
         <SkTextLink href={"https://instagram.com/olenka_art_vision"} text={"Автор: Олена Лещенко"} title={"Instagram"} 

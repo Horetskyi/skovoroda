@@ -1,11 +1,4 @@
 
-export function adjustImageHeight(image, height) {
-  const imageHeight = height;
-  const imageWidth = (imageHeight / image.height) * image.width;
-  image.height = imageHeight;
-  image.width = imageWidth;
-}
-
 export function getBookSourceParam(source, isNotesExist) {
   return {
     sourceType: "Текст" + (isNotesExist ? " і Примітки" : ""),

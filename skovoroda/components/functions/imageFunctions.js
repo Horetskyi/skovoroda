@@ -9,6 +9,10 @@ export function getAdjustedHeight(desiredWidth, defaultHeight, image) {
 
 export function adjustImageHeight(image, desiredHeight, defaultWidth, defaultHeight) {
 
+  if (!image) {
+    return;
+  }
+
   if (!image.width) {
     image.width = defaultWidth;
   }

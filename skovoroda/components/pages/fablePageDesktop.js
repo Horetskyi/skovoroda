@@ -19,6 +19,7 @@ import SkImage from '../shared/skImage';
 import SkTextLink from '../shared/skTextLink';
 import classes from './fablePageDesktop.module.scss';
 import { adjustImageHeight } from '../functions/imageFunctions';
+import { getIllustrationSourceParamV2 } from './details/pureFunctions';
 
 export default function FablePageDesktop({ 
   selectedFable,
@@ -88,14 +89,7 @@ export default function FablePageDesktop({
     },
   ];
   if (isFableImageExists) {
-    sourcesParams.push({
-      sourceType: "Ілюстрація",
-      sourceValue: "Олена Лещенко",
-      sourceHref: "https://instagram.com/olenka_art_vision",
-      sourceHrefAnchorText: "https://instagram.com/olenka_art_vision",
-      image: selectedMetadata.fableImage,
-      linkTitle: "Instagram Олени Лещенко"
-    });
+    sourcesParams.push(getIllustrationSourceParamV2(selectedMetadata.fableImage));
   }
 
   const prevFableNumber = selectedMetadata.fableNumber - 1;

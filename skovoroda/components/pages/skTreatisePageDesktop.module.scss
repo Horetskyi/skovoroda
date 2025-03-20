@@ -22,6 +22,7 @@
 
 .bookContainer {
   display: flex;
+  padding: 0 !important;
 }
 .bookImage {
   border-radius: var(--mantine-radius-md);

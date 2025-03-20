@@ -6,6 +6,10 @@ import { commonContent } from "../../lib/pagesContent/commonContent";
 
 export default function SkSourcesContainerDesktop({ sources, includeTextValidityWarning }) {
 
+  if (!sources || !sources.length) {
+    return null;
+  }
+
   return <> 
     <SkColoredContainerDesktop color={"indigo.0"}>
       <SkH2Desktop text="Джерела"/>

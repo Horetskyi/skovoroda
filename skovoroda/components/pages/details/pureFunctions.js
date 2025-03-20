@@ -24,6 +24,18 @@ export function getIllustrationSourceParam(image) {
   };
 }
 
+export function getIllustrationSourceParamV2(image) {
+  return {
+    sourceType: "Ілюстрація",
+    sourceValue: image.author.fullName,
+    sourceHref: image.author.link.href,
+    sourceHrefAnchorText: image.author.link.href,
+    linkTitle: image.author.link.title,
+    image: image,
+    linkNewTab: true,
+  }
+} 
+
 function getCapitalizedDomainNameFromHref(href) {
   try {
     const hostname = new URL(href).hostname.replace("www.", ""); // Extract domain without "www."

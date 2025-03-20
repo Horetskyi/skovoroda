@@ -11,6 +11,8 @@ import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
 import { ZmistItem } from "../shared/zmistItem";
 import getTreatiseMenuLinks from "./details/getTreatiseMenuLinks";
 import ZmistBullet from "./details/zmistBullet";
+import SkSourcesContainerDesktop from "../shared/skSourcesContainerDesktop";
+import { getIllustrationSourceParamV2 } from "./details/pureFunctions";
 
 export default function SkTreatisePageDesktop({ treatise, sources, translators }) {
   
@@ -23,6 +25,10 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
   const isQuotesAvailable = treatise.quotes && treatise.quotes.length;
   const isZmistAvailable = treatise.zmist && treatise.zmist.list && treatise.zmist.list.length;
   const links = getTreatiseMenuLinks(treatise);
+  const sourcesParams = [];
+  if (treatise.image) {
+    sourcesParams.push(getIllustrationSourceParamV2(treatise.image));
+  }
 
   function TreatisVersionBlock(version, source) {
     const isTranslation = version.translatorId ? true : false;
@@ -109,5 +115,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
       })}
       <Space h="xl"/>
     </SkColoredContainerDesktop>
+    <SkSourcesContainerDesktop sources={sourcesParams} />
+    <Space h="xl"/>
   </>
 }

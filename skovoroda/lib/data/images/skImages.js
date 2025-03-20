@@ -1,123 +1,136 @@
 const standardFableOlenkaAltAndTitle = "Ілюстрація до байки від Олени Лещенко";
 
-export const SkImageAuthors = [
-  {
-    id: 'olenka',
-  },
-  {
-    id: 'pryanya',
-  },
-];
+// Important
+export const SkImageAuthors = new Map([
+  ['olenka', {
+    fullName: 'Олена Горецька',
+    genetiveFullName: 'Олени Горецької',
+    link: {
+      href: "https://instagram.com/olenka_art_vision",
+      title: "Instagram Олени Горецької"
+    },
+  }],
+  ['pryanya', {
+    fullName: 'Аня Рубан',
+    genetiveFullName: 'Ані Рубан',
+    link: {
+      href: "https://www.behance.net/annruban",
+      title: "Behance Ані Рубан"
+    },
+  }],
+]);
+
+// Important
+const fableNames = new Map([
+  [1, 'Собаки'],
+  [2, 'Ворона і Чиж'],
+  [3, 'Жайворонки'],
+  [4, 'Голова і Тулуб'],
+  [5, 'Чиж і Щиглик'],
+  [6, 'Колеса Годинникові'],
+  [7, 'Орел і Сорока'],
+  [8, 'Голова і Тулуб'],
+  [9, 'Мурашка і Свиня'],
+  [10, 'Дві Курки'],
+  [11, 'Вітер і Філософ'],
+  [12, 'Брусок і Ніж'],
+  [13, 'Орел і Черепаха'],
+  [14, 'Сова і Дрізд'],
+  [15, 'Змія і Буфон'],
+  [16, 'Жаби'],
+  [17, 'Два цінні камінці: Алмаз і Смарагд'],
+  [18, 'Пес і Кобила'],
+  [19, 'Кажан і Двоє Пташенят: Горлицине та Голубчине'],
+  [20, 'Верблюд і Олень'],
+  [21, 'Зозуля і Косик'],
+  [22, 'Гній та Алмаз'],
+  [23, 'Собаки і Вовк'],
+  [24, 'Кріт і Рись'],
+  [25, 'Лев і Мавпи'],
+  [26, 'Щука і Рак'],
+  [27, 'Бджола і Шершень'],
+  [28, 'Олениця і Кабан'],
+  [29, 'Баба і Гончар'],
+  [30, 'Соловей, Жайворонок і Дрізд'],
+]);
+
+// Important
+function buildFableAlt(fableNumber, authorId) {
+  const fableName = fableNames.get(fableNumber);
+  const genetiveFullName = SkImageAuthors.get(authorId).genetiveFullName;
+  return `Ілюстрація до байки Григорія Сковороди "${fableName}" від ${genetiveFullName}`;
+}
+
+// Important
+function buildFableTitle(fableNumber) {
+  const fableName = fableNames.get(fableNumber);
+  return `Ілюстрація байки "${fableName}" Григорія Сковороди`;
+}
+
+// Tech
+function buildFableImage(fableNumber, imageUrl, authorId, width, height) {
+  const alt = buildFableAlt(fableNumber, authorId);
+  const title = buildFableTitle(fableNumber);
+  const image = {
+    author: SkImageAuthors.get(authorId),
+    imageUrl: imageUrl,
+    alt: alt,
+    title: title,
+    fableNumber: fableNumber
+  };
+  if (width) {
+    image.width = width;
+  }
+  if (height) {
+    image.height = height;
+  }
+  return image;
+}
+
+// Tech
+function buildTextImage(textUrlId, imageUrl, authorId, title, width, height) {
+  const author = SkImageAuthors.get(authorId);
+  const alt = `Ілюстрація до твору Григорія Сковороди - ${title}. Авторка: ${author.fullName}.`;
+  const imgTitle = `Ілюстрація до твору Григорія Сковороди - ${title}`;
+  const image = {
+    author: author,
+    imageUrl: imageUrl,
+    alt: alt,
+    title: imgTitle,
+    treatiseUrlId: textUrlId,
+  };
+  if (width) {
+    image.width = width;
+  }
+  if (height) {
+    image.height = height;
+  }
+  return image;
+}
 
 export const SkImages = {
-  fable1byOlenka: {
-    imageUrl: "/images/fables/Fable1 by Olenka.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 1,
-  },
-  fable2byOlenka: {
-    imageUrl: "/images/fables/Fable2 by Olenka.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 2,
-  },
-  fable3byOlenka: {
-    imageUrl: "/images/fables/Fable3 by Olenka.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 3,
-  },
-  fable4byOlenka: {
-    imageUrl: "/images/fables/Fable4 by Olenka cs6.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 4,
-  },
-  fable5byOlenka: {
-    imageUrl: "/images/fables/Fable5 by Olenka.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 5,
-  },
-  fable6byOlenka: {
-    imageUrl: "/images/fables/Fable6 by Olenka cs6.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 6,
-  },
-  fable7byOlenka: {
-    imageUrl: "/images/fables/Fable7 by Olenka cs6.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 7,
-  },
-  fable8byOlenka: {
-    imageUrl: "/images/fables/Fable8 by Olenka cs6.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 8,
-  },
-  fable9byOlenka: {
-    imageUrl: "/images/fables/Fable9 by Olenka cs6.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 9,
-  },
-  fable10byOlenka: {
-    imageUrl: "/images/fables/Fable10 by Olenka cs6.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 10,
-  },
-  fable11byOlenka: {
-    imageUrl: "/images/fables/Fable11 by Olenka cs6.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 11,
-  },
-  fable12byOlenka: {
-    imageUrl: "/images/fables/Fable12 by Olenka.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 12,
-  },
-  fable13byOlenka: {
-    imageUrl: "/images/fables/Fable13 by Olenka.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 13,
-  },
-  fable14byOlenka: {
-    imageUrl: "/images/fables/Fable14 by Olenka.webp",
-    alt: standardFableOlenkaAltAndTitle,
-    title: standardFableOlenkaAltAndTitle,
-    fableNumber: 14,
-    width: 900,
-    height: 1258, 
-  },
+  fable1byOlenka: buildFableImage(1, "/images/fables/fable-1-sobaky.webp", 'olenka'),
+  fable2byOlenka: buildFableImage(2, "/images/fables/fable-2-vorona-i-chyzh.webp", 'olenka'),
+  fable3byOlenka: buildFableImage(3, "/images/fables/fable-3-zhayvoronky.webp", 'olenka'),
+  fable4byOlenka: buildFableImage(4, "/images/fables/fable-4-holova-i-tulub.webp", 'olenka'),
+  fable5byOlenka: buildFableImage(5, "/images/fables/fable-5-chyzh-i-shchyhlyk.webp", 'olenka'),
+  fable6byOlenka: buildFableImage(6, "/images/fables/fable-6-kolesa-hodynnykovi.webp", 'olenka'),
+  fable7byOlenka: buildFableImage(7, "/images/fables/fable-7-orel-i-soroka.webp", 'olenka', 1808, 2478),
+  fable8byOlenka: buildFableImage(8, "/images/fables/fable-8-holova-i-tulub.webp", 'olenka'),
+  fable9byOlenka: buildFableImage(9, "/images/fables/fable-9-murashka-i-svynya.webp", 'olenka'),
+  fable10byOlenka: buildFableImage(10, "/images/fables/fable-10-dvi-kurky.webp", 'olenka'),
+  fable11byOlenka: buildFableImage(11, "/images/fables/fable-11-viter-i-filosof.webp", 'olenka'),
+  fable12byOlenka: buildFableImage(12, "/images/fables/fable-12-brusok-i-nizh.webp", 'olenka'),
+  fable13byOlenka: buildFableImage(13, "/images/fables/fable-13-orel-i-cherepakha.webp", 'olenka'),
+  fable14byOlenka: buildFableImage(14, "/images/fables/fable-14-sova-i-drizd.webp", 'olenka', 900, 1258),
   gardenByOlenka: {
     imageUrl: "/images/garden/Skovoroda Garden of Divine Songs by Olenka.webp",
-    alt: "Сад Божественних Пісень - Григорій Сковорода",
-    title: "Сад Божественних Пісень",
+    alt: "Ілюстрація до Саду Божественних Пісень Григорія Сковороди від Олени Горецької",
+    title: "Ілюстрація Саду Божественних Пісень",
   },
-  narcisByOlenka: {
-    imageUrl: "/images/treatise/NarcisOlenkaImg1.webp",
-    alt: "Ілюстрація до твору Григорія Сковороди - Наркіс. Розмова про те: Пізнай себе. Авторка: Олена Лещенко.",
-    title: "Наркіс. Розмова про те: Пізнай себе",
-    treatiseUrlId: "narcis",
-    width: 900,
-    height: 1125,
-    authorId: 'olenka',
-  },
-  erodyi: {
-    authorId: 'pryanya',
-    imageUrl: "/images/treatise/Erodii.webp",
-    alt: "Ілюстрація до твору Григорія Сковороди - Вдячний Еродій. Авторка: Аня.",
-    title: "Ілюстрація до Вдячного Еродія",
-    treatiseUrlId: "blahodarnyi_erodii",
-    width: 900,
-    height: 1291,
-  }
+  erodyi: buildTextImage("blahodarnyi_erodii", "/images/treatise/Erodii.webp",
+    "pryanya", "Вдячний Еродій", 900, 1291),
+  narcisByOlenka: buildTextImage("narcis",  "/images/treatise/NarcisOlenkaImg1.webp",
+    "olenka", "Наркіс. Розмова про те: Пізнай себе", 900, 1125),
 };
 export const SkImagesArray = Object.values(SkImages);

@@ -18,6 +18,14 @@ export const SkImageAuthors = new Map([
       title: "Behance Ані Рубан"
     },
   }],
+  ['polik', {
+    fullName: 'Поліна Огірчук',
+    genetiveFullName: 'Поліни Огірчук',
+    link: {
+      href: "https://www.behance.net/linakot",
+      title: "Behance Поліни Огірчук"
+    },
+  }],
 ]);
 
 // Important
@@ -76,7 +84,8 @@ function buildFableImage(fableNumber, imageUrl, authorId, width, height) {
     imageUrl: imageUrl,
     alt: alt,
     title: title,
-    fableNumber: fableNumber
+    fableNumber: fableNumber,
+    type: 'fable',
   };
   if (width) {
     image.width = width;
@@ -98,6 +107,7 @@ function buildTextImage(textUrlId, imageUrl, authorId, title, width, height) {
     alt: alt,
     title: imgTitle,
     treatiseUrlId: textUrlId,
+    type: "treatise",
   };
   if (width) {
     image.width = width;

@@ -26,6 +26,14 @@ export const SkImageAuthors = new Map([
       title: "Behance Поліни Огірчук"
     },
   }],
+  ['zmiika', {
+    fullName: 'Ольга Райхель',
+    genetiveFullName: 'Ольги Райхель',
+    link: {
+      href: "https://www.behance.net/5ee96a80",
+      title: "Behance Ольги Райхель"
+    },
+  }],
 ]);
 
 // Important
@@ -141,5 +149,6 @@ export const SkImages = {
   erodyi: buildTextImage('treatise', "blahodarnyi_erodii", "/images/treatise/Erodii.webp", "pryanya", "Вдячний Еродій", 900, 1291),
   narcisByOlenka: buildTextImage('treatise', "narcis",  "/images/treatise/NarcisOlenkaImg1.webp", "olenka", "Наркіс. Розмова про те: Пізнай себе", 900, 1125),
   proKotiv: buildTextImage('read', "parable_about_cats",  "/images/treatise/Bukvar Myru - Parable about cats.webp", "polik", "Байка про Котів", 900, 1714),
+  ubohyiZhaivoronok: buildTextImage('treatise', "ubohii_zhaivoronok",  "/images/treatise/Ubohii_Zhaivoronok.webp", "zmiika", "Убогий Жайворонок", 900, 1260),
 };
 export const SkImagesArray = Object.values(SkImages);

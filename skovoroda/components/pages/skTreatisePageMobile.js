@@ -11,6 +11,8 @@ import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
 import getTreatiseMenuLinks from "./details/getTreatiseMenuLinks";
 import ZmistBullet from "./details/zmistBullet";
 import { ZmistItem } from "../shared/zmistItem";
+import { getIllustrationSourceParam } from "./details/pureFunctions";
+import SkSourcesContainerMobile from "../shared/skSourcesContainerMobile";
 
 export default function SkTreatisePageMobile({ treatise, sources, translators }) {
 
@@ -23,6 +25,11 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
   const isQuotesAvailable = treatise.quotes && treatise.quotes.length;
   const isZmistAvailable = treatise.zmist && treatise.zmist.list && treatise.zmist.list.length;
   const links = getTreatiseMenuLinks(treatise);
+
+  const sourcesParams = [];
+    if (treatise.image) {
+      sourcesParams.push(getIllustrationSourceParam(treatise.image));
+    }
 
   function TreatisVersionBlock(version, source) {
     const isTranslation = version.translatorId ? true : false;
@@ -115,5 +122,6 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
       <Space h="lg"/>
 
     </SkColoredContainerMobile>
+    <SkSourcesContainerMobile sources={sourcesParams} />
   </>
 }

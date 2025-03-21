@@ -97,7 +97,7 @@ function buildFableImage(fableNumber, imageUrl, authorId, width, height) {
 }
 
 // Tech
-function buildTextImage(textUrlId, imageUrl, authorId, title, width, height) {
+function buildTextImage(type, textUrlId, imageUrl, authorId, title, width, height) {
   const author = SkImageAuthors.get(authorId);
   const alt = `Ілюстрація до твору Григорія Сковороди - ${title}. Авторка: ${author.fullName}.`;
   const imgTitle = `Ілюстрація до твору Григорія Сковороди - ${title}`;
@@ -106,8 +106,8 @@ function buildTextImage(textUrlId, imageUrl, authorId, title, width, height) {
     imageUrl: imageUrl,
     alt: alt,
     title: imgTitle,
-    treatiseUrlId: textUrlId,
-    type: "treatise",
+    type: type,
+    urlId: textUrlId,
   };
   if (width) {
     image.width = width;
@@ -138,9 +138,8 @@ export const SkImages = {
     alt: "Ілюстрація до Саду Божественних Пісень Григорія Сковороди від Олени Горецької",
     title: "Ілюстрація Саду Божественних Пісень",
   },
-  erodyi: buildTextImage("blahodarnyi_erodii", "/images/treatise/Erodii.webp",
-    "pryanya", "Вдячний Еродій", 900, 1291),
-  narcisByOlenka: buildTextImage("narcis",  "/images/treatise/NarcisOlenkaImg1.webp",
-    "olenka", "Наркіс. Розмова про те: Пізнай себе", 900, 1125),
+  erodyi: buildTextImage('treatise', "blahodarnyi_erodii", "/images/treatise/Erodii.webp", "pryanya", "Вдячний Еродій", 900, 1291),
+  narcisByOlenka: buildTextImage('treatise', "narcis",  "/images/treatise/NarcisOlenkaImg1.webp", "olenka", "Наркіс. Розмова про те: Пізнай себе", 900, 1125),
+  proKotiv: buildTextImage('read', "parable_about_cats",  "/images/treatise/Bukvar Myru - Parable about cats.webp", "polik", "Байка про Котів", 900, 1714),
 };
 export const SkImagesArray = Object.values(SkImages);

@@ -13,8 +13,8 @@ export default function ReadPageMobile({ selectedRead }) {
   const sourcesParams = [
     getBookSourceParam(selectedRead.source)
   ];
-  if (selectedRead.illustration) {
-    sourcesParams.push(getIllustrationSourceParam(selectedRead.illustration));
+  if (selectedRead.image) {
+    sourcesParams.push(getIllustrationSourceParam(selectedRead.image));
   }
 
   return (
@@ -25,17 +25,17 @@ export default function ReadPageMobile({ selectedRead }) {
       </Container>
       <Space h="md" />
 
-      {selectedRead.illustration ? (
+      {selectedRead.image ? (
         <>
           <Center>
             <SkImage
-              image={selectedRead.illustration}
+              image={selectedRead.image}
               fullWidth={true}
-              width={selectedRead.illustration.width}
-              height={selectedRead.illustration.height}
+              width={selectedRead.image.width}
+              height={selectedRead.image.height}
               shadow={"md"}
-              alt={selectedRead.illustration.alt}
-              title={selectedRead.illustration.title}
+              alt={selectedRead.image.alt}
+              title={selectedRead.image.title}
               priority={true}
               optimize={true}
             />

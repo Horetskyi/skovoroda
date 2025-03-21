@@ -1,17 +1,6 @@
 {
   "urlId": "parable_about_cats",
   "title": "Байка про котів",
-  "illustration": {
-    "imageUrl": "/images/treatise/Bukvar Myru - Parable about cats.webp",
-    "alt": "Ілюстрація до Байки про котів",
-    "title": "Ілюстрація до Байки про котів",
-    "width": 591,
-    "height": 1127,
-    "author": {
-      "fullName": "Поліна",
-      "href": "https://www.behance.net/linakot"
-    }
-  },
   "sourceTreatiseUrlId": "bukvar_myru",
   "sourceId": 9,
   "type": "parable",

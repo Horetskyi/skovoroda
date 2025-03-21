@@ -5,6 +5,7 @@ import { parseFileContent } from "../data/utils/readingTextsUtils";
 import { readAllTreatises } from "./treatisesReader";
 import { SkovorodaSourcesArray } from "../data/skovorodaSources";
 import { pathJoin, SkovorodaTreatisePath } from "../skovorodaPath";
+import { SkImagesArray } from "../data/images/skImages";
 
 export function readAllReads(options) {
 
@@ -48,6 +49,12 @@ export function readAllReads(options) {
         }
         const introContent = txtContentString ? parseFileContent(txtContentString) : null;
         metadata.content = introContent;
+      }
+
+      // Image
+      const image = SkImagesArray.find(image => image.type === 'read' && image.urlId === metadata.urlId);
+      if (image) {
+        metadata.image = image;
       }
       return metadata;
     })

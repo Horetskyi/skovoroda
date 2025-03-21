@@ -12,13 +12,13 @@ import { adjustImageHeight } from "../functions/imageFunctions";
 export default function ReadPageDesktop({ selectedRead }) {
 
   const sourceGui = SkReadSource(selectedRead);
-  adjustImageHeight(selectedRead.illustration, 650);
+  adjustImageHeight(selectedRead.image, 650);
 
   const sourcesParams = [
     getBookSourceParam(selectedRead.source)
   ];
-  if (selectedRead.illustration) {
-    sourcesParams.push(getIllustrationSourceParam(selectedRead.illustration));
+  if (selectedRead.image) {
+    sourcesParams.push(getIllustrationSourceParam(selectedRead.image));
   }
 
   return <>
@@ -28,13 +28,13 @@ export default function ReadPageDesktop({ selectedRead }) {
 
       <div className={classes.textContainer}>
 
-        {selectedRead.illustration ? (
+        {selectedRead.image ? (
           <div className={classes.readImage}>
             <SkImage
               fullWidth={false}
-              image={selectedRead.illustration}
-              width={selectedRead.illustration.width}
-              height={selectedRead.illustration.height}
+              image={selectedRead.image}
+              width={selectedRead.image.width}
+              height={selectedRead.image.height}
             />
           </div>
         ) : null}

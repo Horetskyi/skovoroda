@@ -11,7 +11,6 @@ export function readAllTreatises(options) {
 
   const directoryPath = path.join(process.cwd(), "lib", "data", "treatises");
   const fileNames = fs.readdirSync(directoryPath);
-  const skImagesArray = SkImagesArray;
   const allParsedItems = fileNames
     .filter(fileName => fileName.includes(".json"))
     .map(jsonFileName => {
@@ -53,7 +52,7 @@ export function readAllTreatises(options) {
       }
 
       // Image
-      const image = skImagesArray.find(image => image.treatiseUrlId === metadata.urlId);
+      const image = SkImagesArray.find(image => image.type === 'treatise' && image.urlId === metadata.urlId);
       if (image) {
         metadata.image = image;
       }

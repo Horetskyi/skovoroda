@@ -12,7 +12,7 @@ import { ZmistItem } from "../shared/zmistItem";
 import getTreatiseMenuLinks from "./details/getTreatiseMenuLinks";
 import ZmistBullet from "./details/zmistBullet";
 import SkSourcesContainerDesktop from "../shared/skSourcesContainerDesktop";
-import { getIllustrationSourceParamV2 } from "./details/pureFunctions";
+import { getIllustrationSourceParam } from "./details/pureFunctions";
 
 export default function SkTreatisePageDesktop({ treatise, sources, translators }) {
   
@@ -27,7 +27,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
   const links = getTreatiseMenuLinks(treatise);
   const sourcesParams = [];
   if (treatise.image) {
-    sourcesParams.push(getIllustrationSourceParamV2(treatise.image));
+    sourcesParams.push(getIllustrationSourceParam(treatise.image));
   }
 
   function TreatisVersionBlock(version, source) {

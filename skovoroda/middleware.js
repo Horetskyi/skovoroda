@@ -33,6 +33,7 @@ export function middleware(request) {
     !pathName.includes('api') &&
     !pathName.includes('_next/image') &&
     !pathName.includes('.woff2') &&
+    !pathName.includes('.ttf') &&
     !pathName.includes('.webp') &&
     !pathName.includes('.png') &&
     !pathName.includes('.xml') &&

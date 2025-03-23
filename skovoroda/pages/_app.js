@@ -13,12 +13,6 @@ const SkHeaderMenuMobile = dynamic(() => import('../components/shared/skHeaderMe
 const SkFooterDesktop = dynamic(() => import('../components/shared/skFooterDesktop'));
 const SkFooterMobile = dynamic(() => import('../components/shared/skFooterMobile'));
 
-import { Roboto } from '@next/font/google'
-const roboto = Roboto({
-  weight: ['100', '300', '400', '500', '700'],
-  subsets: ["cyrillic", "latin", "greek"],
-})
-
 export default function App(props) {
 
   const { Component, pageProps } = props;
@@ -41,10 +35,10 @@ export default function App(props) {
   
   const theme = createTheme({
     colorScheme: 'light',
-    fontFamily: "Roboto", 
+    fontFamily: "Arsenal SC", 
     fontStyle: "normal",
     headings: {
-      fontFamily: "Roboto",
+      fontFamily: "Arsenal SC",
     },
     shadows: {
       sm: '3px 4px 8px 1px rgba(0, 0, 0, 0.15)',
@@ -140,7 +134,8 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
           <SkHeaderMenuDesktop /> : 
           <SkHeaderMenuMobile />}
 
-        <main className={roboto.className}>
+        {/* <main className={roboto.className}> */}
+        <main>
           <Component {...pageProps} />
         </main>
 

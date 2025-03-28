@@ -13,6 +13,7 @@ import getTreatiseMenuLinks from "./details/getTreatiseMenuLinks";
 import ZmistBullet from "./details/zmistBullet";
 import SkSourcesContainerDesktop from "../shared/skSourcesContainerDesktop";
 import { getIllustrationSourceParam } from "./details/pureFunctions";
+import { VideoBlockDesktop } from "./details/videoBlockDesktop";
 
 export default function SkTreatisePageDesktop({ treatise, sources, translators }) {
   
@@ -29,6 +30,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
   if (treatise.image) {
     sourcesParams.push(getIllustrationSourceParam(treatise.image));
   }
+  const videoBlock = VideoBlockDesktop(treatise);
 
   function TreatisVersionBlock(version, source) {
     const isTranslation = version.translatorId ? true : false;
@@ -114,8 +116,14 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
         </div>
       })}
       <Space h="xl"/>
+
+      {/* Video */}
+      {videoBlock ? <>
+        {videoBlock}
+        <Space h="xl"/>
+      </> : null}
+
     </SkColoredContainerDesktop>
     <SkSourcesContainerDesktop sources={sourcesParams} />
-    <Space h="xl"/>
   </>
 }

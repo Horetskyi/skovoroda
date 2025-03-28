@@ -13,6 +13,7 @@ import ZmistBullet from "./details/zmistBullet";
 import { ZmistItem } from "../shared/zmistItem";
 import { getIllustrationSourceParam } from "./details/pureFunctions";
 import SkSourcesContainerMobile from "../shared/skSourcesContainerMobile";
+import { VideoBlockMobile } from "./details/videoBlockMobile";
 
 export default function SkTreatisePageMobile({ treatise, sources, translators }) {
 
@@ -25,11 +26,11 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
   const isQuotesAvailable = treatise.quotes && treatise.quotes.length;
   const isZmistAvailable = treatise.zmist && treatise.zmist.list && treatise.zmist.list.length;
   const links = getTreatiseMenuLinks(treatise);
-
   const sourcesParams = [];
-    if (treatise.image) {
-      sourcesParams.push(getIllustrationSourceParam(treatise.image));
-    }
+  if (treatise.image) {
+    sourcesParams.push(getIllustrationSourceParam(treatise.image));
+  }
+  const videoBlock = VideoBlockMobile(treatise);
 
   function TreatisVersionBlock(version, source) {
     const isTranslation = version.translatorId ? true : false;
@@ -118,8 +119,13 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
           {(index !== array.length - 1) ? <Space h="md"/> : null}
         </div>
       })}
-
       <Space h="lg"/>
+
+      {/* Video */}
+      {videoBlock ? <>
+        {videoBlock}
+        <Space h="xl"/>
+      </> : null}
 
     </SkColoredContainerMobile>
     <SkSourcesContainerMobile sources={sourcesParams} />

@@ -85,7 +85,13 @@ export const SkovorodaFiles = {
   },
   blahodarnyi_erodii: {
     original_pdf: file("663 KB", "Г. С. Сковорода - Благодарный Еродій - Л. Ушкалов.pdf"),
-    shevchuk_pdf: file("317 KB", "Г. С. Сковорода - Вдячний Еродій - В. Шевчук.pdf"),
-    shevchuk_doc: file("80 KB", "Г. С. Сковорода - Вдячний Еродій - В. Шевчук.docx"),
+    shevchuk_pdf: file("337 KB", "Г. С. Сковорода - Вдячний Еродій - В. Шевчук.pdf"),
+    shevchuk_doc: file("81 KB", "Г. С. Сковорода - Вдячний Еродій - В. Шевчук.docx"),
+    shevchuk_doc: file("33 KB", "Г. С. Сковорода - Вдячний Еродій - В. Шевчук.epub"),
+    shevchuk_doc: file("86 KB", "Г. С. Сковорода - Вдячний Еродій - В. Шевчук.fb2"),
+    kashuba_doc: file("58 KB", "Г. С. Сковорода - Вдячний Еродій - М. Кашуба.docx"),
+    kashuba_epub: file("32 KB", "Г. С. Сковорода - Вдячний Еродій - М. Кашуба.epub"),
+    kashuba_pdf: file("344 KB", "Г. С. Сковорода - Вдячний Еродій - М. Кашуба.pdf"),
+    kashuba_fb2: file("81 KB", "Г. С. Сковорода - Вдячний Еродій - М. Кашуба.fb2"),
   },
 }

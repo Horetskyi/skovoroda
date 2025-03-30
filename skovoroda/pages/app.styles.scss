@@ -3,11 +3,39 @@ $mantine-breakpoint-sm: 900px;
 
 @font-face {
   font-family: 'Arsenal SC';
-  src: url('/fonts/Arsenal_SC/ArsenalSC-Regular.ttf') format('truetype'),
-       url('/fonts/Arsenal_SC/ArsenalSC-Bold.ttf') format('truetype'),
-       url('/fonts/Arsenal_SC/ArsenalSC-Italic.ttf') format('truetype'),
-       url('/fonts/Arsenal_SC/ArsenalSC-BoldItalic.ttf') format('truetype');
+  src: url('/fonts/Arsenal_SC/ArsenalSC-Regular.ttf') format('truetype');
   font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Arsenal SC';
+  src: url('/fonts/Arsenal_SC/ArsenalSC-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Arsenal SC';
+  src: url('/fonts/Arsenal_SC/ArsenalSC-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Arsenal SC';
+  src: url('/fonts/Arsenal_SC/ArsenalSC-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Amatic SC';
+  src: url('/fonts/Amatic_SC/AmaticSC-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Amatic SC';
+  src: url('/fonts/Amatic_SC/AmaticSC-Bold.ttf') format('truetype');
+  font-weight: 700;
   font-style: normal;
 }
 

@@ -12,6 +12,7 @@ import SkSourcesContainerDesktop from '../components/shared/skSourcesContainerDe
 import classes from './destop.module.scss';
 import SkImage from '../components/shared/skImage';
 import Link from 'next/link';
+import SkH1Desktop from '../components/shared/skH1Desktop';
 
 export default function HomePageDesktop() { 
 
@@ -31,7 +32,7 @@ export default function HomePageDesktop() {
           />
         </div>
         <div className={classes.bioContent}>
-          <Title order={1} className={classes.h1}>{homePageContent.titleLine}</Title>
+          <SkH1Desktop text={homePageContent.titleLine} />
           <Text mt={"sm"} className={classes.subTitle}>{homePageContent.birthLine}</Text>
           <Text mt={"sm"} className='normalContentText normalContentText_justify normalContentText_withoutIndent'>{homePageContent.shortBio}</Text>
           {SkovorodaConstants.isProduction ? null : <>

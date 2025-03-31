@@ -83,7 +83,8 @@ export default function GardenSongPageDesktop({
   const randomSongNumber = randomNumberInRangeExcept(1, 30, selectedMetadata.number, availableSongNumbers);
 
   return <>
-    <Container py="lg">
+    <Space h="lg"/>
+    <Container py="xl">
       <SkCardWithTwoSelectorsDesktopV2 
         dropdown1={{
           label: "Оберіть переклад",
@@ -104,7 +105,7 @@ export default function GardenSongPageDesktop({
         <SkButtonDesktop text={"Пісня на щастя"} onClick={() => selectSongDropdownValue(randomSongNumber)}/>
         <SkButtonDesktop text={">"} onClick={() => selectSongDropdownValue(nextSongNumber.number)} disabled={nextSongNumber.disabled}/>
       </Group>
-      <Space h="lg"/>
+      <Space h="xl"/>
       <SkH1Desktop text={h1Text} />
       <Space h="lg"/>
 

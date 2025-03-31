@@ -70,12 +70,12 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
 
   function Quote(quote, text, index) {
     const key = "quote_" + quote.translatorId + "_" + index;
-    return <Text key={key} className={`normalContentText`}>{text}</Text>
+    return <Text key={key} className={`readFont normalContentText`}>{text}</Text>
   }
 
   return <>
     <SkColoredContainerMobile px="md">
-      <SkH1Mobile text={preferedTitle} mb="md" isBaroque={true} />
+      <SkH1Mobile text={preferedTitle} mb="xl" />
 
       {treatise.image ? 
         <div className={classes.imageContainer}>

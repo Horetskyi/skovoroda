@@ -17,12 +17,8 @@
 }
 
 .h2Link {
-  font-size: 24px !important;
-  color: var(--mantine-color-blue-9);
+  color: var(--mantine-color-blue-9) !important;
   text-decoration: none;
-  span {
-    line-height: 20px;
-  }
 }
 .linkIcon {
   margin-left: var(--mantine-spacing-xs);

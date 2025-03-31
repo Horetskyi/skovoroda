@@ -1,42 +1,226 @@
-.portraitImage {
-  width: 332px;
-  height: 406px;
-  min-width: max-content;
-  border-radius: var(--mantine-radius-md);
-  box-shadow: var(--mantine-shadow-lg);
-  line-height: 0;
-  img {
-    border-radius: var(--mantine-radius-md);
-    object-fit: cover;
+.headerContainer {
+  position: relative;
+}
+.h1 {
+  margin-top: 110px;
+  margin-left: 300px;
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  color: black;
+
+  p {
+    margin: 0;
+  }
+  p:nth-child(3) {
+    margin-left: 200px;
   }
 }
-
-.h1 {
-  font-weight: 300;
-  font-size: 28px;
-  line-height: 33px;
-  letter-spacing: 0.235em;
+.dateFirst, .dateLast {
+  position: absolute;
+  font-weight: 400;
+  font-size: 26px;
+  letter-spacing: 0.2em;
+  color: black;
+  bottom: 0;
 }
-
-.subTitle {
-  font-weight: 300;
-  line-height: 23px;
-  letter-spacing: 0.02em;
+.dateLast {
+  right: 29px;
 }
+.dateFirst {
+  right: 173px;
 
-.bioGroup {
-  flex-flow: row;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 210px;
+    height: 1px;
+    background-color: black;
+  }
 }
-
-.bioContent {
-  text-align: center;
-  align-self: flex-start;
-  min-height: 406px;
+.svgFromTitle {
+  margin-top: -126px;
+  margin-left: 89px;
+}
+.imageSection {
+  position: absolute;
+  top: 345px;
+  right: 0;
+  width: 515px;
+  height: 687px;
+}
+.nameSection {
+  margin-top: -33px;
+  margin-right: 25px;
+  text-align: right;
+}
+.svgFromName {
+  margin-top: -12px;
+  margin-left: 67px;
+}
+.name2 {
+  margin-left: -37px;
+  margin-top: -25px;
+}
+.listItem {
   display: flex;
-  flex-direction: column;
-}
+  margin-bottom: 16px;
+  align-items: baseline;
 
-.bioButtons {
-  align-self: end;
+  svg {
+    margin-right: 12px;
+    width: 20px;
+  }
+  p {
+    width: fit-content;
+  }
+}
+.linkArrow {
+  width: fit-content;
+  margin-top: -20px;
+  z-index: -1;
+  transition: stroke 0.2s ease-in-out;
+}
+.linkContainer {
+  display: block;
+  width: fit-content;
+  text-decoration: none;
+  color: #0e3457;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--mantine-color-blue-7);
+    .linkArrow {
+      stroke: var(--mantine-color-blue-7);
+    }
+  }
+}
+.flexContainer {
+  margin-top: 280px;
+}
+.quoteSection {
+  margin-top: 50px;
+  color: black;
+  position: relative;
+}
+.quoteMark {
+  display: inline-block;
+}
+.quoteText {
   width: 100%;
+  margin-top: -25px;
+  margin-left: 34px;
+}
+.quoteText, .quoteAuthor {
+  font-family: 'Arsenal SC';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 155%;
+  letter-spacing: 0.03em;
+}
+.indent2 {
+  margin-left: 160px;
+}
+.indent3 {
+  text-align: right;
+  display: inline-block;
+  width: 100%;
+}
+.quoteAuthor {
+  text-align: right;
+  display: inline-block;
+  width: 100%;
+  margin-top: 40px;
+}
+.quoteMarkClose {
+  right: -69px;
+  position: absolute;
+  bottom: 86px;
+} 
+
+@media screen and (max-width: 1270px) {
+  .h1 {
+    display: inline-block;
+    margin-left: 150px;
+  }
+  .svgFromTitle {
+    display: none;
+  }
+  .dateFirst, .dateLast {
+    position: relative;
+    display: inline-block;
+    right: auto;
+    left: auto;
+    bottom: auto;
+    top: auto;
+  }
+  .dateFirst {
+    margin-left: 20px;
+  }
+  .dateLast {
+    margin-left: 76px;
+  }
+  .imageSection {
+    position: relative;
+    top: auto;
+    margin-top: 50px;
+    left: auto;
+    right: auto;
+    margin-left: auto;
+    margin-right: 200px;
+  }
+  .nameSection {
+    margin-top: 50px;
+    margin-left: 150px;
+    text-align: left;
+  }
+  .svgFromName {
+    display: none;
+  }
+  .name2 {
+    margin-left: 150px;
+    margin-top: 0;
+  }
+  .quoteText, .quoteAuthor {
+    font-family: 'Arsenal SC';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 155%;
+    letter-spacing: 0.03em;
+  }
+  .quoteSection {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .h1 {
+    display: block;
+    margin-top: 50px;
+    margin-left: 24px;
+
+    p {
+      margin-left: 76px !important;
+    }
+  }
+  .dateFirst {
+    margin-top: 24px;
+    margin-left: 284px;
+  }
+  .nameSection {
+    margin-left: 24px;
+  }
+  .name2 {
+    margin-left: 24px;
+  }
+  .imageSection {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

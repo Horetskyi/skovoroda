@@ -6,18 +6,23 @@ import SkH2Mobile from "./skH2Mobile";
 
 export default function SkSourcesContainerMobile({ sources, includeTextValidityWarning }) {
 
+  if (!sources || !sources.length) {
+    return null;
+  }
+
   return <>
-    <SkColoredContainerMobile color={"indigo.0"}>
+    <SkColoredContainerMobile>
       <SkH2Mobile text="Джерела" />
-      <Space h={"md"}/>
+      <Space h={"xl"}/>
       {sources.map((source, index) => {
         return <div key={source.sourceValue}>
           <SkSourceBlockMobile {...source}/>
-          {(index !== sources.length - 1) ? <Space h="md"/> : null}
+          {(index !== sources.length - 1) ? <Space h="xl"/> : null}
 
         </div>
       })}
-      {includeTextValidityWarning ? <Text px={"md"} mt="md" className='normalContentText'>{commonContent.textValidityWarning}</Text> : null}
+      {includeTextValidityWarning ? <Text px={"md"} mt="xl" className='normalContentText'>{commonContent.textValidityWarning}</Text> : null}
     </SkColoredContainerMobile>
+    <Space h="xl"/>
   </>
 }

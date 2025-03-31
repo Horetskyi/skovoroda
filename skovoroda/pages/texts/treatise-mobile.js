@@ -11,6 +11,7 @@ import SkColoredContainerMobile from '../../components/shared/skColoredContainer
 import SkH2Mobile from '../../components/shared/skH2Mobile';
 import classes from './treatise-mobile.module.scss';
 import useTreatiseFilter from '../../hooks/useTreatiseFilter';
+import SkTextLink from '../../components/shared/skTextLink';
 
 export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) {
   
@@ -24,7 +25,7 @@ export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) 
 
   return <>
 
-    <SkH1Mobile text={trearisesContent.h1} mt="md" />
+    <SkH1Mobile text={trearisesContent.h1} />
 
     {/* Search and Filters */}
     <SkColoredContainerMobile px="md">
@@ -79,11 +80,8 @@ export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) 
       return <Container key={treatise.urlId} px="md" py="md" bg={bg}>
         
         {/* H2 */}
-        <Title order={2} pb="sm">
-          <Link href={href} title={linkTitle} className={classes.h2Link + " normalContentText"}>
-            <Text component='span'>{preferedTitle}</Text>
-            <IconChevronRight className={classes.linkIcon}/>
-          </Link>
+        <Title order={2} pb="md">
+          <SkTextLink text={preferedTitle} href={href} title={linkTitle} onHoverStylesOnly={true} className={classes.h2Link} />
         </Title>
 
         {/* Intro Content */}

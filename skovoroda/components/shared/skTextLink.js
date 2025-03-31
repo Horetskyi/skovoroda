@@ -3,11 +3,14 @@ import Link from "next/link";
 import { getLinkTitle } from "../../lib/skovorodaPath";
 import classes from './skTextLink.module.scss';
 
-export default function SkTextLink({text, href, disableStyles, title, className, isBlank, isWidthLimited, isLinkThick}) {
+export default function SkTextLink({text, href, disableStyles, onHoverStylesOnly, title, className, isBlank, isWidthLimited, isLinkThick}) {
   
   let pClassName = (disableStyles 
     ? classes.linkWithoutStyles 
-    : classes.link) + (className ? (" " + className) : "");
+    : onHoverStylesOnly 
+        ? (classes.linkOnHoverStylesOnly + " linkWithoutDecoration")
+        : classes.link) + 
+        (className ? (" " + className) : "");
 
   if (isWidthLimited) {
     pClassName += " " + classes.linkWidthLimited;

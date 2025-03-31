@@ -73,6 +73,9 @@ export function getLinkTitle(path) {
 export function getFableLinkTitle(fableMetadata) {
   return `Байка ${fableMetadata.fableNumber} – ${fableMetadata.fableTitle}`;
 }
+export function getBioPath(urlId) {
+  return pathJoinWithoutEndSlash(SkovorodaBioPath, urlId);
+}
 export function getTreatisePath(urlId) {
   return pathJoinWithoutEndSlash(SkovorodaTreatisePath, urlId);
 }

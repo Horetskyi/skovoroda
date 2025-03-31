@@ -14,8 +14,8 @@ export default function SkCommentAuthorMobile(props) {
       style.borderRadius = "48px";
     }} optimize={true} />
     <Text className="normalContentText normalContentText_withoutIndent">
-      <Text component="span">Горецький Дмитро</Text>
-      <Text component="span" c="gray.6">розробник сайту</Text>
+      <Text >Горецький Дмитро</Text>
+      <Text c="gray.6">розробник сайту</Text>
     </Text>
   </Group>
 }

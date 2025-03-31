@@ -5,6 +5,7 @@ const skovorodaSources = {
     devNumber: 1,
     id: "lovytva",
     sourceName: "Ловитва невловного птаха: життя Григорія Сковороди - Л. Ушкалов - 2017 р.",
+    shortTitle: "Ловитва невловного птаха - Ушкалов",
     productionYear: 2017,
   },
   uchytel_zyttia: {
@@ -78,6 +79,15 @@ const skovorodaSources = {
     sourceName: "Сковорода, Григорій. Твори у двох томах. Том 2 - 1994 р.",
     productionYear: 1994,
     bookCoverImageFileName: "Tvory u dvox tomax. Tom 2 - 1994.webp",
+    files: [], 
+  },
+  skovorodar: {
+    devNumber: 16,
+    id: "skovorodar",
+    sourceName: "Скороводар - Життя, творчість, спадок. Григорія Сковороди - Назар Федорак",
+    shortTitle: "Скороводар - Назар Федорак",
+    productionYear: 2022,
+    bookCoverImageFileName: "Skovorodar.webp",
     files: [], 
   },
   baiki_harkivski_fedorak_2019: {

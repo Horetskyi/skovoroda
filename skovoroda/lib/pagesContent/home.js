@@ -1,7 +1,15 @@
+import { SkovorodaSourcesArray } from "../data/skovorodaSources";
 import { homePageKey } from "../skovorodaConstants";
 import { getLinkTitle, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaTreatisePath } from "../skovorodaPath";
+import { newNotesService } from "./commonContent";
 
 export function getHomePageProps() {
+  
+  const notesService = newNotesService(SkovorodaSourcesArray);
+  notesService.addNote(1);
+  notesService.addNote(16);
+  const sourcesTextContent = notesService.sourcesTextContent;
+  
   return {
     props: {
       pageKey: homePageKey,
@@ -11,6 +19,7 @@ export function getHomePageProps() {
       shouldBeIndexed: true,
       canonicalPageUrl: "https://www.skovoroda.club/",
       facebookImageUrl: "https://www.skovoroda.club/images/SkovorodaPortrait2.webp",
+      sourcesTextContent: sourcesTextContent,
     },
   };
 }

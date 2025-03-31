@@ -1,6 +1,13 @@
 
 $mantine-breakpoint-sm: 900px;
 
+// @font-face {
+//   font-family: 'Caveat';
+//   src: url('/fonts/Caveat/Caveat-VariableFont_wght.ttf') format('truetype');
+//   font-style: normal;
+//   font-weight: 100 700;
+// }
+
 @font-face {
   font-family: 'Arsenal SC';
   src: url('/fonts/Arsenal_SC/ArsenalSC-Regular.ttf') format('truetype');
@@ -37,6 +44,28 @@ $mantine-breakpoint-sm: 900px;
   src: url('/fonts/Amatic_SC/AmaticSC-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6, .headerFont {
+  font-family: 'Amatic SC';
+  font-style: normal;
+}
+.textFont {
+  font-family: "Arsenal SC";
+  font-style: normal;
+}
+.readFont {
+  font-family: "Roboto";
+  font-style: normal;
+}
+.linkWithoutDecoration {
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--mantine-color-blue-7);
+    text-decoration: underline;
+  }
 }
 
 html,
@@ -214,6 +243,20 @@ input:focus {
 
 .mantine-Text-root {
   font-weight: 300;
+}
+
+h2 {
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  color: black;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    font-size: 32px;
+  }
 }
 
 h3 {

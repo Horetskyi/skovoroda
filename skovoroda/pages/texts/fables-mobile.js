@@ -47,24 +47,24 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
           const answer3 = group.contents.find(content => content.key === "answer3");
           const color = index % 2 === 0 ? "indigo" : "gray";
           return <Container key={group.key} p="0">
-            <SkColoredContainerMobile color={color+".0"} px="md" py="0">
+            <SkColoredContainerMobile px="md" py="0">
               <Space h="md"/>
               <SkH2Mobile text={question.content[0].text} type="qa" />
             </SkColoredContainerMobile>
-            {answer1 ? <SkColoredContainerMobile color={color+".0"} px="md">
+            {answer1 ? <SkColoredContainerMobile px="md">
               {contentBlock(answer1)}
             </SkColoredContainerMobile> : null}
-            {answer2 ? <SkColoredContainerMobile color={color+".1"} px="md">
+            {answer2 ? <SkColoredContainerMobile px="md">
               {contentBlock(answer2)}
             </SkColoredContainerMobile> : null}
-            {answer3 ? <SkColoredContainerMobile color={color+".2"} px="md">
+            {answer3 ? <SkColoredContainerMobile px="md">
               {contentBlock(answer3)}
             </SkColoredContainerMobile> : null}
           </Container> 
         })}
 
         {/* Sources */}
-        <SkColoredContainerMobile color="indigo.1" py="0" my="0">
+        <SkColoredContainerMobile py="0" my="0">
           <Container px="md" py="md">
             <SkH2Mobile text="Джерела" pb="md"/>
             {allSources.map((source,index) => {

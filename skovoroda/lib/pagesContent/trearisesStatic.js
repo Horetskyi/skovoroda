@@ -2,6 +2,7 @@ import { SkovorodaSourcesArray } from "../data/skovorodaSources";
 import { getNoteNumberString } from "../data/utils/notesNumbersSymbols";
 import { readAllTreatises } from "../dataReaders/treatisesReader";
 import { treatisePageKey } from "../skovorodaConstants";
+import { newNotesService } from "./commonContent";
 
 export function getTreatisesPageProps() {
   
@@ -20,35 +21,12 @@ export function getTreatisesPageProps() {
     treatise.quotes = []; // free memory
   });
   const sources = SkovorodaSourcesArray.filter(source => sourceIds.has(source.devNumber));
-
-  const sourcesTextContent = [];
-  let lastNoteNumber = 0;
-  function addNote(sourceId) {
-    if (!sourceId) {
-      return;
-    }
-    const found = sourcesTextContent.find(x => x.sourceId == sourceId);
-    if (found) {
-      return found.noteNumber; // already exists
-    }
-    const source = sources.find(x => x.devNumber == sourceId);
-    if (!source) {
-      return; // source not found
-    }
-    lastNoteNumber++;
-    sourcesTextContent.push({
-      noteNumber: lastNoteNumber,
-      sourceId: sourceId,
-      text: source.sourceFullName,
-      isNoteBeginning: true,
-    });
-    return lastNoteNumber;
-  }
+  const notesService = newNotesService(sources);
 
   treatises.sort((a,b) => a.orderNumber - b.orderNumber);
   treatises.forEach(treatise => {
     if (treatise.introSourceId) {
-      const noteNumber = addNote(treatise.introSourceId);
+      const noteNumber = notesService.addNote(treatise.introSourceId);
       if (noteNumber) {
         treatise.introContent[treatise.introContent.length - 1].text = [
           {
@@ -63,7 +41,7 @@ export function getTreatisesPageProps() {
     }
     treatise.writtenDate.forEach(date => {
       if (date.sourceId) {
-        const noteNumber = addNote(date.sourceId);
+        const noteNumber = notesService.addNote(date.sourceId);
         if (noteNumber) {
           date.noteNumber = noteNumber;
         }
@@ -75,7 +53,7 @@ export function getTreatisesPageProps() {
     props: {
       pageKey: treatisePageKey,
       treatises: treatises,
-      sourcesTextContent: sourcesTextContent,
+      sourcesTextContent: notesService.sourcesTextContent,
       metadataTitle: "Трактати, Діалоги, Притчі Григорія Сковорода",
       metadataDescription: "Трактати, Діалоги, Притчі, Солілоквії, Катехізис Григорія Савича Сковороди: Вступні двері до християнської добронравності, Наркіс. Розмова про те: Пізнай себе...",
       shouldBeIndexed: true,

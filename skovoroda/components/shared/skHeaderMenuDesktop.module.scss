@@ -1,9 +1,11 @@
 .title {
+  font-family: "Amatic SC";
   font-style: normal;
-  font-weight: 100;
+  font-weight: 300;
   font-size: 36px;
-  line-height: 42px;
-  letter-spacing: 0.5em;
+  line-height: 100%;
+  letter-spacing: 0.25em;
+  color: black;
   z-index: 0;
 }
 .titleLink {
@@ -12,27 +14,40 @@
   z-index: 0;
 }
 .buttonText {
-  font-style: normal;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 23px;
-  text-align: center;
-  letter-spacing: 0.165em;
+  position: relative;
   color: black;
+
+  p {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 155%;
+    letter-spacing: 0.03em;
+  }
 }
 .logoSvgs {
   position: relative;
   scale: 0.8;
   margin-top: 12px;
+
+  &:hover {
+    .logoSvg {
+      filter: drop-shadow(3px 1px 5px #1c7fd677);
+    }
+    .logoSvgDove {
+      filter: drop-shadow(-3px -1px 4px #1C7ED666);
+    }
+  }
 }
 .logoSvg {
   filter: drop-shadow(3px 1px 8px rgba(0, 0, 0, 0.15));
+  transition: all 0.2s ease-in-out;
 }
 .logoSvgDove {
   position: absolute;
   top: 41px;
   left: -8px;
   filter: drop-shadow(3px 1px 8px rgba(0, 0, 0, 0.15));
+  transition: all 0.2s ease-in-out;
 }
 .svgHeaderBlockContainer {
   display: block;
@@ -47,46 +62,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  // stroke: var(--mantine-color-indigo-2);
-  // fill: var(--mantine-color-indigo-0);
-  fill: #f9fbff;
+  fill: white;
   stroke: #636363;
   filter: drop-shadow(2px 3px 8px rgba(182, 193, 226, 0.05));
 }
-
-// EXPERIMENTAL HEADER WITH SHADOW:
-// .svgHeaderBlock2 {
-//   display: block;
-//   position: absolute;
-//   left: 0;
-//   top: 0;
-//   height: 110px;
-//   width: 100%;
-//   filter: drop-shadow(2px 3px 8px rgba(182, 193, 226, 0.05));
-//   overflow: visible;
-// }
-
-// EXPERIMENTAL BAROQUE ELEMENTS:
-// .svgBaroque1 {
-//   display: block;
-//   position: sticky;
-//   top: 18px;
-//   fill: #b0bee3;
-// }
-// .svgBaroque1ContainerLeft {
-//   svg {
-//     transform: scale(-1, -1);
-//   }
-//   left: 18px;
-// }
-// .svgBaroque1ContainerRight {
-//   svg {
-//     transform: scale(1, -1);
-//   }
-//   right: 32px;
-// }
-// .svgBaroque1Container {
-//   position: absolute;
-//   top: 117px;
-//   height: calc(100% - 144px);
-// }

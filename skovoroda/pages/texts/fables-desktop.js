@@ -20,7 +20,7 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
       {fables.slice(from, to).map(fable => {
         const href = pathJoin(SkovorodaFablesPath, fable.urlId);
         return <List.Item key={fable.urlId} mb="xs">
-          <SkTextLink text={fable.fableTitle} title={getFableLinkTitle(fable)} href={href} disableStyles={false}>
+          <SkTextLink text={fable.fableTitle} title={getFableLinkTitle(fable)} href={href} onHoverStylesOnly={true}>
           </SkTextLink>
         </List.Item>
       })}
@@ -28,8 +28,9 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
   }
   
   return <>
+
     {/* H1 */}
-    <Space h="lg"/>
+    <Space h="xl"/>
     <SkH1Desktop text="Байки Харківські"/>
 
     {/* Fables Links */}
@@ -48,24 +49,24 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
       const answer3 = group.contents.find(content => content.key === "answer3");
       const color = index % 2 === 0 ? "indigo" : "gray";
       return <Container key={group.key} p="0">
-        <SkColoredContainerDesktop color={color+".0"} py="0">
+        <SkColoredContainerDesktop py="0">
           <Space h="lg"/>
           <SkH2Desktop text={question.content[0].text} type="qa" />
         </SkColoredContainerDesktop>
-        {answer1 ? <SkColoredContainerDesktop color={color+".0"} pt="md" pb="lg">
+        {answer1 ? <SkColoredContainerDesktop pt="md" pb="lg">
           {contentBlock(answer1)}
         </SkColoredContainerDesktop> : null}
-        {answer2 ? <SkColoredContainerDesktop color={color+".1"} pt="md" pb="lg">
+        {answer2 ? <SkColoredContainerDesktop pt="md" pb="lg">
           {contentBlock(answer2)}
         </SkColoredContainerDesktop> : null}
-        {answer3 ? <SkColoredContainerDesktop color={color+".2"} pt="md" pb="lg">
+        {answer3 ? <SkColoredContainerDesktop pt="md" pb="lg">
           {contentBlock(answer3)}
         </SkColoredContainerDesktop> : null}
       </Container> 
     })}
 
     {/* Sources */}
-    <SkColoredContainerDesktop color="gray.1" py="0" my="0">
+    <SkColoredContainerDesktop py="0" my="0">
       <Space h="lg"/>
       <SkH2Desktop text="Джерела" />
       <Space h="lg"/>

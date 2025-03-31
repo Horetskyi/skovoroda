@@ -31,7 +31,7 @@ export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenIma
   return <>
 
     {/* H1 */}
-    <Space h="lg"/>
+    <Space h="xl"/>
     <SkH1Desktop text="Сад Божественних Пісень"/>
     {/* Сад божественных пѣсней, прозябшій из зерн Священнаго Писанія */}
   
@@ -46,7 +46,7 @@ export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenIma
         {translatedSongsMetadataArray.map((song, index) => {
           const href = pathJoinWithoutEndSlash(SkovorodaGardenPath, song.id);
           return <List.Item key={"" + index + song.id} mb="xs">
-            <SkTextLink text={song.name} title={song.name} href={href} disableStyles={false} />
+            <SkTextLink text={song.name} title={song.name} href={href} onHoverStylesOnly={true} />
           </List.Item>
         })}
       </List>

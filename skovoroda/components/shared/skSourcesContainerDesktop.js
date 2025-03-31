@@ -11,7 +11,7 @@ export default function SkSourcesContainerDesktop({ sources, includeTextValidity
   }
 
   return <> 
-    <SkColoredContainerDesktop color={"indigo.0"}>
+    <SkColoredContainerDesktop>
       <SkH2Desktop text="Джерела"/>
       <Space h="lg"/>
       {sources.map((source, index) => {

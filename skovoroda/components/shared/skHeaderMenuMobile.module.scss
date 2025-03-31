@@ -1,10 +1,14 @@
 .title {
+  font-family: "Amatic SC";
   font-style: normal;
-  font-weight: 200;
+  font-weight: 300;
   font-size: 28px;
-  line-height: 33px;
-  letter-spacing: 0.16em;
+  line-height: 100%;
+  letter-spacing: 0.25em;
+  color: black;
   z-index: 0;
+  margin-left: 0;
+  margin-right: auto;
 }
 .titleLink {
   margin-left: 0;
@@ -61,9 +65,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  // stroke: var(--mantine-color-indigo-2);
-  // fill: var(--mantine-color-indigo-0);
-  fill: #f9fbff;
+  fill: white;
   stroke: #636363;
   filter: drop-shadow(2px 3px 8px rgba(182, 193, 226, 0.05));
 }

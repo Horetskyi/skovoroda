@@ -67,7 +67,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
 
   function Quote(quote, text, index) {
     const key = "quote_" + quote.translatorId + "_" + index;
-    return <Text key={key} className="normalContentText">{text}</Text>
+    return <Text key={key} className="readFont normalContentText">{text}</Text>
   }
 
   return <>
@@ -90,7 +90,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
       {/* Зміст */}
       { isZmistAvailable ? <>
         <SkH2Desktop text="Зміст твору" mb="lg" id="zmist" />
-        <List spacing="md" mb="lg" size="sm" className={classes.zmistList} icon={<ZmistBullet />}>
+        <List spacing="md" mb="xl" size="sm" className={classes.zmistList} icon={<ZmistBullet />}>
           { treatise.zmist.list.map((item, index) => {
             return <ZmistItem key={`zmist_${index}`} index={index} item={item} />;
           })}
@@ -105,7 +105,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
         </Flex>
       </> : null}
 
-      <SkH2Desktop text="Оригінал" mb="lg" id="downloads" />
+      <SkH2Desktop text="Оригінал" mt="xl" mb="lg" id="downloads" />
       {TreatisVersionBlock(original, originalSource)}
       <Space h="md"/>
       <SkH2Desktop text="Переклади" mb="lg" />
@@ -125,5 +125,6 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
 
     </SkColoredContainerDesktop>
     <SkSourcesContainerDesktop sources={sourcesParams} />
+    <Space h="xl"/>
   </>
 }

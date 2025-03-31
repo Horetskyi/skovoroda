@@ -93,7 +93,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
         
         {/* H2 */}
         <Title order={2} pb="sm">
-          <Link href={href} title={linkTitle} className={classes.h2Link + " normalContentText"}>{preferedTitle}<IconChevronRight className={classes.linkIcon}/></Link>
+          <Link href={href} title={linkTitle} className={`${classes.h2Link} linkWithoutDecoration`}>{preferedTitle}</Link>
         </Title>
 
         {/* Intro Content */}

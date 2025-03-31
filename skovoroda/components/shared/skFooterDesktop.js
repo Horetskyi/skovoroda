@@ -6,10 +6,10 @@ import classes from './skFooterDesktop.module.scss';
 export default function SkFooterDesktop() {
   
   return <footer>
-    <Container fluid={true} h={144} bg={"indigo.1"} ta={"center"} w={"100%"} className={classes.footer}>
+    <Container fluid={true} h={144} bg={"white"} ta={"center"} w={"100%"} className={classes.footer}>
       <Flex 
         ta={"center"}
-        gap="sm" 
+        gap="lg" 
         justify={"center"}
         align="center"
         direction="row"
@@ -17,9 +17,7 @@ export default function SkFooterDesktop() {
         className="normalContentText normalContentText_withoutIndent"
       >
         <SkTextLink href={SkovorodaAboutUsPath} text={"Про нас"} />
-        <Text>|</Text>
         <SkTextLink href={SkovorodaContactPath} text={"Контакти"} />
-        <Text>|</Text>
         <SkTextLink href={SkovorodaCopyrightPath} text={"Правовласникам"} />
       </Flex>
     </Container>

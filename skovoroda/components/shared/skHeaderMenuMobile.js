@@ -45,7 +45,7 @@ export default function SkHeaderMenuMobile() {
           <SkDoveLogo className={classes.dove} width={40} height={40} />
         </Link>
 
-        <Link href={'/'} title={getLinkTitle("/")} className={"undecoratedLink blackLink "+classes.titleLink}>
+        <Link href={'/'} title={getLinkTitle("/")} className={"linkWithoutDecoration "+classes.titleLink}>
           <Text className={classes.title}>Сковорода</Text>
         </Link>
         

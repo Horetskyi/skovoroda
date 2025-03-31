@@ -34,6 +34,22 @@ export const SkImageAuthors = new Map([
       title: "Behance Ольги Райхель"
     },
   }],
+  ['anna_zhuk', {
+    fullName: 'Анна Жук',
+    genetiveFullName: 'Ганни Жук',
+    link: {
+      href: "https://www.instagram.com/annkenry?igsh=MXF1NmwxdW1pd2JsMQ%3D%3D&utm_source=qr",
+      title: "Інстаграм Ганни Жук"
+    },
+  }],
+  ['sophi', {
+    fullName: 'Софія',
+    genetiveFullName: 'Софії',
+    link: {
+      href: "https://www.behance.net/d11fa29d",
+      title: "Behance Софії"
+    },
+  }],
 ]);
 
 // Important
@@ -141,6 +157,11 @@ export const SkImages = {
   fable12byOlenka: buildFableImage(12, "/images/fables/fable-12-brusok-i-nizh.webp", 'olenka'),
   fable13byOlenka: buildFableImage(13, "/images/fables/fable-13-orel-i-cherepakha.webp", 'olenka'),
   fable14byOlenka: buildFableImage(14, "/images/fables/fable-14-sova-i-drizd.webp", 'olenka', 900, 1258),
+  fable17: buildFableImage(17, "/images/fables/Fable 17 - Almaz i Smarahd - Skovoroda.webp", 'sophi', 900, 1260),
+  fable18: buildFableImage(18, "/images/fables/Fable 18 - Pes i Kobyla - Skovoroda.webp", 'pryanya', 900, 1260),
+  fable19: buildFableImage(19, "/images/fables/Fable 19 - Kazhan i Dvoie Ptasheniat.webp", 'zmiika', 900, 1260),
+  fable20: buildFableImage(20, "/images/fables/Fable 20 - Verbliud i Olen - Skovoroda.webp", 'pryanya', 900, 1260),
+  fable30: buildFableImage(30, "/images/fables/Fable 30 - Solovei, Zhaivoronok i Drizd - Skovoroda.webp", 'anna_zhuk', 900, 1302),
   gardenByOlenka: {
     imageUrl: "/images/garden/Skovoroda Garden of Divine Songs by Olenka.webp",
     alt: "Ілюстрація до Саду Божественних Пісень Григорія Сковороди від Олени Горецької",

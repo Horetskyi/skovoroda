@@ -55,7 +55,6 @@ export default function HomePageDesktop({sourcesTextContent}) {
   const closeQuote = <svg width="28" height="26" viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M6.824 1.67249C7.656 0.968487 8.584 0.616488 9.608 0.616488C10.568 0.616488 11.4 0.968487 12.104 1.67249L12.392 2.24848L12.68 2.72848C12.68 2.79249 12.68 2.82449 12.68 2.82449C12.744 2.82449 12.776 2.85649 12.776 2.92049C12.904 3.24049 13 3.59249 13.064 3.97648C13.128 4.36048 13.16 4.77648 13.16 5.22449C13.16 7.14448 12.648 9.41648 11.624 12.0405C10.6 14.6645 9.224 17.2245 7.496 19.7205C5.768 22.2165 3.88 24.2325 1.832 25.7685L0.00800061 23.5605C1.672 22.2805 3.112 20.7445 4.328 18.9525C5.608 17.1605 6.632 15.3365 7.4 13.4805C8.232 11.5605 8.712 9.86448 8.84 8.39248H8.552C7.528 8.39248 6.696 8.07248 6.056 7.43249C5.544 6.85649 5.288 6.08849 5.288 5.12849C5.288 4.48849 5.416 3.88049 5.672 3.30449C5.928 2.66448 6.312 2.12048 6.824 1.67249ZM21.032 1.67249C21.864 0.968487 22.792 0.616488 23.816 0.616488C24.776 0.616488 25.608 0.968487 26.312 1.67249L26.6 2.24848L26.888 2.72848C26.888 2.79249 26.888 2.82449 26.888 2.82449C26.952 2.82449 26.984 2.85649 26.984 2.92049C27.112 3.24049 27.208 3.59249 27.272 3.97648C27.336 4.36048 27.368 4.77648 27.368 5.22449C27.368 7.14448 26.856 9.41648 25.832 12.0405C24.808 14.6645 23.432 17.2245 21.704 19.7205C19.976 22.2165 18.088 24.2325 16.04 25.7685L14.216 23.5605C15.88 22.2805 17.32 20.7445 18.536 18.9525C19.816 17.1605 20.84 15.3365 21.608 13.4805C22.44 11.5605 22.92 9.86448 23.048 8.39248H22.76C21.736 8.39248 20.904 8.07248 20.264 7.43249C19.752 6.85649 19.496 6.08849 19.496 5.12849C19.496 4.48849 19.624 3.88049 19.88 3.30449C20.136 2.66448 20.52 2.12048 21.032 1.67249Z" fill="black"/>
   </svg>;
-  
 
   return (
     <>
@@ -123,15 +122,18 @@ export default function HomePageDesktop({sourcesTextContent}) {
               <div className={classes.linkArrow}>{ArrowSvg()}</div>
             </Link>
           </Box>
-          <Box mt={-80}>
+          <Box ml={"xl"} mt={80}>
             <SkImage
-              imageUrl="/images/Athena.webp"
-              alt="Статуя Афіни як символ мудрості, зображення до блоку про Сковороду як філософа"
-              title="Афіна - символ мудрості"
+              imageUrl="/images/Old pocket watch.webp"
+              alt="Старий карманний годинник на старій книзі, а поруч жовті рози, що в'януть"
+              title="Час, як філософська категорія, як невід'ємна частина життя і роздумів Сковороди"
               width={400}
-              height={getAdjustedHeight(400, 1375, { width: 900, height: 1375 })}
-              shadow={false}
+              height={getAdjustedHeight(400, 4000, { width: 6000, height: 4000 })}
+              shadow={true}
               optimize={false}
+              styleAction={(os) => {
+                os.borderRadius = 28;
+              }}
             />
           </Box>
         </Flex>
@@ -259,78 +261,6 @@ export default function HomePageDesktop({sourcesTextContent}) {
     </>
   );
 }
-
-// export default function HomePageDesktop() { 
-
-//   return <>
-//     <SkColoredContainerDesktop color={"gray.0"}>
-//       <Group mt={"sm"} spacing={"md"} position="apart" className={classes.bioGroup} >
-//         <div className={classes.portraitImage} >
-//           <SkImage 
-//             imageUrl={homePageContent.imageUrl} 
-//             alt={homePageContent.imageAlt}
-//             title={homePageContent.imageTitle}
-//             width={332}
-//             height={406}
-//             priority
-//             shadow={false}
-//             optimize={true}
-//           />
-//         </div>
-//         <div className={classes.bioContent}>
-//           <SkH1Desktop text={homePageContent.titleLine} />
-//           <Text mt={"sm"} className={classes.subTitle}>{homePageContent.birthLine}</Text>
-//           <Text mt={"sm"} className='normalContentText normalContentText_justify normalContentText_withoutIndent'>{homePageContent.shortBio}</Text>
-//           {SkovorodaConstants.isProduction ? null : <>
-//             <Group position="right" className={classes.bioButtons} mt={"auto"} mb={0}>
-//               <SkTextLink text={"Біографія детальніше"} href={SkovorodaBioPath}/>
-//             </Group>
-//           </>}
-//         </div>
-//       </Group>
-//     </SkColoredContainerDesktop>
-
-//     <SkColoredContainerDesktop color={"indigo.0"} ta={"center"}>
-//       <SkH2Desktop text={"Цитати"} mb={"lg"} />
-//       <SkQuoteDesktop mb="md" text={"Як ліки не завжди приємні, так і істина буває сувора."} /> 
-//       <SkQuoteDesktop mb="md" text={"Все минає, але любов після всього зостається."} /> 
-//       <SkQuoteDesktop mb="md" text={"Як нерозумно випрошувати те, чого можеш сам досягти!"} /> 
-//       {SkovorodaConstants.isProduction ? null : <>
-//         <SkFilledButtonDesktop text={"Більше цитат"} href={SkovorodaQuotesPath} width={267}/>
-//       </>}
-//     </SkColoredContainerDesktop>
-
-//     <SkColoredContainerDesktop color={"white"} ta={"center"}>
-//       <SkH2Desktop text={"Символи"} mb={"lg"} />
-//       <SkFountain />
-//       <Text mt="sm" mb="md" className='normalContentText normalContentText_justify normalContentText_withoutIndent'>{homePageContent.symbolsText}</Text>
-//       {SkovorodaConstants.isProduction ? null : <>
-//         <SkFilledButtonDesktop text={"Більше символів"} href={SkovorodaSymbolsPath} width={267}/>
-//       </>}
-//     </SkColoredContainerDesktop>
-
-//     <SkColoredContainerDesktop color={"gray.0"}>
-//       <SkH2Desktop text={homePageContent.textsTitle} mb={"md"} />
-//       <Flex 
-//         gap="md" 
-//         mb="sm"
-//         direction="column"
-//       >
-//         {homePageContent.textsLinks.map(link => {
-//           return <>
-//             <Title ml="0" order={3} className="normalContentText">
-//               <Link key={link.href} href={link.href} title={link.title} className={classes.headerLink}>
-//                 {link.text}
-//               </Link>
-//             </Title>
-//           </>;
-//         })}
-//       </Flex>
-//     </SkColoredContainerDesktop>
-
-//     <SkSourcesContainerDesktop sources={homePageContent.sourcesParams} />
-//   </> 
-// }
 
 export async function getStaticProps({ params }) { 
   return getHomePageProps();

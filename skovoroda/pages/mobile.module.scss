@@ -1,13 +1,203 @@
-.h1 {
-  font-weight: 300;
-  font-size: 24px;
-  line-height: 32px;
-  letter-spacing: 0.065em;
+.headerContainer {
+  margin-top: 20px;
+  text-align: center;
 }
 
-.headerLink {
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 23px;
-  letter-spacing: 0.02em;
+.h1 {
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  color: black;
+
+  p {
+    margin: 0;
+  }
+}
+
+.linkArrow {
+  width: fit-content;
+  margin-top: -20px;
+  z-index: -1;
+  transition: stroke 0.2s ease-in-out;
+}
+
+.linkContainer {
+  display: block;
+  width: fit-content;
+  text-decoration: none;
+  color: #0e3457;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--mantine-color-blue-7);
+    .linkArrow {
+      stroke: var(--mantine-color-blue-7);
+    }
+  }
+}
+
+.date {
+  font-family: 'Arsenal SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  color: black;
+  margin-top: 10px;
+}
+
+.listItem {
+  display: flex;
+  margin-bottom: 16px;
+  align-items: baseline;
+
+  svg {
+    margin-right: 12px;
+    width: 20px;
+  }
+  p {
+    width: fit-content;
+  }
+}
+
+.imageSection {
+  margin: 20px auto;
+  text-align: center;
+  width: fit-content;
+
+  img {
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.centerImage {
+  div {
+    margin: auto;
+  }
+}
+
+.nameSection {
+  margin: 20px auto;
+  text-align: center;
+
+  h2 {
+    font-family: 'Amatic SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+    color: black;
+  }
+
+  .normalContentText {
+    font-family: 'Arsenal SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: black;
+    margin-top: 10px;
+  }
+}
+
+.flexContainer {
+  margin: 20px auto;
+
+  h2 {
+    font-family: 'Amatic SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+    color: black;
+    margin-bottom: 10px;
+  }
+
+  .normalContentText {
+    font-family: 'Arsenal SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: black;
+    margin-bottom: 10px;
+  }
+
+  img {
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.quoteSection {
+  margin: 30px auto;
+  text-align: center;
+  padding: 0 20px;
+
+  .quoteMark {
+    font-family: 'Amatic SC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1;
+    color: black;
+  }
+
+  .quoteText {
+    font-family: 'Arsenal SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.5;
+    color: black;
+    margin-top: 10px;
+  }
+
+  .quoteAuthor {
+    font-family: 'Arsenal SC';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.5;
+    color: black;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .h1 {
+    font-size: 36px;
+  }
+
+  .date {
+    font-size: 20px;
+  }
+
+  .nameSection h2 {
+    font-size: 28px;
+  }
+
+  .normalContentText {
+    font-size: 14px;
+  }
+
+  .quoteMark {
+    font-size: 36px;
+  }
+
+  .quoteText {
+    font-size: 14px;
+  }
+
+  .quoteAuthor {
+    font-size: 16px;
+  }
 }

@@ -15,6 +15,7 @@ import SkColoredContainerMobile from "../shared/skColoredContainerMobile";
 import SkCommentAuthorMobile from "../shared/skCommentAuthorMobile";
 import SkRelatedThemesMobile from "../shared/skRelatedThemesMobile";
 import classes from './fablePageMobile.module.scss';
+import { getIllustrationSourceParam } from "./details/pureFunctions";
 
 export default function FablePageMobile({ 
   selectedFable,
@@ -84,15 +85,8 @@ export default function FablePageMobile({
     },
   ];
   if (isFableImageExists) {
-    sourcesParams.push({
-      sourceType: "Ілюстрація",
-      sourceValue: "Олена Лещенко",
-      sourceHref: "https://instagram.com/olenka_art_vision",
-      sourceHrefAnchorText: "https://instagram.com/olenka_art_vision",
-      image: selectedMetadata.fableImage,
-      linkTitle: "Instagram Олени Лещенко"
-    });
-  }
+      sourcesParams.push(getIllustrationSourceParam(selectedMetadata.fableImage));
+    }
 
   return <>
 

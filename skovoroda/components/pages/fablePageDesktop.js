@@ -99,15 +99,13 @@ export default function FablePageDesktop({
   adjustImageHeight(selectedMetadata.fableImage, 360, 520, 720);
 
   return <>
+    
     {isFableImageExists ? <>
       <Modal opened={opened} onClose={close} padding={0} withCloseButton={false} radius={24} keepMounted={true} width={520} mt={"xl"}>
         <SkImage 
           key={selectedMetadata.fableImage.imageUrl}
           additionalClassName={classes.fableImageInModal}
           image={selectedMetadata.fableImage} />
-        <SkTextLink href={"https://instagram.com/olenka_art_vision"} text={"Автор: Олена Лещенко"} title={"Instagram"} 
-          className={classes.modalLink + " normalContentText normalContentText_withoutIndent"} 
-          isBlank={true} />
       </Modal>
     </> : null}
     

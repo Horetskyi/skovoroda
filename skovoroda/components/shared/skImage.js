@@ -17,7 +17,8 @@ export default function SkImage({
   optimize,
   proportionWidth,
   gentlyShadow,
-  fullWidth
+  fullWidth,
+  fullHeight
 }) {
 
   if (shadow !== false && !gentlyShadow) {
@@ -52,6 +53,11 @@ export default function SkImage({
     styleObj = {
       width: "calc(100vw - 50px)",
       height: "fit-content",
+    };
+  } else if (fullHeight) {
+    styleObj = {
+      width: "fit-content",
+      height: "100%",
     };
   }
 

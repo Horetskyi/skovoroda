@@ -98,22 +98,8 @@ export default function FablePageDesktop({
 
   adjustImageHeight(selectedMetadata.fableImage, 360, 520, 720);
 
-  // const fullFableImage = selectedMetadata.fableImage ? {...selectedMetadata.fableImage} : null;
-  // if (fullFableImage) {
-  //   adjustImageHeight(fullFableImage, 360, 520, 720);
-  // }
-
   return <>
     
-    {/* {isFableImageExists ? <>
-      <Modal opened={opened} onClose={close} padding={0} withCloseButton={false} radius={24} keepMounted={true} width={520} mt={"xl"}>
-        <SkImage 
-          key={selectedMetadata.fableImage.imageUrl}
-          additionalClassName={classes.fableImageInModal}
-          image={selectedMetadata.fableImage} />
-      </Modal>
-    </> : null} */}
-
     {isFableImageExists ? <>
       <Modal 
         opened={opened} 
@@ -125,6 +111,7 @@ export default function FablePageDesktop({
           content: classes.fullImageModalContent,
         }}
       >
+        {/* TODO: ADD LEFT RIGHT BUTTONS */}
         <SkImage 
           key={selectedMetadata.fableImage.imageUrl}
           image={selectedMetadata.fableImage} 

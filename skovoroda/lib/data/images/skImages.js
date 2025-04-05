@@ -143,6 +143,7 @@ function buildTextImage(type, textUrlId, imageUrl, authorId, title, width, heigh
 }
 
 export const SkImages = {
+  
   fable1byOlenka: buildFableImage(1, "/images/fables/fable-1-sobaky.webp", 'olenka'),
   fable2byOlenka: buildFableImage(2, "/images/fables/fable-2-vorona-i-chyzh.webp", 'olenka'),
   fable3byOlenka: buildFableImage(3, "/images/fables/fable-3-zhayvoronky.webp", 'olenka'),
@@ -157,19 +158,25 @@ export const SkImages = {
   fable12byOlenka: buildFableImage(12, "/images/fables/fable-12-brusok-i-nizh.webp", 'olenka'),
   fable13byOlenka: buildFableImage(13, "/images/fables/fable-13-orel-i-cherepakha.webp", 'olenka'),
   fable14byOlenka: buildFableImage(14, "/images/fables/fable-14-sova-i-drizd.webp", 'olenka', 900, 1258),
+  // TODO: Fable 15
+  fable16: buildFableImage(16, "/images/fables/Fable 16 - Zhaba - Skovoroda.webp", 'polik', 900, 1260),
   fable17: buildFableImage(17, "/images/fables/Fable 17 - Almaz i Smarahd - Skovoroda.webp", 'sophi', 900, 1260),
   fable18: buildFableImage(18, "/images/fables/Fable 18 - Pes i Kobyla - Skovoroda.webp", 'pryanya', 900, 1260),
   fable19: buildFableImage(19, "/images/fables/Fable 19 - Kazhan i Dvoie Ptasheniat.webp", 'zmiika', 900, 1260),
   fable20: buildFableImage(20, "/images/fables/Fable 20 - Verbliud i Olen - Skovoroda.webp", 'pryanya', 900, 1260),
+  // TODO: Fable 21-29
   fable30: buildFableImage(30, "/images/fables/Fable 30 - Solovei, Zhaivoronok i Drizd - Skovoroda.webp", 'anna_zhuk', 900, 1302),
+  
   gardenByOlenka: {
     imageUrl: "/images/garden/Skovoroda Garden of Divine Songs by Olenka.webp",
     alt: "Ілюстрація до Саду Божественних Пісень Григорія Сковороди від Олени Горецької",
     title: "Ілюстрація Саду Божественних Пісень",
   },
+
   erodyi: buildTextImage('treatise', "blahodarnyi_erodii", "/images/treatise/Erodii.webp", "pryanya", "Вдячний Еродій", 900, 1291),
   narcisByOlenka: buildTextImage('treatise', "narcis",  "/images/treatise/NarcisOlenkaImg1.webp", "olenka", "Наркіс. Розмова про те: Пізнай себе", 900, 1125),
-  proKotiv: buildTextImage('read', "parable_about_cats",  "/images/treatise/Bukvar Myru - Parable about cats.webp", "polik", "Байка про Котів", 900, 1714),
   ubohyiZhaivoronok: buildTextImage('treatise', "ubohii_zhaivoronok",  "/images/treatise/Ubohii_Zhaivoronok.webp", "zmiika", "Убогий Жайворонок", 900, 1260),
+  
+  proKotiv: buildTextImage('read', "parable_about_cats",  "/images/treatise/Bukvar Myru - Parable about cats.webp", "polik", "Байка про Котів", 900, 1714),
 };
 export const SkImagesArray = Object.values(SkImages);

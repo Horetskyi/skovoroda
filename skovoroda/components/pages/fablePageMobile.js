@@ -1,5 +1,5 @@
 import { Center, Container, Group, Space } from "@mantine/core";
-import { prepareFablesDropdownItems, prepareTranslatorsDropdownItems } from "../../lib/pagesContent/fableLogic";
+import { prepareFablesDropdownItems, prepareTranslatorsDropdownItems } from "../../lib/staticProps/fableLogic";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { SkovorodaFablesPath, pathJoin } from "../../lib/skovorodaPath";

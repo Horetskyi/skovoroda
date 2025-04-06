@@ -1,5 +1,5 @@
 import { Space, Text } from "@mantine/core";
-import { commonContent } from "../../lib/pagesContent/commonContent";
+import { commonContent } from "../../lib/staticProps/commonContent";
 import SkColoredContainerMobile from "./skColoredContainerMobile";
 import SkSourceBlockMobile from "./skSourceBlockMobile";
 import SkH2Mobile from "./skH2Mobile";

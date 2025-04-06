@@ -2,7 +2,7 @@ import { Space, Text } from "@mantine/core";
 import SkColoredContainerDesktop from "./skColoredContainerDesktop";
 import SkH2Desktop from "./skH2Desktop";
 import SkSourceBlockDesktop from "./skSourceBlockDesktop";
-import { commonContent } from "../../lib/pagesContent/commonContent";
+import { commonContent } from "../../lib/staticProps/commonContent";
 
 export default function SkSourcesContainerDesktop({ sources, includeTextValidityWarning }) {
 

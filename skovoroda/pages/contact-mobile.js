@@ -1,6 +1,6 @@
 import { Container, Space } from "@mantine/core";
 import SkH1Mobile from "../components/shared/skH1Mobile";
-import { getContactPageProps } from "../lib/pagesContent/contactStatic";
+import { getContactPageProps } from "../lib/staticProps/contactStatic";
 
 export default function ContactPage(props) {
   return <>

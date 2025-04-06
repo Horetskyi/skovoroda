@@ -1,8 +1,8 @@
 import { Center, Space, Text } from "@mantine/core";
 import SkH1Desktop from "../components/shared/skH1Desktop";
 import SkColoredContainerDesktop from "../components/shared/skColoredContainerDesktop";
-import { copyrightContent } from "../lib/pagesContent/copyrightContent";
-import { getCopyrightPageProps } from "../lib/pagesContent/copyrightStatic";
+import { copyrightContent } from "../lib/staticProps/copyrightContent";
+import { getCopyrightPageProps } from "../lib/staticProps/copyrightStatic";
 
 export default function CopyrightPage(props) {
 

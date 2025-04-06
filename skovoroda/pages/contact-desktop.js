@@ -1,7 +1,7 @@
 import { Container, Space, Text } from "@mantine/core";
 import SkH1Desktop from "../components/shared/skH1Desktop";
 import SkColoredContainerDesktop from "../components/shared/skColoredContainerDesktop";
-import { getContactPageProps } from "../lib/pagesContent/contactStatic";
+import { getContactPageProps } from "../lib/staticProps/contactStatic";
 
 export default function ContactPage(props) {
   return <>

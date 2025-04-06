@@ -2,8 +2,8 @@ import { Center, Container, Space, Text } from "@mantine/core";
 import SkImage from "../components/shared/skImage";
 import SkH1Mobile from "../components/shared/skH1Mobile";
 import SkColoredContainerMobile from "../components/shared/skColoredContainerMobile";
-import { aboutUsContent } from "../lib/pagesContent/aboutUsContent";
-import { getAboutUsPageProps } from "../lib/pagesContent/aboutUsStatic";
+import { aboutUsContent } from "../lib/staticProps/aboutUsContent";
+import { getAboutUsPageProps } from "../lib/staticProps/aboutUsStatic";
 import SkH2Mobile from "../components/shared/skH2Mobile";
 import SkTextContentBlockDesktop from "../components/shared/skTextContentBlockDesktop";
 

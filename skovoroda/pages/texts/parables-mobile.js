@@ -1,6 +1,6 @@
 import { Text } from '@mantine/core';
 import SkH1Mobile from '../../components/shared/skH1Mobile';
-import { getParablesPageProps } from '../../lib/pagesContent/parablesStatic';
+import { getParablesPageProps } from '../../lib/staticProps/parablesStatic';
 
 export default function SkParablesPageMobile({ parables }) {
 

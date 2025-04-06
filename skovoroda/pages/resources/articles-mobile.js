@@ -1,13 +1,13 @@
 import { Box, Container } from '@mantine/core';
-import SkH1Desktop from '../../components/shared/skH1Desktop';
 import SkTextLink from '../../components/shared/skTextLink';
 import { pathJoin, SkovorodaReadsPath } from '../../lib/skovorodaPath';
 import { getArticlesStaticProps } from '../../lib/staticProps/articlesStatic';
+import SkH1Mobile from '../../components/shared/skH1Mobile';
 
-export default function ArticlesDesktop({ articles }) {
+export default function ArticlesMobile({ articles }) {
 
   return <>
-    <SkH1Desktop text="Статті про Григорія Сковороду" />
+    <SkH1Mobile text="Статті про Григорія Сковороду" />
     <Container>
       {articles.map(article => {
         return <Box key={article.urlId}>

@@ -1,9 +1,9 @@
 import { Center, Flex, Space, Text } from "@mantine/core";
-import { aboutUsContent } from "../lib/pagesContent/aboutUsContent";
+import { aboutUsContent } from "../lib/staticProps/aboutUsContent";
 import SkImage from "../components/shared/skImage";
 import SkH1Desktop from "../components/shared/skH1Desktop";
 import SkColoredContainerDesktop from "../components/shared/skColoredContainerDesktop";
-import { getAboutUsPageProps } from "../lib/pagesContent/aboutUsStatic";
+import { getAboutUsPageProps } from "../lib/staticProps/aboutUsStatic";
 import SkH2Desktop from "../components/shared/skH2Desktop";
 import SkTextContentBlockDesktop from "../components/shared/skTextContentBlockDesktop";
 import classes from './about-us-desktop.module.scss';

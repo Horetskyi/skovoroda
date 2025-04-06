@@ -3,7 +3,7 @@ import { pathJoinWithoutEndSlash, SkovorodaGardenPath } from "../../lib/skovorod
 import SkH1Desktop from "../../components/shared/skH1Desktop";
 import SkColoredContainerDesktop from "../../components/shared/skColoredContainerDesktop";
 import SkTextLink from "../../components/shared/skTextLink";
-import { getGardenPageProps } from "../../lib/pagesContent/gardenStatic";
+import { getGardenPageProps } from "../../lib/staticProps/gardenStatic";
 import SkImage from "../../components/shared/skImage";
 
 export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenImageByOlenka }) {

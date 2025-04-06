@@ -11,7 +11,7 @@ import SkSourcesContainerDesktop from '../shared/skSourcesContainerDesktop';
 import SkButtonDesktop from '../shared/skButtonDesktop';
 import { nextAvailableNumber, prevAvailableNumber, randomNumberInRangeExcept } from '../../lib/auxiliary';
 import classes from './gardenSongPageDesktop.module.scss';
-import { prepareGardenSongsDropdownItems, prepareGardenSongsTranslatorsDropdownItems } from '../../lib/pagesContent/gardenSongLogic';
+import { prepareGardenSongsDropdownItems, prepareGardenSongsTranslatorsDropdownItems } from '../../lib/staticProps/gardenSongLogic';
 
 export default function GardenSongPageDesktop({ 
   allSongsMetadata,

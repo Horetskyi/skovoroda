@@ -1,6 +1,6 @@
 import { Center, Container, Space, Text } from "@mantine/core";
-import { copyrightContent } from "../lib/pagesContent/copyrightContent";
-import { getCopyrightPageProps } from "../lib/pagesContent/copyrightStatic";
+import { copyrightContent } from "../lib/staticProps/copyrightContent";
+import { getCopyrightPageProps } from "../lib/staticProps/copyrightStatic";
 import SkH1Mobile from "../components/shared/skH1Mobile";
 import SkColoredContainerMobile from "../components/shared/skColoredContainerMobile";
 

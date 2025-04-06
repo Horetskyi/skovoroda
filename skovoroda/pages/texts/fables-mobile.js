@@ -2,12 +2,12 @@ import { Container, List, Space, Spoiler, Text } from "@mantine/core";
 import SkH1Mobile from "../../components/shared/skH1Mobile";
 import { SkovorodaFablesPath, getFableLinkTitle, pathJoin } from "../../lib/skovorodaPath";
 import SkTextLink from "../../components/shared/skTextLink";
-import { prepareFables } from "../../lib/pagesContent/fablesLogic";
-import { getFablesPageProps } from "../../lib/pagesContent/fablesStatic";
+import { prepareFables } from "../../lib/staticProps/fablesLogic";
+import { getFablesPageProps } from "../../lib/staticProps/fablesStatic";
 import SkColoredContainerMobile from "../../components/shared/skColoredContainerMobile";
 import SkH2Mobile from "../../components/shared/skH2Mobile";
 import SkTextContentBlockDesktop from "../../components/shared/skTextContentBlockDesktop";
-import { fablesPageContent } from "../../lib/pagesContent/fablesContent";
+import { fablesPageContent } from "../../lib/staticProps/fablesContent";
 import classes from './fables-mobile.module.scss';
 
 export default function FablesPage({ allFables, fablesTopContent, allSources }) {

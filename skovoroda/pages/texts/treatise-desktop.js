@@ -6,8 +6,8 @@ import SkTextContentBlockDesktop from '../../components/shared/skTextContentBloc
 import SkH2Desktop from '../../components/shared/skH2Desktop';
 import SkColoredContainerDesktop from '../../components/shared/skColoredContainerDesktop';
 import SkNote from '../../components/shared/skNote';
-import { getTreatisesPageProps } from '../../lib/pagesContent/trearisesStatic';
-import { trearisesContent } from '../../lib/pagesContent/treatisesContent';
+import { getTreatisesPageProps } from '../../lib/staticProps/trearisesStatic';
+import { trearisesContent } from '../../lib/staticProps/treatisesContent';
 import { IconChevronRight, IconSearch } from '@tabler/icons';
 import classes from './treatise-desktop.module.scss';
 import useTreatiseFilter from '../../hooks/useTreatiseFilter';

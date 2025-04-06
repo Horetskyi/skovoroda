@@ -1,6 +1,6 @@
 import { Text } from '@mantine/core';
 import SkH1Desktop from '../../components/shared/skH1Desktop';
-import { getParablesPageProps } from '../../lib/pagesContent/parablesStatic';
+import { getParablesPageProps } from '../../lib/staticProps/parablesStatic';
 
 export default function SkParablesPageDesktop({ parables }) {
 

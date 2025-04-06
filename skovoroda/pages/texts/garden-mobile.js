@@ -1,7 +1,7 @@
 import { Center, List, Space } from "@mantine/core";
 import { pathJoinWithoutEndSlash, SkovorodaGardenPath } from "../../lib/skovorodaPath";
 import SkTextLink from "../../components/shared/skTextLink";
-import { getGardenPageProps } from "../../lib/pagesContent/gardenStatic";
+import { getGardenPageProps } from "../../lib/staticProps/gardenStatic";
 import SkColoredContainerMobile from "../../components/shared/skColoredContainerMobile";
 import SkH1Mobile from "../../components/shared/skH1Mobile";
 import SkImage from "../../components/shared/skImage";

@@ -7,7 +7,7 @@ import SkH2Desktop from '../shared/skH2Desktop';
 import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
 import { nextAvailableNumber, prevAvailableNumber, randomNumberInRangeExcept } from '../../lib/auxiliary';
 import classes from './gardenSongPageMobile.module.scss';
-import { prepareGardenSongsDropdownItems, prepareGardenSongsTranslatorsDropdownItems } from '../../lib/pagesContent/gardenSongLogic';
+import { prepareGardenSongsDropdownItems, prepareGardenSongsTranslatorsDropdownItems } from '../../lib/staticProps/gardenSongLogic';
 import SkCardWithTwoSelectorsMobileV2 from '../shared/skCardWithTwoSelectorsMobileV2';
 import SkButtonMobile from '../shared/skButtonMobile';
 import SkH1Mobile from '../shared/skH1Mobile';

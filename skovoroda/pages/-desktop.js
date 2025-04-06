@@ -2,7 +2,7 @@ import { Box, Flex, Space, Text, Title } from '@mantine/core';
 import { getTreatisePath, SkovorodaGardenPath, SkovorodaTreatisePath } from '../lib/skovorodaPath';
 import SkColoredContainerDesktop from '../components/shared/skColoredContainerDesktop';
 import SkTextLink from '../components/shared/skTextLink';
-import { getHomePageProps } from '../lib/pagesContent/home';
+import { getHomePageProps } from '../lib/staticProps/home';
 import classes from './destop.module.scss';
 import SkImage from '../components/shared/skImage';
 import Link from 'next/link';

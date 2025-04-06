@@ -4,7 +4,7 @@ import SkColoredContainerMobile from "../components/shared/skColoredContainerMob
 import SkTextLink from "../components/shared/skTextLink";
 import classes from "./mobile.module.scss";
 import { getAdjustedHeight } from "../components/functions/imageFunctions";
-import { getHomePageProps } from "../lib/pagesContent/home";
+import { getHomePageProps } from "../lib/staticProps/home";
 import { getTreatisePath, SkovorodaGardenPath, SkovorodaTreatisePath } from "../lib/skovorodaPath";
 import ListItemSeedSvg from '../components/svgs/listItemSeed.svg'
 import SkNote from "../components/shared/skNote";

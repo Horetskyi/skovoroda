@@ -16,9 +16,14 @@
 }
 
 .button {
-  background: #fafafa;
+  background-color: #fafafa;
   box-shadow: inset 4px 4px 8px -2px #ebebeb, inset -4px -4px 8px #ffffff, 0 4px 8px -2px #dedede;
-  transition: all 0.2s ease;
+  transition: all 0.5s ease;
+  border: 0.5px solid black !important;
+
+  &:focus, &:active {
+    border: 0.5px solid #5050A1 !important;
+  }
 
   &:hover {
     background-color: #e7eaf7;

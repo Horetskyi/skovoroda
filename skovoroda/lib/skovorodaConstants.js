@@ -53,5 +53,6 @@ export const fableSelectedPageKey = { pageKey: "FableSelected", parent: fablesPa
 export const gardenPageKey = { pageKey: "Garden", parent: textsPageKey };
 export const gardenSelectedPageKey = { pageKey: "GardenSelected", parent: gardenPageKey };
 export const lettersPageKey = { pageKey: "Letters", parent: homePageKey };
+export const articlesPageKey = { pageKey: "Articles", parent: homePageKey };
 export const lettersFromPageKey = { pageKey: "LettersFrom", parent: lettersPageKey };
 export const lettersToPageKey = { pageKey: "LettersTo", parent: lettersPageKey };

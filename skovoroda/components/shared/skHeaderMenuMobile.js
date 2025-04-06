@@ -65,7 +65,6 @@ export default function SkHeaderMenuMobile() {
                   </Link>
                 })}
               </Stack>
-              
             </Popover.Dropdown>
           </Popover>
         </nav>

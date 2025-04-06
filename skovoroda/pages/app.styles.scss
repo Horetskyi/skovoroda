@@ -61,11 +61,18 @@ h1, h2, h3, h4, h5, h6, .headerFont {
 .linkWithoutDecoration {
   text-decoration: none;
   transition: color 0.2s ease-in-out;
+  cursor: pointer;
 
   &:hover {
     color: var(--mantine-color-blue-7);
     text-decoration: underline;
   }
+}
+.activeColor {
+  color: var(--mantine-color-blue-7) !important;
+}
+.grayMenuColor {
+  color: #8C8C8C !important;
 }
 
 html,

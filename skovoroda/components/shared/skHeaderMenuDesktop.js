@@ -1,14 +1,26 @@
-import { Button, Container, Flex, Text } from "@mantine/core";
+import { Box, Button, Container, Flex, Group, Popover, Stack, Text } from "@mantine/core";
 import SkSkovorodaLogo from "./skSkovorodaLogo3.svg";
 import SkDoveLogo from "./skDoveLogo3.svg";
 import Link from "next/link";
-import { SkovorodaBioPath, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaTextsPath, SkovorodaTreatisePath, getLinkTitle } from "../../lib/skovorodaPath";
+import { SkovorodaBioPath, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaReadsPath, SkovorodaResourcesPath, SkovorodaTextsPath, SkovorodaTreatisePath, getLinkTitle, pathJoin } from "../../lib/skovorodaPath";
 import { SkovorodaConstants } from "../../lib/skovorodaConstants";
 import classes from './skHeaderMenuDesktop.module.scss';
 import HeaderBlockSvg from "./../svgs/headerBlock.svg";
+import { useState } from "react";
+import { IconChevronDown, IconChevronUp } from "@tabler/icons";
 
 export default function SkHeaderMenuDesktop() {
   
+  const [openedResources, setOpenedResources] = useState(false);
+  const resourcesLinks = [
+    {
+      href: pathJoin(SkovorodaResourcesPath, 'articles'),
+      text: "Статті",
+      linkTitle: 'Статті про Григорія Сковороду',
+    }
+  ];
+  
+
   return <header>
 
     <div className={classes.svgHeaderBlockContainer}>
@@ -47,6 +59,34 @@ export default function SkHeaderMenuDesktop() {
             {LinkButton(SkovorodaTreatisePath, "Трактати", classes)}
             {LinkButton(SkovorodaGardenPath, "Сад Пісень", classes)}
             {LinkButton(SkovorodaFablesPath, "Байки", classes)}
+
+            <Popover key="resources" shadow="md" width={200} position="bottom-end" 
+              opened={openedResources} 
+              onChange={setOpenedResources} 
+              keepMounted={true} 
+              withinPortal={false}
+              classNames={{
+                dropdown: classes.menuPopoverDropdown
+              }}>
+              <Popover.Target>
+                <Group key={"resources-box"} className={`linkWithoutDecoration ${classes.buttonText} ${(openedResources ? ' grayMenuColor' : '')}`} onClick={() => setOpenedResources(o => !o)}>
+                  <Text className={`headerFont`}>Ресурси</Text>
+                  {!openedResources 
+                    ? <IconChevronDown className={classes.menuIcon} width={16} height={16} size={16} /> 
+                    : <IconChevronUp className={classes.menuIcon} width={16} height={16} size={16} /> }
+                </Group>
+              </Popover.Target>
+              <Popover.Dropdown >
+                <Stack spacing={0}>
+                  {resourcesLinks.map(link => {
+                    return <Link key={link.href} href={link.href} title={link.linkTitle} className={`linkWithoutDecoration ${classes.buttonText}`}>
+                      {link.text}
+                    </Link>
+                  })}
+                </Stack>
+              </Popover.Dropdown>
+            </Popover>
+
           </Flex>
         </nav>
       

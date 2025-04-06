@@ -66,3 +66,15 @@
   stroke: #636363;
   filter: drop-shadow(2px 3px 8px rgba(182, 193, 226, 0.05));
 }
+
+.menuPopoverDropdown {
+  border-radius: 0;
+  border: 1px solid black;
+  box-shadow: 2px 2px 4px 2px #e4e4e45c;
+  margin-top: 12px;
+  padding-top: 24px;
+}
+.menuIcon {
+  display: inline-block;
+  margin-left: -12px;
+}

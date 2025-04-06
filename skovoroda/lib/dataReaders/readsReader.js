@@ -4,8 +4,10 @@ import { fixText } from "./auxiliary";
 import { parseFileContent } from "../data/utils/readingTextsUtils";
 import { readAllTreatises } from "./treatisesReader";
 import { SkovorodaSourcesArray } from "../data/skovorodaSources";
-import { pathJoin, SkovorodaTreatisePath } from "../skovorodaPath";
+import { pathJoin, SkovorodaSourcePath, SkovorodaTreatisePath } from "../skovorodaPath";
 import { SkImagesArray } from "../data/images/skImages";
+import { applyNotesV4, readFileSyncOrDefault } from "./dataReaderHelper";
+import { SkAuthors } from "../data/skAuthors";
 
 export function readAllReads(options) {
 
@@ -26,7 +28,7 @@ export function readAllReads(options) {
       metadataFileContent = fixText(metadataFileContent);
       const metadata = JSON.parse(metadataFileContent);
       
-      // SPECIAL {
+      // SOURCES {
       if (metadata.sourceTreatiseUrlId) {
         metadata.treatiseTitle = readAllTreatises()
           .find(t => t.urlId === metadata.sourceTreatiseUrlId)
@@ -37,8 +39,17 @@ export function readAllReads(options) {
           shortName: metadata.treatiseTitle,
           sourceType: "treatise",
         }];
+      } else if (metadata.sourceId) {
+        metadata.source = SkovorodaSourcesArray.find(source => source.devNumber === metadata.sourceId);
+        if (metadata.source) {
+          metadata.relatedSources = [{
+            href: pathJoin(SkovorodaSourcePath, metadata.source.id),
+            shortName: metadata.source.shortTitle,
+            sourceType: "source",
+          }];
+        }
       }
-      // SPECIAL }
+      // SOURCES }
 
       if (!isExcludeContent) {
         // File 2. "vstupni_dveri_do_khrystyianskoi_dobronravnosti.txt"
@@ -49,13 +60,25 @@ export function readAllReads(options) {
         }
         const introContent = txtContentString ? parseFileContent(txtContentString) : null;
         metadata.content = introContent;
+        
+        applyNotesV4(metadata, jsonFilePath);
       }
 
-      // Image
+      // Author {
+      if (metadata.authorId) {
+        const author = SkAuthors.has(metadata.authorId) ? SkAuthors.get(metadata.authorId) : null;
+        if (author) {
+          metadata.author = author;
+        }
+      } 
+
+      // Image {
       const image = SkImagesArray.find(image => image.type === 'read' && image.urlId === metadata.urlId);
       if (image) {
         metadata.image = image;
       }
+      // Image }
+
       return metadata;
     })
     .filter(item => item);

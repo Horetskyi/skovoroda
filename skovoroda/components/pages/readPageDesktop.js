@@ -1,30 +1,25 @@
-import { Container, Space } from "@mantine/core";
+import { Container } from "@mantine/core";
 import SkH1Desktop from "../shared/skH1Desktop";
 import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
 import SkImage from "../shared/skImage";
 import classes from "./readPageDesktop.module.scss";
-import SkReadSource from "./details/skReadSource";
-import { getBookSourceParam, getIllustrationSourceParam } from "./details/pureFunctions";
+import { getAggregatedSourcesParams } from "./details/pureFunctions";
 import SkSourcesContainerDesktop from "../shared/skSourcesContainerDesktop";
 import SkRelatedTags from "../shared/skRelatedTags";
 import { adjustImageHeight } from "../functions/imageFunctions";
+import NotesDesktop from "./details/notesDesktop";
+import DownloadsDesktop from "./details/downloadsDesktop";
+import SkReadSkovorodaSource from "./details/skReadSkovorodaSource";
+import SkAuthorDesktop from "./details/skAuthorDesktop";
 
 export default function ReadPageDesktop({ selectedRead }) {
 
-  const sourceGui = SkReadSource(selectedRead);
   adjustImageHeight(selectedRead.image, 650);
-
-  const sourcesParams = [
-    getBookSourceParam(selectedRead.source)
-  ];
-  if (selectedRead.image) {
-    sourcesParams.push(getIllustrationSourceParam(selectedRead.image));
-  }
-
   return <>
-    <Container py="lg">
-      <SkH1Desktop text={selectedRead.title} /> 
-      <Space h="lg" />
+    <SkH1Desktop text={selectedRead.title} /> 
+    <Container>
+
+      <DownloadsDesktop fileNames={selectedRead.fileNames} />
 
       <div className={classes.textContainer}>
 
@@ -43,17 +38,12 @@ export default function ReadPageDesktop({ selectedRead }) {
         
       </div>
 
-      <Space h="md"/>
-
+      <NotesDesktop notes={selectedRead.notes} />
       <SkRelatedTags {...selectedRead} />
-
-      {sourceGui}
+      <SkReadSkovorodaSource {...selectedRead} />
+      <SkAuthorDesktop author={selectedRead.author} />
 
     </Container>
-
-    <SkSourcesContainerDesktop sources={sourcesParams} />
-
-    <Space h="xl"/>
-  
+    <SkSourcesContainerDesktop sources={getAggregatedSourcesParams(selectedRead)} includeTextValidityWarning={true} />
   </>;
 }

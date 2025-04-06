@@ -14,7 +14,7 @@ export default function SkDownloadButtonDesktop({ fileName }) {
       variant="filled"
       w={260}
       h={50}
-      color="indigo.1"
+      color="blue.0"
       className={`normalContentText normalContentText_withoutIndent ${classes.button}`}
       classNames={{
         section: classes.iconSection

@@ -6,6 +6,7 @@ export const SkovorodaQuotesPath = "/quotes/";
 export const SkovorodaSymbolsPath = "/symbols/";
 export const SkovorodaUtils1Path = "/utils1";
 export const SkovorodaTextsPath = "/texts/";
+export const SkovorodaSourcePath = "/source/";
 export const SkovorodaCopyrightPath = "/copyright/";
 export const SkovorodaReadsPath = pathJoin(SkovorodaTextsPath, "/reads/");
 export const SkovorodaTreatisePath = pathJoin(SkovorodaTextsPath, "/treatise/");

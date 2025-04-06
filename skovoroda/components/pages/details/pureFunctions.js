@@ -22,3 +22,17 @@ export function getIllustrationSourceParam(image) {
     linkNewTab: true,
   }
 } 
+
+// SOURCE PARAMS
+export function getAggregatedSourcesParams(page) {
+  if (!page) {
+    return null;
+  }
+  const sourcesParams = [
+    getBookSourceParam(page.source)
+  ];
+  if (page.image) {
+    sourcesParams.push(getIllustrationSourceParam(page.image));
+  }
+  return sourcesParams;
+}

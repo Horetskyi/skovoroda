@@ -3,7 +3,7 @@ import path from "path";
 import { fixText } from "./auxiliary";
 import { parseFileContent } from "../data/utils/readingTextsUtils";
 import { SkImagesArray } from "../data/images/skImages";
-import readFileSyncOrDefault from "./readFileSyncOrDefault";
+import { readFileSyncOrDefault } from "./dataReaderHelper";
 
 export function readAllTreatises(options) {
 

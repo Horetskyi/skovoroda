@@ -16,7 +16,12 @@ export default function SkSourceBlockDesktop(params) {
 
   return <>
     <div className={classes.rowContainer}>
-      <SkImage imageUrl={params.image.imageUrl} width={120} height={height} shadow={"md"} alt={params.image.alt} title={params.image.title} />
+
+      { (params.image && params.image.imageUrl)
+        ? <SkImage imageUrl={params.image.imageUrl} width={120} height={height} shadow={"md"} alt={params.image.alt} title={params.image.title} />
+        : null }
+      
+      
       <Stack pl={"md"} gap={"2px"}>
         <p className={paragraphClassName}>{params.sourceType}:</p>
 

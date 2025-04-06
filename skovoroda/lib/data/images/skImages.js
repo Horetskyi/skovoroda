@@ -1,4 +1,3 @@
-const standardFableOlenkaAltAndTitle = "Ілюстрація до байки від Олени Лещенко";
 
 // Important
 export const SkImageAuthors = new Map([

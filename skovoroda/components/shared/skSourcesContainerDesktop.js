@@ -22,6 +22,7 @@ export default function SkSourcesContainerDesktop({ sources, includeTextValidity
         </div>
       })}
       {includeTextValidityWarning ? <Text mt="lg" className='normalContentText'>{commonContent.textValidityWarning}</Text> : null}
+      <Space h="lg"/>
     </SkColoredContainerDesktop>
   </>
 }

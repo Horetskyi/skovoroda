@@ -1,17 +1,40 @@
 .link {
+  text-align: center;
+
   span {
-    color: black;
+    color: #333;
   }
 }
-.iconSection {
-  color: black !important;
-  vertical-align: middle;
 
-  svg { 
+.iconSection {
+  svg {
     stroke-width: 1px;
     margin-top: -1px;
+    fill: #e3ecff;
+    stroke: #757595;
   }
 }
+
 .button {
-  box-shadow: var(--mantine-shadow-xs);
+  background: #fafafa;
+  box-shadow: inset 4px 4px 8px -2px #ebebeb, inset -4px -4px 8px #ffffff, 0 4px 8px -2px #dedede;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #e7eaf7;
+    box-shadow:
+      inset 4px 4px 8px -2px #e7eaf7, 
+      inset -4px -4px 8px #e7eaf7,
+      0 6px 10px 0px #dedede;
+  }
+
+  span {
+    color: #5050A1;
+  }
+
+  strong {
+    font-weight: 600;
+    color: #5050a1;
+    text-transform: lowercase;
+  }
 }

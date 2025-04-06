@@ -4,26 +4,18 @@ import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
 import SkImage from "../shared/skImage";
 import SkRelatedTags from "../shared/skRelatedTags";
 import SkSourcesContainerMobile from "../shared/skSourcesContainerMobile";
-import SkReadSource from "./details/skReadSource";
-import { getBookSourceParam, getIllustrationSourceParam } from "./details/pureFunctions";
+import SkReadSkovorodaSource from "./details/skReadSkovorodaSource";
+import { getAggregatedSourcesParams } from "./details/pureFunctions";
+import NotesDesktop from "./details/notesDesktop";
+import DownloadsDesktop from "./details/downloadsDesktop";
+import SkAuthorDesktop from "./details/skAuthorDesktop";
+import SkAuthorMobile from "./details/skAuthorMobile";
 
 export default function ReadPageMobile({ selectedRead }) {
 
-  const sourceGui = SkReadSource(selectedRead);
-  const sourcesParams = [
-    getBookSourceParam(selectedRead.source)
-  ];
-  if (selectedRead.image) {
-    sourcesParams.push(getIllustrationSourceParam(selectedRead.image));
-  }
-
   return (
     <>
-      <Space h="md" />
-      <Container px="md">
-        <SkH1Mobile text={selectedRead.title} />
-      </Container>
-      <Space h="md" />
+      <SkH1Mobile text={selectedRead.title} />
 
       {selectedRead.image ? (
         <>
@@ -45,18 +37,19 @@ export default function ReadPageMobile({ selectedRead }) {
       ) : null}
 
       <Container px={"md"}>
+
+        <DownloadsDesktop fileNames={selectedRead.fileNames} withHeader={false} />
         <SkTextContentBlockDesktop textContent={selectedRead.content} isv2={true} isMobile={true} />
         <Space h="md" />
-      
+        <NotesDesktop notes={selectedRead.notes} />
         <SkRelatedTags {...selectedRead} />
-
-        {sourceGui}
-
+        <SkReadSkovorodaSource {...selectedRead}/>
+        <SkAuthorMobile author={selectedRead.author} />
         <Space h="lg" />
 
       </Container>
 
-      <SkSourcesContainerMobile sources={sourcesParams} />
+      <SkSourcesContainerMobile sources={getAggregatedSourcesParams(selectedRead)} includeTextValidityWarning={true} />
     </>
   );
 }

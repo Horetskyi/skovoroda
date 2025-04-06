@@ -10,6 +10,11 @@ import { readableFontClassName } from "../functions/robotoFont";
 
 export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick, ...others}) {
 
+  if (others.isNotes) {
+    others.isv3 = true;
+  }
+  const isSkipEmptyLines = others.isNotes;
+  
   if (textContent && textContent.length && textContent[0].isAllIsList) {
     return <List listStyleType="circle">
       {textContent.map((lineObject, index) => {
@@ -101,7 +106,9 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     
     // Empty line
     if (!text || (!Array.isArray(text) && !text.trim())) {
-      block.push(<p key={block.length} className={classes.emptyLine}></p>);
+      if (!isSkipEmptyLines) {
+        block.push(<p key={block.length} className={classes.emptyLine}></p>);
+      }
       return;
     }
 

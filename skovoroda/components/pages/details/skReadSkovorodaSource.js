@@ -2,7 +2,7 @@ import { Text } from "@mantine/core";
 import SkTextLink from "../../shared/skTextLink";
 import { getTreatisePath } from "../../../lib/skovorodaPath";
 
-export default function SkReadSource({sourceTreatiseUrlId, treatiseTitle, title}) {
+export default function SkReadSkovorodaSource({sourceTreatiseUrlId, treatiseTitle, title}) {
 
   if (sourceTreatiseUrlId && treatiseTitle) {
     

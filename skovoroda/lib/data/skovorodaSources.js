@@ -126,6 +126,20 @@ const skovorodaSources = {
     sourceName: "Валерій Шевчук. Пізнаний і непізнаний Сфінкс: Григорій Сковорода – Видавництво Пульсари 2008",
     isbn: "ISBN 978-966-2171-04-4",
     productionYear: 2008,
+  },
+  vid_baroko_do_postmodern_ushkalov: {
+    devNumber: 32,
+    id: "vid_baroko_do_postmodern_ushkalov",
+    sourceName: "Леонід Ушкалов. Від бароко до постмодерну",
+    isbn: "978-966-465-340-1",
+    productionYear: 2011,
+    bookCoverImage: {
+      imageUrl: '/images/books/vid-baroko-do-postmodernu.webp',
+      alt: 'Леонід Ушкалов. Від бароко до постмодерну',
+      title: 'Леонід Ушкалов. Від бароко до постмодерну',
+      width: 575,
+      height: 800,
+    }
   }
 }
 
@@ -136,7 +150,7 @@ sourcesArray.forEach(source => {
   if (!source.sourceFullName) {
     source.sourceFullName = source.sourceName;
   }
-  if (source.bookCoverImageSrc) {
+  if (!source.bookCoverImage ?? source.bookCoverImageSrc) {
     source.bookCoverImage = {
       imageUrl: source.bookCoverImageSrc,
       alt: source.sourceFullName,

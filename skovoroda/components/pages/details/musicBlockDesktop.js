@@ -14,7 +14,7 @@ export function MusicBlockDesktop({music, title}) {
       {music.map((m, index) => {
         const embedUrl = m.url.replace('watch?v=', 'embed/').split('&')[0]+ '?rel=0&modestbranding=1'; // Clean embed URL
         return <Box key={index} mt="lg" mb="lg">
-          <Title order={3} ta={"left"}>{m.author}</Title>
+          <Title order={3} ta={"left"} mb="md" fw={600}>{m.author}</Title>
           <Box className={classes.videoWrapper}>
             <iframe
               src={embedUrl}

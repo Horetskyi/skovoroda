@@ -25,10 +25,7 @@ export default function AboutUsPage(props) {
   }
 
   return <>
-    <Space h={"md"}/>
-    <Center>
-      <SkH1Mobile text={aboutUsContent.title}/>
-    </Center>
+    <SkH1Mobile text={aboutUsContent.title}/>
     <SkColoredContainerMobile>
       <Container px={"md"}>
         <SkTextContentBlockDesktop textContent={props.parsedContent} isv2={true} isMobile={true} />

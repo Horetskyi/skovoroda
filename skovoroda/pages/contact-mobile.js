@@ -4,7 +4,6 @@ import { getContactPageProps } from "../lib/staticProps/contactStatic";
 
 export default function ContactPage(props) {
   return <>
-    <Space h={"md"}/>
     <SkH1Mobile text="Контакти" />
     <Container px={"md"}>
       <p className="normalContentText normalContentText_withoutIndent">

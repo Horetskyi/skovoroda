@@ -82,7 +82,7 @@ export default function SkImage({
 
   const decoding = priority ? "sync" : "async";
 
-  return <div className={className} style={styleObj}>
+  return <div className={className} style={styleObj} onClick={onClick}>
     <Image 
       key={imageUrl} 
       src={imageUrl} 

@@ -71,8 +71,8 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
   }
 
   return <>
+    <SkH1Desktop text={preferedTitle} />
     <SkColoredContainerDesktop>
-      <SkH1Desktop text={preferedTitle} mb="lg" mt="sm" />
       
       <SkPageNavMenu links={links} isDesktop={true}/>
 

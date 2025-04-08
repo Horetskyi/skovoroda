@@ -5,6 +5,7 @@ import { SkovorodaLettersFrom, SkovorodaLettersTo } from '../lib/data/skovorodaL
 import { lettersPageKey } from '../lib/skovorodaConstants';
 import { pathJoin, SkovorodaLettersFromPath } from '../lib/skovorodaPath';
 import classes from './letters-desktop.module.scss';
+import SkH1Desktop from '../components/shared/skH1Desktop';
 
 export default function SkovorodaLettersPageDesktop({ allLettersFrom }) {
 
@@ -46,28 +47,28 @@ export default function SkovorodaLettersPageDesktop({ allLettersFrom }) {
     </tr>
   });
 
-  return <Container>
-    <Title order={1} mb="md">Григорій Савич Сковорода - Листи</Title>
-    <Title order={2} mb="md">Листи від Сковороди</Title>
-
-    <Table withBorder withColumnBorders className={classes.table} fontSize="md">
-      <thead>
-        <tr>
-          <th>Отримувач</th>
-          <th>Лист №</th>
-          {translatorNamesArray.map((value, index) => {
-            if (value == "Оригінал") {
-              return <th key={index}>{value}</th>
-            }
-            return <th key={index}><Text>Переклад:</Text><Text>{value}</Text></th>
-          })}
-        </tr>
-      </thead>
-      <tbody>{tableFromRows}</tbody>
-    </Table>
-
-    <Title order={2} mb="md">Листи до Сковороди</Title>
-  </Container>
+  return <>
+    <SkH1Desktop text="Григорій Савич Сковорода - Листи" />
+    <Container>
+      <Title order={2} mb="md">Листи від Сковороди</Title>
+      <Table withBorder withColumnBorders className={classes.table} fontSize="md">
+        <thead>
+          <tr>
+            <th>Отримувач</th>
+            <th>Лист №</th>
+            {translatorNamesArray.map((value, index) => {
+              if (value == "Оригінал") {
+                return <th key={index}>{value}</th>
+              }
+              return <th key={index}><Text>Переклад:</Text><Text>{value}</Text></th>
+            })}
+          </tr>
+        </thead>
+        <tbody>{tableFromRows}</tbody>
+      </Table>
+      <Title order={2} mb="md">Листи до Сковороди</Title>
+    </Container>
+  </>
 }
 
 export async function getStaticProps(params) {

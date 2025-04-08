@@ -8,7 +8,7 @@ import SkColoredContainerDesktop from '../../components/shared/skColoredContaine
 import SkNote from '../../components/shared/skNote';
 import { getTreatisesPageProps } from '../../lib/staticProps/trearisesStatic';
 import { trearisesContent } from '../../lib/staticProps/treatisesContent';
-import { IconChevronRight, IconSearch } from '@tabler/icons';
+import { IconSearch } from '@tabler/icons';
 import classes from './treatise-desktop.module.scss';
 import useTreatiseFilter from '../../hooks/useTreatiseFilter';
 
@@ -24,7 +24,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
 
   return <>
 
-    <SkH1Desktop text={trearisesContent.h1} mt="xl" />
+    <SkH1Desktop text={trearisesContent.h1} />
 
     {/* Search and Filters*/}
     <SkColoredContainerDesktop>

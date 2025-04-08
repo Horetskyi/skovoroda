@@ -47,6 +47,9 @@ export default function SkHeaderMenuDesktop() {
         {SkovorodaConstants.isProduction ? null : LinkButton(SkovorodaBioPath, "Біографія", classes)}
         {SkovorodaConstants.isProduction ? null : LinkButton(SkovorodaTextsPath, "Твори", classes)}
         
+        
+        {/* TODO: RESPONSIVE */}
+  
         <nav>
           <Flex 
             gap={40}
@@ -77,7 +80,7 @@ export default function SkHeaderMenuDesktop() {
                 </Group>
               </Popover.Target>
               <Popover.Dropdown >
-                <Stack spacing={0}>
+                <Stack spacing={0} onClick={() => setOpenedResources(o => !o)}>
                   {resourcesLinks.map(link => {
                     return <Link key={link.href} href={link.href} title={link.linkTitle} className={`linkWithoutDecoration ${classes.buttonText}`}>
                       {link.text}

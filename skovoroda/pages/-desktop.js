@@ -111,7 +111,7 @@ export default function HomePageDesktop({sourcesTextContent}) {
         </Text>
 
         <Flex className={classes.flexContainer}>
-          <Box w={590}>
+          <Box className={classes.listContainer}>
             {ListH2("Філософ")}
             {ListItem(<>Застосовував на практиці найкращі стародавні принципи, такі як: <b>“Пізнай себе”</b>, володій собою, тримайся міри, будь доброчесним, пізнавай Час і Ритм.</>)}
             {ListItem("Написав чимало трактатів, філософських віршів та байок.")}
@@ -153,7 +153,7 @@ export default function HomePageDesktop({sourcesTextContent}) {
               }}
             />
           </Box>
-          <Box w={590}>
+          <Box className={classes.listContainer}>
             {ListH2("Богослов")}
             {ListItem("З самого дитинства співав священні пісні. Вчив, що справжнє щастя тільки в пізнанні Бога, в дієвій Любові.")}
             {ListItem("Багато творів Сковороди мають зерна з Біблії - цитати, над якими розмірковує філософ.")}
@@ -200,7 +200,7 @@ export default function HomePageDesktop({sourcesTextContent}) {
               }}
             />
           </Box>
-          <Box w={590}>
+          <Box className={classes.listContainer}>
             {ListH2("Поет")}
             {ListItem(<><b>Цілого себе навіки присвятив музам.</b>{Note(16, 75)}</>)}
             {ListItem(<>Знаменитий вірш <b>“De libertate”</b></>)}
@@ -212,7 +212,7 @@ export default function HomePageDesktop({sourcesTextContent}) {
         </Flex>
 
         <Flex className={classes.flexContainer}>
-          <Box w={590} mx={"auto"}>
+          <Box className={classes.listContainer} mx={"auto"}>
             {ListH2("Педагог")}
             {ListItem(<>Мав широке коло учнів поза державними установами, і дотепер має багато послідовників.</>)}
             {ListItem(<>Досліджував тему педагогіки у своїй творчості, так в творі <b><SkTextLink text={"“Вдячний Еродій”"} href={getTreatisePath("blahodarnyi_erodii")} onHoverStylesOnly={true} title={"Твір Сковороди про виховання та освіту - Вдячний Еродій"}/></b> лелека має розмову з мавпою Пішек про різницю в навчанні у попугаїв та у Природи. Ідея сродності теж про це, хто до якого навчання схильний.</>)}
@@ -224,7 +224,7 @@ export default function HomePageDesktop({sourcesTextContent}) {
         </Flex>
 
         <Flex className={classes.flexContainer}>
-          <Box w={590}>
+          <Box className={classes.listContainer}>
             {ListH2("Композитор")}
             {ListItem(<>Компонував духовні концерти, із відомих <b>“Відправа на вісім голосів”</b>, наспів духовної пісні <b>“Іже херувими”</b>, “Христос Воскресе”, “Воскресеніє день” та інші.</>)}
             {ListItem(<>Писав поезії та музику до неї: колядку <b>“Ангели, знижайтеся”, “Всякому городу нрав і права”, “Ой ти, пташко жовтобоко”</b> та інші.</>)}

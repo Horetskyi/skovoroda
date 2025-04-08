@@ -145,6 +145,11 @@
 } 
 
 @media screen and (max-width: 1270px) {
+  .flexContainer {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
   .h1 {
     display: inline-block;
     margin-left: 150px;
@@ -186,6 +191,7 @@
   .name2 {
     margin-left: 150px;
     margin-top: 0;
+    display: none;
   }
   .quoteText, .quoteAuthor {
     font-family: 'Arsenal SC';
@@ -195,9 +201,22 @@
     line-height: 155%;
     letter-spacing: 0.03em;
   }
+  .quoteText {
+    width: auto;
+  }
   .quoteSection {
     width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
+  .quoteAuthor {
+    margin-left: -60px;
+  }
+  .quoteMarkClose {
+    right: 0;
+    position: absolute;
+    bottom: 0;
+  } 
 }
 @media screen and (max-width: 1000px) {
   .h1 {
@@ -222,5 +241,26 @@
   .imageSection {
     margin-left: auto;
     margin-right: auto;
+    width: 60%;
+    div {
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+    }
+    img {
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+    }
+  }
+}
+
+.listContainer {
+  width: 590px;
+}
+@media screen and (max-width: 750px) {
+  .listContainer {
+    width: auto;
+    padding: 40px;
   }
 }

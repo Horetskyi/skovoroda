@@ -27,15 +27,18 @@ export default function ReadPageDesktop({ selectedRead }) {
           <div className={classes.readImage}>
             <SkImage
               fullWidth={false}
+              priority
               image={selectedRead.image}
               width={selectedRead.image.width}
               height={selectedRead.image.height}
             />
+            {/* TODO: MAKE IMAGE CLICKABLE */}
           </div>
         ) : null}
 
-        <SkTextContentBlockDesktop textContent={selectedRead.content} isv2={true} />
-        
+        <div>
+          <SkTextContentBlockDesktop textContent={selectedRead.content} isv2={true} />
+        </div>
       </div>
 
       <NotesDesktop notes={selectedRead.notes} />

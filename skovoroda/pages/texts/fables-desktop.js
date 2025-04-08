@@ -29,8 +29,6 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
   
   return <>
 
-    {/* H1 */}
-    <Space h="xl"/>
     <SkH1Desktop text="Байки Харківські"/>
 
     {/* Fables Links */}

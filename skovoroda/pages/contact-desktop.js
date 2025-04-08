@@ -5,7 +5,7 @@ import { getContactPageProps } from "../lib/staticProps/contactStatic";
 
 export default function ContactPage(props) {
   return <>
-    <SkH1Desktop text="Контакти" mt={"lg"} />
+    <SkH1Desktop text="Контакти" />
     <SkColoredContainerDesktop>
       <Text className="normalContentText normalContentText_withoutIndent">
         <span>Для звязку пишіть в телеграм: </span>

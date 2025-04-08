@@ -29,8 +29,8 @@ export default function SkovorodaGardenPageMobile({ allSongsMetadata, gardenImag
   translatedSongsMetadataArray.sort((a,b) => a.number - b.number)
 
   return <>
+
     {/* H1 */}
-    <Space h="lg"/>
     <SkH1Mobile text="Сад Божественних Пісень"/>
     {/* Сад божественных пѣсней, прозябшій из зерн Священнаго Писанія */}
 

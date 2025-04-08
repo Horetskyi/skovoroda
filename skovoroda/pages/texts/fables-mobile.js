@@ -16,13 +16,11 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
   fablesTopContent.sort((a,b) => fablesPageContent.contentOrder.indexOf(a.key) - fablesPageContent.contentOrder.indexOf(b.key));
 
   return <>
+    <SkH1Mobile text="Байки Харківські"/>
+
     <SkColoredContainerMobile py={0}>
       <Container p={0}>
 
-        {/* H1 */}
-        <Space h="md" />
-        <SkH1Mobile px="md" text="Байки Харківські"/>
-        <Space h="md" />
 
         {/* Fables Links */}
         <List ml="md" type="ordered" className="normalContentText normalContentText_withoutIndent">

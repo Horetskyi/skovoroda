@@ -7,10 +7,7 @@ import { getCopyrightPageProps } from "../lib/staticProps/copyrightStatic";
 export default function CopyrightPage(props) {
 
   return <>
-    <Space h={"lg"}/>
-    <Center>
-      <SkH1Desktop text={copyrightContent.title}/>
-    </Center>
+    <SkH1Desktop text={copyrightContent.title}/>
     <SkColoredContainerDesktop>
       {copyrightContent.content.map(text => {
         return <Text key={text} mb={"md"} className="normalContentText normalContentText_justify">{text}</Text>

@@ -30,10 +30,9 @@ export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenIma
 
   return <>
 
-    {/* H1 */}
-    <Space h="xl"/>
     <SkH1Desktop text="Сад Божественних Пісень"/>
-    {/* Сад божественных пѣсней, прозябшій из зерн Священнаго Писанія */}
+
+    {/* TODO: Сад божественных пѣсней, прозябшій из зерн Священнаго Писанія */}
   
     {/* Garden Links */}
     <SkColoredContainerDesktop>

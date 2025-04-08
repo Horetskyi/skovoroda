@@ -74,8 +74,8 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
   }
 
   return <>
+    <SkH1Mobile text={preferedTitle} />
     <SkColoredContainerMobile px="md">
-      <SkH1Mobile text={preferedTitle} mb="xl" />
 
       {treatise.image ? 
         <div className={classes.imageContainer}>

@@ -163,7 +163,9 @@ export const SkImages = {
   fable18: buildFableImage(18, "/images/fables/Fable 18 - Pes i Kobyla - Skovoroda.webp", 'pryanya', 900, 1260),
   fable19: buildFableImage(19, "/images/fables/Fable 19 - Kazhan i Dvoie Ptasheniat.webp", 'zmiika', 900, 1260),
   fable20: buildFableImage(20, "/images/fables/Fable 20 - Verbliud i Olen - Skovoroda.webp", 'pryanya', 900, 1260),
-  // TODO: Fable 21-29
+  // TODO: Fable 21-27
+  fable28: buildFableImage(28, "/images/fables/Fable 28 - Olenytsia i Kaban.webp", 'pryanya', 900, 1260),
+  // TODO: Fable 29
   fable30: buildFableImage(30, "/images/fables/Fable 30 - Solovei, Zhaivoronok i Drizd - Skovoroda.webp", 'anna_zhuk', 900, 1302),
   
   gardenByOlenka: {

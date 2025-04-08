@@ -1,4 +1,4 @@
-import { Center, Flex, Space, Text } from "@mantine/core";
+import { Flex, Space, Text } from "@mantine/core";
 import { aboutUsContent } from "../lib/staticProps/aboutUsContent";
 import SkImage from "../components/shared/skImage";
 import SkH1Desktop from "../components/shared/skH1Desktop";
@@ -26,10 +26,7 @@ export default function AboutUsPage(props) {
   }
 
   return <>
-    <Space h={"lg"}/>
-    <Center>
-      <SkH1Desktop text={aboutUsContent.title}/>
-    </Center>
+    <SkH1Desktop text={aboutUsContent.title}/>
     <SkColoredContainerDesktop>
       <SkTextContentBlockDesktop textContent={props.parsedContent} isv2={true} />
       <Space h={"lg"}/>

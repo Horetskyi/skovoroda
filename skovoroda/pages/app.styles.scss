@@ -275,3 +275,27 @@ h3 {
   line-height: 36px;
   letter-spacing: 0.04em;
 }
+
+.textWithImageContainer {
+  overflow: hidden; /* Ensures text below doesn’t wrap around */
+}
+.textWithImageContainer__image {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  margin: auto;
+  padding: 24px;
+  margin-left: -24px;
+  margin-top: -24px;
+  margin-right: 24px;
+  overflow: hidden;
+  border-radius: var(--mantine-radius-md);
+  float: left;
+  shape-outside: inset(0px 0px 0px 0px);
+  clip-path: inset(0px 0px 0px 0px);    
+  z-index: 1;
+  position: relative;
+}
+.textWithImageContainer__image_clickable {
+  cursor: pointer;
+}

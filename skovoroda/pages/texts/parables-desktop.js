@@ -6,7 +6,7 @@ export default function SkParablesPageDesktop({ parables }) {
 
   return <>
 
-    <SkH1Desktop text={"Притчі Сковороди"} mt="xl" />
+    <SkH1Desktop text={"Притчі Сковороди"} />
 
     <Text>Сторінка ще не готова</Text>
 

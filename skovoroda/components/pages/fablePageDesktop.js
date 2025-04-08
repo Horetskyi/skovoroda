@@ -96,7 +96,7 @@ export default function FablePageDesktop({
   const nextFableNumber = selectedMetadata.fableNumber + 1;
   const randomFableNumber = randomNumberInRangeExcept(1, 30, selectedMetadata.fableNumber);
 
-  adjustImageHeight(selectedMetadata.fableImage, 360, 520, 720);
+  adjustImageHeight(selectedMetadata.fableImage, 420, 520, 720);
 
   return <>
     
@@ -145,16 +145,18 @@ export default function FablePageDesktop({
       <SkH1Desktop text={h1Text} />
       <Space h="lg"/>
 
-      <div className={classes.fableContainer}>
+      <div className={'textWithImageContainer'}>
 
         {isFableImageExists ? 
-          <div className={classes.fableImage}>
+          <div className={'textWithImageContainer__image textWithImageContainer__image_clickable'}>
             <SkImage 
               image={selectedMetadata.fableImage} 
-              width={260} 
-              height={360} 
+              width={selectedMetadata.fableImage.width} 
+              height={selectedMetadata.fableImage.height} 
+              fullWidth={false}
               priority
               onClick={() => open()}
+              shadow={true}
             />
           </div>
           : null}

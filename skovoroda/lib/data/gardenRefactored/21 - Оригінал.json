@@ -5,5 +5,19 @@
   "sourcePages": "71-73 c.",
   "translatorName": "Оригінал",
   "translatorType": "Original",
-  "name": "Пѣснь 21-я (\"Щастіе, где ты живеш? Горлицы, скажите...\")"
+  "name": "Пѣснь 21-я (\"Щастіе, где ты живеш? Горлицы, скажите...\")",
+  "music": [
+    {
+      "url": "https://www.youtube.com/watch?v=P7TjDZAY2y8&ab_channel=%D0%94%D1%96%D0%BC%D0%9A%D1%83%D0%BB%D1%8C%D1%82%D1%83%D1%80%D0%B8NAZVA",
+      "author": "Гурт NAZVA"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=oC1aXKDOADE&ab_channel=%D0%9B%D1%96%D0%BB%D1%96%D1%8F%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%BE%D0%B2%D0%B0%28LiliiaDanylova%29",
+      "author": "Лілія Данилова"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=V84osra2usE&list=OLAK5uy_nrL2AOn_FhOuBO4AMidNRv9QO8Xpo6TkM&index=9&ab_channel=Release-Topic",
+      "author": "SKOVORODANCE - feat. Галина Печеніжська, Сергій Савенко"
+    }
+  ]
 }

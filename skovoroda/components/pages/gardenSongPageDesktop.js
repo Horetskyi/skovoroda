@@ -12,6 +12,7 @@ import SkButtonDesktop from '../shared/skButtonDesktop';
 import { nextAvailableNumber, prevAvailableNumber, randomNumberInRangeExcept } from '../../lib/auxiliary';
 import classes from './gardenSongPageDesktop.module.scss';
 import { prepareGardenSongsDropdownItems, prepareGardenSongsTranslatorsDropdownItems } from '../../lib/staticProps/gardenSongLogic';
+import { MusicBlockDesktop } from './details/musicBlockDesktop';
 
 export default function GardenSongPageDesktop({ 
   allSongsMetadata,
@@ -121,6 +122,9 @@ export default function GardenSongPageDesktop({
         <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} />
       </> : null}
     </Container>
+
+    <MusicBlockDesktop music={selectedMetadata.music} title={"Музика на текст пісні"} />
+
     <SkSourcesContainerDesktop sources={sourcesParams} includeTextValidityWarning={true} />
   </>;
 }

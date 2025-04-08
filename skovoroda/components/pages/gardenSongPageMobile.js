@@ -12,6 +12,7 @@ import SkCardWithTwoSelectorsMobileV2 from '../shared/skCardWithTwoSelectorsMobi
 import SkButtonMobile from '../shared/skButtonMobile';
 import SkH1Mobile from '../shared/skH1Mobile';
 import SkSourcesContainerMobile from '../shared/skSourcesContainerMobile';
+import { MusicBlockMobile } from './details/musicBlockMobile';
 
 export default function GardenSongPageMobile({ 
   allSongsMetadata,
@@ -122,6 +123,9 @@ export default function GardenSongPageMobile({
         <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} isMobile={true} />
       </> : null}
     </Container>
+
+    <MusicBlockMobile music={selectedMetadata.music} title={"Музика на текст пісні"} />
+
     <SkSourcesContainerMobile sources={sourcesParams} includeTextValidityWarning={true} />
   </>;
 }

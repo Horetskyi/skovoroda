@@ -1,0 +1,36 @@
+import React from 'react';
+import { Box, Container, Space, Title } from '@mantine/core';
+import classes from './videoBlockMobile.module.scss';
+import SkH2Mobile from '../../shared/skH2Mobile';
+
+export function MusicBlockMobile({music, title}) {
+  if (!music || !music.length) {
+    return null;
+  }
+
+  return <>
+    <SkH2Mobile text={title} />
+    <Container>
+      {music.map((m, index) => {
+        const embedUrl = m.url.replace('watch?v=', 'embed/').split('&')[0]+ '?rel=0&modestbranding=1'; // Clean embed URL
+        return <Box key={index} mt="lg" mb="lg">
+          <Title order={3} ta={"left"}>{m.author}</Title>
+          <Box className={classes.videoWrapper}>
+            <iframe
+              src={embedUrl}
+              title={m.author}
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 0,
+              }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </Box>
+        </Box>;
+      })}
+    </Container>
+    <Space h="md" />
+  </>
+}

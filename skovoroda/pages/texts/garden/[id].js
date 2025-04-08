@@ -5,6 +5,7 @@ import { skTranslatorsV2 } from '../../../lib/data/skovorodaTranslators';
 import getSelectedNoteNumbersByContent from '../../../lib/getSelectedNoteNumbersByContent';
 import getStaticPathsCommon from '../../../lib/getStaticPathsCommon';
 import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';
+import { getOriginalSongId } from '../../../lib/sadIds';
 import { gardenSelectedPageKey, SkovorodaConstants } from '../../../lib/skovorodaConstants';
 import dynamic from 'next/dynamic';
 
@@ -48,6 +49,15 @@ export async function getStaticProps({ params }) {
   // Source
   const selectedSongSource = SkovorodaSourcesArray.find(source => source.devNumber == selectedSong.songMetadata.source);
   selectedSong.source = selectedSongSource;
+
+  // Apply original metadata on top of translated song
+  if (selectedSong.songMetadata.translatorId != 0) {
+    const originalSongId = getOriginalSongId(selectedSong.songMetadata.id);
+    const originalSong = SkovorodaGardenRefactored.allSongs.find(s => s.songMetadata.id === originalSongId);
+    if (originalSong.songMetadata.music) {
+      selectedSong.songMetadata.music = originalSong.songMetadata.music;
+    }
+  }
 
   return {
     props: {

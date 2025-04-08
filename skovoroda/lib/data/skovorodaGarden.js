@@ -36,6 +36,7 @@ function readSongs() {
       songContent: content,
     };
   }).filter(x => x);
+
   return allParsedSongs;
 }
 

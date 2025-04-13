@@ -1,42 +1,25 @@
-import { Center, Container, Space, Text } from "@mantine/core";
-import SkImage from "../components/shared/skImage";
+import { Space } from "@mantine/core";
 import SkH1Mobile from "../components/shared/skH1Mobile";
 import SkColoredContainerMobile from "../components/shared/skColoredContainerMobile";
-import { aboutUsContent } from "../lib/staticProps/aboutUsContent";
 import { getAboutUsPageProps } from "../lib/staticProps/aboutUsStatic";
 import SkH2Mobile from "../components/shared/skH2Mobile";
 import SkTextContentBlockDesktop from "../components/shared/skTextContentBlockDesktop";
 
-export default function AboutUsPage(props) {
-
-  function AboutPerson(description, image, color) {
-    return <>
-      <Center>
-        <SkImage image={image} width={120} height={120} shadow={"lg"} priority={true} styleAction={styleObj => {
-          styleObj.borderRadius = "120px";
-        }} optimize={true} />
-      </Center>
-      <Space h="md"/>
-      {description.map((text, index) => {
-        const className = "normalContentText" + ((index == 0) ? " normalContentText_withoutIndent normalContentText_center" : "");
-        return <Text key={text} mb={"sm"} className={className}>{text}</Text>
-      })}
-    </>
-  }
+export default function AboutUsPage({contentStructure}) {
 
   return <>
-    <SkH1Mobile text={aboutUsContent.title}/>
-    <SkColoredContainerMobile>
-      <Container px={"md"}>
-        <SkTextContentBlockDesktop textContent={props.parsedContent} isv2={true} isMobile={true} />
-        <Space h={"md"}/>
-        <SkH2Mobile text={aboutUsContent.title2}/>
-        <Space h={"md"}/>
-        {AboutPerson(aboutUsContent.dimaDescription, aboutUsContent.dimaImage, "gray.0")}
-        <Space h={"md"}/>
-        {AboutPerson(aboutUsContent.olenkaDescription, aboutUsContent.olenkaImage, "indigo.0")}
-      </Container>
-    </SkColoredContainerMobile>
+    {contentStructure.sections.map((section, index) => {
+        
+      const header = section.h1 ? <SkH1Mobile text={section.h1}/> 
+        : section.h2 ? <SkH2Mobile text={section.h2}/> 
+        : null;
+
+      return <SkColoredContainerMobile key={`section-${index}`} px="md">
+        {header}
+        <SkTextContentBlockDesktop textContent={section.content} isv2={true} isMobile={true} />
+        <Space h={"lg"}/>
+      </SkColoredContainerMobile>
+    })}
   </>
 }
 

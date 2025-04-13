@@ -7,6 +7,7 @@ import classes from './skTextContentBlockDesktop.module.scss';
 import SkH2Mobile from "./skH2Mobile";
 import SkH2Desktop from "./skH2Desktop";
 import { readableFontClassName } from "../functions/robotoFont";
+import SkTextLink from "./skTextLink";
 
 export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick, ...others}) {
 
@@ -123,7 +124,18 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
           <SkH2Desktop key={block.length} mt="md" mb="md" text={lineObject.text}/>
         );
       }
-      
+      return;
+    }
+
+    // Handle links
+    if (lineObject.isLink) {
+      block.push(<SkTextLink
+        key={block.length} 
+        text={lineObject.text}
+        href={lineObject.url}
+        isBlank={true}
+        title={lineObject.text}
+      />)
       return;
     }
     
@@ -191,6 +203,18 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
         return <Link key={index} href={"#sourceId"+sourceId} id={htmlSourceId} color="blue.9" className={classes.noteLink + " " + subFormatClassName} title={`Джерело: ${sourceId}}`}>
           {subText.text}
         </Link>;
+      }
+
+      // Handle links
+      if (subText.isLink) {
+        console.log("Link Text2:", subText.url, subText.text);
+        return <SkTextLink
+          key={index}
+          text={subText.text}
+          href={subText.url}
+          isBlank={true}
+          title={subText.text}
+        />;
       }
 
       // Normal Text

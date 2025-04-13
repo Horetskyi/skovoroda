@@ -198,6 +198,45 @@ export function parseFileContent(content) {
       isAllIsList = true;
       return;
     }
+
+    if (lineObject.text.includes("[LINK]")) {
+      const linkRegex = /\[LINK\](.*?)(?:\[LINK_SEPARATOR\](.*?))?\[LINK\]/g;
+      const matches = [...lineObject.text.matchAll(linkRegex)];
+    
+      if (matches.length > 0) {
+        const parts = [];
+        let lastIndex = 0;
+    
+        matches.forEach(match => {
+          const url = match[1];
+          const text = match[2] || url;
+          const startIndex = match.index;
+    
+          // Add text before the link
+          if (startIndex > lastIndex) {
+            const beforeLink = lineObject.text.substring(lastIndex, startIndex);
+            if (beforeLink && beforeLink.length) {
+              parts.push({ text: beforeLink });
+            }
+          }
+    
+          // Add the link
+          parts.push({ text, url, isLink: true });
+    
+          // Update the last index
+          lastIndex = startIndex + match[0].length;
+        });
+    
+        // Add text after the last link
+        const afterLink = lineObject.text.substring(lastIndex);
+        if (afterLink && afterLink.length) {
+          parts.push({ text: afterLink });
+        }
+    
+        // Update lineObject.text with the processed parts
+        lineObject.text = parts;
+      }
+    }
     
     if (lineObject.text.includes(LETTER_NOTE_FORMAT)) {
       const splitByLetterNote = lineObject.text.split(LETTER_NOTE_FORMAT);

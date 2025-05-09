@@ -255,7 +255,7 @@ b.mantine-Text-root {
   font-weight: 700;
 }
 
-h2 {
+h2, .h2-font {
   font-family: 'Amatic SC';
   font-style: normal;
   font-weight: 400;
@@ -298,4 +298,8 @@ h3 {
 }
 .textWithImageContainer__image_clickable {
   cursor: pointer;
+}
+
+.slick-prev, .slick-next {
+  z-index: 1000;
 }

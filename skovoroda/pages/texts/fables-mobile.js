@@ -9,6 +9,7 @@ import SkH2Mobile from "../../components/shared/skH2Mobile";
 import SkTextContentBlockDesktop from "../../components/shared/skTextContentBlockDesktop";
 import { fablesPageContent } from "../../lib/staticProps/fablesContent";
 import classes from './fables-mobile.module.scss';
+import SkFablesCarousel from "../../components/shared/skFablesCarousel";
 
 export default function FablesPage({ allFables, fablesTopContent, allSources }) {
   const fables = prepareFables(allFables);
@@ -21,7 +22,6 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
     <SkColoredContainerMobile py={0}>
       <Container p={0}>
 
-
         {/* Fables Links */}
         <List ml="md" type="ordered" className="normalContentText normalContentText_withoutIndent">
           {fables.map(fable => {
@@ -33,6 +33,13 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
           })}
         </List>
         <Space h="md" />
+      </Container>
+    </SkColoredContainerMobile>
+
+    <SkFablesCarousel allFables={allFables} isMobile={true} />
+
+    <SkColoredContainerMobile py={0}>
+      <Container p={0}>
 
         {/* FAQ */}
         {fablesTopContent.map((group,index) => {

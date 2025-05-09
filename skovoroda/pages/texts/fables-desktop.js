@@ -9,6 +9,7 @@ import { fablesPageContent } from "../../lib/staticProps/fablesContent";
 import SkH2Desktop from "../../components/shared/skH2Desktop";
 import SkTextContentBlockDesktop from "../../components/shared/skTextContentBlockDesktop";
 import classes from './fables-desktop.module.scss';
+import SkFablesCarousel from "../../components/shared/skFablesCarousel";
 
 export default function FablesPage({ allFables, fablesTopContent, allSources }) {
   const fables = prepareFables(allFables);
@@ -36,6 +37,8 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
       {getListOfFables(0,30)}
     </SkColoredContainerDesktop>
 
+    <SkFablesCarousel allFables={allFables} />
+
     {/* FAQ */}
     {fablesTopContent.map((group,index) => {
       function contentBlock(content) {
@@ -45,7 +48,6 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
       const answer1 = group.contents.find(content => content.key === "answer1");
       const answer2 = group.contents.find(content => content.key === "answer2");
       const answer3 = group.contents.find(content => content.key === "answer3");
-      const color = index % 2 === 0 ? "indigo" : "gray";
       return <Container key={group.key} p="0">
         <SkColoredContainerDesktop py="0">
           <Space h="lg"/>

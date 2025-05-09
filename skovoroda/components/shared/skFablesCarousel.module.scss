@@ -1,0 +1,37 @@
+
+.carouselItemContainer {
+  text-align: center;
+}
+.carouselImageContainer {
+  width: min-content;
+  margin: auto;
+}
+.carouselText {
+  display: block;
+  max-width: calc(100% - 60px);
+  margin: auto;
+  margin-top: var(--mantine-spacing-md);
+  // transition: color 1.55s ease;
+}
+.carouselSlickRight {
+  margin-left: 16px;
+}
+.carouselSlickLeft {
+  margin-left: -31px;
+}
+.carouselSlickLeft, .carouselSlickRight {
+  margin-top: -70px;
+  margin-bottom: 100px;
+}
+@media (max-width: 900px) {
+  .carouselSlickRight {
+    margin-left: -92px;
+    margin-top: -94px;
+    margin-bottom: 100px;
+  }
+  .carouselSlickLeft {
+    margin-left: 58px;
+    margin-top: -116px;
+    margin-bottom: 100px;
+  }
+} 

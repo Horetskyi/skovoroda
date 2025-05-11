@@ -156,8 +156,8 @@ export const SkImages = {
   fable11byOlenka: buildFableImage(11, "/images/fables/fable-11-viter-i-filosof.webp", 'olenka'),
   fable12byOlenka: buildFableImage(12, "/images/fables/fable-12-brusok-i-nizh.webp", 'olenka'),
   fable13byOlenka: buildFableImage(13, "/images/fables/fable-13-orel-i-cherepakha.webp", 'olenka'),
-  // TODO: Fable 14. Olenka will do.
-  // TODO: Fable 15
+  // TODO: Fable 14. Сова і Дрізд. В процесі роботи Оленка. 
+  // TODO: Fable 15. Змія і Буфон. В процесі роботи Діана.
   fable16: buildFableImage(16, "/images/fables/Fable 16 - Zhaba - Skovoroda.webp", 'polik', 900, 1260),
   fable17: buildFableImage(17, "/images/fables/Fable 17 - Almaz i Smarahd - Skovoroda.webp", 'sophi', 900, 1260),
   fable18: buildFableImage(18, "/images/fables/Fable 18 - Pes i Kobyla - Skovoroda.webp", 'pryanya', 900, 1260),
@@ -165,13 +165,13 @@ export const SkImages = {
   fable20: buildFableImage(20, "/images/fables/Fable 20 - Verbliud i Olen - Skovoroda.webp", 'pryanya', 900, 1260),
   fable21: buildFableImage(21, "/images/fables/Fable 21 - Zozulya and Kosyk - Skovoroda.webp", 'polik', 900, 1260),
   fable22: buildFableImage(22, "/images/fables/Fable 22 - Dung and Diamond - Skovoroda.webp", 'zmiika', 900, 1260),
-  // TODO: Fable 23
-  // TODO: Fable 24
+  // TODO: Fable 23. Собаки і Вовк. В процесі роботи Змійка.
+  // TODO: Fable 24. Кріт і Рись. В процесі роботи Полік.
   fable25: buildFableImage(25, "/images/fables/Fable 25 - Lion and Monkeys - Skovoroda.webp", 'pryanya', 900, 1260),
   fable26: buildFableImage(26, "/images/fables/Fable 26 - Pike and Cancer - Skovoroda.webp", 'olenka', 900, 1260),
-  // TODO: Fable 27
+  // TODO: Fable 27. Бджола і Шершень. В процесі роботи Пряня.
   fable28: buildFableImage(28, "/images/fables/Fable 28 - Olenytsia i Kaban.webp", 'pryanya', 900, 1260),
-  // TODO: Fable 29. Anna Zhuk in progress
+  // TODO: Fable 29. В процесі роботи Аня Жук.
   fable30: buildFableImage(30, "/images/fables/Fable 30 - Solovei, Zhaivoronok i Drizd - Skovoroda.webp", 'anna_zhuk', 900, 1302),
   
   gardenByOlenka: {

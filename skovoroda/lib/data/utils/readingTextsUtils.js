@@ -1,4 +1,5 @@
 import { fixText } from "../../dataReaders/auxiliary";
+import { getOldUaWordExplanations } from "../skDictionaryOldua";
 import { NOTES_NUMBERS_SYMBOLS_MAP } from "./notesNumbersSymbols";
 
 export const TextLineFormats = [
@@ -42,6 +43,55 @@ const HEADER2_FORMAT = "[H2]";
 function getNotesRegex() { return new RegExp("[¹²³⁴⁵⁶⁷⁸⁹⁰ᵃᵇᵉᵈᵍ]+", 'g'); }
 // original : "\[\d+\s—\s[А-ЯІ]+\.?\s\d+\]|\[\d+\]"
 function getOurSourcesNotesRegex() { return new RegExp("\\[\\d+\\s—\\s[А-ЯІ]+\\.?\\s\\d+\\]|\\[\\d+\\]", 'giu'); }
+
+function textToExplanations(text) {
+  if (!text || !text.length) {
+    return null;
+  }
+  const regex = /[^\s\.,;:!?\(\)\[\]{}"'\-–—«»…]+/gu;
+  let match;
+  const explanationsData = [];
+  while ((match = regex.exec(text)) !== null) {
+    const word = match[0];
+    const index = match.index;
+    const explanations = getOldUaWordExplanations(word);
+    if (explanations && explanations.length) {
+      explanationsData.push({
+        index,
+        length: word.length,
+        explanations
+      });
+    }
+  }
+  return explanationsData;
+}
+
+function transformLineObjectWithOldUaExplanations(lineObject, explanationsData) {
+  if (explanationsData.length == 0) {
+    return;
+  }
+
+  explanationsData.reverse();
+  let text = lineObject.text;
+  const results = [];
+  explanationsData.forEach(exp => {
+    if (results.length != 0) {
+      results.pop();
+    }
+    if (!text) {
+      return;
+    }
+    const beforeNotePart = text.substring(0, exp.index);
+    const notePart = text.substring(exp.index, exp.index + exp.length);
+    const afterNotePart = text.substring(exp.index + exp.length);
+    results.push({ text: afterNotePart });
+    results.push({ text: notePart, explanations: exp.explanations });
+    results.push({ text: beforeNotePart });
+    text = beforeNotePart;
+  });
+  results.reverse();
+  lineObject.text = results;
+}
 
 function transformLineObjectWithOurSourceNotes(lineObject, notesMetadata) {
   if (notesMetadata.length == 0) {
@@ -164,7 +214,7 @@ function removeEmptyLinesAtTheEnd(parsedContent) {
   }
 }
 
-export function parseFileContent(content) {
+export function parseFileContent(content, isOldUaText) {
   
   content = fixText(content);
 
@@ -371,6 +421,29 @@ export function parseFileContent(content) {
       if (notesMetadata.length) {
         transformLineObjectWithNotes(lineObject, notesMetadata);
       } 
+      
+      // --
+      if (isOldUaText && lineObject.text && lineObject.text.length) {
+        if (typeof lineObject.text === 'string') {
+          const explanationsData = textToExplanations(lineObject.text);
+          if (explanationsData.length) {
+            transformLineObjectWithOldUaExplanations(lineObject, explanationsData);
+          }
+        } else if (Array.isArray(lineObject.text)) {
+          lineObject.text = lineObject.text.map(subLineObject => {
+            if (!subLineObject.text || !subLineObject.text.length) {
+              return [subLineObject];
+            }
+            const explanationsData = textToExplanations(subLineObject.text);
+            if (!explanationsData.length) {
+              return [subLineObject];
+            }
+            transformLineObjectWithOldUaExplanations(subLineObject, explanationsData);
+            return subLineObject.text;
+          }).flat();
+        }
+      }
+      // --
     }
 
     if (!isEmptyLine) {

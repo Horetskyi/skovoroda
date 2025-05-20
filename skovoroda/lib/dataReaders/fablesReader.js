@@ -46,13 +46,14 @@ function readAllFablesInDirectory(directoryName) {
       if (!contentString || !contentString.length) {
         return undefined;
       }
-      const content = parseFileContent(contentString);
+      const isOriginal = translator.urlId === "original";
+      const content = parseFileContent(contentString, isOriginal);
 
       const powerContentString = fs.readFileSync(txtPowerFilePath).toString();
       if (!powerContentString || !powerContentString.length) {
         return undefined;
       }
-      const powerContent = parseFileContent(powerContentString);
+      const powerContent = parseFileContent(powerContentString, isOriginal);
 
       return {
         metadata: metadata,

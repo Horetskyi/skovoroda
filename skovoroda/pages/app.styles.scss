@@ -327,10 +327,28 @@ h3 {
     color: #1993ff !important;
     text-decoration: underline;
     text-decoration-style: solid;
-    text-decoration-thickness: 2px;
 
     svg {
       stroke-width: 3px;
     }
   }
+}
+.sk-global-old-ua-text {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 2px;
+  text-shadow: 0 0 4px #e2e2e2;
+  cursor: pointer;
+
+  &:hover {
+    color: #1993ff !important;
+    text-decoration: underline;
+    text-decoration-style: solid;
+  }
+}
+.sk-global-old-ua-text-inner {
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 26px;
 }

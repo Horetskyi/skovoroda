@@ -9,6 +9,7 @@ import SkH2Desktop from "./skH2Desktop";
 import { readableFontClassName } from "../functions/robotoFont";
 import SkTextLink from "./skTextLink";
 import SkBibleText from "./skBibleText";
+import SkOldUaExplainedText from "./skOldUaExplainedText";
 
 export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick, ...others}) {
 
@@ -145,6 +146,13 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
       block.push(newBibleElement(lineObject, block.length));
       return;
     }
+
+    // Handle OldUa Text
+    if (lineObject.explanations) {
+      console.log("OldUaExplanations Text1:", lineObject.explanations, lineObject.text);
+      block.push(newOldUaElement(lineObject, block.length));
+      return;
+    }
     
     // Simple formatting
     if (!Array.isArray(text)) {
@@ -178,7 +186,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
       if (index === 0 && noteNumber) {
         id = (lineObject.isNoteBeginning ? "note" : "noteInText") + getNoteNumberUpperString(noteNumber);
       }
-      const subFormatClassName = subText.format ? formatClasses[subText.format] : "";
+      const subFormatClassName = (subText.format && formatClasses[subText.format]) ? formatClasses[subText.format] : "";
 
       if (noteNumber && !lineObject.isNoteBeginning) {
         const subId = "noteInText" + getNoteNumberUpperString(noteNumber);
@@ -214,7 +222,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 
       // Handle links
       if (subText.isLink) {
-        console.log("Link Text2:", subText.url, subText.text);
+        // console.log("Link Text2:", subText.url, subText.text);
         return <SkTextLink
           key={index}
           text={subText.text}
@@ -226,8 +234,14 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 
       // Handle Bible Text
       if (subText.bibleCode) {
-        console.log("Bible Text2:", subText.bibleCode, subText.text);
+        // console.log("Bible Text2:", subText.bibleCode, subText.text);
         return newBibleElement(subText, index);
+      }
+
+      // Handle OldUa Text
+      if (subText.explanations) {
+        console.log("OldUaExplanations Text2:", subText.explanations, subText.text);
+        return newOldUaElement(subText, index);
       }
 
       // Normal Text
@@ -246,6 +260,10 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     (` ${readableFontClassName} `);
 
   return <div className={allContentClassName}>{block}</div>;
+}
+
+function newOldUaElement(lineObject, key) {
+  return <SkOldUaExplainedText explanations={lineObject.explanations} text={lineObject.text} key={key} />;
 }
 
 function newBibleElement(lineObject, key) {

@@ -196,6 +196,9 @@ $left-num-spacing: 100;
 .formatIndent {
   text-indent: var($tab-size) + "px";
 }
+.formatDefault {
+  font-style: normal;
+}
 
 .noteInNotesBlock {
   position: absolute;

@@ -26,7 +26,16 @@ export default function SkBibleText({ bibleCode, text, key }) {
 
 const bibleBooks = {
   'JHN': 'Євангелія від св. Івана',
+  'MRK': 'Євангелія від св. Марка',
+  'MAT': 'Євангелія від св. Матвія',
+  'ACT': 'Дії святих апостолів',
   'SIR': 'Книга Ісуса, сина Сирахового',
+  '1JN': 'Перше соборне послання св. ап. Івана',
+  '1TI': 'Перше послання до Тимотея',
+  'ROM': 'Послання до Римлян',
+  'GAL': 'Послання до Галатів',
+  'SNG': 'Пісня над піснями',
+  'WIS': 'Книга Премудрості Соломона'
 };
 function bibleCodeToLongText(bibleCode) {
   const parts = bibleCode.split(".");

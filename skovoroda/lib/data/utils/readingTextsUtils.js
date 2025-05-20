@@ -202,7 +202,6 @@ export function parseFileContent(content) {
     if (lineObject.text.includes("[LINK]")) {
       const linkRegex = /\[LINK\](.*?)(?:\[LINK_SEPARATOR\](.*?))?\[LINK\]/g;
       const matches = [...lineObject.text.matchAll(linkRegex)];
-    
       if (matches.length > 0) {
         const parts = [];
         let lastIndex = 0;
@@ -228,6 +227,44 @@ export function parseFileContent(content) {
         });
     
         // Add text after the last link
+        const afterLink = lineObject.text.substring(lastIndex);
+        if (afterLink && afterLink.length) {
+          parts.push({ text: afterLink });
+        }
+    
+        // Update lineObject.text with the processed parts
+        lineObject.text = parts;
+      }
+    }
+
+    if (lineObject.text.includes("[BIBLE]")) {
+      const bibleRegex = /\[BIBLE\](.*?)(?:\[X\](.*?))?\[BIBLE\]/g;
+      const matches = [...lineObject.text.matchAll(bibleRegex)];
+      if (matches.length > 0) {
+        const parts = [];
+        let lastIndex = 0;
+    
+        matches.forEach(match => {
+          const bibleCode = match[1];
+          const text = match[2];
+          const startIndex = match.index;
+    
+          // Add text before
+          if (startIndex > lastIndex) {
+            const beforeLink = lineObject.text.substring(lastIndex, startIndex);
+            if (beforeLink && beforeLink.length) {
+              parts.push({ text: beforeLink });
+            }
+          }
+    
+          // Add the bible text
+          parts.push({ text, bibleCode: bibleCode });
+    
+          // Update the last index
+          lastIndex = startIndex + match[0].length;
+        });
+    
+        // Add text after 
         const afterLink = lineObject.text.substring(lastIndex);
         if (afterLink && afterLink.length) {
           parts.push({ text: afterLink });

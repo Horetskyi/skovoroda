@@ -8,6 +8,7 @@ import SkH2Mobile from "./skH2Mobile";
 import SkH2Desktop from "./skH2Desktop";
 import { readableFontClassName } from "../functions/robotoFont";
 import SkTextLink from "./skTextLink";
+import SkBibleText from "./skBibleText";
 
 export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick, ...others}) {
 
@@ -138,6 +139,12 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
       />)
       return;
     }
+
+    // Handle Bible Text
+    if (lineObject.bibleCode) {
+      block.push(newBibleElement(lineObject, block.length));
+      return;
+    }
     
     // Simple formatting
     if (!Array.isArray(text)) {
@@ -217,6 +224,12 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
         />;
       }
 
+      // Handle Bible Text
+      if (subText.bibleCode) {
+        console.log("Bible Text2:", subText.bibleCode, subText.text);
+        return newBibleElement(subText, index);
+      }
+
       // Normal Text
       return <span key={index} className={subFormatClassName} onClick={onClick}>{subText.text}</span>;
     });
@@ -233,6 +246,10 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     (` ${readableFontClassName} `);
 
   return <div className={allContentClassName}>{block}</div>;
+}
+
+function newBibleElement(lineObject, key) {
+  return <SkBibleText bibleCode={lineObject.bibleCode} text={lineObject.text} key={key} />;
 }
 
 function pushNoteInNotesBlock(block, lineObject, classes, onBlockNoteClick) {

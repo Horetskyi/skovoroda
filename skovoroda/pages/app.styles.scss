@@ -56,7 +56,6 @@ h1, h2, h3, h4, h5, h6, .headerFont {
 }
 .readFont {
   font-family: "Roboto";
-  font-style: normal;
 }
 .linkWithoutDecoration {
   text-decoration: none;
@@ -302,4 +301,36 @@ h3 {
 
 .slick-prev, .slick-next {
   z-index: 1000;
+}
+
+.horizontal-space-sm {
+  display: inline-block;
+  width: 8px;
+  content: '';
+}
+.sk-global-bible-link {
+  color: #1993ff !important;
+  font-size: 18px;
+}
+.sk-global-bible-text {
+  color: #debb04 !important;
+}
+.sk-global-bible-link, .sk-global-bible-text {
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 2px;
+  text-shadow: 0 0 4px #fef7b6;
+  cursor: pointer;
+
+  &:hover {
+    color: #1993ff !important;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 2px;
+
+    svg {
+      stroke-width: 3px;
+    }
+  }
 }

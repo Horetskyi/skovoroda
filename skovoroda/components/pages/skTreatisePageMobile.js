@@ -80,7 +80,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
 
       {treatise.image ? 
         <div className={classes.imageContainer}>
-          <SkImage image={treatise.image} priority={true} gentlyShadow={true} fullWidth={true} />
+          <SkImage image={treatise.image} priority={true} optimize={true} gentlyShadow={true} fullWidth={true} />
         </div>
         : null}
 

@@ -18,7 +18,8 @@ export default function SkImage({
   proportionWidth,
   gentlyShadow,
   fullWidth,
-  fullHeight
+  fullHeight,
+  fullContainerWidth,
 }) {
 
   if (shadow !== false && !gentlyShadow) {
@@ -58,6 +59,12 @@ export default function SkImage({
     styleObj = {
       width: "fit-content",
       height: "100%",
+    };
+  } else if (fullContainerWidth) {
+    styleObj = {
+      width: "100%",
+      height: "fit-content",
+      minWidth: "auto",
     };
   }
 

@@ -5,6 +5,7 @@ const path = require("path");
 // const cv = require("opencv4nodejs");
 
 const darkPixelThreshold = 180; 
+const isScaleEnabled = false;
 
 function makeTransparent(image) {
     return image.scan(0, 0, image.bitmap.width, image.bitmap.height, function (x, y, idx) {
@@ -36,18 +37,23 @@ function processImages() {
                     try {
                         console.log(`✔ Processing file: ${file.path} (${file.contents.length} bytes)`);
                         let image = await Jimp.read(file.path);
-                        console.log("✔ Loaded Image:", image.bitmap.width, "x", image.bitmap.height);
+                        const loadedImageHeight = image.bitmap.height;
+                        console.log("✔ Loaded Image:", image.bitmap.width, "x", loadedImageHeight);
 
                         // Apply transformations
                         image = image.greyscale();
-                        image = scale(image, 0.5);
+                        if (loadedImageHeight > 1400 && isScaleEnabled) {
+                            image = scale(image, 0.5);
+                        }
                         // image = scale(image, 2);
                         image = image.threshold({ max: darkPixelThreshold });
                         image = makeTotalBlack(image); // bolder
                         image = image.gaussian(1); // needed to make image more smooth
                         image = makeTransparent(image);
                         image = makeTotalBlack(image);
-                        image = scale(image, 0.5);
+                        if (loadedImageHeight > 2800 && isScaleEnabled) {
+                            image = scale(image, 0.5);
+                        }
                         // image = image.dilate(0.2);
                         // image = image.resize({w: image.bitmap.width * 2, h: image.bitmap.height * 2}) // Upscale 2x
                         // image = image.contrast(0) // 0.5

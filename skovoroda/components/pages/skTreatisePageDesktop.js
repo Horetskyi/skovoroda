@@ -105,6 +105,17 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
         </Flex>
       </> : null}
 
+      {/* Рукопис */}
+      {/* <SkH2Desktop text="Рукопис" mb="lg" id="autograph" />
+      <SkImage 
+        imageUrl={"/images/86-7-1-2.png"}
+        optimize={false}
+        width={3536}
+        height={4668} 
+        fullContainerWidth={true}
+        priority={false}
+      /> */}
+
       <SkH2Desktop text="Оригінал" mt="xl" mb="lg" id="downloads" />
       {TreatisVersionBlock(original, originalSource)}
       <Space h="md"/>

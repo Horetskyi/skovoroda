@@ -97,6 +97,7 @@ export default function FablePageDesktop({
   const randomFableNumber = randomNumberInRangeExcept(1, 30, selectedMetadata.fableNumber);
 
   adjustImageHeight(selectedMetadata.fableImage, 420, 520, 720);
+  const highlightColor = isFableImageExists ? selectedMetadata.fableImage.highlightColor : null;
 
   return <>
     
@@ -136,13 +137,13 @@ export default function FablePageDesktop({
         }}
         idSuffix="fable"
       />
-      <Group mt={"md"} mx={0} mb={0} grow className={classes.groupOfButtons} w={560} preventGrowOverflow={false}>
+      <Group mt={0} mx={0} mb={0} grow w={392} preventGrowOverflow={false}>
         <SkButtonDesktop text={"<"} onClick={() => selectFableDropdownValue(prevFableNumber)} disabled={prevFableNumber == 0}/>
-        <SkButtonDesktop text={"Байка на щастя"} onClick={() => selectFableDropdownValue(randomFableNumber)}/>
+        <SkButtonDesktop text={"Байка на щастя"} onClick={() => selectFableDropdownValue(randomFableNumber)} color={highlightColor} />
         <SkButtonDesktop text={">"} onClick={() => selectFableDropdownValue(nextFableNumber)} disabled={nextFableNumber == 31}/>
       </Group>
-      <Space h="lg"/>
-      <SkH1Desktop text={h1Text} />
+      <Space h="md"/>
+      <SkH1Desktop text={h1Text} color={highlightColor} />
       <Space h="lg"/>
 
       <div className={'textWithImageContainer'}>

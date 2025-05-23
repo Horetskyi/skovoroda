@@ -1,15 +1,29 @@
 .button {
-  background: var(--mantine-color-indigo-0);
-  color: black;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 23px;
-  letter-spacing: 0.165em;
-  text-align: center;
-  height: 42px;
+  background-color: white;
+  box-shadow: inset 1px 1px 2px -1px #ebebeb, inset -1px -1px 2px #ffffff, 0 1px 2px -1px #dedede;
+  transition: all 0.5s ease;
+  border: 0.5px solid #CED4DA !important;
+  color: #1078d3;
 
-  &:disabled,
-  &[disabled] {
-    background: var(--mantine-color-gray-1);
+  &:focus, &:active {
+    border: 0.5px solid #1078d3 !important;
+  }
+
+  &:hover {
+    background-color: #E3FDFF;
+    box-shadow:
+      inset 4px 4px 8px -2px #E3FDFF, 
+      inset -4px -4px 8px #E3FDFF,
+      0 1px 4px 0px #dedede;
+  }
+
+  // span {
+  //   color: #1078d3;
+  // }
+
+  strong {
+    font-weight: 600;
+    // color: #1078d3;
+    text-transform: lowercase;
   }
 }

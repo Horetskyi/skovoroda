@@ -13,6 +13,8 @@ import SkButtonMobile from '../shared/skButtonMobile';
 import SkH1Mobile from '../shared/skH1Mobile';
 import SkSourcesContainerMobile from '../shared/skSourcesContainerMobile';
 import { MusicBlockMobile } from './details/musicBlockMobile';
+import SkImage from '../shared/skImage';
+import { getIllustrationSourceParam } from './details/pureFunctions';
 
 export default function GardenSongPageMobile({ 
   allSongsMetadata,
@@ -85,6 +87,12 @@ export default function GardenSongPageMobile({
   const nextSongNumber = useMemo(() => nextAvailableNumber(selectedMetadata.number, availableSongNumbers), [selectedMetadata.number, availableSongNumbers]);
   const randomSongNumber = useMemo(() => randomNumberInRangeExcept(1, 30, selectedMetadata.number, availableSongNumbers), [selectedMetadata.number, availableSongNumbers]);
 
+  const isSongImageExists = selectedMetadata.songImage && selectedMetadata.songImage.imageUrl && selectedMetadata.songImage.imageUrl.length > 0;
+  const highlightColor = selectedMetadata.songImage ? selectedMetadata.songImage.highlightColor : null;
+  if (isSongImageExists) {
+    sourcesParams.push(getIllustrationSourceParam(selectedMetadata.songImage));
+  }
+
   return <>
     <Container py="lg">
       <SkCardWithTwoSelectorsMobileV2 
@@ -102,13 +110,26 @@ export default function GardenSongPageMobile({
         }}
         idSuffix="gardensong"
       />
-      <Group mt={"md"} mx={0} mb={0} grow className={classes.groupOfButtons} preventGrowOverflow={false}>
+      <Group w={"100%"} px="md" mt={"md"} mx={0} mb={0} grow className={classes.groupOfButtons} preventGrowOverflow={false}>
         <SkButtonMobile text={"<"} onClick={() => selectSongDropdownValue(prevSongNumber.number)} disabled={prevSongNumber.disabled}/>
-        <SkButtonMobile text={"Пісня на щастя"} onClick={() => selectSongDropdownValue(randomSongNumber)}/>
+        <SkButtonMobile text={"Пісня на щастя"} onClick={() => selectSongDropdownValue(randomSongNumber)} color={highlightColor} />
         <SkButtonMobile text={">"} onClick={() => selectSongDropdownValue(nextSongNumber.number)} disabled={nextSongNumber.disabled}/>
       </Group>
       <Space h="lg"/>
-      <SkH1Mobile text={h1Text} />
+      {selectedMetadata.songImage ? (
+        <div className={classes.songImageContainer}>
+          <SkImage
+            image={selectedMetadata.songImage}
+            width={selectedMetadata.songImage.width}
+            height={selectedMetadata.songImage.height}
+            fullContainerWidthPercent={90}
+            priority={true}
+            optimize={false}
+            shadow={false}
+          />
+        </div>
+      ) : null}
+      <SkH1Mobile text={h1Text} color={highlightColor} />
       <Space h="lg"/>
 
       <div className={classes.songContainer}>

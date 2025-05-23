@@ -2,6 +2,16 @@ import fs from "fs";
 import path from "path";
 import { skTranslatorsV2 } from "./skovorodaTranslators";
 import { parseFileContent } from "./utils/readingTextsUtils";
+import { SkImagesArray } from "./images/skImages";
+
+// Filter SkImagesArray for song images (those with songNumber)
+const songsImages = SkImagesArray.filter(image => image.songNumber);
+
+function getSongImage(songNumber) {
+  songNumber = +songNumber;
+  const songImage = songsImages.find(image => image.songNumber == songNumber);
+  return songImage ? songImage : null;
+}
 
 function getSongId(songMetadata) {
   const baseId = "song-" + songMetadata.number;
@@ -27,7 +37,11 @@ function readSongs() {
     }
     const songMetadata = JSON.parse(songMetadataFileContent);
     songMetadata.id = getSongId(songMetadata);
-    
+
+    // --- add songImage to songMetadata ---
+    songMetadata.songImage = getSongImage(songMetadata.number);
+    // ---
+
     const contentString = fs.readFileSync(txtFilePath).toString();
     const content = parseFileContent(contentString);
 

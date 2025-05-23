@@ -31,6 +31,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
     sourcesParams.push(getIllustrationSourceParam(treatise.image));
   }
   const videoBlock = VideoBlockDesktop(treatise);
+  const highlightColor = treatise.image ? treatise.image.highlightColor : null;
 
   function TreatisVersionBlock(version, source) {
     const isTranslation = version.translatorId ? true : false;
@@ -71,7 +72,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
   }
 
   return <>
-    <SkH1Desktop text={preferedTitle} />
+    <SkH1Desktop text={preferedTitle} color={highlightColor} />
     <SkColoredContainerDesktop>
       
       <SkPageNavMenu links={links} isDesktop={true}/>
@@ -79,7 +80,10 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
       <div className={classes.imageAndIntroContainer}>
         {treatise.image ? 
           <div className={classes.imageContainer}>
-            <SkImage image={treatise.image} priority={true} shadow={true} proportionWidth={350} />
+          { treatise.image.isFullWidth
+              ? <SkImage image={treatise.image} priority={true} shadow={true} fullContainerWidth={true} />
+              : <SkImage image={treatise.image} priority={true} shadow={true} proportionWidth={350} />
+            }
           </div>
           : null}
         <div>

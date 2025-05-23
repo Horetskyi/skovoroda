@@ -12,9 +12,9 @@ export default function SkDownloadButtonDesktop({ fileName }) {
       rightSection={<IconFileDownload/>}
       radius={"md"} 
       variant="filled"
+      color="blue.0"
       w={260}
       h={50}
-      color="blue.0"
       className={`normalContentText normalContentText_withoutIndent ${classes.button}`}
       classNames={{
         section: classes.iconSection

@@ -1,7 +1,7 @@
 import { Button } from "@mantine/core";
 import classes from './skButtonDesktop.module.scss'; 
 
-export default function SkButtonDesktop({ text, onClick, disabled }) {
+export default function SkButtonDesktop({ text, onClick, disabled, color }) {
   
   function onClickHere() {
     if (!disabled) {
@@ -9,13 +9,19 @@ export default function SkButtonDesktop({ text, onClick, disabled }) {
     }
   }
 
+  let styleObj = {};
+  if (color && color.length) {
+    styleObj.color = color;
+  }
+
   return <Button 
-    className={classes.button}
+    className={`normalContentText normalContentText_withoutIndent ${classes.button}`}
     variant="filled"
-    radius={"md"}
-    color="indigo.0"
+    radius={"sm"}
+    color="blue.0"
     onClick={onClickHere}
     disabled={disabled}
+    style={styleObj}
   >
     {text}
   </Button>

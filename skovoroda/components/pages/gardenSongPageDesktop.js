@@ -1,5 +1,4 @@
-
-import { Container, Group, Space } from '@mantine/core';
+import { Container, Group, Modal, Space } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { SkovorodaGardenPath, pathJoin } from '../../lib/skovorodaPath';
@@ -13,6 +12,10 @@ import { nextAvailableNumber, prevAvailableNumber, randomNumberInRangeExcept } f
 import classes from './gardenSongPageDesktop.module.scss';
 import { prepareGardenSongsDropdownItems, prepareGardenSongsTranslatorsDropdownItems } from '../../lib/staticProps/gardenSongLogic';
 import { MusicBlockDesktop } from './details/musicBlockDesktop';
+import SkImage from '../shared/skImage';
+import { adjustImageHeight } from '../functions/imageFunctions';
+import { useDisclosure } from '@mantine/hooks';
+import { getIllustrationSourceParam } from './details/pureFunctions';
 
 export default function GardenSongPageDesktop({ 
   allSongsMetadata,
@@ -30,6 +33,9 @@ export default function GardenSongPageDesktop({
   }
 
   const selectedMetadata = selectedSong.songMetadata;
+
+  // Image Modal hook
+  const [opened, { open, close }] = useDisclosure(false);
 
   // Dropdown 1 hooks
   const [selectedTranslatorDropdownValue, selectTranslatorDropdownValueInner] = useState(""+selectedMetadata.translatorId);
@@ -83,7 +89,35 @@ export default function GardenSongPageDesktop({
   const nextSongNumber = nextAvailableNumber(selectedMetadata.number, availableSongNumbers);
   const randomSongNumber = randomNumberInRangeExcept(1, 30, selectedMetadata.number, availableSongNumbers);
 
+  const isSongImageExists = selectedMetadata.songImage && selectedMetadata.songImage.imageUrl && selectedMetadata.songImage.imageUrl.length > 0;
+  adjustImageHeight(selectedMetadata.songImage, 420, 520, 720);
+  const highlightColor = selectedMetadata.songImage ? selectedMetadata.songImage.highlightColor : null;
+  if (isSongImageExists) {
+    sourcesParams.push(getIllustrationSourceParam(selectedMetadata.songImage));
+  }
+
   return <>
+
+    {isSongImageExists ? <>
+      <Modal
+        opened={opened} 
+        onClose={close} 
+        withCloseButton={false}
+        overlayProps={{ opacity: 0.9, blur: 100 }}
+        classNames={{
+          body: classes.fullImageModalBody,
+          content: classes.fullImageModalContent,
+        }}
+      >
+        {/* TODO: ADD LEFT RIGHT BUTTONS */}
+        <SkImage 
+          key={selectedMetadata.songImage.imageUrl}
+          image={selectedMetadata.songImage} 
+          fullHeight={true}
+        />
+      </Modal>
+    </> : null}
+
     <Space h="lg"/>
     <Container py="xl">
       <SkCardWithTwoSelectorsDesktopV2 
@@ -101,14 +135,30 @@ export default function GardenSongPageDesktop({
         }}
         idSuffix="gardensong"
       />
-      <Group mt={"md"} mx={0} mb={0} grow className={classes.groupOfButtons} w={560} preventGrowOverflow={false}>
+      <Group mt={0} mx={0} mb={0} grow w={392} preventGrowOverflow={false}>
         <SkButtonDesktop text={"<"} onClick={() => selectSongDropdownValue(prevSongNumber.number)} disabled={prevSongNumber.disabled}/>
-        <SkButtonDesktop text={"Пісня на щастя"} onClick={() => selectSongDropdownValue(randomSongNumber)}/>
+        <SkButtonDesktop text={"Пісня на щастя"} onClick={() => selectSongDropdownValue(randomSongNumber)} color={highlightColor}/>
         <SkButtonDesktop text={">"} onClick={() => selectSongDropdownValue(nextSongNumber.number)} disabled={nextSongNumber.disabled}/>
       </Group>
       <Space h="xl"/>
-      <SkH1Desktop text={h1Text} />
+      {selectedMetadata.songImage ? (
+        <div className={classes.songImageContainer}>
+          <SkImage
+            image={selectedMetadata.songImage}
+            width={selectedMetadata.songImage.width}
+            height={selectedMetadata.songImage.height}
+            fullWidth={false}
+            priority={true}
+            optimize={false}
+            shadow={false}
+            onClick={() => open()}
+          />
+        </div>
+      ) : null}
+      <SkH1Desktop text={h1Text} color={highlightColor} />
       <Space h="lg"/>
+      
+      
 
       <div className={classes.songContainer}>
 

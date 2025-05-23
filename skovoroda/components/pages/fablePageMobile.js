@@ -85,45 +85,46 @@ export default function FablePageMobile({
     },
   ];
   if (isFableImageExists) {
-      sourcesParams.push(getIllustrationSourceParam(selectedMetadata.fableImage));
-    }
+    sourcesParams.push(getIllustrationSourceParam(selectedMetadata.fableImage));
+  }
+  const highlightColor = isFableImageExists ? selectedMetadata.fableImage.highlightColor : null;
 
   return <>
 
-    <Space h="md"/>
-    <SkCardWithTwoSelectorsMobileV2 
-      dropdown1={{
-        label: "Оберіть переклад",
-        data: translationsDropdownItems,
-        selectedValue: selectedTranslatorDropdownValue,
-        onChange: selectTranslatorDropdownValue
-      }} 
-      dropdown2={{
-        label: "Оберіть байку",
-        data: fablesDropdownItems,
-        selectedValue: selectedFableDropdownValue,
-        onChange: selectFableDropdownValue
-      }}
-      idSuffix="fable"
-    />
-    <Group mt={"sm"} mx={"md"} mb={"md"} grow gap={"sm"} className={classes.groupOfButtons} preventGrowOverflow={false}>
-      <SkButtonMobile text={"<"} onClick={() => selectFableDropdownValue(prevFableNumber)} disabled={prevFableNumber == 0}/>
-      <SkButtonMobile text={"Байка на щастя"} onClick={() => selectFableDropdownValue(randomFableNumber)}/>
-      <SkButtonMobile text={">"} onClick={() => selectFableDropdownValue(nextFableNumber)} disabled={nextFableNumber == 31}/>
-    </Group>
-    
-    <Container px="md">
-      <SkH1Mobile text={h1Text} />
+    <Container py="lg">
+      <SkCardWithTwoSelectorsMobileV2 
+        dropdown1={{
+          label: "Оберіть переклад",
+          data: translationsDropdownItems,
+          selectedValue: selectedTranslatorDropdownValue,
+          onChange: selectTranslatorDropdownValue
+        }} 
+        dropdown2={{
+          label: "Оберіть байку",
+          data: fablesDropdownItems,
+          selectedValue: selectedFableDropdownValue,
+          onChange: selectFableDropdownValue
+        }}
+        idSuffix="fable"
+      />
+      <Group mt={"md"} mx={"md"} mb={"md"} grow className={classes.groupOfButtons} preventGrowOverflow={false}>
+        <SkButtonMobile text={"<"} onClick={() => selectFableDropdownValue(prevFableNumber)} disabled={prevFableNumber == 0}/>
+        <SkButtonMobile text={"Байка на щастя"} onClick={() => selectFableDropdownValue(randomFableNumber)} color={highlightColor} />
+        <SkButtonMobile text={">"} onClick={() => selectFableDropdownValue(nextFableNumber)} disabled={nextFableNumber == 31}/>
+      </Group>
     </Container>
-    <Space h="md"/>
-    {isFableImageExists ? <>
+     {isFableImageExists ? <>
       <Center>
         <SkImage imageUrl={selectedMetadata.fableImage.imageUrl} width={221} height={306} 
           shadow={"md"} alt={selectedMetadata.fableImage.alt} title={selectedMetadata.fableImage.title} 
           priority={true} optimize={true} />
       </Center>
-      <Space h="md"/>
+      <Space h="sm"/>
     </> : null}
+    <Container px="md" >
+      <SkH1Mobile text={h1Text} color={highlightColor} />
+      <Space h="lg"/>
+    </Container>
     <Container px={"md"}>
       <SkTextContentBlockDesktop textContent={selectedFable.content} isv2={true} isMobile={true} />
       <SkH2Mobile mt="md" mb="sm" text={"Сила"}/>

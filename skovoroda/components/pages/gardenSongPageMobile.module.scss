@@ -1,5 +1,12 @@
 
 
 .groupOfButtons {
-  gap: var(--mantine-spacing-sm);
+  gap: var(--mantine-spacing-md);
+}
+.songImageContainer {
+  text-align: center;
+
+  div {
+    margin: auto;
+  }
 }

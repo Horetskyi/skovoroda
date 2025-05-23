@@ -31,6 +31,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
     sourcesParams.push(getIllustrationSourceParam(treatise.image));
   }
   const videoBlock = VideoBlockMobile(treatise);
+  const highlightColor = treatise.image ? treatise.image.highlightColor : null;
 
   function TreatisVersionBlock(version, source) {
     const isTranslation = version.translatorId ? true : false;
@@ -74,7 +75,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
   }
 
   return <>
-    <SkH1Mobile text={preferedTitle} />
+    <SkH1Mobile text={preferedTitle} color={highlightColor} />
     <SkColoredContainerMobile px="md">
 
       {treatise.image ? 

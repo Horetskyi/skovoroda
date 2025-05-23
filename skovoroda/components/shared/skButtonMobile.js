@@ -1,7 +1,7 @@
 import { Button } from "@mantine/core";
 import classes from './skButtonMobile.module.scss'; 
 
-export default function SkButtonMobile({ text, onClick, disabled }) {
+export default function SkButtonMobile({ text, onClick, disabled, color }) {
   
   function onClickHere() {
     if (!disabled) {
@@ -9,7 +9,20 @@ export default function SkButtonMobile({ text, onClick, disabled }) {
     }
   }
 
-  return <Button className={classes.button} variant="filled" radius={"md"} color="indigo.0" onClick={onClickHere} disabled={disabled}>
+  let styleObj = {};
+  if (color && color.length) {
+    styleObj.color = color;
+  }
+
+  return <Button 
+    className={`normalContentText normalContentText_withoutIndent ${classes.button}`}
+    variant="filled" 
+    radius={"sm"} 
+    color="blue.0"
+    onClick={onClickHere}
+    disabled={disabled}
+    style={styleObj}
+  >
     {text}
   </Button>
 }

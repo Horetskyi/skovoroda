@@ -20,6 +20,7 @@ export default function SkImage({
   fullWidth,
   fullHeight,
   fullContainerWidth,
+  fullContainerWidthPercent
 }) {
 
   if (shadow !== false && !gentlyShadow) {
@@ -63,6 +64,12 @@ export default function SkImage({
   } else if (fullContainerWidth) {
     styleObj = {
       width: "100%",
+      height: "fit-content",
+      minWidth: "auto",
+    };
+  } else if (fullContainerWidthPercent) {
+    styleObj = {
+      width: `${fullContainerWidthPercent}%`,
       height: "fit-content",
       minWidth: "auto",
     };

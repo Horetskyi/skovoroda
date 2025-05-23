@@ -1,3 +1,26 @@
 .songContainer {
   display: flex;
 }
+.songImageContainer {
+  text-align: center;
+
+  div {
+    margin: auto;
+  }
+}
+.fullImageModalBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 100px);
+  overflow: hidden;
+  padding: 0;
+}
+.fullImageModalContent {
+  overflow: hidden;
+  flex: none;
+  max-height: fit-content;
+  border-radius: var(--mantine-radius-md);
+  box-shadow: 2px 4px 30px -5px #5e5e5e;
+}

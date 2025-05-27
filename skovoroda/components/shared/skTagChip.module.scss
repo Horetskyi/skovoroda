@@ -5,7 +5,6 @@
   border-radius: 8px;
   text-decoration: none;
   transition: background-color 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
   white-space: nowrap;
   font-size: 16px;
   line-height: 20px;
@@ -16,9 +15,21 @@
   }
 }
 
+.chipLink {
+  cursor: pointer;
+}
+
 .srodnist {
   background: var(--mantine-color-green-0);
   color: var(--mantine-color-green-7);
+}
+.solodke-girke {
+  background: var(--mantine-color-orange-0);
+  color: var(--mantine-color-orange-7);
+}
+.spiritual-autobiography {
+  background: var(--mantine-color-yellow-0);
+  color: var(--mantine-color-yellow-8);
 }
 
 .parable {

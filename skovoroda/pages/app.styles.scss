@@ -352,3 +352,7 @@ h3 {
   letter-spacing: 0.02em;
   line-height: 26px;
 }
+
+.sk-bold-first-letter::first-letter {
+  font-weight: 400;
+}

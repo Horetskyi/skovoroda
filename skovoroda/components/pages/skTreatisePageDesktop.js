@@ -72,7 +72,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
   }
 
   return <>
-    <SkH1Desktop text={preferedTitle} color={highlightColor} />
+    <SkH1Desktop text={preferedTitle} color={highlightColor} maxWidth={treatise.maxTitleWidth} />
     <SkColoredContainerDesktop>
       
       <SkPageNavMenu links={links} isDesktop={true}/>
@@ -94,7 +94,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
       {/* Зміст */}
       { isZmistAvailable ? <>
         <SkH2Desktop text="Зміст твору" mb="lg" id="zmist" />
-        <List spacing="md" mb="xl" size="sm" className={classes.zmistList} icon={<ZmistBullet />}>
+        <List spacing="xs" mb="xl" size="sm" className={classes.zmistList} icon={<ZmistBullet />}>
           { treatise.zmist.list.map((item, index) => {
             return <ZmistItem key={`zmist_${index}`} index={index} item={item} />;
           })}

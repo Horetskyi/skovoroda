@@ -43,7 +43,8 @@ function readSongs() {
     // ---
 
     const contentString = fs.readFileSync(txtFilePath).toString();
-    const content = parseFileContent(contentString);
+    const isOriginal = songMetadata.translatorId === 0;
+    const content = parseFileContent(contentString, isOriginal);
 
     return {
       songMetadata: songMetadata,

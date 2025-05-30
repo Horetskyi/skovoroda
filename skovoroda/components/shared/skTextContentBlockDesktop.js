@@ -263,11 +263,11 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 }
 
 function newOldUaElement(lineObject, key) {
-  return <SkOldUaExplainedText explanations={lineObject.explanations} text={lineObject.text} key={key} />;
+  return <SkOldUaExplainedText explanations={lineObject.explanations} text={lineObject.text} skKey={key} />;
 }
 
 function newBibleElement(lineObject, key) {
-  return <SkBibleText bibleCode={lineObject.bibleCode} text={lineObject.text} key={key} />;
+  return <SkBibleText bibleCode={lineObject.bibleCode} bibleType={lineObject.bibleType} text={lineObject.text} bKey={key} />;
 }
 
 function pushNoteInNotesBlock(block, lineObject, classes, onBlockNoteClick) {

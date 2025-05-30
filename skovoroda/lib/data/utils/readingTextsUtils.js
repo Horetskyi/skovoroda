@@ -308,7 +308,17 @@ export function parseFileContent(content, isOldUaText) {
           }
     
           // Add the bible text
-          parts.push({ text, bibleCode: bibleCode });
+          const bibleObj = { text, bibleCode: bibleCode };
+          if (typeof bibleCode === 'string') {
+            if (bibleCode.endsWith('.EXACT')) {
+              bibleObj.bibleCode = bibleCode.replace(/\.EXACT$/, '');
+              bibleObj.bibleType = 1;
+            } else if (bibleCode.endsWith('.NOT_EXACT')) {
+              bibleObj.bibleCode = bibleCode.replace(/\.NOT_EXACT$/, '');
+              bibleObj.bibleType = 2;
+            }
+          }
+          parts.push(bibleObj);
     
           // Update the last index
           lastIndex = startIndex + match[0].length;
@@ -406,21 +416,28 @@ export function parseFileContent(content, isOldUaText) {
 
       const notesRegex = getNotesRegex();
       const notesMetadata = [];
-      while(true) {
-        const regexResults = notesRegex.exec(lineObject.text);
-        if (!regexResults) {
-          break;
+      const lineObjectArray = Array.isArray(lineObject.text) ? lineObject.text : [lineObject];
+      lineObjectArray.forEach(subLineObject => {
+        while(true) {
+          const regexResults = notesRegex.exec(subLineObject.text);
+          if (!regexResults) {
+            break;
+          } 
+          regexResults.forEach(regexResult => {
+            const index = notesRegex.lastIndex;
+            const notesNumber = parseNotesNumber(regexResult);
+            const noteMetadata = { notesNumber: notesNumber, index: index - regexResult.length, length: regexResult.length };
+            notesMetadata.push(noteMetadata);
+          });
+        }
+        if (notesMetadata.length) {
+          transformLineObjectWithNotes(subLineObject, notesMetadata);
         } 
-        regexResults.forEach(regexResult => {
-          const index = notesRegex.lastIndex;
-          const notesNumber = parseNotesNumber(regexResult);
-          const noteMetadata = { notesNumber: notesNumber, index: index - regexResult.length, length: regexResult.length };
-          notesMetadata.push(noteMetadata);
-        });
+      });
+      if (Array.isArray(lineObject.text)) {
+        lineObject.text = lineObject.text.flatMap(sub => Array.isArray(sub.text) ? sub.text : [sub]);
       }
-      if (notesMetadata.length) {
-        transformLineObjectWithNotes(lineObject, notesMetadata);
-      } 
+      
       
       // --
       if (isOldUaText && lineObject.text && lineObject.text.length) {

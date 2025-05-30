@@ -79,6 +79,45 @@ function transformZmistList(zmistList) {
         };
       }
 
+      // --- Enhancement: read and parse songs if 'contains' includes song_xxx ---
+      if (Array.isArray(item.contains)) {
+        const songs = [];
+        item.contains.forEach(contained => {
+          // Support both string and object with id/title
+          let containedId, containedTitle;
+          if (typeof contained === "string") {
+            containedId = contained;
+            containedTitle = undefined;
+          } else if (typeof contained === "object" && contained.id) {
+            containedId = contained.id;
+            containedTitle = contained.title;
+          }
+          if (containedId && containedId.startsWith("song_")) {
+            // Extract song number from id, e.g. song_15_1 -> 1 (or keep full id if needed)
+            const songIdMatch = containedId.match(/^song_(\d+)(?:_(\d+))?$/);
+            let songId = containedId;
+            if (songIdMatch) {
+              songId = songIdMatch[2] ? Number(songIdMatch[2]) : Number(songIdMatch[1]);
+            }
+            // Build path to song file
+            const songFilePath = path.join(process.cwd(), "lib", "data", "treatises", "songs", containedId + ".txt");
+            if (fs.existsSync(songFilePath)) {
+              const songContentString = fs.readFileSync(songFilePath).toString();
+              const content = parseFileContent(songContentString);
+              songs.push({
+                songId,
+                content,
+                title: containedTitle ? containedTitle : `Пісня ${songId}`
+              });
+            }
+          }
+        });
+        if (songs.length) {
+          item.songs = songs;
+        }
+      }
+      // ---
+
       return item;
     }
     return item;

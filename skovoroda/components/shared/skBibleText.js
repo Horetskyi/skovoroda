@@ -1,25 +1,30 @@
 import { Popover, Text } from "@mantine/core";
 import SkTextLink from "./skTextLink";
 import { IconLink } from "@tabler/icons-react";
+import classes from './skBibleText.module.scss'; 
 
-export default function SkBibleText({ bibleCode, text, key }) {
+export default function SkBibleText({ bibleCode, bibleType, text, bKey }) {
   
   const popoverText = bibleCodeToLongText(bibleCode);
 
-  return <Popover position="top" withArrow shadow="md" offset={0}>
-    <Popover.Target>
-      <span key={key} className="sk-global-bible-text">{text}</span>
+  return <Popover position="top" withArrow shadow="md" offset={0} key={bKey}>
+    <Popover.Target key={bKey}>
+      <span key={bKey} className="sk-global-bible-text">{text}</span>
     </Popover.Target>
-    <Popover.Dropdown>
-      <SkTextLink
-        key={'link'+key} 
-        text={popoverText}
-        href={`https://www.die-bibel.de/en/bible/UTT/${bibleCode}`}
-        isBlank={true}
-        title={'Читати в Біблії'}
-        className={'sk-global-bible-link readFont'}
-        iconRight={<IconLink size={16} />}
-      />
+    <Popover.Dropdown key={bKey}>
+      <div key={bKey}>
+        { bibleType === 1 ? <Text className={`readFont ${classes.label}`}>Точна цитата:</Text> : null}
+        { bibleType === 2 ? <Text className={`readFont ${classes.label}`}>Неточна цитата:</Text> : null}
+        <SkTextLink
+          key={'link'+bKey} 
+          text={popoverText}
+          href={`https://www.die-bibel.de/en/bible/UTT/${bibleCode}`}
+          isBlank={true}
+          title={'Читати в Біблії'}
+          className={'sk-global-bible-link readFont'}
+          iconRight={<IconLink size={16} />}
+        />
+      </div>
     </Popover.Dropdown>
   </Popover>
 }
@@ -35,7 +40,9 @@ const bibleBooks = {
   'ROM': 'Послання до Римлян',
   'GAL': 'Послання до Галатів',
   'SNG': 'Пісня над піснями',
-  'WIS': 'Книга Премудрості Соломона'
+  'WIS': 'Книга Премудрості Соломона',
+  'PSA': 'Книга Псалмів',
+  'JAS': 'Послання Апостола Якова',
 };
 function bibleCodeToLongText(bibleCode) {
   const parts = bibleCode.split(".");

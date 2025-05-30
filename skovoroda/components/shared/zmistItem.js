@@ -4,6 +4,7 @@ import SkRelatedTags from "./skRelatedTags";
 import { getReadPath } from "../../lib/skovorodaPath";
 import SkTextLink from "./skTextLink";
 import { IconDots, IconMail, IconMessages, IconMusic, IconPaw, IconSeeding, IconStar } from "@tabler/icons-react";
+import Link from "next/link";
 
 export function ZmistItem({ item, index }) {
 
@@ -15,8 +16,14 @@ export function ZmistItem({ item, index }) {
   const isStarIcon = item.specialType === "spiritual_autobiography";
   const isPaw = item.typeDisplayHint === "paw";
   const isNoIcon = !isLetter && !isDialog && !isStarIcon && !isPaw && !isSong && !isSeed;
-  const containsSong = item.contains && item.contains.length && item.contains.includes("song");
-  
+  const containsSong = item.contains && item.contains.length && (
+    item.contains.includes("song") ||
+    item.contains.some(subItem => typeof subItem === 'string' && subItem.includes("song")) ||
+    item.contains.some(subItem => subItem && subItem.id && subItem.id.includes("song"))
+  );
+  const containedSong = item.contains && item.contains.find(subItem => subItem && subItem.id && subItem.id.includes("song"));
+  const containedSongLinkHref = containedSong && ('#song_'+containedSong.id.split('_')[2]);
+
   return (
     <List.Item 
       key={"zmist_" + index} 
@@ -37,7 +44,8 @@ export function ZmistItem({ item, index }) {
           ? <SkTextLink href={getReadPath(item.read)} text={item.title} title={`Читати \"${item.title}\"`} />
           : <span className={classes.title}>{item.title}</span>}
 
-        {containsSong ? <div className={classes.songIconContainer}><IconMusic size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconLightBlueColorOnly}`} /></div> : null}
+        {(containsSong && !containedSongLinkHref) ? <div className={classes.songIconContainer}><IconMusic size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconLightBlueColorOnly}`} /></div> : null}
+        {(containsSong && containedSongLinkHref) ? <Link href={containedSongLinkHref}><div className={classes.songIconContainer}><IconMusic size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconLightBlueColorOnly}`} /></div></Link> : null}
 
         <div className={classes.tags}>
           <SkRelatedTags type={item.type} mainTheme={item.mainTheme} specialType={item.specialType} />

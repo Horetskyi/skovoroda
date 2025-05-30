@@ -1,4 +1,4 @@
-import { Container, Flex, Group, List, Space, Stack, Text } from "@mantine/core";
+import { Container, Flex, Group, List, Paper, Space, Stack, Text, Title } from "@mantine/core";
 import SkColoredContainerDesktop from "../shared/skColoredContainerDesktop";
 import SkH1Desktop from "../shared/skH1Desktop";
 import SkH2Desktop from "../shared/skH2Desktop";
@@ -15,6 +15,27 @@ import SkSourcesContainerDesktop from "../shared/skSourcesContainerDesktop";
 import { getIllustrationSourceParam } from "./details/pureFunctions";
 import { VideoBlockDesktop } from "./details/videoBlockDesktop";
 
+// Pure
+function anySongInZmist(zmistList) {
+  return zmistList && zmistList.some(item => {
+    if (item.type === "song") {
+      return true;
+    } 
+    if (item.contains && item.contains.some(subItem => subItem.includes("song"))) {
+      return true;
+    }
+    return false;
+  });
+}
+
+// Pure
+function filterZmistListForSongs(zmistList) {
+  return zmistList
+    .filter(item => item && item.songs && item.songs.length)
+    .flatMap(item => item.songs)
+    .filter(song => song && song.content && song.content.length);
+}
+
 export default function SkTreatisePageDesktop({ treatise, sources, translators }) {
   
   const preferedVersion = treatise.versions.find(v => v.preferedVersion);
@@ -25,6 +46,8 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
   const translatorLabel = "Перекладач: ";
   const isQuotesAvailable = treatise.quotes && treatise.quotes.length;
   const isZmistAvailable = treatise.zmist && treatise.zmist.list && treatise.zmist.list.length;
+  const zmistSongs = isZmistAvailable ? filterZmistListForSongs(treatise.zmist.list) : [];
+  const isZmistSongsAvailable = zmistSongs && zmistSongs.length > 0;
   const links = getTreatiseMenuLinks(treatise);
   const sourcesParams = [];
   if (treatise.image) {
@@ -131,6 +154,19 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
         </div>
       })}
       <Space h="xl"/>
+
+      {/* Songs */}
+      { isZmistSongsAvailable ? <>
+        <SkH2Desktop text="Пісні" mb="lg" id="zmist_songs" />
+        { zmistSongs.map(song => {
+          return <Paper key={`zmist_song_${song.songId}`} id={`song_${song.songId}`} withBorder={false} p="md" shadow="xs">
+            <Title ta={'center'} fw={700} order={3} mb="md">{song.title}</Title>
+            <div className={`normalContentText normalContentText_withoutIndent`}>
+              <SkTextContentBlockDesktop textContent={song.content} isv2={true} />
+            </div>
+          </Paper>
+        })}
+      </> : null}
 
       {/* Video */}
       {videoBlock ? <>

@@ -248,6 +248,8 @@ export const SkImages = {
   fable30: buildFableImage(30, "/images/fables/Fable 30 - Solovei, Zhaivoronok i Drizd - Skovoroda.webp", 'anna_zhuk', 900, 1302, "#603218"),
   
   song1: buildSongImage(1, "/images/garden/Song 1 Illustration - Skovoroda.webp", 'olenka', 1163, 1453, "#8d5d75"),
+  song2: buildSongImage(2, "/images/garden/Song 2 Illustration - Skovoroda.webp", 'olenka', 1400, 1422, "#3E455C"),
+  song3: buildSongImage(3, "/images/garden/Song 3 Illustration - Skovoroda.webp", 'olenka', 1400, 1452, "#5F719D"),
   
   gardenByOlenka: {
     imageUrl: "/images/garden/Skovoroda Garden of Divine Songs by Olenka.webp",

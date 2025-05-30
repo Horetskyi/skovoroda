@@ -1,13 +1,13 @@
 import { Popover, Text } from "@mantine/core";
 import classes from "./skOldUaExplainedText.module.scss";
 
-export default function SkOldUaExplainedText({ explanations, text, key }) {
+export default function SkOldUaExplainedText({ explanations, text, skKey }) {
   
   const popoverText = getExplanationsElement(explanations);
 
   return <Popover position="top" withArrow shadow="md" offset={0}>
     <Popover.Target>
-      <span key={key} className="sk-global-old-ua-text">{text}</span>
+      <span key={skKey} className="sk-global-old-ua-text">{text}</span>
     </Popover.Target>
     <Popover.Dropdown>
       <div className={`${classes.popoverBox} sk-global-old-ua-text-inner readFont`}>{popoverText}</div>

@@ -313,14 +313,14 @@ h3 {
   font-size: 18px;
 }
 .sk-global-bible-text {
-  color: #debb04 !important;
+  color: #f7c900 !important;
 }
 .sk-global-bible-link, .sk-global-bible-text {
   font-weight: 400;
   text-decoration: underline;
   text-decoration-style: dotted;
   text-decoration-thickness: 2px;
-  text-shadow: 0 0 4px #fef7b6;
+  // text-shadow: 0 0 4px #fef7b6;
   cursor: pointer;
 
   &:hover {

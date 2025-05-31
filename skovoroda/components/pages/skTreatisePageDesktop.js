@@ -14,19 +14,7 @@ import ZmistBullet from "./details/zmistBullet";
 import SkSourcesContainerDesktop from "../shared/skSourcesContainerDesktop";
 import { getIllustrationSourceParam } from "./details/pureFunctions";
 import { VideoBlockDesktop } from "./details/videoBlockDesktop";
-
-// Pure
-function anySongInZmist(zmistList) {
-  return zmistList && zmistList.some(item => {
-    if (item.type === "song") {
-      return true;
-    } 
-    if (item.contains && item.contains.some(subItem => subItem.includes("song"))) {
-      return true;
-    }
-    return false;
-  });
-}
+import { SkQuotesDesktop } from "../shared/skQuotesDesktop";
 
 // Pure
 function filterZmistListForSongs(zmistList) {
@@ -78,7 +66,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
         : null}
         <Text className="normalContentText normalContentText_withoutIndent">Рік видання: {source.productionYear} р.</Text>
         <Text className="normalContentText normalContentText_withoutIndent">{sourceLabel}
-          <Link href={source.sourceHref} title={source.sourceFullName}>{source.sourceFullName}</Link>
+          <Link href={source.sourceHref} title={source.sourceFullName} className="blackLink">{source.sourceFullName}</Link>
         </Text>
         <Group mt="md" spacing={"sm"}>
           {version.fileNames.map(fileName => {
@@ -87,11 +75,6 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
         </Group>
       </Stack>
     </Container>
-  }
-
-  function Quote(quote, text, index) {
-    const key = "quote_" + quote.translatorId + "_" + index;
-    return <Text key={key} className="readFont normalContentText">{text}</Text>
   }
 
   return <>
@@ -104,8 +87,8 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
         {treatise.image ? 
           <div className={classes.imageContainer}>
           { treatise.image.isFullWidth
-              ? <SkImage image={treatise.image} priority={true} shadow={true} fullContainerWidth={true} />
-              : <SkImage image={treatise.image} priority={true} shadow={true} proportionWidth={350} />
+              ? <SkImage image={treatise.image} priority={true} shadow={false} bordered={true} fullContainerWidth={true} />
+              : <SkImage image={treatise.image} priority={true} shadow={false} bordered={true} proportionWidth={350} />
             }
           </div>
           : null}
@@ -127,9 +110,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
       {/* Цитати */}
       { isQuotesAvailable ? <>
         <SkH2Desktop text="Цитати" mb="lg" id="quotes" />
-        <Flex direction="column" gap="lg" mb="lg" className={classes.quotesContainer}>
-          { treatise.quotes.flatMap(quote => quote.texts.map((text, index) => Quote(quote, text, index)))}
-        </Flex>
+        <SkQuotesDesktop quotes={treatise.quotes}/>
       </> : null}
 
       {/* Рукопис */}

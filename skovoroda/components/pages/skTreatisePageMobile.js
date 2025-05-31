@@ -14,6 +14,7 @@ import { ZmistItem } from "../shared/zmistItem";
 import { getIllustrationSourceParam } from "./details/pureFunctions";
 import SkSourcesContainerMobile from "../shared/skSourcesContainerMobile";
 import { VideoBlockMobile } from "./details/videoBlockMobile";
+import { SkQuotesDesktop } from "../shared/skQuotesDesktop";
 
 export default function SkTreatisePageMobile({ treatise, sources, translators }) {
 
@@ -69,11 +70,6 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
     </Container>
   }
 
-  function Quote(quote, text, index) {
-    const key = "quote_" + quote.translatorId + "_" + index;
-    return <Text key={key} className={`readFont normalContentText`}>{text}</Text>
-  }
-
   return <>
     <SkH1Mobile text={preferedTitle} color={highlightColor} />
     <SkColoredContainerMobile px="md">
@@ -103,9 +99,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
 
       { isQuotesAvailable ? <>
         <SkH2Mobile id="quotes" text="Цитати" mb="md" />
-        <Flex direction="column" gap="md" mb="lg" className={classes.quotesContainer}>
-          { treatise.quotes.flatMap(quote => quote.texts.map((text, index) => Quote(quote, text, index)))}
-        </Flex>
+        <SkQuotesDesktop quotes={treatise.quotes} />
       </> : null}
 
       <SkH2Mobile text="Оригінал" mb="md" id="downloads" />

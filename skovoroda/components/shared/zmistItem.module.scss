@@ -9,6 +9,21 @@
 
 .flex {
   display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.seedContent {
+  width: 100%;
+  margin-left: 60px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+  .seedContent {
+    margin-left: 0;
+  }
 }
 
 .tags {
@@ -66,10 +81,22 @@
   fill: #E7F5FF;
   color: #6c6d6d;
 }
+.leftSmallIconLightGreen {
+  fill: #b3ffaa;
+  color: #6c6d6d;
+}
 .leftSmallIconLightBlueColorOnly {
   color: var(--mantine-color-blue-3);
 }
 .songIconContainer {
   margin-left: 12px;
   margin-right: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.iconInline {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
 }

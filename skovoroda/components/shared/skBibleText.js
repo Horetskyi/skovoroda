@@ -43,6 +43,8 @@ const bibleBooks = {
   'WIS': 'Книга Премудрості Соломона',
   'PSA': 'Книга Псалмів',
   'JAS': 'Послання Апостола Якова',
+  'ISA': 'Книга пророка Ісаї',
+  'GEN': 'Книга Буття',
 };
 function bibleCodeToLongText(bibleCode) {
   const parts = bibleCode.split(".");

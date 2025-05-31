@@ -12,13 +12,9 @@
     object-fit: cover;
   }
   margin-right: var(--mantine-spacing-lg);
+  margin-bottom: var(--mantine-spacing-lg);
 }
 
-.quotesContainer {
-  p::first-letter {
-    font-weight: 400;
-  }
-}
 
 .bookContainer {
   display: flex;

@@ -1,6 +1,6 @@
 import { pathJoin, SkovorodaTextsPath, SkovorodaTreatisePath } from "../../skovorodaPath";
 
-function getTreatiseShortTitle(treatise) {
+export function getTreatiseShortTitle(treatise) {
   if (treatise.shortTitle && treatise.shortTitle.length) {
     return treatise.shortTitle;
   }

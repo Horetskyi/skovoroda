@@ -20,10 +20,11 @@ export default function SkImage({
   fullWidth,
   fullHeight,
   fullContainerWidth,
-  fullContainerWidthPercent
+  fullContainerWidthPercent,
+  bordered
 }) {
 
-  if (shadow !== false && !gentlyShadow) {
+  if (shadow !== false && !gentlyShadow && !bordered) {
     shadow = true;
   }
 
@@ -90,6 +91,10 @@ export default function SkImage({
   
   if (additionalClassName) {
     className += " " + additionalClassName;
+  }
+
+  if (bordered) {
+    className += " " + classes.imageBordered;
   }
 
   const unoptimized = optimize ? false : true;

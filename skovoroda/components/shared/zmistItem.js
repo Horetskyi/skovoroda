@@ -5,6 +5,7 @@ import { getReadPath } from "../../lib/skovorodaPath";
 import SkTextLink from "./skTextLink";
 import { IconDots, IconMail, IconMessages, IconMusic, IconPaw, IconSeeding, IconStar } from "@tabler/icons-react";
 import Link from "next/link";
+import SkTextContentBlockDesktop from "./skTextContentBlockDesktop";
 
 export function ZmistItem({ item, index }) {
 
@@ -24,6 +25,23 @@ export function ZmistItem({ item, index }) {
   const containedSong = item.contains && item.contains.find(subItem => subItem && subItem.id && subItem.id.includes("song"));
   const containedSongLinkHref = containedSong && ('#song_'+containedSong.id.split('_')[2]);
 
+  const iconInline = containsSong ? <span className={classes.iconInline}>
+    {(!containedSongLinkHref) ? <span className={classes.songIconContainer}><IconMusic size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconLightBlueColorOnly}`} /></span> : null}
+    {(containedSongLinkHref) ? <Link href={containedSongLinkHref}><span className={classes.songIconContainer}><IconMusic size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconLightBlueColorOnly}`} /></span></Link> : null}
+  </span> : null;
+
+  function getLeftIcon() {
+    if (isLetter) return <div className={classes.leftSmallIconContainer}><IconMail size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconBroun}`} /></div>;
+    if (isDialog) return <div className={classes.leftSmallIconContainer}><IconMessages size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconBlue}`} /></div>;
+    if (isPaw) return <div className={classes.leftSmallIconContainer}><IconPaw size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconBroun}`} /></div>;
+    if (isStarIcon) return <div className={classes.leftSmallIconContainer}><IconStar size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconGold}`} /></div>;
+    if (isSong) return <div className={classes.leftSmallIconContainer}><IconMusic size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconLightBlueColorOnly}`} /></div>;
+    if (isSeed) return <div className={classes.leftSmallIconContainer}><IconSeeding size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconLightGreen}`} /></div>;
+    if (isNoIcon) return <div className={classes.leftSmallIconContainer}><IconDots size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconGray}`} /></div>;
+    return null;
+  }
+  const leftIcon = getLeftIcon();
+
   return (
     <List.Item 
       key={"zmist_" + index} 
@@ -32,27 +50,22 @@ export function ZmistItem({ item, index }) {
 
       <div className={`normalContentText readFont normalContentText_withoutIndent ${classes.flex}`} mb={hasReadLink ? "sm" : "0"}>
 
-        { isLetter ? <div className={classes.leftSmallIconContainer}><IconMail size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconBroun}`} /></div> : null}
-        { isDialog ? <div className={classes.leftSmallIconContainer}><IconMessages size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconBlue}`} /></div> : null}
-        { isPaw ? <div className={classes.leftSmallIconContainer}><IconPaw size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconBroun}`} /></div> : null}
-        { isStarIcon ? <div className={classes.leftSmallIconContainer}><IconStar size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconGold}`} /></div> : null}
-        { isSong ? <div className={classes.leftSmallIconContainer}><IconMusic size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconLightBlueColorOnly}`} /></div> : null}
-        { isSeed ? <div className={classes.leftSmallIconContainer}><IconSeeding size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconGray}`} /></div> : null}
-        { isNoIcon ? <div className={classes.leftSmallIconContainer}><IconDots size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconGray}`} /></div> : null}
-
-        {hasReadLink 
-          ? <SkTextLink href={getReadPath(item.read)} text={item.title} title={`Читати \"${item.title}\"`} />
-          : <span className={classes.title}>{item.title}</span>}
-
-        {(containsSong && !containedSongLinkHref) ? <div className={classes.songIconContainer}><IconMusic size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconLightBlueColorOnly}`} /></div> : null}
-        {(containsSong && containedSongLinkHref) ? <Link href={containedSongLinkHref}><div className={classes.songIconContainer}><IconMusic size={18} className={`${classes.leftSmallIcon} ${classes.leftSmallIconLightBlueColorOnly}`} /></div></Link> : null}
+        <span>
+          {hasReadLink 
+            ? <span>{leftIcon}<SkTextLink href={getReadPath(item.read)} text={item.title} title={`Читати \"${item.title}\"`} />{iconInline}</span>
+            : <span className={classes.title}>{leftIcon}{item.title}{iconInline}</span>}
+        </span>
 
         <div className={classes.tags}>
           <SkRelatedTags type={item.type} mainTheme={item.mainTheme} specialType={item.specialType} />
         </div>
 
-      </div>
+        {/* Render seedContent if present */}
+        {item.type === "seed" && item.seedContent ? <>
+          <SkTextContentBlockDesktop textContent={item.seedContent} isv3={true} plusClassName={classes.seedContent} />
+        </> : null}
 
+      </div>
     </List.Item>
   );
 }

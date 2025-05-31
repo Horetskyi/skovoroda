@@ -2,9 +2,10 @@ import fs from "fs";
 import path from "path";
 import { fixText } from "./auxiliary";
 import { parseFileContent } from "../data/utils/readingTextsUtils";
-import { getReadRelatedItem, getTreariseRelatedItem } from "./details/auxiliaryMethods";
+import { getReadRelatedItem, getTreariseRelatedItem, getTreatiseShortTitle } from "./details/auxiliaryMethods";
 import { readAllTreatises } from "./treatisesReader";
 import { readAllReads } from "./readsReader";
+import { getTreatisePath, pathJoinWithoutEndSlash } from "../skovorodaPath";
 
 export function readAllThemes() {
 
@@ -26,7 +27,7 @@ export function readAllThemes() {
       metadataFileContent = fixText(metadataFileContent);
       const metadata = JSON.parse(metadataFileContent);
 
-      // SPECIAL {
+      // RELEVANT ITEMS {
       // TODO: theme.relevantItems = [ + fables, songs, otherThemes ]
       metadata.relevantItems = [];
       allTreatises
@@ -37,7 +38,30 @@ export function readAllThemes() {
         .filter(read => read.mainTheme && read.mainTheme === metadata.themeKey)
         .map(read => getReadRelatedItem(read))
         .forEach(item => metadata.relevantItems.push(item)); 
-      // SPECIAL }
+      // RELEVANT ITEMS }
+
+      // QUOTES {
+      metadata.quotes = [];
+      allTreatises
+        .filter(treatise => 
+          treatise.relevantThemes && 
+          treatise.relevantThemes.includes(metadata.themeKey) && 
+          treatise.quotes && 
+          treatise.quotes.length)
+        .flatMap(treatise => treatise.quotes
+          .filter(quotes => quotes.texts && quotes.texts.length)
+          .flatMap(quotes => quotes.texts)
+          .filter(quote => quote && quote.text && quote.themes && quote.themes.includes(metadata.themeKey))
+          .map(quote => ({
+            text: quote.text,
+            href: getTreatisePath(treatise.urlId),
+            sourceType: "treatise",
+            shortName: getTreatiseShortTitle(treatise),
+          }))
+        )
+        .forEach(item => metadata.quotes.push(item));
+      console.log(`Found ${metadata.quotes.length} quotes for theme ${metadata.themeKey}`);
+      // QUOTES }
 
       // File 2. "vstupni_dveri_do_khrystyianskoi_dobronravnosti.txt"
       const txtContentFilePath = jsonFilePath.replace(".json", ".txt");

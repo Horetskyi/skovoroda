@@ -23,3 +23,10 @@
     object-fit: cover;
   }
 }
+.imageBordered {
+  border: 1px solid #9A9A9A;
+  border-radius: var(--mantine-radius-lg);
+  img {
+    border-radius: var(--mantine-radius-lg);
+  }
+}

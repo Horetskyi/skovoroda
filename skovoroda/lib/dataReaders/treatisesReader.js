@@ -24,9 +24,9 @@ export function readAllTreatises(options) {
       metadataFileContent = fixText(metadataFileContent);
       const metadata = JSON.parse(metadataFileContent);
 
-      // Transform zmist.list
+      // Transform zmist.list (pass filename for SEED support)
       if (metadata.zmist && Array.isArray(metadata.zmist.list) && metadata.zmist.list.length) {
-        metadata.zmist.list = transformZmistList(metadata.zmist.list);
+        metadata.zmist.list = transformZmistList(metadata.zmist.list, jsonFileName);
       }
 
       if (!isExcludeContent) {
@@ -65,11 +65,28 @@ export function readAllTreatises(options) {
 }
 
 // DDD
-function transformZmistList(zmistList) {
+function transformZmistList(zmistList, treatiseFileName) {
   return zmistList.map(item => {
     if (typeof item === "string") {
       return { title: item };
     } else if (typeof item === "object" && item.title) {
+
+      // --- Add seed file reading for type: "seed" ---
+      if (item.type === "seed" && treatiseFileName) {
+        // Build SEED.txt file path
+        const seedFilePath = path.join(
+          process.cwd(),
+          "lib",
+          "data",
+          "treatises",
+          treatiseFileName.replace(".json", " SEED.txt")
+        );
+        if (fs.existsSync(seedFilePath)) {
+          const seedContentString = fs.readFileSync(seedFilePath).toString();
+          item.seedContent = parseFileContent(seedContentString);
+        }
+      }
+      // ---
 
       if (item.illustration) {
         item.illustration = {

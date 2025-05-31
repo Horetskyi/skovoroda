@@ -3,11 +3,14 @@ import FountainIcon from "./../svgs/fountainIcon.svg";
 import SkTagChip from "./skTagChip";
 import { IconDeer } from "@tabler/icons";
 import classes from "./skRelatedTags.module.scss";
-import { SkovorodaReadsPath } from "../../lib/skovorodaPath";
 
 const THEME_SLUGS_MAP = new Map([
   ["Сродність", "srodnist"],
-  ["Солодке_Гірке", "solodke-girke"],
+  ["Потрібне_Легке", "portibne-lehke"],
+  ["Щастя", "shastia"],
+  ["Дві_Натури", "dvi-natury"],
+  ["Любов", "love"],
+  ["Серце", "heart"],
 ]);
 
 const TYPE_TAG_LABELS_MAP = new Map([
@@ -34,9 +37,10 @@ function getRelatedSourcesTags(relatedSources) {
   });
 }
 
-export default function SkRelatedTags({ type, mainTheme, specialType, relatedSources }) {
+export default function SkRelatedTags({ type, mainTheme, themes, specialType, relatedSources }) {
 
-  if (!type && !mainTheme && !specialType && !relatedSources) {
+  const isThemesExists = themes && themes.length > 0;
+  if (!type && !mainTheme && !specialType && !relatedSources && !isThemesExists) {
     return null; // Don't render if there are no tags/icons
   }
 
@@ -46,7 +50,7 @@ export default function SkRelatedTags({ type, mainTheme, specialType, relatedSou
   const relatedSourcesTags = getRelatedSourcesTags(relatedSources);
   const isSpiritualAutobiography = specialType === 'spiritual_autobiography';
 
-  if (!typeTagLabel && !mainTheme && !specialIcon && !relatedSourcesTags && !isSpiritualAutobiography) {
+  if (!typeTagLabel && !mainTheme && !specialIcon && !relatedSourcesTags && !isSpiritualAutobiography && !isThemesExists) {
     return null; // Don't render if there are no tags/icons
   }
 
@@ -57,6 +61,11 @@ export default function SkRelatedTags({ type, mainTheme, specialType, relatedSou
       {isSpiritualAutobiography && <SkTagChip key='spiritual_autobiography' content='Духовний автопортрет' colorClass='spiritual-autobiography' />}
       {relatedSourcesTags}
       {specialIcon}
+      {isThemesExists && themes.map((theme, index) => {
+        const themeSlug = THEME_SLUGS_MAP.get(theme);
+        if (!themeSlug) return null; // Skip if no slug found
+        return <SkTagChip key={`theme_${index}`} content={`#${theme}`} href={`/themes/${themeSlug}`} colorClass={themeSlug} />;
+      }).filter(x => x)}
     </Group>
   );
 }

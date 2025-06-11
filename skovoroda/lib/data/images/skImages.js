@@ -121,9 +121,9 @@ const fableNames = new Map([
 
 // Important
 function buildSongAlt(songNumber, authorId) {
-  const fableName = fableNames.get(songNumber);
+  const songName = songNames.get(songNumber);
   const genetiveFullName = SkImageAuthors.get(authorId).genetiveFullName;
-  return `Ілюстрація до Пісні Григорія Сковороди "${fableName}" від ${genetiveFullName}`;
+  return `Ілюстрація до Пісні Григорія Сковороди "${songName}" від ${genetiveFullName}`;
 }
 
 // Important

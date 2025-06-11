@@ -5,12 +5,12 @@ export default function SkOldUaExplainedText({ explanations, text, skKey }) {
   
   const popoverText = getExplanationsElement(explanations);
 
-  return <Popover position="top" withArrow shadow="md" offset={0}>
+  return <Popover key={skKey} position="top" withArrow shadow="md" offset={0}>
     <Popover.Target>
       <span key={skKey} className="sk-global-old-ua-text">{text}</span>
     </Popover.Target>
     <Popover.Dropdown>
-      <div className={`${classes.popoverBox} sk-global-old-ua-text-inner readFont`}>{popoverText}</div>
+      <div key={skKey} className={`${classes.popoverBox} sk-global-old-ua-text-inner readFont`}>{popoverText}</div>
     </Popover.Dropdown>
   </Popover>
 }
@@ -18,8 +18,9 @@ export default function SkOldUaExplainedText({ explanations, text, skKey }) {
 function getExplanationsElement(explanations) {
   if (Array.isArray(explanations)) {
     return explanations.map((exp, index) => {
-      return <p key={index}>{exp}</p>;
+      const text = "" + (index+1) + ". " + exp;
+      return <p key={text}>{text}</p>;
     });
   }
-  return <span>{`Значення: \"${explanations}\"`}</span>;
+  return <span key={explanations}>{`Значення: \"${explanations}\"`}</span>;
 }

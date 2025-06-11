@@ -30,7 +30,7 @@ function scale(image, number) {
 }
 
 function processImages() {
-    return src("src/*.{jpg,png}")
+    return src("src/*.{jpg,png,webp}")
         .pipe(
             through.obj(async function (file, _, cb) {
                 if (file.isBuffer()) {

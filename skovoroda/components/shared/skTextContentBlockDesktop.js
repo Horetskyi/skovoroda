@@ -84,7 +84,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     "leftNum2": classes.formatLeftNum2, 
     "leftNum1": classes.formatLeftNum1, 
     "irmologion": classes.formatIrmologion, 
-    "default": classes.formatDefault,
+    "default": "", // classes.formatDefault, // Optimization: no need to add default class every time
     "indent": classes.formatIndent,
     "italic": classes.formatItalic,
     "underline": classes.formatUnderline,
@@ -240,7 +240,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 
       // Handle OldUa Text
       if (subText.explanations) {
-        console.log("OldUaExplanations Text2:", subText.explanations, subText.text);
+        // console.log("OldUaExplanations Text2:", subText.explanations, subText.text);
         return newOldUaElement(subText, index);
       }
 

@@ -230,7 +230,7 @@ export const SkImages = {
   fable12byOlenka: buildFableImage(12, "/images/fables/fable-12-brusok-i-nizh.webp", 'olenka', null, null, "#834e17"),
   fable13byOlenka: buildFableImage(13, "/images/fables/fable-13-orel-i-cherepakha.webp", 'olenka', null, null, "#834e17"),
   fable14: buildFableImage(14, "/images/fables/Fable 14 - Owl and Thrush - Skovoroda.webp", 'olenka', 900, 1260, "#834e17"),
-  // TODO: Fable 15. Змія і Буфон. В процесі роботи Діана.
+  fable15: buildFableImage(15, "/images/fables/Fable 15 - Snake and Buffoon - Skovoroda.webp", 'pryanya', 900, 1260, "#16230A"),
   fable16: buildFableImage(16, "/images/fables/Fable 16 - Zhaba - Skovoroda.webp", 'polik', 900, 1260, "#8da81c"),
   fable17: buildFableImage(17, "/images/fables/Fable 17 - Almaz i Smarahd - Skovoroda.webp", 'sophi', 900, 1260, "#41742e"),
   fable18: buildFableImage(18, "/images/fables/Fable 18 - Pes i Kobyla - Skovoroda.webp", 'pryanya', 900, 1260, "#726180"),
@@ -242,14 +242,15 @@ export const SkImages = {
   fable24: buildFableImage(24, "/images/fables/Fable 24 - Mole and Lynx - Skovoroda.webp", 'polik', 1400, 1960, "#845939"),
   fable25: buildFableImage(25, "/images/fables/Fable 25 - Lion and Monkeys - Skovoroda.webp", 'pryanya', 900, 1260, "#3E0E03"),
   fable26: buildFableImage(26, "/images/fables/Fable 26 - Pike and Cancer - Skovoroda.webp", 'olenka', 900, 1260, "#348094"),
-  // TODO: Fable 27. Бджола і Шершень. В процесі роботи Пряня.
+  fable27: buildFableImage(27, "/images/fables/Fable 27 - Bjola and Hornet - Skovoroda.webp", 'pryanya', 900, 1260, "#532D17"),
   fable28: buildFableImage(28, "/images/fables/Fable 28 - Olenytsia i Kaban.webp", 'pryanya', 900, 1260, "#507421"),
-  // TODO: Fable 29. В процесі роботи Аня Жук.
+  fable29: buildFableImage(29, "/images/fables/Fable 29 - Baba and Potter.webp", 'anna_zhuk', 900, 1302, "#3A170E"),
   fable30: buildFableImage(30, "/images/fables/Fable 30 - Solovei, Zhaivoronok i Drizd - Skovoroda.webp", 'anna_zhuk', 900, 1302, "#603218"),
   
   song1: buildSongImage(1, "/images/garden/Song 1 Illustration - Skovoroda.webp", 'olenka', 1163, 1453, "#8d5d75"),
   song2: buildSongImage(2, "/images/garden/Song 2 Illustration - Skovoroda.webp", 'olenka', 1400, 1422, "#3E455C"),
   song3: buildSongImage(3, "/images/garden/Song 3 Illustration - Skovoroda.webp", 'olenka', 1400, 1452, "#5F719D"),
+  song4: buildSongImage(4, "/images/garden/Song 4 Illustration - Skoboroda.webp", 'olenka', 1400, 1428, "#5750AA"),
   
   gardenByOlenka: {
     imageUrl: "/images/garden/Skovoroda Garden of Divine Songs by Olenka.webp",

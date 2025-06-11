@@ -18,6 +18,6 @@ const options = {
 export default () => (
 	gulp.src('input/*')
     .pipe(webp(options))
-    // .pipe(imageResize(resizeOptions)) 
+    .pipe(imageResize(resizeOptions)) 
 		.pipe(gulp.dest('dist'))
 );

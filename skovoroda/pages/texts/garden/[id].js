@@ -73,6 +73,7 @@ export async function getStaticProps({ params }) {
       shouldBeIndexed: true,
       canonicalPageUrl: "https://www.skovoroda.club/texts/garden/" + id,
       allTranslators: skTranslatorsV2,
+      facebookImageUrl: selectedSong.songMetadata.songImage ? selectedSong.songMetadata.songImage.imageUrl : null,
     },
   };
 }

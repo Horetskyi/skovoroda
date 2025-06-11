@@ -63,6 +63,7 @@ export async function getStaticProps({ params }) {
       deviceEnding,
       shouldBeIndexed: true,
       canonicalPageUrl: "https://www.skovoroda.club/texts/treatise/" + treatise.urlId,
+      facebookImageUrl: treatise.image ? treatise.image.imageUrl : null,
     },
   };
 }

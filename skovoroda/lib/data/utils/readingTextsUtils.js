@@ -55,12 +55,15 @@ function textToExplanations(text) {
     const word = match[0];
     const index = match.index;
     const explanations = getOldUaWordExplanations(word);
-    if (explanations && explanations.length) {
-      explanationsData.push({
-        index,
-        length: word.length,
-        explanations
-      });
+    if (explanations) {
+      const exp = explanations.explanation;
+      if (exp && exp.length) {
+        explanationsData.push({
+          index,
+          length: word.length,
+          explanations: exp,
+        });
+      }
     }
   }
   return explanationsData;

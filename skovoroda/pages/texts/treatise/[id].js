@@ -19,7 +19,7 @@ export default function SkovorodaText(params) {
 export async function getStaticPaths() {
   const allTreatises = readAllTreatises();
   const ids = allTreatises.map(treatise => treatise.urlId);
-  console.log("All Text Ids:", ids);
+  // console.log("All Text Ids:", ids);
   return getStaticPathsCommon(ids);
 }
 

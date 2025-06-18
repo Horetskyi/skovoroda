@@ -90,7 +90,7 @@ export default function GardenSongPageDesktop({
   const randomSongNumber = randomNumberInRangeExcept(1, 30, selectedMetadata.number, availableSongNumbers);
 
   const isSongImageExists = selectedMetadata.songImage && selectedMetadata.songImage.imageUrl && selectedMetadata.songImage.imageUrl.length > 0;
-  adjustImageHeight(selectedMetadata.songImage, 420, 520, 720);
+  adjustImageHeight(selectedMetadata.songImage, 500, 520, 720);
   const highlightColor = selectedMetadata.songImage ? selectedMetadata.songImage.highlightColor : null;
   if (isSongImageExists) {
     sourcesParams.push(getIllustrationSourceParam(selectedMetadata.songImage));

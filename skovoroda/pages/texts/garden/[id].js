@@ -25,7 +25,7 @@ export default function SkovorodaGardenSongPage(params)
 export async function getStaticPaths() {
   
   const allSongIds = SkovorodaGardenRefactored.allSongs.map(song => song.songMetadata.id);
-  console.log("All Garden Songs Ids:", allSongIds);
+  // console.log("All Garden Songs Ids:", allSongIds);
   return getStaticPathsCommon(allSongIds);
 }
 

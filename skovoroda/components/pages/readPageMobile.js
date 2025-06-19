@@ -38,7 +38,7 @@ export default function ReadPageMobile({ selectedRead }) {
 
       <Container px={"md"}>
 
-        <DownloadsDesktop fileNames={selectedRead.fileNames} withHeader={false} />
+        <DownloadsDesktop fileNames={selectedRead.fileNames} withHeader={false} device={'mobile'} textId={selectedRead.urlId} />
         <SkTextContentBlockDesktop textContent={selectedRead.content} isv2={true} isMobile={true} />
         <Space h="md" />
         <NotesDesktop notes={selectedRead.notes} />

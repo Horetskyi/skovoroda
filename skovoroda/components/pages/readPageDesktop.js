@@ -19,7 +19,7 @@ export default function ReadPageDesktop({ selectedRead }) {
     <SkH1Desktop text={selectedRead.title} /> 
     <Container>
 
-      <DownloadsDesktop fileNames={selectedRead.fileNames} />
+      <DownloadsDesktop fileNames={selectedRead.fileNames} device={'desktop'} textId={selectedRead.urlId} />
 
       <div className={classes.textContainer}>
 

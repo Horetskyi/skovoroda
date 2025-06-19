@@ -63,7 +63,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
         </Text>
         <Group mt="sm" spacing={"sm"}>
           {version.fileNames.map(fileName => {
-            return <SkDownloadButtonDesktop key={fileName} fileName={fileName}/>
+            return <SkDownloadButtonDesktop key={fileName} fileName={fileName} device={'mobile'} textId={treatise.urlId} />
           })}
         </Group>
       </Stack>

@@ -70,7 +70,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
         </Text>
         <Group mt="md" spacing={"sm"}>
           {version.fileNames.map(fileName => {
-            return <SkDownloadButtonDesktop key={fileName} fileName={fileName}/>
+            return <SkDownloadButtonDesktop key={fileName} fileName={fileName} device={'desktop'} textId={treatise.urlId} />
           })}
         </Group>
       </Stack>

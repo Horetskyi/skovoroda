@@ -1,4 +1,4 @@
-import { Container } from "@mantine/core";
+import { Container, Text } from "@mantine/core";
 import SkH1Desktop from "../shared/skH1Desktop";
 import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
 import SkImage from "../shared/skImage";
@@ -17,7 +17,12 @@ export default function ReadPageDesktop({ selectedRead }) {
   adjustImageHeight(selectedRead.image, 650);
   return <>
     <SkH1Desktop text={selectedRead.title} /> 
+    
+    
     <Container>
+
+      { selectedRead.author && selectedRead.author.fullName 
+        ? <Text ta={'center'} w={'100%'}>{selectedRead.author.fullName}</Text> : null }
 
       <DownloadsDesktop fileNames={selectedRead.fileNames} device={'desktop'} textId={selectedRead.urlId} />
 

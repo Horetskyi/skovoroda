@@ -3,6 +3,7 @@
 export const SkAuthors = new Map([
   ['leonid_ushkalov', {
     fullName: 'Ушкалов Леонід Володимирович',
+    shortName: 'Леонід Ушкалов',
     description: 'Український літературознавець, письменник, педагог, доктор філологічних наук, професор',
     image: {
       imageUrl: "/images/Leonid Ushkalov.webp",

@@ -1,4 +1,4 @@
-import { Box, Container } from '@mantine/core';
+import { Box, Container, Group, Text } from '@mantine/core';
 import SkH1Desktop from '../../components/shared/skH1Desktop';
 import SkTextLink from '../../components/shared/skTextLink';
 import { pathJoin, SkovorodaReadsPath } from '../../lib/skovorodaPath';
@@ -10,8 +10,18 @@ export default function ArticlesDesktop({ articles }) {
     <SkH1Desktop text="Статті про Григорія Сковороду" />
     <Container>
       {articles.map(article => {
+        const isAuthorShortNameExists = article.author && article.author.shortName;
+        const isPagesCountExists = article.pagesCount;
+        const linkTitle = `Стаття ${article.title} - читати, завантажити`
         return <Box key={article.urlId}>
-          <SkTextLink text={article.title} href={pathJoin(SkovorodaReadsPath, article.urlId)} />
+          <Group gap={'xs'}>
+            <SkTextLink 
+              text={article.title} 
+              href={pathJoin(SkovorodaReadsPath, article.urlId)}
+              title={linkTitle} />
+            {isAuthorShortNameExists ? <Text> - {article.author.shortName}</Text> : null}
+            {isPagesCountExists ? <Text> - {article.pagesCount} с.</Text> : null}
+          </Group>
         </Box>
       })}
     </Container>

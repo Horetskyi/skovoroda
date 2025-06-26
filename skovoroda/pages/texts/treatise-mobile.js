@@ -1,4 +1,4 @@
-import { Checkbox, Container, Group, Stack, Text, TextInput, Title } from '@mantine/core';
+import { Checkbox, Container, Group, List, Stack, Text, TextInput, Title } from '@mantine/core';
 import Link from 'next/link';
 import { SkovorodaTreatisePath, pathJoin } from '../../lib/skovorodaPath';
 import SkTextContentBlockDesktop from '../../components/shared/skTextContentBlockDesktop';
@@ -12,6 +12,7 @@ import SkH2Mobile from '../../components/shared/skH2Mobile';
 import classes from './treatise-mobile.module.scss';
 import useTreatiseFilter from '../../hooks/useTreatiseFilter';
 import SkTextLink from '../../components/shared/skTextLink';
+import { recommendedTreatisesList } from '../../lib/data/treatises/generic/treatisesGenericData';
 
 export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) {
   
@@ -27,7 +28,49 @@ export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) 
 
     <SkH1Mobile text={trearisesContent.h1} />
 
+    {/* Recommended List */}
+    <SkH2Mobile text={trearisesContent.h2Recommended} mt="md" />
+    <SkColoredContainerMobile px="md">
+      <List type="ordered" spacing={"md"}>
+        {recommendedTreatisesList.map((treatise, index) => {
+          const foundTreatise = treatises.find(t => t.urlId === treatise.id);
+          const href = pathJoin(SkovorodaTreatisePath, foundTreatise.urlId);
+          const preferedVersion = foundTreatise.versions.find(v => v.preferedVersion);
+          const preferedTitle = preferedVersion.title;
+          const linkTitle = `${preferedTitle} завантажити переклади, оригінал`;
+          return <List.Item key={index}>
+            <Link href={href} title={linkTitle} className='normalContentText readFont'>
+              {preferedTitle}
+            </Link>
+            <Text className='normalContentText readFont' mt="sm">
+              {treatise.comments}
+            </Text>
+          </List.Item>
+        })}
+      </List>
+    </SkColoredContainerMobile>
+    
+    {/* Full List */}
+    <SkH2Mobile text={trearisesContent.h2FullList} mt="md" mb="sm" />
+    <Text className={classes.orderText}>В порядку дати написання</Text>
+    <SkColoredContainerMobile px="md">
+      <List type="ordered" spacing={"xs"}>
+        {treatises.map((treatise, index) => {
+          const href = pathJoin(SkovorodaTreatisePath, treatise.urlId);
+          const preferedVersion = treatise.versions.find(v => v.preferedVersion);
+          const preferedTitle = preferedVersion.title;
+          const linkTitle = `${preferedTitle} завантажити переклади, оригінал`;
+          return <List.Item key={index}>
+            <Link href={href} title={linkTitle} className='normalContentText readFont'>
+              {preferedTitle}
+            </Link>
+          </List.Item>
+        })}
+      </List>
+    </SkColoredContainerMobile>
+
     {/* Search and Filters */}
+    <SkH2Mobile text={trearisesContent.h2Details} mt="md" />
     <SkColoredContainerMobile px="md">
       
       <TextInput 

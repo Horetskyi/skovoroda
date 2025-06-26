@@ -2,6 +2,10 @@
   "urlId": "vstupni_dveri_do_khrystyianskoi_dobronravnosti",
   "orderNumber": 3,
   "treatiseType": "Катехізис",
+  "complexity": "easy",
+  "pagesCount": 10,
+  "bibleCitationsTotal": 41,
+  "bibleCitationsPerPage": 4,
   "writtenDate": [
     {
       "year": 1766,

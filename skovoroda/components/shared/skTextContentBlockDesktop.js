@@ -23,7 +23,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
       {textContent.map((lineObject, index) => {
         const key = "listItem"+index;
         return <List.Item key={key}>
-          <SkTextContentBlockDesktop textContent={[{text:lineObject.text}]} {...others} onTextNoteClick={onTextNoteClick} />
+          <SkTextContentBlockDesktop key={key} textContent={[{text:lineObject.text}]} {...others} onTextNoteClick={onTextNoteClick} />
         </List.Item> 
       })}
     </List>
@@ -149,7 +149,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 
     // Handle OldUa Text
     if (lineObject.explanations) {
-      console.log("OldUaExplanations Text1:", lineObject.explanations, lineObject.text);
+      // console.log("OldUaExplanations Text1:", lineObject.explanations, lineObject.text);
       block.push(newOldUaElement(lineObject, block.length));
       return;
     }

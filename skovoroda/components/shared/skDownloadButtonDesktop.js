@@ -23,7 +23,7 @@ export default function SkDownloadButtonDesktop({ fileName, device, textId }) {
 
   return (
     <Link key={fileName} href={"/sources/" + fileName} title={fileName} className={classes.link} passHref>
-      <Button
+    <Button
         as="a"
         href={"/sources/" + fileName}
         download

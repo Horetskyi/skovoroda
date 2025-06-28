@@ -61,7 +61,7 @@ function textToExplanations(text) {
         explanationsData.push({
           index,
           length: word.length,
-          explanations: exp,
+          explanations: explanations,
         });
       }
     }
@@ -319,6 +319,9 @@ export function parseFileContent(content, isOldUaText) {
             } else if (bibleCode.endsWith('.NOT_EXACT')) {
               bibleObj.bibleCode = bibleCode.replace(/\.NOT_EXACT$/, '');
               bibleObj.bibleType = 2;
+            } else if (bibleCode.endsWith('.PARAPHRASE')) {
+              bibleObj.bibleCode = bibleCode.replace(/\.PARAPHRASE$/, '');
+              bibleObj.bibleType = 3;
             }
           }
           parts.push(bibleObj);

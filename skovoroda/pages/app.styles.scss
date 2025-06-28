@@ -338,6 +338,18 @@ h3 {
   text-decoration-style: dotted;
   text-decoration-thickness: 2px;
   text-shadow: 0 0 4px #e2e2e2;
+}
+.sk-global-old-ua-text-normal {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 2px;
+}
+.sk-global-old-ua-text-simple {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+}
+.sk-global-old-ua-text, .sk-global-old-ua-text-simple, .sk-global-old-ua-text-normal {
   cursor: pointer;
 
   &:hover {

@@ -3,11 +3,45 @@ import { useEffect, useState } from "react";
 import { getNoteNumberString } from "../lib/data/utils/notesNumbersSymbols";
 import { utils1PageKey } from "../lib/skovorodaConstants";
 import { gsap } from "gsap/dist/gsap";
-import { IconMail } from "@tabler/icons";
 import classes from './utils1-destop.module.scss';
 import SkImage from "../components/shared/skImage";
 
 var timeline = undefined;
+
+const accentsSimpleMap = [
+  ['ч','ч́'],
+  ['к','ќ'],
+  ['а','á'],
+  ['о','ó'],
+  ['у','у́'],
+  ['и','и́'],
+  ['ы','ы́'],
+  ['е','é'],
+  ['э','э́'],
+  ['ї','ї́'],
+  ['ю','ю́'],
+  ['я','я́'],
+
+  [ 'К' , 'Ќ' ],
+  [ 'Ч' , 'Ч́' ],
+  [ 'А' , 'А́' ],
+  [ 'О' , 'О́' ],
+  [ 'У' , 'У́' ],
+  [ 'И' , 'И́' ],
+  [ 'Ы' , 'Ы́' ],
+  [ 'Е' , 'Е́' ],
+  [ 'Э' , 'Э́' ],
+  [ 'Ї' , 'Ї́' ],
+  [ 'Ю' , 'Ю́' ],
+  [ 'Я' , 'Я́' ],
+];
+const finalAccentsReplaces = [];
+const accentsIndicators = ['´', 'μ', ' ́', '°', '·', '¶'];
+accentsIndicators.forEach(after => {
+  accentsSimpleMap.forEach(pair => {
+    finalAccentsReplaces.push([pair[0] + after, pair[1]]);
+  });
+});
 
 export default function Utils1({ }) {
 
@@ -33,64 +67,6 @@ export default function Utils1({ }) {
   const [noteString, setNoteString] = useState('');
   const [shouldRemoveEnters, setShouldRemoveEnters] = useState(true);
   const [shouldDoAccents, setShouldDoAccents] = useState(true);
-  const accentsReplaces = [
-    
-    ['а´','á'],
-    ['ю´','ю́'],
-    ['э´','э́'],
-    ['ы´','ы́'],
-    ['у´','у́'],
-    ['о´','ó'],
-    ['и´','и́'],
-    ['е´','é'],
-    ['я´','я́'],
-
-    ['аμ','á'],
-    ['юμ','ю́'],
-    ['эμ','э́'],
-    ['ыμ','ы́'],
-    ['уμ','у́'],
-    ['оμ','ó'],
-    ['иμ','и́'],
-    ['еμ','é'],
-    ['яμ','я́'],
-    
-    ['ѣμ','ѣ'],
-
-
-
-    [ 'у ́' , 'у́' ],
-    [ 'а ́' , 'á' ],
-    [ 'ю ́' , 'ю́' ],
-    [ 'э ́' , 'э́' ],
-    [ 'ы ́' , 'ы́' ],
-    [ 'о ́' , 'ó' ],
-    [ 'и ́' , 'и́' ],
-    [ 'е ́' , 'é' ],
-    [ 'я ́' , 'я́' ],
-
-    [ 'А´' , 'А́' ],
-    [ 'Е´' , 'Е́' ],
-    [ 'И´' , 'И́' ],
-    [ 'О´' , 'О́' ],
-    [ 'У´' , 'У́' ],
-    [ 'Ы´' , 'Ы́' ],
-    [ 'Э´' , 'Э́' ],
-    [ 'Ю´' , 'Ю́' ],
-    [ 'Я´' , 'Я́' ],
-
-    [ 'А ́' , 'А́' ],
-    [ 'Е ́' , 'Е́' ],
-    [ 'И ́' , 'И́' ],
-    [ 'О ́' , 'О́' ],
-    [ 'У ́' , 'У́' ],
-    [ 'Ы ́' , 'Ы́' ],
-    [ 'Э ́' , 'Э́' ],
-    [ 'Ю ́' , 'Ю́' ],
-    [ 'Я ́' , 'Я́' ],
-
-    [ 'ї·' , 'ї' ],
-  ];
 
   const formatTemplates = [
     {
@@ -112,7 +88,7 @@ export default function Utils1({ }) {
       text = text.replaceAll('\n', ' ');
     }
     if (shouldDoAccents) {
-      accentsReplaces.forEach(replaces => {
+      finalAccentsReplaces.forEach(replaces => {
         text = text.replaceAll(replaces[0], replaces[1]);
       });
     }
@@ -132,7 +108,9 @@ export default function Utils1({ }) {
     }
     if (selectedMode == "italic") {
       const italicText =  `[Italic]${selectedText}[Italic]`;
-      navigator.clipboard.writeText(italicText);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(italicText);
+      }
       return;
     }
 
@@ -141,7 +119,9 @@ export default function Utils1({ }) {
       return;
     }
     setNoteString(newNoteString);
-    navigator.clipboard.writeText(newNoteString);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(newNoteString);
+    }
 
   }
 

@@ -1,4 +1,4 @@
-import { Container, Flex, Group, List, Paper, Space, Stack, Text, Title } from "@mantine/core";
+import { Container, Group, List, Paper, Space, Stack, Text, Title } from "@mantine/core";
 import SkColoredContainerDesktop from "../shared/skColoredContainerDesktop";
 import SkH1Desktop from "../shared/skH1Desktop";
 import SkH2Desktop from "../shared/skH2Desktop";
@@ -15,6 +15,8 @@ import SkSourcesContainerDesktop from "../shared/skSourcesContainerDesktop";
 import { getIllustrationSourceParam } from "./details/pureFunctions";
 import { VideoBlockDesktop } from "./details/videoBlockDesktop";
 import { SkQuotesDesktop } from "../shared/skQuotesDesktop";
+import { getReadPath } from "../../lib/skovorodaPath";
+import SkReadButtonDesktop from "../shared/skReadButtonDesktop";
 
 // Pure
 function filterZmistListForSongs(zmistList) {
@@ -47,6 +49,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
   function TreatisVersionBlock(version, source) {
     const isTranslation = version.translatorId ? true : false;
     const translator = translators.find(t => t.translatorId == version.translatorId);
+    const readHref = getReadPath(treatise.urlId);
     return <Container className={classes.bookContainer} key={version.urlId}>
       <div className={classes.bookImage}>
         <SkImage 
@@ -72,6 +75,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
           {version.fileNames.map(fileName => {
             return <SkDownloadButtonDesktop key={fileName} fileName={fileName} device={'desktop'} textId={treatise.urlId} />
           })}
+          {version.isReadAvailable ? <SkReadButtonDesktop key={"read"} device={'desktop'} readUrlId={treatise.urlId} title={version.title} /> : null}
         </Group>
       </Stack>
     </Container>

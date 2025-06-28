@@ -8,6 +8,7 @@ import { readFileSyncOrDefault } from "./dataReaderHelper";
 export function readAllTreatises(options) {
 
   const isExcludeContent = options && options.excludeContent ? true : false;
+  const isExcludeReadContent = options && options.excludeReadContent ? true : false;
 
   const directoryPath = path.join(process.cwd(), "lib", "data", "treatises");
   const fileNames = fs.readdirSync(directoryPath);
@@ -48,6 +49,22 @@ export function readAllTreatises(options) {
         const introContent2 = introContentString2 ? parseFileContent(introContentString2) : null;
         if (introContent2) {
           metadata.introContent2 = introContent2;
+        }
+
+        // File 4. "vstupni_dveri_do_khrystyianskoi_dobronravnosti READ.txt"
+        const readFilePath = jsonFilePath.replace(".json", " READ.txt");
+        let readContentString = readFileSyncOrDefault(readFilePath);
+        if (!readContentString || !readContentString.length) {
+          readContentString = null;
+        }
+        const originalVersion = metadata.versions.find(version => version.translatorId === 0);
+        originalVersion.isReadAvailable = readContentString ? true : false;
+        if (!isExcludeReadContent && originalVersion.isReadAvailable) {
+          const isOriginal = true;
+          const readContent = parseFileContent(readContentString, isOriginal);
+          if (readContent) {
+            originalVersion.readContent = readContent;
+          }
         }
       }
 

@@ -25,9 +25,10 @@ const accentsSimpleMap = [
   [ 'Ї' , 'Ї́' ],
   [ 'Ю' , 'Ю́' ],
   [ 'Я' , 'Я́' ],
+  [ 'Ѣ' , 'Ѣ' ],
 ];
 export const finalAccentsReplaces = [];
-export const accentsIndicators = ['´', 'μ', ' ́', '°', '·', '¶'];
+export const accentsIndicators = ['´', 'μ', ' ́', '°', '·', '¶', '±'];
 accentsIndicators.forEach(after => {
   accentsSimpleMap.forEach(pair => {
     finalAccentsReplaces.push([pair[0] + after, pair[1]]);

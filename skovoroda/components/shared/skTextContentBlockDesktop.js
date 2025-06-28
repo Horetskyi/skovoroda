@@ -267,7 +267,7 @@ function newOldUaElement(lineObject, key) {
 }
 
 function newBibleElement(lineObject, key) {
-  return <SkBibleText bibleCode={lineObject.bibleCode} bibleType={lineObject.bibleType} text={lineObject.text} bKey={key} />;
+  return <SkBibleText bibleCode={lineObject.bibleCode} bibleType={lineObject.bibleType} text={lineObject.text} bKey={key} translation={lineObject.translation} />;
 }
 
 function pushNoteInNotesBlock(block, lineObject, classes, onBlockNoteClick) {

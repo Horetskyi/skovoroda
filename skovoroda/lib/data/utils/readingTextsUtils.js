@@ -291,7 +291,7 @@ export function parseFileContent(content, isOldUaText) {
     }
 
     if (lineObject.text.includes("[BIBLE]")) {
-      const bibleRegex = /\[BIBLE\](.*?)(?:\[X\](.*?))?\[BIBLE\]/g;
+      const bibleRegex = /\[BIBLE\](.*?)(?:\[X\](.*?)(?:\[X\](.*?))?)?\[BIBLE\]/g;
       const matches = [...lineObject.text.matchAll(bibleRegex)];
       if (matches.length > 0) {
         const parts = [];
@@ -300,6 +300,7 @@ export function parseFileContent(content, isOldUaText) {
         matches.forEach(match => {
           const bibleCode = match[1];
           const text = match[2];
+          const translation = match[3];
           const startIndex = match.index;
     
           // Add text before
@@ -312,6 +313,9 @@ export function parseFileContent(content, isOldUaText) {
     
           // Add the bible text
           const bibleObj = { text, bibleCode: bibleCode };
+          if (translation) {
+            bibleObj.translation = translation;
+          }
           if (typeof bibleCode === 'string') {
             if (bibleCode.endsWith('.EXACT')) {
               bibleObj.bibleCode = bibleCode.replace(/\.EXACT$/, '');

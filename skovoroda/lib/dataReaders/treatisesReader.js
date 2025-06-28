@@ -52,11 +52,11 @@ export function readAllTreatises(options) {
         }
 
         // File 4. "vstupni_dveri_do_khrystyianskoi_dobronravnosti READ.txt"
-        const readFilePath = jsonFilePath.replace(".json", " READ.txt");
-        let readContentString = readFileSyncOrDefault(readFilePath);
-        if (!readContentString || !readContentString.length) {
-          readContentString = null;
-        }
+        const readContentString = readContentStringOrDefault(jsonFilePath.replace(".json", " READ.txt"));
+        
+        // File 5. "vstupni_dveri_do_khrystyianskoi_dobronravnosti READ NOTES.txt"
+        const readContentNotesString = readContentStringOrDefault(jsonFilePath.replace(".json", " READ NOTES.txt"));
+        
         const originalVersion = metadata.versions.find(version => version.translatorId === 0);
         originalVersion.isReadAvailable = readContentString ? true : false;
         if (!isExcludeReadContent && originalVersion.isReadAvailable) {
@@ -64,6 +64,7 @@ export function readAllTreatises(options) {
           const readContent = parseFileContent(readContentString, isOriginal);
           if (readContent) {
             originalVersion.readContent = readContent;
+            originalVersion.readContentNotes = parseFileContent(readContentNotesString, isOriginal);
           }
         }
       }
@@ -79,6 +80,14 @@ export function readAllTreatises(options) {
     .filter(item => item);
 
   return allParsedItems;
+}
+
+function readContentStringOrDefault(path) {
+  let contentString = readFileSyncOrDefault(path);
+  if (!contentString || !contentString.length) {
+    contentString = null;
+  }
+  return contentString;
 }
 
 // DDD

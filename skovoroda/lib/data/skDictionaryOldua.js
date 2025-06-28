@@ -1,3 +1,5 @@
+import { replaceAccentsToSimpleText } from "../utilsAccents";
+
 const dictionary = [
 
   // а
@@ -278,7 +280,6 @@ const dictionary = [
   // в
   [ "вар", "спека" ],
   [ "василіск", "дракон; чудовисько, що вбиває поглядом" ],
-  [ "вéдро", "погожа, ясна година" ],
   [ "ведреный", "погожий, ясний" ],
   [ "велій", "великий" ],
   [ "вентер", "ятір, сіть" ],
@@ -2080,7 +2081,7 @@ const dictionary = [
   [ "Мордовати", "катувати, бити, мучити" ],
   [ "Мордыр", "убивця, душогуб" ],
   [ "Мориг", "заплава, сінокіс; низинне, вкрите дерном місце" ],
-  [ "Москва", "росіяни" ],
+  [ "Москва", ["Москва", "росіяни"], null, 0 ],
   [ "Москвитинок", "хлопчак-росіянин" ],
   [ "Московскій", "російський" ],
   [ "Мосць", "милість" ],
@@ -2591,7 +2592,7 @@ const dictionary = [
   [ "Осутки", "плями на тілі" ],
   [ "Осьмак", "дрібна монета" ],
   [ "Отбегати", "втрачати, позбуватись" ],
-  [ ["От","т","уха"], "втіха" ],
+  [ ["Оттуха"], "втіха" ],
   [ "Отвні", "зовні" ],
   [ "Отвратитися", "відвернутися" ],
   [ "ОтврЂсти", "відкрити, відчинити" ],
@@ -2820,7 +2821,7 @@ const dictionary = [
   [ "Півгранаття", "товсте сукно темносинього кольору" ],
   [ "Півкрeс", "половина відстані" ],
   [ "Півшкарлаття", "сукно темночервоного кольору" ],
-  [ "Під", "горище" ],
+  [ "Під", ["під", "горище"], null, 0 ],
   [ "Під'їзд", "військова розвідка" ],
   [ "Підкоморій", "особа, що очолювала Підкоморських (межовий) суд певного повіту" ],
   [ "Піднімати", "утримувати" ],
@@ -3923,7 +3924,7 @@ const dictionary = [
   [ "снабдевать", "постачати" ],
   [ "снЂдь", "їжа" ],
   [ "солило", "блюдо" ],
-  [ ["сонм","съньм"], "зібрання, скупчення", null, 2 ],
+  [ ["сонм","съньм", "сóньмищѣ"], "зібрання, скупчення", null, 2 ],
   [ "соніе", "сон" ],
   [ "срЂсти", "зустріти" ],
   [ "срящ", "мор, зараза" ],
@@ -4715,11 +4716,21 @@ value: {
  */
 const finalDictionaryMap = new Map();
 
+const ignorePattern = new RegExp(`[´μ°·¶]`, 'g');
+
+function prepareWordForDictionaryKey(word) {
+  if (!word || !word.length) {
+    return null;
+  }
+  return replaceAccentsToSimpleText(word.toLowerCase().replace(ignorePattern, '')).trim();
+} 
+
+// INITIALIZATION {
 function addExplanation(key, explanation, references, complexity) {
   if (!key || !explanation) {
     return;
   }
-  key = key.toLowerCase().trim();
+  key = prepareWordForDictionaryKey(key);
   if (finalDictionaryMap.has(key)) { 
     console.error(`OLD DICTIONARY ERROR: DUPLICATE KEY: ${key}`);
     return;
@@ -4735,6 +4746,7 @@ function addExplanation(key, explanation, references, complexity) {
   }
   finalDictionaryMap.set(key, result);
 }
+
 dictionary.forEach((item, index) => {
   if (!item || item.length < 2 || item.length > 4) {
     console.warn(`OLD DICTIONARY ERROR: INVALID ITEM LENGTH: ${item} - ${index}`);
@@ -4754,11 +4766,14 @@ dictionary.forEach((item, index) => {
     addExplanation(item[0], explanation, references, complexity);
   }
 });
+// INITIALIZATION }
+
+// PUBLIC USAGE METHOD:
 export function getOldUaWordExplanations(word) {
   if (!word || !word.length) {
     return null;
   }
-  word = word.toLowerCase().trim();
+  word = prepareWordForDictionaryKey(word);
   if (!finalDictionaryMap.has(word)) {
     return null;
   }

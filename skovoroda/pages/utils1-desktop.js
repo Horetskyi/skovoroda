@@ -5,43 +5,9 @@ import { utils1PageKey } from "../lib/skovorodaConstants";
 import { gsap } from "gsap/dist/gsap";
 import classes from './utils1-destop.module.scss';
 import SkImage from "../components/shared/skImage";
+import { finalAccentsReplaces } from "../lib/utilsAccents";
 
 var timeline = undefined;
-
-const accentsSimpleMap = [
-  ['ч','ч́'],
-  ['к','ќ'],
-  ['а','á'],
-  ['о','ó'],
-  ['у','у́'],
-  ['и','и́'],
-  ['ы','ы́'],
-  ['е','é'],
-  ['э','э́'],
-  ['ї','ї́'],
-  ['ю','ю́'],
-  ['я','я́'],
-
-  [ 'К' , 'Ќ' ],
-  [ 'Ч' , 'Ч́' ],
-  [ 'А' , 'А́' ],
-  [ 'О' , 'О́' ],
-  [ 'У' , 'У́' ],
-  [ 'И' , 'И́' ],
-  [ 'Ы' , 'Ы́' ],
-  [ 'Е' , 'Е́' ],
-  [ 'Э' , 'Э́' ],
-  [ 'Ї' , 'Ї́' ],
-  [ 'Ю' , 'Ю́' ],
-  [ 'Я' , 'Я́' ],
-];
-const finalAccentsReplaces = [];
-const accentsIndicators = ['´', 'μ', ' ́', '°', '·', '¶'];
-accentsIndicators.forEach(after => {
-  accentsSimpleMap.forEach(pair => {
-    finalAccentsReplaces.push([pair[0] + after, pair[1]]);
-  });
-});
 
 export default function Utils1({ }) {
 

@@ -77,6 +77,7 @@ export function readAllReads(options) {
         title: item.version.title,
         sourceId: item.version.sourceId,
         content: item.version.readContent,
+        notes: item.version.readContentNotes,
         author: SkAuthors.get('skovoroda'),
         type: "treatise",
         image: image,

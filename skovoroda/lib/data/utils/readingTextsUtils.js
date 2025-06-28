@@ -48,7 +48,7 @@ function textToExplanations(text) {
   if (!text || !text.length) {
     return null;
   }
-  const regex = /[^\s\.,;:!?\(\)\[\]{}"'\-–—«»…]+/gu;
+  const regex = /[^\s\.,;:!?\(\)\[\]{}"\-–—«»…]+/gu;
   let match;
   const explanationsData = [];
   while ((match = regex.exec(text)) !== null) {

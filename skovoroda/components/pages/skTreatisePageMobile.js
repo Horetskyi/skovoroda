@@ -15,6 +15,7 @@ import { getIllustrationSourceParam } from "./details/pureFunctions";
 import SkSourcesContainerMobile from "../shared/skSourcesContainerMobile";
 import { VideoBlockMobile } from "./details/videoBlockMobile";
 import { SkQuotesDesktop } from "../shared/skQuotesDesktop";
+import SkReadButtonDesktop from "../shared/skReadButtonDesktop";
 
 export default function SkTreatisePageMobile({ treatise, sources, translators }) {
 
@@ -65,6 +66,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
           {version.fileNames.map(fileName => {
             return <SkDownloadButtonDesktop key={fileName} fileName={fileName} device={'mobile'} textId={treatise.urlId} />
           })}
+          {version.isReadAvailable ? <SkReadButtonDesktop key={"read"} device={'mobile'} readUrlId={treatise.urlId} title={version.title} /> : null}
         </Group>
       </Stack>
     </Container>

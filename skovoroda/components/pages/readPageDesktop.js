@@ -22,7 +22,7 @@ export default function ReadPageDesktop({ selectedRead }) {
     <Container>
 
       { selectedRead.author && selectedRead.author.fullName && selectedRead.type !== "treatise"
-        ? <Text ta={'center'} w={'100%'}>{selectedRead.author.fullName}</Text> : null }
+        ? <Text ta={'center'} mb="md" w={'100%'} fs={'italic'}>Автор: {selectedRead.author.fullName}</Text> : null }
 
       <DownloadsDesktop fileNames={selectedRead.fileNames} device={'desktop'} textId={selectedRead.urlId} />
 

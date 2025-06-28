@@ -11,13 +11,11 @@ import dynamic from 'next/dynamic';
 const FablePageDesktop = dynamic(() => import('../../../components/pages/fablePageDesktop'));
 const FablePageMobile = dynamic(() => import('../../../components/pages/fablePageMobile'));
 
-export default function FablePage(params) 
-{
-  return <>
-    {params.deviceEnding == SkovorodaConstants.desktopEnding ? 
-      <FablePageDesktop {...params} /> :
-      <FablePageMobile {...params} />}
-  </>;
+export default function FablePage(params) {
+
+  return params.isMobile ? 
+    <FablePageMobile {...params} /> :
+    <FablePageDesktop {...params} />;
 }
 
 // Get all Fables Paths

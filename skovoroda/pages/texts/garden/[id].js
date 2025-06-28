@@ -6,19 +6,17 @@ import getSelectedNoteNumbersByContent from '../../../lib/getSelectedNoteNumbers
 import getStaticPathsCommon from '../../../lib/getStaticPathsCommon';
 import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';
 import { getOriginalSongId } from '../../../lib/sadIds';
-import { gardenSelectedPageKey, SkovorodaConstants } from '../../../lib/skovorodaConstants';
+import { gardenSelectedPageKey } from '../../../lib/skovorodaConstants';
 import dynamic from 'next/dynamic';
 
 const GardenSongPageDesktop = dynamic(() => import('../../../components/pages/gardenSongPageDesktop'));
 const GardenSongPageMobile = dynamic(() => import('../../../components/pages/gardenSongPageMobile'));
 
-export default function SkovorodaGardenSongPage(params) 
-{
-  return <>
-    {params.deviceEnding == SkovorodaConstants.desktopEnding ? 
-      <GardenSongPageDesktop {...params} /> :
-      <GardenSongPageMobile {...params} />}
-  </>;
+export default function SkovorodaGardenSongPage(params)  {
+  
+  return params.isMobile ? 
+    <GardenSongPageMobile {...params} /> :
+    <GardenSongPageDesktop {...params} />;
 }
 
 // Get all Songs Paths

@@ -40,6 +40,8 @@ const SKOVORODA_NOTE_NUMBER_FORMAT = "[SkovorodaNoteNumber]";
 const NOTE_NUMBER_FORMAT = "[NoteNumber]"; 
 const MAIN_SECTION_FORMAT = "[MainSection]"; 
 const HEADER2_FORMAT = "[H2]";
+const HEADER3_FORMAT = "[H3]";
+const HEADER4_FORMAT = "[H4]";
 function getNotesRegex() { return new RegExp("[¹²³⁴⁵⁶⁷⁸⁹⁰ᵃᵇᵉᵈᵍ]+", 'g'); }
 // original : "\[\d+\s—\s[А-ЯІ]+\.?\s\d+\]|\[\d+\]"
 function getOurSourcesNotesRegex() { return new RegExp("\\[\\d+\\s—\\s[А-ЯІ]+\\.?\\s\\d+\\]|\\[\\d+\\]", 'giu'); }
@@ -358,6 +360,14 @@ export function parseFileContent(content, isOldUaText) {
     if (lineObject.text.includes(HEADER2_FORMAT)) {
       lineObject.text = lineObject.text.replace(HEADER2_FORMAT, "").trim();
       lineObject.format = "header2";
+    }
+    else if (lineObject.text.includes(HEADER3_FORMAT)) {
+      lineObject.text = lineObject.text.replace(HEADER3_FORMAT, "").trim();
+      lineObject.format = "header3";
+    }
+    else if (lineObject.text.includes(HEADER4_FORMAT)) {
+      lineObject.text = lineObject.text.replace(HEADER4_FORMAT, "").trim();
+      lineObject.format = "header4";
     }
 
     if (lineObject.text.includes(SKOVORODA_NOTE_NUMBER_FORMAT)) {

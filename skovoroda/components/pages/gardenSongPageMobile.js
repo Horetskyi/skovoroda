@@ -123,6 +123,8 @@ export default function GardenSongPageMobile({
             width={selectedMetadata.songImage.width}
             height={selectedMetadata.songImage.height}
             fullContainerWidthPercent={90}
+            maxHeight={600}
+            maxWidth={"max-content"}
             priority={true}
             optimize={false}
             shadow={false}

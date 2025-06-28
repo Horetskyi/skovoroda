@@ -9,15 +9,9 @@ const ReadPageMobile = dynamic(() => import('../../../components/pages/readPageM
 
 export default function ReadPage(params) {
 
-  return (
-    <>
-      {params.deviceEnding.includes('desktop') ? (
-        <ReadPageDesktop {...params} />
-      ) : (
-        <ReadPageMobile {...params} />
-      )}
-    </>
-  );
+  return params.isMobile 
+    ? <ReadPageMobile {...params} /> 
+    : <ReadPageDesktop {...params} />;
 }
 
 // Generate Dynamic Paths for All Reads

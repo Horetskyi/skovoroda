@@ -6,6 +6,7 @@ import Script from 'next/script';
 import '@mantine/core/styles.layer.css';
 import './app.styles.scss';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { useState, useEffect } from 'react';
 
 const SkHeaderMenuDesktop = dynamic(() => import('../components/shared/skHeaderMenuDesktop'));
 const SkHeaderMenuMobile = dynamic(() => import('../components/shared/skHeaderMenuMobile'));
@@ -23,7 +24,33 @@ export default function App(props) {
       ? SkovorodaConstants.desktopEnding 
       : SkovorodaConstants.mobileEnding;
   }
-  const isMobile = deviceEnding === SkovorodaConstants.mobileEnding;
+  
+  // Initial mobile state based on SSR logic
+  const initialMobile = deviceEnding === SkovorodaConstants.mobileEnding;
+  const [shouldUseMobile, setShouldUseMobile] = useState(initialMobile);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    // Set client flag to true after hydration
+    setIsClient(true);
+    
+    const checkScreenWidth = () => {
+      const isMobileWidth = window.innerWidth < 1190;
+      setShouldUseMobile(isMobileWidth || deviceEnding === SkovorodaConstants.mobileEnding);
+    };
+
+    // Check screen width on mount
+    checkScreenWidth();
+
+    // Add resize listener
+    window.addEventListener('resize', checkScreenWidth);
+
+    // Cleanup listener
+    return () => window.removeEventListener('resize', checkScreenWidth);
+  }, [deviceEnding]);
+
+  // During SSR or before client hydration, use original SSR logic
+  const isMobile = isClient ? shouldUseMobile : initialMobile;
   const isDektop = !isMobile;
   
   if (!pageProps.metadataTitle) {
@@ -136,7 +163,7 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
 
         {/* <main className={roboto.className}> */}
         <main>
-          <Component {...pageProps} />
+          <Component {...pageProps} isMobile={isMobile} />
         </main>
 
         {isDektop ? 

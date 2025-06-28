@@ -1,4 +1,4 @@
-import { Card, Container, List } from "@mantine/core";
+import { Card, Container, List, Title } from "@mantine/core";
 import Link from "next/link";
 import { getNoteNumberString, getNoteNumberUpperString } from "../../lib/data/utils/notesNumbersSymbols";
 import { gsap } from "gsap/dist/gsap";
@@ -89,7 +89,9 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     "italic": classes.formatItalic,
     "underline": classes.formatUnderline,
     "bold": classes.formatBold,
-    "header2": classes.formatHeader2
+    "header2": classes.formatHeader2,
+    "header3": classes.formatHeader3,
+    "header4": classes.formatHeader3,
   };
 
   const isNotesBlock = textContent.some(lineObject => lineObject.isNoteBeginning);
@@ -126,6 +128,22 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
           <SkH2Desktop key={block.length} mt="md" mb="md" text={lineObject.text}/>
         );
       }
+      return;
+    }
+
+    // H3
+    if (lineObject.format === "header3") {
+      block.push(
+        <Title order={3} key={block.length} mt="md" mb="md" ta={'center'}>{lineObject.text}</Title>
+      );
+      return;
+    }
+
+    // H4
+    if (lineObject.format === "header4") {
+      block.push(
+        <Title order={4} key={block.length} mt="md" mb="md" ta={'center'}>{lineObject.text}</Title>
+      );
       return;
     }
 

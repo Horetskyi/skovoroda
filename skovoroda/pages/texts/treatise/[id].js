@@ -1,19 +1,20 @@
 
 import getStaticPathsCommon from '../../../lib/getStaticPathsCommon';
 import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';
-import { SkovorodaConstants, treatiseSelectedPageKey } from '../../../lib/skovorodaConstants';
+import { treatiseSelectedPageKey } from '../../../lib/skovorodaConstants';
 import dynamic from 'next/dynamic';
 import { readAllTreatises } from '../../../lib/dataReaders/treatisesReader';
 import { SkovorodaSourcesArray } from '../../../lib/data/skovorodaSources';
 import { skTranslatorsV2 } from '../../../lib/data/skovorodaTranslators';
+
 const SkTreatisePageDesktop = dynamic(() => import('../../../components/pages/skTreatisePageDesktop'));
 const SkTreatisePageMobile = dynamic(() => import('../../../components/pages/skTreatisePageMobile'));
 
 export default function SkovorodaText(params) {
 
-  return params.deviceEnding === SkovorodaConstants.desktopEnding 
-    ? <SkTreatisePageDesktop {...params} />
-    : <SkTreatisePageMobile {...params} />;
+  return params.isMobile
+    ? <SkTreatisePageMobile {...params} />
+    : <SkTreatisePageDesktop {...params} />;
 }
 
 export async function getStaticPaths() {

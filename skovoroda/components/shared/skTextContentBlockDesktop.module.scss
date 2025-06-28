@@ -123,10 +123,10 @@ $left-num-spacing: 100;
 }
 .formatIrmologion {
   font-family: 'Irmologion ieUcs';
-  font-size: 18px;
+  font-size: 22px;
 
   @media (max-width: $mantine-breakpoint-sm) {
-    font-size: 18px;
+    font-size: 21px;
   }
 }
 .formatLeftNum9 {
@@ -215,6 +215,20 @@ $left-num-spacing: 100;
 .formatHeader2 {
   font-size: 24px;
   font-weight: bold;
+  text-align: left;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  color: var(--mantine-color-dark-9);
+
+  @media (max-width: 900px) {
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+  }
+}
+.formatHeader3 {
+  font-size: 22px;
+  font-weight: 400;
   text-align: left;
   margin-top: 24px;
   margin-bottom: 16px;

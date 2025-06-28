@@ -21,7 +21,9 @@ export default function SkImage({
   fullHeight,
   fullContainerWidth,
   fullContainerWidthPercent,
-  bordered
+  bordered,
+  maxHeight,
+  maxWidth
 }) {
 
   if (shadow !== false && !gentlyShadow && !bordered) {
@@ -74,6 +76,13 @@ export default function SkImage({
       height: "fit-content",
       minWidth: "auto",
     };
+  }
+
+  if (maxHeight) {
+    styleObj.maxHeight = maxHeight;
+  }
+  if (maxWidth) {
+    styleObj.maxWidth = maxWidth;
   }
 
   if (disableBottomRadius) {

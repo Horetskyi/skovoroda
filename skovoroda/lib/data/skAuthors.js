@@ -17,4 +17,8 @@ export const SkAuthors = new Map([
     fullName: 'Сковорода Григорій Савич',
     shortName: 'Григорій Сковорода',
   }],
+  ['horetskyi_dmytro', {
+    fullName: 'Горецький Дмитро Сергійович',
+    shortName: 'Дмитро Горецький',
+  }],
 ]);

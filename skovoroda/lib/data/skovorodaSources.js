@@ -1,6 +1,13 @@
 import { SkovorodaFiles } from "./skovorodaFiles";
 
 const skovorodaSources = {
+  skovorodaClub: {
+    devNumber: -1,
+    id: "skovoroda_club",
+    sourceName: "Стаття написана спеціально для сайту Skovoroda Club",
+    shortTitle: "Стаття написана спеціально для сайту Skovoroda Club",
+    productionYear: 2025,
+  },
   lovytva: {
     devNumber: 1,
     id: "lovytva",

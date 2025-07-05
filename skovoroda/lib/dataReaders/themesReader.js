@@ -10,7 +10,7 @@ import { getTreatisePath, pathJoinWithoutEndSlash } from "../skovorodaPath";
 export function readAllThemes() {
 
   const allTreatises = readAllTreatises({excludeContent: true});
-  const allReads = readAllReads({excludeContent: true});
+  const allReads = readAllReads({excludeContent: true}).filter(read => !read.hidden);
 
   const directoryPath = path.join(process.cwd(), "lib", "data", "themes");
   const fileNames = fs.readdirSync(directoryPath);

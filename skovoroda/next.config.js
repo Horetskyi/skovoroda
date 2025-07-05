@@ -32,6 +32,7 @@ const nextConfig = {
     });
     return config;
   },
+  transpilePackages: ['@mui/x-charts', '@mui/material'],
   // i18n: {
   //   locales: ['uk'],
   //   defaultLocale: 'uk',

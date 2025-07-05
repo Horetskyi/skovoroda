@@ -1,4 +1,3 @@
-// lib/seedSkFiles.js
 import clientPromise from './mongodb';
 import { readAllTreatises } from '../dataReaders/treatisesReader';
 import { dbFileNameToExtension } from './databaseShared';

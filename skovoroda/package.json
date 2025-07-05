@@ -11,12 +11,15 @@
     "cypress:open": "cypress open"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
+    "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.14.1",
     "@mantine/core": "^7.1.7",
     "@mantine/dates": "^7.1.7",
     "@mantine/hooks": "^7.1.7",
     "@mantine/next": "^6.0.21",
+    "@mui/material": "^7.2.0",
+    "@mui/x-charts": "^8.7.0",
     "@next/font": "^14.0.1",
     "@svgr/webpack": "^6.5.1",
     "@tabler/icons": "^1.110.0",

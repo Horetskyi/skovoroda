@@ -20,10 +20,10 @@ const TYPE_TAG_LABELS_MAP = new Map([
 function getSpecialIcon(specialType) {
   if (!specialType || !specialType.length) return null;
   if (specialType === "fountain") {
-    return <FountainIcon key={specialType} className={classes.specialIcon} width={60} height={40} />;
+    return <FountainIcon key={specialType} className={classes.specialIcon} width={50} height={30} />;
   }
   if (specialType === "symbolsDrawings") {
-    return <IconDeer key={specialType} className={classes.specialIcon} width={32} height={32} color="black" />;
+    return <IconDeer key={specialType} className={classes.specialIcon} width={26} height={26} color="black" />;
   }
   return null;
 }

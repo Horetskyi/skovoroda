@@ -249,9 +249,11 @@ export const SkImages = {
   
   song1: buildSongImage(1, "/images/garden/Song 1 Illustration - Skovoroda.webp", 'olenka', 1163, 1453, "#8d5d75"),
   song2: buildSongImage(2, "/images/garden/Song 2 Illustration - Skovoroda.webp", 'olenka', 1400, 1422, "#3E455C"),
-  song3: buildSongImage(3, "/images/garden/Song 3 Illustration - Skovoroda.webp", 'olenka', 1400, 1452, "#5F719D"),
+  song3: buildSongImage(3, "/images/garden/Song 3 Illustration - Skovoroda.webp", 'olenka', 1400, 1452, "#96ab43"),
   song4: buildSongImage(4, "/images/garden/Song 4 Illustration - Skoboroda.webp", 'olenka', 1400, 1428, "#5750AA"),
   song5: buildSongImage(5, "/images/garden/Song 5 Illustration - Skoboroda.webp", 'olenka', 1328, 1384, "#091859"),
+  song6: buildSongImage(6, "/images/garden/Song 6 Illustration - Skoboroda.webp", 'olenka', 1300, 1388, "#02af8d"),
+  song7: buildSongImage(7, "/images/garden/Song 7 Illustration - Skoboroda.webp", 'olenka', 1340, 1348, "#694129"),
   
   gardenByOlenka: {
     imageUrl: "/images/garden/Skovoroda Garden of Divine Songs by Olenka.webp",
@@ -264,6 +266,8 @@ export const SkImages = {
   ubohyiZhaivoronok: buildTextImage('treatise', "ubohii_zhaivoronok",  "/images/treatise/Ubohii_Zhaivoronok.webp", "zmiika", "Убогий Жайворонок", 900, 1260),
   dveriDobronravia: buildTextImage('treatise', "vstupni_dveri_do_khrystyianskoi_dobronravnosti",  "/images/treatise/The Door to Christian Morality.webp", "olenka", "Вступні двері до християнської добронравності", 1960, 1400, "#192539", [ "fullWidth" ]),
   
-  proKotiv: buildTextImage('read', "parable_about_cats",  "/images/treatise/Bukvar Myru - Parable about cats.webp", "polik", "Байка про Котів", 900, 1714),
+  parable_about_cats: buildTextImage('read', "parable_about_cats",  "/images/treatise/Bukvar Myru - Parable about cats.webp", "polik", "Байка про Котів", 900, 1714),
+  oznaky_srodnostei: buildTextImage('read', "oznaky_srodnostei",  "/images/treatise/Bukvar Myru - Oznaky srodnostei.webp", "polik", "Ознаки деяких сродностей", 1200, 1697, "#004E46"),
+  aesops_fable_about_the_wolf: buildTextImage('read', "aesops_fable_about_the_wolf",  "/images/treatise/Bukvar Myru - Aesops fable about the wolf.webp", "pryanya", "Байка Езопа про вовка", 1200, 1680, "#585252"),
 };
 export const SkImagesArray = Object.values(SkImages);

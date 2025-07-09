@@ -1,6 +1,7 @@
 import FountainSvg from "./skFountain.svg";
 import { useEffect, useState } from "react";
 import classes from './skFountain.module.scss'; 
+import SkImage from "./skImage";
 
 export default function SkFountain({ isMobile }) {
 
@@ -80,7 +81,35 @@ export default function SkFountain({ isMobile }) {
 
   const width = isMobile ? "100%" : "900px";
 
-  return <>
+  return <div className={isMobile ? classes.fountainContainerMobile : classes.fountainContainer}>
+    <div className={isMobile ? classes.fountainFirstTextContainerMobile : classes.fountainFirstTextContainer}>
+      <SkImage 
+        imageUrl={"/images/others/Fountain Text 1.webp"}
+        width={533}
+        height={83}
+        gentlyShadow={false}
+        disableBottomRadius={true}
+        optimize={false}
+        priority={false}
+        shadow={false}
+        fullWidth={isMobile}
+        maxWidth={533}
+      />
+    </div>
     <FountainSvg width={width} />
-  </>;
+    <div className={classes.fountainSecondTextContainer}>
+      <SkImage 
+        imageUrl={"/images/others/Fountain Text 2.webp"}
+        width={840} // 719
+        height={87}
+        gentlyShadow={false}
+        disableBottomRadius={true}
+        optimize={false}
+        priority={false}
+        shadow={false}
+        fullWidth={isMobile}
+        maxWidth={840}
+      />
+    </div>
+  </div>;
 }

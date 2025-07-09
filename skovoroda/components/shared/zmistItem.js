@@ -1,4 +1,4 @@
-import { Text, List } from "@mantine/core";
+import { List } from "@mantine/core";
 import classes from './zmistItem.module.scss';
 import SkRelatedTags from "./skRelatedTags";
 import { getReadPath } from "../../lib/skovorodaPath";
@@ -42,9 +42,16 @@ export function ZmistItem({ item, index }) {
   }
   const leftIcon = getLeftIcon();
 
+  const itemMl = item.indent && item.indent > 0 ? item.indent * 36 : 0;
+
+  const tagsView = <div className={classes.tags}>
+    <SkRelatedTags type={item.type} mainTheme={item.mainTheme} specialType={item.specialType} />
+  </div>;
+
   return (
     <List.Item 
       key={"zmist_" + index} 
+      ml={itemMl}
       classNames={{item: classes.listItem}} 
       styles={{itemIcon: { alignSelf: "baseline"}, itemWrapper: { overflow: "visible"}}}>
 
@@ -52,13 +59,9 @@ export function ZmistItem({ item, index }) {
 
         <span>
           {hasReadLink 
-            ? <span>{leftIcon}<SkTextLink href={getReadPath(item.read)} text={item.title} title={`Читати \"${item.title}\"`} />{iconInline}</span>
-            : <span className={classes.title}>{leftIcon}{item.title}{iconInline}</span>}
+            ? <span>{leftIcon}<SkTextLink href={getReadPath(item.read)} text={item.title} title={`Читати \"${item.title}\"`} />{iconInline}{tagsView}</span>
+            : <span className={classes.title}>{leftIcon}{item.title}{iconInline}{tagsView}</span>}
         </span>
-
-        <div className={classes.tags}>
-          <SkRelatedTags type={item.type} mainTheme={item.mainTheme} specialType={item.specialType} />
-        </div>
 
         {/* Render seedContent if present */}
         {item.type === "seed" && item.seedContent ? <>

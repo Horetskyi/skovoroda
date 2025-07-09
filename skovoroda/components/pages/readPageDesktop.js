@@ -1,4 +1,4 @@
-import { Container, Text } from "@mantine/core";
+import { Container, Space, Text } from "@mantine/core";
 import SkH1Desktop from "../shared/skH1Desktop";
 import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
 import SkImage from "../shared/skImage";
@@ -47,6 +47,7 @@ export default function ReadPageDesktop({ selectedRead }) {
       </div>
 
       <NotesDesktop notes={selectedRead.notes} />
+      <Space h={"md"}/>
       <SkRelatedTags {...selectedRead} />
       <SkReadSkovorodaSource {...selectedRead} />
       <SkAuthorDesktop author={selectedRead.author} />

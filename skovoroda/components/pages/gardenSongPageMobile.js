@@ -96,6 +96,7 @@ export default function GardenSongPageMobile({
   return <>
     <Container py="lg">
       <SkCardWithTwoSelectorsMobileV2 
+        language={selectedMetadata.language}
         dropdown1={{
           label: "Оберіть переклад",
           data: translationsDropdownItems,

@@ -1,8 +1,9 @@
 import { Card, Group, Select, Text } from "@mantine/core";
 import classes from './skCardWithTwoSelectorsDesktopV2.module.scss'; 
 import { memo } from "react";
+import { getLeftSectionIcon } from "./icons/languageIcons";
 
-const SkCardWithTwoSelectorsDesktopV2 = memo(function SkCardWithTwoSelectorsDesktopV2({ dropdown1, dropdown2, idSuffix}) {
+const SkCardWithTwoSelectorsDesktopV2 = memo(function SkCardWithTwoSelectorsDesktopV2({ dropdown1, dropdown2, idSuffix, language}) {
   
   if (!idSuffix || !idSuffix.length) {
     idSuffix = "normal";
@@ -24,6 +25,7 @@ const SkCardWithTwoSelectorsDesktopV2 = memo(function SkCardWithTwoSelectorsDesk
           classNames={{
             input: classes.mantineSelectInput
           }}
+          leftSection={getLeftSectionIcon(language)}
           onChange={dropdown1.onChange}
           comboboxProps={{ keepMounted: true, middlewares: { flip: false, shift: false } }}
           aria-label={dropdown1.label}>

@@ -121,11 +121,12 @@ export default function GardenSongPageDesktop({
     <Space h="lg"/>
     <Container py="xl">
       <SkCardWithTwoSelectorsDesktopV2 
+        language={selectedMetadata.language}
         dropdown1={{
           label: "Оберіть переклад",
           data: translationsDropdownItems,
           selectedValue: selectedTranslatorDropdownValue,
-          onChange: selectTranslatorDropdownValue
+          onChange: selectTranslatorDropdownValue,
         }} 
         dropdown2={{
           label: "Оберіть пісню",

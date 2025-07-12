@@ -2,7 +2,7 @@ import { Popover, Text } from "@mantine/core";
 import SkTextLink from "./skTextLink";
 import { IconLink } from "@tabler/icons-react";
 import classes from './skBibleText.module.scss'; 
-import UkranianFlagIcon from "./uaFlagIcon";
+import UkranianFlagIcon from "./icons/uaFlagIcon";
 
 export default function SkBibleText({ bibleCode, bibleType, text, bKey, translation }) {
   
@@ -27,7 +27,7 @@ export default function SkBibleText({ bibleCode, bibleType, text, bKey, translat
           iconRight={<IconLink size={16} />}
         />
         { (translation && translation.length) ? <Text key={`trs${bKey}`} className={`readFont ${classes.label}`}>
-          <UkranianFlagIcon width={18} height={12} />{` : ${translation}`}
+          <UkranianFlagIcon />{` : ${translation}`}
         </Text> : null }
       </div>
     </Popover.Dropdown>

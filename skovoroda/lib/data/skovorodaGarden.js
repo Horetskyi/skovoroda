@@ -44,6 +44,7 @@ function readSongs() {
 
     const contentString = fs.readFileSync(txtFilePath).toString();
     const isOriginal = songMetadata.translatorId === 0;
+    songMetadata.language = isOriginal ? 'oldua' : 'ua';
     const content = parseFileContent(contentString, isOriginal);
 
     return {

@@ -1,783 +1,277 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.skovoroda.club/</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/about-us</loc>
-    <lastmod>2025-04-13</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/contact</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/copyright</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-1-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-2-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-3-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-4-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-5-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-6-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-7-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-8-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-9-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-10-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-11-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-12-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-13-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-14-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-15-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-16-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-17-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-18-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-19-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-20-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-21-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-22-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-23-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-24-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-25-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-26-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-27-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-28-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-29-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-30-fedorak</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-1-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-2-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-3-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-4-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-5-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-6-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-7-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-8-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-9-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-10-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-11-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-12-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-13-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-14-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-15-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-16-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-17-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-18-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-19-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-20-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-21-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-22-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-23-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-24-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-25-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-26-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-27-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-28-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-29-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/fables/fable-30-original</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/prokynuvshys_pobachyly_slavu_yoho</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/askhan</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/besida_1sha_nazvana_observatorium_sion</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/besida_2ha_nazvana_observatorium_sion</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/besida_nazvana_dvoie</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/blahodarnyi_erodii</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/borotba_arhystratiha_mihaila_s_satanoyu</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/bukvar_myru</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/dialog_pro_davnyi_svit</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/dialoh_ymia_emu_potop_zmiyn</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/ikona_alkiviadska</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/khai_tsiluie_mene_potsilunkamy_ust_svoikh</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/kilce</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/narcis</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/rozmova_pyiaty_podoroznih_pro_shasta</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/superechka_bisa_s_varsavoyu</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/ubohii_zhaivoronok</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/vstupni_dveri_do_khrystyianskoi_dobronravnosti</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/treatise/zhinka_lotova</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/source/piznai_v_sobi_liudynu_1995</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/source/povna_akademichna_zbirka_2011</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-1</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-2</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-3</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-4</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-5</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-6</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-7</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-8</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-9</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-10</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-11</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-12</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-13</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-14</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-15</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-16</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-17</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-18</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-19</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-20</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-21</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-22</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-23</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-24</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-25</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-26</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-27</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-28</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-29</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-30</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-1-shevchuk</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-2-shevchuk</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-3-shevchuk</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-4-shevchuk</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-5-shevchuk</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-6-shevchuk</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-7-shevchuk</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-8-shevchuk</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-9-shevchuk</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-1-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-2-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-3-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-4-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-5-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-6-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-7-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-8-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-9-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-10-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-11-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-12-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-13-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-14-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-17-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-18-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-19-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-20-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-21-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-22-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-23-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-24-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-28-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-29-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/garden/song-30-hotkevych</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/reads/parable_about_cats</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/texts/reads/sviati_ottsi_v_skovorody</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/resources/articles</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.skovoroda.club/themes/srodnist</loc>
-    <lastmod>2025-06-20</lastmod>
-    <priority>1.0</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://www.skovoroda.club</loc><lastmod>2025-07-12T15:41:29.854Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/about-us</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+<url><loc>https://www.skovoroda.club/bio</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/contact</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>monthly</changefreq><priority>0.2</priority></url>
+<url><loc>https://www.skovoroda.club/copyright</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>monthly</changefreq><priority>0.1</priority></url>
+<url><loc>https://www.skovoroda.club/letters</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/resources/articles</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/parables</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-1</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-1-peleh</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-1-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-2</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-2-peleh</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-2-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-3</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-3-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-4</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-4-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-5</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-5-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-6</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-6-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-7</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-7-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-8</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-8-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-9</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-9-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-10</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-10-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-11</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-11-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-12</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-12-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-13</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-13-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-14</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-14-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-15</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-15-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-16</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-16-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-17</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-17-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-18-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-19-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-20-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-21-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-22-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-23-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-24-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-25-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-26-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-27-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-28-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-29-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-30-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-31-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-32-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-33-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-34-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-35-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-36-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-37-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-38-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-39-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-40-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-41-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-42-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-43-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-44-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-45-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-46-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-47-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-48-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-49-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-50-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-51-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-52-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-53-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-54-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-55-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-56-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-57-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-58-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-59-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/letters/from/to-kovalynskii-60-uskalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/skovoroda_club</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/lovytva</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/uchytel_zyttia</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/povna_akademichna_zbirka_2011</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/piznai_v_sobi_liudynu_1995</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/source_philosophska_dumka_2014_nomer_5</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/tvory_u_dvox_tomax_tom_1_1994</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/ukrainska_musa_2009</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/povne_zibrannya_tvoriv_1973_tom_2</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/tvory_u_dvox_tomax_tom_2_1994</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/skovorodar</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/baiki_harkivski_fedorak_2019</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/seminaryi</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/evgen_glyva_ontologial_theory</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/piznanyi_ne_piznanyi_sphinks</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/source/vid_baroko_do_postmodern_ushkalov</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/prokynuvshys_pobachyly_slavu_yoho</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/rozmova_pyiaty_podoroznih_pro_shasta</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/kilce</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/bukvar_myru</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/ikona_alkiviadska</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/zhinka_lotova</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/borotba_arhystratiha_mihaila_s_satanoyu</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/superechka_bisa_s_varsavoyu</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/blahodarnyi_erodii</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/ubohii_zhaivoronok</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/dialoh_ymia_emu_potop_zmiyn</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/khai_tsiluie_mene_potsilunkamy_ust_svoikh</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/vstupni_dveri_do_khrystyianskoi_dobronravnosti</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/narcis</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/askhan</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/besida_nazvana_dvoie</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/besida_1sha_nazvana_observatorium_sion</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/besida_2ha_nazvana_observatorium_sion</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/treatise/dialog_pro_davnyi_svit</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-1-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-10-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-11-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-12-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-13-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-14-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-15-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-16-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-17-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-18-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-19-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-2-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-20-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-21-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-22-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-23-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-24-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-25-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-26-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-27-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-28-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-29-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-3-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-30-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-4-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-5-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-6-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-7-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-8-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-9-fedorak</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-1-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-10-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-11-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-12-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-13-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-14-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-15-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-16-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-17-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-18-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-19-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-2-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-20-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-21-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-22-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-23-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-24-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-25-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-26-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-27-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-28-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-29-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-3-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-30-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-4-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-5-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-6-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-7-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-8-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/fables/fable-9-original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-1</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-1-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-1-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-10</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-10-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-10-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-11</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-11-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-11-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-12</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-12-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-12-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-13</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-13-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-13-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-14</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-14-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-14-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-15</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-15-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-16</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-16-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-17</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-17-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-17-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-18</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-18-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-18-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-19</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-19-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-19-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-2</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-2-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-2-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-20</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-20-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-20-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-21</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-21-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-21-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-22</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-22-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-23</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-23-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-24</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-24-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-25</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-26</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-27</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-28</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-28-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-29</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-29-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-3</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-3-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-3-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-30</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-30-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-4</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-4-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-4-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-5</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-5-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-5-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-6</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-6-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-6-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-7</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-7-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-7-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-8</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-8-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-8-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-9</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-9-hotkevych</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/garden/song-9-shevchuk</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/themes/dvi-natury</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/themes/heart</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/themes/love</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/themes/portibne-lehke</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/themes/shastia</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/themes/srodnist</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/reads/aesops_fable_about_the_wolf</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/reads/how_to_read_skovoroda_original</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/reads/oznaky_srodnostei</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/reads/parable_about_cats</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/reads/sviati_ottsi_v_skovorody</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.skovoroda.club/texts/reads/besida_nazvana_dvoie</loc><lastmod>2025-07-12T15:41:29.855Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
 </urlset>

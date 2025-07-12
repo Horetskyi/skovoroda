@@ -3,10 +3,15 @@ import isMobile from './lib/isMobile'
 import { SkovorodaConstants } from './lib/skovorodaConstants';
 
 export function middleware(request) {
-  
   const pathName = request.nextUrl.pathname;
   const search = request.nextUrl.search;
   const path = pathName + search;
+
+  // Permanent redirect from sitemap2.xml to sitemap.xml
+  if (pathName === '/sitemap2.xml') {
+    const redirectUrl = new URL('/sitemap.xml', request.url);
+    return NextResponse.redirect(redirectUrl, 308);
+  }
 
   if (
     pathName.includes(".fb2") || 
@@ -43,6 +48,7 @@ export function middleware(request) {
     !pathName.includes('.jpeg') &&
     !pathName.includes('.mp4') &&
     !pathName.includes('.css') &&
+    !pathName.includes('sitemap') &&
     !pathName.includes('.scss') &&
     !pathName.includes('.ico');
 

@@ -7,12 +7,13 @@ import UkranianFlagIcon from "./icons/uaFlagIcon";
 export default function SkBibleText({ bibleCode, bibleType, text, bKey, translation }) {
   
   const popoverText = bibleCodeToLongText(bibleCode);
+  const cleanBibleCode = (bibleCode && bibleCode.includes('-') ? bibleCode.split('-')[0] : bibleCode);
 
   return <Popover position="top" withArrow shadow="md" offset={0} key={bKey}>
     <Popover.Target key={bKey+"target"}>
       <span key={bKey+"span"} className="sk-global-bible-text">{text}</span>
     </Popover.Target>
-    <Popover.Dropdown key={bKey+"dropdown"}>
+    <Popover.Dropdown key={bKey+"dropdown"} maw={700}>
       <div key={bKey+"div"}>
         { bibleType === 1 ? <Text className={`readFont ${classes.label}`}>Точна цитата:</Text> : null}
         { bibleType === 2 ? <Text className={`readFont ${classes.label}`}>Неточна цитата:</Text> : null}
@@ -20,7 +21,7 @@ export default function SkBibleText({ bibleCode, bibleType, text, bKey, translat
         <SkTextLink
           key={'link'+bKey} 
           text={popoverText}
-          href={`https://www.die-bibel.de/en/bible/UTT/${bibleCode}`}
+          href={`https://www.die-bibel.de/en/bible/UTT/${cleanBibleCode}`}
           isBlank={true}
           title={'Читати в Біблії'}
           className={'sk-global-bible-link readFont'}

@@ -129,6 +129,9 @@ function transformLineObjectWithNotes(lineObject, notesMetadata) {
   if (notesMetadata.length == 0) {
     return;
   }
+  if (lineObject.bibleCode) {
+    return;
+  }
 
   notesMetadata.reverse();
   let text = lineObject.text;
@@ -143,9 +146,18 @@ function transformLineObjectWithNotes(lineObject, notesMetadata) {
     const beforeNotePart = text.substring(0, note.index);
     const notePart = text.substring(note.index, note.index + note.length);
     const afterNotePart = text.substring(note.index + note.length);
-    results.push({ text: afterNotePart });
-    results.push({ text: notePart, noteNumber: note.notesNumber });
-    results.push({ text: beforeNotePart });
+    if (notePart && notePart.trim().length) {
+      results.push({ text: afterNotePart });
+      results.push({ text: notePart, noteNumber: note.notesNumber });
+      results.push({ text: beforeNotePart });
+    } else {
+      // const restoredObj = ;
+      // if (notePart.bibleCode || beforeNotePart.bibleCode || afterNotePart.bibleCode) {
+      //   restoredObj.bibleCode = notePart.bibleCode || beforeNotePart.bibleCode || afterNotePart.bibleCode;
+      // }
+      results.push({ text: beforeNotePart + notePart + afterNotePart });
+    }
+    
     text = beforeNotePart;
   });
   results.reverse();
@@ -293,58 +305,59 @@ export function parseFileContent(content, isOldUaText) {
     }
 
     if (lineObject.text.includes("[BIBLE]")) {
+      // Non-greedy regex, matches each [BIBLE]...[/BIBLE] block separately
       const bibleRegex = /\[BIBLE\](.*?)(?:\[X\](.*?)(?:\[X\](.*?))?)?\[BIBLE\]/g;
-      const matches = [...lineObject.text.matchAll(bibleRegex)];
-      if (matches.length > 0) {
-        const parts = [];
-        let lastIndex = 0;
-    
-        matches.forEach(match => {
-          const bibleCode = match[1];
-          const text = match[2];
-          const translation = match[3];
-          const startIndex = match.index;
-    
-          // Add text before
-          if (startIndex > lastIndex) {
-            const beforeLink = lineObject.text.substring(lastIndex, startIndex);
-            if (beforeLink && beforeLink.length) {
-              parts.push({ text: beforeLink });
-            }
+      const parts = [];
+      let lastIndex = 0;
+      let match;
+
+      while ((match = bibleRegex.exec(lineObject.text)) !== null) {
+        const bibleCode = match[1];
+        const text = match[2];
+        const translation = match[3];
+        const startIndex = match.index;
+
+        // console.log(`Bible match found: ${bibleCode}, text: ${text}, translation: ${translation}, startIndex: ${startIndex}`);
+
+        // Add text before
+        if (startIndex > lastIndex) {
+          const beforeLink = lineObject.text.substring(lastIndex, startIndex);
+          if (beforeLink && beforeLink.length) {
+            parts.push({ text: beforeLink });
           }
-    
-          // Add the bible text
-          const bibleObj = { text, bibleCode: bibleCode };
-          if (translation) {
-            bibleObj.translation = translation;
-          }
-          if (typeof bibleCode === 'string') {
-            if (bibleCode.endsWith('.EXACT')) {
-              bibleObj.bibleCode = bibleCode.replace(/\.EXACT$/, '');
-              bibleObj.bibleType = 1;
-            } else if (bibleCode.endsWith('.NOT_EXACT')) {
-              bibleObj.bibleCode = bibleCode.replace(/\.NOT_EXACT$/, '');
-              bibleObj.bibleType = 2;
-            } else if (bibleCode.endsWith('.PARAPHRASE')) {
-              bibleObj.bibleCode = bibleCode.replace(/\.PARAPHRASE$/, '');
-              bibleObj.bibleType = 3;
-            }
-          }
-          parts.push(bibleObj);
-    
-          // Update the last index
-          lastIndex = startIndex + match[0].length;
-        });
-    
-        // Add text after 
-        const afterLink = lineObject.text.substring(lastIndex);
-        if (afterLink && afterLink.length) {
-          parts.push({ text: afterLink });
         }
-    
-        // Update lineObject.text with the processed parts
-        lineObject.text = parts;
+
+        // Add the bible text
+        const bibleObj = { text, bibleCode: bibleCode };
+        if (translation) {
+          bibleObj.translation = translation;
+        }
+        if (typeof bibleCode === 'string') {
+          if (bibleCode.endsWith('.EXACT')) {
+            bibleObj.bibleCode = bibleCode.replace(/\.EXACT$/, '');
+            bibleObj.bibleType = 1;
+          } else if (bibleCode.endsWith('.NOT_EXACT')) {
+            bibleObj.bibleCode = bibleCode.replace(/\.NOT_EXACT$/, '');
+            bibleObj.bibleType = 2;
+          } else if (bibleCode.endsWith('.PARAPHRASE')) {
+            bibleObj.bibleCode = bibleCode.replace(/\.PARAPHRASE$/, '');
+            bibleObj.bibleType = 3;
+          }
+        }
+        parts.push(bibleObj);
+
+        // Update the last index
+        lastIndex = startIndex + match[0].length;
       }
+
+      // Add text after
+      const afterLink = lineObject.text.substring(lastIndex);
+      if (afterLink && afterLink.length) {
+        parts.push({ text: afterLink });
+      }
+
+      // Update lineObject.text with the processed parts
+      lineObject.text = parts;
     }
     
     if (lineObject.text.includes(LETTER_NOTE_FORMAT)) {
@@ -460,7 +473,8 @@ export function parseFileContent(content, isOldUaText) {
       
       
       // --
-      if (isOldUaText && lineObject.text && lineObject.text.length) {
+      const eb = false
+      if (eb && isOldUaText && lineObject.text && lineObject.text.length) {
         if (typeof lineObject.text === 'string') {
           const explanationsData = textToExplanations(lineObject.text);
           if (explanationsData.length) {

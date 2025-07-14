@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { Box, Typography, CircularProgress } from '@mui/material';
+import { Image } from '@mantine/core';
+import classes from './skWebsiteStatistics.module.scss';
 
 const apiMetadata = {
   properties: [
@@ -120,7 +122,8 @@ const SkWebsiteStatistics = () => {
     : 0;
 
   return (
-    <Box p={4}>
+    <Box p={4} position={"relative"}>
+      {/* <Image src={"/images/BirdBlueTit-unscreen.png"} className={classes.img} /> */}
       <Typography variant="h4" gutterBottom>
         Website Download Statistics
       </Typography>

@@ -32,6 +32,8 @@ export default function FablePageDesktop({
   deviceEnding
 }) 
 {
+  const displayComments = false;
+
   const router = useRouter();
   function changeRouterPath(urlId) {
     const newPath = pathJoin(SkovorodaFablesPath, urlId);
@@ -123,6 +125,7 @@ export default function FablePageDesktop({
     
     <Container py="lg">
       <SkCardWithTwoSelectorsDesktopV2 
+        language={selectedMetadata.language}
         dropdown1={{
           label: "Оберіть переклад",
           data: translationsDropdownItems,
@@ -174,7 +177,7 @@ export default function FablePageDesktop({
         <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} />
       </> : null}
     </Container>
-    {(selectedComment && selectedComment.length) ? <>
+    {(selectedComment && selectedComment.length && displayComments) ? <>
       <SkColoredContainerDesktop color={"gray.0"}>
         <SkH2Desktop mb="sm" text={"Коментар"}/>
         <SkCommentAuthorDesktop />

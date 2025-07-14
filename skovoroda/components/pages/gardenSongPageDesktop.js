@@ -156,7 +156,7 @@ export default function GardenSongPageDesktop({
           />
         </div>
       ) : null}
-      <SkH1Desktop text={h1Text} color={highlightColor} />
+      <SkH1Desktop text={h1Text} color={highlightColor} fontSize={32} />
       <Space h="lg"/>
       
       

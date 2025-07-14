@@ -9,6 +9,13 @@ const SkCardWithTwoSelectorsDesktopV2 = memo(function SkCardWithTwoSelectorsDesk
     idSuffix = "normal";
   }
 
+  const renderSelectOption = ({ option }) => (
+    <div className={classes.selectorOption}>
+      {getLeftSectionIcon(option.label, false)}
+      {option.label}
+    </div>
+  );
+
   return <Card withBorder={false} w={"100%"} p="0" m="0" >
 
     {/* Use Flex for 1/3 and 2/3 layout with gap */}
@@ -25,9 +32,10 @@ const SkCardWithTwoSelectorsDesktopV2 = memo(function SkCardWithTwoSelectorsDesk
           classNames={{
             input: classes.mantineSelectInput
           }}
-          leftSection={getLeftSectionIcon(language)}
+          leftSection={getLeftSectionIcon(language, true)}
           onChange={dropdown1.onChange}
           comboboxProps={{ keepMounted: true, middlewares: { flip: false, shift: false } }}
+          renderOption={renderSelectOption}
           aria-label={dropdown1.label}>
         </Select>
       </div>

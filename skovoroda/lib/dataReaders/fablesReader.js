@@ -47,6 +47,7 @@ function readAllFablesInDirectory(directoryName) {
         return undefined;
       }
       const isOriginal = translator.urlId === "original";
+      metadata.language = isOriginal ? 'oldua' : 'ua';
       const content = parseFileContent(contentString, isOriginal);
 
       const powerContentString = fs.readFileSync(txtPowerFilePath).toString();

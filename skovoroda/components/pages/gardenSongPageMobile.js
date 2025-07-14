@@ -135,13 +135,10 @@ export default function GardenSongPageMobile({
       <SkH1Mobile text={h1Text} color={highlightColor} />
       <Space h="lg"/>
 
-      <div className={classes.songContainer}>
-
-        <div className={`normalContentText normalContentText_withoutIndent`}>
-          <SkTextContentBlockDesktop textContent={selectedSong.songContent} isv2={true} isMobile={true} />
-        </div>
-
+      <div className={`normalContentText normalContentText_withoutIndent`}>
+        <SkTextContentBlockDesktop textContent={selectedSong.songContent} isv3={true} isMobile={true} />
       </div>
+
       {(selectedNotes && selectedNotes.length) ? <>
         <SkH2Desktop my="lg" text={"Примітки"}/>
         <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} isMobile={true} />

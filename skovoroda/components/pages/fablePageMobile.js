@@ -27,6 +27,8 @@ export default function FablePageMobile({
   selectedId,
   deviceEnding
 }) {
+  const displayComments = false;
+
   const router = useRouter();
   function changeRouterPath(urlId) {
     const newPath = pathJoin(SkovorodaFablesPath, urlId);
@@ -93,6 +95,7 @@ export default function FablePageMobile({
 
     <Container py="lg">
       <SkCardWithTwoSelectorsMobileV2 
+        language={selectedMetadata.language}
         dropdown1={{
           label: "Оберіть переклад",
           data: translationsDropdownItems,
@@ -136,7 +139,7 @@ export default function FablePageMobile({
           <Space h="md" />
         </> : null}
     </Container>
-    {(selectedComment && selectedComment.length) ? <>
+    {(selectedComment && selectedComment.length && displayComments) ? <>
       <SkColoredContainerMobile color={"gray.0"} px={"md"}>
         <SkH2Mobile mb="sm" text={"Коментар"}/>
         <SkCommentAuthorMobile />

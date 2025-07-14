@@ -20,13 +20,17 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
   }
   const isSkipEmptyLines = others.isNotes;
   // LEGACY }
+
+  const isMobile = others.isMobile;
   
   // TECHNICAL {
-  const keyPrefix = others.keyPrefix ? others.keyPrefix : "k";
+  const keyPrefix = "sub_" + (others.keyPrefix ? others.keyPrefix : "k");
   var lastKey = 0;
   function newKey() {
     lastKey++;
-    return keyPrefix + lastKey;
+    const resultKey = keyPrefix + lastKey;
+    // console.log("key: ", resultKey);
+    return resultKey;
   }
   // TECHNICAL }
     
@@ -47,13 +51,13 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 
   if (textContent && !Array.isArray(textContent)) {
     return <div key={newKey()}>
-      <SkTextContentBlockDesktop key={newKey()} textContent={textContent.beforeMain} others={others} onTextNoteClick={onTextNoteClick} />
-      <Container size="fit-content" key={newKey()}>
+      <SkTextContentBlockDesktop key={newKey()} textContent={textContent.beforeMain} {...others} onTextNoteClick={onTextNoteClick} />
+      <Container size="fit-content" key={newKey()} p={isMobile ? 0 : undefined}>
         <Card p="0">
-          <SkTextContentBlockDesktop key={newKey()} textContent={textContent.main} others={others} onTextNoteClick={onTextNoteClick} />
+          <SkTextContentBlockDesktop key={newKey()} textContent={textContent.main} {...others} onTextNoteClick={onTextNoteClick} />
         </Card>
       </Container>
-      <SkTextContentBlockDesktop key={newKey()} textContent={textContent.afterMain} others={others} onTextNoteClick={onTextNoteClick} />
+      <SkTextContentBlockDesktop key={newKey()} textContent={textContent.afterMain} {...others} onTextNoteClick={onTextNoteClick} />
     </div>
   }
 
@@ -65,11 +69,11 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
   const isLeftNotesEnabled = !disableLeftNotesDisplaying;
 
   const plusClassName = others.plusClassName;
-  const isMobile = others.isMobile;
   if (others.justify !== false) {
     others.justify = true;
   }
   const isJustifyEnabled = others.justify;
+  // console.log("isMobile", isMobile);
 
   gsap.registerPlugin(ScrollToPlugin);
   
@@ -109,6 +113,17 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     "header3": classes.formatHeader3,
     "header4": classes.formatHeader3,
   };
+  const solveFormatClassName = (format) => {
+    if (!format) return "";
+    if (isMobile) {
+      if (format === "tabs2") format = "tabs1";
+      if (format === "tabs3") format = "tabs1";
+      if (format === "tabs4") format = "tabs1";
+      if (format === "tabs5") format = "tabs1";
+      if (format === "tabs6") format = "tabs1";
+    }
+    return (format && formatClasses[format]) ? formatClasses[format] : "";
+  }
 
   const isNotesBlock = textContent.some(lineObject => lineObject.isNoteBeginning);
 
@@ -117,7 +132,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     const text = lineObject.text;
     let id = undefined;
     let onClick = undefined;
-    const formatClassName = lineObject.format ? formatClasses[lineObject.format] : formatClasses["default"];
+    const formatClassName = solveFormatClassName(lineObject.format);
     const vClassName = (others.isv2 ? classes.blockTextLineV2 
       : others.isv3 ? classes.blockTextLineV3 
       : classes.blockTextLine);
@@ -134,7 +149,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 
     // Fountain
     if (text && text.length && !Array.isArray(text) && text.trim() === "[FOUNTAIN]") {
-      console.log("Fountain detected in textContentBlockDesktop");
+      // console.log("Fountain detected in textContentBlockDesktop");
       block.push(
         <SkFountain key={newKey()} isMobile={isMobile} />
       );
@@ -227,7 +242,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
       if (index === 0 && noteNumber) {
         id = (lineObject.isNoteBeginning ? "note" : "noteInText") + getNoteNumberUpperString(noteNumber);
       }
-      const subFormatClassName = (subText.format && formatClasses[subText.format]) ? formatClasses[subText.format] : "";
+      const subFormatClassName = solveFormatClassName(subText.format);
 
       if (noteNumber && !lineObject.isNoteBeginning) {
         const subId = "noteInText" + getNoteNumberUpperString(noteNumber);
@@ -295,7 +310,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
   const allContentClassName = (isMobile ? classes.textContentBlockMobile : classes.textContentBlock) + 
     (plusClassName ? ` ${plusClassName} ` : "") +
     ((isLeftNotesEnabled && isNotesBlock) ? ` ${classes.textContentBlockLeftNotesEnabled} ` : "") +
-    (!isMobile && isJustifyEnabled ? ` ${classes.textContentBlockJustify} ` : "") +
+    (!isMobile && isJustifyEnabled ? ` normalContentText_justify ` : "") +
     (` ${readableFontClassName} `);
 
   return <div key={newKey()} className={allContentClassName}>{block}</div>;

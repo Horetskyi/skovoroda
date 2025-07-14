@@ -9,6 +9,13 @@ const SkCardWithTwoSelectorsMobileV2 = memo(function SkCardWithTwoSelectorsMobil
     idSuffix = "normal";
   }
 
+  const renderSelectOption = ({ option }) => (
+    <div className={classes.selectorOption}>
+      {getLeftSectionIcon(option.label, false)}
+      {option.label}
+    </div>
+  );
+
   const styles = {
     section: { width: 'auto' }
   };
@@ -29,13 +36,14 @@ const SkCardWithTwoSelectorsMobileV2 = memo(function SkCardWithTwoSelectorsMobil
       mb="sm"
       data={dropdown1.data} 
       value={dropdown1.selectedValue}
-      leftSection={getLeftSectionIcon(language)}
+      leftSection={getLeftSectionIcon(language, true)}
       classNames={{
         input: classes.mantineSelectInput
       }}
       styles={styles}
       onChange={dropdown1.onChange}
       comboboxProps={{ keepMounted: true, middlewares: { flip: false, shift: false } }}
+      renderOption={renderSelectOption}
       aria-label={dropdown1.label}>
     </Select>
       

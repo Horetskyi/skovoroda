@@ -9,11 +9,11 @@ export default function SkBibleText({ bibleCode, bibleType, text, bKey, translat
   const popoverText = bibleCodeToLongText(bibleCode);
 
   return <Popover position="top" withArrow shadow="md" offset={0} key={bKey}>
-    <Popover.Target key={bKey}>
-      <span key={bKey} className="sk-global-bible-text">{text}</span>
+    <Popover.Target key={bKey+"target"}>
+      <span key={bKey+"span"} className="sk-global-bible-text">{text}</span>
     </Popover.Target>
-    <Popover.Dropdown key={bKey}>
-      <div key={bKey}>
+    <Popover.Dropdown key={bKey+"dropdown"}>
+      <div key={bKey+"div"}>
         { bibleType === 1 ? <Text className={`readFont ${classes.label}`}>Точна цитата:</Text> : null}
         { bibleType === 2 ? <Text className={`readFont ${classes.label}`}>Неточна цитата:</Text> : null}
         { bibleType === 3 ? <Text className={`readFont ${classes.label}`}>Парафраз:</Text> : null}

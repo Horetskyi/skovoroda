@@ -26,9 +26,9 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
   // TECHNICAL {
   const keyPrefix = "sub_" + (others.keyPrefix ? others.keyPrefix : "k");
   var lastKey = 0;
-  function newKey() {
+  function newKey(text) {
     lastKey++;
-    const resultKey = keyPrefix + lastKey;
+    const resultKey = keyPrefix + lastKey + ((text && text.length) ? "_" + text : "");
     // console.log("key: ", resultKey);
     return resultKey;
   }
@@ -37,11 +37,12 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
   if (textContent && textContent.length && textContent[0].isAllIsList) {
     return <List listStyleType="circle">
       {textContent.map(lineObject => {
-        return <List.Item key={newKey()}>
+        const text = lineObject.text;
+        return <List.Item key={newKey(text)}>
           <SkTextContentBlockDesktop 
-            key={newKey()}
-            textContent={[{text:lineObject.text}]}
-            keyPrefix={newKey()}
+            key={newKey(text)}
+            textContent={[{text:text}]}
+            keyPrefix={newKey(text)}
             {...others}
             onTextNoteClick={onTextNoteClick} />
         </List.Item> 
@@ -160,11 +161,11 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     if (lineObject.format === "header2") {
       if (isMobile) {
         block.push(
-          <SkH2Mobile key={newKey()} mt="md" mb="md" text={lineObject.text}/>
+          <SkH2Mobile key={newKey(lineObject.text)} mt="md" mb="md" text={lineObject.text}/>
         );
       } else {
         block.push(
-          <SkH2Desktop key={newKey()} mt="md" mb="md" text={lineObject.text}/>
+          <SkH2Desktop key={newKey(lineObject.text)} mt="md" mb="md" text={lineObject.text}/>
         );
       }
       return;
@@ -173,7 +174,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     // H3
     if (lineObject.format === "header3") {
       block.push(
-        <Title order={3} key={newKey()} mt="md" mb="md" ta={'center'}>{lineObject.text}</Title>
+        <Title order={3} key={newKey(lineObject.text)} mt="md" mb="md" ta={'center'}>{lineObject.text}</Title>
       );
       return;
     }
@@ -181,7 +182,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     // H4
     if (lineObject.format === "header4") {
       block.push(
-        <Title order={4} key={newKey()} mt="md" mb="md" ta={'center'}>{lineObject.text}</Title>
+        <Title order={4} key={newKey(lineObject.text)} mt="md" mb="md" ta={'center'}>{lineObject.text}</Title>
       );
       return;
     }
@@ -189,7 +190,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     // Handle links
     if (lineObject.isLink) {
       block.push(<SkTextLink
-        key={newKey()} 
+        key={newKey(lineObject.text)} 
         text={lineObject.text}
         href={lineObject.url}
         isBlank={true}
@@ -200,13 +201,13 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 
     // Handle Bible Text
     if (lineObject.bibleCode) {
-      block.push(newBibleElement(lineObject, newKey()));
+      block.push(newBibleElement(lineObject, newKey(lineObject.text)));
       return;
     }
 
     // Handle OldUa Text
     if (lineObject.explanations) {
-      block.push(newOldUaElement(lineObject, newKey()));
+      block.push(newOldUaElement(lineObject, newKey(lineObject.text)));
       return;
     }
     
@@ -217,7 +218,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
         id = (lineObject.isNoteBeginning ? "note" : "noteInText") + getNoteNumberUpperString(lineObject.noteNumber);
       }
       if (lineObject.isNoteBeginning && lineObject.noteNumber && isLeftNotesEnabled) {
-        pushNoteInNotesBlock(block, lineObject, classes, onBlockNoteClick, newKey());
+        pushNoteInNotesBlock(block, lineObject, classes, onBlockNoteClick, newKey(text));
       }
 
       const noteClassName = (lineObject.noteNumber && !lineObject.isNoteBeginning) 
@@ -227,9 +228,9 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
       const totalClassName = `${normalClassName} ${noteClassName}`;
 
       if (lineObject.isEnterLine) {
-        block.push(<p key={newKey()} id={id} className={totalClassName}>{text}</p>);
+        block.push(<p key={newKey(text)} id={id} className={totalClassName}>{text}</p>);
       } else {
-        block.push(<span key={newKey()} id={id} className={totalClassName}>{text}</span>);
+        block.push(<span key={newKey(text)} id={id} className={totalClassName}>{text}</span>);
       }
       return;
     }
@@ -250,7 +251,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
         // Note as a clickable text
         if (onTextNoteClick) {
           return <span 
-            key={newKey()}
+            key={newKey(subText.text)}
             id={subId}
             color="gray.9"
             onClick={(event) => onTextNoteClick(event, noteNumber)}
@@ -261,7 +262,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
         }
 
         // Note as a Link
-        return <Link key={newKey()} href={"#note"+getNoteNumberUpperString(noteNumber)} id={subId} color="gray.9" className={classes.noteLink + " grayForText " + subFormatClassName + " " + classes.noteFont} title={`Примітка ${noteNumber}`}>
+        return <Link key={newKey(subText.text)} href={"#note"+getNoteNumberUpperString(noteNumber)} id={subId} color="gray.9" className={classes.noteLink + " grayForText " + subFormatClassName + " " + classes.noteFont} title={`Примітка ${noteNumber}`}>
           {subText.text}
         </Link>;
       }
@@ -271,7 +272,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
         const htmlSourceId = "sourceIdInText" + sourceId;
 
         // Source as a Link
-        return <Link key={newKey()} href={"#sourceId"+sourceId} id={htmlSourceId} color="blue.9" className={classes.noteLink + " " + subFormatClassName} title={`Джерело: ${sourceId}}`}>
+        return <Link key={newKey(subText.text)} href={"#sourceId"+sourceId} id={htmlSourceId} color="blue.9" className={classes.noteLink + " " + subFormatClassName} title={`Джерело: ${sourceId}}`}>
           {subText.text}
         </Link>;
       }
@@ -280,7 +281,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
       if (subText.isLink) {
         // console.log("Link Text2:", subText.url, subText.text);
         return <SkTextLink
-          key={newKey()}
+          key={newKey(subText.text)}
           text={subText.text}
           href={subText.url}
           isBlank={true}
@@ -290,16 +291,16 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 
       // Handle Bible Text
       if (subText.bibleCode) {
-        return newBibleElement(subText, newKey());
+        return newBibleElement(subText, newKey(subText.text));
       }
 
       // Handle OldUa Text
       if (subText.explanations) {
-        return newOldUaElement(subText, newKey());
+        return newOldUaElement(subText, newKey(subText.text));
       }
 
       // Normal Text
-      return <span key={newKey()} className={subFormatClassName} onClick={onClick}>{subText.text}</span>;
+      return <span key={newKey(subText.text)} className={subFormatClassName} onClick={onClick}>{subText.text}</span>;
     });
     if (lineObject.isNoteBeginning && lineObject.noteNumber && isLeftNotesEnabled) {
       pushNoteInNotesBlock(block, lineObject, classes, onBlockNoteClick, newKey());
@@ -321,7 +322,7 @@ function newOldUaElement(lineObject, key) {
 }
 
 function newBibleElement(lineObject, key) {
-  return <SkBibleText bibleCode={lineObject.bibleCode} bibleType={lineObject.bibleType} text={lineObject.text} bKey={key} translation={lineObject.translation} />;
+  return <SkBibleText key={key} bibleCode={lineObject.bibleCode} bibleType={lineObject.bibleType} text={lineObject.text} bKey={key} translation={lineObject.translation} />;
 }
 
 function pushNoteInNotesBlock(block, lineObject, classes, onBlockNoteClick, key) {

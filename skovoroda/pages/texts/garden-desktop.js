@@ -1,10 +1,12 @@
-import { Center, List, Space } from "@mantine/core";
+import { Center, Grid, List } from "@mantine/core";
 import { pathJoinWithoutEndSlash, SkovorodaGardenPath } from "../../lib/skovorodaPath";
 import SkH1Desktop from "../../components/shared/skH1Desktop";
 import SkColoredContainerDesktop from "../../components/shared/skColoredContainerDesktop";
 import SkTextLink from "../../components/shared/skTextLink";
 import { getGardenPageProps } from "../../lib/staticProps/gardenStatic";
 import SkImage from "../../components/shared/skImage";
+import { getAdjustedWidth } from "../../components/functions/imageFunctions";
+import Link from "next/link";
 
 export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenImageByOlenka }) {
   
@@ -50,6 +52,31 @@ export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenIma
         })}
       </List>
     </SkColoredContainerDesktop>
+
+    <Grid mt={"lg"} mb={"lg"} px={"xl"}>
+      {translatedSongsMetadataArray.filter(song => song.songImage).map((song, index) => {
+        const image = song.songImage;
+        const href = pathJoinWithoutEndSlash(SkovorodaGardenPath, song.id);
+        const height = 500;
+        const width = getAdjustedWidth(height, 300, image);
+        image.height = height;
+        image.width = width;
+        return <Grid.Col key={"" + index + song.id} span={4} mb={"xl"} ta={"center"}>
+          <Link href={href} title={song.name}>
+            <SkImage 
+              image={image}
+              width={width} 
+              height={height} 
+              priority={false} 
+              shadow={false}
+              alt={song.name}
+              optimize={false}
+            />
+          </Link>
+        </Grid.Col>
+      })}
+    </Grid>
+
   </>
 }
 

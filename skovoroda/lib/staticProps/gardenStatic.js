@@ -17,6 +17,7 @@ export function getGardenPageProps() {
       metadataDescription: "Григорій Савич Сковорода - Сад божественних пісень",
       metadataKeywords: ["Сад божественних пісень", "Пісні Сковороди", "Сковорода Сад"],
       canonicalPageUrl: "https://www.skovoroda.club/texts/garden",
+      facebookImageUrl: "https://www.skovoroda.club/images/garden/Skovoroda Garden of Divine Songs by Olenka.webp",
       // SEO }
       
       // TECH {

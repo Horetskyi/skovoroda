@@ -1,10 +1,12 @@
-import { Center, List, Space } from "@mantine/core";
+import { Center, Flex, List } from "@mantine/core";
 import { pathJoinWithoutEndSlash, SkovorodaGardenPath } from "../../lib/skovorodaPath";
 import SkTextLink from "../../components/shared/skTextLink";
 import { getGardenPageProps } from "../../lib/staticProps/gardenStatic";
 import SkColoredContainerMobile from "../../components/shared/skColoredContainerMobile";
 import SkH1Mobile from "../../components/shared/skH1Mobile";
 import SkImage from "../../components/shared/skImage";
+import Link from "next/link";
+import { getAdjustedWidth } from "../../components/functions/imageFunctions";
 
 export default function SkovorodaGardenPageMobile({ allSongsMetadata, gardenImageByOlenka }) {
   
@@ -49,6 +51,28 @@ export default function SkovorodaGardenPageMobile({ allSongsMetadata, gardenImag
         })}
       </List>
     </SkColoredContainerMobile>
+
+    <Flex mt={"lg"} mb={"xl"} px={"sm"} gap={"xl"} direction={"column"} ta={"center"}>
+      {translatedSongsMetadataArray.filter(song => song.songImage).map((song, index) => {
+        const image = song.songImage;
+        const href = pathJoinWithoutEndSlash(SkovorodaGardenPath, song.id);
+        return <Link href={href} title={song.name} key={"" + index + song.id} mx={"auto"}>
+          <SkImage 
+            image={image}
+            fullWidth={true}
+            priority={false} 
+            shadow={false}
+            alt={song.name}
+            optimize={false}
+            styleAction={(style) => {
+              style.marginLeft = "auto";
+              style.marginRight = "auto";
+            }}
+          />
+        </Link>
+      })}
+    </Flex>
+
   </>
 }
 

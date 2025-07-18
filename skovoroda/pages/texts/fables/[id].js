@@ -64,29 +64,10 @@ export async function getStaticProps({ params }) {
     selectedCommonMetadata = null;
   }
   
-
   const isOriginal = selectedFableTranslator.translatorId ? false : true;
 
-  const recommendedDescriptionLength = SkovorodaConstants.recommendedMetaDescriptionLength;
-  var metaDescription = (isOriginal ? "В оригіналі." : "Перекладач: " + selectedFableTranslator.lastName + " " + selectedFableTranslator.firstName + " " + selectedFableTranslator.byFatherName + ".");
-  var contentIndex = 0;
-  while (metaDescription.length < recommendedDescriptionLength && contentIndex < selectedFable.content.length) {
-    const content = selectedFable.content[contentIndex];
-    const contentArray = Array.isArray(content.text) ? content.text : [content];
-    const text = contentArray
-      .filter(line => !line.noteNumber && !line.isNoteBeginning)
-      .map(line => line.text)
-      .join("");
-
-    if (text.length + metaDescription.length <= recommendedDescriptionLength) {
-      metaDescription += " " + text;
-    } else {
-      metaDescription += " " + text.substring(0, recommendedDescriptionLength - metaDescription.length) + "...";
-      break ;
-    }
-    contentIndex++;
-  }
-
+  const metaDescriptionInit = (isOriginal ? "В оригіналі." : "Перекладач: " + selectedFableTranslator.lastName + " " + selectedFableTranslator.firstName + " " + selectedFableTranslator.byFatherName + ".");
+  
   const metaKeywords = [
     selectedFable.metadata.fableTitle + " – Байка Сковороди Григорія Савича",
     "Сковорода байка " + selectedFable.metadata.fableNumber,
@@ -97,25 +78,31 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
+      // APP LEVEL {
       deviceEnding,
       selectedId: id,
       pageKey: fableSelectedPageKey,
       breadcrumbLabel: selectedFable.metadata.fableTitle,
+      // APP LEVEL }
 
+      // SEO {
       shouldBeIndexed: true,
       metadataTitle: metaTitle,
-      metadataDescription: metaDescription,
+      metadataDescription: SkovorodaConstants.contentToMetaDescription(selectedFable.content, metaDescriptionInit),
       metadataKeywords: metaKeywords,
       metadataAuthorUrl: "https://uk.wikipedia.org/wiki/Сковорода_Григорій_Савич",
       canonicalPageUrl: "https://www.skovoroda.club/texts/fables/" + id,
       facebookImageUrl: selectedFable.metadata.fableImage ? selectedFable.metadata.fableImage.imageUrl : null,
-      
+      // SEO }
+
+      // TECH {
       allFablesMetadata,
       selectedFable,
       selectedNotes,
       allTranslators: skTranslatorsV2,
       selectedComment, selectedComment,
       selectedCommonMetadata, selectedCommonMetadata,
+      // TECH }
     },
   };
 }

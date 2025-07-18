@@ -49,7 +49,7 @@ export default function Source({ sourceData, deviceEnding }) {
 export async function getStaticPaths() {
   
   const ids = SkovorodaSourcesArray.map(source => source.id);
-  console.log("All Source Ids:", ids);
+  // console.log("All Source Ids:", ids);
   return getStaticPathsCommon(ids);
 }
 

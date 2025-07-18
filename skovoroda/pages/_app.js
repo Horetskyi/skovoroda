@@ -132,7 +132,7 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
           : <meta name="robots" content="noindex, nofollow" />}
        
         {(pageProps.metadataKeywords && pageProps.metadataKeywords.length) ? 
-          <meta name="keywords" content={pageProps.metadataKeywords.join(",")} /> : null}
+          <meta name="keywords" content={pageProps.metadataKeywords.join(", ")} /> : null}
        
         {(pageProps.metadataAuthorUrl ? 
           <link rel="author" href={pageProps.metadataAuthorUrl} /> : null)}
@@ -151,6 +151,8 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
 
         {(pageProps.facebookImageUrl ?
           <meta property="og:image" content={pageProps.facebookImageUrl} /> : null)}
+
+        <meta name="publisher" content="https://www.skovoroda.club/"></meta>
 
       </Head>
       <MantineProvider theme={theme}>

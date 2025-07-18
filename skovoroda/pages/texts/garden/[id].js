@@ -1,12 +1,12 @@
 
-import { SkovorodaGardenRefactored } from '../../../lib/data/skovorodaGarden';
+import { SkovorodaGardenRefactored } from '../../../lib/dataReaders/skovorodaGarden';
 import { SkovorodaSourcesArray } from '../../../lib/data/skovorodaSources';
 import { skTranslatorsV2 } from '../../../lib/data/skovorodaTranslators';
 import getSelectedNoteNumbersByContent from '../../../lib/getSelectedNoteNumbersByContent';
 import getStaticPathsCommon from '../../../lib/getStaticPathsCommon';
 import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';
 import { getOriginalSongId } from '../../../lib/sadIds';
-import { gardenSelectedPageKey } from '../../../lib/skovorodaConstants';
+import { gardenSelectedPageKey, SkovorodaConstants } from '../../../lib/skovorodaConstants';
 import dynamic from 'next/dynamic';
 
 const GardenSongPageDesktop = dynamic(() => import('../../../components/pages/gardenSongPageDesktop'));
@@ -57,21 +57,31 @@ export async function getStaticProps({ params }) {
     }
   }
 
+  const metaDescriptionLastTry = selectedSong.songMetadata.name + " - Григорій Савич Сковорода";
+
   return {
     props: {
+      // APP LEVEL {
+      deviceEnding,
       pageKey: gardenSelectedPageKey,
       breadcrumbLabel: selectedSong.songMetadata.name,
       selectedId: id,
+      // APP LEVEL }
+
+      // SEO {
+      shouldBeIndexed: true,
       metadataTitle: selectedSong.songMetadata.name + " - Сковорода",
-      metadataDescription: selectedSong.songMetadata.name + " - Григорій Савич Сковорода",
+      metadataDescription: SkovorodaConstants.contentToMetaDescription(selectedSong.songContent, null, metaDescriptionLastTry),
+      canonicalPageUrl: "https://www.skovoroda.club/texts/garden/" + id,
+      facebookImageUrl: selectedSong.songMetadata.songImage ? selectedSong.songMetadata.songImage.imageUrl : null,
+      // SEO }
+
+      // TECH {
       selectedSong,
       selectedNotes,
       allSongsMetadata,
-      deviceEnding,
-      shouldBeIndexed: true,
-      canonicalPageUrl: "https://www.skovoroda.club/texts/garden/" + id,
       allTranslators: skTranslatorsV2,
-      facebookImageUrl: selectedSong.songMetadata.songImage ? selectedSong.songMetadata.songImage.imageUrl : null,
+      // TECH }
     },
   };
 }

@@ -21,7 +21,7 @@ export default function SkovorodaLetterFromPage({ ...params }) {
 export function getStaticPaths() {
   
   const allLetterIds = SkovorodaLettersFrom.allLetters.map(letter => letter.letterMetadata.id);
-  console.log("All Letters From Ids:", allLetterIds);
+  // console.log("All Letters From Ids:", allLetterIds);
   return getStaticPathsCommon(allLetterIds);
 }
 

@@ -33,6 +33,43 @@ export const SkovorodaConstants = {
   getColorInTheme: function(color, theme) {
     const split = color.split('.');
     return theme.colors[split[0]][+split[1]];
+  },
+  fixMetaDescription: function(metaDescription) {
+    const recommendedDescriptionLength = this.recommendedMetaDescriptionLength;
+    if (metaDescription.length > recommendedDescriptionLength) {
+      return metaDescription.substring(0, recommendedDescriptionLength - 3) + "...";
+    }
+    return metaDescription;
+  },
+  
+  contentToMetaDescription: function(content, initialMetaDescription, lastTryDescription) {
+    
+    var metaDescription = initialMetaDescription || "";
+
+    if (!content || (!content.length && !content.main)) return lastTryDescription ? lastTryDescription : metaDescription;
+    if (content.main) {
+      content = content.main;
+    }
+
+    const recommendedDescriptionLength = this.recommendedMetaDescriptionLength;
+    var contentIndex = 0;
+    while (metaDescription.length < recommendedDescriptionLength && contentIndex < content.length) {
+      const lineObject = content[contentIndex];
+      const contentArray = Array.isArray(lineObject.text) ? lineObject.text : [lineObject];
+      const text = contentArray
+        .filter(line => !line.noteNumber && !line.isNoteBeginning)
+        .map(line => line.text)
+        .join("");
+
+      if (text.length + metaDescription.length <= recommendedDescriptionLength) {
+        metaDescription += " " + text;
+      } else {
+        metaDescription += " " + text.substring(0, recommendedDescriptionLength - metaDescription.length) + "...";
+        break;
+      }
+      contentIndex++;
+    }
+    return metaDescription;
   }
 };
 
@@ -44,6 +81,7 @@ export const utils1PageKey = { pageKey: "Utils1", parent: homePageKey };
 export const textsPageKey = { pageKey: "Texts", parent: homePageKey };
 export const testPageKey = { pageKey: "Test", parent: homePageKey };
 export const themePageKey = { pageKey: "Theme", parent: homePageKey };
+export const characterPageKey = { pageKey: "Character", parent: homePageKey };
 export const readPageKey = { pageKey: "Read", parent: textsPageKey };
 export const treatisePageKey = { pageKey: "Treatise", parent: textsPageKey };
 export const parablesPageKey = { pageKey: "Parables", parent: textsPageKey };

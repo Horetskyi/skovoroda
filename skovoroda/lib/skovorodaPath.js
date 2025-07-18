@@ -8,6 +8,7 @@ export const SkovorodaUtils1Path = "/utils1";
 export const SkovorodaTextsPath = "/texts/";
 export const SkovorodaSourcePath = "/source/";
 export const SkovorodaCopyrightPath = "/copyright/";
+export const SkovorodaCharactersPath = "/characters/";
 export const SkovorodaReadsPath = pathJoin(SkovorodaTextsPath, "/reads/");
 export const SkovorodaResourcesPath = pathJoin(SkovorodaHomePath, "/resources/");
 export const SkovorodaTreatisePath = pathJoin(SkovorodaTextsPath, "/treatise/");
@@ -83,4 +84,10 @@ export function getTreatisePath(urlId) {
 }
 export function getReadPath(urlId) {
   return pathJoinWithoutEndSlash(SkovorodaReadsPath, urlId);
+}
+export function getCharacterPath(urlId) {
+  return pathJoinWithoutEndSlash(SkovorodaCharactersPath, urlId);
+}
+export function getSourcePath(urlId) {
+  return pathJoinWithoutEndSlash(SkovorodaSourcePath, urlId);
 }

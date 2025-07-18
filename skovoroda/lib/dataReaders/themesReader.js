@@ -60,7 +60,7 @@ export function readAllThemes() {
           }))
         )
         .forEach(item => metadata.quotes.push(item));
-      console.log(`Found ${metadata.quotes.length} quotes for theme ${metadata.themeKey}`);
+      // console.log(`Found ${metadata.quotes.length} quotes for theme ${metadata.themeKey}`);
       // QUOTES }
 
       // File 2. "vstupni_dveri_do_khrystyianskoi_dobronravnosti.txt"

@@ -33,9 +33,6 @@ export async function getStaticProps({ params }) {
   treatise.introContent = ""; // free memory
 
   const sourceIds = new Set();
-  // if (treatise.introSourceId) {
-  //   sourceIds.add(treatise.introSourceId)
-  // }
   treatise.writtenDate.forEach(date => {
     if (date.sourceId) {
       sourceIds.add(date.sourceId)
@@ -54,17 +51,25 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
+      // APP LEVEL {
       pageKey: treatiseSelectedPageKey,
       selectedId: id,
+      deviceEnding,
+      // APP LEVEL }
+
+      // SEO {
+      shouldBeIndexed: true,
       metadataTitle: metadataTitle,
       metadataDescription: metadataDescription,
+      canonicalPageUrl: "https://www.skovoroda.club/texts/treatise/" + treatise.urlId,
+      facebookImageUrl: treatise.image ? treatise.image.imageUrl : null,
+      // SEO }
+
+      // TECH {
       treatise,
       sources,
       translators,
-      deviceEnding,
-      shouldBeIndexed: true,
-      canonicalPageUrl: "https://www.skovoroda.club/texts/treatise/" + treatise.urlId,
-      facebookImageUrl: treatise.image ? treatise.image.imageUrl : null,
+      // TECH }
     },
   };
 }

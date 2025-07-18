@@ -189,6 +189,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 
     // Handle links
     if (lineObject.isLink) {
+      console.log("Link Text:", lineObject.url, lineObject.text);
       block.push(<SkTextLink
         key={newKey(lineObject.text)} 
         text={lineObject.text}
@@ -279,7 +280,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 
       // Handle links
       if (subText.isLink) {
-        // console.log("Link Text2:", subText.url, subText.text);
+        console.log("Link Text2:", subText.url, subText.text);
         return <SkTextLink
           key={newKey(subText.text)}
           text={subText.text}

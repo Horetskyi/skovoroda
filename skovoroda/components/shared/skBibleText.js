@@ -13,7 +13,7 @@ export default function SkBibleText({ bibleCode, bibleType, text, bKey, translat
     <Popover.Target key={bKey+"target"}>
       <span key={bKey+"span"} className="sk-global-bible-text">{text}</span>
     </Popover.Target>
-    <Popover.Dropdown key={bKey+"dropdown"} maw={700}>
+    <Popover.Dropdown key={bKey+"dropdown"} className={classes.dropdown}>
       <div key={bKey+"div"}>
         { bibleType === 1 ? <Text className={`readFont ${classes.label}`}>Точна цитата:</Text> : null}
         { bibleType === 2 ? <Text className={`readFont ${classes.label}`}>Неточна цитата:</Text> : null}

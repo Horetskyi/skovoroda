@@ -8,15 +8,17 @@ export function getFablesPageProps() {
   const allSources = SkovorodaSourcesArray.filter(source => allSourceIds.includes(source.devNumber));
   return {
     props: {
-      allSources,
-      fablesTopContent,
-      allFables,
       pageKey: fablesPageKey,
+      
+      shouldBeIndexed: true,
       metadataTitle: "Байки Сковороди - Байки Харківські",
       metadataDescription: "Перші півтора десятка байок Сковорода написав «полишивши вчительську посаду й усамітнившись у лісах, полях, садах, селах, хуторах та пасіках, що лежать довкруж Харкова». Другу половину байок написав в селі Бабаях.",
       metadataKeywords: ["Байки Харківські", "Байки Сковороди", "Байки Сковороди переклад на українську", "Байки в оригіналі", "Про байки"],
-      shouldBeIndexed: true,
       canonicalPageUrl: "https://www.skovoroda.club/texts/fables",
+      
+      allSources,
+      fablesTopContent,
+      allFables,
     },
   };
 }

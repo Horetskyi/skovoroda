@@ -1,5 +1,5 @@
 import { SkImages } from "../data/images/skImages";
-import { SkovorodaGardenRefactored } from "../dataReaders/skovorodaGarden";
+import { SkovorodaGardenRefactored } from "../dataReaders/songsReader";
 import { gardenPageKey } from "../skovorodaConstants";
 
 export function getGardenPageProps() {

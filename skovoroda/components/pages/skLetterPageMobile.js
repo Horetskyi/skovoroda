@@ -1,22 +1,22 @@
 
-import { Card, Container, Title } from '@mantine/core';
+import { Space } from '@mantine/core';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
-import { SkovorodaLettersFromPath, pathJoin } from '../lib/skovorodaPath';
-import SkovorodaFomattingInfoBlockDesktop from '../components/skovorodaFomattingInfoBlockDesktop';
-import SkovorodaSourceBlockDesktop from '../components/skovorodaSourceBlockDesktop';
-import SkovorodaDraggableNotesDesktop from './skovorodaDraggableNotesDesktop';
-import { languagesToShortString, parseLanguages } from '../lib/skovorodaLanguagesLogic';
-import SkTextContentBlockDesktop from './shared/skTextContentBlockDesktop';
-import classes from './skovorodaLetterPageDesktop.module.scss';
-import SkCardWithTwoSelectorsDesktopV2 from './shared/skCardWithTwoSelectorsDesktopV2';
+import { SkovorodaLettersFromPath, pathJoin } from '../../lib/skovorodaPath';
+import { parseLanguages } from '../../lib/skovorodaLanguagesLogic';
+import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
+import { getLetterWriterByLetterMetadata } from '../../lib/staticProps/letterWriters';
+import SkSourcesContainerDesktop from '../shared/skSourcesContainerDesktop';
+import SkColoredContainerMobile from '../shared/skColoredContainerMobile';
+import SkH2Mobile from '../shared/skH2Mobile';
+import SkH1Mobile from '../shared/skH1Mobile';
+import SkCardWithTwoSelectorsMobileV2 from '../shared/skCardWithTwoSelectorsMobileV2';
 
-export default function SkovorodaLetterPageDesktop({ 
+export default function SkovorodaLetterPageMobile({ 
   selectedLetter,
   selectedNotes, 
   allLettersMetadata, 
   selectedLetterSource, 
-  selectedId, 
   letterType }) 
 {
 
@@ -62,77 +62,55 @@ export default function SkovorodaLetterPageDesktop({
     });
   }  
 
-  
-
   const isAnyNotes = selectedNotes && selectedNotes.length;
-
-  const leftNavMenuItems = [
+  const sourcesParams = [
     {
-      id: "card-with-two-selectors",
-      label: "Панель керування"
-    },
-    {
-      id: "main-content",
-      label: "Лист",
+      sourceType: "Текст" + (isAnyNotes ? " і Примітки" : ""),
+      sourceValue: selectedLetterSource.sourceFullName,
+      sourceHref: selectedLetterSource.sourceHref,
+      image: selectedLetterSource.bookCoverImage,
+      linkTitle: selectedLetterSource.sourceFullName,
     },
   ];
-  if (isAnyNotes) {
-    leftNavMenuItems.push({
-      id: "notes-content",
-      label: "Примітки",
-    });
-  }
-  leftNavMenuItems.push({
-    id: "source-content",
-    label: "Джерело"
-  });
 
-  
+  const letterWriter = getLetterWriterByLetterMetadata(selectedMetadata); // for text in H1
+  const h1Text = `Лист №${selectedMetadata.number} до ${letterWriter.genetiveName}`; 
 
-  return <>
+  return <SkColoredContainerMobile px={"md"}>
 
-    <Container mb="xl">
+    <SkCardWithTwoSelectorsMobileV2
+      dropdown1={{
+        label: "Оберіть переклад",
+        data: translationsDropdownItems,
+        selectedValue: selectedTranslationDropdownValue,
+        onChange: selectTranslationDropdownValue
+      }} 
+      dropdown2={{
+        label: "Оберіть лист",
+        data: personsDropdownItems,
+        selectedValue: selectedPersonDropdownValue,
+        onChange: selectPersonDropdownValue
+      }}
+    />
 
-      <SkCardWithTwoSelectorsDesktopV2
-        dropdown1={{
-          label: "Оберіть переклад",
-          data: translationsDropdownItems,
-          selectedValue: selectedTranslationDropdownValue,
-          onChange: selectTranslationDropdownValue
-        }} 
-        dropdown2={{
-          label: "Оберіть лист",
-          data: personsDropdownItems,
-          selectedValue: selectedPersonDropdownValue,
-          onChange: selectPersonDropdownValue
-        }}
-      />
-
-      <Card id="main-content" p="md" mt="md" radius="md" withBorder={true} className={`specialBorder ${classes.contentCard}`}>
-        <Title ta={'center'} mt="0" mb="md" order={1}>{selectedMetadata.name}</Title>
-        <Title ta={'center'} mt="0" mb="xl" order={2}>{"Лист № " + selectedMetadata.number}</Title>    
-        <SkovorodaDraggableNotesDesktop selectedNotes={selectedNotes}>
-          <SkTextContentBlockDesktop textContent={selectedLetter.letterContent} />
-        </SkovorodaDraggableNotesDesktop>
-      </Card>
-      
-      {isAnyNotes ? <>
-        <Card id="notes-content" mt="md" p="md" withBorder={true} className='specialBorder'>
-          <Title ta={'center'} mb="md" order={2}>Примітки</Title>
-          <SkTextContentBlockDesktop textContent={selectedNotes} />
-        </Card>
-      </> : <></>}
-
-      <SkovorodaSourceBlockDesktop source={selectedLetterSource} mt="md" />
-
-      <SkovorodaFomattingInfoBlockDesktop mt="md" />
-    </Container>
+    <SkH1Mobile text={h1Text}/>   
+    <Space h="lg"/>
+    <SkTextContentBlockDesktop textContent={selectedLetter.letterContent} isv2={true} />
     
-  </>;
+    {(isAnyNotes) ? <>
+      <SkH2Mobile my="lg" text={"Примітки"}/>
+      <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} />
+    </> : null}
+
+    <SkSourcesContainerDesktop sources={sourcesParams} includeTextValidityWarning={true} />
+
+  </SkColoredContainerMobile>
 }
 
 // Auxiliary
 function prepareLettersDropdownItems(allLettersMetadata, selectedTranlsatorName, letterType) {
+  
+  // FILTER AND DISTINCT {
   const set = new Set();
   const result = allLettersMetadata.filter(metadata => {
     if (metadata.translatorName != selectedTranlsatorName) {
@@ -146,17 +124,16 @@ function prepareLettersDropdownItems(allLettersMetadata, selectedTranlsatorName,
     return true;
   });
   set.clear();
+  // FILTER AND DISTINCT }
 
   return result.map(letterMetadata => {
-
-    const languages = parseLanguages(letterMetadata.languages);
-    const label = letterMetadata.name + " - Лист № " + letterMetadata.number;
-    
+    const languages = parseLanguages(letterMetadata.languages); // for icons in dropdown
+    const letterWriter = getLetterWriterByLetterMetadata(letterMetadata); // for text in dropdown
+    const label = `Лист №${letterMetadata.number} до ${letterWriter.genetiveName}`; // text in dropdown
     return {
-      value: newSelectedPersonValue(letterMetadata, letterType),
-      label: languages.length 
-        ? `${languagesToShortString(languages)} ${label}` 
-        : label,
+      value: newSelectedPersonValue(letterMetadata, letterType), // tech key for dropdown
+      label: label,
+      languages: languages,
       id: letterMetadata.id,
       disabled: false,
     };
@@ -165,31 +142,31 @@ function prepareLettersDropdownItems(allLettersMetadata, selectedTranlsatorName,
 
 // Auxiliary
 function prepareTranslationsDropdownItems(allLettersMetadata, personDropdownValue, letterType) {
-  
+
+  // DISTINCT {
   const result = allLettersMetadata
     .filter(metadata => newSelectedPersonValue(metadata, letterType) == personDropdownValue);
-
   allLettersMetadata.forEach(metadata => {
     if (result.some(translationMetadata => translationMetadata.translatorName == metadata.translatorName)) {
       return;
     }
     result.push(metadata);
   });
+  // DISTINCT }
 
   return result.map(letterMetadata => {
     const languages = parseLanguages(letterMetadata.languages);
     return {
-      value: letterMetadata.translatorName,
-      label: languages.length 
-        ? `${languagesToShortString(languages)} ${letterMetadata.translatorName}` 
-        : letterMetadata.translatorName,
+      value: letterMetadata.translatorName, // tech key for dropdown
+      label: letterMetadata.translatorName, // text in dropdown
       id: letterMetadata.id,
       disabled: false,
+      languages: languages, // for icons in dropdown
     };
   });
 }
 
-// Auxiliary
+// Auxiliary (tech key for dropdown)
 function newSelectedPersonValue(letterMetadata, letterType) {
   return (letterType == "from" ? letterMetadata.to : letterMetadata.from) + " - Лист № " + letterMetadata.number;
 }

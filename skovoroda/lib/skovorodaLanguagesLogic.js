@@ -15,15 +15,18 @@ export function languagesToShortString(languages) {
 const languagesMap = new Map([
   ["ua", {
     languageName: "Українська",
-    shortName: "Укр."
+    shortName: "Укр.",
+    id: "ua"
   }],
   ["oldua", {
     languageName: "Староукраїнська",
-    shortName: "Староукр."
+    shortName: "Староукр.",
+    id: "oldua"
   }],
-  ["letin", {
+  ["latin", {
     languageName: "Латинська",
-    shortName: "Лат."
+    shortName: "Лат.",
+    id: "latin"
   }],
 ]);
 export function parseLanguages(languageCodesString) {

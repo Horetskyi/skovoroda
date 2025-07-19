@@ -1,20 +1,22 @@
 
-import { Card, Container, Title } from '@mantine/core';
+import { Space } from '@mantine/core';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
-import { SkovorodaLettersFromPath, pathJoin } from '../lib/skovorodaPath';
-import SkovorodaFomattingInfoBlockDesktop from '../components/skovorodaFomattingInfoBlockDesktop';
-import SkovorodaSourceBlockDesktop from '../components/skovorodaSourceBlockDesktop';
-import SkTextContentBlockDesktop from './shared/skTextContentBlockDesktop';
-import classes from './skovorodaLetterPageMobile.module.scss';
-import SkCardWithTwoSelectorsMobileV2 from './shared/skCardWithTwoSelectorsMobileV2';
+import { SkovorodaLettersFromPath, pathJoin } from '../../lib/skovorodaPath';
+import { parseLanguages } from '../../lib/skovorodaLanguagesLogic';
+import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
+import SkCardWithTwoSelectorsDesktopV2 from '../shared/skCardWithTwoSelectorsDesktopV2';
+import { getLetterWriterByLetterMetadata } from '../../lib/staticProps/letterWriters';
+import SkColoredContainerDesktop from '../shared/skColoredContainerDesktop';
+import SkSourcesContainerDesktop from '../shared/skSourcesContainerDesktop';
+import SkH1Desktop from '../shared/skH1Desktop';
+import SkH2Desktop from '../shared/skH2Desktop';
 
-export default function SkovorodaLetterPageMobile({ 
+export default function SkovorodaLetterPageDesktop({ 
   selectedLetter,
   selectedNotes, 
   allLettersMetadata, 
   selectedLetterSource, 
-  selectedId, 
   letterType }) 
 {
 
@@ -60,50 +62,55 @@ export default function SkovorodaLetterPageMobile({
     });
   }  
 
-  
-
   const isAnyNotes = selectedNotes && selectedNotes.length;
-  return <>
+  const sourcesParams = [
+    {
+      sourceType: "Текст" + (isAnyNotes ? " і Примітки" : ""),
+      sourceValue: selectedLetterSource.sourceFullName,
+      sourceHref: selectedLetterSource.sourceHref,
+      image: selectedLetterSource.bookCoverImage,
+      linkTitle: selectedLetterSource.sourceFullName,
+    },
+  ];
 
-    <Container mb="xl">
+  const letterWriter = getLetterWriterByLetterMetadata(selectedMetadata); // for text in H1
+  const h1Text = `Лист №${selectedMetadata.number} до ${letterWriter.genetiveName}`; 
 
-      <SkCardWithTwoSelectorsMobileV2
-        dropdown1={{
-          label: "Оберіть переклад",
-          data: translationsDropdownItems,
-          selectedValue: selectedTranslationDropdownValue,
-          onChange: selectTranslationDropdownValue
-        }} 
-        dropdown2={{
-          label: "Оберіть лист",
-          data: personsDropdownItems,
-          selectedValue: selectedPersonDropdownValue,
-          onChange: selectPersonDropdownValue
-        }}
-      />
+  return <SkColoredContainerDesktop>
 
-      <Card id="main-content" p="md" mt="md" radius="md" withBorder={true} className={classes.contentCard}>
-        <Title ta={'center'} mt="0" mb="md" order={1}>{selectedMetadata.name}</Title>
-        <Title ta={'center'} mt="0" mb="xl" order={2}>{"Лист № " + selectedMetadata.number}</Title>    
-        <SkTextContentBlockDesktop textContent={selectedLetter.letterContent} />
-      </Card>
-      
-      {isAnyNotes ? <>
-        <Title id="notes-content" ta={'center'} mt="md" mb="md" order={2}>Примітки</Title>
-        <SkTextContentBlockDesktop textContent={selectedNotes} />
-      </> : <></>}
+    <SkCardWithTwoSelectorsDesktopV2
+      dropdown1={{
+        label: "Оберіть переклад",
+        data: translationsDropdownItems,
+        selectedValue: selectedTranslationDropdownValue,
+        onChange: selectTranslationDropdownValue
+      }} 
+      dropdown2={{
+        label: "Оберіть лист",
+        data: personsDropdownItems,
+        selectedValue: selectedPersonDropdownValue,
+        onChange: selectPersonDropdownValue
+      }}
+    />
 
-      <SkovorodaSourceBlockDesktop source={selectedLetterSource} mt="md" />
-
-      <Title ta={'center'} mt="md" mb="md" order={2}>Від розробників сайту</Title>
-      <SkovorodaFomattingInfoBlockDesktop mt="md" />
-    </Container>
+    <SkH1Desktop text={h1Text}/>   
+    <Space h="lg"/>
+    <SkTextContentBlockDesktop textContent={selectedLetter.letterContent} isv2={true} />
     
-  </>;
+    {(isAnyNotes) ? <>
+      <SkH2Desktop my="lg" text={"Примітки"}/>
+      <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} />
+    </> : null}
+
+    <SkSourcesContainerDesktop sources={sourcesParams} includeTextValidityWarning={true} />
+
+  </SkColoredContainerDesktop>
 }
 
 // Auxiliary
 function prepareLettersDropdownItems(allLettersMetadata, selectedTranlsatorName, letterType) {
+  
+  // FILTER AND DISTINCT {
   const set = new Set();
   const result = allLettersMetadata.filter(metadata => {
     if (metadata.translatorName != selectedTranlsatorName) {
@@ -117,11 +124,16 @@ function prepareLettersDropdownItems(allLettersMetadata, selectedTranlsatorName,
     return true;
   });
   set.clear();
+  // FILTER AND DISTINCT }
 
   return result.map(letterMetadata => {
+    const languages = parseLanguages(letterMetadata.languages); // for icons in dropdown
+    const letterWriter = getLetterWriterByLetterMetadata(letterMetadata); // for text in dropdown
+    const label = `Лист №${letterMetadata.number} до ${letterWriter.genetiveName}`; // text in dropdown
     return {
-      value: newSelectedPersonValue(letterMetadata, letterType),
-      label: letterMetadata.name + " - Лист № " + letterMetadata.number,
+      value: newSelectedPersonValue(letterMetadata, letterType), // tech key for dropdown
+      label: label,
+      languages: languages,
       id: letterMetadata.id,
       disabled: false,
     };
@@ -130,31 +142,31 @@ function prepareLettersDropdownItems(allLettersMetadata, selectedTranlsatorName,
 
 // Auxiliary
 function prepareTranslationsDropdownItems(allLettersMetadata, personDropdownValue, letterType) {
-  
-  // Original, Peleh, Uskalov
-  // to-kovalynskii-2
 
+  // DISTINCT {
   const result = allLettersMetadata
     .filter(metadata => newSelectedPersonValue(metadata, letterType) == personDropdownValue);
-
   allLettersMetadata.forEach(metadata => {
     if (result.some(translationMetadata => translationMetadata.translatorName == metadata.translatorName)) {
       return;
     }
     result.push(metadata);
   });
+  // DISTINCT }
 
   return result.map(letterMetadata => {
+    const languages = parseLanguages(letterMetadata.languages);
     return {
-      value: letterMetadata.translatorName,
-      label: letterMetadata.translatorName,
+      value: letterMetadata.translatorName, // tech key for dropdown
+      label: letterMetadata.translatorName, // text in dropdown
       id: letterMetadata.id,
       disabled: false,
+      languages: languages, // for icons in dropdown
     };
   });
 }
 
-// Auxiliary
+// Auxiliary (tech key for dropdown)
 function newSelectedPersonValue(letterMetadata, letterType) {
   return (letterType == "from" ? letterMetadata.to : letterMetadata.from) + " - Лист № " + letterMetadata.number;
 }

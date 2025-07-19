@@ -1,11 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { translatorNamesIdsMap } from "./skovorodaTranslators";
-import { parseFileContent } from "./utils/readingTextsUtils";
-
-const namesIdsMap = new Map([
-  ["Михайло Іванович Ковалинський", "kovalynskii"],
-]);
+import { translatorNamesIdsMap } from "../data/skovorodaTranslators";
+import { parseFileContent } from "../data/utils/readingTextsUtils";
 
 function getLettersDirectoryPath(key) {
   return path.join(process.cwd(), "lib", "data", key);
@@ -13,11 +9,9 @@ function getLettersDirectoryPath(key) {
 
 function getLetterId(letter, letterType) {
   const isOriginal = letter.translatorType === "Original";
-  const namePartOfId = (letterType == "lettersFrom" ? "to" : "from") + "-" + namesIdsMap.get(letterType == "lettersFrom" ? letter.to : letter.from);
-  const originalId = namePartOfId + "-" + letter.number;
-  if (isOriginal) {
-    return originalId;
-  }
+  const writerId = letterType == "lettersFrom" ? letter.to : letter.from;
+  const originalId = writerId + "-" + letter.number;
+  if (isOriginal) return originalId;
   return originalId + "-" + translatorNamesIdsMap.get(letter.translatorName);
 }
 
@@ -36,14 +30,13 @@ function readLetters(letterType) {
     
     const jsonFilePath = path.join(lettersDirectoryPath, jsonFileName);
     const txtFilePath = jsonFilePath.replace(".json", ".txt");
-    
     const letterMetadata = readJsonOrDefault(jsonFilePath);
-    if (!letterMetadata) {
-      return undefined;
-    }
+    if (!letterMetadata) return undefined;
 
+    // Metadata
     letterMetadata.id = getLetterId(letterMetadata, letterType);
     
+    // Content
     const contentString = fs.readFileSync(txtFilePath).toString();
     const content = parseFileContent(contentString);
 
@@ -51,7 +44,7 @@ function readLetters(letterType) {
       letterMetadata: letterMetadata,
       letterContent: content,
     };
-  }).filter(x => x);
+  }).filter(letter => letter);
   allParsedLetters.sort((a,b) => a.letterMetadata.number - b.letterMetadata.number);
   return allParsedLetters;
 }

@@ -1,16 +1,15 @@
-
 import getStaticPathsCommon from '../../../lib/getStaticPathsCommon';
 import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';
-import { SkovorodaLettersFrom } from '../../../lib/data/skovorodaLetters';
 import { SkovorodaSourcesArray } from '../../../lib/data/skovorodaSources';
 import { lettersFromPageKey, SkovorodaConstants } from '../../../lib/skovorodaConstants';
 import getSelectedNoteNumbersByContent from '../../../lib/getSelectedNoteNumbersByContent';
 import dynamic from 'next/dynamic';
-const SkovorodaLetterPageDesktop = dynamic(() => import('../../../components/skovorodaLetterPageDesktop'));
-const SkovorodaLetterPageMobile = dynamic(() => import('../../../components/skovorodaLetterPageMobile'));
+import { SkovorodaLettersFrom } from '../../../lib/dataReaders/lettersReader';
+import { getLetterWriterByLetterMetadata } from '../../../lib/staticProps/letterWriters';
+const SkovorodaLetterPageDesktop = dynamic(() => import('../../../components/pages/skLetterPageDesktop'));
+const SkovorodaLetterPageMobile = dynamic(() => import('../../../components/pages/skLetterPageMobile'));
 
 export default function SkovorodaLetterFromPage({ ...params }) {
-  return <div>SKIP</div>;
 
   return params.deviceEnding === SkovorodaConstants.desktopEnding 
     ? <SkovorodaLetterPageDesktop {...params} letterType="from" />
@@ -33,44 +32,39 @@ export function getStaticProps({ params }) {
   const allLettersMetadata = SkovorodaLettersFrom.allLetters.map(letter => letter.letterMetadata);
   const selectedLetterSource = SkovorodaSourcesArray.find(source => source.devNumber == selectedLetter.letterMetadata.source);
   const selectedNoteNumbers = getSelectedNoteNumbersByContent(selectedLetter.letterContent);
+  // console.log("selectedNoteNumbers:", selectedNoteNumbers);
 
-  const selectedNotes = SkovorodaLettersFrom.allNotes.filter(notes => 
+  const selectedNotesTmp = SkovorodaLettersFrom.allNotes.filter(notes => 
     notes.notesMetadata.source == selectedLetter.letterMetadata.source &&
-    notes.notesMetadata.name == selectedLetter.letterMetadata.name)
-    .flatMap(notes => notes.notes)
-    .filter(lineObject => selectedNoteNumbers.includes(lineObject.noteNumber) ||
+    notes.notesMetadata.id === (selectedLetter.letterMetadata.to || selectedLetter.letterMetadata.from))
+    .flatMap(notes => notes.notes);
+
+  const selectedNotes = selectedNotesTmp.filter(lineObject => selectedNoteNumbers.includes(lineObject.noteNumber) ||
       lineObject.letterNumber == selectedLetter.letterMetadata.number);
-
-  // Map translatorName:
-  selectedLetter.letterMetadata.translatorName = mapTranslatorName(selectedLetter.letterMetadata.translatorName);
-  allLettersMetadata.forEach(metadata => {
-    metadata.translatorName = mapTranslatorName(metadata.translatorName);
-  });
-
+  
+  const letterWriter = getLetterWriterByLetterMetadata(selectedLetter.letterMetadata);
   return {
     props: {
+      // APP LEVEL {
       pageKey: lettersFromPageKey,
       breadcrumbLabel: selectedLetter.letterMetadata.name + " - Лист № " + selectedLetter.letterMetadata.number,
+      deviceEnding,
+      // APP LEVEL }
+
+      // SEO {
+      shouldBeIndexed: true,
+      metadataTitle: `Лист Сковороди до ${letterWriter.genetiveName} №${selectedLetter.letterMetadata.number}`,
+      metadataDescription: SkovorodaConstants.contentToMetaDescription(selectedLetter.letterContent),
+      metadataKeywords: ['Листи Сковороди', letterWriter.name],
+      metadataAuthorUrl: "https://uk.wikipedia.org/wiki/Сковорода_Григорій_Савич",
+      canonicalPageUrl: "https://www.skovoroda.club/letters/from/" + id,
+      // SEO }
+      
       selectedId: id,
-      metadataTitle: selectedLetter.letterMetadata.name + " - " + selectedLetter.letterMetadata.number + " - Григорій Савич Сковорода",
-      metadataDescription: selectedLetter.letterMetadata.name + " - " + selectedLetter.letterMetadata.number + " - Григорій Савич Сковорода",
       selectedLetter,
       selectedNotes,
       allLettersMetadata,
       selectedLetterSource,
-      deviceEnding,
     },
   };
-}
-
-// Auxiliary
-const translatorNamesMap = new Map([
-  // ["Леонід Ушкалов", 'Редактор перекладів - Леонід Ушкалов'], 
-  // ["Петро Пелех", "Перекладач - Петро Пелех"],
-]);
-function mapTranslatorName(translatorName) {
-  if (translatorNamesMap.has(translatorName)) {
-    return translatorNamesMap.get(translatorName);
-  }
-  return translatorName;
 }

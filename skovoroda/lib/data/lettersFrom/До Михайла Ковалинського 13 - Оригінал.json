@@ -1,10 +1,9 @@
 {
-  "name": "До Михайла Івановича Ковалинського",
-  "to": "Михайло Іванович Ковалинський",
+  "to": "kovalynskii",
   "number": 13,
   "dateString": "[Харків, жовтень 1762 р.]",
   "source": 3,
   "translatorName": "Оригінал",
   "translatorType": "Original",
-  "languages": "letin"
+  "languages": "latin"
 }

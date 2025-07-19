@@ -2,14 +2,14 @@ import { Grid, Text } from '@mantine/core';
 import Link from 'next/link';
 import AnimatedMailComponent from '../components/animatedMailComponent';
 import { pathJoin, SkovorodaLettersFromPath } from '../lib/skovorodaPath';
-import SkH1Desktop from '../components/shared/skH1Desktop';
-import SkColoredContainerDesktop from '../components/shared/skColoredContainerDesktop';
-import SkH2Desktop from '../components/shared/skH2Desktop';
 import { lettersH1Text } from '../lib/staticProps/lettersContent';
 import { letterWriters } from '../lib/staticProps/letterWriters';
 import { getLettersStaticProps } from '../lib/staticProps/lettersStatic';
+import SkH1Mobile from '../components/shared/skH1Mobile';
+import SkColoredContainerMobile from '../components/shared/skColoredContainerMobile';
+import SkH2Mobile from '../components/shared/skH2Mobile';
 
-export default function SkovorodaLettersPageDesktop({ allLettersFrom, receiversList }) {
+export default function SkovorodaLettersPageMobile({ allLettersFrom, receiversList }) {
 
   const uniqueLettersByToAndNumber = [];
   allLettersFrom.forEach(letter => {
@@ -19,13 +19,13 @@ export default function SkovorodaLettersPageDesktop({ allLettersFrom, receiversL
   });
 
   return <>
-    <SkH1Desktop text={lettersH1Text} />
-    <SkColoredContainerDesktop>
+    <SkH1Mobile text={lettersH1Text} />
+    <SkColoredContainerMobile>
       {receiversList.map(receiver => {
         const writer = letterWriters.find(writer => writer.id === receiver.to);
         return <div key={receiver.to}>
-          <SkH2Desktop text={`Листи від Сковороди до ${writer.genetiveName}`} mb={"lg"} />
-          <Grid columns={8}>
+          <SkH2Mobile text={`Листи від Сковороди до ${writer.genetiveName}`} mb={"lg"} />
+          <Grid columns={3} px={"md"}>
             {uniqueLettersByToAndNumber.filter(letter => letter.to === receiver.to).map((letter, index) => {
               return <Grid.Col key={index} span={1}>
                 <Link key={index} href={pathJoin(SkovorodaLettersFromPath, letter.id)}>
@@ -37,7 +37,7 @@ export default function SkovorodaLettersPageDesktop({ allLettersFrom, receiversL
           </Grid>
         </div>;
       })}
-    </SkColoredContainerDesktop>
+    </SkColoredContainerMobile>
   </>
 }
 

@@ -1,5 +1,5 @@
 
-import { Box, Container, Group, Modal, Space } from '@mantine/core';
+import { Container, Group, Modal, Space } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { prepareFablesDropdownItems, prepareTranslatorsDropdownItems } from '../../lib/staticProps/fableLogic';
@@ -16,7 +16,6 @@ import SkCommentAuthorDesktop from '../shared/skCommentAuthorDesktop';
 import SkRelatedThemesDesktop from '../shared/skRelatedThemesDesktop';
 import { useDisclosure } from '@mantine/hooks';
 import SkImage from '../shared/skImage';
-import SkTextLink from '../shared/skTextLink';
 import classes from './fablePageDesktop.module.scss';
 import { adjustImageHeight } from '../functions/imageFunctions';
 import { getIllustrationSourceParam } from './details/pureFunctions';

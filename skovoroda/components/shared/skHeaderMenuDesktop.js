@@ -2,7 +2,7 @@ import { Box, Button, Container, Flex, Group, Popover, Stack, Text } from "@mant
 import SkSkovorodaLogo from "./skSkovorodaLogo3.svg";
 import SkDoveLogo from "./skDoveLogo3.svg";
 import Link from "next/link";
-import { SkovorodaBioPath, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaReadsPath, SkovorodaResourcesPath, SkovorodaTextsPath, SkovorodaTreatisePath, getLinkTitle, pathJoin } from "../../lib/skovorodaPath";
+import { SkovorodaBioPath, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaLettersPath, SkovorodaReadsPath, SkovorodaResourcesPath, SkovorodaTextsPath, SkovorodaTreatisePath, getLinkTitle, pathJoin } from "../../lib/skovorodaPath";
 import { SkovorodaConstants } from "../../lib/skovorodaConstants";
 import classes from './skHeaderMenuDesktop.module.scss';
 import HeaderBlockSvg from "./../svgs/headerBlock.svg";
@@ -62,6 +62,7 @@ export default function SkHeaderMenuDesktop() {
             {LinkButton(SkovorodaTreatisePath, "Трактати", classes)}
             {LinkButton(SkovorodaGardenPath, "Сад Пісень", classes)}
             {LinkButton(SkovorodaFablesPath, "Байки", classes)}
+            {LinkButton(SkovorodaLettersPath, "Листи", classes)}
 
             <Popover key="resources" shadow="md" width={200} position="bottom-end" 
               opened={openedResources} 

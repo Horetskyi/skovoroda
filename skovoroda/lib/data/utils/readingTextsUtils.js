@@ -517,7 +517,7 @@ export function parseFileContent(content, isOldUaText) {
       
       
       // --
-      const eb = false
+      const eb = true;
       if (eb && isOldUaText && lineObject.text && lineObject.text.length) {
         if (typeof lineObject.text === 'string') {
           const explanationsData = textToExplanations(lineObject.text);
@@ -526,7 +526,7 @@ export function parseFileContent(content, isOldUaText) {
           }
         } else if (Array.isArray(lineObject.text)) {
           lineObject.text = lineObject.text.map(subLineObject => {
-            if (!subLineObject.text || !subLineObject.text.length) {
+            if (!subLineObject.text || !subLineObject.text.length || subLineObject.bibleCode) {
               return [subLineObject];
             }
             const explanationsData = textToExplanations(subLineObject.text);

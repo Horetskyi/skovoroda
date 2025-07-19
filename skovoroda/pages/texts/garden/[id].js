@@ -1,7 +1,7 @@
 
-import { SkovorodaGardenRefactored } from '../../../lib/dataReaders/skovorodaGarden';
 import { SkovorodaSourcesArray } from '../../../lib/data/skovorodaSources';
 import { skTranslatorsV2 } from '../../../lib/data/skovorodaTranslators';
+import { SkovorodaGardenRefactored } from '../../../lib/dataReaders/songsReader';
 import getSelectedNoteNumbersByContent from '../../../lib/getSelectedNoteNumbersByContent';
 import getStaticPathsCommon from '../../../lib/getStaticPathsCommon';
 import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';

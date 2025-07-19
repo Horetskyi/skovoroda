@@ -11,6 +11,7 @@ export const SkovorodaCopyrightPath = "/copyright/";
 export const SkovorodaCharactersPath = "/characters/";
 export const SkovorodaReadsPath = pathJoin(SkovorodaTextsPath, "/reads/");
 export const SkovorodaResourcesPath = pathJoin(SkovorodaHomePath, "/resources/");
+export const SkovorodaArticlesPath = pathJoin(SkovorodaResourcesPath, "/articles/");
 export const SkovorodaTreatisePath = pathJoin(SkovorodaTextsPath, "/treatise/");
 export const SkovorodaGardenPath = pathJoin(SkovorodaTextsPath, "/garden/");
 export const SkovorodaOtherPoemsPath = pathJoin(SkovorodaTextsPath, "/other-poems/");

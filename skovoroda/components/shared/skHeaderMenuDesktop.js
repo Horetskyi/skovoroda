@@ -1,8 +1,8 @@
-import { Box, Button, Container, Flex, Group, Popover, Stack, Text } from "@mantine/core";
+import { Container, Flex, Group, Popover, Stack, Text } from "@mantine/core";
 import SkSkovorodaLogo from "./skSkovorodaLogo3.svg";
 import SkDoveLogo from "./skDoveLogo3.svg";
 import Link from "next/link";
-import { SkovorodaBioPath, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaLettersPath, SkovorodaReadsPath, SkovorodaResourcesPath, SkovorodaTextsPath, SkovorodaTreatisePath, getLinkTitle, pathJoin } from "../../lib/skovorodaPath";
+import { SkovorodaArticlesPath, SkovorodaBioPath, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaLettersPath, SkovorodaTextsPath, SkovorodaTreatisePath, getLinkTitle } from "../../lib/skovorodaPath";
 import { SkovorodaConstants } from "../../lib/skovorodaConstants";
 import classes from './skHeaderMenuDesktop.module.scss';
 import HeaderBlockSvg from "./../svgs/headerBlock.svg";
@@ -14,7 +14,7 @@ export default function SkHeaderMenuDesktop() {
   const [openedResources, setOpenedResources] = useState(false);
   const resourcesLinks = [
     {
-      href: pathJoin(SkovorodaResourcesPath, 'articles'),
+      href: SkovorodaArticlesPath,
       text: "Статті",
       linkTitle: 'Статті про Григорія Сковороду',
     }

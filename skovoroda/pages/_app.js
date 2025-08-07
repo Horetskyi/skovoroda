@@ -113,19 +113,16 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         
         {/* Icons */}
-        <link rel="icon" type="image/x-icon" href="/favicon.ico?v=4" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3" />
-        <link rel="icon" type="image/png" sizes="24x24" href="/favicon2-24x24.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3" />
-        <link rel="icon" type="image/png" sizes="48x48" href="/favicon2-48x48.png" />
-        <link rel="icon" type="image/png" sizes="64x64" href="/favicon2-64x64.png" />
-        <link rel="icon" type="image/png" sizes="96x96" href="/favicon2-96x96.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png?v=3" />
-        {/* Special Icons */}
-        <link rel="mask-icon" href="/safari-pinned-tab.svg?v=3" color="#5bbad5" />
-        <meta name="msapplication-TileColor" content="#2d89ef" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/web-app-manifest-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/web-app-manifest-512x512.png" />
+        <link rel="apple-touch-icon" type="image/png" href="/favicon.png" />
+        <meta name="apple-mobile-web-app-title" content="Skovoroda Club" />
+        <meta name="msapplication-TileColor" content="#3D5270" />
         <meta name="theme-color" content="#ffffff"></meta>
+        <link rel="manifest" href="/manifest.json" />
         
         {pageProps.shouldBeIndexed 
           ? <meta name="robots" content="index, follow" /> 

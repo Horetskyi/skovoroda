@@ -61,7 +61,7 @@ export function readAllReads(options) {
     .filter(item => item);
 
   // TREATISES {
-  const allTreatises = readAllTreatises({ excludeContent: isExcludeContent });
+  const allTreatises = readAllTreatises({ excludeContent: isExcludeContent, includeStatistics: true });
   const readsTreatises = allTreatises
     .flatMap(treatise => treatise.versions.map(version => {
       return {
@@ -78,6 +78,7 @@ export function readAllReads(options) {
         sourceId: item.version.sourceId,
         content: item.version.readContent,
         notes: item.version.readContentNotes,
+        contentStatistics: item.version.contentStatistics,
         author: SkAuthors.get('skovoroda'),
         type: "treatise",
         image: image,

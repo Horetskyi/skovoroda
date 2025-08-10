@@ -11,6 +11,7 @@ import NotesDesktop from "./details/notesDesktop";
 import DownloadsDesktop from "./details/downloadsDesktop";
 import SkReadSkovorodaSource from "./details/skReadSkovorodaSource";
 import SkAuthorDesktop from "./details/skAuthorDesktop";
+import SkContentStatisticsDesktop from "./details/SkContentStatisticsDesktop";
 
 export default function ReadPageDesktop({ selectedRead }) {
 
@@ -51,6 +52,7 @@ export default function ReadPageDesktop({ selectedRead }) {
       <SkRelatedTags {...selectedRead} />
       <SkReadSkovorodaSource {...selectedRead} />
       <SkAuthorDesktop author={selectedRead.author} />
+      <SkContentStatisticsDesktop stats={selectedRead.contentStatistics} />
 
     </Container>
     <SkSourcesContainerDesktop sources={getAggregatedSourcesParams(selectedRead)} includeTextValidityWarning={true} />

@@ -26,6 +26,8 @@ const accentsSimpleMap = [
   [ 'Ю' , 'Ю́' ],
   [ 'Я' , 'Я́' ],
   [ 'Ѣ' , 'Ѣ' ],
+
+  [ 'Ч' , 'Ч́ ' ],
 ];
 export const finalAccentsReplaces = [];
 export const accentsIndicators = ['´', 'μ', ' ́', '°', '·', '¶', '±'];

@@ -319,7 +319,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
 }
 
 function newOldUaElement(lineObject, key) {
-  return <SkOldUaExplainedText explanations={lineObject.explanations} text={lineObject.text} skKey={key} />;
+  return <SkOldUaExplainedText explanations={lineObject.explanations} text={lineObject.text} skKey={key+lineObject.text} />;
 }
 
 function newBibleElement(lineObject, key) {

@@ -47,6 +47,13 @@ function getNotesRegex() { return new RegExp("[¹²³⁴⁵⁶⁷⁸⁹⁰ᵃᵇ
 // original : "\[\d+\s—\s[А-ЯІ]+\.?\s\d+\]|\[\d+\]"
 function getOurSourcesNotesRegex() { return new RegExp("\\[\\d+\\s—\\s[А-ЯІ]+\\.?\\s\\d+\\]|\\[\\d+\\]", 'giu'); }
 
+function howManyTimesIncludes(text, subText) {
+  if (!text || !text.length || text.length < subText.length) {
+    return 0;
+  }
+  return (text.match(new RegExp(subText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
+}
+
 function textToExplanations(text) {
   if (!text || !text.length) {
     return null;
@@ -54,9 +61,16 @@ function textToExplanations(text) {
   const regex = /[^\s\.,;:!?\(\)\[\]{}"\-–—«»…]+/gu;
   let match;
   const explanationsData = [];
+  var irmCounter = 0;
   while ((match = regex.exec(text)) !== null) {
     const word = match[0];
     const index = match.index;
+    if (word === "Irm") {
+      irmCounter++;
+    }
+    if (irmCounter % 2 === 1) {
+      continue;
+    }
     const explanations = getOldUaWordExplanations(word);
     if (explanations) {
       const exp = explanations.explanation;
@@ -310,6 +324,14 @@ export function parseFileContent(content, isOldUaText) {
       }
     }
 
+    if (lineObject.text.includes(NOTE_NUMBER_FORMAT)) {
+      const splitByNoteNumber = lineObject.text.split(NOTE_NUMBER_FORMAT);
+      lineObject.noteNumber = splitByNoteNumber[1].trim();
+      lineObject.isNoteBeginning = true;
+      lineObject.text = splitByNoteNumber[2].trim();
+      lastNoteNumber = lineObject.noteNumber;
+    }
+
     if (lineObject.text.includes("[LINK]")) {
       const linkRegex = /\[LINK\](.*?)(?:\[LINK_SEPARATOR\](.*?))?\[LINK\]/g;
       const matches = [...lineObject.text.matchAll(linkRegex)];
@@ -449,14 +471,6 @@ export function parseFileContent(content, isOldUaText) {
       }
     }
 
-    if (lineObject.text.includes(NOTE_NUMBER_FORMAT)) {
-      const splitByNoteNumber = lineObject.text.split(NOTE_NUMBER_FORMAT);
-      lineObject.noteNumber = splitByNoteNumber[1].trim();
-      lineObject.isNoteBeginning = true;
-      lineObject.text = splitByNoteNumber[2].trim();
-      lastNoteNumber = lineObject.noteNumber;
-    }
-
     if (!isEmptyLine && lineObject.text.includes(MAIN_SECTION_FORMAT)) {
       isMainSection = !isMainSection;
       isMainSectionMode = true;
@@ -515,10 +529,8 @@ export function parseFileContent(content, isOldUaText) {
         lineObject.text = lineObject.text.flatMap(sub => Array.isArray(sub.text) ? sub.text : [sub]);
       }
       
-      
       // --
-      const eb = true;
-      if (eb && isOldUaText && lineObject.text && lineObject.text.length) {
+      if (isOldUaText && lineObject.text && lineObject.text.length) {
         if (typeof lineObject.text === 'string') {
           const explanationsData = textToExplanations(lineObject.text);
           if (explanationsData.length) {

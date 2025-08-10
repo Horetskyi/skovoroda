@@ -4,11 +4,13 @@ import { fixText } from "./auxiliary";
 import { parseFileContent } from "../data/utils/readingTextsUtils";
 import { SkImagesArray } from "../data/images/skImages";
 import { readFileSyncOrDefault } from "./dataReaderHelper";
+import { calculateTextStatistics } from "./details/calculateTextStatistics";
 
 export function readAllTreatises(options) {
 
   const isExcludeContent = options && options.excludeContent ? true : false;
   const isExcludeReadContent = options && options.excludeReadContent ? true : false;
+  const isIncludeStatistics = options && options.includeStatistics ? true : false;
 
   const directoryPath = path.join(process.cwd(), "lib", "data", "treatises");
   const fileNames = fs.readdirSync(directoryPath);
@@ -65,6 +67,9 @@ export function readAllTreatises(options) {
           if (readContent) {
             originalVersion.readContent = readContent;
             originalVersion.readContentNotes = parseFileContent(readContentNotesString, isOriginal);
+            if (isIncludeStatistics) {
+              originalVersion.contentStatistics = calculateTextStatistics(originalVersion.readContent);
+            }
           }
         }
       }

@@ -399,15 +399,18 @@ export function parseFileContent(content, isOldUaText) {
           bibleObj.translation = translation;
         }
         if (typeof bibleCode === 'string') {
-          if (bibleCode.endsWith('.EXACT')) {
-            bibleObj.bibleCode = bibleCode.replace(/\.EXACT$/, '');
+          if (bibleCode.includes('.EXACT')) {
+            bibleObj.bibleCode = bibleCode.replace(/\.EXACT/, '');
             bibleObj.bibleType = 1;
-          } else if (bibleCode.endsWith('.NOT_EXACT')) {
-            bibleObj.bibleCode = bibleCode.replace(/\.NOT_EXACT$/, '');
+          } else if (bibleCode.includes('.NOT_EXACT')) {
+            bibleObj.bibleCode = bibleCode.replace(/\.NOT_EXACT/, '');
             bibleObj.bibleType = 2;
-          } else if (bibleCode.endsWith('.PARAPHRASE')) {
-            bibleObj.bibleCode = bibleCode.replace(/\.PARAPHRASE$/, '');
+          } else if (bibleCode.includes('.PARAPHRASE')) {
+            bibleObj.bibleCode = bibleCode.replace(/\.PARAPHRASE/, '');
             bibleObj.bibleType = 3;
+          } else if (bibleCode.includes('.ALLUSION')) {
+            bibleObj.bibleCode = bibleCode.replace(/\.ALLUSION/, '');
+            bibleObj.bibleType = 4;
           }
         }
         parts.push(bibleObj);

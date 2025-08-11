@@ -19,6 +19,7 @@ export default function SkBibleText({ bibleCode, bibleType, text, bKey, translat
         { bibleType === 1 ? <Text className={`readFont ${classes.label}`}>Точна цитата:</Text> : null}
         { bibleType === 2 ? <Text className={`readFont ${classes.label}`}>Неточна цитата:</Text> : null}
         { bibleType === 3 ? <Text className={`readFont ${classes.label}`}>Парафраз:</Text> : null}
+        { bibleType === 4 ? <Text className={`readFont ${classes.label}`}>Алюзія:</Text> : null}
         <SkTextLink
           key={'link'+bKey} 
           text={popoverText}

@@ -19,7 +19,7 @@ export default function SkContentStatisticsDesktop({stats}) {
     <Space h={"md"}/>
     { BibleBooksByPopularity(stats.bibleStatistics.bibleBooksByPopularity, "Цитування Книг Біблії за частотою:", classes) }
     <Space h={"md"}/>
-    { BibleQuotesByPopularity(stats.bibleStatistics.bibleQuotesByPopularity, "Цитування строчок з Біблії за частотою:", classes) }
+    { BibleVersesByPopularity(stats.bibleStatistics.bibleQuotesByPopularity, "Цитування віршів з Біблії за частотою:", classes) }
   </Container>;
 }
 
@@ -32,7 +32,7 @@ function BibleBooksByPopularity(list, title, classes) {
   </> : null;
 }
 
-function BibleQuotesByPopularity(list, title, classes) {
+function BibleVersesByPopularity(list, title, classes) {
   return list.length ? <>
     <Text>{title}</Text>
     {list.map((book, index) => (

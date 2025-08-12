@@ -6,9 +6,9 @@ import classes from "./skRelatedTags.module.scss";
 
 const THEME_SLUGS_MAP = new Map([
   ["Сродність", "srodnist"],
-  ["Потрібне_Легке", "portibne-lehke"],
+  ["Блаженним бути легко", "portibne-lehke"],
   ["Щастя", "shastia"],
-  ["Дві_Натури", "dvi-natury"],
+  ["Дві натури", "dvi-natury"],
   ["Любов", "love"],
   ["Серце", "heart"],
 ]);

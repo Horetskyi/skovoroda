@@ -65,6 +65,7 @@ export function readAllTreatises(options) {
           const isOriginal = true;
           const readContent = parseFileContent(readContentString, isOriginal);
           if (readContent) {
+            fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', 'debug1.txt'), JSON.stringify(readContent, null, 2));
             originalVersion.readContent = readContent;
             originalVersion.readContentNotes = parseFileContent(readContentNotesString, isOriginal);
             if (isIncludeStatistics) {

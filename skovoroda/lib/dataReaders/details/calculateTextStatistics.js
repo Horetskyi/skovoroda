@@ -61,7 +61,7 @@ export function calculateTextStatistics(textContent) {
   function processLineObject(lineObj) {
     if (!lineObj) return;
 
-    if (lineObj.bibleCode) {
+    if (lineObj.bibleCode && !lineObj.isContinue) {
       bibleCitations.push({
         bibleCode: lineObj.bibleCode,
         bibleType: lineObj.bibleType,
@@ -74,7 +74,7 @@ export function calculateTextStatistics(textContent) {
     if (Array.isArray(lineText)) {
       lineText.forEach(part => {
         if (!part) return;
-        if (part.bibleCode) {
+        if (part.bibleCode && !part.isContinue) {
           const citation = {
             bibleCode: part.bibleCode,
           };

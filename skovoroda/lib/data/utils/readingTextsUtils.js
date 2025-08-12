@@ -150,33 +150,61 @@ function transformLineObjectWithNotes(lineObject, notesMetadata) {
 
   notesMetadata.reverse();
   let text = lineObject.text;
+  const textBefore = text;
+  const isDebugCase = text.includes('Конечно, троякая');
   const results = [];
   notesMetadata.forEach(note => {
+    if (!text) {
+      return;
+    }
     if (results.length != 0) {
       results.pop();
     }
-    if (!text) {
-      return;
+    const isTextIsString = typeof text === "string";
+    if (!isTextIsString) {
+      console.warn("Expected text to be a string", text);
     }
     const beforeNotePart = text.substring(0, note.index);
     const notePart = text.substring(note.index, note.index + note.length);
     const afterNotePart = text.substring(note.index + note.length);
-    if (notePart && notePart.trim().length) {
-      results.push({ text: afterNotePart });
-      results.push({ text: notePart, noteNumber: note.notesNumber });
-      results.push({ text: beforeNotePart });
-    } else {
-      // const restoredObj = ;
-      // if (notePart.bibleCode || beforeNotePart.bibleCode || afterNotePart.bibleCode) {
-      //   restoredObj.bibleCode = notePart.bibleCode || beforeNotePart.bibleCode || afterNotePart.bibleCode;
-      // }
-      results.push({ ...lineObject, text: beforeNotePart + notePart + afterNotePart });
-    }
-    
+
+    //if (notePart && notePart.trim().length) {
+      if (afterNotePart && afterNotePart.length) {
+        results.push({ ...lineObject, text: afterNotePart });
+      }
+      results.push({ ...lineObject, text: notePart, noteNumber: note.notesNumber });
+      if (beforeNotePart && beforeNotePart.length) {
+        results.push({ ...lineObject, text: beforeNotePart });
+      }
+    // } else {
+    //   results.push({ ...lineObject, text: text });
+    // }
     text = beforeNotePart;
+    if (isDebugCase) {
+      console.log('DEBUG CASE 1', {
+        note, beforeNotePart, notePart, afterNotePart, textBefore, results
+      })
+    }
   });
   results.reverse();
   lineObject.text = results;
+
+  // FIX TABS {
+  if (results.length > 1) {
+    results.forEach((part, index) => {
+      if (index === 0) return;
+      if (part.format && part.format.includes('tabs')) {
+        delete part.format;
+      }
+    })
+  }
+  // FIX TABS }
+
+  if (isDebugCase) {
+    console.log('DEBUG CASE 2', {
+      afterText: lineObject.text
+    });
+  }
 }
 
 function transformLineObjectWithIrmologionEtcInner(lineObject, formatInFile, format) {
@@ -257,6 +285,8 @@ export function parseFileContent(content, isOldUaText) {
   let isMainSection = false;
   let isMainSectionMode = false;
   let isAllIsList = false;
+  let lastBibleCode = null;
+  let lastBibleType = null;
 
   content.split('\n').forEach(line => {
 
@@ -399,18 +429,27 @@ export function parseFileContent(content, isOldUaText) {
           bibleObj.translation = translation;
         }
         if (typeof bibleCode === 'string') {
-          if (bibleCode.includes('.EXACT')) {
-            bibleObj.bibleCode = bibleCode.replace(/\.EXACT/, '');
-            bibleObj.bibleType = 1;
-          } else if (bibleCode.includes('.NOT_EXACT')) {
-            bibleObj.bibleCode = bibleCode.replace(/\.NOT_EXACT/, '');
-            bibleObj.bibleType = 2;
-          } else if (bibleCode.includes('.PARAPHRASE')) {
-            bibleObj.bibleCode = bibleCode.replace(/\.PARAPHRASE/, '');
-            bibleObj.bibleType = 3;
-          } else if (bibleCode.includes('.ALLUSION')) {
-            bibleObj.bibleCode = bibleCode.replace(/\.ALLUSION/, '');
-            bibleObj.bibleType = 4;
+          const isContinue =  bibleCode.includes('CONTINUE');
+          if (isContinue) {
+            bibleObj.bibleCode = lastBibleCode;
+            bibleObj.bibleType = lastBibleType;
+            bibleObj.isContinue = true;
+          } else {
+            if (bibleCode.includes('.EXACT')) {
+              bibleObj.bibleCode = bibleCode.replace(/\.EXACT/, '');
+              bibleObj.bibleType = 1;
+            } else if (bibleCode.includes('.NOT_EXACT')) {
+              bibleObj.bibleCode = bibleCode.replace(/\.NOT_EXACT/, '');
+              bibleObj.bibleType = 2;
+            } else if (bibleCode.includes('.PARAPHRASE')) {
+              bibleObj.bibleCode = bibleCode.replace(/\.PARAPHRASE/, '');
+              bibleObj.bibleType = 3;
+            } else if (bibleCode.includes('.ALLUSION')) {
+              bibleObj.bibleCode = bibleCode.replace(/\.ALLUSION/, '');
+              bibleObj.bibleType = 4;
+            }
+            lastBibleCode = bibleObj.bibleCode;
+            lastBibleType = bibleObj.bibleType;
           }
         }
         parts.push(bibleObj);

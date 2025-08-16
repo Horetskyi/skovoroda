@@ -79,6 +79,21 @@ export function getBibleBookNameAndQuoteNumberByCode(bibleCode) {
   return `${bookName} ${quoteNumber ? `(${quoteNumber})` : ''}`;
 }
 
+export function parseBibleCodeInCitation(citation) {
+  if (!citation) return;
+  if (!citation.bibleCode) return;
+  const split = citation.bibleCode.split('.');
+  if (split.length >= 1) {
+    citation.bookCode = '' + split[0];
+  }
+  if (split.length >= 2) {
+    citation.chapter = '' + split[1];
+  }
+  if (split.length >= 3) {
+    citation.verse = '' + split[2];
+  }
+}
+
 const newTestamentCodes = new Set([
   'MAT', 'MRK', 'LUK', 'JHN', 'ACT', 'ROM', '1CO', '2CO', 'GAL', 'EPH',
   'PHP', '1TH', '2TH', '1TI', '2TI', 'HEB', 'JAS', '1PE', '2PE', '1JN',

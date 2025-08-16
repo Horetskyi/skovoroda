@@ -70,6 +70,7 @@ export function readAllTreatises(options) {
             originalVersion.readContentNotes = parseFileContent(readContentNotesString, isOriginal);
             if (isIncludeStatistics) {
               originalVersion.contentStatistics = calculateTextStatistics(originalVersion.readContent);
+              fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', 'debug1_tatistics.txt'), JSON.stringify(originalVersion.contentStatistics, null, 2));
             }
           }
         }

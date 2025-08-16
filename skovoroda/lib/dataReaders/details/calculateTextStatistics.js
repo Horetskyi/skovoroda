@@ -1,8 +1,20 @@
-import { isNewTestamentBibleCode } from "../../shared/bible";
+import { isNewTestamentBibleCode, parseBibleCodeInCitation } from "../../shared/bible";
+import { readBibleVerse } from "./bibleReader";
 
-/** Calculates statistics for already parsed textContent (see parseFileContent output structure)
+const emptyTextStatistics = {
+  bibleCitations: [],
+  words: [],
+};
+
+// Fallback word regex without Unicode property escapes (covers Latin + Cyrillic + digits)
+// Allows internal apostrophes/dashes.
+const wordRegex = /[A-Za-zÀ-ÖØ-öø-ÿĀ-žƠ-ỹЀ-ӿҐґЇїІіЄєЁёА-Яа-я0-9]+(?:['’ʼ-][A-Za-zÀ-ÖØ-öø-ÿĀ-žƠ-ỹЀ-ӿҐґЇїІіЄєЁёА-Яа-я0-9]+)*/g;
+
+/** 
+Calculates statistics for already parsed textContent (see parseFileContent output structure)
 Returns: {
   bibleCitations: [ { bibleCode, bibleType?, translation?, text? }, ... ], // every occurrence preserved
+  bibleStatistics: ??
   words: [ 'word1', 'word2', ... ], // every single word (duplicates kept, original case preserved)
   textTotalWordsCount: number,
   textTotalSentencesCount: number, // heuristic based on punctuation .?!…
@@ -10,99 +22,114 @@ Returns: {
 }
 */ 
 export function calculateTextStatistics(textContent) {
-  if (!textContent) {
+  const isStatsFeatureEnabled = false;
+  if (!isStatsFeatureEnabled) return null;
+
+  if (!textContent) return emptyTextStatistics;
+  textContent = normalizeTextContent(textContent);
+  if (!Array.isArray(textContent)) return emptyTextStatistics;
+
+  const { fullText, words, bibleCitations } = receiveMoreDetailedInfoFromTextContent(textContent);
+
+  const textTotalSentencesCount = calculateSentencesCount(fullText);
+  const textTotalCharactersCount = calculateCharactersCount(fullText);
+  const bibleStatistics = calculateBibleStatistics(bibleCitations);
+  const textTotalWordsCount = words.length;
+
+  const bibleSentencesRatio = bibleStatistics.bibleCitationsTotalSentencesCount / textTotalSentencesCount;
+  const bibleCharactersRatio = bibleStatistics.bibleCitationsTotalCharactersCount / textTotalCharactersCount;
+  const bibleWordsRatio = bibleStatistics.bibleCitationsTotalWordsCount / textTotalWordsCount;
+  const bibleCitationsSmartRatio = (bibleSentencesRatio + bibleCharactersRatio + bibleWordsRatio) / 3;
+
+  const textFromBible = prepareTextFromBible(bibleCitations);
+
+  return {
+    bibleCitations,
+    bibleStatistics,
+    words,
+    textTotalWordsCount,
+    textTotalSentencesCount,
+    textTotalCharactersCount,
+    bibleCitationsSmartRatio,
+    bibleCharactersRatio,
+    bibleSentencesRatio,
+    bibleWordsRatio,
+    textFromBible
+  };
+}
+
+function prepareTextFromBible(bibleCitations) {
+  const bibleCitationsDistinctByVerseCode = Array.from(new Map(bibleCitations.map(c => [c.bookCode + c.chapter + c.verse, c])).values());
+  return bibleCitationsDistinctByVerseCode.map(citation => {
+    const verseTextUTT = readBibleVerse(citation.bookCode, citation.chapter, citation.verse);
     return {
-      bibleCitations: [],
-      words: [],
-      textTotalWordsCount: 0,
-      textTotalSentencesCount: 0,
-      textTotalCharactersCount: 0,
+      text: verseTextUTT,
+      bookCode: citation.bookCode,
+      chapter: citation.chapter,
+      verse: citation.verse
+    };
+  }).filter(obj => obj.text && obj.text.length);
+}
+
+function calculateWordsStatistics(words) {
+  return {
+    wordsCount: words.length
+  };
+}
+
+function calculateBibleStatistics(bibleCitations) {
+  if (!bibleCitations || !bibleCitations.length) {
+    return {
+      bibleVersesByPopularity: [],
+      bibleBooksByPopularity: [],
     };
   }
 
-  // If object with beforeMain/main/afterMain -> merge into array
-  if (!Array.isArray(textContent)) {
-    const merged = [];
-    ['beforeMain', 'main', 'afterMain'].forEach(k => {
-      if (textContent[k] && Array.isArray(textContent[k])) {
-        merged.push(...textContent[k]);
-      }
-    });
-    textContent = merged;
-  }
+  const newTestamentCitationsCount = bibleCitations
+    .filter(citation => isNewTestamentBibleCode(citation.bibleCode))
+    .length;
 
-  if (!Array.isArray(textContent)) {
-    return {
-      bibleCitations: [],
-      words: [],
-      textTotalWordsCount: 0,
-      textTotalSentencesCount: 0,
-      textTotalCharactersCount: 0,
-    };
-  }
+  const oldTestamentCitationsCount = bibleCitations.length - newTestamentCitationsCount;
 
-  const bibleCitations = [];
-  const words = [];
-  const sentenceSourceParts = [];
+  const bibleVersesByPopularityTmp = new Map();
+  bibleCitations.forEach(citation => {
+    bibleVersesByPopularityTmp.set(citation.bibleCode, (bibleVersesByPopularityTmp.get(citation.bibleCode) || 0) + 1);
+  });
+  const bibleVersesByPopularity = Array.from(bibleVersesByPopularityTmp.entries()).map(([key, count]) => ({ key, count }));
+  bibleVersesByPopularity.sort((a,b) => a.count < b.count ? 1 : -1); // Sort by count descending
 
-  // Fallback word regex without Unicode property escapes (covers Latin + Cyrillic + digits)
-  // Allows internal apostrophes/dashes.
-  const wordRegex = /[A-Za-zÀ-ÖØ-öø-ÿĀ-žƠ-ỹЀ-ӿҐґЇїІіЄєЁёА-Яа-я0-9]+(?:['’ʼ-][A-Za-zÀ-ÖØ-öø-ÿĀ-žƠ-ỹЀ-ӿҐґЇїІіЄєЁёА-Яа-я0-9]+)*/g;
+  const bibleBooksByPopularityTmp = new Map();
+  bibleCitations.forEach(citation => {
+    const bibleBookCode = citation.bibleCode.split('.')[0];
+    bibleBooksByPopularityTmp.set(bibleBookCode, (bibleBooksByPopularityTmp.get(bibleBookCode) || 0) + 1);
+  });
+  const bibleBooksByPopularity = Array.from(bibleBooksByPopularityTmp.entries()).map(([key, count]) => ({ key, count })); 
+  bibleBooksByPopularity.sort((a,b) => a.count < b.count ? 1 : -1); // Sort by count descending
 
-  function processTextString(str) {
-    if (!str || !str.trim()) return;
-    sentenceSourceParts.push(str);
-    let match;
-    while ((match = wordRegex.exec(str)) !== null) {
-      words.push(match[0]);
-    }
-  }
+  const bibleCitationsDistinctBySentenceIndex = Array.from(new Map(bibleCitations.map(c => [c.sentenceIndex, c])).values());
+  const bibleCitationsTotalSentencesCount = bibleCitationsDistinctBySentenceIndex.length;
+  const bibleCitationsTotalCharactersCount = calculateCharactersCount(bibleCitations.map(c => c.text).join(''));
+  const bibleCitationsTotalWordsCount = (bibleCitations.map(c => c.text).join(' ').match(wordRegex) || []).length;
 
-  function processLineObject(lineObj) {
-    if (!lineObj) return;
+  return {
+    newTestamentCitationsCount,
+    oldTestamentCitationsCount,
+    bibleVersesByPopularity,
+    bibleBooksByPopularity,
+    bibleCitationsTotalSentencesCount,
+    bibleCitationsTotalCharactersCount,
+    bibleCitationsTotalWordsCount
+  };
+}
 
-    if (lineObj.bibleCode && !lineObj.isContinue) {
-      bibleCitations.push({
-        bibleCode: lineObj.bibleCode,
-        bibleType: lineObj.bibleType,
-        translation: lineObj.translation,
-        text: typeof lineObj.text === 'string' ? lineObj.text : undefined,
-      });
-    }
+/** Tech */
+function calculateCharactersCount(text) {
+  if (!text || !text.length) return 0;
+  return text.replace(/\s/g, '').length;
+}
 
-    const lineText = lineObj.text;
-    if (Array.isArray(lineText)) {
-      lineText.forEach(part => {
-        if (!part) return;
-        if (part.bibleCode && !part.isContinue) {
-          const citation = {
-            bibleCode: part.bibleCode,
-          };
-          if (part.translation) {
-            citation.translation = part.translation;
-          }
-          if (part.text && typeof part.text === 'string') {
-            citation.text = part.text;
-          }
-          if (part.bibleType) {
-            citation.bibleType = part.bibleType;
-          }
-          bibleCitations.push(citation);
-        }
-        if (typeof part.text === 'string') {
-          processTextString(part.text);
-        }
-      });
-    } else if (typeof lineText === 'string') {
-      if (lineText.trim() === '[FOUNTAIN]') return;
-      processTextString(lineText);
-    }
-  }
-
-  textContent.forEach(processLineObject);
-
-  const fullText = sentenceSourceParts.join('\n');
-
+/** Tech */
+function calculateSentencesCount(fullText) {
   // Sentence counting (no lookbehind):
   // Increment when we see a terminator (.?!…) followed by:
   //  - end of string
@@ -133,55 +160,129 @@ export function calculateTextStatistics(textContent) {
       textTotalSentencesCount = 1;
     }
   }
-
-  const textTotalCharactersCount = fullText.replace(/\s/g, '').length;
-
-  return {
-    bibleCitations,
-    bibleStatistics: calculateBibleStatistics(bibleCitations),
-    words,
-    textTotalWordsCount: words.length,
-    textTotalSentencesCount,
-    textTotalCharactersCount,
-  };
+  return textTotalSentencesCount;
 }
 
-function calculateBibleStatistics(bibleCitations) {
-  if (!bibleCitations || !bibleCitations.length) {
-    return {
-      newTestamentCitationsCount: 0,
-      oldTestamentCitationsCount: 0,
-      bibleQuotesByPopularity: [],
-      bibleBooksByPopularity: [],
-    };
+/** Tech. Private. */
+function receiveMoreDetailedInfoFromTextContent(textContent) {
+  const bibleCitations = [];
+  const words = [];
+  let fullText = '';
+  let sentenceIndex = 0;
+  const terminators = '.!?…';
+
+  function processTextString(str) {
+    if (!str || !str.trim()) return;
+    if (fullText.length > 0) fullText += '\n';
+    fullText += str;
+    let i = 0;
+    while (i < str.length) {
+      // Word detection
+      wordRegex.lastIndex = i;
+      const match = wordRegex.exec(str);
+      if (match && match.index === i) {
+        words.push({ word: match[0], sentenceIndex });
+        i += match[0].length;
+        continue;
+      }
+      // Sentence boundary detection
+      if (terminators.includes(str[i])) {
+        // Look ahead for sentence boundary
+        let j = i + 1;
+        while (j < str.length && /\s/.test(str[j])) j++;
+        if (j >= str.length) {
+          sentenceIndex++;
+        } else {
+          const next = str[j];
+          if (/[A-ZА-ЯЁЇІЄҐ0-9"«“„]/.test(next)) {
+            sentenceIndex++;
+          }
+        }
+      }
+      i++;
+    }
   }
 
-  const newTestamentCitationsCount = bibleCitations
-    .filter(citation => isNewTestamentBibleCode(citation.bibleCode))
-    .length;
+  function processLineObject(lineObj) {
+    if (!lineObj) return;
+    if (lineObj.bibleCode) {
+      _addBibleCitation(lineObj, sentenceIndex, bibleCitations);
+    }
+    const lineText = lineObj.text;
+    if (Array.isArray(lineText)) {
+      lineText.forEach(part => {
+        if (!part) return;
+        if (part.bibleCode) {
+          _addBibleCitation(part, sentenceIndex, bibleCitations);
+        }
+        if (typeof part.text === 'string') {
+          processTextString(part.text);
+        }
+      });
+    } else if (typeof lineText === 'string') {
+      if (lineText.trim() === '[FOUNTAIN]') return;
+      processTextString(lineText);
+    }
+  }
 
-  const oldTestamentCitationsCount = bibleCitations.length - newTestamentCitationsCount;
+  textContent.forEach(processLineObject);
 
-  const bibleQuotesByPopularityTmp = new Map();
-  bibleCitations.forEach(citation => {
-    bibleQuotesByPopularityTmp.set(citation.bibleCode, (bibleQuotesByPopularityTmp.get(citation.bibleCode) || 0) + 1);
-  });
-  const bibleQuotesByPopularity = Array.from(bibleQuotesByPopularityTmp.entries()).map(([key, count]) => ({ key, count }));
-  bibleQuotesByPopularity.sort((a,b) => a.count < b.count ? 1 : -1); // Sort by count descending
-
-  const bibleBooksByPopularityTmp = new Map();
-  bibleCitations.forEach(citation => {
-    const bibleBookCode = citation.bibleCode.split('.')[0];
-    bibleBooksByPopularityTmp.set(bibleBookCode, (bibleBooksByPopularityTmp.get(bibleBookCode) || 0) + 1);
-  });
-  const bibleBooksByPopularity = Array.from(bibleBooksByPopularityTmp.entries()).map(([key, count]) => ({ key, count })); 
-  bibleBooksByPopularity.sort((a,b) => a.count < b.count ? 1 : -1); // Sort by count descending
+  const normalizedBibleCitations = _mergeBibleCitations(bibleCitations);
 
   return {
-    newTestamentCitationsCount,
-    oldTestamentCitationsCount,
-    bibleQuotesByPopularity,
-    bibleBooksByPopularity,
+    fullText,
+    words,
+    bibleCitations: normalizedBibleCitations
   };
 }
 
+/** Tech. Private. */
+function _addBibleCitation(obj, sentenceIndex, bibleCitations) {
+  if (!obj.bibleCode || !obj) return;
+  const citation = {
+    bibleCode: obj.bibleCode,
+    sentenceIndex
+  };
+  if (obj.translation) {
+    citation.translation = obj.translation;
+  }
+  if (obj.text && typeof obj.text === 'string') {
+    citation.text = obj.text;
+  }
+  if (obj.bibleType) {
+    citation.bibleType = obj.bibleType;
+  }
+  if (obj.isContinue) {
+    citation.isContinue = obj.isContinue;
+  }
+  parseBibleCodeInCitation(citation);
+  bibleCitations.push(citation);
+}
+
+/** Tech. Private. */
+function _mergeBibleCitations(bibleCitations) {
+  const result = [];
+  bibleCitations.forEach(citation => {
+    if (citation.isContinue) {
+      const last = result[result.length - 1];
+      last.text += ` ${citation.text}`;
+    } else {
+      result.push({...citation});
+    }
+  });
+  return result;
+}
+
+/** Tech. Private. */
+function normalizeTextContent(textContent) {
+  if (!Array.isArray(textContent)) {
+    const merged = [];
+    ['beforeMain', 'main', 'afterMain'].forEach(k => {
+      if (textContent[k] && Array.isArray(textContent[k])) {
+        merged.push(...textContent[k]);
+      }
+    });
+    textContent = merged;
+  }
+  return textContent;
+}

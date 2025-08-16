@@ -1,3 +1,8 @@
+// Special regex for multiple books joined by 'та' (e.g. 'Парафраза Першої книги царств 25: 26 та Четвертої книги царств 2: 2.')
+const multiBookPattern = new RegExp(
+  String.raw`([Пп]арафраза|[Пп]р|[Пп]р\.|[Пп]арафр\.|[Пп]арафр|[Пп]арафраз)\s+((?:[А-ЯA-ZІіЇїЄєа-яa-z0-9'’\.\-\s]+)\s+\d+\s*[:\.]\s*\d+(?:\s*[–\-]\s*\d+)?(?:\s+та\s+(?:[А-ЯA-ZІіЇїЄєа-яa-z0-9'’\.\-\s]+)\s+\d+\s*[:\.]\s*\d+(?:\s*[–\-]\s*\d+)?)*)`,
+  'giu'
+);
 // script.js
 // Usage:
 //   node script.js input.txt
@@ -28,6 +33,11 @@ const text = readInput();
 
 // ---------- Book map ----------
 const nameToCode = {
+  // Add genitive forms for books
+  'Першої книги царств': '1SA',
+  'Другої книги царств': '2SA',
+  'Третьої книги царств': '1KI',
+  'Четвертої книги царств': '2KI',
   // Add long forms for epistles
   'Друге послання св. ап. Павла до коринтян': '2CO',
   'Перше послання св. ап. Павла до коринтян': '1CO',
@@ -134,7 +144,17 @@ function normalizeDashes(s) {
 }
 
 function mapBookToCode(raw) {
+
   let name = raw.trim();
+
+  // Handle genitive forms for books
+  if (/Першого соборного послання св. ап. Івана/u.test(name)) return '1JN';
+  if (/Євангелії від св. Матвія/u.test(name)) return 'MAT';
+  if (/Книги Псалмів/u.test(name)) return 'PSA';
+  if (/^Першої книги царств$/u.test(name)) return '1SA';
+  if (/^Другої книги царств$/u.test(name)) return '2SA';
+  if (/^Третьої книги царств$/u.test(name)) return '1KI';
+  if (/^Четвертої книги царств$/u.test(name)) return '2KI';
 
   // Try to match long forms for epistles
   if (/^Друге послання св\. ап\. Павла до коринтян$/u.test(name)) return '2CO';
@@ -182,11 +202,10 @@ for (let i = 1; i < noteSplit.length; i += 2) {
   if (!Number.isNaN(n)) pairs.push([n, content]);
 }
 
-// Regex for citations: book + chapter:verse(s) and variants (now more flexible for book names)
+// Enhanced regex for multiple citations in a line, e.g. 'Парафраза Першої книги царств 25: 26 та Четвертої книги царств 2: 2.'
 const refPattern = new RegExp(
   String.raw`(?:[Пп]ре|[Нн]еточна|[Тт]рохи неточна)?\s*цитата з\s+` +
-  String.raw`((?:[А-ЯA-ZІіЇїЄєа-яa-z0-9'’\.\-\s]+))` +
-  String.raw`\s+(\d+)(?:\s*\((\d+)\))?\s*[:\.]\s*(\d+(?:\s*[–\-]\s*\d+)?)`,
+  String.raw`((?:[А-ЯA-ZІіЇїЄєа-яa-z0-9'’\.\-\s]+)\s+\d+(?:\s*\((\d+)\))?\s*[:\.]\s*\d+(?:\s*[–\-]\s*\d+)?(?:\s+та\s+(?:[А-ЯA-ZІіЇїЄєа-яa-z0-9'’\.\-\s]+)\s+\d+(?:\s*\((\d+)\))?\s*[:\.]\s*\d+(?:\s*[–\-]\s*\d+)?)*)`,
   'giu'
 );
 
@@ -216,17 +235,45 @@ const results = [];
 
 for (const [num, block] of pairs) {
   const refs = [];
-  // Standard and variant patterns
+  // Special handling for multi-book pattern with 'та'
+  for (const m of block.matchAll(multiBookPattern)) {
+    const citationBlock = m[2];
+    const singleCitationPattern = new RegExp(
+      String.raw`((?:[А-ЯA-ZІіЇїЄєа-яa-z0-9'’\.\-\s]+))\s+(\d+)\s*[:\.]\s*(\d+(?:\s*[–\-]\s*\d+)?)`,
+      'gu'
+    );
+    for (const m2 of citationBlock.matchAll(singleCitationPattern)) {
+      const book = m2[1];
+      const chap = m2[2];
+      let verses = normalizeDashes(m2[3] || '');
+      let bookNorm = book.trim();
+      if (/^Апокаліпсису$/u.test(bookNorm)) bookNorm = 'Апокаліпсис';
+      let code = mapBookToCode(bookNorm);
+      if (!code) continue;
+      refs.push({ code, chap, verses, raw: m2[0] });
+    }
+  }
+  // Enhanced: extract all book+chapter:verse(s) patterns, including multiple in one line
+  // First, match the whole citation block (may contain multiple citations)
   for (const m of block.matchAll(refPattern)) {
-    const book = m[1];
-    const chap = m[2];
-    const altChap = m[3];
-    let verses = normalizeDashes(m[4] || '');
-    let bookNorm = book.trim();
-    if (/^Апокаліпсису$/u.test(bookNorm)) bookNorm = 'Апокаліпсис';
-    let code = mapBookToCode(bookNorm);
-    if (!code) continue;
-    refs.push({ code, chap, verses, raw: m[0], altChap });
+    // Now, extract each citation from the matched block
+    const citationBlock = m[1];
+    // Match all book+chapter:verse(s) in the block
+    const singleCitationPattern = new RegExp(
+      String.raw`((?:[А-ЯA-ZІіЇїЄєа-яa-z0-9'’\.\-\s]+))\s+(\d+)(?:\s*\((\d+)\))?\s*[:\.]\s*(\d+(?:\s*[–\-]\s*\d+)?)`,
+      'gu'
+    );
+    for (const m2 of citationBlock.matchAll(singleCitationPattern)) {
+      const book = m2[1];
+      const chap = m2[2];
+      const altChap = m2[3];
+      let verses = normalizeDashes(m2[4] || '');
+      let bookNorm = book.trim();
+      if (/^Апокаліпсису$/u.test(bookNorm)) bookNorm = 'Апокаліпсис';
+      let code = mapBookToCode(bookNorm);
+      if (!code) continue;
+      refs.push({ code, chap, verses, raw: m2[0], altChap });
+    }
   }
   // 'зринає в ...' pattern (now matchAll)
   for (const m2 of block.matchAll(inBookPattern) || []) {

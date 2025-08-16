@@ -400,17 +400,82 @@ export function parseFileContent(content, isOldUaText) {
       }
     }
 
-    if (lineObject.text.includes("[META]")) {
-      // Regex to match [META]...content...[META]
-      const metaRegex = /\[META\](.*?)\[X\](.*?)\[META\]/g;
-      const matches = [...lineObject.text.matchAll(metaRegex)];
-      if (matches.length > 0) {
-        const parts = [];
-        let lastIndex = 0;
-        matches.forEach(match => {
-          const metaInfo = match[1];
-          const metaText = match[2];
-          const startIndex = match.index;
+    if (lineObject.text.includes("[BIBLE]") || lineObject.text.includes("[META]")) {
+      // Non-greedy regex, matches each [BIBLE]...[/BIBLE] block separately
+      const bibleRegex = /\[(BIBLE|META)\](.*?)(?:\[X\](.*?)(?:\[X\](.*?))?)?\[\1\]/g;
+      const parts = [];
+      let lastIndex = 0;
+      let match;
+
+      while ((match = bibleRegex.exec(lineObject.text)) !== null) {
+        const tagType = match[1];
+        const startIndex = match.index;
+
+        if (tagType === "BIBLE") {
+          const bibleCode = match[2];
+          const text = match[3];
+          const translation = match[4];
+
+          // console.log(`Bible match found: ${bibleCode}, text: ${text}, translation: ${translation}, startIndex: ${startIndex}`);
+
+          // Add text before
+          if (startIndex > lastIndex) {
+            const beforeLink = lineObject.text.substring(lastIndex, startIndex);
+            if (beforeLink && beforeLink.length) {
+              parts.push({ text: beforeLink });
+            }
+          }
+
+          // Add the bible text
+          const bibleObj = { text, bibleCode: bibleCode };
+          if (translation) {
+            bibleObj.translation = translation;
+          }
+          if (typeof bibleCode === 'string') {
+            const isContinue =  bibleCode.includes('CONTINUE');
+            if (isContinue) {
+              bibleObj.bibleCode = lastBibleCode;
+              bibleObj.bibleType = lastBibleType;
+              bibleObj.isContinue = true;
+            } else {
+              if (bibleCode.includes('.EXACT')) {
+                bibleObj.bibleCode = bibleCode.replace(/\.EXACT/, '');
+                bibleObj.bibleType = 1;
+              } else if (bibleCode.includes('.NOT_EXACT')) {
+                bibleObj.bibleCode = bibleCode.replace(/\.NOT_EXACT/, '');
+                bibleObj.bibleType = 2;
+              } else if (bibleCode.includes('.PARAPHRASE')) {
+                bibleObj.bibleCode = bibleCode.replace(/\.PARAPHRASE/, '');
+                bibleObj.bibleType = 3;
+              } else if (bibleCode.includes('.ALLUSION')) {
+                bibleObj.bibleCode = bibleCode.replace(/\.ALLUSION/, '');
+                bibleObj.bibleType = 4;
+              }
+              lastBibleCode = bibleObj.bibleCode;
+              lastBibleType = bibleObj.bibleType;
+            }
+          }
+          parts.push(bibleObj);
+        } else if (tagType === "META") {
+          // Parse metaInfo for theme and bible
+          const metaInfo = match[2];
+          const metaText = match[3];
+          let themeId = undefined;
+          let bibleCitation = undefined;
+          if (metaInfo) {
+            // Split metaInfo by semicolon, handle multiple meta tags
+            const metaTags = metaInfo.split(';').map(s => s.trim());
+            metaTags.forEach(tag => {
+              if (tag.startsWith('THEME.')) {
+                themeId = tag.substring('THEME.'.length);
+              } else if (tag.startsWith('BIBLE.')) {
+                bibleCitation = tag.substring('BIBLE.'.length);
+              }
+            });
+          }
+          const metaObj = { text: metaText };
+          if (themeId) metaObj.themeId = themeId;
+          if (bibleCitation) metaObj.bibleCitation = bibleCitation;
           // Add text before the meta block
           if (startIndex > lastIndex) {
             const beforeMeta = lineObject.text.substring(lastIndex, startIndex);
@@ -418,87 +483,8 @@ export function parseFileContent(content, isOldUaText) {
               parts.push({ text: beforeMeta });
             }
           }
-          // Parse metaInfo for theme and bible
-          let themeId = undefined;
-          let bibleCitation = undefined;
-          // Split metaInfo by semicolon, handle multiple meta tags
-          const metaTags = metaInfo.split(';').map(s => s.trim());
-          metaTags.forEach(tag => {
-            if (tag.startsWith('THEME.')) {
-              themeId = tag.substring('THEME.'.length);
-            } else if (tag.startsWith('BIBLE.')) {
-              bibleCitation = tag.substring('BIBLE.'.length);
-            }
-          });
-          const metaObj = { text: metaText };
-          if (themeId) metaObj.themeId = themeId;
-          if (bibleCitation) metaObj.bibleCitation = bibleCitation;
           parts.push(metaObj);
-          lastIndex = startIndex + match[0].length;
-        });
-        // Add text after last meta block
-        const afterMeta = lineObject.text.substring(lastIndex);
-        if (afterMeta && afterMeta.length) {
-          parts.push({ text: afterMeta });
         }
-        lineObject.text = parts;
-      }
-    }
-
-    if (lineObject.text.includes("[BIBLE]")) {
-      // Non-greedy regex, matches each [BIBLE]...[/BIBLE] block separately
-      const bibleRegex = /\[BIBLE\](.*?)(?:\[X\](.*?)(?:\[X\](.*?))?)?\[BIBLE\]/g;
-      const parts = [];
-      let lastIndex = 0;
-      let match;
-
-      while ((match = bibleRegex.exec(lineObject.text)) !== null) {
-        const bibleCode = match[1];
-        const text = match[2];
-        const translation = match[3];
-        const startIndex = match.index;
-
-        // console.log(`Bible match found: ${bibleCode}, text: ${text}, translation: ${translation}, startIndex: ${startIndex}`);
-
-        // Add text before
-        if (startIndex > lastIndex) {
-          const beforeLink = lineObject.text.substring(lastIndex, startIndex);
-          if (beforeLink && beforeLink.length) {
-            parts.push({ text: beforeLink });
-          }
-        }
-
-        // Add the bible text
-        const bibleObj = { text, bibleCode: bibleCode };
-        if (translation) {
-          bibleObj.translation = translation;
-        }
-        if (typeof bibleCode === 'string') {
-          const isContinue =  bibleCode.includes('CONTINUE');
-          if (isContinue) {
-            bibleObj.bibleCode = lastBibleCode;
-            bibleObj.bibleType = lastBibleType;
-            bibleObj.isContinue = true;
-          } else {
-            if (bibleCode.includes('.EXACT')) {
-              bibleObj.bibleCode = bibleCode.replace(/\.EXACT/, '');
-              bibleObj.bibleType = 1;
-            } else if (bibleCode.includes('.NOT_EXACT')) {
-              bibleObj.bibleCode = bibleCode.replace(/\.NOT_EXACT/, '');
-              bibleObj.bibleType = 2;
-            } else if (bibleCode.includes('.PARAPHRASE')) {
-              bibleObj.bibleCode = bibleCode.replace(/\.PARAPHRASE/, '');
-              bibleObj.bibleType = 3;
-            } else if (bibleCode.includes('.ALLUSION')) {
-              bibleObj.bibleCode = bibleCode.replace(/\.ALLUSION/, '');
-              bibleObj.bibleType = 4;
-            }
-            lastBibleCode = bibleObj.bibleCode;
-            lastBibleType = bibleObj.bibleType;
-          }
-        }
-        parts.push(bibleObj);
-
         // Update the last index
         lastIndex = startIndex + match[0].length;
       }
@@ -512,6 +498,51 @@ export function parseFileContent(content, isOldUaText) {
       // Update lineObject.text with the processed parts
       lineObject.text = parts;
     }
+
+    // if (lineObject.text.includes("[META]")) {
+    //   // Regex to match [META]...content...[META]
+    //   const metaRegex = /\[META\](.*?)\[X\](.*?)\[META\]/g;
+    //   const matches = [...lineObject.text.matchAll(metaRegex)];
+    //   if (matches.length > 0) {
+    //     const parts = [];
+    //     let lastIndex = 0;
+    //     matches.forEach(match => {
+    //       const metaInfo = match[1];
+    //       const metaText = match[2];
+    //       const startIndex = match.index;
+    //       // Add text before the meta block
+    //       if (startIndex > lastIndex) {
+    //         const beforeMeta = lineObject.text.substring(lastIndex, startIndex);
+    //         if (beforeMeta && beforeMeta.length) {
+    //           parts.push({ text: beforeMeta });
+    //         }
+    //       }
+    //       // Parse metaInfo for theme and bible
+    //       let themeId = undefined;
+    //       let bibleCitation = undefined;
+    //       // Split metaInfo by semicolon, handle multiple meta tags
+    //       const metaTags = metaInfo.split(';').map(s => s.trim());
+    //       metaTags.forEach(tag => {
+    //         if (tag.startsWith('THEME.')) {
+    //           themeId = tag.substring('THEME.'.length);
+    //         } else if (tag.startsWith('BIBLE.')) {
+    //           bibleCitation = tag.substring('BIBLE.'.length);
+    //         }
+    //       });
+    //       const metaObj = { text: metaText };
+    //       if (themeId) metaObj.themeId = themeId;
+    //       if (bibleCitation) metaObj.bibleCitation = bibleCitation;
+    //       parts.push(metaObj);
+    //       lastIndex = startIndex + match[0].length;
+    //     });
+    //     // Add text after last meta block
+    //     const afterMeta = lineObject.text.substring(lastIndex);
+    //     if (afterMeta && afterMeta.length) {
+    //       parts.push({ text: afterMeta });
+    //     }
+    //     lineObject.text = parts;
+    //   }
+    // }
     
     if (lineObject.text.includes(LETTER_NOTE_FORMAT)) {
       const splitByLetterNote = lineObject.text.split(LETTER_NOTE_FORMAT);

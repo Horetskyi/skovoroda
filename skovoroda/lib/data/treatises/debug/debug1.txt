@@ -10126,7 +10126,12 @@
         }
       },
       {
-        "text": " что кому не удóбное, напиши, что не нáдобное. [BIBLE]ROM.11.33.PARAPHRASE[X]О Глубинá Премудрыя БЛА́ГОСТИ[BIBLE]"
+        "text": " что кому не удóбное, напиши, что не нáдобное. "
+      },
+      {
+        "text": "О Глубинá Премудрыя БЛА́ГОСТИ",
+        "bibleCode": "ROM.11.33",
+        "bibleType": 3
       },
       {
         "text": "²⁷⁹",
@@ -10136,7 +10141,12 @@
         "text": "! "
       },
       {
-        "text": "сотвóршїя нужное не трудным, "
+        "text": "сот",
+        "themeId": "portibne-lehke",
+        "noteNumber": "279"
+      },
+      {
+        "text": "вóршїя нужное не трудным, "
       },
       {
         "text": "а",
@@ -10148,11 +10158,6 @@
       },
       {
         "text": " трудное не нужным"
-      },
-      {
-        "text": "",
-        "themeId": "portibne-lehke",
-        "noteNumber": "279"
       },
       {
         "text": "²⁸⁰",
@@ -10300,18 +10305,12 @@
   {
     "text": [
       {
-        "text": "НАЕМА́Н. Тѣмже, о Израилю, идуще новым святаго Духа путем: [BIBLE]LUK.11.9.EXACT[X]Ищите "
+        "text": "НАЕМА́Н. Тѣмже, о Израилю, идуще новым святаго Духа путем: "
       },
       {
-        "text": "и",
-        "explanations": {
-          "explanation": "і; його, він",
-          "references": "zvslovnyk",
-          "complexity": 0
-        }
-      },
-      {
-        "text": " Обрящете[BIBLE]"
+        "text": "Ищите и Обрящете",
+        "bibleCode": "LUK.11.9",
+        "bibleType": 1
       },
       {
         "text": "²⁸⁶",
@@ -10331,7 +10330,10 @@
         }
       },
       {
-        "text": " вся полезная "
+        "text": " "
+      },
+      {
+        "text": "вся полезная "
       },
       {
         "text": "суть",
@@ -10356,15 +10358,7 @@
         "text": " возможная – полезна"
       },
       {
-        "text": "",
-        "themeId": "portibne-lehke",
-        "noteNumber": "286"
-      },
-      {
-        "text": ".\r"
-      },
-      {
-        "text": "",
+        "text": ".\r",
         "noteNumber": "286"
       }
     ]
@@ -12470,7 +12464,12 @@
         }
       },
       {
-        "text": " НАДЕЖДА! Носи здоров! [BIBLE]2KI.2.9.ALLUSION[X]Она есть Дух сугуб, видящїй ДВО́Е[BIBLE]"
+        "text": " НАДЕЖДА! Носи здоров! "
+      },
+      {
+        "text": "Она есть Дух сугуб, видящїй ДВО́Е",
+        "bibleCode": "2KI.2.9",
+        "bibleType": 4
       },
       {
         "text": "³⁵⁰",
@@ -12491,13 +12490,13 @@
         "text": " Илїину Бурку гдѣ тебѣ взять? "
       },
       {
-        "text": "Χαλεπὰ τὰ κακὰ",
-        "themeId": "portibne-lehke"
-      },
-      {
-        "text": "",
+        "text": "Χαλ",
         "themeId": "portibne-lehke",
         "noteNumber": "350"
+      },
+      {
+        "text": "επὰ τὰ κακὰ",
+        "themeId": "portibne-lehke"
       },
       {
         "text": "³⁵¹",
@@ -12572,18 +12571,12 @@
         }
       },
       {
-        "text": " молись. [BIBLE]JHN.11.22.PARAPHRASE[X]"
+        "text": " молись. "
       },
       {
-        "text": "Аще",
-        "explanations": {
-          "explanation": "коли, якщо, чи, хоча",
-          "references": "zvslovnyk",
-          "complexity": 2
-        }
-      },
-      {
-        "text": " дóбрѣ просиши, прїймеши[BIBLE]"
+        "text": "Аще дóбрѣ просиши, прїймеши",
+        "bibleCode": "JHN.11.22",
+        "bibleType": 3
       },
       {
         "text": "³⁵²",
@@ -12593,19 +12586,16 @@
         "text": ". Проси во Имя Христово, все вдруг получиш. Не забывай никогда сего: “"
       },
       {
-        "text": "Χαλεπὰ τὰ κακὰ",
-        "themeId": "portibne-lehke"
-      },
-      {
-        "text": "",
+        "text": "Χαλ",
         "themeId": "portibne-lehke",
         "noteNumber": "352"
       },
       {
-        "text": "”"
+        "text": "επὰ τὰ κακὰ",
+        "themeId": "portibne-lehke"
       },
       {
-        "text": "",
+        "text": "”",
         "noteNumber": "352"
       },
       {
@@ -13366,7 +13356,11 @@
         }
       },
       {
-        "text": " будешь Чучела его. Смѣшнá Пустошь, не только [META]THEME.portibne-lehke[X]χαλεπὰ τὰ κακὰ[BIBLE]"
+        "text": " будешь Чучела его. Смѣшнá Пустошь, не только "
+      },
+      {
+        "text": "χαλεπὰ τὰ κακὰ",
+        "themeId": "portibne-lehke"
       },
       {
         "text": "³⁷²",

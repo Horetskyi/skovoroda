@@ -148,6 +148,8 @@ function mapBookToCode(raw) {
   let name = raw.trim();
 
   // Handle genitive forms for books
+  if (/Книги пророка Осії/u.test(name)) return 'HOS';
+  if (/Другого послання св. ап. Павла до коринтян/u.test(name)) return '2CO';
   if (/Першого соборного послання св. ап. Івана/u.test(name)) return '1JN';
   if (/Євангелії від св. Матвія/u.test(name)) return 'MAT';
   if (/Книги Псалмів/u.test(name)) return 'PSA';

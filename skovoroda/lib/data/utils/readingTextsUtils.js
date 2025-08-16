@@ -150,8 +150,8 @@ function transformLineObjectWithNotes(lineObject, notesMetadata) {
 
   notesMetadata.reverse();
   let text = lineObject.text;
-  const textBefore = text;
-  const isDebugCase = text.includes('Конечно, троякая');
+  // const textBefore = text;
+  // const isDebugCase = text.includes('Конечно, троякая');
   const results = [];
   notesMetadata.forEach(note => {
     if (!text) {
@@ -180,11 +180,11 @@ function transformLineObjectWithNotes(lineObject, notesMetadata) {
     //   results.push({ ...lineObject, text: text });
     // }
     text = beforeNotePart;
-    if (isDebugCase) {
-      console.log('DEBUG CASE 1', {
-        note, beforeNotePart, notePart, afterNotePart, textBefore, results
-      })
-    }
+    // if (isDebugCase) {
+    //   console.log('DEBUG CASE 1', {
+    //     note, beforeNotePart, notePart, afterNotePart, textBefore, results
+    //   })
+    // }
   });
   results.reverse();
   lineObject.text = results;
@@ -200,11 +200,11 @@ function transformLineObjectWithNotes(lineObject, notesMetadata) {
   }
   // FIX TABS }
 
-  if (isDebugCase) {
-    console.log('DEBUG CASE 2', {
-      afterText: lineObject.text
-    });
-  }
+  // if (isDebugCase) {
+  //   console.log('DEBUG CASE 2', {
+  //     afterText: lineObject.text
+  //   });
+  // }
 }
 
 function transformLineObjectWithIrmologionEtcInner(lineObject, formatInFile, format) {
@@ -396,6 +396,51 @@ export function parseFileContent(content, isOldUaText) {
         }
     
         // Update lineObject.text with the processed parts
+        lineObject.text = parts;
+      }
+    }
+
+    if (lineObject.text.includes("[META]")) {
+      // Regex to match [META]...content...[META]
+      const metaRegex = /\[META\](.*?)\[X\](.*?)\[META\]/g;
+      const matches = [...lineObject.text.matchAll(metaRegex)];
+      if (matches.length > 0) {
+        const parts = [];
+        let lastIndex = 0;
+        matches.forEach(match => {
+          const metaInfo = match[1];
+          const metaText = match[2];
+          const startIndex = match.index;
+          // Add text before the meta block
+          if (startIndex > lastIndex) {
+            const beforeMeta = lineObject.text.substring(lastIndex, startIndex);
+            if (beforeMeta && beforeMeta.length) {
+              parts.push({ text: beforeMeta });
+            }
+          }
+          // Parse metaInfo for theme and bible
+          let themeId = undefined;
+          let bibleCitation = undefined;
+          // Split metaInfo by semicolon, handle multiple meta tags
+          const metaTags = metaInfo.split(';').map(s => s.trim());
+          metaTags.forEach(tag => {
+            if (tag.startsWith('THEME.')) {
+              themeId = tag.substring('THEME.'.length);
+            } else if (tag.startsWith('BIBLE.')) {
+              bibleCitation = tag.substring('BIBLE.'.length);
+            }
+          });
+          const metaObj = { text: metaText };
+          if (themeId) metaObj.themeId = themeId;
+          if (bibleCitation) metaObj.bibleCitation = bibleCitation;
+          parts.push(metaObj);
+          lastIndex = startIndex + match[0].length;
+        });
+        // Add text after last meta block
+        const afterMeta = lineObject.text.substring(lastIndex);
+        if (afterMeta && afterMeta.length) {
+          parts.push({ text: afterMeta });
+        }
         lineObject.text = parts;
       }
     }

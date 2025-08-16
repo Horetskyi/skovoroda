@@ -256,6 +256,7 @@ export const SkImages = {
   song7: buildSongImage(7, "/images/garden/Song 7 Illustration - Skoboroda.webp", 'olenka', 1340, 1348, "#694129"),
   song8: buildSongImage(8, "/images/garden/Song 8 Illustration - Skoboroda.webp", 'olenka', 1368, 1371, "#538363"),
   song9: buildSongImage(9, "/images/garden/Song 9 Illustration - Skoboroda.webp", 'olenka', 1369, 1748, "#407F9E"),
+  song10: buildSongImage(10, "/images/garden/Song 10 Illustration - Skoboroda.webp", 'olenka', 1316, 1318, "#8F5848"),
   
   gardenByOlenka: {
     imageUrl: "/images/garden/Skovoroda Garden of Divine Songs by Olenka.webp",

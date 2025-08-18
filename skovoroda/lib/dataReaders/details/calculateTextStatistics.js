@@ -10,6 +10,40 @@ const emptyTextStatistics = {
 // Allows internal apostrophes/dashes.
 const wordRegex = /[A-Za-zÀ-ÖØ-öø-ÿĀ-žƠ-ỹЀ-ӿҐґЇїІіЄєЁёА-Яа-я0-9]+(?:['’ʼ-][A-Za-zÀ-ÖØ-öø-ÿĀ-žƠ-ỹЀ-ӿҐґЇїІіЄєЁёА-Яа-я0-9]+)*/g;
 
+/**
+EXTRA NOTES:
+
+http://www.archivioalbani.it/index.php?id=30622#:~:text=The%20first%20verse%20reads%20%22Inveni,go%20make%20sport%20of%20others.%22
+Латинська епіграма і її джерела (Inveni portum...)
+До твору Легко бути блаженним
+
+емблематика
+- амстердамська збірка «Symbola et emblemata» (1705)
+- Емвлемы и сѵмволы избранные. – Санкт-Петербург, 1788. – С. 26–27
+- збірника Германа Гуго «Рiа desideria» (Антверпен, 1624)
+
+молитовні тексти
+- Могила П. Євхологіон, албо Молитвослов или Требник. – Київ, 1646. – С. 930
+- Октоїх, сирѣчь Осмогласник. – Київ, 1739. – Арк. 13 (зв.)
+
+Отці Церкви / Патристика
+
+Апокрифи
+
+Орнітологія
+
+Фольклор
+- прислів'я 
+
+Канонічне право
+- “Номоканон, си єст Законоправилник” (Київ, 1629) - збірка церковних і візантійських правових норм у слов’янському перекладі, яка активно використовувалася в Київській митрополії XVII ст.
+
+Поезія та поетика
+- Поетика Києво-Могилянської академії ³⁵⁴
+- Барокова духовна поезія ³⁷⁵
+
+ */
+
 /** 
 Calculates statistics for already parsed textContent (see parseFileContent output structure)
 Returns: {
@@ -20,9 +54,14 @@ Returns: {
   textTotalSentencesCount: number, // heuristic based on punctuation .?!…
   textTotalCharactersCount: number // non-whitespace (spaces, tabs, newlines) characters count
 }
-*/ 
+Future enhancements:
+- Don't count persons e.g. "Наеман. ..." in dialog as sentences to make statistics more useful.
+- Ensure diacritics handled correctly
+- Uncover text like "Наем[ан]" to "Наеман"
+- Language analysis e.g. 20 words greek, 30 words hebrew, etc.
+*/
 export function calculateTextStatistics(textContent) {
-  const isStatsFeatureEnabled = false;
+  const isStatsFeatureEnabled = true;
   if (!isStatsFeatureEnabled) return null;
 
   if (!textContent) return emptyTextStatistics;
@@ -36,10 +75,14 @@ export function calculateTextStatistics(textContent) {
   const bibleStatistics = calculateBibleStatistics(bibleCitations);
   const textTotalWordsCount = words.length;
 
-  const bibleSentencesRatio = bibleStatistics.bibleCitationsTotalSentencesCount / textTotalSentencesCount;
-  const bibleCharactersRatio = bibleStatistics.bibleCitationsTotalCharactersCount / textTotalCharactersCount;
-  const bibleWordsRatio = bibleStatistics.bibleCitationsTotalWordsCount / textTotalWordsCount;
-  const bibleCitationsSmartRatio = (bibleSentencesRatio + bibleCharactersRatio + bibleWordsRatio) / 3;
+  const textTotals = {
+    textTotalSentencesCount,
+    textTotalCharactersCount,
+    textTotalWordsCount
+  };
+  const bibleTotalRatios = _getRatiosObject(bibleStatistics.totalTotals, textTotals);
+  const bibleOldTestamentRatios = _getRatiosObject(bibleStatistics.oldTestamentTotals, textTotals);
+  const bibleNewTestamentRatios = _getRatiosObject(bibleStatistics.newTestamentTotals, textTotals);
 
   const textFromBible = prepareTextFromBible(bibleCitations);
 
@@ -50,11 +93,23 @@ export function calculateTextStatistics(textContent) {
     textTotalWordsCount,
     textTotalSentencesCount,
     textTotalCharactersCount,
-    bibleCitationsSmartRatio,
-    bibleCharactersRatio,
-    bibleSentencesRatio,
-    bibleWordsRatio,
+    bibleTotalRatios,
+    bibleOldTestamentRatios,
+    bibleNewTestamentRatios,
     textFromBible
+  };
+}
+
+function _getRatiosObject(bibleStats, totalStats) {
+  const bibleSentencesRatio = bibleStats.bibleCitationsTotalSentencesCount / totalStats.textTotalSentencesCount;
+  const bibleCharactersRatio = bibleStats.bibleCitationsTotalCharactersCount / totalStats.textTotalCharactersCount;
+  const bibleWordsRatio = bibleStats.bibleCitationsTotalWordsCount / totalStats.textTotalWordsCount;
+  const bibleCitationsSmartRatio = (bibleSentencesRatio + bibleCharactersRatio + bibleWordsRatio) / 3;
+  return {
+    bibleSentencesRatio,
+    bibleCharactersRatio,
+    bibleWordsRatio,
+    bibleCitationsSmartRatio
   };
 }
 
@@ -106,19 +161,27 @@ function calculateBibleStatistics(bibleCitations) {
   const bibleBooksByPopularity = Array.from(bibleBooksByPopularityTmp.entries()).map(([key, count]) => ({ key, count })); 
   bibleBooksByPopularity.sort((a,b) => a.count < b.count ? 1 : -1); // Sort by count descending
 
-  const bibleCitationsDistinctBySentenceIndex = Array.from(new Map(bibleCitations.map(c => [c.sentenceIndex, c])).values());
-  const bibleCitationsTotalSentencesCount = bibleCitationsDistinctBySentenceIndex.length;
-  const bibleCitationsTotalCharactersCount = calculateCharactersCount(bibleCitations.map(c => c.text).join(''));
-  const bibleCitationsTotalWordsCount = (bibleCitations.map(c => c.text).join(' ').match(wordRegex) || []).length;
+  const totalTotals = _calculateBibleTotals(bibleCitations);
+  const oldTestamentTotals = _calculateBibleTotals(bibleCitations.filter(c => !isNewTestamentBibleCode(c.bibleCode)));
+  const newTestamentTotals = _calculateBibleTotals(bibleCitations.filter(c => isNewTestamentBibleCode(c.bibleCode)));
 
   return {
     newTestamentCitationsCount,
     oldTestamentCitationsCount,
     bibleVersesByPopularity,
     bibleBooksByPopularity,
-    bibleCitationsTotalSentencesCount,
-    bibleCitationsTotalCharactersCount,
-    bibleCitationsTotalWordsCount
+    totalTotals,
+    oldTestamentTotals,
+    newTestamentTotals,
+  };
+}
+
+function _calculateBibleTotals(bibleCitations) {
+  const bibleCitationsDistinctBySentenceIndex = Array.from(new Map(bibleCitations.map(c => [c.sentenceIndex, c])).values());
+  return {
+    bibleCitationsTotalSentencesCount: bibleCitationsDistinctBySentenceIndex.length,
+    bibleCitationsTotalCharactersCount: calculateCharactersCount(bibleCitations.map(c => c.text).join('')),
+    bibleCitationsTotalWordsCount: (bibleCitations.map(c => c.text).join(' ').match(wordRegex) || []).length,
   };
 }
 

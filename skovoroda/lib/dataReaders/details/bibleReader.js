@@ -2,6 +2,7 @@ import path from "path";
 import { readFileSyncOrDefault } from "../dataReaderHelper";
 
 const cacheBibleData = {};
+const isIgnoreCache = true;
 
 export function readBibleVerse(bookCode, chapter, verse) {
 
@@ -16,7 +17,7 @@ export function readBibleVerse(bookCode, chapter, verse) {
       .join(' ');
   }
 
-  if (!_isCached(bookCode, chapterString, verseString)) _readFromSource(bookCode, chapterString);
+  if (!_isCached(bookCode, chapterString, verseString) || isIgnoreCache) _readFromSource(bookCode, chapterString);
   if (!_isCached(bookCode, chapterString, verseString)) return null;
   return cacheBibleData[bookCode][chapterString][verseString].text;
 }

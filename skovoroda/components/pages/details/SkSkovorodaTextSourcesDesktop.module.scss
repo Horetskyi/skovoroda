@@ -1,0 +1,193 @@
+
+.sourcesContainer {
+  display: flex;
+  justify-content: left;
+  gap: var(--mantine-spacing-lg);
+  width: calc(354px*3 + var(--mantine-spacing-lg)*2 + 2px);
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.sourceCard, .sourceCardExpanded {
+  position: relative;
+  // transition: width 0.6s ease-out, height 0.6s ease-out;
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow: 1px 4px 4px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: none;
+}
+
+.sourceCard {
+  width: 354px;
+  height: 471px;
+}
+
+.sourceCardExpanded {
+  width: calc(354px*3 + var(--mantine-spacing-lg)*2);
+  height: auto;
+  padding: var(--mantine-spacing-md) var(--mantine-spacing-lg);
+}
+
+.sourceCardImage, .sourceCardImageExpanded {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-position: top;
+  border-radius: 36px;
+}
+.sourceCardImage {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.sourceCardImage::before, .sourceCardImageExpanded::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 36px;
+  pointer-events: none;
+  background: linear-gradient(132deg, rgba(255, 161, 161, 0) 0%, rgba(255, 156, 156, 0.3) 100%);
+  z-index: 1;
+}
+.sourceCardImageExpanded {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: black;
+}
+
+.sourceCardTitle, .sourceCardTitleExpanded {
+  width: 100%;
+  text-align: center;
+  font-family: "Oswald";
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 59px;
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  z-index: 2;
+}
+
+.sourceCardTitle {
+  text-align: center;
+  margin-top: var(--mantine-spacing-lg);
+}
+
+.sourceCardTitleExpanded {
+  text-align: left;
+  margin: var(--mantine-spacing-md) 0 var(--mantine-spacing-lg) 0;
+}
+
+.sourceCardItemsBlock {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+  padding-bottom: var(--mantine-spacing-md);
+  z-index: 2;
+}
+
+.sourceCardExpandIconBottom, .sourceCardExpandIconTop {
+  position: absolute;
+  right: var(--mantine-spacing-md);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer !important;
+  transition: transform 0.2s;
+  background: transparent;
+  box-shadow: none !important;
+  outline: none !important;
+  border: none !important;
+}
+.sourceCardExpandIconBottom {
+  bottom: var(--mantine-spacing-md);
+}
+.sourceCardExpandIconTop {
+  top: var(--mantine-spacing-md);
+}
+
+.sourceCardItem, .sourceCardItemExpanded {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  align-self: start;
+  margin-bottom: var(--mantine-spacing-sm);
+  font-family: "Oswald, sans-serif";
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+
+  &:last-child {
+    padding-right: 78px;
+    margin-bottom: 0;
+  }
+}
+
+.sourceCardItem  {
+  padding: 0 var(--mantine-spacing-md);
+}
+
+.sourceCardItemExpanded {
+  padding: 0;
+}
+
+.sourceCardItemText {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  color: #FFFFFF;
+}
+
+.bookIcon {
+  align-self: baseline;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.subHeader {
+  color: #aaaaaa;
+  margin: auto;
+  width: fit-content;
+  font-weight: 800;
+  font-size: 28px;
+  margin-top: 6px;
+}
+
+.underlineText {
+  text-decoration: underline;
+}
+
+.formatTabs1 {
+  margin-left: var(--mantine-spacing-md);
+}
+
+.sublist {
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  align-self: start;
+  margin-bottom: var(--mantine-spacing-sm);
+  font-family: "Oswald";
+  font-weight: 200;
+  letter-spacing: 0.5px;
+  font-size: 24px;
+  line-height: 36px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}

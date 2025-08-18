@@ -5208,7 +5208,19 @@
     "text": "\r"
   },
   {
-    "text": "Inveni portum Jesum. Caro, Munde, valete.\r"
+    "text": [
+      {
+        "text": "Inveni portum "
+      },
+      {
+        "text": "Jesum",
+        "bibleCode": "MAT.16.18",
+        "bibleType": 4
+      },
+      {
+        "text": ". Caro, Munde, valete.\r"
+      }
+    ]
   },
   {
     "text": [
@@ -14442,7 +14454,19 @@
     "text": "\r"
   },
   {
-    "text": "Inveni portum KЕ́PHAM. Caro, munde, valete!\r"
+    "text": [
+      {
+        "text": "Inveni portum "
+      },
+      {
+        "text": "KЕ́PHAM",
+        "bibleCode": "MAT.16.18",
+        "bibleType": 4
+      },
+      {
+        "text": ". Caro, munde, valete!\r"
+      }
+    ]
   },
   {
     "text": [

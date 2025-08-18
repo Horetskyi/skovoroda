@@ -59,9 +59,75 @@ export const bibleBooks = {
   'REV': 'Апокаліпсис', 
 };
 
+const bibleBooksShortStatsNames = {
+  'JHN': 'Євангелія Івана', 
+  'MRK': 'Євангелія Марка', 
+  'MAT': 'Євангелія Матвія', 
+  'LUK': 'Євангелія Луки', 
+  'ACT': 'Дії святих апостолів', 
+  'SIR': 'Книга Ісуса, сина Сирахового', 
+  '1JN': 'I соборне послання св. ап. Івана', 
+  '2JN': 'II послання Івана', 
+  '3JN': 'III послання Івана', 
+  '1TI': 'I послання до Тимотея', 
+  '2TI': 'II послання до Тимофія', 
+  'ROM': 'Послання до Римлян', 
+  '1CO': 'Перше послання до коринтян', 
+  '2CO': 'Друге послання до коринтян', 
+  'GAL': 'Послання до Галатів', 
+  'EPH': 'Послання до ефесян', 
+  'PHP': 'Послання до филип\'ян', 
+  '1TH': 'Перше послання до солунян', 
+  '2TH': 'Друге послання до солунян', 
+  'HEB': 'Послання до євреїв', 
+  '1PE': 'Перше послання Петра', 
+  '2PE': 'Друге послання Петра', 
+  'SNG': 'Пісня над піснями', 
+  'WIS': 'Премудрості Соломона', 
+  'PSA': 'Псалми', 
+  'JAS': 'Послання Апостола Якова', 
+  'JUD': 'Соборне послання св. ап. Іуди', 
+  'ISA': 'Пророка Ісаї', 
+  'JER': 'Пророка Єремії', 
+  'LAM': 'Плач Єремії', 
+  'EZK': 'Пророка Єзекіїла', 
+  'DAG': 'Пророка Даниїла', 
+  'HOS': 'Пророка Осії', 
+  'AMO': 'Пророка Амоса', 
+  'OBA': 'Пророка Авдія', 
+  'MIC': 'Пророка Михея', 
+  'HAB': 'Пророка Аввакума', 
+  'ZEP': 'Пророка Софонії', 
+  'ZEC': 'Пророка Захарії', 
+  'BAR': 'Пророка Варуха', 
+  'GEN': 'Буття', 
+  'EXO': 'Вихід', 
+  'NUM': 'Числа', 
+  'DEU': 'Повторення Закону', 
+  'JOS': 'Книга Ісуса Навина', 
+  'JDG': 'Книга Суддів', 
+  'RUT': 'Книга Рут', 
+  '1SA': 'Перша книга царств', 
+  '2SA': 'Друга книга царств', 
+  '1KI': 'Третя книга царств', 
+  '2KI': 'Четверта книга царств', 
+  '1CH': 'Перша книга Хронік', 
+  '2CH': 'Друга книга Хронік', 
+  'JOB': 'Книга Йова', 
+  'PRO': 'Притчі Соломонових', 
+  'ECC': 'Екклезіястова', 
+  'REV': 'Апокаліпсис', 
+};
+
 export function getBibleBookNameByCode(bibleCode) {
   if (!bibleCode || !bibleCode.length) return '';
   const bookName = bibleBooks[bibleCode.split('.')[0]];
+  return bookName ? bookName : bibleCode;
+}
+
+export function getBibleBookShortStatsNameByCode(bibleCode) {
+  if (!bibleCode || !bibleCode.length) return '';
+  const bookName = bibleBooksShortStatsNames[bibleCode.split('.')[0]];
   return bookName ? bookName : bibleCode;
 }
 
@@ -103,5 +169,6 @@ const newTestamentCodes = new Set([
 export function isNewTestamentBibleCode(bibleCode) {
   if (!bibleCode) return false;
   if (!bibleCode.length) return false;
-  return newTestamentCodes.has(bibleCode.split('.')[0]);
+  const bibleCodeClean = bibleCode.includes('.') ? bibleCode.split('.')[0] : bibleCode;
+  return newTestamentCodes.has(bibleCodeClean);
 }

@@ -18,9 +18,8 @@ export default function SkovorodaText(params) {
 }
 
 export async function getStaticPaths() {
-  const allTreatises = readAllTreatises();
+  const allTreatises = readAllTreatises({excludeContent: true, excludeReadContent: true});
   const ids = allTreatises.map(treatise => treatise.urlId);
-  // console.log("All Text Ids:", ids);
   return getStaticPathsCommon(ids);
 }
 
@@ -28,7 +27,7 @@ export async function getStaticProps({ params }) {
 
   const { id, deviceEnding } = readDynamicIdCommon(params.id);
 
-  const treatises = readAllTreatises();
+  const treatises = readAllTreatises({includeStatistics: true});
   const treatise = treatises.find(treatise => treatise.urlId === id);
   treatise.introContent = ""; // free memory
 
@@ -48,6 +47,9 @@ export async function getStaticProps({ params }) {
   const preferedVersion = treatise.versions.find(v => v.preferedVersion);
   const metadataTitle = `${preferedVersion.title}`
   const metadataDescription = `${treatise.treatiseType} Сковороди: ${preferedVersion.title} ${treatise.writtenDate.map(x => x.text).join(", ")}`
+
+  const originalVersion = treatise.versions.find(v => v.translatorId === 0);
+  const skovorodaTextSourcesData = originalVersion.skovorodaTextSourcesData;
 
   return {
     props: {
@@ -69,6 +71,7 @@ export async function getStaticProps({ params }) {
       treatise,
       sources,
       translators,
+      skovorodaTextSourcesData: skovorodaTextSourcesData ? skovorodaTextSourcesData : null,
       // TECH }
     },
   };

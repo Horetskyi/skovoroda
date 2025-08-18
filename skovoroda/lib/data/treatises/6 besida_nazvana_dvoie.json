@@ -29,5 +29,30 @@
       "preferedVersion": true
     }
   ],
-  "introSourceId": 4
+  "introSourceId": 4,
+  "skovorodaTextSourcesManual": [
+    {
+      "title": "Античність",
+      "imageUrl": "/images/sk-text-sources/antiquity.webp",
+      "colorType": "red",
+      "items": [
+        {
+          "text": "Гомер – «Одіссея»",
+          "iconType": "book"
+        },
+        {
+          "text": "Вергілій – «Енеїда»",
+          "iconType": "book"
+        },
+        {
+          "text": "Притча Еврипіда",
+          "iconType": "book"
+        },
+        {
+          "text": "Латинські епіграми, афоризми",
+          "iconType": "book"
+        }
+      ]
+    }
+  ]
 }

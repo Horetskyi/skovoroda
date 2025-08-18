@@ -5,6 +5,7 @@ import { parseFileContent } from "../data/utils/readingTextsUtils";
 import { SkImagesArray } from "../data/images/skImages";
 import { readFileSyncOrDefault } from "./dataReaderHelper";
 import { calculateTextStatistics } from "./details/calculateTextStatistics";
+import { prepareFrontSkovorodaTextSourcesData } from "./details/prepareFrontSkovorodaTextSourcesData";
 
 export function readAllTreatises(options) {
 
@@ -65,12 +66,20 @@ export function readAllTreatises(options) {
           const isOriginal = true;
           const readContent = parseFileContent(readContentString, isOriginal);
           if (readContent) {
-            fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', 'debug1.txt'), JSON.stringify(readContent, null, 2));
+            fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', `debug_read_${metadata.urlId}.txt`), JSON.stringify(readContent, null, 2));
             originalVersion.readContent = readContent;
             originalVersion.readContentNotes = parseFileContent(readContentNotesString, isOriginal);
             if (isIncludeStatistics) {
               originalVersion.contentStatistics = calculateTextStatistics(originalVersion.readContent);
-              fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', 'debug1_tatistics.txt'), JSON.stringify(originalVersion.contentStatistics, null, 2));
+              if (originalVersion.contentStatistics) {
+                fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', `debug_statistics_${metadata.urlId}.txt`), JSON.stringify(originalVersion.contentStatistics, null, 2));
+                const skovorodaTextSourcesData = prepareFrontSkovorodaTextSourcesData(originalVersion.contentStatistics, metadata.skovorodaTextSourcesManual);
+                delete metadata.skovorodaTextSourcesManual;
+                if (skovorodaTextSourcesData) {
+                  originalVersion.skovorodaTextSourcesData = skovorodaTextSourcesData;
+                  fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', `debug_sk_sources_${metadata.urlId}.txt`), JSON.stringify(originalVersion.skovorodaTextSourcesData, null, 2));
+                }
+              }
             }
           }
         }

@@ -17,6 +17,7 @@ import { VideoBlockDesktop } from "./details/videoBlockDesktop";
 import { SkQuotesDesktop } from "../shared/skQuotesDesktop";
 import { getReadPath } from "../../lib/skovorodaPath";
 import SkReadButtonDesktop from "../shared/skReadButtonDesktop";
+import SkSkovorodaTextSourcesDesktop from "./details/SkSkovorodaTextSourcesDesktop";
 
 // Pure
 function filterZmistListForSongs(zmistList) {
@@ -26,7 +27,7 @@ function filterZmistListForSongs(zmistList) {
     .filter(song => song && song.content && song.content.length);
 }
 
-export default function SkTreatisePageDesktop({ treatise, sources, translators }) {
+export default function SkTreatisePageDesktop({ treatise, sources, translators, skovorodaTextSourcesData }) {
   
   const preferedVersion = treatise.versions.find(v => v.preferedVersion);
   const preferedTitle = preferedVersion.title;
@@ -139,7 +140,9 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
         </div>
       })}
       <Space h="xl"/>
-
+    </SkColoredContainerDesktop>
+    <SkSkovorodaTextSourcesDesktop data={skovorodaTextSourcesData} textTitle={preferedTitle} />
+    <SkColoredContainerDesktop>
       {/* Songs */}
       { isZmistSongsAvailable ? <>
         <SkH2Desktop text="Пісні" mb="lg" id="zmist_songs" />
@@ -158,7 +161,6 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators }
         {videoBlock}
         <Space h="xl"/>
       </> : null}
-
     </SkColoredContainerDesktop>
     <SkSourcesContainerDesktop sources={sourcesParams} />
     <Space h="xl"/>

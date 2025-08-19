@@ -87,7 +87,7 @@ h1, h2, h3, h4, h5, h6, .headerFont {
   font-style: normal;
 }
 .readFont {
-  font-family: "Roboto";
+  font-family: "Ysabeau";
 }
 .linkWithoutDecoration {
   text-decoration: none;
@@ -158,9 +158,9 @@ body {
 
 .normalContentText, .normalContentText label {
   font-weight: 300;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 28px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0;
   text-indent: 24px;
 
   @media (max-width: $mantine-breakpoint-sm) {
@@ -399,4 +399,13 @@ h3 {
 
 .sk-bold-first-letter::first-letter {
   font-weight: 400;
+}
+
+.h2__subheader {
+  color: #aaaaaa;
+  margin: auto;
+  width: fit-content;
+  font-weight: 800;
+  font-size: 28px;
+  margin-top: 6px;
 }

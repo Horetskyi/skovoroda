@@ -1,8 +1,8 @@
 import { Space, Text } from "@mantine/core";
 import SkColoredContainerDesktop from "./skColoredContainerDesktop";
-import SkH2Desktop from "./skH2Desktop";
 import SkSourceBlockDesktop from "./skSourceBlockDesktop";
 import { commonContent } from "../../lib/staticProps/commonContent";
+import SkH2DesktopV2 from "./skH2DesktopV2";
 
 export default function SkSourcesContainerDesktop({ sources, includeTextValidityWarning }) {
 
@@ -11,8 +11,8 @@ export default function SkSourcesContainerDesktop({ sources, includeTextValidity
   }
 
   return <> 
-    <SkColoredContainerDesktop>
-      <SkH2Desktop text="Джерела"/>
+    <SkColoredContainerDesktop py={0}>
+      <SkH2DesktopV2 text="Джерела"/>
       <Space h="lg"/>
       {sources.map((source, index) => {
         return <div key={source.sourceValue}>

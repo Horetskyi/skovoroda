@@ -1,7 +1,6 @@
-import React from 'react';
 import { Box, Container, Space, Title } from '@mantine/core';
-import SkH2Desktop from '../../shared/skH2Desktop';
 import classes from './videoBlockDesktop.module.scss';
+import SkH2DesktopV2 from '../../shared/skH2DesktopV2';
 
 export function MusicBlockDesktop({music, title}) {
   if (!music || !music.length) {
@@ -9,7 +8,7 @@ export function MusicBlockDesktop({music, title}) {
   }
 
   return <>
-    <SkH2Desktop text={title} />
+    <SkH2DesktopV2 text={title} />
     <Container>
       {music.map((m, index) => {
         const embedUrl = m.url.replace('watch?v=', 'embed/').split('&')[0]+ '?rel=0&modestbranding=1'; // Clean embed URL

@@ -19,6 +19,7 @@ import SkImage from '../shared/skImage';
 import classes from './fablePageDesktop.module.scss';
 import { adjustImageHeight } from '../functions/imageFunctions';
 import { getIllustrationSourceParam } from './details/pureFunctions';
+import SkH2DesktopV2 from '../shared/skH2DesktopV2';
 
 export default function FablePageDesktop({ 
   selectedFable,
@@ -122,7 +123,7 @@ export default function FablePageDesktop({
       </Modal>
     </> : null}
     
-    <Container py="lg">
+    <Container mt={90} mb={0}>
       <SkCardWithTwoSelectorsDesktopV2 
         language={selectedMetadata.language}
         dropdown1={{
@@ -144,8 +145,7 @@ export default function FablePageDesktop({
         <SkButtonDesktop text={"Байка на щастя"} onClick={() => selectFableDropdownValue(randomFableNumber)} color={highlightColor} />
         <SkButtonDesktop text={">"} onClick={() => selectFableDropdownValue(nextFableNumber)} disabled={nextFableNumber == 31}/>
       </Group>
-      <Space h="md"/>
-      <SkH1Desktop text={h1Text} color={highlightColor} />
+      <SkH1Desktop text={h1Text} color={highlightColor} isV2={true} disableBackground={true} />
       <Space h="lg"/>
 
       <div className={'textWithImageContainer'}>
@@ -169,16 +169,17 @@ export default function FablePageDesktop({
         </div>
 
       </div>
-      <SkH2Desktop my="lg" text={"Сила"}/>
+      <SkH2DesktopV2 mb="lg" mt="xl" text={"Сила"} color={highlightColor} />
       <SkTextContentBlockDesktop textContent={selectedFable.powerContent} isv2={true} />
+      <Space h="xl"/>
       {(selectedNotes && selectedNotes.length) ? <>
-        <SkH2Desktop my="lg" text={"Примітки"}/>
+        <SkH2DesktopV2 my="lg" text={"Примітки"}/>
         <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} />
       </> : null}
     </Container>
     {(selectedComment && selectedComment.length && displayComments) ? <>
       <SkColoredContainerDesktop color={"gray.0"}>
-        <SkH2Desktop mb="sm" text={"Коментар"}/>
+        <SkH2DesktopV2 mb="sm" text={"Коментар"}/>
         <SkCommentAuthorDesktop />
         <SkTextContentBlockDesktop textContent={selectedComment} isv2={true}/>
         {selectedCommonMetadata ? <>

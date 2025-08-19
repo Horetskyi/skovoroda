@@ -6,7 +6,6 @@ import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
 import classes from './skTextContentBlockDesktop.module.scss';
 import SkH2Mobile from "./skH2Mobile";
 import SkH2Desktop from "./skH2Desktop";
-import { readableFontClassName } from "../functions/robotoFont";
 import SkTextLink from "./skTextLink";
 import SkBibleText from "./skBibleText";
 import SkOldUaExplainedText from "./skOldUaExplainedText";
@@ -313,7 +312,7 @@ export default function SkTextContentBlockDesktop({ textContent, onTextNoteClick
     (plusClassName ? ` ${plusClassName} ` : "") +
     ((isLeftNotesEnabled && isNotesBlock) ? ` ${classes.textContentBlockLeftNotesEnabled} ` : "") +
     (!isMobile && isJustifyEnabled ? ` normalContentText_justify ` : "") +
-    (` ${readableFontClassName} `);
+    (` readFont `);
 
   return <div key={newKey()} className={allContentClassName}>{block}</div>;
 }

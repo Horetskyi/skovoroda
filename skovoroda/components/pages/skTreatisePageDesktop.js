@@ -1,7 +1,6 @@
 import { Container, Group, List, Paper, Space, Stack, Text, Title } from "@mantine/core";
 import SkColoredContainerDesktop from "../shared/skColoredContainerDesktop";
 import SkH1Desktop from "../shared/skH1Desktop";
-import SkH2Desktop from "../shared/skH2Desktop";
 import SkImage from "../shared/skImage";
 import Link from "next/link";
 import SkDownloadButtonDesktop from "../shared/skDownloadButtonDesktop";
@@ -15,9 +14,9 @@ import SkSourcesContainerDesktop from "../shared/skSourcesContainerDesktop";
 import { getIllustrationSourceParam } from "./details/pureFunctions";
 import { VideoBlockDesktop } from "./details/videoBlockDesktop";
 import { SkQuotesDesktop } from "../shared/skQuotesDesktop";
-import { getReadPath } from "../../lib/skovorodaPath";
 import SkReadButtonDesktop from "../shared/skReadButtonDesktop";
 import SkSkovorodaTextSourcesDesktop from "./details/SkSkovorodaTextSourcesDesktop";
+import SkH2DesktopV2 from "../shared/skH2DesktopV2";
 
 // Pure
 function filterZmistListForSongs(zmistList) {
@@ -50,7 +49,6 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
   function TreatisVersionBlock(version, source) {
     const isTranslation = version.translatorId ? true : false;
     const translator = translators.find(t => t.translatorId == version.translatorId);
-    const readHref = getReadPath(treatise.urlId);
     return <Container className={classes.bookContainer} key={version.urlId}>
       <div className={classes.bookImage}>
         <SkImage 
@@ -83,28 +81,29 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
   }
 
   return <>
-    <SkH1Desktop text={preferedTitle} color={highlightColor} maxWidth={treatise.maxTitleWidth} />
-    <SkColoredContainerDesktop>
+    <SkH1Desktop text={preferedTitle} color={highlightColor} maxWidth={treatise.maxTitleWidth} isV2={true} />
+    <SkColoredContainerDesktop py={0}>
       
       <SkPageNavMenu links={links} isDesktop={true}/>
 
+      {treatise.image || treatise.introContent2 ?
       <div className={classes.imageAndIntroContainer}>
         {treatise.image ? 
           <div className={classes.imageContainer}>
           { treatise.image.isFullWidth
-              ? <SkImage image={treatise.image} priority={true} shadow={false} bordered={true} fullContainerWidth={true} />
-              : <SkImage image={treatise.image} priority={true} shadow={false} bordered={true} proportionWidth={350} />
+              ? <SkImage image={treatise.image} priority={true} shadow={false} fullContainerWidth={true} additionalClassName={classes.borderRadius} />
+              : <SkImage image={treatise.image} priority={true} shadow={false} proportionWidth={350} additionalClassName={classes.image2} />
             }
           </div>
           : null}
         <div>
           <SkTextContentBlockDesktop textContent={treatise.introContent2} isv2={true} justify={false} />
         </div>
-      </div>
+      </div> : null}
 
       {/* Зміст */}
       { isZmistAvailable ? <>
-        <SkH2Desktop text="Зміст твору" mb="lg" id="zmist" />
+        <SkH2DesktopV2 text="Зміст твору" mt={treatise.image || treatise.introContent2 ? "xl" : 0} mb="lg" id="zmist" />
         <List spacing="xs" mb="xl" size="sm" className={classes.zmistList} icon={<ZmistBullet />}>
           { treatise.zmist.list.map((item, index) => {
             return <ZmistItem key={`zmist_${index}`} index={index} item={item} />;
@@ -114,7 +113,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
 
       {/* Цитати */}
       { isQuotesAvailable ? <>
-        <SkH2Desktop text="Цитати" mb="lg" id="quotes" />
+        <SkH2DesktopV2 text="Цитати" mb="lg" id="quotes" />
         <SkQuotesDesktop quotes={treatise.quotes}/>
       </> : null}
 
@@ -129,10 +128,10 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
         priority={false}
       /> */}
 
-      <SkH2Desktop text="Оригінал" mt="xl" mb="lg" id="downloads" />
+      <SkH2DesktopV2 text={"Оригінал"} subHeader={"(Староукраїнська мова)"} mt="xl" mb="lg" id="downloads" />
       {TreatisVersionBlock(original, originalSource)}
       <Space h="md"/>
-      <SkH2Desktop text="Переклади" mb="lg" />
+      <SkH2DesktopV2 text="Переклади" subHeader={"на сучасну українську мову"} mb="lg" />
       {treatise.versions.filter(v => v.translatorId).map((v, index, array) => {
         return <div key={"t"+v.translatorId}>
           {TreatisVersionBlock(v, sources.find(s => s.sourceId === v.sourceId))}
@@ -142,10 +141,10 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
       <Space h="xl"/>
     </SkColoredContainerDesktop>
     <SkSkovorodaTextSourcesDesktop data={skovorodaTextSourcesData} textTitle={preferedTitle} />
-    <SkColoredContainerDesktop>
+    <SkColoredContainerDesktop py={0}>
       {/* Songs */}
       { isZmistSongsAvailable ? <>
-        <SkH2Desktop text="Пісні" mb="lg" id="zmist_songs" />
+        <SkH2DesktopV2 text="Пісні" mb="lg" id="zmist_songs" />
         { zmistSongs.map(song => {
           return <Paper key={`zmist_song_${song.songId}`} id={`song_${song.songId}`} withBorder={false} p="md" shadow="xs">
             <Title ta={'center'} fw={700} order={3} mb="md">{song.title}</Title>
@@ -163,6 +162,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
       </> : null}
     </SkColoredContainerDesktop>
     <SkSourcesContainerDesktop sources={sourcesParams} />
+    <Space h="xl"/>
     <Space h="xl"/>
   </>
 }

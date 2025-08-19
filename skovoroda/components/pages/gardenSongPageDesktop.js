@@ -16,6 +16,7 @@ import SkImage from '../shared/skImage';
 import { adjustImageHeight } from '../functions/imageFunctions';
 import { useDisclosure } from '@mantine/hooks';
 import { getIllustrationSourceParam } from './details/pureFunctions';
+import SkH2DesktopV2 from '../shared/skH2DesktopV2';
 
 export default function GardenSongPageDesktop({ 
   allSongsMetadata,
@@ -156,7 +157,7 @@ export default function GardenSongPageDesktop({
           />
         </div>
       ) : null}
-      <SkH1Desktop text={h1Text} color={highlightColor} fontSize={32} />
+      <SkH1Desktop text={h1Text} color={highlightColor} isV2={true} disableBackground={true} />
       <Space h="lg"/>
       
       
@@ -169,7 +170,7 @@ export default function GardenSongPageDesktop({
 
       </div>
       {(selectedNotes && selectedNotes.length) ? <>
-        <SkH2Desktop my="lg" text={"Примітки"}/>
+        <SkH2DesktopV2 my="lg" text={"Примітки"}/>
         <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} />
       </> : null}
     </Container>

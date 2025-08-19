@@ -160,7 +160,6 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
           <SkHeaderMenuDesktop /> : 
           <SkHeaderMenuMobile />}
 
-        {/* <main className={roboto.className}> */}
         <main>
           <Component {...pageProps} isMobile={isMobile} />
         </main>

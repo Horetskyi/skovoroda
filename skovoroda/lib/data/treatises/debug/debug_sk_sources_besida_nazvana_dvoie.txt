@@ -18,6 +18,128 @@
         "isExpandedOnly": false
       },
       {
+        "text": "booksTable",
+        "isExpandedOnly": true,
+        "booksTable": [
+          {
+            "bookName": "Псалми",
+            "citationsCount": 59
+          },
+          {
+            "bookName": "Пророка Ісаї",
+            "citationsCount": 58
+          },
+          {
+            "bookName": "Буття",
+            "citationsCount": 13
+          },
+          {
+            "bookName": "Четверта книга царств",
+            "citationsCount": 9
+          },
+          {
+            "bookName": "Притчі Соломонових",
+            "citationsCount": 9
+          },
+          {
+            "bookName": "Пророка Єремії",
+            "citationsCount": 7
+          },
+          {
+            "bookName": "Пісня над піснями",
+            "citationsCount": 6
+          },
+          {
+            "bookName": "Пророка Осії",
+            "citationsCount": 6
+          },
+          {
+            "bookName": "Пророка Михея",
+            "citationsCount": 5
+          },
+          {
+            "bookName": "Вихід",
+            "citationsCount": 5
+          },
+          {
+            "bookName": "Книга Йова",
+            "citationsCount": 4
+          },
+          {
+            "bookName": "Екклезіястова",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Премудрості Соломона",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Пророка Аввакума",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Пророка Даниїла",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Перша книга царств",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Повторення Закону",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Книга Суддів",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Третя книга царств",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Пророка Авдія",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Друга книга царств",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Пророка Софонії",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Пророка Захарії",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Друга книга Хронік",
+            "citationsCount": 1
+          },
+          {
+            "bookName": "Пророка Амоса",
+            "citationsCount": 1
+          },
+          {
+            "bookName": "Книга Рут",
+            "citationsCount": 1
+          },
+          {
+            "bookName": "Книга Ісуса, сина Сирахового",
+            "citationsCount": 1
+          },
+          {
+            "bookName": "Книга Ісуса Навина",
+            "citationsCount": 1
+          },
+          {
+            "bookName": "Пророка Варуха",
+            "citationsCount": 1
+          }
+        ]
+      },
+      {
         "text": [
           "Вірш ",
           {
@@ -718,6 +840,76 @@
         "text": "Євангелія Івана: 25 цитат",
         "iconType": "book",
         "isExpandedOnly": false
+      },
+      {
+        "text": "booksTable",
+        "isExpandedOnly": true,
+        "booksTable": [
+          {
+            "bookName": "Євангелія Івана",
+            "citationsCount": 25
+          },
+          {
+            "bookName": "Євангелія Матвія",
+            "citationsCount": 18
+          },
+          {
+            "bookName": "Євангелія Луки",
+            "citationsCount": 16
+          },
+          {
+            "bookName": "Дії святих апостолів",
+            "citationsCount": 10
+          },
+          {
+            "bookName": "Апокаліпсис",
+            "citationsCount": 7
+          },
+          {
+            "bookName": "Друге послання до коринтян",
+            "citationsCount": 7
+          },
+          {
+            "bookName": "Перше послання до коринтян",
+            "citationsCount": 6
+          },
+          {
+            "bookName": "I соборне послання св. ап. Івана",
+            "citationsCount": 4
+          },
+          {
+            "bookName": "Послання до филип'ян",
+            "citationsCount": 4
+          },
+          {
+            "bookName": "Послання до ефесян",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Євангелія Марка",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Перше послання до солунян",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Соборне послання св. ап. Іуди",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Послання до Римлян",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Послання до євреїв",
+            "citationsCount": 1
+          },
+          {
+            "bookName": "I послання до Тимотея",
+            "citationsCount": 1
+          }
+        ]
       },
       {
         "text": [

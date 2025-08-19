@@ -1,7 +1,6 @@
-import React from 'react';
 import { Box, Text, Title } from '@mantine/core';
-import SkH2Desktop from '../../shared/skH2Desktop';
 import classes from './videoBlockDesktop.module.scss';
+import SkH2DesktopV2 from '../../shared/skH2DesktopV2';
 
 export function VideoBlockDesktop(treatise) {
   if (!treatise || !treatise.videos || !treatise.videos.length) {
@@ -12,7 +11,7 @@ export function VideoBlockDesktop(treatise) {
     const embedUrl = video.url.replace('watch?v=', 'embed/').split('&')[0]; // Clean embed URL
 
     return <>
-      <SkH2Desktop text="Відео" />
+      <SkH2DesktopV2 text="Відео" />
       <Box key={index} mt="lg" mb="lg">
         <Title order={3} ta={"left"}>{video.title}</Title>
         <Text className="normalContentText normalContentText_withoutIndent" mt="md" mb="lg">

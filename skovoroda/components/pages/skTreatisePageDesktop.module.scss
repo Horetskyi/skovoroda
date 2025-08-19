@@ -11,7 +11,6 @@
     border-radius: var(--mantine-radius-md);
     object-fit: cover;
   }
-  margin-right: var(--mantine-spacing-lg);
   margin-bottom: var(--mantine-spacing-lg);
 }
 
@@ -19,6 +18,7 @@
 .bookContainer {
   display: flex;
   padding: 0 !important;
+  margin: var(--mantine-radius-md) 0;
 }
 .bookImage {
   border-radius: var(--mantine-radius-md);
@@ -37,4 +37,15 @@
 .zmistList {
   list-style: none;
   padding-left: 0;
+}
+
+.borderRadius, .image2 {
+  border-radius: var(--mantine-radius-xl) !important;
+
+  img {
+    border-radius: var(--mantine-radius-xl) !important;
+  }
+}
+.image2 {
+  padding-right: var(--mantine-spacing-lg);
 }

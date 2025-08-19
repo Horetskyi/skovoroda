@@ -16,8 +16,9 @@ import SkSourcesContainerMobile from "../shared/skSourcesContainerMobile";
 import { VideoBlockMobile } from "./details/videoBlockMobile";
 import { SkQuotesDesktop } from "../shared/skQuotesDesktop";
 import SkReadButtonDesktop from "../shared/skReadButtonDesktop";
+import SkSkovorodaTextSourcesDesktop from "./details/SkSkovorodaTextSourcesDesktop";
 
-export default function SkTreatisePageMobile({ treatise, sources, translators }) {
+export default function SkTreatisePageMobile({ treatise, sources, translators, skovorodaTextSourcesData }) {
 
   const preferedVersion = treatise.versions.find(v => v.preferedVersion);
   const preferedTitle = preferedVersion.title;
@@ -117,6 +118,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators })
         </div>
       })}
       <Space h="lg"/>
+      <SkSkovorodaTextSourcesDesktop data={skovorodaTextSourcesData} textTitle={preferedTitle} isMobile={true} />
 
       {/* Video */}
       {videoBlock ? <>

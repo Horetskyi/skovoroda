@@ -1,4 +1,4 @@
-import { getBibleBookNameAndQuoteNumberByCode, getBibleBookShortStatsNameByCode, isNewTestamentBibleCode } from "../../shared/bible";
+import { getBibleBookNameAndQuoteNumberByCode, getBibleBookNameByCode, getBibleBookShortStatsNameByCode, isNewTestamentBibleCode } from "../../shared/bible";
 
 const maxNotExpandedBlockItems = 8;
 
@@ -38,17 +38,34 @@ function _getNewBibleBlock(contentStatistics, isNewTestament) {
       items: [
         {
           text: _toCitationsString(totalCitationsCount, contentStatistics[bibleRatiosKey].bibleCitationsSmartRatio),
-          iconType: 'book'
+          iconType: 'book',
         },
       ],
       isExpandable: true,
       colorType: "red",
     };
     _addBooksByPopularityToBlock(contentStatistics, isNewTestament, newBlock);
+    newBlock.items.push({
+      text: "booksTable",
+      isExpandedOnly: true,
+      booksTable: _getBooksTable(contentStatistics.bibleStatistics.bibleBooksByPopularity, isNewTestament),
+    });
     _addVersesByPopularityToBlock(contentStatistics, isNewTestament, newBlock);
     return newBlock;
   }
   return null;
+}
+
+function _getBooksTable(bibleBooksByPopularity, isNewTestament) {
+  if (!bibleBooksByPopularity || !bibleBooksByPopularity.length) return null;
+  const filteredBooks = bibleBooksByPopularity.filter(book => isNewTestamentBibleCode(book.key) === isNewTestament);
+  if (!filteredBooks.length) return null;
+
+  return filteredBooks.map(book => {
+    const bookName = getBibleBookShortStatsNameByCode(book.key);
+    const citationsCount = book.count;
+    return { bookName, citationsCount };
+  }).filter(item => item && item.bookName && item.citationsCount);
 }
 
 function _addVersesByPopularityToBlock(contentStatistics, isNewTestament, newBlock) {

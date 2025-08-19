@@ -1,26 +1,27 @@
 
 
-import { List, Space, Text } from "@mantine/core";
-import SkH2Desktop from "../../shared/skH2Desktop";
+import { List, Space } from "@mantine/core";
 import classes from './SkSkovorodaTextSourcesDesktop.module.scss';
 import { useState } from "react";
+import SkH2DesktopV2 from "../../shared/skH2DesktopV2";
 
-export default function SkSkovorodaTextSourcesDesktop({data, textTitle}) {
+export default function SkSkovorodaTextSourcesDesktop({data, textTitle, isMobile}) {
+  
+  const [isBooksTableDisplayed, setIsBooksTableDisplayed] = useState(null);
+  const [expandedCard, setExpandedCard] = useState(null);
+  
   if (!data) return null;
 
-  // Single state for all cards: expandedCardIndex (null or index)
-  const [expandedCard, setExpandedCard] = useState(null);
   const handleExpandToggle = (id) => {
     setExpandedCard(expandedCard === id ? null : id);
   };
 
-  const subHeader = textTitle ? `До твору ${textTitle}` : null;
+  const subHeader = textTitle ? `До твору: «${textTitle}»` : null;
   const anyExpanded = expandedCard !== null ? true : false;
 
   return (
     <div style={{ position: "relative" }}>
-      <SkH2Desktop text={"Джерела Сковороди"} mb="0" className="h2-v2" />
-      {subHeader && <Text className={`${classes.subHeader} font-ysabeau`}>{subHeader}</Text>}
+      <SkH2DesktopV2 text={"Джерела Сковороди"} mb="0" subHeader={subHeader} />
       <Space h="xl" />
       <div className={classes.sourcesContainer}>
         {data.map((block, blockIndex) => (
@@ -32,6 +33,8 @@ export default function SkSkovorodaTextSourcesDesktop({data, textTitle}) {
             anyExpanded={anyExpanded}
             expanded={expandedCard === blockIndex}
             onExpand={() => handleExpandToggle(blockIndex)}
+            isBooksTableDisplayed={isBooksTableDisplayed}
+            setIsBooksTableDisplayed={setIsBooksTableDisplayed}
           />
         ))}
       </div>
@@ -39,7 +42,16 @@ export default function SkSkovorodaTextSourcesDesktop({data, textTitle}) {
   );
 }
 
-function SourceCard({ block, skKey, classes, expanded, onExpand, anyExpanded }) {
+function SourceCard({ 
+  block, 
+  skKey, 
+  classes, 
+  expanded, 
+  onExpand, 
+  anyExpanded, 
+  isBooksTableDisplayed,
+  setIsBooksTableDisplayed
+}) {
   if (!expanded) {
     if (anyExpanded) return <div key={skKey}></div>;
     return <div key={skKey} className={classes.sourceCard}>
@@ -70,6 +82,10 @@ function SourceCard({ block, skKey, classes, expanded, onExpand, anyExpanded }) 
       )}
     </div>;
   }
+
+  const booksTableItem = block.items.find(item => item && item.text === "booksTable");
+  const booksTable = booksTableItem ? booksTableItem.booksTable : null;
+
   return <div key={skKey} className={classes.sourceCardExpanded}>
     <div
       className={classes.sourceCardImageExpanded}
@@ -83,24 +99,46 @@ function SourceCard({ block, skKey, classes, expanded, onExpand, anyExpanded }) 
     </button>
     {/* Title */}
     <div className={classes.sourceCardTitleExpanded}>{block.title}</div>
-    {/* Items block, flex bottom aligned and centered */}
-    <div className={classes.sourceCardItemsBlock}>
-      {block.items.map((item, itemIndex) => {
-        const result = [];
-        result.push(<div key={itemIndex} className={classes.sourceCardItemExpanded}>
-          { typeof item.text === "string" && (
-            <span className={classes.sourceCardItemText}>{item.text}</span>
-          )}
-          { Array.isArray(item.text) && (
-            <span className={classes.sourceCardItemText}>{ItemTextSpecial(item.text)}</span>
-          )}
-        </div>);
-        if (item.sublist) {
-          result.push(SublistSpecial(item.sublist, classes, itemIndex));
-        }
-        return result;
-      }).flat()}
+    
+    <div className={classes.itemsWrapper}>
+
+      {/* Items block, flex bottom aligned and centered */}
+      <div className={classes.sourceCardItemsBlock}>
+        {block.items.filter(item => !item.isCollapsedOnly).map((item, itemIndex) => {
+          const result = [];
+          if (item.text !== "booksTable") {
+            result.push(<div key={itemIndex} className={classes.sourceCardItemExpanded}>
+              { typeof item.text === "string" && (
+                <span className={classes.sourceCardItemText}>{item.text}</span>
+              )}
+              { Array.isArray(item.text) && (
+                <span className={classes.sourceCardItemText}>{ItemTextSpecial(item.text)}</span>
+              )}
+            </div>);
+          } else {
+            if (booksTable && !isBooksTableDisplayed) {
+              result.push();
+            }
+          }
+          if (item.sublist) {
+            result.push(SublistSpecial(item.sublist, classes, itemIndex));
+          }
+          return result;
+        }).flat()}
+      </div>
+
+      {(isBooksTableDisplayed && booksTable) && <div className={classes.booksTableSection}>
+        <div>
+          <button className={classes.button} onClick={() => setIsBooksTableDisplayed(false)}>Сховати всі цитовані книги</button>
+        </div>
+        {BooksTable(booksTable)}
+      </div>}
+      {(!isBooksTableDisplayed && booksTable) && <div className={classes.booksTableSection}>
+        <button className={classes.button} onClick={() => setIsBooksTableDisplayed(true)}>Показати всі цитовані книги</button>
+      </div>}
+
     </div>
+    
     {/* Expandable icon at bottom right */}
     {block.isExpandable && (
       <span className={classes.sourceCardExpandIconBottom} onClick={onExpand}>
@@ -129,4 +167,25 @@ function SublistSpecial(list, classes, skKey) {
       <List.Item key={i}>{text}</List.Item>
     ))}
   </List>;
+}
+
+function BooksTable(tableData) {
+  if (!tableData || !tableData.length) return null;
+  const rows = tableData.map((item, index) => (
+    <tr key={index}>
+      <td>{item.bookName}</td>
+      <td>{item.citationsCount}</td>
+    </tr>
+  ));
+  return (
+    <table className={classes.booksTableCompact} key="books-table">
+      <thead>
+        <tr>
+          <th>Книги</th>
+          <th>Цитат</th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
+  );
 }

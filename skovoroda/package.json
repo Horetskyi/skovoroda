@@ -50,6 +50,7 @@
     "eslint-config-next": "^13.4.19",
     "gulp": "^4.0.2",
     "gulp-webp": "^5.0.0",
+    "jest": "^30.0.5",
     "postcss-simple-vars": "^7.0.1",
     "sass": "^1.69.5"
   }

@@ -1,6 +1,94 @@
 [
   {
-    "id": "ern_v_f",
+    "id": "hrachotti_s",
+    "author": "Грачотті С."
+  },
+  {
+    "id": "stepanenko_m",
+    "author": "Степаненко М."
+  },
+  {
+    "id": "lebedev_a",
+    "author": "Лебедев А."
+  },
+  {
+    "id": "zrn_v_f",
     "author": "Зрн В. Ф."
+  },
+  {
+    "id": "hrushevakhyi_m",
+    "author": "Грушевахий М."
+  },
+  {
+    "id": "chyzhevskyi_d",
+    "author": "Чижевський Д."
+  },
+  {
+    "id": "oleksiuk_v",
+    "author": "Олексюк В."
+  },
+  {
+    "id": "marchenko_o_v",
+    "author": "Марченко О. В."
+  },
+  {
+    "id": "laba_v",
+    "author": "Лаба В."
+  },
+  {
+    "id": "vynnytskyi_i",
+    "author": "Винницький І."
+  },
+  {
+    "id": "mohyla_p",
+    "author": "Могила П."
+  },
+  {
+    "id": "vasylyi_velykyi",
+    "author": "Василий Великий"
+  },
+  {
+    "id": "prokopovych_f",
+    "author": "Прокопович Ф."
+  },
+  {
+    "id": "yoann_zlatoust",
+    "author": "Иоанн Златоуст"
+  },
+  {
+    "id": "hryhoryi_bohoslov",
+    "author": "Григорий Богослов"
+  },
+  {
+    "id": "peichev_b",
+    "author": "Пейчев Б."
+  },
+  {
+    "id": "yoann_moskh",
+    "author": "Иоанн Мосх"
+  },
+  {
+    "id": "haliatovskyi_i",
+    "author": "Галятовський І."
+  },
+  {
+    "id": "prykopovych_f",
+    "author": "Прикопович Ф."
+  },
+  {
+    "id": "ushkalov_l",
+    "author": "Ушкалов Л."
+  },
+  {
+    "id": "kalynovskyi_s",
+    "author": "Калиновский С."
+  },
+  {
+    "id": "maksymovych_i",
+    "author": "Максимович І."
+  },
+  {
+    "id": "boetsii_s",
+    "author": "Боецій С."
   }
 ]

@@ -1,0 +1,229 @@
+{
+  "id": "sviati_ottsi_v_skovorody",
+  "sources": [
+    {
+      "id": "ukrainska_kultura_xv",
+      "count": 1
+    },
+    {
+      "id": "hryhorii_skovoroda_i_ukrainske_pysmenstvo_ostannoho_piatdesiatylittia_vplyvy_i_postat_hryhoriia_savycha_skovorody_v_porevoliutsiinii_ukrainskii_literaturi",
+      "count": 1
+    },
+    {
+      "id": "s_h_s_skovoroda_kak_bohoslov",
+      "count": 1
+    },
+    {
+      "id": "hryhoryi_savych_skovoroda_zhyzn_y_uchenye",
+      "count": 1
+    },
+    {
+      "id": "z_istorii_relihiinoi_dumky_na_ukraini",
+      "count": 1
+    },
+    {
+      "id": "filosofiia_h_s_skovorody",
+      "count": 2
+    },
+    {
+      "id": "khrystyianskyi_filosof",
+      "count": 1
+    },
+    {
+      "id": "hryhoryi_skovoroda_y_russkaia_fylosofskaia_mysl_x",
+      "count": 1
+    },
+    {
+      "id": "bibliina_hermenevtyka_vyd_",
+      "count": 1
+    },
+    {
+      "id": "kharkovskyi_kollehyum_kak_prosvetytelnyi_tsentr_slobodskoi_ukrayny_do_uchrezhdenyia_v_kharkove_unyversyteta",
+      "count": 1
+    },
+    {
+      "id": "katykhysis_albo_nauka_khrystianskiia",
+      "count": 1
+    },
+    {
+      "id": "yevkholohion_albo_molytvoslov_yly_trebnyk",
+      "count": 2
+    },
+    {
+      "id": "tvorenyia_yzhe_vo_sviatykh_ottsa_nasheho_vasylyia_velykoho_arkhyepyskopa_kessaryy_kappadokyiskyia__moskva___ch___s_",
+      "count": 1
+    },
+    {
+      "id": "pro_rytorychne_mystetstvo",
+      "count": 4
+    },
+    {
+      "id": "polnoe_sobranye_tvorenyi_sv_yoanna_zlatousta_v__t",
+      "count": 2
+    },
+    {
+      "id": "sviatytel_hryhoryi_bohoslov_arkhyepyskop_konstantynopolskyi_sobranno_tvorenyi_v__t_repryntnoe_yzd__sviato",
+      "count": 1
+    },
+    {
+      "id": "fylosofskyi_traktat_v_symeonovom_sbornyke",
+      "count": 1
+    },
+    {
+      "id": "blazhennyi_yoann_moskh_luh_dukhovnyi",
+      "count": 1
+    },
+    {
+      "id": "yevkholohion_albo_molytvoslov_mly_trebnyk",
+      "count": 1
+    },
+    {
+      "id": "mesii_pravdyvyi",
+      "count": 1
+    },
+    {
+      "id": "do_perekladiv_skovorody",
+      "count": 1
+    },
+    {
+      "id": "z_istorii_ukrainskoi_literatury_khp",
+      "count": 1
+    },
+    {
+      "id": "tvorchist_hryhoriia_skovorody_kriz_pryzmu_statystyky",
+      "count": 1
+    },
+    {
+      "id": "desiat_knyh_arystotelia_k_nykomakhu_ho_est_tyka",
+      "count": 1
+    },
+    {
+      "id": "naturfilosofiia_abo_fizyka",
+      "count": 1
+    },
+    {
+      "id": "mesiia_pravdyvyi",
+      "count": 1
+    },
+    {
+      "id": "yly_pozor_nravouchytelnyi_tsarem_kniazem_vladykom",
+      "count": 1
+    },
+    {
+      "id": "desiat_knyh_arystotelia_k_nykomakhu_to_est_tyka",
+      "count": 1
+    },
+    {
+      "id": "rozrada_vid_filosofii",
+      "count": 1
+    }
+  ],
+  "sources_authors": [
+    {
+      "id": "hrachotti_s",
+      "count": 1
+    },
+    {
+      "id": "stepanenko_m",
+      "count": 1
+    },
+    {
+      "id": "lebedev_a",
+      "count": 2
+    },
+    {
+      "id": "zrn_v_f",
+      "count": 1
+    },
+    {
+      "id": "hrushevakhyi_m",
+      "count": 1
+    },
+    {
+      "id": "chyzhevskyi_d",
+      "count": 3
+    },
+    {
+      "id": "oleksiuk_v",
+      "count": 1
+    },
+    {
+      "id": "marchenko_o_v",
+      "count": 1
+    },
+    {
+      "id": "laba_v",
+      "count": 1
+    },
+    {
+      "id": "vynnytskyi_i",
+      "count": 1
+    },
+    {
+      "id": "mohyla_p",
+      "count": 3
+    },
+    {
+      "id": "vasylyi_velykyi",
+      "count": 1
+    },
+    {
+      "id": "prokopovych_f",
+      "count": 5
+    },
+    {
+      "id": "yoann_zlatoust",
+      "count": 2
+    },
+    {
+      "id": "hryhoryi_bohoslov",
+      "count": 1
+    },
+    {
+      "id": "peichev_b",
+      "count": 1
+    },
+    {
+      "id": "yoann_moskh",
+      "count": 1
+    },
+    {
+      "id": "haliatovskyi_i",
+      "count": 2
+    },
+    {
+      "id": "prykopovych_f",
+      "count": 0
+    },
+    {
+      "id": "ushkalov_l",
+      "count": 2
+    },
+    {
+      "id": "kalynovskyi_s",
+      "count": 2
+    },
+    {
+      "id": "maksymovych_i",
+      "count": 1
+    },
+    {
+      "id": "boetsii_s",
+      "count": 1
+    }
+  ],
+  "notes_count": 71,
+  "sentences_count": 325,
+  "words_count": 4943,
+  "characters_count": 28459,
+  "mentioned_skovoroda_texts": [
+    {
+      "id": "borotba_arhystratiha_mihaila_s_satanoyu",
+      "count": 1
+    },
+    {
+      "id": "zhinka_lotova",
+      "count": 2
+    }
+  ]
+}

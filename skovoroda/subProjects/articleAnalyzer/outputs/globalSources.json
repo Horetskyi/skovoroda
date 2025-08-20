@@ -1,9 +1,193 @@
 [
   {
-    "id": "ern__hryhoryi_savych_skovoroda_zhyzn_y_uchenye",
+    "id": "ukrainska_kultura_xv",
+    "title": "Українська культура XV",
+    "year": 1996,
+    "location": "Київ; Венеція",
+    "authorId": "hrachotti_s"
+  },
+  {
+    "id": "hryhorii_skovoroda_i_ukrainske_pysmenstvo_ostannoho_piatdesiatylittia_vplyvy_i_postat_hryhoriia_savycha_skovorody_v_porevoliutsiinii_ukrainskii_literaturi",
+    "title": "Григорій Сковорода і українське письменство останнього п’ятдесятиліття (Впливи і постать Григорія Савича Сковороди в пореволюційній українській літературі)",
+    "year": 1976,
+    "location": "Йорк; Париж; Сидней; Торонто",
+    "authorId": "stepanenko_m"
+  },
+  {
+    "id": "s_h_s_skovoroda_kak_bohoslov",
+    "title": "С. Г. С. Сковорода как богослов",
+    "authorId": "lebedev_a"
+  },
+  {
+    "id": "hryhoryi_savych_skovoroda_zhyzn_y_uchenye",
     "title": "Григорий Савич Сковорода. Жизнь и учение.",
     "year": 1912,
     "location": "Москва",
-    "authorId": "ern_v_f"
+    "authorId": "zrn_v_f"
+  },
+  {
+    "id": "z_istorii_relihiinoi_dumky_na_ukraini",
+    "title": "З історії релігійної думки на Україні.",
+    "year": 1925,
+    "location": "Львів",
+    "authorId": "hrushevakhyi_m"
+  },
+  {
+    "id": "filosofiia_h_s_skovorody",
+    "title": "Філософія Г. С. Сковороди",
+    "year": 2004,
+    "location": "Харків",
+    "authorId": "chyzhevskyi_d"
+  },
+  {
+    "id": "khrystyianskyi_filosof",
+    "title": "християнський філософ",
+    "year": 1975,
+    "location": "Чікаго",
+    "authorId": "oleksiuk_v"
+  },
+  {
+    "id": "hryhoryi_skovoroda_y_russkaia_fylosofskaia_mysl_x",
+    "title": "Григорий Сковорода и русская философская мысль X",
+    "year": 2007,
+    "location": "Москва",
+    "authorId": "marchenko_o_v"
+  },
+  {
+    "id": "bibliina_hermenevtyka_vyd_",
+    "title": "Біблійна герменевтика. Вид. 2",
+    "year": 1990,
+    "location": "Рим",
+    "authorId": "laba_v"
+  },
+  {
+    "id": "kharkovskyi_kollehyum_kak_prosvetytelnyi_tsentr_slobodskoi_ukrayny_do_uchrezhdenyia_v_kharkove_unyversyteta",
+    "title": "Харьковский коллегиум как просветительный центр Слободской Украины до учреждения в Харькове университета",
+    "authorId": "lebedev_a"
+  },
+  {
+    "id": "katykhysis_albo_nauka_khrystianskiia",
+    "title": "Катихисіс, албо Наука христіанскія.",
+    "year": 1685,
+    "location": "Унів",
+    "authorId": "vynnytskyi_i"
+  },
+  {
+    "id": "yevkholohion_albo_molytvoslov_yly_trebnyk",
+    "title": "Євхологіон, албо Молитвослов или Требник.",
+    "year": 1646,
+    "location": "Київ",
+    "authorId": "mohyla_p"
+  },
+  {
+    "id": "tvorenyia_yzhe_vo_sviatykh_ottsa_nasheho_vasylyia_velykoho_arkhyepyskopa_kessaryy_kappadokyiskyia__moskva___ch___s_",
+    "title": "Творения иже во святых отца нашего Василия Великого, архиепископа Кессарии Каппадокийския. – Москва, 1993. – Ч. 3. – С. 284.",
+    "authorId": "vasylyi_velykyi"
+  },
+  {
+    "id": "pro_rytorychne_mystetstvo",
+    "title": "Про риторичне мистецтво",
+    "authorId": "prokopovych_f"
+  },
+  {
+    "id": "polnoe_sobranye_tvorenyi_sv_yoanna_zlatousta_v__t",
+    "title": "Полное собрание творений св. Иоанна Златоуста: В 12 т.",
+    "year": 1991,
+    "location": "Москва",
+    "authorId": "yoann_zlatoust"
+  },
+  {
+    "id": "sviatytel_hryhoryi_bohoslov_arkhyepyskop_konstantynopolskyi_sobranno_tvorenyi_v__t_repryntnoe_yzd__sviato",
+    "title": "Святитель Григорий Богослов, архиепископ константинопольский. Собранно творений: В 2 т. Репринтное изд. – Свято",
+    "year": 1994,
+    "location": "Троицкая Сергиева Лавра",
+    "authorId": "hryhoryi_bohoslov"
+  },
+  {
+    "id": "fylosofskyi_traktat_v_symeonovom_sbornyke",
+    "title": "Философский трактат в Симеоновом сборнике.",
+    "year": 1983,
+    "location": "Киев",
+    "authorId": "peichev_b"
+  },
+  {
+    "id": "blazhennyi_yoann_moskh_luh_dukhovnyi",
+    "title": "Блаженный Иоанн Мосх. Луг духовный.",
+    "year": 2002,
+    "location": "Москва",
+    "authorId": "yoann_moskh"
+  },
+  {
+    "id": "yevkholohion_albo_molytvoslov_mly_trebnyk",
+    "title": "Євхологіон, албо Молитвослов мли Требник.",
+    "year": 1646,
+    "location": "Київ",
+    "authorId": "mohyla_p"
+  },
+  {
+    "id": "mesii_pravdyvyi",
+    "title": "Месій правдивый.",
+    "year": 1669,
+    "location": "Київ",
+    "authorId": "haliatovskyi_i"
+  },
+  {
+    "id": "do_perekladiv_skovorody",
+    "title": "До перекладів Сковороди",
+    "year": 2003,
+    "location": "Харків",
+    "authorId": "chyzhevskyi_d"
+  },
+  {
+    "id": "z_istorii_ukrainskoi_literatury_khp",
+    "title": "З історії української літератури ХѴП",
+    "year": 1999,
+    "location": "Харків",
+    "authorId": "ushkalov_l"
+  },
+  {
+    "id": "tvorchist_hryhoriia_skovorody_kriz_pryzmu_statystyky",
+    "title": "Творчість Григорія Сковороди крізь призму статистики",
+    "year": 2007,
+    "location": "Київ",
+    "authorId": "ushkalov_l"
+  },
+  {
+    "id": "desiat_knyh_arystotelia_k_nykomakhu_ho_est_tyka",
+    "title": "Десять книг Аристотеля к Никомаху, го есть Этика",
+    "year": 1987,
+    "location": "Киев",
+    "authorId": "kalynovskyi_s"
+  },
+  {
+    "id": "naturfilosofiia_abo_fizyka",
+    "title": "Натурфілософія, або Фізика",
+    "year": 1980,
+    "location": "Київ",
+    "authorId": "prokopovych_f"
+  },
+  {
+    "id": "mesiia_pravdyvyi",
+    "title": "Месія правдивый.",
+    "year": 1669,
+    "location": "Київ",
+    "authorId": "haliatovskyi_i"
+  },
+  {
+    "id": "yly_pozor_nravouchytelnyi_tsarem_kniazem_vladykom",
+    "title": "Θέατρον, или Позор нравоучителный царем, князем, владыком.",
+    "year": 1708,
+    "location": "Чернігів",
+    "authorId": "maksymovych_i"
+  },
+  {
+    "id": "desiat_knyh_arystotelia_k_nykomakhu_to_est_tyka",
+    "title": "Десять книг Аристотеля к Никомаху, то есть Этика",
+    "authorId": "kalynovskyi_s"
+  },
+  {
+    "id": "rozrada_vid_filosofii",
+    "title": "Розрада від філософії",
+    "authorId": "boetsii_s"
   }
 ]

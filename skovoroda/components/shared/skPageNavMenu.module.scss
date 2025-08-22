@@ -27,18 +27,19 @@
 .menuLink {
   text-decoration: none;
   color: #2c3e50;
-  font-weight: 300;
   padding: 6px 10px;
   border-radius: 8px;
   transition: all 0.2s ease-in-out;
   display: block;
   width: 100%;
+  font-family: 'Oswald';
+  letter-spacing: 0.06rem;
+  font-weight: 300;
 }
 
 .menuLinkMobile {
   text-decoration: none;
   color: #2c3e50;
-  font-weight: 300;
   padding: 6px 10px;
   border-radius: 8px;
   transition: all 0.2s ease-in-out;
@@ -47,6 +48,9 @@
   background: #fbfbfb;
   outline: 1px solid #9A9A9A;
   box-shadow: inset 1px 1px 2px var(--mantine-color-gray-2), inset -1px -1px 2px #ffffffcb;
+  font-family: 'Oswald';
+  letter-spacing: 0.06rem;
+  font-weight: 300;
 }
 
 .menuLink:hover {

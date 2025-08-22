@@ -14,7 +14,7 @@ import { MusicBlockDesktop } from './details/musicBlockDesktop';
 import SkImage from '../shared/skImage';
 import { adjustImageHeight } from '../functions/imageFunctions';
 import { useDisclosure } from '@mantine/hooks';
-import { getIllustrationSourceParam } from './details/pureFunctions';
+import { getBookSourceParam, getIllustrationSourceParam } from './details/pureFunctions';
 import SkH2DesktopV2 from '../shared/skH2DesktopV2';
 
 export default function GardenSongPageDesktop({ 

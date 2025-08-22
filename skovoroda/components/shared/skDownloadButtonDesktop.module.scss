@@ -22,11 +22,11 @@
   border: 0.5px solid black !important;
 
   &:focus, &:active {
-    border: 0.5px solid #5050A1 !important;
+    border: 0.5px solid #5068a1 !important;
   }
 
   &:hover {
-    background-color: #e7eaf7;
+    background-color: #e7edf7;
     box-shadow:
       inset 4px 4px 8px -2px #e7eaf7, 
       inset -4px -4px 8px #e7eaf7,
@@ -34,12 +34,12 @@
   }
 
   span {
-    color: #5050A1;
+    color: #5054a1;
   }
 
   strong {
     font-weight: 600;
-    color: #5050a1;
+    color: #5063a1;
     text-transform: lowercase;
   }
 }

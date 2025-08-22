@@ -22,6 +22,7 @@
   margin-top: 80px;
   margin-bottom: 70px;
   border: 1px solid #afafaf;
+  font-weight: 500;
 }
 .titleH1V2_noBg {
   font-family: 'Ysabeau';
@@ -31,4 +32,38 @@
   color: black;
   margin-top: 70px;
   margin-bottom: 50px;
+  font-weight: 500;
+}
+.titleH1V2_withBg {
+  font-family: 'Ysabeau';
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 62px;
+  max-width: 900px;
+  border-radius: 32px;
+  padding: 14px 12px;
+  color: black;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  border: 1px solid #575757;
+}
+.titleBgImageContainer {
+  position: absolute;
+  top: -28px;
+  left: 0;
+  width: 100%;
+  z-index: -100;
+  height: calc(100% + 65px);
+}
+.titleBgImage {
+  width: 1120px;
+  opacity: 0.4;
+  transform: scaleY(-1);
+  margin: auto;
+  display: block;
+  padding-left: 16px;
+  height: -webkit-fill-available;
+}
+.topContainer {
+  position: relative;
 }

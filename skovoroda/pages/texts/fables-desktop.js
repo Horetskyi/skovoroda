@@ -30,10 +30,10 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
   
   return <>
 
-    <SkH1Desktop text="Байки Харківські"/>
+    <SkH1Desktop text="Байки Харківські" withBlueImage={true}/>
 
     {/* Fables Links */}
-    <SkColoredContainerDesktop>
+    <SkColoredContainerDesktop pt={-20}>
       {getListOfFables(0,30)}
     </SkColoredContainerDesktop>
 

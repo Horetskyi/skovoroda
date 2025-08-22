@@ -11,6 +11,7 @@ import SkColoredContainerMobile from '../shared/skColoredContainerMobile';
 import SkH2Mobile from '../shared/skH2Mobile';
 import SkH1Mobile from '../shared/skH1Mobile';
 import SkCardWithTwoSelectorsMobileV2 from '../shared/skCardWithTwoSelectorsMobileV2';
+import { getBookSourceParam } from './details/pureFunctions';
 
 export default function SkovorodaLetterPageMobile({ 
   selectedLetter,

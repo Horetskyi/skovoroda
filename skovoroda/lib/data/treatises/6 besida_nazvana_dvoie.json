@@ -34,6 +34,7 @@
     {
       "title": "Античність",
       "imageUrl": "/images/sk-text-sources/antiquity.webp",
+      "imageSourceUrl": "https://www.pexels.com/photo/statue-of-celsus-library-in-ephesus-21802617/",
       "colorType": "red",
       "items": [
         {
@@ -51,6 +52,74 @@
         {
           "text": "Латинські епіграми, афоризми",
           "iconType": "book"
+        }
+      ]
+    },
+    {
+      "title": "Емблематика",
+      "imageUrl": "/images/sk-text-sources/Symbola_et_emblemata_1705_edited.webp",
+      "colorType": "red",
+      "items": [
+        {
+          "text": "Symbola et emblemata (1705 р.)",
+          "iconType": "book"
+        },
+        {
+          "text": "Емблемы и символы избранные (1739 р.)",
+          "iconType": "book"
+        },
+        {
+          "text": "Збірник Германа Гуго (1624 р.)",
+          "iconType": "book"
+        }
+      ]
+    },
+    {
+      "title": "Фольклор",
+      "imageUrl": "/images/sk-text-sources/folklore.jpg",
+      "colorType": "red",
+      "items": [
+        {
+          "text": "Прислів’я",
+          "iconType": "none"
+        }
+      ]
+    },
+    {
+      "title": "Поезія та поетика",
+      "imageUrl": "/images/sk-text-sources/serce.webp",
+      "colorType": "red",
+      "items": [
+        {
+          "text": "Поетика Києво-Могилянської академії",
+          "iconType": "none"
+        },
+        {
+          "text": "Барокова духовна поезія",
+          "iconType": "none"
+        }
+      ]
+    },
+    {
+      "title": "Етимологія",
+      "imageUrl": "/images/sk-text-sources/etymology.webp",
+      "imageSourceUrl": "https://www.pexels.com/photo/autumn-day-at-trakya-university-signpost-30789486/",
+      "colorType": "red",
+      "items": [
+        {
+          "text": "Українська, давньогрецька, латинська, німецька, польська, іврит",
+          "iconType": "none"
+        }
+      ]
+    },
+    {
+      "title": "Патристика",
+      "imageUrl": "/images/sk-text-sources/MHS_ojcowie_ks_Bazyli_Wlk_Jan_Chryzostom_Grzeg_Wlk_XVII_Lipie_p.webp",
+      "colorType": "red",
+      "items": [
+        {
+          "text": "Пустельники",
+          "iconType": "none"
         }
       ]
     }

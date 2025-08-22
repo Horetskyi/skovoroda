@@ -64,7 +64,7 @@ export default function SkHeaderMenuMobile() {
                 <IconMenu2 size="40px" strokeWidth={1} />
               </ActionIcon>
             </Popover.Target>
-            <Popover.Dropdown >
+            <Popover.Dropdown bg={"#F5FBFE"}>
               <Stack onClick={() => setOpened((o) => !o)} spacing={0}>
                 {links.map(link => {
                   const linkTitle = getLinkTitle(link.href);

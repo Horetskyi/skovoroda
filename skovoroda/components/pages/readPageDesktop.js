@@ -17,13 +17,12 @@ export default function ReadPageDesktop({ selectedRead }) {
 
   adjustImageHeight(selectedRead.image, 650);
   return <>
-    <SkH1Desktop text={selectedRead.title} /> 
-    
+    <SkH1Desktop text={selectedRead.title} withBlueImage={true} /> 
     
     <Container>
 
       { selectedRead.author && selectedRead.author.fullName && selectedRead.type !== "treatise"
-        ? <Text ta={'center'} mb="md" w={'100%'} fs={'italic'}>Автор: {selectedRead.author.fullName}</Text> : null }
+        ? <Text ta={'center'} mt={-45} mb="md" w={'100%'} fs={'italic'} className="readFont">Автор: <Text component="b">{selectedRead.author.fullName}</Text></Text> : null }
 
       <DownloadsDesktop fileNames={selectedRead.fileNames} device={'desktop'} textId={selectedRead.urlId} />
 

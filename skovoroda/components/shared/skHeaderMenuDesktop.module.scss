@@ -1,10 +1,9 @@
 .title {
-  font-family: "Amatic SC";
   font-style: normal;
-  font-weight: 300;
   font-size: 36px;
-  line-height: 100%;
   letter-spacing: 0.25em;
+  font-weight: 220;
+  font-family: 'Oswald';
   color: black;
   z-index: 0;
 }
@@ -16,12 +15,15 @@
 .buttonText {
   position: relative;
   color: black;
+  font-family: 'Oswald';
+  letter-spacing: 0.03em;
 
   p {
-    font-weight: 400;
-    font-size: 36px;
+    font-weight: 200;
+    font-size: 27px;
     line-height: 155%;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.09em;
+    font-family: 'Oswald';
   }
 }
 .logoSvgs {

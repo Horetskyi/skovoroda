@@ -7,7 +7,7 @@ import { getArticlesStaticProps } from '../../lib/staticProps/articlesStatic';
 export default function ArticlesDesktop({ articles }) {
 
   return <>
-    <SkH1Desktop text="Статті про Григорія Сковороду" />
+    <SkH1Desktop text="Статті про Григорія Сковороду" withBlueImage={true} />
     <Container>
       {articles.map(article => {
         const isAuthorShortNameExists = article.author && article.author.shortName;

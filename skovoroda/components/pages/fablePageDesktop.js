@@ -138,7 +138,7 @@ export default function FablePageDesktop({
         <SkButtonDesktop text={"Байка на щастя"} onClick={() => selectFableDropdownValue(randomFableNumber)} color={highlightColor} />
         <SkButtonDesktop text={">"} onClick={() => selectFableDropdownValue(nextFableNumber)} disabled={nextFableNumber == 31}/>
       </Group>
-      <SkH1Desktop text={h1Text} color={highlightColor} isV2={true} disableBackground={true} />
+      <SkH1Desktop text={h1Text} color={highlightColor} isV2={true} disableBackground={true} withBlueImage={true} bgLeftMargin={-91} />
       <Space h="lg"/>
 
       <div className={'textWithImageContainer'}>

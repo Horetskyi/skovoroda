@@ -11,6 +11,7 @@ import SkColoredContainerDesktop from '../shared/skColoredContainerDesktop';
 import SkSourcesContainerDesktop from '../shared/skSourcesContainerDesktop';
 import SkH1Desktop from '../shared/skH1Desktop';
 import SkH2Desktop from '../shared/skH2Desktop';
+import { getBookSourceParam } from './details/pureFunctions';
 
 export default function SkovorodaLetterPageDesktop({ 
   selectedLetter,

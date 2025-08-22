@@ -60,7 +60,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
         />
       </div>
       <Stack p="0" m="0" ta="left" gap={"xs"}>
-        <Text className="normalContentText normalContentText_withoutIndent">Назва: <Text fw={400} component="span">{version.title}</Text></Text>
+        <Text className="normalContentText normalContentText_withoutIndent">Назва: <Text component="b">{version.title}</Text></Text>
         {isTranslation ? 
           <Text className="normalContentText normalContentText_withoutIndent">{translatorLabel}
             <Text fw={400} component="span">{translator.fullName3}</Text>
@@ -81,7 +81,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
   }
 
   return <>
-    <SkH1Desktop text={preferedTitle} color={highlightColor} maxWidth={treatise.maxTitleWidth} isV2={true} />
+    <SkH1Desktop text={preferedTitle} color={highlightColor} maxWidth={treatise.maxTitleWidth} isV2={true} withBlueImage={true} />
     <SkColoredContainerDesktop py={0}>
       
       <SkPageNavMenu links={links} isDesktop={true}/>

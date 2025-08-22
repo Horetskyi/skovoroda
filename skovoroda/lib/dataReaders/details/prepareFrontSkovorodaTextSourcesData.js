@@ -35,6 +35,10 @@ function _getNewBibleBlock(contentStatistics, isNewTestament) {
       imageUrl: isNewTestament 
         ? "/images/sk-text-sources/new-testament-background-edited.webp" 
         : "/images/sk-text-sources/old-testament-background.jpg",
+      imageSourceUrl: isNewTestament
+        ? "https://www.pexels.com/photo/statue-of-celsus-library-in-ephesus-21802617/"
+        : "https://www.pexels.com/photo/dramatic-rainbow-over-desert-landscape-at-sunset-28896836/",
+      imageAuthorFullName: isNewTestament ? "Burak Hayıt" : "Stephen Leonardi",
       items: [
         {
           text: _toCitationsString(totalCitationsCount, contentStatistics[bibleRatiosKey].bibleCitationsSmartRatio),

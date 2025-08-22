@@ -7,6 +7,7 @@ import { getGardenPageProps } from "../../lib/staticProps/gardenStatic";
 import SkImage from "../../components/shared/skImage";
 import { getAdjustedWidth } from "../../components/functions/imageFunctions";
 import Link from "next/link";
+import SkH2DesktopV2 from "../../components/shared/skH2DesktopV2";
 
 export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenImageByOlenka }) {
   
@@ -32,12 +33,12 @@ export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenIma
 
   return <>
 
-    <SkH1Desktop text="Сад Божественних Пісень"/>
+    <SkH1Desktop text="Сад Божественних Пісень" withBlueImage={true}/>
 
     {/* TODO: Сад божественных пѣсней, прозябшій из зерн Священнаго Писанія */}
   
     {/* Garden Links */}
-    <SkColoredContainerDesktop>
+    <SkColoredContainerDesktop pt={-20}>
       
       <Center mr={20} mb={"lg"}>
         <SkImage image={gardenImageByOlenka} width={607} height={642} priority={true} shadow={false} />
@@ -53,6 +54,7 @@ export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenIma
       </List>
     </SkColoredContainerDesktop>
 
+    <SkH2DesktopV2 text="Ілюстрації" subHeader="до Саду Божественних Пісень" />
     <Grid mt={"lg"} mb={"lg"} px={"xl"}>
       {translatedSongsMetadataArray.filter(song => song.songImage).map((song, index) => {
         const image = song.songImage;

@@ -19,8 +19,8 @@ export default function SkovorodaLettersPageDesktop({ allLettersFrom, receiversL
   });
 
   return <>
-    <SkH1Desktop text={lettersH1Text} />
-    <SkColoredContainerDesktop>
+    <SkH1Desktop text={lettersH1Text} withBlueImage={true} />
+    <SkColoredContainerDesktop pt={-20} pb={80}>
       {receiversList.map(receiver => {
         const writer = letterWriters.find(writer => writer.id === receiver.to);
         return <div key={receiver.to}>

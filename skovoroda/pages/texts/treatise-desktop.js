@@ -25,10 +25,10 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
 
   return <>
 
-    <SkH1Desktop text={trearisesContent.h1} />
+    <SkH1Desktop text={trearisesContent.h1} withBlueImage={true} />
 
     {/* Recommended List */}
-    <SkH2Desktop text={trearisesContent.h2Recommended} mt="md" />
+    <SkH2Desktop text={trearisesContent.h2Recommended} mt={-16} />
     <SkColoredContainerDesktop>
       <List type="ordered" spacing={"md"}>
         {recommendedTreatisesList.map((treatise, index) => {
@@ -39,7 +39,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
           const linkTitle = `${preferedTitle} завантажити переклади, оригінал`;
           return <List.Item key={index}>
             <Link href={href} title={linkTitle} className='normalContentText readFont'>
-              {preferedTitle}
+              <Text component='b'>{preferedTitle}</Text>
             </Link>
             <Text className='normalContentText readFont'>
               {treatise.comments}
@@ -50,8 +50,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
     </SkColoredContainerDesktop>
     
     {/* Full List */}
-    <SkH2Desktop text={trearisesContent.h2FullList} mt="md" mb="sm" />
-    <Text className={classes.orderText}>В порядку дати написання</Text>
+    <SkH2Desktop text={trearisesContent.h2FullList} mt="md" mb="sm" subHeader={"В порядку дати написання"} />
     <SkColoredContainerDesktop>
       <List type="ordered" spacing={"xs"}>
         {treatises.map((treatise, index) => {
@@ -168,7 +167,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
     })}
 
     {/* Notes */}
-    <SkColoredContainerDesktop color={"gray.1"}>
+    <SkColoredContainerDesktop>
       <SkH2Desktop text={trearisesContent.h2Notes} mb="lg"/>
       <SkTextContentBlockDesktop textContent={sourcesTextContent} isv3={true} />
       <Space h='md'/>

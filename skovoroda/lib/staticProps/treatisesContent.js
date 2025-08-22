@@ -27,7 +27,7 @@ export const trearisesContent = {
       checked: false,
     },
   ],
-  h1: "Трактати",
+  h1: "Трактати Сковороди",
   filtersByTypesLabel: "Фільтри:",
   filtersByTypesLabelNote: "* Солілоквій – мова, адресована до самого себе.",
   birthYearText: "1722 р.",

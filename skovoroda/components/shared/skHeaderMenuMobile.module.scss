@@ -1,10 +1,10 @@
 .title {
-  font-family: "Amatic SC";
+  font-family: "Oswald";
   font-style: normal;
-  font-weight: 300;
+  font-weight: 250;
   font-size: 28px;
   line-height: 100%;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.09em;
   color: black;
   z-index: 0;
   margin-left: 0;
@@ -16,10 +16,11 @@
   z-index: 0;
 }
 .buttonText {
-  text-align: center;
-  font-weight: 200;
+  text-align: left;
+  font-weight: 250;
   font-size: 24px;
-  letter-spacing: 0.165em;
+  letter-spacing: 0.09rem;
+  font-family: "Oswald";
   color: black;
   padding-top: var(--mantine-spacing-sm);
   padding-bottom: var(--mantine-spacing-sm);

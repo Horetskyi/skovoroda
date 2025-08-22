@@ -15,6 +15,7 @@ import SkSourcesContainerMobile from '../shared/skSourcesContainerMobile';
 import { MusicBlockMobile } from './details/musicBlockMobile';
 import SkImage from '../shared/skImage';
 import { getBookSourceParam, getIllustrationSourceParam } from './details/pureFunctions';
+import SkH2Mobile from '../shared/skH2Mobile';
 
 export default function GardenSongPageMobile({ 
   allSongsMetadata,
@@ -134,7 +135,7 @@ export default function GardenSongPageMobile({
       </div>
 
       {(selectedNotes && selectedNotes.length) ? <>
-        <SkH2Desktop my="lg" text={"Примітки"}/>
+        <SkH2Mobile my="lg" text={"Примітки"}/>
         <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} isMobile={true} />
       </> : null}
     </Container>

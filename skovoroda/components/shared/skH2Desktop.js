@@ -1,13 +1,5 @@
-import { Title } from "@mantine/core";
+import SkH2DesktopV2 from "./skH2DesktopV2";
 
 export default function SkH2Desktop(props) {
-
-  if (props.type === "qa") {
-    return <Title order={2} ta={"left"} {...props}>
-      {props.text}
-    </Title>
-  }
-  return <Title order={2} mx={"auto"} ta={"center"} {...props}>
-    {props.text}
-  </Title>
+  return <SkH2DesktopV2 {...props} />
 }

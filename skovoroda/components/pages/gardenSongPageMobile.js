@@ -14,7 +14,7 @@ import SkH1Mobile from '../shared/skH1Mobile';
 import SkSourcesContainerMobile from '../shared/skSourcesContainerMobile';
 import { MusicBlockMobile } from './details/musicBlockMobile';
 import SkImage from '../shared/skImage';
-import { getIllustrationSourceParam } from './details/pureFunctions';
+import { getBookSourceParam, getIllustrationSourceParam } from './details/pureFunctions';
 
 export default function GardenSongPageMobile({ 
   allSongsMetadata,
@@ -68,13 +68,7 @@ export default function GardenSongPageMobile({
   const h1Text = selectedMetadata.name;
 
   const sourcesParams = [
-    {
-      sourceType: "Текст" + (selectedNotes ? " і Примітки" : ""),
-      sourceValue: selectedSong.source.sourceFullName,
-      sourceHref: selectedSong.source.sourceHref,
-      image: selectedSong.source.bookCoverImage,
-      linkTitle: selectedSong.source.sourceFullName,
-    },
+    getBookSourceParam(selectedSong.source, selectedNotes, true),
   ];
 
   const availableSongNumbers = useMemo(() => {
@@ -147,6 +141,6 @@ export default function GardenSongPageMobile({
 
     <MusicBlockMobile music={selectedMetadata.music} title={"Музика на текст пісні"} />
 
-    <SkSourcesContainerMobile sources={sourcesParams} includeTextValidityWarning={true} />
+    <SkSourcesContainerMobile sources={sourcesParams} />
   </>;
 }

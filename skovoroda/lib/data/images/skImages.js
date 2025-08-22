@@ -157,6 +157,7 @@ function buildSongImage(songNumber, imageUrl, authorId, width, height, highlight
     songNumber: songNumber,
     type: 'song',
     highlightColor: highlightColor ? highlightColor : null,
+    isProtected: true
   };
   if (width) {
     image.width = width;
@@ -179,6 +180,7 @@ function buildFableImage(fableNumber, imageUrl, authorId, width, height, highlig
     fableNumber: fableNumber,
     type: 'fable',
     highlightColor: highlightColor ? highlightColor : null,
+    isProtected: true
   };
   if (width) {
     image.width = width;
@@ -204,6 +206,7 @@ function buildTextImage(type, textUrlId, imageUrl, authorId, title, width, heigh
     urlId: textUrlId,
     isFullWidth: isFullWidth ? true : false,
     highlightColor: highlightColor ? highlightColor : null,
+    isProtected: true
   };
   if (width) {
     image.width = width;
@@ -257,11 +260,13 @@ export const SkImages = {
   song8: buildSongImage(8, "/images/garden/Song 8 Illustration - Skoboroda.webp", 'olenka', 1368, 1371, "#538363"),
   song9: buildSongImage(9, "/images/garden/Song 9 Illustration - Skoboroda.webp", 'olenka', 1369, 1748, "#407F9E"),
   song10: buildSongImage(10, "/images/garden/Song 10 Illustration - Skoboroda.webp", 'olenka', 1316, 1318, "#8F5848"),
-  
+  song11: buildSongImage(11, "/images/garden/Song 11 Illustration - Skoboroda.webp", 'olenka', 1385, 1375, "#24164D"),
+
   gardenByOlenka: {
     imageUrl: "/images/garden/Skovoroda Garden of Divine Songs by Olenka.webp",
     alt: "Ілюстрація до Саду Божественних Пісень Григорія Сковороди від Олени Горецької",
     title: "Ілюстрація Саду Божественних Пісень",
+    isProtected: true
   },
 
   erodyi: buildTextImage('treatise', "blahodarnyi_erodii", "/images/treatise/Erodii.webp", "pryanya", "Вдячний Еродій", 900, 1291),

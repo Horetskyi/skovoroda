@@ -55,6 +55,6 @@ export default function ReadPageDesktop({ selectedRead }) {
       <SkContentStatisticsDesktop stats={selectedRead.contentStatistics} />
 
     </Container>
-    <SkSourcesContainerDesktop sources={getAggregatedSourcesParams(selectedRead)} includeTextValidityWarning={true} />
+    <SkSourcesContainerDesktop sources={getAggregatedSourcesParams(selectedRead)} />
   </>;
 }

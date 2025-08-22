@@ -6,7 +6,6 @@ import { prepareFablesDropdownItems, prepareTranslatorsDropdownItems } from '../
 import { SkovorodaFablesPath, pathJoin } from '../../lib/skovorodaPath';
 import SkCardWithTwoSelectorsDesktopV2 from '../shared/skCardWithTwoSelectorsDesktopV2';
 import SkH1Desktop from '../shared/skH1Desktop';
-import SkH2Desktop from '../shared/skH2Desktop';
 import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
 import SkSourcesContainerDesktop from '../shared/skSourcesContainerDesktop';
 import SkButtonDesktop from '../shared/skButtonDesktop';
@@ -18,7 +17,7 @@ import { useDisclosure } from '@mantine/hooks';
 import SkImage from '../shared/skImage';
 import classes from './fablePageDesktop.module.scss';
 import { adjustImageHeight } from '../functions/imageFunctions';
-import { getIllustrationSourceParam } from './details/pureFunctions';
+import { getBookSourceParam, getIllustrationSourceParam } from './details/pureFunctions';
 import SkH2DesktopV2 from '../shared/skH2DesktopV2';
 
 export default function FablePageDesktop({ 
@@ -82,13 +81,7 @@ export default function FablePageDesktop({
   const isFableImageExists = selectedMetadata.fableImage && selectedMetadata.fableImage.imageUrl && selectedMetadata.fableImage.imageUrl.length > 0;
 
   const sourcesParams = [
-    {
-      sourceType: "Текст" + (selectedNotes ? " і Примітки" : ""),
-      sourceValue: selectedFable.source.sourceFullName,
-      sourceHref: selectedFable.source.sourceHref,
-      image: selectedFable.source.bookCoverImage,
-      linkTitle: selectedFable.source.sourceFullName,
-    },
+    getBookSourceParam(selectedFable.source, selectedNotes, true),
   ];
   if (isFableImageExists) {
     sourcesParams.push(getIllustrationSourceParam(selectedMetadata.fableImage));
@@ -188,6 +181,6 @@ export default function FablePageDesktop({
         </> : null}
       </SkColoredContainerDesktop>
       </> : null}
-    <SkSourcesContainerDesktop sources={sourcesParams} includeTextValidityWarning={true} />
+    <SkSourcesContainerDesktop sources={sourcesParams} />
   </>;
 }

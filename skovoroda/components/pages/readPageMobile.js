@@ -49,7 +49,7 @@ export default function ReadPageMobile({ selectedRead }) {
 
       </Container>
 
-      <SkSourcesContainerMobile sources={getAggregatedSourcesParams(selectedRead)} includeTextValidityWarning={true} />
+      <SkSourcesContainerMobile sources={getAggregatedSourcesParams(selectedRead)} />
     </>
   );
 }

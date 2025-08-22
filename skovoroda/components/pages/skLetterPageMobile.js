@@ -64,13 +64,7 @@ export default function SkovorodaLetterPageMobile({
 
   const isAnyNotes = selectedNotes && selectedNotes.length;
   const sourcesParams = [
-    {
-      sourceType: "Текст" + (isAnyNotes ? " і Примітки" : ""),
-      sourceValue: selectedLetterSource.sourceFullName,
-      sourceHref: selectedLetterSource.sourceHref,
-      image: selectedLetterSource.bookCoverImage,
-      linkTitle: selectedLetterSource.sourceFullName,
-    },
+    getBookSourceParam(selectedLetterSource, isAnyNotes, true),
   ];
 
   const letterWriter = getLetterWriterByLetterMetadata(selectedMetadata); // for text in H1
@@ -102,7 +96,7 @@ export default function SkovorodaLetterPageMobile({
       <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} />
     </> : null}
 
-    <SkSourcesContainerDesktop sources={sourcesParams} includeTextValidityWarning={true} />
+    <SkSourcesContainerDesktop sources={sourcesParams} />
 
   </SkColoredContainerMobile>
 }

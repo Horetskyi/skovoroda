@@ -162,7 +162,5 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
       </> : null}
     </SkColoredContainerDesktop>
     <SkSourcesContainerDesktop sources={sourcesParams} />
-    <Space h="xl"/>
-    <Space h="xl"/>
   </>
 }

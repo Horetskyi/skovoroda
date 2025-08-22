@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { SkovorodaGardenPath, pathJoin } from '../../lib/skovorodaPath';
 import SkCardWithTwoSelectorsDesktopV2 from '../shared/skCardWithTwoSelectorsDesktopV2';
 import SkH1Desktop from '../shared/skH1Desktop';
-import SkH2Desktop from '../shared/skH2Desktop';
 import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
 import SkSourcesContainerDesktop from '../shared/skSourcesContainerDesktop';
 import SkButtonDesktop from '../shared/skButtonDesktop';
@@ -73,13 +72,7 @@ export default function GardenSongPageDesktop({
   const h1Text = selectedMetadata.name;
 
   const sourcesParams = [
-    {
-      sourceType: "Текст" + (selectedNotes ? " і Примітки" : ""),
-      sourceValue: selectedSong.source.sourceFullName,
-      sourceHref: selectedSong.source.sourceHref,
-      image: selectedSong.source.bookCoverImage,
-      linkTitle: selectedSong.source.sourceFullName,
-    },
+    getBookSourceParam(selectedSong.source, selectedNotes, true),
   ];
 
   const availableSongNumbers = allSongsMetadata
@@ -177,6 +170,6 @@ export default function GardenSongPageDesktop({
 
     <MusicBlockDesktop music={selectedMetadata.music} title={"Музика на текст пісні"} />
 
-    <SkSourcesContainerDesktop sources={sourcesParams} includeTextValidityWarning={true} />
+    <SkSourcesContainerDesktop sources={sourcesParams}/>
   </>;
 }

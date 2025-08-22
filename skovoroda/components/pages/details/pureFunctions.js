@@ -1,12 +1,13 @@
 
 // SOURCE PARAM
-export function getBookSourceParam(source, isNotesExist) {
+export function getBookSourceParam(source, isNotesExist, includeTextValidityWarning) {
   return {
     sourceType: "Текст" + (isNotesExist ? " і Примітки" : ""),
     sourceValue: source.sourceFullName,
     sourceHref: source.sourceHref,
     image: source.bookCoverImage,
     linkTitle: source.sourceFullName,
+    includeTextValidityWarning: includeTextValidityWarning,
   };
 }
 
@@ -25,11 +26,11 @@ export function getIllustrationSourceParam(image) {
 
 // SOURCE PARAMS
 export function getAggregatedSourcesParams(page) {
-  if (!page) {
-    return null;
-  }
+  
+  if (!page) return null;
+
   const sourcesParams = [
-    getBookSourceParam(page.source)
+    getBookSourceParam(page.source, page.notes, true)
   ];
   if (page.image) {
     sourcesParams.push(getIllustrationSourceParam(page.image));

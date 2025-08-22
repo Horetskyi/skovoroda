@@ -15,7 +15,7 @@ import SkColoredContainerMobile from "../shared/skColoredContainerMobile";
 import SkCommentAuthorMobile from "../shared/skCommentAuthorMobile";
 import SkRelatedThemesMobile from "../shared/skRelatedThemesMobile";
 import classes from './fablePageMobile.module.scss';
-import { getIllustrationSourceParam } from "./details/pureFunctions";
+import { getBookSourceParam, getIllustrationSourceParam } from "./details/pureFunctions";
 
 export default function FablePageMobile({ 
   selectedFable,
@@ -78,13 +78,7 @@ export default function FablePageMobile({
   const randomFableNumber = randomNumberInRangeExcept(1, 30, selectedMetadata.fableNumber);
 
   const sourcesParams = [
-    {
-      sourceType: "Текст" + (selectedNotes ? " і Примітки" : ""),
-      sourceValue: selectedFable.source.sourceFullName,
-      sourceHref: selectedFable.source.sourceHref,
-      image: selectedFable.source.bookCoverImage,
-      linkTitle: selectedFable.source.sourceFullName,
-    },
+    getBookSourceParam(selectedFable.source, selectedNotes, true),
   ];
   if (isFableImageExists) {
     sourcesParams.push(getIllustrationSourceParam(selectedMetadata.fableImage));
@@ -150,6 +144,6 @@ export default function FablePageMobile({
         </> : null}
       </SkColoredContainerMobile>
       </> : null}
-    <SkSourcesContainerMobile sources={sourcesParams} includeTextValidityWarning={true}/>
+    <SkSourcesContainerMobile sources={sourcesParams} />
   </>
 }

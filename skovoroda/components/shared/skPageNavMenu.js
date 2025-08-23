@@ -1,4 +1,4 @@
-import { Card, Flex } from "@mantine/core";
+import { Card, Flex, Text } from "@mantine/core";
 import SkTextLink from "./skTextLink";
 import classes from "./skPageNavMenu.module.scss";
 
@@ -14,6 +14,7 @@ export default function SkPageNavMenu({ links, isDesktop }) {
     <div className={cardContainerClassName}>
       <Card shadow="0" py="sm" px="md" radius={"lg"} mb="md" className={cardClassName} withBorder={false}>
         <Flex direction={"column"} gap={isDesktop ? "sm" : "md"}>
+          <Text className={classes.topLabel} >Навігація:</Text>
           {links.map((link) => (
             <SkTextLink 
               key={link.text}

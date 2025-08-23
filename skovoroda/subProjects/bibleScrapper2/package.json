@@ -1,0 +1,12 @@
+{
+  "name": "skovoroda",
+  "version": "1.0.0",
+  "description": "A project for scraping Bible verses",
+  "main": "script.js",
+  "scripts": {
+    "start": "node script.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.1.2"
+  }
+}

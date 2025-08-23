@@ -116,14 +116,16 @@ function _getRatiosObject(bibleStats, totalStats) {
 function prepareTextFromBible(bibleCitations) {
   const bibleCitationsDistinctByVerseCode = Array.from(new Map(bibleCitations.map(c => [c.bookCode + c.chapter + c.verse, c])).values());
   return bibleCitationsDistinctByVerseCode.map(citation => {
-    const verseTextUTT = readBibleVerse(citation.bookCode, citation.chapter, citation.verse);
+    const verseTextUTT = readBibleVerse(citation.bookCode, citation.chapter, citation.verse, 'utt');
+    const verseTextELZS = readBibleVerse(citation.bookCode, citation.chapter, citation.verse, 'elzs');
     return {
-      text: verseTextUTT,
+      textUtt: verseTextUTT,
+      textElzs: verseTextELZS,
       bookCode: citation.bookCode,
       chapter: citation.chapter,
       verse: citation.verse
     };
-  }).filter(obj => obj.text && obj.text.length);
+  }).filter(obj => (obj.textUtt && obj.textUtt.length) || (obj.textElzs && obj.textElzs.length));
 }
 
 function calculateWordsStatistics(words) {

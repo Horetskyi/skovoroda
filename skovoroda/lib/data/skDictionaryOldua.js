@@ -62,6 +62,22 @@ const sources = [
     link: "https://slovnyk.me/dict/slang_lviv/%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D0%BB%D1%8C",
     title: "slovnyk.me",
   },
+  {
+    id: "wiktionary",
+    link: "https://ru.wiktionary.org/wiki/",
+    title: "Wiktionary",
+  }
+]
+
+const languages = [
+  {
+    id: "цс",
+    title: "церковнослов'янська",
+  },
+  {
+    id: "су",
+    title: "староукраїнська",
+  },
 ]
 
 const dictionary = [
@@ -839,6 +855,7 @@ const dictionary = [
   [ "густиня", "густий ліс, пуща", "zvslovnyk" ],
 
   // д
+  [ ["дóлній", "дóлняя"], "нижчий, земний, тілесний, приземлений", "gpt", 1, ["су","цс"] ],
   [ "дабы", "аби, для того щоб", "zvslovnyk" ],
   [ "діатриба", "забава (гр.)", "zvslovnyk" ],
   [ "дметь", "дути", "zvslovnyk" ],
@@ -1901,7 +1918,7 @@ const dictionary = [
   [ "Ланцух", "ланцюг", "zvslovnyk" ],
   [ "Лапити", "хапати", "zvslovnyk" ],
   [ "Ларм", "шум, ґвалт, тривога", "zvslovnyk" ],
-  [ ["Латвий","латвый"], "легкий, зручний, нетрудний", "zvslovnyk" ],
+  [ ["Латвий","латвый","Лáтвое","Лáтвость"], "легкий, зручний, нетрудний", "zvslovnyk" ],
   [ "Латвій", "легше", "zvslovnyk" ],
   [ ["Латво","лацно"], "легко, неважко, нетрудно, без зусиль, зручно, охоче", "zvslovnyk" ],
   [ "Латки", "горнята; горщики", "zvslovnyk" ],
@@ -2422,6 +2439,7 @@ const dictionary = [
   [ "ны", "нас", "zvslovnyk", 2 ],
   
   // о
+  [ ["обон-пол", "обонпол"], "по ту сторону, по іншій стороні", "wiktionary", 2, "цс" ],
   [ "О горле приправити", "позбавити життя", "zvslovnyk" ],
   [ "Обавлятися", "побоюватися", "zvslovnyk" ],
   [ "Обавяти", "боятися", "zvslovnyk" ],
@@ -4824,7 +4842,7 @@ function addExplanation(key, explanation, references, complexity) {
 }
 
 dictionary.forEach((item, index) => {
-  if (!item || item.length < 2 || item.length > 4) {
+  if (!item || item.length < 2 || item.length > 5) {
     console.warn(`OLD DICTIONARY ERROR: INVALID ITEM LENGTH: ${item} - ${index}`);
     return;
   }
@@ -4832,14 +4850,15 @@ dictionary.forEach((item, index) => {
   if (!explanation) {
     return;
   }
+  const languageId = item.length > 4 ? item[4] : null; //
   const complexity = item.length > 3 ? item[3] : null; // 0 - simple, 1 - normal, 2 - complex
   const references = item.length > 2 ? item[2] : null;
   if (Array.isArray(item[0])) {
     item[0].forEach(key => {
-      addExplanation(key, explanation, references, complexity);
+      addExplanation(key, explanation, references, complexity, languageId);
     });
   } else {
-    addExplanation(item[0], explanation, references, complexity);
+    addExplanation(item[0], explanation, references, complexity, languageId);
   }
 });
 // INITIALIZATION }

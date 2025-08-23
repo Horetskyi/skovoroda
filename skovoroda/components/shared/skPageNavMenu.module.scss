@@ -20,8 +20,22 @@
 .cardContainer {
   position: absolute;
   top: 233px;
-  left: 97px;
+  left: 33px;
   height: calc(100% - 233px);
+  z-index: 1000000000;
+}
+
+.topLabel {
+  color: #2c3e50;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  display: block;
+  width: 100%;
+  font-family: 'Oswald';
+  letter-spacing: 0.06rem;
+  font-weight: 350;
+  font-size: 20px;
 }
 
 .menuLink {

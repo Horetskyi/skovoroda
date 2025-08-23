@@ -4,34 +4,39 @@ import { readFileSyncOrDefault } from "../dataReaderHelper";
 const cacheBibleData = {};
 const isIgnoreCache = true;
 
-export function readBibleVerse(bookCode, chapter, verse) {
+export function readBibleVerse(bookCode, chapter, verse, bibleVersionCode) {
 
+  if (!bookCode) return null;
+  if (!chapter) return null;
+  if (!verse) return null;
+  if (!bibleVersionCode) return null;
   const chapterString = ''+chapter;
   const verseString = ''+verse;
   const verseSplit = verseString.split('-');
   if (verseSplit.length > 1) {
     const startVerse = parseInt(verseSplit[0], 10);
     const endVerse = parseInt(verseSplit[1], 10);
-    return Array.from({ length: endVerse - startVerse + 1 }, (_, i) => readBibleVerse(bookCode, chapterString, startVerse + i))
+    return Array.from({ length: endVerse - startVerse + 1 }, (_, i) => readBibleVerse(bookCode, chapterString, startVerse + i, bibleVersionCode))
       .filter(result => result && result.length)
       .join(' ');
   }
 
-  if (!_isCached(bookCode, chapterString, verseString) || isIgnoreCache) _readFromSource(bookCode, chapterString);
-  if (!_isCached(bookCode, chapterString, verseString)) return null;
-  return cacheBibleData[bookCode][chapterString][verseString].text;
+  if (!_isCached(bookCode, chapterString, verseString, bibleVersionCode) || isIgnoreCache) _readFromSource(bookCode, chapterString, bibleVersionCode);
+  if (!_isCached(bookCode, chapterString, verseString, bibleVersionCode)) return null;
+  return cacheBibleData[bibleVersionCode][bookCode][chapterString][verseString].text;
 }
 
-function _isCached(bookCode, chapterString, verseString) {
-  return cacheBibleData[bookCode] &&
-    cacheBibleData[bookCode][chapterString] &&
-    cacheBibleData[bookCode][chapterString][verseString] &&
-    cacheBibleData[bookCode][chapterString][verseString].text &&
-    cacheBibleData[bookCode][chapterString][verseString].text.length;
+function _isCached(bookCode, chapterString, verseString, bibleVersionCode) {
+  return cacheBibleData[bibleVersionCode] &&
+    cacheBibleData[bibleVersionCode][bookCode] &&
+    cacheBibleData[bibleVersionCode][bookCode][chapterString] &&
+    cacheBibleData[bibleVersionCode][bookCode][chapterString][verseString] &&
+    cacheBibleData[bibleVersionCode][bookCode][chapterString][verseString].text &&
+    cacheBibleData[bibleVersionCode][bookCode][chapterString][verseString].text.length;
 }
 
-function _readFromSource(bookCode, chapter) {
-  const directoryPath = path.join(process.cwd(), "lib", "data", "bible", "utt");
+function _readFromSource(bookCode, chapter, bibleVersionCode) {
+  const directoryPath = path.join(process.cwd(), "lib", "data", "bible", bibleVersionCode);
   const filePath = path.join(directoryPath, `${bookCode}.${chapter}.txt`);
   const fileContent = readFileSyncOrDefault(filePath);
   if (!fileContent) {
@@ -96,8 +101,9 @@ function _readFromSource(bookCode, chapter) {
   }
 
   // Attach to cache for future use (only this chapter)
-  if (!cacheBibleData[bookCode]) cacheBibleData[bookCode] = {};
-  cacheBibleData[bookCode][''+chapter] = chapterObj;
+  if (!cacheBibleData[bibleVersionCode]) cacheBibleData[bibleVersionCode] = {};
+  if (!cacheBibleData[bibleVersionCode][bookCode]) cacheBibleData[bibleVersionCode][bookCode] = {};
+  cacheBibleData[bibleVersionCode][bookCode][''+chapter] = chapterObj;
 
   // Return parsed array as result
   return parsed;

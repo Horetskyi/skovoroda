@@ -3,11 +3,12 @@ import { Flex, Text } from "@mantine/core";
 import classes from "./skQuotesDesktop.module.scss";
 import SkRelatedTags from "./skRelatedTags";
 
-function Quote(quote, text, index, themes) {
+function Quote(quote, text, index, themes, isLessMarginTop) {
   const relatedSources = quote.shortName ? [quote] : [];
-  const key = "quote_" + (quote.translatorId ? quote.translatorId : "")  + "_" + index;
+  const key = "quote_" + ((quote.translatorId && !Array.isArray(quote.translatorId)) ? quote.translatorId : "")  + "_" + index;
   const anyTags = ((themes && themes.length) || relatedSources.length);
-  return <div key={key}>
+  const style = isLessMarginTop ? { marginTop: -30 } : {};
+  return <div key={key} style={style}>
     <Text className="readFont normalContentText">{text}</Text>
     {anyTags ? <div className={classes.quoteTags}>
       <SkRelatedTags relatedSources={relatedSources} themes={themes} />
@@ -22,17 +23,21 @@ export function SkQuotesDesktop({ quotes }) {
   if (Array.isArray(quotes) && quotes[0].texts) {
     quotes = quotes.flatMap(q => q.texts);
   }
+  console.log('quotes', quotes);
   return <Flex direction="column" gap="lg" mb="lg" className={classes.quotesContainer}>
-    { quotes.map((text, index) => {
+    { quotes.flatMap((text, index) => {
       var themes = [];
       const quote = text;
-      if (typeof text === "object") {
+      if (typeof text === "object" && !Array.isArray(text)) {
         if (text.themes && Array.isArray(text.themes)) {
           themes = text.themes;
         }
         text = text.text;
       }
-      return Quote(quote, text, index, themes);
+      else if (Array.isArray(text)) {
+        return text.map((t, i) => Quote({}, t, i, null, i !== 0));
+      }
+      return [Quote(quote, text, index, themes)];
     })}
   </Flex>
 }

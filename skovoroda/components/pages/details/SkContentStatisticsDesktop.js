@@ -48,9 +48,15 @@ function BibleVersesByPopularity(list, title, classes, bibleCitations, textFromB
               <List.Item key={i}>{c.text}</List.Item>
             ))}
           </List> : null}
-        {quotedTextFromBible && quotedTextFromBible.text && quotedTextFromBible.text.length ? (
-          <Text bg={"blue.2"} className={classes.formatTabs2}>{quotedTextFromBible.text}</Text>
+        
+        {quotedTextFromBible && quotedTextFromBible.textUtt && quotedTextFromBible.textUtt.length ? (
+          <Text bg={"blue.2"} className={classes.formatTabs2}>{quotedTextFromBible.textUtt}</Text>
         ) : null}
+
+        {quotedTextFromBible && quotedTextFromBible.textElzs && quotedTextFromBible.textElzs.length ? (
+          <Text bg={"red.2"} className={`${classes.formatTabs2} irmologion`}>{quotedTextFromBible.textElzs}</Text>
+        ) : null}
+
       </div>
     })}
   </>;

@@ -1,6 +1,6 @@
 import { Card, Container, List, Title } from "@mantine/core";
 import Link from "next/link";
-import { getNoteNumberString, getNoteNumberUpperString } from "../../lib/data/utils/notesNumbersSymbols";
+import { getNoteNumberString, getNoteNumberUpperString } from "../../lib/utils/notesNumbersSymbols";
 import { gsap } from "gsap/dist/gsap";
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
 import classes from './skTextContentBlockDesktop.module.scss';

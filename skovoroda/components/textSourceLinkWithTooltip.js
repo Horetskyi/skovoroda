@@ -1,5 +1,5 @@
 import { Tooltip } from "@mantine/core";
-import { getNoteNumberString } from "../lib/data/utils/notesNumbersSymbols";
+import { getNoteNumberString } from "../lib/utils/notesNumbersSymbols";
 import classes from './textSourceLinkWithTooltip.module.scss';
 
 export default function LinkToSource(props) {

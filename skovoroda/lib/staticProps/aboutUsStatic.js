@@ -1,4 +1,4 @@
-import { parseFileContent } from "../data/utils/readingTextsUtils";
+import { parseFileContent } from "../utils/readingTextsUtils";
 import { aboutUsPageKey } from "../skovorodaConstants";
 
 const content1 = `

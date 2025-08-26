@@ -1,5 +1,5 @@
 import { SkovorodaSourcesArray } from "../data/skovorodaSources";
-import { getNoteNumberString } from "../data/utils/notesNumbersSymbols";
+import { getNoteNumberString } from "../utils/notesNumbersSymbols";
 import { readAllTreatises } from "../dataReaders/treatisesReader";
 import { treatisePageKey } from "../skovorodaConstants";
 import { newNotesService } from "./commonContent";

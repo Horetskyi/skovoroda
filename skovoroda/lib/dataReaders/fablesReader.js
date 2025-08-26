@@ -1,9 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { skTranslatorsV2 } from "../data/skovorodaTranslators";
-import { parseFileContent } from "../data/utils/readingTextsUtils";
+import { parseFileContent } from "../utils/readingTextsUtils";
 import { SkImagesArray } from "../data/images/skImages";
-import { fixText } from "./auxiliary";
 
 const fablesImages = SkImagesArray.filter(image => image.fableNumber);
 
@@ -33,7 +32,6 @@ function readAllFablesInDirectory(directoryName) {
       if (!metadataFileContent || !metadataFileContent.length) {
         return undefined;
       }
-      metadataFileContent = fixText(metadataFileContent);
       const metadata = JSON.parse(metadataFileContent);
       const translator = skTranslatorsV2.find(translator => translator.translatorId === metadata.translatorId);
       metadata.urlId = `fable-${metadata.fableNumber}-${translator.urlId}`;
@@ -104,7 +102,6 @@ function readCommonMetadataInDirectory(directoryName) {
     if (!fileString || !fileString.length) {
       return undefined;
     }
-    fileString = fixText(fileString);
     const metadata = JSON.parse(fileString);
     return metadata;
   }).filter(item => item);

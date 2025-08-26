@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { translatorNamesIdsMap } from "../data/skovorodaTranslators";
-import { parseFileContent } from "../data/utils/readingTextsUtils";
+import { parseFileContent } from "../utils/readingTextsUtils";
 
 function getLettersDirectoryPath(key) {
   return path.join(process.cwd(), "lib", "data", key);

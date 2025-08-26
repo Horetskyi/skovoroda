@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { fixText } from "./auxiliary";
-import { parseFileContent } from "../data/utils/readingTextsUtils";
+import { parseFileContent } from "../utils/readingTextsUtils";
 import { SkImagesArray } from "../data/images/skImages";
 import { readFileSyncOrDefault } from "./dataReaderHelper";
 import { calculateTextStatistics } from "./details/calculateTextStatistics";
@@ -25,7 +24,6 @@ export function readAllTreatises(options) {
       if (!metadataFileContent || !metadataFileContent.length) {
         return undefined;
       }
-      metadataFileContent = fixText(metadataFileContent);
       const metadata = JSON.parse(metadataFileContent);
 
       // Transform zmist.list (pass filename for SEED support)

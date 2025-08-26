@@ -1,6 +1,6 @@
-import { Card, Checkbox, Container, Select, Slider, Space, Textarea, Title } from "@mantine/core";
+import { Checkbox, Container, Select, Space, Textarea, Title } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { getNoteNumberString } from "../lib/data/utils/notesNumbersSymbols";
+import { getNoteNumberString } from "../lib/utils/notesNumbersSymbols";
 import { utils1PageKey } from "../lib/skovorodaConstants";
 import { gsap } from "gsap/dist/gsap";
 import classes from './utils1-destop.module.scss';

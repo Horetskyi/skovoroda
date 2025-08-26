@@ -1,6 +1,6 @@
 import { IconSchool, IconMusic, IconDirections, IconBook, IconStar, IconHome } from '@tabler/icons-react';
 import SkImage from './skImage';
-import { parseFileContent } from '../../lib/data/utils/readingTextsUtils';
+import { parseFileContent } from '../../lib/utils/readingTextsUtils';
 
 export function getBioContent() {
 

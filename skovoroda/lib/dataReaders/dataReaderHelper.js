@@ -1,5 +1,5 @@
 import fs from "fs";
-import { parseFileContent } from "../data/utils/readingTextsUtils";
+import { parseFileContent } from "../utils/readingTextsUtils";
 
 export function readFileSyncOrDefault(path) {
   try {

@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { skTranslatorsV2 } from "../data/skovorodaTranslators";
-import { parseFileContent } from "../data/utils/readingTextsUtils";
+import { parseFileContent } from "../utils/readingTextsUtils";
 import { SkImagesArray } from "../data/images/skImages";
 
 // Filter SkImagesArray for song images (those with songNumber)

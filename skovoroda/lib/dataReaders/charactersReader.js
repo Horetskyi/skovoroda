@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { parseFileContent } from "../data/utils/readingTextsUtils";
+import { parseFileContent } from "../utils/readingTextsUtils";
 import { SkovorodaSourcesArray } from "../data/skovorodaSources";
 import { readAllTreatises } from "./treatisesReader";
 

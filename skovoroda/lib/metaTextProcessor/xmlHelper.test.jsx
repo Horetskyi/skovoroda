@@ -15,7 +15,7 @@ describe('xmlHelper_parseMetaTagsWithTextAndNesting', () => {
     const output = xmlHelper_parseMetaTagsWithTextAndNesting(input);
     expect(output).toEqual([
       { text: 'a ', start: 0 },
-      { text: 'b', start: 2, meta: [{ f: 'i' }] },
+  { text: 'b', start: 2, meta: { f: 'i' } },
       { text: ' c', start: 3 }
     ]);
   });
@@ -28,10 +28,10 @@ describe('xmlHelper_parseMetaTagsWithTextAndNesting', () => {
       {
         text: 'y z w',
         start: 2,
-        meta: [{ a: '1' }],
+  meta: { a: '1' },
         innerParsedTextArray: [
           { text: 'y ', start: 2 },
-          { text: 'z', start: 4, meta: [{ b: '2' }] },
+          { text: 'z', start: 4, meta: { b: '2' } },
           { text: ' w', start: 5 }
         ]
       },
@@ -47,17 +47,61 @@ describe('xmlHelper_parseMetaTagsWithTextAndNesting', () => {
       {
         text: 'long text here',
         start: 5,
-        meta: [{ link: 'https://example.com/' }],
+  meta: { link: 'https://example.com/' },
         innerParsedTextArray: [
           { text: 'long ', start: 5 },
-          { text: 'text', start: 10, meta: [{ f: ['i', 'b'] }] },
+          { text: 'text', start: 10, meta: { f: ['i', 'b'] } },
           { text: ' here', start: 14 }
         ]
       },
       { text: ' another text continueing here ', start: 19 },
-      { text: 'txt her', start: 50, meta: [{ bible: 'ISA.1.2' }] },
+  { text: 'txt her', start: 50, meta: { bible: 'ISA.1.2' } },
       { text: ' eetc ', start: 57 },
-      { text: 'something else', start: 63, meta: [{ f: 'i' }] }
+  { text: 'something else', start: 63, meta: { f: 'i' } }
+    ]);
+  });
+
+  it('parses bible tags', () => {
+    let input = '[BIBLE]REV.12.15.ALLUSION[X]если не оная Змїи́на, Сирéнская Блевóтина[BIBLE]';
+    let output = xmlHelper_parseMetaTagsWithTextAndNesting(input);
+    expect(output).toEqual([
+      { 
+        text: 'если не оная Змїи́на, Сирéнская Блевóтина', 
+        start: 0,
+  meta: { bible: 'REV.12.15.ALLUSION' }
+      },
+    ]);
+    input = 'Text Before [BIBLE]REV.12.15.ALLUSION[X]если не оная Змїи́на, Сирéнская Блевóтина[BIBLE] Text After';
+    output = xmlHelper_parseMetaTagsWithTextAndNesting(input);
+    expect(output).toEqual([
+      {
+        text: 'Text Before ',
+        start: 0,
+      },
+      { 
+        text: 'если не оная Змїи́на, Сирéнская Блевóтина', 
+        start: 12,
+        meta: { bible: 'REV.12.15.ALLUSION' }
+      },
+      {
+        text: ' Text After',
+        start: 53
+      }
+    ]);
+  });
+
+  it('parses bible tags with translation', () => {
+    const input = '[BIBLE]JDG.6.23.NOT_EXACT[X]Мир тебѣ! Не бойся[X]Мир тобі, не бійся, не помреш![BIBLE]';
+    const output = xmlHelper_parseMetaTagsWithTextAndNesting(input);
+    expect(output).toEqual([
+      { 
+        text: 'Мир тебѣ! Не бойся', 
+        start: 0,
+        meta: {
+          bible: 'JDG.6.23.NOT_EXACT',
+          translation: "Мир тобі, не бійся, не помреш!"
+        }
+      },
     ]);
   });
 });

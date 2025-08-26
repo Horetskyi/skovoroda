@@ -5,6 +5,11 @@
  *   { text: "...", meta: { ...attributes... }, start: <number>, innerParsedTextArray: [...] }
  */
 export function xmlHelper_parseMetaTagsWithTextAndNesting(input, visualPos = 0) {
+
+  if (!input || !input.length || typeof input !== "string") return null;
+
+  input = preprocessBibleTags(input);
+  
   const result = [];
   let i = 0;
   let lastTextIndex = 0;
@@ -121,9 +126,24 @@ function parseAttributesForArray(attrString) {
       attrs[k] = attrs[k][0];
     }
   }
-  const arr = [];
-  for (const k in attrs) {
-    arr.push({ [k]: attrs[k] });
-  }
-  return arr.length ? arr : undefined;
+  return Object.keys(attrs).length ? attrs : undefined;
+}
+
+// Handles:
+// [BIBLE]CODE[X]text[BIBLE]  => <meta bible="CODE">text</meta>
+// [BIBLE]CODE[X]text[X]translation[BIBLE] => <meta bible="CODE" translation="translation">text</meta>
+function preprocessBibleTags(input) {
+
+  // First, handle the case with translation
+  input = input.replace(
+    /\[(BIBLE|META)\](.*?)(?:\[X\](.*?)(?:\[X\](.*?))?)?\[\1\]/g,
+    (match, f, code, text, translation) => {
+      if (!translation || !translation.length) {
+        return `<meta bible="${code}">${text}</meta>`;
+      }
+      return `<meta bible="${code}" translation="${translation}">${text}</meta>`
+    }
+  );
+
+  return input;
 }

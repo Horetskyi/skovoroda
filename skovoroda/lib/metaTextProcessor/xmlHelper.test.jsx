@@ -61,7 +61,7 @@ describe('xmlHelper_parseMetaTagsWithTextAndNesting', () => {
     ]);
   });
 
-  it('parses bible tags', () => {
+  it('parses legacy bible tags', () => {
     let input = '[BIBLE]REV.12.15.ALLUSION[X]если не оная Змїи́на, Сирéнская Блевóтина[BIBLE]';
     let output = xmlHelper_parseMetaTagsWithTextAndNesting(input);
     expect(output).toEqual([
@@ -90,7 +90,7 @@ describe('xmlHelper_parseMetaTagsWithTextAndNesting', () => {
     ]);
   });
 
-  it('parses bible tags with translation', () => {
+  it('parses legacy bible tags with translation', () => {
     const input = '[BIBLE]JDG.6.23.NOT_EXACT[X]Мир тебѣ! Не бойся[X]Мир тобі, не бійся, не помреш![BIBLE]';
     const output = xmlHelper_parseMetaTagsWithTextAndNesting(input);
     expect(output).toEqual([
@@ -104,4 +104,19 @@ describe('xmlHelper_parseMetaTagsWithTextAndNesting', () => {
       },
     ]);
   });
+  
+  it('parses legacy line formattings', () => {
+    const input = 'Some Text [Center]';
+    const output = xmlHelper_parseMetaTagsWithTextAndNesting(input);
+    expect(output).toEqual([
+      { 
+        text: 'Some Text', 
+        start: 0,
+        meta: {
+          f: 'center'
+        }
+      },
+    ]);
+  });
+
 });

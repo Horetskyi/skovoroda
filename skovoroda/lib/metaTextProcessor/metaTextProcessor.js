@@ -1,4 +1,272 @@
 
+import { getCharacterPath } from "../skovorodaPath";
+import { getOldUaWordExplanations } from "../data/skDictionaryOldua";
+import { NOTES_NUMBERS_SYMBOLS_MAP } from "./notesNumbersSymbols";
+
+export const TextLineFormats = [
+  ["[Center]", "center"],
+  ["[Right]", "right"],
+  ["[Tabs6]", "tabs6"],
+  ["[Tabs5]", "tabs5"],
+  ["[Tabs4]", "tabs4"],
+  ["[Tabs3]", "tabs3"],
+  ["[Tabs2]", "tabs2"],
+  ["[Tabs1]", "tabs1"],
+  ["[Tab6]", "tabs6"],
+  ["[Tab5]", "tabs5"],
+  ["[Tab4]", "tabs4"],
+  ["[Tab3]", "tabs3"],
+  ["[Tab2]", "tabs2"],
+  ["[Tab1]", "tabs1"],
+  ["[LeftNum9]", "leftNum9"],
+  ["[LeftNum8]", "leftNum8"],
+  ["[LeftNum7]", "leftNum7"],
+  ["[LeftNum6]", "leftNum6"],
+  ["[LeftNum5]", "leftNum5"],
+  ["[LeftNum4]", "leftNum4"],
+  ["[LeftNum3]", "leftNum3"],
+  ["[LeftNum2]", "leftNum2"],
+  ["[LeftNum1]", "leftNum1"],
+  ["[Indent]", "indent"],
+].map(value => { return {
+  formatInFile: value[0],
+  format: value[1],
+}});
+const IRM_FORMAT = "[Irm]";
+const LETTER_NUMBER_FORMAT = "[LetterNumber]"; 
+const SONG_NUMBER_FORMAT = "[SongNumber]"; 
+const FABLE_NUMBER_FORMAT = "[FableNumber]"; 
+const LETTER_NOTE_FORMAT = "[LetterNote]"; 
+const SKOVORODA_NOTE_NUMBER_FORMAT = "[SkovorodaNoteNumber]"; 
+const NOTE_NUMBER_FORMAT = "[NoteNumber]"; 
+const MAIN_SECTION_FORMAT = "[MainSection]"; 
+const HEADER2_FORMAT = "[H2]";
+const HEADER3_FORMAT = "[H3]";
+const HEADER4_FORMAT = "[H4]";
+function getNotesRegex() { return new RegExp("[¹²³⁴⁵⁶⁷⁸⁹⁰ᵃᵇᵉᵈᵍ]+", 'g'); }
+// original : "\[\d+\s—\s[А-ЯІ]+\.?\s\d+\]|\[\d+\]"
+function getOurSourcesNotesRegex() { return new RegExp("\\[\\d+\\s—\\s[А-ЯІ]+\\.?\\s\\d+\\]|\\[\\d+\\]", 'giu'); }
+
+function textToExplanations(text) {
+  if (!text || !text.length) {
+    return null;
+  }
+  const regex = /[^\s\.,;:!?\(\)\[\]{}"–—«»…]+/gu;
+  let match;
+  const explanationsData = [];
+  var irmCounter = 0;
+  while ((match = regex.exec(text)) !== null) {
+    const word = match[0];
+    const index = match.index;
+    if (word === "Irm") {
+      irmCounter++;
+    }
+    if (irmCounter % 2 === 1) {
+      continue;
+    }
+    const explanations = getOldUaWordExplanations(word);
+    if (explanations) {
+      const exp = explanations.explanation;
+      if (exp && exp.length) {
+        explanationsData.push({
+          index,
+          length: word.length,
+          explanations: explanations,
+        });
+      }
+    }
+  }
+  return explanationsData;
+}
+
+function transformLineObjectWithOldUaExplanations(lineObject, explanationsData) {
+  if (explanationsData.length == 0) {
+    return;
+  }
+
+  explanationsData.reverse();
+  let text = lineObject.text;
+  const results = [];
+  explanationsData.forEach(exp => {
+    if (results.length != 0) {
+      results.pop();
+    }
+    if (!text) {
+      return;
+    }
+    const beforeNotePart = text.substring(0, exp.index);
+    const notePart = text.substring(exp.index, exp.index + exp.length);
+    const afterNotePart = text.substring(exp.index + exp.length);
+    results.push({ text: afterNotePart });
+    results.push({ text: notePart, explanations: exp.explanations });
+    results.push({ text: beforeNotePart });
+    text = beforeNotePart;
+  });
+  results.reverse();
+  lineObject.text = results;
+}
+
+function transformLineObjectWithOurSourceNotes(lineObject, notesMetadata) {
+  if (notesMetadata.length == 0) {
+    return;
+  }
+
+  notesMetadata.reverse();
+  let text = lineObject.text;
+  const results = [];
+  notesMetadata.forEach(note => {
+    if (results.length != 0) {
+      results.pop();
+    }
+    if (!text) {
+      return;
+    }
+    const beforeNotePart = text.substring(0, note.index);
+    const notePart = text.substring(note.index, note.index + note.length);
+    const afterNotePart = text.substring(note.index + note.length);
+    results.push({ text: afterNotePart });
+    results.push({ text: notePart, sourceId: note.sourceId });
+    results.push({ text: beforeNotePart });
+    text = beforeNotePart;
+  });
+  results.reverse();
+  lineObject.text = results;
+}
+
+function transformLineObjectWithNotes(lineObject, notesMetadata) { 
+  if (notesMetadata.length == 0) {
+    return;
+  }
+  if (lineObject.bibleCode) {
+    return;
+  }
+
+  notesMetadata.reverse();
+  let text = lineObject.text;
+  // const textBefore = text;
+  // const isDebugCase = text.includes('Конечно, троякая');
+  const results = [];
+  notesMetadata.forEach(note => {
+    if (!text) {
+      return;
+    }
+    if (results.length != 0) {
+      results.pop();
+    }
+    const isTextIsString = typeof text === "string";
+    if (!isTextIsString) {
+      console.warn("Expected text to be a string", text);
+    }
+    const beforeNotePart = text.substring(0, note.index);
+    const notePart = text.substring(note.index, note.index + note.length);
+    const afterNotePart = text.substring(note.index + note.length);
+
+    //if (notePart && notePart.trim().length) {
+      if (afterNotePart && afterNotePart.length) {
+        results.push({ ...lineObject, text: afterNotePart });
+      }
+      results.push({ ...lineObject, text: notePart, noteNumber: note.notesNumber });
+      if (beforeNotePart && beforeNotePart.length) {
+        results.push({ ...lineObject, text: beforeNotePart });
+      }
+    // } else {
+    //   results.push({ ...lineObject, text: text });
+    // }
+    text = beforeNotePart;
+    // if (isDebugCase) {
+    //   console.log('DEBUG CASE 1', {
+    //     note, beforeNotePart, notePart, afterNotePart, textBefore, results
+    //   })
+    // }
+  });
+  results.reverse();
+  lineObject.text = results;
+
+  // FIX TABS {
+  if (results.length > 1) {
+    results.forEach((part, index) => {
+      if (index === 0) return;
+      if (part.format && part.format.includes('tabs')) {
+        delete part.format;
+      }
+    })
+  }
+  // FIX TABS }
+
+  // if (isDebugCase) {
+  //   console.log('DEBUG CASE 2', {
+  //     afterText: lineObject.text
+  //   });
+  // }
+}
+
+function transformLineObjectWithIrmologionEtcInner(lineObject, formatInFile, format) {
+  let lineObjectText = lineObject.text;
+  if (!Array.isArray(lineObjectText)) {
+    lineObjectText = [ { ...lineObject } ];
+  }
+  if (!lineObjectText.some(item => item.text.includes(formatInFile))) {
+    return;
+  }
+  const finalResult = [];
+  lineObjectText.forEach(item => {
+    const irmSplit = item.text.split(formatInFile);
+    if (irmSplit.length <= 1) {
+      finalResult.push(item);
+      return;
+    }
+    irmSplit.forEach((text, index) => {
+      if (!text) {
+        return;
+      }
+      if (index % 2 === 0) {
+        finalResult.push({ text: text });
+      } else {
+        finalResult.push({ text: text, format: format });
+      }
+    });
+  });
+  lineObject.text = finalResult;
+}
+
+
+export function transformLineObjectWithIrmologionEtc(lineObject) {
+  transformLineObjectWithIrmologionEtcInner(lineObject, IRM_FORMAT, "irmologion");
+  transformLineObjectWithIrmologionEtcInner(lineObject, "[Underline]", "underline");
+  transformLineObjectWithIrmologionEtcInner(lineObject, "[Italic]", "italic");
+  transformLineObjectWithIrmologionEtcInner(lineObject, "[Bold]", "bold");
+}
+
+function parseNotesNumber(text) {
+  let result = "";
+  [...text].forEach(symbol => {
+    result += NOTES_NUMBERS_SYMBOLS_MAP.get(symbol);
+  });
+  return result;
+}
+
+function parseSourceIdFromRegex(inputString) {
+  const regex = /\[(\d+)(?:\s—\s[А-ЯІ]+\.?\s\d+)?\]/;
+  const match = inputString.match(regex);
+  if (match) {
+    const numberMatch = match[1];
+    const number = parseInt(numberMatch);
+    return number;
+  } 
+  return 0;
+}
+
+function removeEmptyLinesAtTheEnd(parsedContent) {
+  while (parsedContent.length > 0) {
+    const lastLineObject = parsedContent[parsedContent.length - 1];
+    if (!lastLineObject || !lastLineObject.text || (!Array.isArray(lastLineObject.text) && !lastLineObject.text.trim())) {
+      parsedContent.pop();
+    } else {
+      break;
+    }
+  }
+}
+
 export function metaTextProcessor(content, isOldUaText) {
 
   // VALIDATION {

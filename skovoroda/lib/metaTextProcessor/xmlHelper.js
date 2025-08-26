@@ -9,6 +9,7 @@ export function xmlHelper_parseMetaTagsWithTextAndNesting(input, visualPos = 0) 
   if (!input || !input.length || typeof input !== "string") return null;
 
   input = preprocessBibleTags(input);
+  input = preprocessFormattings(input);
   
   const result = [];
   let i = 0;
@@ -129,6 +130,8 @@ function parseAttributesForArray(attrString) {
   return Object.keys(attrs).length ? attrs : undefined;
 }
 
+//-------------------------------------------------------
+
 // Handles:
 // [BIBLE]CODE[X]text[BIBLE]  => <meta bible="CODE">text</meta>
 // [BIBLE]CODE[X]text[X]translation[BIBLE] => <meta bible="CODE" translation="translation">text</meta>
@@ -147,3 +150,49 @@ function preprocessBibleTags(input) {
 
   return input;
 }
+
+//-------------------------------------------------------
+
+export const legacy_formattings_textLineFormats = [
+  ["[Center]", "center"],
+  ["[Right]", "right"],
+  ["[Tabs6]", "tabs6"],
+  ["[Tabs5]", "tabs5"],
+  ["[Tabs4]", "tabs4"],
+  ["[Tabs3]", "tabs3"],
+  ["[Tabs2]", "tabs2"],
+  ["[Tabs1]", "tabs1"],
+  ["[Tab6]", "tabs6"],
+  ["[Tab5]", "tabs5"],
+  ["[Tab4]", "tabs4"],
+  ["[Tab3]", "tabs3"],
+  ["[Tab2]", "tabs2"],
+  ["[Tab1]", "tabs1"],
+  ["[LeftNum9]", "leftNum9"],
+  ["[LeftNum8]", "leftNum8"],
+  ["[LeftNum7]", "leftNum7"],
+  ["[LeftNum6]", "leftNum6"],
+  ["[LeftNum5]", "leftNum5"],
+  ["[LeftNum4]", "leftNum4"],
+  ["[LeftNum3]", "leftNum3"],
+  ["[LeftNum2]", "leftNum2"],
+  ["[LeftNum1]", "leftNum1"],
+  ["[Indent]", "indent"],
+].map(value => { return {
+  formatInFile: value[0],
+  format: value[1],
+}});
+
+function preprocessFormattings(input) {
+  legacy_formattings_textLineFormats.some(lineFormat => {
+    if (input.includes(lineFormat.formatInFile)) {
+      input = input.replace(lineFormat.formatInFile, "").trim();
+      input = `<meta f=\"${lineFormat.format}\">${input}</meta>`;
+      return true;
+    }
+    return false;
+  });
+  return input;
+}
+
+//-------------------------------------------------------

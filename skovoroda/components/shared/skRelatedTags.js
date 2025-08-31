@@ -42,7 +42,7 @@ function getRelatedSourcesTags(relatedSources) {
   });
 }
 
-export default function SkRelatedTags({ type, mainTheme, themes, specialType, relatedSources }) {
+export default function SkRelatedTags({ type, mainTheme, themes, specialType, relatedSources, isMobile }) {
 
   const isThemesExists = themes && themes.length > 0;
   if (!type && !mainTheme && !specialType && !relatedSources && !isThemesExists) {

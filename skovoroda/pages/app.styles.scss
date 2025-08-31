@@ -97,6 +97,9 @@ h1, h2, h3, h4, h5, h6, .headerFont {
 .readFont {
   font-family: "Ysabeau";
 }
+.linkColor {
+  color: var(--mantine-color-blue-7) !important;
+}
 .linkWithoutDecoration {
   text-decoration: none;
   transition: color 0.2s ease-in-out;

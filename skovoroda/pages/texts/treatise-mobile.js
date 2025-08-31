@@ -1,4 +1,4 @@
-import { Checkbox, Container, Group, List, Stack, Text, TextInput, Title } from '@mantine/core';
+import { Checkbox, Container, Group, List, Space, Stack, Text, TextInput, Title } from '@mantine/core';
 import Link from 'next/link';
 import { SkovorodaTreatisePath, pathJoin } from '../../lib/skovorodaPath';
 import SkMetaTextView from '../../components/shared/skMetaTextView';
@@ -13,6 +13,7 @@ import classes from './treatise-mobile.module.scss';
 import useTreatiseFilter from '../../hooks/useTreatiseFilter';
 import SkTextLink from '../../components/shared/skTextLink';
 import { recommendedTreatisesList } from '../../lib/data/treatises/generic/treatisesGenericData';
+import SkH2MobileV2 from '../../components/shared/skH2MobileV2';
 
 export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) {
   
@@ -26,10 +27,11 @@ export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) 
 
   return <>
 
-    <SkH1Mobile text={trearisesContent.h1} />
+    <SkH1Mobile text={trearisesContent.h1} withBlueImage={true} />
 
     {/* Recommended List */}
-    <SkH2Mobile text={trearisesContent.h2Recommended} mt="md" />
+    <Space h="md" />
+    <SkH2MobileV2 text={trearisesContent.h2Recommended} isAlternate={true} />
     <SkColoredContainerMobile px="md">
       <List type="ordered" spacing={"md"}>
         {recommendedTreatisesList.map((treatise, index) => {

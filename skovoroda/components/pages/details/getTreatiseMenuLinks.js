@@ -1,4 +1,5 @@
-export default function getTreatiseMenuLinks(treatise) {
+
+export default function getTreatiseMenuLinks(treatise, sourcesParams, skovorodaTextSourcesData) {
 
   const preferedVersion = treatise.versions.find(v => v.preferedVersion);
   const preferedTitle = preferedVersion.title;
@@ -7,6 +8,13 @@ export default function getTreatiseMenuLinks(treatise) {
   const isZmistAvailable = treatise.zmist && treatise.zmist.list && treatise.zmist.list.length;
 
   const links = [];
+  if (treatise.introContent2 && treatise.introContent2.lines && treatise.introContent2.lines.length) {
+    links.push({
+      href: "#description",
+      text: "Опис книги",
+      title: "Опис книги - " + preferedTitle,
+    });
+  }
   if (isZmistAvailable) {
     links.push({
       href: "#zmist",
@@ -26,5 +34,20 @@ export default function getTreatiseMenuLinks(treatise) {
     text: "Завантажити",
     title: "Завантажити - " + preferedTitle,
   });
+  if (skovorodaTextSourcesData && skovorodaTextSourcesData.length) {
+    links.push({
+      href: "#skovoroda-sources",
+      text: "Джерела Сковороди",
+      title: "Джерела Сковороди - " + preferedTitle,
+    });
+  }
+  const isSources = sourcesParams && sourcesParams.length > 0;
+  if (isSources) {
+    links.push({
+      href: "#sources",
+      text: "Джерела",
+      title: "Джерела - " + preferedTitle,
+    });
+  }
   return links;
 }

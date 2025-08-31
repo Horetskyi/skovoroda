@@ -84,7 +84,6 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
   return <>
     
     <SkH1Desktop key="h1" text={preferedTitle} color={highlightColor} maxWidth={treatise.maxTitleWidth} isV2={true} withBlueImage={true} />
-  
     
     <SkColoredContainerDesktop py={0}>
       
@@ -105,14 +104,14 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
             }
           </div>
           : null}
-        <div>
+        {treatise.introContent2 ? <div>
           <SkMetaTextView metaText={treatise.introContent2} otherArgs={{isv2: true, justify: false}} />
-        </div>
+        </div> : null}
       </div> : null}
 
       {/* Зміст */}
       { isZmistAvailable ? <>
-        <SkH2DesktopV2 text="Зміст твору" mt={treatise.image || treatise.introContent2 ? "xl" : 0} mb="lg" id="zmist" />
+        <SkH2DesktopV2 text="Зміст твору" mt={(treatise.image || treatise.introContent2) ? "xl" : 0} mb="lg" id="zmist" />
         <List spacing="xs" mb="xl" size="sm" className={classes.zmistList} icon={<ZmistBullet />}>
           { treatise.zmist.list.map((item, index) => {
             return <ZmistItem key={`zmist_${index}`} index={index} item={item} chipsWithoutBackground={true} />;

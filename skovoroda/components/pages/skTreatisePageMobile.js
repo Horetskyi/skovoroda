@@ -28,11 +28,11 @@ export default function SkTreatisePageMobile({ treatise, sources, translators, s
   const translatorLabel = "Перекладач: ";
   const isQuotesAvailable = treatise.quotes && treatise.quotes.length;
   const isZmistAvailable = treatise.zmist && treatise.zmist.list && treatise.zmist.list.length;
-  const links = getTreatiseMenuLinks(treatise);
   const sourcesParams = [];
   if (treatise.image) {
     sourcesParams.push(getIllustrationSourceParam(treatise.image));
   }
+  const links = getTreatiseMenuLinks(treatise, sourcesParams, skovorodaTextSourcesData);
   const videoBlock = VideoBlockMobile(treatise);
   const highlightColor = treatise.image ? treatise.image.highlightColor : null;
 
@@ -91,19 +91,22 @@ export default function SkTreatisePageMobile({ treatise, sources, translators, s
         <Space h="lg" />
       </> : null}
       
-     
       {/* Зміст */}
       { isZmistAvailable ? <>
+        <Space h={(treatise.image || treatise.introContent2) ? "xl" : 0}/>
         <SkH2Mobile text="Зміст твору" mb="lg" id="zmist" />
         <List spacing="md" mb="lg" size="sm" className={classes.zmistList} icon={<ZmistBullet />}>
           { treatise.zmist.list.map((item, index) => {
-            return <ZmistItem key={`zmist_${index}`} index={index} item={item} />;
+            return <ZmistItem key={`zmist_${index}`} index={index} 
+              item={item} 
+              chipsWithoutBackground={true}
+              isMobile={true} />;
           })}
         </List>
       </> : null}
 
       { isQuotesAvailable ? <>
-        <SkH2Mobile id="quotes" text="Цитати" mb="md" />
+        <SkH2Mobile id="quotes" mt={"xl"} text="Цитати" mb="md" />
         <SkQuotesDesktop quotes={treatise.quotes} />
       </> : null}
 

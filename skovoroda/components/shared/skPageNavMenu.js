@@ -32,7 +32,7 @@ export default function SkPageNavMenu({ links, isDesktop }) {
     <Text className={`${classes.topLabelMobile} firstFont`} mb="sm">
       Вміст веб-сторінки:
     </Text>
-    <List>
+    <List type="ordered">
       {links.map((link) => (
         <List.Item key={link.text}>
           <SkTextLink 
@@ -40,8 +40,9 @@ export default function SkPageNavMenu({ links, isDesktop }) {
             text={link.text}
             href={link.href}
             title={link.title || link.text}
-            className={`firstFont ${classes.fontMediumSize}`} 
+            className={`firstFont ${classes.fontMediumSize} linkColor`} 
             isWidthLimited={true}
+            onHoverStylesOnly={true}
           />
         </List.Item>
       ))}

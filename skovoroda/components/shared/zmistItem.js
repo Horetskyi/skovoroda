@@ -7,7 +7,7 @@ import { IconDots, IconMail, IconMessages, IconMusic, IconPaw, IconSeeding, Icon
 import Link from "next/link";
 import SkMetaTextView from "./skMetaTextView";
 
-export function ZmistItem({ item, index, chipsWithoutBackground }) {
+export function ZmistItem({ item, index, chipsWithoutBackground, isMobile }) {
 
   const hasReadLink = item.read && item.read.length;
   const isLetter = item.type === "intro_letter";
@@ -46,7 +46,7 @@ export function ZmistItem({ item, index, chipsWithoutBackground }) {
 
   const tagsClass = `${classes.tags} ${chipsWithoutBackground ? classes.chipsWithoutBackground : ''}`
   const tagsView = <div className={tagsClass}>
-    <SkRelatedTags type={item.type} mainTheme={item.mainTheme} specialType={item.specialType} />
+    <SkRelatedTags type={item.type} mainTheme={item.mainTheme} specialType={item.specialType} isMobile={isMobile} />
   </div>;
 
   return (
@@ -61,7 +61,7 @@ export function ZmistItem({ item, index, chipsWithoutBackground }) {
         <span>
           {hasReadLink 
             ? <span>{leftIcon}<SkTextLink href={getReadPath(item.read)} text={item.title} title={`Читати \"${item.title}\"`} />{iconInline}{tagsView}</span>
-            : <span className={classes.title}>{leftIcon}{item.title}{iconInline}{tagsView}</span>}
+            : <span className={`${classes.title} ${isMobile ? classes.mobileTitle : ''}`}>{leftIcon}{item.title}{iconInline}{tagsView}</span>}
         </span>
 
         {/* Render seedContent if present */}

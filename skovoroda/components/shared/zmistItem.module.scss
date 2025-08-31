@@ -30,6 +30,9 @@
   display: inline-block;
   margin-left: 12px;
 }
+.chipsWithoutBackground * {
+  background: none !important;
+}
 
 .listItem {
   padding: 2px 16px;

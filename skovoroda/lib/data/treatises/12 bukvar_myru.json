@@ -62,7 +62,7 @@
       },
       {
         "title": "Байка про котів",
-        "type": "parable",
+        "type": "fable",
         "mainTheme": "Сродність",
         "read": "parable_about_cats",
         "typeDisplayHint": "paw"
@@ -103,7 +103,7 @@
       {
         "title": "Езопова байка",
         "mainTheme": "Сродність",
-        "type": "parable",
+        "type": "fable",
         "typeDisplayHint": "paw",
         "read": "aesops_fable_about_the_wolf"
       }

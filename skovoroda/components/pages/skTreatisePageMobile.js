@@ -74,7 +74,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators, s
   }
 
   return <>
-    <SkH1Mobile text={preferedTitle} color={highlightColor} />
+    <SkH1Mobile text={preferedTitle} color={highlightColor} withBlueImage={true} />
     <SkColoredContainerMobile px="md">
 
       {treatise.image ? 
@@ -82,13 +82,15 @@ export default function SkTreatisePageMobile({ treatise, sources, translators, s
           <SkImage image={treatise.image} priority={true} optimize={true} gentlyShadow={true} fullWidth={true} />
         </div>
         : null}
+        
+      <SkPageNavMenu links={links} isDesktop={false}/>
 
       {treatise.introContent2 && treatise.introContent2.lines && treatise.introContent2.lines.length ? <>
-        <SkMetaTextView metaText={treatise.introContent2} isMobile={true} otherArgs={{ isv2: true, justify: false }} />
+        <SkH2Mobile text="Опис Книги" mt="xl" mb="md" id="description" />
+        <SkMetaTextView metaText={treatise.introContent2} isMobile={true} otherArgs={{ isv2: true }} />
         <Space h="lg" />
       </> : null}
       
-      <SkPageNavMenu links={links} isDesktop={false}/>
      
       {/* Зміст */}
       { isZmistAvailable ? <>

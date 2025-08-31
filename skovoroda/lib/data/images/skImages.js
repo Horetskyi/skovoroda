@@ -274,7 +274,8 @@ export const SkImages = {
   narcisByOlenka: buildTextImage('treatise', "narcis",  "/images/treatise/NarcisOlenkaImg1.webp", "olenka", "Наркіс. Розмова про те: Пізнай себе", 900, 1125),
   ubohyiZhaivoronok: buildTextImage('treatise', "ubohii_zhaivoronok",  "/images/treatise/Ubohii_Zhaivoronok.webp", "zmiika", "Убогий Жайворонок", 900, 1260),
   dveriDobronravia: buildTextImage('treatise', "vstupni_dveri_do_khrystyianskoi_dobronravnosti",  "/images/treatise/The Door to Christian Morality.webp", "olenka", "Вступні двері до християнської добронравності", 1960, 1400, "#192539", [ "fullWidth" ]),
-  
+  bukvarMyru: buildTextImage('treatise', 'bukvar_myru', "/images/fables/Fable 20 - Verbliud i Olen - Skovoroda.webp", 'pryanya', 'Розмова, названа Алфавіт, або Буквар миру', 900, 1260, "#3f3d3d"),
+
   parable_about_cats: buildTextImage('read', "parable_about_cats",  "/images/treatise/Bukvar Myru - Parable about cats.webp", "polik", "Байка про Котів", 900, 1714),
   oznaky_srodnostei: buildTextImage('read', "oznaky_srodnostei",  "/images/treatise/Bukvar Myru - Oznaky srodnostei.webp", "polik", "Ознаки деяких сродностей", 1200, 1697, "#004E46"),
   aesops_fable_about_the_wolf: buildTextImage('read', "aesops_fable_about_the_wolf",  "/images/treatise/Bukvar Myru - Aesops fable about the wolf.webp", "pryanya", "Байка Езопа про вовка", 1200, 1680, "#585252"),

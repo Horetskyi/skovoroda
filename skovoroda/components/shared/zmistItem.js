@@ -7,7 +7,7 @@ import { IconDots, IconMail, IconMessages, IconMusic, IconPaw, IconSeeding, Icon
 import Link from "next/link";
 import SkMetaTextView from "./skMetaTextView";
 
-export function ZmistItem({ item, index }) {
+export function ZmistItem({ item, index, chipsWithoutBackground }) {
 
   const hasReadLink = item.read && item.read.length;
   const isLetter = item.type === "intro_letter";
@@ -44,7 +44,8 @@ export function ZmistItem({ item, index }) {
 
   const itemMl = item.indent && item.indent > 0 ? item.indent * 36 : 0;
 
-  const tagsView = <div className={classes.tags}>
+  const tagsClass = `${classes.tags} ${chipsWithoutBackground ? classes.chipsWithoutBackground : ''}`
+  const tagsView = <div className={tagsClass}>
     <SkRelatedTags type={item.type} mainTheme={item.mainTheme} specialType={item.specialType} />
   </div>;
 

@@ -1,4 +1,4 @@
-import { isNewTestamentBibleCode, parseBibleCodeInCitation } from "../../shared/bible";
+import { isNewTestamentBibleCode, parseBibleCode, parseBibleCodeInCitation } from "../../shared/bible";
 import { readBibleVerse } from "./bibleReader";
 
 const emptyTextStatistics = {
@@ -45,7 +45,7 @@ http://www.archivioalbani.it/index.php?id=30622#:~:text=The%20first%20verse%20re
  */
 
 /** 
-Calculates statistics for already parsed textContent (see parseFileContent output structure)
+Calculates statistics for already parsed textContent (see metaTextProcessor output structure)
 Returns: {
   bibleCitations: [ { bibleCode, bibleType?, translation?, text? }, ... ], // every occurrence preserved
   bibleStatistics: ??
@@ -60,15 +60,13 @@ Future enhancements:
 - Uncover text like "Наем[ан]" to "Наеман"
 - Language analysis e.g. 20 words greek, 30 words hebrew, etc.
 */
-export function calculateTextStatistics(textContent) {
+export function calculateTextStatistics(metaText) {
   const isStatsFeatureEnabled = true;
   if (!isStatsFeatureEnabled) return null;
 
-  if (!textContent) return emptyTextStatistics;
-  textContent = normalizeTextContent(textContent);
-  if (!Array.isArray(textContent)) return emptyTextStatistics;
+  if (!metaText || !metaText.lines || !metaText.lines.length) return emptyTextStatistics;
 
-  const { fullText, words, bibleCitations } = receiveMoreDetailedInfoFromTextContent(textContent);
+  const { fullText, words, bibleCitations } = receiveMoreDetailedInfoFromTextContent(metaText);
 
   const textTotalSentencesCount = calculateSentencesCount(fullText);
   const textTotalCharactersCount = calculateCharactersCount(fullText);
@@ -101,6 +99,7 @@ export function calculateTextStatistics(textContent) {
 }
 
 function _getRatiosObject(bibleStats, totalStats) {
+  if (!bibleStats) return {};
   const bibleSentencesRatio = bibleStats.bibleCitationsTotalSentencesCount / totalStats.textTotalSentencesCount;
   const bibleCharactersRatio = bibleStats.bibleCitationsTotalCharactersCount / totalStats.textTotalCharactersCount;
   const bibleWordsRatio = bibleStats.bibleCitationsTotalWordsCount / totalStats.textTotalWordsCount;
@@ -229,7 +228,7 @@ function calculateSentencesCount(fullText) {
 }
 
 /** Tech. Private. */
-function receiveMoreDetailedInfoFromTextContent(textContent) {
+function receiveMoreDetailedInfoFromTextContent(metaText) {
   const bibleCitations = [];
   const words = [];
   let fullText = '';
@@ -268,29 +267,26 @@ function receiveMoreDetailedInfoFromTextContent(textContent) {
     }
   }
 
-  function processLineObject(lineObj) {
-    if (!lineObj) return;
-    if (lineObj.bibleCode) {
-      _addBibleCitation(lineObj, sentenceIndex, bibleCitations);
+  function processLinePiece(piece) {
+    if (!piece) return;
+    if (piece.meta && piece.meta.bible) {
+      _addBibleCitation(piece, sentenceIndex, bibleCitations);
     }
-    const lineText = lineObj.text;
-    if (Array.isArray(lineText)) {
-      lineText.forEach(part => {
-        if (!part) return;
-        if (part.bibleCode) {
-          _addBibleCitation(part, sentenceIndex, bibleCitations);
-        }
-        if (typeof part.text === 'string') {
-          processTextString(part.text);
-        }
-      });
-    } else if (typeof lineText === 'string') {
-      if (lineText.trim() === '[FOUNTAIN]') return;
-      processTextString(lineText);
+    if (piece.innerParsedTextArray && piece.innerParsedTextArray.length) {
+      piece.innerParsedTextArray.forEach(processLinePiece);
+    } else {
+      processTextString(piece.text);
     }
   }
 
-  textContent.forEach(processLineObject);
+  function processLineObject(line) {
+    if (!line) return;
+    if (typeof line === 'string') return;
+    if (!Array.isArray(line)) line = [line];
+    line.forEach(processLinePiece);
+  }
+
+  metaText.lines.forEach(processLineObject);
 
   const normalizedBibleCitations = _mergeBibleCitations(bibleCitations);
 
@@ -302,23 +298,24 @@ function receiveMoreDetailedInfoFromTextContent(textContent) {
 }
 
 /** Tech. Private. */
-function _addBibleCitation(obj, sentenceIndex, bibleCitations) {
-  if (!obj.bibleCode || !obj) return;
+function _addBibleCitation(piece, sentenceIndex, bibleCitations) {
+  if (!piece || !piece.meta || !piece.meta.bible) return;
   const citation = {
-    bibleCode: obj.bibleCode,
+    bibleCode: piece.meta.bible,
     sentenceIndex
   };
-  if (obj.translation) {
-    citation.translation = obj.translation;
+  const parsedBibleCode = parseBibleCode(piece.meta.bible);
+  if (piece.meta.translation) {
+    citation.translation = piece.meta.translation;
   }
-  if (obj.text && typeof obj.text === 'string') {
-    citation.text = obj.text;
+  if (piece.text && typeof piece.text === 'string') {
+    citation.text = piece.text;
   }
-  if (obj.bibleType) {
-    citation.bibleType = obj.bibleType;
+  if (parsedBibleCode && parsedBibleCode.bibleType) {
+    citation.bibleType = parsedBibleCode.bibleType;
   }
-  if (obj.isContinue) {
-    citation.isContinue = obj.isContinue;
+  if (parsedBibleCode.isContinue) {
+    citation.isContinue = parsedBibleCode.isContinue;
   }
   parseBibleCodeInCitation(citation);
   bibleCitations.push(citation);
@@ -336,18 +333,4 @@ function _mergeBibleCitations(bibleCitations) {
     }
   });
   return result;
-}
-
-/** Tech. Private. */
-function normalizeTextContent(textContent) {
-  if (!Array.isArray(textContent)) {
-    const merged = [];
-    ['beforeMain', 'main', 'afterMain'].forEach(k => {
-      if (textContent[k] && Array.isArray(textContent[k])) {
-        merged.push(...textContent[k]);
-      }
-    });
-    textContent = merged;
-  }
-  return textContent;
 }

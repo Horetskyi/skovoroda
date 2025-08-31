@@ -1,7 +1,7 @@
 import { Checkbox, Container, Group, List, Stack, Text, TextInput, Title } from '@mantine/core';
 import Link from 'next/link';
 import { SkovorodaTreatisePath, pathJoin } from '../../lib/skovorodaPath';
-import SkTextContentBlockDesktop from '../../components/shared/skTextContentBlockDesktop';
+import SkMetaTextView from '../../components/shared/skMetaTextView';
 import SkNote from '../../components/shared/skNote';
 import { getTreatisesPageProps } from '../../lib/staticProps/trearisesStatic';
 import { trearisesContent } from '../../lib/staticProps/treatisesContent';
@@ -128,7 +128,7 @@ export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) 
         </Title>
 
         {/* Intro Content */}
-        <SkTextContentBlockDesktop textContent={introContent} isv2={true} isMobile={true} />
+        <SkMetaTextView metaText={introContent} otherArgs={{isv2: true}} isMobile={true} />
         
         {/* Dates Text */}
         <Container my="sm" px="0" py="6px" className={classes.dates}>
@@ -158,7 +158,7 @@ export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) 
     {/* Notes */}
     <SkColoredContainerMobile color={"gray.0"} px="md">
       <SkH2Mobile text={trearisesContent.h2Notes} mb="md"/>
-      <SkTextContentBlockDesktop textContent={sourcesTextContent} isv3={true} isMobile={true} />
+      <SkMetaTextView metaText={sourcesTextContent} otherArgs={{isv3: true}} isMobile={true} />
     </SkColoredContainerMobile>
   </>
 }

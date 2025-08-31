@@ -5,7 +5,7 @@ import { getReadPath } from "../../lib/skovorodaPath";
 import SkTextLink from "./skTextLink";
 import { IconDots, IconMail, IconMessages, IconMusic, IconPaw, IconSeeding, IconStar } from "@tabler/icons-react";
 import Link from "next/link";
-import SkTextContentBlockDesktop from "./skTextContentBlockDesktop";
+import SkMetaTextView from "./skMetaTextView";
 
 export function ZmistItem({ item, index }) {
 
@@ -65,7 +65,7 @@ export function ZmistItem({ item, index }) {
 
         {/* Render seedContent if present */}
         {item.type === "seed" && item.seedContent ? <>
-          <SkTextContentBlockDesktop textContent={item.seedContent} isv3={true} plusClassName={classes.seedContent} />
+          <SkMetaTextView metaText={item.seedContent} otherArgs={{isv3: true, plusClassName: classes.seedContent}} />
         </> : null}
 
       </div>

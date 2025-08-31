@@ -1,6 +1,6 @@
 import { Center, Container, Space } from "@mantine/core";
 import SkH1Mobile from "../shared/skH1Mobile";
-import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
+import SkMetaTextView from "../shared/skMetaTextView";
 import SkImage from "../shared/skImage";
 import SkRelatedTags from "../shared/skRelatedTags";
 import SkSourcesContainerMobile from "../shared/skSourcesContainerMobile";
@@ -39,7 +39,7 @@ export default function ReadPageMobile({ selectedRead }) {
       <Container px={"md"}>
 
         <DownloadsDesktop fileNames={selectedRead.fileNames} withHeader={false} device={'mobile'} textId={selectedRead.urlId} />
-        <SkTextContentBlockDesktop textContent={selectedRead.content} isv2={true} isMobile={true} />
+        <SkMetaTextView metaText={selectedRead.content} otherArgs={{isv2: true}} isMobile={true} />
         <Space h="md" />
         <NotesDesktop notes={selectedRead.notes} />
         <SkRelatedTags {...selectedRead} />

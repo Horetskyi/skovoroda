@@ -30,7 +30,9 @@ const SkCardWithTwoSelectorsDesktopV2 = memo(function SkCardWithTwoSelectorsDesk
           data={dropdown1.data} 
           value={dropdown1.selectedValue}
           classNames={{
-            input: classes.mantineSelectInput
+            input: `${classes.mantineSelectInput} firstFont`,
+            option: 'firstFont',
+            dropdown: 'firstFont',
           }}
           leftSection={getLeftSectionIcon(language, true)}
           onChange={dropdown1.onChange}
@@ -48,7 +50,9 @@ const SkCardWithTwoSelectorsDesktopV2 = memo(function SkCardWithTwoSelectorsDesk
           data={dropdown2.data} 
           value={dropdown2.selectedValue}
           classNames={{
-            input: classes.mantineSelectInput
+            input: `${classes.mantineSelectInput} firstFont`,
+            option: 'firstFont',
+            dropdown: 'firstFont',
           }}
           onChange={dropdown2.onChange}
           comboboxProps={{ keepMounted: true, middlewares: { flip: false, shift: false } }}

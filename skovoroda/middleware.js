@@ -64,7 +64,7 @@ export function middleware(request) {
     const newPath = path.includes(SkovorodaConstants.mobileEnding) || path.includes(SkovorodaConstants.desktopEnding) 
       ? path
       : pathName + deviceEnding + (search ? search + deviceEnding : "");
-    console.log("REWRITE: ", path, newPath);
+    // console.log("REWRITE: ", path, newPath);
     return NextResponse.rewrite(new URL(newPath, request.url));
   }
  

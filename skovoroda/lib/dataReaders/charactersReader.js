@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
-import { parseFileContent } from "../utils/readingTextsUtils";
 import { SkovorodaSourcesArray } from "../data/skovorodaSources";
 import { readAllTreatises } from "./treatisesReader";
+import { metaTextProcessor } from "../metaTextProcessor/metaTextProcessor";
 
 export function readAllCharacters() {
 
@@ -22,7 +22,7 @@ export function readAllCharacters() {
       const metadata = JSON.parse(metadataFileContent);
 
       metadata.about.forEach(item => {
-        item.text = parseFileContent(item.text);
+        item.text = metaTextProcessor(item.text);
         const source = allSources.find(s => s.sourceId === item.sourceId);
         item.source = source;
       });

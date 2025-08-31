@@ -42,30 +42,28 @@ export const SkovorodaConstants = {
     return metaDescription;
   },
   
-  contentToMetaDescription: function(content, initialMetaDescription, lastTryDescription) {
+  contentToMetaDescription: function(metaText, initialMetaDescription, lastTryDescription) {
     
     var metaDescription = initialMetaDescription || "";
 
-    if (!content || (!content.length && !content.main)) return lastTryDescription ? lastTryDescription : metaDescription;
-    if (content.main) {
-      content = content.main;
-    }
+    if (!metaText || !metaText.lines || !metaText.lines.length) return lastTryDescription ? lastTryDescription : metaDescription;
+    
+    // TODO: Use text starting from MainContent part
 
     const recommendedDescriptionLength = this.recommendedMetaDescriptionLength;
     var contentIndex = 0;
-    while (metaDescription.length < recommendedDescriptionLength && contentIndex < content.length) {
-      const lineObject = content[contentIndex];
-      const contentArray = Array.isArray(lineObject.text) ? lineObject.text : [lineObject];
-      const text = contentArray
-        .filter(line => !line.noteNumber && !line.isNoteBeginning)
-        .map(line => line.text)
-        .join("");
-
-      if (text.length + metaDescription.length <= recommendedDescriptionLength) {
-        metaDescription += " " + text;
-      } else {
-        metaDescription += " " + text.substring(0, recommendedDescriptionLength - metaDescription.length) + "...";
-        break;
+    while (metaDescription.length < recommendedDescriptionLength && contentIndex < metaText.lines.length) {
+      var lineObject = metaText.lines[contentIndex];
+      if (!Array.isArray(lineObject)) lineObject = [lineObject];
+      const lineText = lineObject.map(piece => piece.text).join(" ");
+      const text = lineText; // TODO: Remove note numbers
+      if (text) {
+        if (text.length + metaDescription.length <= recommendedDescriptionLength) {
+          metaDescription += " " + text;
+        } else {
+          metaDescription += " " + text.substring(0, recommendedDescriptionLength - metaDescription.length) + "...";
+          break;
+        }
       }
       contentIndex++;
     }

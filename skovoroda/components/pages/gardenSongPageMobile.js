@@ -3,8 +3,6 @@ import { Container, Group, Space } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
 import { SkovorodaGardenPath, pathJoin } from '../../lib/skovorodaPath';
-import SkH2Desktop from '../shared/skH2Desktop';
-import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
 import { nextAvailableNumber, prevAvailableNumber, randomNumberInRangeExcept } from '../../lib/auxiliary';
 import classes from './gardenSongPageMobile.module.scss';
 import { prepareGardenSongsDropdownItems, prepareGardenSongsTranslatorsDropdownItems } from '../../lib/staticProps/gardenSongLogic';
@@ -16,6 +14,7 @@ import { MusicBlockMobile } from './details/musicBlockMobile';
 import SkImage from '../shared/skImage';
 import { getBookSourceParam, getIllustrationSourceParam } from './details/pureFunctions';
 import SkH2Mobile from '../shared/skH2Mobile';
+import SkMetaTextView from '../shared/skMetaTextView';
 
 export default function GardenSongPageMobile({ 
   allSongsMetadata,
@@ -130,13 +129,11 @@ export default function GardenSongPageMobile({
       <SkH1Mobile text={h1Text} color={highlightColor} />
       <Space h="lg"/>
 
-      <div className={`normalContentText normalContentText_withoutIndent`}>
-        <SkTextContentBlockDesktop textContent={selectedSong.songContent} isv3={true} isMobile={true} />
-      </div>
+      <SkMetaTextView metaText={selectedSong.songContent} otherArgs={{ isv3: true }} isMobile={true} />
 
       {(selectedNotes && selectedNotes.length) ? <>
         <SkH2Mobile my="lg" text={"Примітки"}/>
-        <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} isMobile={true} />
+        <SkMetaTextView metaText={selectedNotes} isMobile={true} isNotes={true} /> 
       </> : null}
     </Container>
 

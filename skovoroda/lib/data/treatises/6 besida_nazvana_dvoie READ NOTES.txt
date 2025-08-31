@@ -30,8 +30,8 @@
 [NoteNumber] 30 [NoteNumber] Парафраза Книги пророка Ісаї 49: 26. Пор.: [Irm]ѓзъ гDь и3збaвивый тS[Irm].
 [NoteNumber] 31 [NoteNumber] Парафраза Книги пророка Ісаї 28: 16. Пор.: [Irm]полагaю во њсновaніе сіHну кaмень многоцёненъ, и3збрaнъ, краеуго1ленъ[Irm].
 [NoteNumber] 32 [NoteNumber] Книга пророка Ісаї 30: 15.
-[NoteNumber] 33 [NoteNumber] Це – 4-а строфа [LINK]https://www.skovoroda.club/texts/garden/song-14-hotkevych[LINK_SEPARATOR]14-ої пісні «Саду божественных пѣсней»[LINK].
-[NoteNumber] 34 [NoteNumber] Це – варіант 7-ої строфи [LINK]https://www.skovoroda.club/texts/garden/song-14-hotkevych[LINK_SEPARATOR]14-ої пісні «Саду божественных пѣсней»[LINK].
+[NoteNumber] 33 [NoteNumber] Це – 4-а строфа <meta link="https://www.skovoroda.club/texts/garden/song-14-hotkevych">14-ої пісні «Саду божественных пѣсней»</meta>.
+[NoteNumber] 34 [NoteNumber] Це – варіант 7-ої строфи <meta link="https://www.skovoroda.club/texts/garden/song-14-hotkevych">14-ої пісні «Саду божественных пѣсней»</meta>.
 [NoteNumber] 35 [NoteNumber] У грецькій міфології сирени – це морські чудовиська, напівжінки-напівптахи, що мешкали на острові десь між Італією та Сицилією. Вони зваблювали мореплавців на погибель своїми чарівними голосами. Сирени – надзвичайно поширений бароковий образ світових зваб. (Використано примітку з Хоткевича замість Ушкалова).
 [NoteNumber] 36 [NoteNumber] Очевидно, Сковорода має на думці згадувану в Біблії любов Божих синів до людських доньок: [Irm]И#споли1ни же бsху на земли2 во дни6 њ1ны: и3 пото1мъ, є3гдA вхождaху сы1нове б9іи къ дще1ремъ человёчєскимъ, и3 раждaху себЁ: тjи бsху и3споли1ни, и5же t вёка, человёцы и3мени1тіи[Irm] (Перша книга Мойсеєва: Буття 6: 4).
 [NoteNumber] 37 [NoteNumber] Фразу [Irm]паде1ніе и3 сокруше1ніе[Irm] взято з Книги пророка Ісаї 51: 19.

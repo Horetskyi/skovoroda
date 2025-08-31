@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { translatorNamesIdsMap } from "../data/skovorodaTranslators";
-import { parseFileContent } from "../utils/readingTextsUtils";
+import { metaTextProcessor } from "../metaTextProcessor/metaTextProcessor";
 
 function getLettersDirectoryPath(key) {
   return path.join(process.cwd(), "lib", "data", key);
@@ -38,7 +38,7 @@ function readLetters(letterType) {
     
     // Content
     const contentString = fs.readFileSync(txtFilePath).toString();
-    const content = parseFileContent(contentString);
+    const content = metaTextProcessor(contentString);
 
     return {
       letterMetadata: letterMetadata,
@@ -59,7 +59,7 @@ function readNotes(letterType) {
     
     const notesMetadata = JSON.parse(fs.readFileSync(jsonFilePath).toString());
     const notesString = fs.readFileSync(txtFilePath).toString();
-    const notes = parseFileContent(notesString);
+    const notes = metaTextProcessor(notesString);
 
     return {
       notes: notes,

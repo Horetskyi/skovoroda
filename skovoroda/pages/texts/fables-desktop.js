@@ -7,7 +7,7 @@ import { getFablesPageProps } from "../../lib/staticProps/fablesStatic";
 import { prepareFables } from "../../lib/staticProps/fablesLogic";
 import { fablesPageContent } from "../../lib/staticProps/fablesContent";
 import SkH2Desktop from "../../components/shared/skH2Desktop";
-import SkTextContentBlockDesktop from "../../components/shared/skTextContentBlockDesktop";
+import SkMetaTextView from "../../components/shared/skMetaTextView";
 import classes from './fables-desktop.module.scss';
 import SkFablesCarousel from "../../components/shared/skFablesCarousel";
 
@@ -42,7 +42,11 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
     {/* FAQ */}
     {fablesTopContent.map((group,index) => {
       function contentBlock(content) {
-        return <SkTextContentBlockDesktop key={group.key + content.key} textContent={content.content} isv2={true} />
+        return <SkMetaTextView 
+          key={group.key + content.key}
+          metaText={content.content}
+          otherArgs={{isv2: true}} 
+        />
       }
       const question = group.contents.find(content => content.key === "question");
       const answer1 = group.contents.find(content => content.key === "answer1");
@@ -51,7 +55,7 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
       return <Container key={group.key} p="0">
         <SkColoredContainerDesktop py="0">
           <Space h="lg"/>
-          <SkH2Desktop text={question.content[0].text} type="qa" />
+          <SkH2Desktop text={question.content.lines[0][0].text} type="qa" />
         </SkColoredContainerDesktop>
         {answer1 ? <SkColoredContainerDesktop pt="md" pb="lg">
           {contentBlock(answer1)}
@@ -73,7 +77,13 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
       {allSources.map((source,index) => {
         const text = `[${source.sourceId}] ${source.sourceFullName}`;
         const mt = index ? "sm" : "0";
-        return <Text id={"sourceId"+source.sourceId} key={"source"+source.sourceId} className="normalContentText normalContentText_withoutIndent" mt={mt}>{text}</Text>
+        return <Text 
+          id={"sourceIdInBlock"+source.sourceId} 
+          key={"source"+source.sourceId} 
+          className="normalContentText normalContentText_withoutIndent" 
+          mt={mt}>
+          {text}
+        </Text>
       })}
       <Space h="xl"/>
     </SkColoredContainerDesktop>

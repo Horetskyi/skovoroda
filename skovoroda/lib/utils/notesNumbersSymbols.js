@@ -9,6 +9,8 @@ NOTES_NUMBERS_SYMBOLS_MAP.set('ᵇ', 'b');
 NOTES_NUMBERS_SYMBOLS_MAP.set('ᵉ', 'e');
 NOTES_NUMBERS_SYMBOLS_MAP.set('ᵈ', 'd');
 NOTES_NUMBERS_SYMBOLS_MAP.set('ᵍ', 'g');
+NOTES_NUMBERS_SYMBOLS_MAP.set('⁽', '(');
+NOTES_NUMBERS_SYMBOLS_MAP.set('⁾', ')');
 NOTES_NUMBERS_SYMBOLS_MAP.forEach((value, key) => {
   NOTES_NUMBERS_SYMBOLS_MAP_REVERSE.set("" + value, key);
 });
@@ -28,4 +30,14 @@ export function getNoteNumberString(number) {
     return number;
   }
   return [...str].map(symbol => NOTES_NUMBERS_SYMBOLS_MAP_REVERSE.get(symbol)).join("");
+}
+
+export function getNotesRegex() { return new RegExp("[¹²³⁴⁵⁶⁷⁸⁹⁰ᵃᵇᵉᵈᵍ]+", 'g'); }
+
+export function parseNotesNumber(text) {
+  let result = "";
+  [...text].forEach(symbol => {
+    result += NOTES_NUMBERS_SYMBOLS_MAP.get(symbol);
+  });
+  return result;
 }

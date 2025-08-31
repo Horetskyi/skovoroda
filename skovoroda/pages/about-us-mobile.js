@@ -3,7 +3,7 @@ import SkH1Mobile from "../components/shared/skH1Mobile";
 import SkColoredContainerMobile from "../components/shared/skColoredContainerMobile";
 import { getAboutUsPageProps } from "../lib/staticProps/aboutUsStatic";
 import SkH2Mobile from "../components/shared/skH2Mobile";
-import SkTextContentBlockDesktop from "../components/shared/skTextContentBlockDesktop";
+import SkMetaTextView from "../components/shared/skMetaTextView";
 
 export default function AboutUsPage({contentStructure}) {
 
@@ -16,7 +16,7 @@ export default function AboutUsPage({contentStructure}) {
 
       return <SkColoredContainerMobile key={`section-${index}`} px="md">
         {header}
-        <SkTextContentBlockDesktop textContent={section.content} isv2={true} isMobile={true} />
+        <SkMetaTextView metaText={section.content} otherArgs={{isv2: true}} isMobile={true} />
         <Space h={"lg"}/>
       </SkColoredContainerMobile>
     })}

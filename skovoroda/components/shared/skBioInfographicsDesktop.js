@@ -4,7 +4,7 @@ import SkH1Desktop from "./skH1Desktop";
 import SkH2Desktop from "./skH2Desktop";
 import SkColoredContainerDesktop from "./skColoredContainerDesktop";
 import { getBioContent } from "./bioContent";
-import SkTextContentBlockDesktop from "./skTextContentBlockDesktop";
+import SkMetaTextView from "./skMetaTextView";
 
 export default function SkBioInfographicsDesktop({ }) {
   
@@ -30,7 +30,7 @@ export default function SkBioInfographicsDesktop({ }) {
       {args.detailsTextParsed
         ? <>
           <Space h={"sm"}/>
-          <SkTextContentBlockDesktop textContent={args.detailsTextParsed} plusClassName={"normalContentText_lower"} isv2={true} />
+          <SkMetaTextView metaText={args.detailsTextParsed} otherArgs={{isv2: true, plusClassName: "normalContentText_lower"}} />
           <Space h={"xs"}/>
         </>
         : null}

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { SkovorodaGardenPath, pathJoin } from '../../lib/skovorodaPath';
 import SkCardWithTwoSelectorsDesktopV2 from '../shared/skCardWithTwoSelectorsDesktopV2';
 import SkH1Desktop from '../shared/skH1Desktop';
-import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
+import SkMetaTextView from '../shared/skMetaTextView';
 import SkSourcesContainerDesktop from '../shared/skSourcesContainerDesktop';
 import SkButtonDesktop from '../shared/skButtonDesktop';
 import { nextAvailableNumber, prevAvailableNumber, randomNumberInRangeExcept } from '../../lib/auxiliary';
@@ -157,14 +157,12 @@ export default function GardenSongPageDesktop({
 
       <div className={classes.songContainer}>
 
-        <div className={`normalContentText normalContentText_withoutIndent`}>
-          <SkTextContentBlockDesktop textContent={selectedSong.songContent} isv2={true} />
-        </div>
+        <SkMetaTextView metaText={selectedSong.songContent} otherArgs={{isv2: true}} />
 
       </div>
       {(selectedNotes && selectedNotes.length) ? <>
         <SkH2DesktopV2 my="lg" text={"Примітки"}/>
-        <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} />
+        <SkMetaTextView metaText={selectedNotes} otherArgs={{isv3: true}} />
       </> : null}
     </Container>
 

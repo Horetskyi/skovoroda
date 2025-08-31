@@ -1,18 +1,26 @@
 
 $mantine-breakpoint-sm: 900px;
 
-// @font-face {
-//   font-family: 'Caveat';
-//   src: url('/fonts/Caveat/Caveat-VariableFont_wght.ttf') format('truetype');
-//   font-style: normal;
-//   font-weight: 100 700;
-// }
-
 @font-face {
   font-family: 'Oswald';
   src: url('/fonts/Oswald/Oswald-VariableFont_wght.ttf') format('truetype-variations');
   font-weight: 100 1000;
   font-stretch: 25% 151%;
+}
+.firstFont {
+  font-family: 'Oswald';
+  letter-spacing: 0.04rem !important;
+  font-weight: 250 !important;
+  font-size: 1.25rem;
+  line-height: 1.4375rem;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    font-size: 0.9rem;
+    line-height: auto;
+  }
+}
+.disableTextIndent, .disableTextIndent label {
+  text-indent: 0;
 }
 
 @font-face {
@@ -350,7 +358,7 @@ h3 {
   font-size: 18px;
 }
 .sk-global-bible-text {
-  color: #e4a802 !important;
+  color: #d67302 !important;
 }
 .sk-global-bible-link, .sk-global-bible-text {
   font-weight: 400;
@@ -413,4 +421,8 @@ h3 {
   font-weight: 550;
   font-size: 28px;
   margin-top: 6px;
+}
+
+.w_100 {
+  width: 100%;
 }

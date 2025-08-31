@@ -1,6 +1,6 @@
 import { IconSchool, IconMusic, IconDirections, IconBook, IconStar, IconHome } from '@tabler/icons-react';
 import SkImage from './skImage';
-import { parseFileContent } from '../../lib/utils/readingTextsUtils';
+import { metaTextProcessor } from '../../lib/metaTextProcessor/metaTextProcessor';
 
 export function getBioContent() {
 
@@ -53,7 +53,7 @@ export function getBioContent() {
     {
       id: 'childhood',
       text: 'Дитинство в Чорнухах',
-      detailsTextParsed: parseFileContent(childhoodContent),
+      detailsTextParsed: metaTextProcessor(childhoodContent),
       timeText: '1722 р. - 1734 р.',
       locationText: 'Полтавщина, Чорнухи',
       design: childhoodDesign,

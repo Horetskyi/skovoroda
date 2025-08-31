@@ -29,8 +29,11 @@ Initial thoughts: I need text editor similar to Markdown, but with far more feat
 
 ## Examples:
 
+```
 const input = 'text <meta link="https://example.com/">long <meta f="i" f="b">text</meta> here</meta> another text continueing here <meta bible="ISA.1.2">txt her</meta> eetc <meta f="i">something else</meta>';
+```
 
+```
 const output = [
   {
     "text":"text ",
@@ -85,3 +88,4 @@ const output = [
     ]
   }
 ]
+```

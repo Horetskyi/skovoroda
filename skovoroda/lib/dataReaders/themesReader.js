@@ -1,10 +1,10 @@
 import fs from "fs";
 import path from "path";
-import { parseFileContent } from "../utils/readingTextsUtils";
 import { getReadRelatedItem, getTreariseRelatedItem, getTreatiseShortTitle } from "./details/auxiliaryMethods";
 import { readAllTreatises } from "./treatisesReader";
 import { readAllReads } from "./readsReader";
 import { getTreatisePath } from "../skovorodaPath";
+import { metaTextProcessor } from "../metaTextProcessor/metaTextProcessor";
 
 export function readAllThemes() {
 
@@ -67,7 +67,7 @@ export function readAllThemes() {
       if (!txtContentString || !txtContentString.length) {
         txtContentString = null;
       }
-      const introContent = txtContentString ? parseFileContent(txtContentString) : null;
+      const introContent = txtContentString ? metaTextProcessor(txtContentString) : null;
       metadata.content = introContent;
       return metadata;
     })

@@ -1,5 +1,5 @@
 import fs from "fs";
-import { parseFileContent } from "../utils/readingTextsUtils";
+import { metaTextProcessor } from "../metaTextProcessor/metaTextProcessor";
 
 export function readFileSyncOrDefault(path) {
   try {
@@ -18,7 +18,7 @@ export function applyNotesV4(metadata, jsonFilePath) {
   if (!notesString || !notesString.length) {
     notesString = null;
   }
-  const notes = notesString ? parseFileContent(notesString) : null;
+  const notes = notesString ? metaTextProcessor(notesString) : null;
   if (notes) {
     metadata.notes = notes;
   }

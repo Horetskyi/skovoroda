@@ -1,6 +1,6 @@
 import { Container, Space } from "@mantine/core";
 import SkH1Mobile from "../shared/skH1Mobile";
-import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
+import SkMetaTextView from "../shared/skMetaTextView";
 import SkRelatedTags from "../shared/skRelatedTags";
 import SkH2Mobile from "../shared/skH2Mobile";
 import { SkQuotesDesktop } from "../shared/skQuotesDesktop";
@@ -9,7 +9,7 @@ export default function ThemePageMobile({ selectedTheme }) {
   return <>
     <SkH1Mobile text={selectedTheme.h1} />
     <Container mb={"md"}>
-      <SkTextContentBlockDesktop textContent={selectedTheme.content} isv2={true} isMobile={true} />
+      <SkMetaTextView metaText={selectedTheme.content} otherArgs={{isv2: true}} isMobile={true} />
       <Space h={"md"}/>
       <SkRelatedTags relatedSources={selectedTheme.relevantItems}/>
 

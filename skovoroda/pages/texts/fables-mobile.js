@@ -6,7 +6,7 @@ import { prepareFables } from "../../lib/staticProps/fablesLogic";
 import { getFablesPageProps } from "../../lib/staticProps/fablesStatic";
 import SkColoredContainerMobile from "../../components/shared/skColoredContainerMobile";
 import SkH2Mobile from "../../components/shared/skH2Mobile";
-import SkTextContentBlockDesktop from "../../components/shared/skTextContentBlockDesktop";
+import SkMetaTextView from "../../components/shared/skMetaTextView";
 import { fablesPageContent } from "../../lib/staticProps/fablesContent";
 import classes from './fables-mobile.module.scss';
 import SkFablesCarousel from "../../components/shared/skFablesCarousel";
@@ -44,7 +44,11 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
         {/* FAQ */}
         {fablesTopContent.map((group,index) => {
           function contentBlock(content) {
-            return <SkTextContentBlockDesktop key={group.key + content.key} textContent={content.content} isv2={true} isMobile={true} />
+            return <SkMetaTextView 
+              key={group.key + content.key} 
+              metaText={content.content}
+              otherArgs={{isv2: true}}
+              isMobile={true} />
           }
           const question = group.contents.find(content => content.key === "question");
           const answer1 = group.contents.find(content => content.key === "answer1");
@@ -54,7 +58,7 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
           return <Container key={group.key} p="0">
             <SkColoredContainerMobile px="md" py="0">
               <Space h="md"/>
-              <SkH2Mobile text={question.content[0].text} type="qa" />
+              <SkH2Mobile text={question.content.lines[0].text} type="qa" />
             </SkColoredContainerMobile>
             {answer1 ? <SkColoredContainerMobile px="md">
               {contentBlock(answer1)}
@@ -75,7 +79,7 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
             {allSources.map((source,index) => {
               const text = `[${source.sourceId}] ${source.sourceFullName}`;
               const mt = index ? "xs" : "0";
-              return <Text id={"sourceId"+source.sourceId} key={"source"+source.sourceId} className="normalContentText normalContentText_withoutIndent" mt={mt}>{text}</Text>
+              return <Text id={"sourceIdInBlock"+source.sourceId} key={"source"+source.sourceId} className="normalContentText normalContentText_withoutIndent" mt={mt}>{text}</Text>
             })}
           </Container>
         </SkColoredContainerMobile>

@@ -7,7 +7,7 @@ import SkH1Mobile from "../shared/skH1Mobile";
 import SkH2Mobile from "../shared/skH2Mobile";
 import SkPageNavMenu from "../shared/skPageNavMenu";
 import classes from './skTreatisePageMobile.module.scss';
-import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
+import SkMetaTextView from "../shared/skMetaTextView";
 import getTreatiseMenuLinks from "./details/getTreatiseMenuLinks";
 import ZmistBullet from "./details/zmistBullet";
 import { ZmistItem } from "../shared/zmistItem";
@@ -83,8 +83,8 @@ export default function SkTreatisePageMobile({ treatise, sources, translators, s
         </div>
         : null}
 
-      {treatise.introContent2 && treatise.introContent2.length ? <>
-        <SkTextContentBlockDesktop textContent={treatise.introContent2} isMobile={true} isv2={true} justify={false} />
+      {treatise.introContent2 && treatise.introContent2.lines && treatise.introContent2.lines.length ? <>
+        <SkMetaTextView metaText={treatise.introContent2} isMobile={true} otherArgs={{ isv2: true, justify: false }} />
         <Space h="lg" />
       </> : null}
       

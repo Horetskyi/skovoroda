@@ -15,7 +15,7 @@ export default function SkButtonDesktop({ text, onClick, disabled, color }) {
   }
 
   return <Button 
-    className={`normalContentText normalContentText_withoutIndent ${classes.button}`}
+    className={`disableTextIndent firstFont ${classes.button}`}
     variant="filled"
     radius={"sm"}
     color="blue.0"

@@ -5,7 +5,7 @@ import SkMetaTextView from '../../components/shared/skMetaTextView';
 import SkNote from '../../components/shared/skNote';
 import { getTreatisesPageProps } from '../../lib/staticProps/trearisesStatic';
 import { trearisesContent } from '../../lib/staticProps/treatisesContent';
-import { IconChevronRight, IconSearch } from '@tabler/icons';
+import { IconSearch } from '@tabler/icons';
 import SkH1Mobile from '../../components/shared/skH1Mobile';
 import SkColoredContainerMobile from '../../components/shared/skColoredContainerMobile';
 import SkH2Mobile from '../../components/shared/skH2Mobile';
@@ -13,6 +13,7 @@ import classes from './treatise-mobile.module.scss';
 import useTreatiseFilter from '../../hooks/useTreatiseFilter';
 import SkTextLink from '../../components/shared/skTextLink';
 import { recommendedTreatisesList } from '../../lib/data/treatises/generic/treatisesGenericData';
+import RecommendedTreatisesMobile from '../../components/recommendedTreatisesMobile';
 import SkH2MobileV2 from '../../components/shared/skH2MobileV2';
 
 export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) {
@@ -31,25 +32,9 @@ export default function SkTreatisePageMobile({ treatises, sourcesTextContent }) 
 
     {/* Recommended List */}
     <Space h="md" />
-    <SkH2MobileV2 text={trearisesContent.h2Recommended} isAlternate={true} />
+    <SkH2MobileV2 text={trearisesContent.h2Recommended} />
     <SkColoredContainerMobile px="md">
-      <List type="ordered" spacing={"md"}>
-        {recommendedTreatisesList.map((treatise, index) => {
-          const foundTreatise = treatises.find(t => t.urlId === treatise.id);
-          const href = pathJoin(SkovorodaTreatisePath, foundTreatise.urlId);
-          const preferedVersion = foundTreatise.versions.find(v => v.preferedVersion);
-          const preferedTitle = preferedVersion.title;
-          const linkTitle = `${preferedTitle} завантажити переклади, оригінал`;
-          return <List.Item key={index}>
-            <Link href={href} title={linkTitle} className='normalContentText readFont'>
-              {preferedTitle}
-            </Link>
-            <Text className='normalContentText readFont' mt="sm">
-              {treatise.comments}
-            </Text>
-          </List.Item>
-        })}
-      </List>
+      <RecommendedTreatisesMobile recommendedTreatisesList={recommendedTreatisesList} treatises={treatises} />
     </SkColoredContainerMobile>
     
     {/* Full List */}

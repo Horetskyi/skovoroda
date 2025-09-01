@@ -2,7 +2,7 @@
 import { Title } from "@mantine/core";
 import classes from './skH1Mobile.module.scss'; 
 
-export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin }) {
+export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin, mb }) {
   let styleObj = {};
   if (color && color.length) {
     styleObj.color = color;
@@ -25,6 +25,7 @@ export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin })
       px="lg" mx={"auto"} ta={"center"} 
       className={imageClassName} 
       style={styleObj}
+      mb={mb}
     >
       {text}
     </Title>
@@ -35,12 +36,12 @@ export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin })
       <div style={{ position: 'relative' }}>
         <div style={{
           position: 'absolute',
-          top: '-1.5rem',
+          top: '-1rem',
           left: '0.5rem',
           zIndex: -1,
           height: 'calc(100% + 3.2rem)'
         }}>
-          <img src="/images/Blue H1.webp" alt="Blue Background" style={{ width: '100%', opacity: 0.3, height: '100%', objectFit: 'fill' }} />
+          <img src="/images/Blue H1.webp" alt="Blue Background" style={{ width: '100%', opacity: 0.3, height: '100%', objectFit: 'fill', transform: 'scaleY(-1)' }} />
         </div>
         {h1Result}
       </div>

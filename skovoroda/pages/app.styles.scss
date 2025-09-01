@@ -19,6 +19,16 @@ $mantine-breakpoint-sm: 900px;
     line-height: auto;
   }
 }
+.readFontV2 {
+  font-family: "Ysabeau";
+  font-size: 1.25rem;
+  line-height: 1.4375rem;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    font-size: 1.2rem;
+    line-height: auto;
+  }
+}
 .disableTextIndent, .disableTextIndent label {
   text-indent: 0;
 }

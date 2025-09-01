@@ -13,7 +13,7 @@ export default function SkSourcesContainerDesktop({ sources }) {
   }
 
   return <SkColoredContainerDesktop py={0}>
-    <SkH2DesktopV2 text="Джерела" mb="xl" />
+    <SkH2DesktopV2 text="Джерела" mb="xl" id="sources" />
     <Flex direction={"column"} gap={"md"}>
       {sources.map((source, index) => {
         return <div key={source.sourceValue}>

@@ -86,7 +86,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators, s
       <SkPageNavMenu links={links} isDesktop={false}/>
 
       {treatise.introContent2 && treatise.introContent2.lines && treatise.introContent2.lines.length ? <>
-        <SkH2Mobile text="Опис Книги" mt="xl" mb="md" id="description" />
+        <SkH2Mobile text="Опис твору" mt="xl" mb="md" id="description" />
         <SkMetaTextView metaText={treatise.introContent2} isMobile={true} otherArgs={{ isv2: true }} />
         <Space h="lg" />
       </> : null}

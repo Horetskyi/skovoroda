@@ -150,7 +150,7 @@ export default function GardenSongPageDesktop({
           />
         </div>
       ) : null}
-      <SkH1Desktop text={h1Text} color={highlightColor} isV2={true} disableBackground={true} isCurved={true} />
+      <SkH1Desktop text={h1Text} color={highlightColor} isV2={true} disableBackground={true} isCurved={false} />
       <Space h="lg"/>
       
       

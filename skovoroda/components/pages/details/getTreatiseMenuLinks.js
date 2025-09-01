@@ -11,15 +11,15 @@ export default function getTreatiseMenuLinks(treatise, sourcesParams, skovorodaT
   if (treatise.introContent2 && treatise.introContent2.lines && treatise.introContent2.lines.length) {
     links.push({
       href: "#description",
-      text: "Опис книги",
-      title: "Опис книги - " + preferedTitle,
+      text: "Опис твору",
+      title: "Опис твору - " + preferedTitle,
     });
   }
   if (isZmistAvailable) {
     links.push({
       href: "#zmist",
-      text: "Зміст Твору",
-      title: "Зміст Твору - " + preferedTitle,
+      text: "Зміст твору",
+      title: "Зміст твору - " + preferedTitle,
     });
   }
   if (isQuotesAvailable) {

@@ -39,11 +39,11 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
   const isZmistAvailable = treatise.zmist && treatise.zmist.list && treatise.zmist.list.length;
   const zmistSongs = isZmistAvailable ? filterZmistListForSongs(treatise.zmist.list) : [];
   const isZmistSongsAvailable = zmistSongs && zmistSongs.length > 0;
-  const links = getTreatiseMenuLinks(treatise);
   const sourcesParams = [];
   if (treatise.image) {
     sourcesParams.push(getIllustrationSourceParam(treatise.image));
   }
+  const links = getTreatiseMenuLinks(treatise, sourcesParams, skovorodaTextSourcesData);
   const videoBlock = VideoBlockDesktop(treatise);
   const highlightColor = treatise.image ? treatise.image.highlightColor : null;
 
@@ -105,6 +105,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
           </div>
           : null}
         {treatise.introContent2 ? <div>
+          <SkH2DesktopV2 text="Опис твору" mt="0" mb="md" id="description" />
           <SkMetaTextView metaText={treatise.introContent2} otherArgs={{isv2: true, justify: false}} />
         </div> : null}
       </div> : null}

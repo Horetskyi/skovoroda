@@ -7,6 +7,24 @@ import { prepareFrontSkovorodaTextSourcesData } from "./details/prepareFrontSkov
 import { metaTextProcessor } from "../metaTextProcessor/metaTextProcessor";
 
 export function readAllTreatises(options) {
+  const treatises = readAllTreatisesInner(options);
+  treatises.forEach((treatise, index) => {
+    treatise.defaultIndex = index;
+    if (treatise.writtenDate && treatise.writtenDate.length) {
+      const year = treatise.writtenDate[0].year;
+      if (year) {
+        treatise.writtenYear = year;
+      }
+    }
+  });
+  treatises.sort((a,b) => (a.defaultIndex + a.writtenYear * 1000) - (b.defaultIndex + b.writtenYear * 1000));
+  treatises.forEach((treatise, index) => {
+    treatise.orderNumber = index + 1;
+  });
+  return treatises;
+}
+
+function readAllTreatisesInner(options) {
 
   const isExcludeContent = options && options.excludeContent ? true : false;
   const isExcludeReadContent = options && options.excludeReadContent ? true : false;

@@ -28,7 +28,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
     <SkH1Desktop text={trearisesContent.h1} withBlueImage={true} />
 
     {/* Recommended List */}
-    <SkH2Desktop text={trearisesContent.h2Recommended} mt={-16} />
+    <SkH2Desktop text={trearisesContent.h2Recommended} mt={-16} id={"recommended"} />
     <SkColoredContainerDesktop>
       <List type="ordered" spacing={"md"}>
         {recommendedTreatisesList.map((treatise, index) => {
@@ -50,7 +50,9 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
     </SkColoredContainerDesktop>
     
     {/* Full List */}
-    <SkH2Desktop text={trearisesContent.h2FullList} mt="md" mb="sm" subHeader={"В порядку дати написання"} />
+    <SkH2Desktop text={trearisesContent.h2FullList} mt="md" mb="sm" 
+      id={"full-list-chronology"}
+      subHeader={"В порядку дати написання"} />
     <SkColoredContainerDesktop>
       <List type="ordered" spacing={"xs"}>
         {treatises.map((treatise, index) => {
@@ -68,7 +70,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
     </SkColoredContainerDesktop>
 
     {/* Search and Filters*/}
-    <SkH2Desktop text={trearisesContent.h2Details} mt="md" />
+    <SkH2Desktop text={trearisesContent.h2Details} mt="md" id={"detailed-search"} />
     <SkColoredContainerDesktop>
       
       <TextInput 
@@ -128,7 +130,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
       const preferedTitle = preferedVersion.title;
       const introContent = treatise.introContent;
       const writtenDate = treatise.writtenDate;
-      writtenDate.sort((a,b) => a.year - b.year);
+      writtenDate.sort((a,b) => a.orderNumber - b.orderNumber);
       const linkTitle = `${preferedTitle} завантажити переклади, оригінал`;
 
       return <div key={treatise.urlId} className={classes.treatiseContainer2}><Container w={900} bg={"white"} className={classes.treatiseContainer} p={"md"} mb={"xl"}>

@@ -3,6 +3,7 @@ import { getNoteNumberString } from "../utils/notesNumbersSymbols";
 import { readAllTreatises } from "../dataReaders/treatisesReader";
 import { treatisePageKey } from "../skovorodaConstants";
 import { newNotesService } from "./commonContent";
+import { getTreatisesListSchemaOrg } from "../../components/schema/treatisesListSchema";
 
 export function getTreatisesPageProps() {
   

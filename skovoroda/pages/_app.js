@@ -7,6 +7,7 @@ import '@mantine/core/styles.layer.css';
 import './app.styles.scss';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { useState, useEffect } from 'react';
+import { getSchemaByPageKey } from '../components/schema/skSchemaFacade';
 
 const SkHeaderMenuDesktop = dynamic(() => import('../components/shared/skHeaderMenuDesktop'));
 const SkHeaderMenuMobile = dynamic(() => import('../components/shared/skHeaderMenuMobile'));
@@ -95,6 +96,8 @@ export default function App(props) {
     },
   });
 
+  const schemaOrg = getSchemaByPageKey(pageProps.pageKey);
+
   return (
     <>
       {/* <Script src="https://plugin-api-4.nytroseo.com/api/site/c9f32217-5c9a-49d3-aa3a-9e912cb4f07c/nytroseo.min.js" /> */}
@@ -150,6 +153,14 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
           <meta property="og:image" content={pageProps.facebookImageUrl} /> : null)}
 
         <meta name="publisher" content="https://www.skovoroda.club/"></meta>
+
+        {(schemaOrg ? <script 
+          type="application/ld+json" 
+          dangerouslySetInnerHTML={{ __html: schemaOrg }}
+          strategy='afterInteractive'
+          async={true}
+          autoCorrect={false}
+        ></script> : null)}
 
       </Head>
       <MantineProvider theme={theme}>

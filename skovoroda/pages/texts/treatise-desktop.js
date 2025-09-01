@@ -12,6 +12,7 @@ import { IconSearch } from '@tabler/icons';
 import classes from './treatise-desktop.module.scss';
 import useTreatiseFilter from '../../hooks/useTreatiseFilter';
 import { recommendedTreatisesList } from '../../lib/data/treatises/generic/treatisesGenericData';
+import RecommendedTreatisesDesktop from '../../components/recommendedTreatisesDesktop';
 
 export default function SkTreatisePageDesktop({ treatises, sourcesTextContent }) {
   
@@ -30,23 +31,10 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
     {/* Recommended List */}
     <SkH2Desktop text={trearisesContent.h2Recommended} mt={-16} id={"recommended"} />
     <SkColoredContainerDesktop>
-      <List type="ordered" spacing={"md"}>
-        {recommendedTreatisesList.map((treatise, index) => {
-          const foundTreatise = treatises.find(t => t.urlId === treatise.id);
-          const href = pathJoin(SkovorodaTreatisePath, foundTreatise.urlId);
-          const preferedVersion = foundTreatise.versions.find(v => v.preferedVersion);
-          const preferedTitle = preferedVersion.title;
-          const linkTitle = `${preferedTitle} завантажити переклади, оригінал`;
-          return <List.Item key={index}>
-            <Link href={href} title={linkTitle} className='normalContentText readFont'>
-              <Text component='b'>{preferedTitle}</Text>
-            </Link>
-            <Text className='normalContentText readFont'>
-              {treatise.comments}
-            </Text>
-          </List.Item>
-        })}
-      </List>
+      <RecommendedTreatisesDesktop
+        recommendedTreatisesList={recommendedTreatisesList}
+        treatises={treatises}
+      />
     </SkColoredContainerDesktop>
     
     {/* Full List */}

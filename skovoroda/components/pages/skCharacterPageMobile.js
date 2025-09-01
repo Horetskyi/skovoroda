@@ -1,5 +1,5 @@
 import { Flex, List, Text } from "@mantine/core";
-import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
+import SkMetaTextView from "../shared/skMetaTextView";
 import SkTextLink from "../shared/skTextLink";
 import { getSourcePath, getTreatisePath } from "../../lib/skovorodaPath";
 import { getCharacterH1, getCharacterH2Texts } from "../../lib/staticProps/charactersContent";
@@ -17,7 +17,7 @@ export default function SkCharacterPageMobile({ character }) {
       { character.about.map((item, index) => {
         const sourceText = `[${item.source.shortTitle}]`;
         return <div key={index} className="normalContentText">
-          <SkTextContentBlockDesktop key={index} textContent={item.text} isv3={true} isMobile={true} />
+          <SkMetaTextView key={index} textContent={item.text} otherArgs={{isv3: true}} isMobile={true} />
           <SkTextLink 
             text={sourceText} 
             title={item.source.shortTitle} 

@@ -1,13 +1,12 @@
 import fs from "fs";
 import path from "path";
-import { fixText } from "./auxiliary";
-import { parseFileContent } from "../data/utils/readingTextsUtils";
 import { readAllTreatises } from "./treatisesReader";
 import { SkovorodaSourcesArray } from "../data/skovorodaSources";
 import { pathJoin, SkovorodaSourcePath, SkovorodaTreatisePath } from "../skovorodaPath";
 import { SkImagesArray } from "../data/images/skImages";
 import { applyNotesV4 } from "./dataReaderHelper";
 import { SkAuthors } from "../data/skAuthors";
+import { metaTextProcessor } from "../metaTextProcessor/metaTextProcessor";
 
 export function readAllReads(options) {
 
@@ -25,7 +24,6 @@ export function readAllReads(options) {
       if (!metadataFileContent || !metadataFileContent.length) {
         return undefined;
       }
-      metadataFileContent = fixText(metadataFileContent);
       const metadata = JSON.parse(metadataFileContent);
       
       if (!isExcludeContent) {
@@ -35,7 +33,7 @@ export function readAllReads(options) {
         if (!txtContentString || !txtContentString.length) {
           txtContentString = null;
         }
-        const content = txtContentString ? parseFileContent(txtContentString) : null;
+        const content = txtContentString ? metaTextProcessor(txtContentString) : null;
         metadata.content = content;
         
         applyNotesV4(metadata, jsonFilePath);

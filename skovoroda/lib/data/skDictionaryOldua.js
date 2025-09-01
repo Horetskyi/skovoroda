@@ -4865,9 +4865,7 @@ dictionary.forEach((item, index) => {
 
 // PUBLIC USAGE METHOD:
 export function getOldUaWordExplanations(word) {
-  if (!word || !word.length) {
-    return null;
-  }
+  if (!word || !word.length) return null;
   // const isDebug = (word === "СирЂчь");
   word = prepareWordForDictionaryKey(word);
   const isExistsInDictionary = finalDictionaryMap.has(word);

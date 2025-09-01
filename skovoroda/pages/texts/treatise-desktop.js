@@ -2,7 +2,7 @@ import { Accordion, Checkbox, Container, Group, List, Space, Stack, Text, TextIn
 import SkH1Desktop from '../../components/shared/skH1Desktop';
 import Link from 'next/link';
 import { SkovorodaTreatisePath, pathJoin } from '../../lib/skovorodaPath';
-import SkTextContentBlockDesktop from '../../components/shared/skTextContentBlockDesktop';
+import SkMetaTextView from '../../components/shared/skMetaTextView';
 import SkH2Desktop from '../../components/shared/skH2Desktop';
 import SkColoredContainerDesktop from '../../components/shared/skColoredContainerDesktop';
 import SkNote from '../../components/shared/skNote';
@@ -139,7 +139,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
         </Title>
 
         {/* Intro Content */}
-        <SkTextContentBlockDesktop textContent={introContent} isv2={true} />
+        <SkMetaTextView metaText={introContent} otherArgs={{isv2: true}} />
         
         {/* Dates Text */}
         <Container my="sm" px="0" py="6px" className={classes.dates}>
@@ -169,7 +169,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
     {/* Notes */}
     <SkColoredContainerDesktop>
       <SkH2Desktop text={trearisesContent.h2Notes} mb="lg"/>
-      <SkTextContentBlockDesktop textContent={sourcesTextContent} isv3={true} />
+      <SkMetaTextView metaText={sourcesTextContent} otherArgs={{isv3: true}} />
       <Space h='md'/>
     </SkColoredContainerDesktop>
   </>

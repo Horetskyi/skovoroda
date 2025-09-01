@@ -1,11 +1,11 @@
 import Draggable from 'react-draggable';
 import { IconX } from '@tabler/icons';
 import { gsap } from "gsap/dist/gsap";
-import { getNoteNumberUpperString } from '../lib/data/utils/notesNumbersSymbols';
+import { getNoteNumberUpperString } from '../lib/utils/notesNumbersSymbols';
 import { cloneElement, useRef, useState } from 'react';
 import { Card, Group, Text } from '@mantine/core';
-import SkTextContentBlockDesktop from './shared/skTextContentBlockDesktop';
 import classes from './skovorodaDraggableNotesDesktop.module.scss';
+import SkMetaTextView from './shared/skMetaTextView';
 
 export default function SkovorodaDraggableNotesDesktop({ children, selectedNotes }) {
 
@@ -129,10 +129,12 @@ export default function SkovorodaDraggableNotesDesktop({ children, selectedNotes
               </Text>
             </Group>
             <div className={classes.draggableNoteBlockInside}>
-              <SkTextContentBlockDesktop
-                textContent={[draggableNoteBlockData.note]}
-                disableLeftNotesDisplaying={true} 
-                isMarginDisabled={true}
+              <SkMetaTextView
+                metaText={[draggableNoteBlockData.note]}
+                otherArgs={{
+                  disableLeftNotesDisplaying: true,
+                  isMarginDisabled: true
+                }}
               />
             </div>
 

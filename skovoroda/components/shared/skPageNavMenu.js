@@ -1,4 +1,4 @@
-import { Card, Flex, Text } from "@mantine/core";
+import { Card, Flex, List, Text } from "@mantine/core";
 import SkTextLink from "./skTextLink";
 import classes from "./skPageNavMenu.module.scss";
 
@@ -7,13 +7,10 @@ export default function SkPageNavMenu({ links, isDesktop }) {
     return null;
   }
 
-  const cardClassName = isDesktop ? `${classes.limitWidth} ${classes.card}` : ``;
-  const cardContainerClassName = isDesktop ? classes.cardContainer : "";
-
-  return (
-    <div className={cardContainerClassName}>
-      <Card shadow="0" py="sm" px="md" radius={"lg"} mb="md" className={cardClassName} withBorder={false}>
-        <Flex direction={"column"} gap={isDesktop ? "sm" : "md"}>
+  if (isDesktop) {
+    return <div className={classes.cardContainer}>
+      <Card shadow="0" py="sm" px="md" radius={"lg"} mb="md" className={`${classes.limitWidth} ${classes.card}`} withBorder={false}>
+        <Flex direction={"column"} gap={"sm"}>
           <Text className={classes.topLabel} >Навігація:</Text>
           {links.map((link) => (
             <SkTextLink 
@@ -21,7 +18,7 @@ export default function SkPageNavMenu({ links, isDesktop }) {
               text={link.text}
               href={link.href}
               title={link.title || link.text}
-              className={isDesktop ? classes.menuLink : classes.menuLinkMobile} 
+              className={classes.menuLink} 
               isWidthLimited={true}
               isLinkThick={true}
             />
@@ -29,5 +26,26 @@ export default function SkPageNavMenu({ links, isDesktop }) {
         </Flex>
       </Card>
     </div>
-  );
+  }
+
+  return <div className={classes.cardContainerMobile}>
+    <Text className={`${classes.topLabelMobile} firstFont`} mb="sm">
+      Вміст веб-сторінки:
+    </Text>
+    <List type="ordered">
+      {links.map((link) => (
+        <List.Item key={link.text}>
+          <SkTextLink 
+            key={link.text}
+            text={link.text}
+            href={link.href}
+            title={link.title || link.text}
+            className={`firstFont ${classes.fontMediumSize} linkColor`} 
+            isWidthLimited={true}
+            onHoverStylesOnly={true}
+          />
+        </List.Item>
+      ))}
+    </List>
+  </div>
 }

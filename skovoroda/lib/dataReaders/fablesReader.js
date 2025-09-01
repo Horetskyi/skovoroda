@@ -1,9 +1,9 @@
 import fs from "fs";
 import path from "path";
 import { skTranslatorsV2 } from "../data/skovorodaTranslators";
-import { parseFileContent } from "../data/utils/readingTextsUtils";
 import { SkImagesArray } from "../data/images/skImages";
-import { fixText } from "./auxiliary";
+import { metaTextProcessor } from "../metaTextProcessor/metaTextProcessor";
+import { metaTextForEachLinePiece } from "../metaTextUsages/metaTextUsageUtils";
 
 const fablesImages = SkImagesArray.filter(image => image.fableNumber);
 
@@ -33,7 +33,6 @@ function readAllFablesInDirectory(directoryName) {
       if (!metadataFileContent || !metadataFileContent.length) {
         return undefined;
       }
-      metadataFileContent = fixText(metadataFileContent);
       const metadata = JSON.parse(metadataFileContent);
       const translator = skTranslatorsV2.find(translator => translator.translatorId === metadata.translatorId);
       metadata.urlId = `fable-${metadata.fableNumber}-${translator.urlId}`;
@@ -48,13 +47,13 @@ function readAllFablesInDirectory(directoryName) {
       }
       const isOriginal = translator.urlId === "original";
       metadata.language = isOriginal ? 'oldua' : 'ua';
-      const content = parseFileContent(contentString, isOriginal);
+      const content = metaTextProcessor(contentString, isOriginal);
 
       const powerContentString = fs.readFileSync(txtPowerFilePath).toString();
       if (!powerContentString || !powerContentString.length) {
         return undefined;
       }
-      const powerContent = parseFileContent(powerContentString, isOriginal);
+      const powerContent = metaTextProcessor(powerContentString, isOriginal);
 
       return {
         metadata: metadata,
@@ -73,8 +72,8 @@ function readNotesInDirectory(directoryName) {
   if (!fileContent || !fileContent.length) {
     return null;
   }
-  const content = parseFileContent(fileContent);
-  return content;
+  const metaText = metaTextProcessor(fileContent);
+  return metaText;
 }
 
 function readCommentsInDirectory(directoryName) {
@@ -86,7 +85,7 @@ function readCommentsInDirectory(directoryName) {
     if (!contentString || !contentString.length) {
       return undefined;
     }
-    const content = parseFileContent(contentString);
+    const content = metaTextProcessor(contentString);
     return {
       content: content,
       fableNumber: +(fileName.replace('.txt', '')),
@@ -104,7 +103,6 @@ function readCommonMetadataInDirectory(directoryName) {
     if (!fileString || !fileString.length) {
       return undefined;
     }
-    fileString = fixText(fileString);
     const metadata = JSON.parse(fileString);
     return metadata;
   }).filter(item => item);
@@ -141,7 +139,7 @@ export function readFablesTopContent() {
     if (!fileString || !fileString.length) {
       return undefined;
     }
-    const content = parseFileContent(fileString);
+    const content = metaTextProcessor(fileString);
     if (!content) {
       return undefined;
     }
@@ -171,19 +169,15 @@ export function readFablesTopContent() {
   }
   allContentGroups.forEach(group => {
     group.contents.forEach(content => {
-      content.content.forEach(lineObject => {
-        const text = lineObject.text;
-        if (Array.isArray(text)) {
-          text.forEach(subLineObject => {
-            tryAddSourceId(subLineObject.sourceId);  
-          });
-        } else {
-          tryAddSourceId(text.sourceId);
-        }
+      metaTextForEachLinePiece(content.content, (piece) => {
+        if (piece && piece.meta && piece.meta.sourceId) {
+          tryAddSourceId(piece.meta.sourceId);
+        } 
       });
     });
   });
   const allSourceIds = Array.from(allSourceIdsSet);
+  console.log('allSourceIds', allSourceIds);
 
   return { 
     fablesTopContent: allContentGroups, 

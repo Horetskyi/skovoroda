@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getNoteNumberString, getNoteNumberUpperString } from "../../lib/data/utils/notesNumbersSymbols";
+import { getNoteNumberString, getNoteNumberUpperString } from "../../lib/utils/notesNumbersSymbols";
 import classes from './skNote.module.scss';
 
 export default function SkNote({noteNumber, title}) {
@@ -8,7 +8,7 @@ export default function SkNote({noteNumber, title}) {
   return <Link 
     id={id} 
     key={noteNumber}
-    href={"#note"+getNoteNumberUpperString(noteNumber)} 
+    href={"#noteInBlock"+getNoteNumberUpperString(noteNumber)} 
     color="gray.9"
     className={classes.note + " grayForText"} 
     title={title}>

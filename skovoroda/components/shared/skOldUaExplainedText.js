@@ -1,19 +1,19 @@
 import { Popover, Text } from "@mantine/core";
 import classes from "./skOldUaExplainedText.module.scss";
 
-export default function SkOldUaExplainedText({ explanations, text, skKey }) {
+export default function SkOldUaExplainedText({ explanations, text, skKey, additionalClassName }) {
   
   if (!explanations) {
-    return <span key={skKey}>{text}</span>;
+    return <span key={skKey} className={`${additionalClassName || ''}`}>{text}</span>;
   }
 
   const popoverText = getExplanationsElement(explanations.explanation);
 
-  const className = explanations.complexity === 0 
+  const className = (explanations.complexity === 0 
     ? 'sk-global-old-ua-text-simple'
     : explanations.complexity === 1 
       ? 'sk-global-old-ua-text-normal' 
-      : 'sk-global-old-ua-text';
+      : 'sk-global-old-ua-text') + ` ${additionalClassName || ''}`;
 
   return <Popover key={skKey} position="top" withArrow shadow="md" offset={0}>
     <Popover.Target>

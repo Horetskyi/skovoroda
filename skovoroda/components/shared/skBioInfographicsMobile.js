@@ -4,7 +4,7 @@ import { getBioContent } from "./bioContent";
 import SkColoredContainerMobile from "./skColoredContainerMobile";
 import SkH2Mobile from "./skH2Mobile";
 import SkH1Mobile from "./skH1Mobile";
-import SkTextContentBlockDesktop from "./skTextContentBlockDesktop";
+import SkMetaTextView from "./skMetaTextView";
 
 export default function SkBioInfographicsMobile({ }) {
   
@@ -26,7 +26,7 @@ export default function SkBioInfographicsMobile({ }) {
       {args.detailsTextParsed
         ? <>
           <Space h={"sm"}/>
-          <SkTextContentBlockDesktop textContent={args.detailsTextParsed} plusClassName={"normalContentText_lower"} isv2={true} isMobile={true} />
+          <SkMetaTextView metaText={args.detailsTextParsed} otherArgs={{isv2: true, plusClassName: "normalContentText_lower"}} isMobile={true} />
           <Space h={"xs"}/>
         </>
         : null}

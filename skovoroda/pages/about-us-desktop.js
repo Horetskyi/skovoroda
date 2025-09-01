@@ -3,7 +3,7 @@ import SkH1Desktop from "../components/shared/skH1Desktop";
 import SkColoredContainerDesktop from "../components/shared/skColoredContainerDesktop";
 import { getAboutUsPageProps } from "../lib/staticProps/aboutUsStatic";
 import SkH2Desktop from "../components/shared/skH2Desktop";
-import SkTextContentBlockDesktop from "../components/shared/skTextContentBlockDesktop";
+import SkMetaTextView from "../components/shared/skMetaTextView";
 
 export default function AboutUsPage({contentStructure}) {
 
@@ -19,7 +19,7 @@ export default function AboutUsPage({contentStructure}) {
       return <SkColoredContainerDesktop key={`section-${index}`}>
         {header}
         {headerSpace}
-        <SkTextContentBlockDesktop textContent={section.content} isv2={true} />
+        <SkMetaTextView metaText={section.content} otherArgs={{ isv2: true }} />
         <Space h={"md"}/>
       </SkColoredContainerDesktop>
     })}

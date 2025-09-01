@@ -2,12 +2,13 @@
 import { SkovorodaSourcesArray } from '../../../lib/data/skovorodaSources';
 import { skTranslatorsV2 } from '../../../lib/data/skovorodaTranslators';
 import { SkovorodaGardenRefactored } from '../../../lib/dataReaders/songsReader';
-import getSelectedNoteNumbersByContent from '../../../lib/getSelectedNoteNumbersByContent';
+import getSelectedNoteNumbersByContent from '../../../lib/metaTextUsages/getSelectedNoteNumbersByContent';
 import getStaticPathsCommon from '../../../lib/getStaticPathsCommon';
 import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';
 import { getOriginalSongId } from '../../../lib/sadIds';
 import { gardenSelectedPageKey, SkovorodaConstants } from '../../../lib/skovorodaConstants';
 import dynamic from 'next/dynamic';
+import { isLineIncludesNoteNumbers } from '../../../lib/metaTextUsages/metaTextUsageUtils';
 
 const GardenSongPageDesktop = dynamic(() => import('../../../components/pages/gardenSongPageDesktop'));
 const GardenSongPageMobile = dynamic(() => import('../../../components/pages/gardenSongPageMobile'));
@@ -38,9 +39,8 @@ export async function getStaticProps({ params }) {
   const selectedNotes = SkovorodaGardenRefactored.allNotes.filter(notes => 
     notes.notesMetadata.source == selectedSong.songMetadata.source &&
     notes.notesMetadata.translatorName == selectedSong.songMetadata.translatorName)
-    .flatMap(notes => notes.notes)
-    .filter(lineObject => selectedNoteNumbers.includes(lineObject.noteNumber) ||
-      lineObject.songNumber == selectedSong.songMetadata.number);
+    .flatMap(notes => notes.notes.lines)
+    .filter(line => line && isLineIncludesNoteNumbers(line, selectedNoteNumbers));
 
   allSongsMetadata.sort((a,b) => a.number - b.number);
 

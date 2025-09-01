@@ -6,7 +6,7 @@ import SkColoredContainerMobile from "../../components/shared/skColoredContainer
 import SkH1Mobile from "../../components/shared/skH1Mobile";
 import SkImage from "../../components/shared/skImage";
 import Link from "next/link";
-import { getAdjustedWidth } from "../../components/functions/imageFunctions";
+import SkH2MobileV2 from "../../components/shared/skH2MobileV2";
 
 export default function SkovorodaGardenPageMobile({ allSongsMetadata, gardenImageByOlenka }) {
   
@@ -33,7 +33,7 @@ export default function SkovorodaGardenPageMobile({ allSongsMetadata, gardenImag
   return <>
 
     {/* H1 */}
-    <SkH1Mobile text="Сад Божественних Пісень"/>
+    <SkH1Mobile text="Сад Божественних Пісень" withBlueImage={true} mb={"xl"} />
     {/* Сад божественных пѣсней, прозябшій из зерн Священнаго Писанія */}
 
     <Center mr={20} mt={"sm"}>
@@ -51,6 +51,8 @@ export default function SkovorodaGardenPageMobile({ allSongsMetadata, gardenImag
         })}
       </List>
     </SkColoredContainerMobile>
+
+    <SkH2MobileV2 text={"Ілюстрації"} />
 
     <Flex mt={"lg"} mb={"xl"} px={"sm"} gap={"xl"} direction={"column"} ta={"center"}>
       {translatedSongsMetadataArray.filter(song => song.songImage).map((song, index) => {

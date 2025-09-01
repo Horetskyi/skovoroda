@@ -1,7 +1,7 @@
 import { Flex, List, Text } from "@mantine/core";
 import SkH1Desktop from "../shared/skH1Desktop";
 import SkH2Desktop from "../shared/skH2Desktop";
-import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
+import SkMetaTextView from "../shared/skMetaTextView";
 import SkTextLink from "../shared/skTextLink";
 import { getSourcePath, getTreatisePath } from "../../lib/skovorodaPath";
 import SkColoredContainerDesktop from "../shared/skColoredContainerDesktop";
@@ -17,7 +17,7 @@ export default function SkCharacterPageDesktop({ character }) {
       { character.about.map((item, index) => {
         const sourceText = `[${item.source.shortTitle}]`;
         return <div key={index} className="normalContentText">
-          <SkTextContentBlockDesktop key={index} textContent={item.text} isv3={true} />
+          <SkMetaTextView key={index} textContent={item.text} otherArgs={{isv3: true}} />
           <SkTextLink 
             text={sourceText} 
             title={item.source.shortTitle} 

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { SkovorodaFablesPath, pathJoin } from "../../lib/skovorodaPath";
 import SkCardWithTwoSelectorsMobileV2 from "../shared/skCardWithTwoSelectorsMobileV2";
 import SkH1Mobile from "../shared/skH1Mobile";
-import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
+import SkMetaTextView from "../shared/skMetaTextView";
 import SkImage from "../shared/skImage";
 import SkH2Mobile from "../shared/skH2Mobile";
 import SkButtonMobile from "../shared/skButtonMobile";
@@ -123,13 +123,13 @@ export default function FablePageMobile({
       <Space h="lg"/>
     </Container>
     <Container px={"md"}>
-      <SkTextContentBlockDesktop textContent={selectedFable.content} isv2={true} isMobile={true} />
+      <SkMetaTextView metaText={selectedFable.content} otherArgs={{isv2: true}} isMobile={true} />
       <SkH2Mobile mt="md" mb="sm" text={"Сила"}/>
-      <SkTextContentBlockDesktop textContent={selectedFable.powerContent} isv2={true} isMobile={true} />
+      <SkMetaTextView metaText={selectedFable.powerContent} otherArgs={{isv2: true}} isMobile={true} />
       <Space h="md" />
       {(selectedNotes && selectedNotes.length) ? <>
           <SkH2Mobile mb="sm" text={"Примітки"}/>
-          <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} isMobile={true} />
+          <SkMetaTextView metaText={selectedNotes} otherArgs={{isv3: true}} isMobile={true} />
           <Space h="md" />
         </> : null}
     </Container>
@@ -137,7 +137,7 @@ export default function FablePageMobile({
       <SkColoredContainerMobile color={"gray.0"} px={"md"}>
         <SkH2Mobile mb="sm" text={"Коментар"}/>
         <SkCommentAuthorMobile />
-        <SkTextContentBlockDesktop textContent={selectedComment} isv2={true} isMobile={true} />
+        <SkMetaTextView metaText={selectedComment} otherArgs={{isv2: true}} isMobile={true} />
         {selectedCommonMetadata ? <>
           <Space h="md" />
           <SkRelatedThemesMobile themes={selectedCommonMetadata.relatedThemes} />

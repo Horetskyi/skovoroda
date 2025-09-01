@@ -21,7 +21,7 @@ export default function SkSkovorodaTextSourcesDesktop({data, textTitle, isMobile
 
   return (
     <div style={{ position: "relative" }}>
-      <SkH2DesktopV2 text={"Джерела Сковороди"} mb="0" subHeader={subHeader} />
+      <SkH2DesktopV2 text={"Джерела Сковороди"} mb="0" subHeader={subHeader} id="skovoroda-sources" />
       <Space h="xl" />
       <div className={classes.sourcesContainer}>
         {data.map((block, blockIndex) => (

@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { skTranslatorsV2 } from "../data/skovorodaTranslators";
-import { parseFileContent } from "../data/utils/readingTextsUtils";
 import { SkImagesArray } from "../data/images/skImages";
+import { metaTextProcessor } from "../metaTextProcessor/metaTextProcessor";
 
 // Filter SkImagesArray for song images (those with songNumber)
 const songsImages = SkImagesArray.filter(image => image.songNumber);
@@ -45,7 +45,7 @@ function readSongs() {
     const contentString = fs.readFileSync(txtFilePath).toString();
     const isOriginal = songMetadata.translatorId === 0;
     songMetadata.language = isOriginal ? 'oldua' : 'ua';
-    const content = parseFileContent(contentString, isOriginal);
+    const content = metaTextProcessor(contentString, isOriginal);
 
     return {
       songMetadata: songMetadata,
@@ -66,7 +66,13 @@ function readNotes() {
     
     const notesMetadata = JSON.parse(fs.readFileSync(jsonFilePath).toString());
     const notesString = fs.readFileSync(txtFilePath).toString();
-    const notes = parseFileContent(notesString);
+    const notes = metaTextProcessor(notesString);
+
+    if (notes) {
+      fs.writeFileSync(path.join(process.cwd(), "lib", "data", "gardenRefactored", 'debug', 
+        `debug_notes_${jsonFileName.replace('.json', '')}.txt`), 
+        JSON.stringify(notes, null, 2));
+    }
 
     return {
       notes: notes,

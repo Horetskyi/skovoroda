@@ -5,9 +5,9 @@ import { getReadPath } from "../../lib/skovorodaPath";
 import SkTextLink from "./skTextLink";
 import { IconDots, IconMail, IconMessages, IconMusic, IconPaw, IconSeeding, IconStar } from "@tabler/icons-react";
 import Link from "next/link";
-import SkTextContentBlockDesktop from "./skTextContentBlockDesktop";
+import SkMetaTextView from "./skMetaTextView";
 
-export function ZmistItem({ item, index }) {
+export function ZmistItem({ item, index, chipsWithoutBackground, isMobile }) {
 
   const hasReadLink = item.read && item.read.length;
   const isLetter = item.type === "intro_letter";
@@ -44,8 +44,9 @@ export function ZmistItem({ item, index }) {
 
   const itemMl = item.indent && item.indent > 0 ? item.indent * 36 : 0;
 
-  const tagsView = <div className={classes.tags}>
-    <SkRelatedTags type={item.type} mainTheme={item.mainTheme} specialType={item.specialType} />
+  const tagsClass = `${classes.tags} ${chipsWithoutBackground ? classes.chipsWithoutBackground : ''}`
+  const tagsView = <div className={tagsClass}>
+    <SkRelatedTags type={item.type} mainTheme={item.mainTheme} specialType={item.specialType} isMobile={isMobile} />
   </div>;
 
   return (
@@ -60,12 +61,12 @@ export function ZmistItem({ item, index }) {
         <span>
           {hasReadLink 
             ? <span>{leftIcon}<SkTextLink href={getReadPath(item.read)} text={item.title} title={`Читати \"${item.title}\"`} />{iconInline}{tagsView}</span>
-            : <span className={classes.title}>{leftIcon}{item.title}{iconInline}{tagsView}</span>}
+            : <span className={`${classes.title} ${isMobile ? classes.mobileTitle : ''}`}>{leftIcon}{item.title}{iconInline}{tagsView}</span>}
         </span>
 
         {/* Render seedContent if present */}
         {item.type === "seed" && item.seedContent ? <>
-          <SkTextContentBlockDesktop textContent={item.seedContent} isv3={true} plusClassName={classes.seedContent} />
+          <SkMetaTextView metaText={item.seedContent} otherArgs={{isv3: true, plusClassName: classes.seedContent}} />
         </> : null}
 
       </div>

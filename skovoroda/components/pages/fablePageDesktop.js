@@ -6,7 +6,7 @@ import { prepareFablesDropdownItems, prepareTranslatorsDropdownItems } from '../
 import { SkovorodaFablesPath, pathJoin } from '../../lib/skovorodaPath';
 import SkCardWithTwoSelectorsDesktopV2 from '../shared/skCardWithTwoSelectorsDesktopV2';
 import SkH1Desktop from '../shared/skH1Desktop';
-import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
+import SkMetaTextView from '../shared/skMetaTextView';
 import SkSourcesContainerDesktop from '../shared/skSourcesContainerDesktop';
 import SkButtonDesktop from '../shared/skButtonDesktop';
 import { randomNumberInRangeExcept } from '../../lib/auxiliary';
@@ -158,23 +158,23 @@ export default function FablePageDesktop({
           : null}
 
         <div>
-          <SkTextContentBlockDesktop textContent={selectedFable.content} isv2={true} />
+          <SkMetaTextView metaText={selectedFable.content} otherArgs={{isv2: true}} />
         </div>
 
       </div>
       <SkH2DesktopV2 mb="lg" mt="xl" text={"Сила"} color={highlightColor} />
-      <SkTextContentBlockDesktop textContent={selectedFable.powerContent} isv2={true} />
+      <SkMetaTextView metaText={selectedFable.powerContent} otherArgs={{isv2: true}} />
       <Space h="xl"/>
       {(selectedNotes && selectedNotes.length) ? <>
         <SkH2DesktopV2 my="lg" text={"Примітки"}/>
-        <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} />
+        <SkMetaTextView metaText={selectedNotes} otherArgs={{isv3: true}} />
       </> : null}
     </Container>
     {(selectedComment && selectedComment.length && displayComments) ? <>
       <SkColoredContainerDesktop color={"gray.0"}>
         <SkH2DesktopV2 mb="sm" text={"Коментар"}/>
         <SkCommentAuthorDesktop />
-        <SkTextContentBlockDesktop textContent={selectedComment} isv2={true}/>
+        <SkMetaTextView metaText={selectedComment} otherArgs={{isv2: true}} />
         {selectedCommonMetadata ? <>
           <Space h="md" />
           <SkRelatedThemesDesktop themes={selectedCommonMetadata.relatedThemes} />

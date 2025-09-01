@@ -35,5 +35,5 @@ export const trearisesContent = {
   h2Notes: "Посилання",
   h2Recommended: "Рекомендований порядок читання",
   h2FullList: "Повний список творів",
-  h2Details: "Деталі",
+  h2Details: "Детальніший пошук",
 }

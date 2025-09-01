@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { getLinkTitle } from "../../lib/skovorodaPath";
 import classes from './skTextLink.module.scss';
-import { Space } from "@mantine/core";
 
 export default function SkTextLink({
   text, href, disableStyles, onHoverStylesOnly, 

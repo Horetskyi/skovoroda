@@ -15,6 +15,11 @@ const THEME_SLUGS_MAP = new Map([
 
 const TYPE_TAG_LABELS_MAP = new Map([
   ["parable", "Притча"],
+  ["fable", "Байка"],
+]);
+const TYPE_TAG_LABELS_URLS = new Map([
+  ["parable", "parables"],
+  ["fable", "fables"],
 ]);
 
 function getSpecialIcon(specialType) {
@@ -37,7 +42,7 @@ function getRelatedSourcesTags(relatedSources) {
   });
 }
 
-export default function SkRelatedTags({ type, mainTheme, themes, specialType, relatedSources }) {
+export default function SkRelatedTags({ type, mainTheme, themes, specialType, relatedSources, isMobile }) {
 
   const isThemesExists = themes && themes.length > 0;
   if (!type && !mainTheme && !specialType && !relatedSources && !isThemesExists) {
@@ -56,7 +61,7 @@ export default function SkRelatedTags({ type, mainTheme, themes, specialType, re
 
   return (
     <Group mt="0" mb="0" gap="sm">
-      {typeTagLabel && <SkTagChip key={type} content={`#${typeTagLabel}`} href={`/texts/parables`} colorClass={type} />}
+      {typeTagLabel && <SkTagChip key={type} content={`#${typeTagLabel}`} href={`/texts/${TYPE_TAG_LABELS_URLS.get(type)}`} colorClass={type} />}
       {mainTheme && <SkTagChip key={themeSlug} content={`#${mainTheme}`} href={`/themes/${themeSlug}`} colorClass={themeSlug} />}
       {isSpiritualAutobiography && <SkTagChip key='spiritual_autobiography' content='Духовний автопортрет' colorClass='spiritual-autobiography' />}
       {relatedSourcesTags}

@@ -7,7 +7,7 @@ import SkH1Mobile from "../shared/skH1Mobile";
 import SkH2Mobile from "../shared/skH2Mobile";
 import SkPageNavMenu from "../shared/skPageNavMenu";
 import classes from './skTreatisePageMobile.module.scss';
-import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
+import SkMetaTextView from "../shared/skMetaTextView";
 import getTreatiseMenuLinks from "./details/getTreatiseMenuLinks";
 import ZmistBullet from "./details/zmistBullet";
 import { ZmistItem } from "../shared/zmistItem";
@@ -28,11 +28,11 @@ export default function SkTreatisePageMobile({ treatise, sources, translators, s
   const translatorLabel = "Перекладач: ";
   const isQuotesAvailable = treatise.quotes && treatise.quotes.length;
   const isZmistAvailable = treatise.zmist && treatise.zmist.list && treatise.zmist.list.length;
-  const links = getTreatiseMenuLinks(treatise);
   const sourcesParams = [];
   if (treatise.image) {
     sourcesParams.push(getIllustrationSourceParam(treatise.image));
   }
+  const links = getTreatiseMenuLinks(treatise, sourcesParams, skovorodaTextSourcesData);
   const videoBlock = VideoBlockMobile(treatise);
   const highlightColor = treatise.image ? treatise.image.highlightColor : null;
 
@@ -74,7 +74,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators, s
   }
 
   return <>
-    <SkH1Mobile text={preferedTitle} color={highlightColor} />
+    <SkH1Mobile text={preferedTitle} color={highlightColor} withBlueImage={true} />
     <SkColoredContainerMobile px="md">
 
       {treatise.image ? 
@@ -82,26 +82,31 @@ export default function SkTreatisePageMobile({ treatise, sources, translators, s
           <SkImage image={treatise.image} priority={true} optimize={true} gentlyShadow={true} fullWidth={true} />
         </div>
         : null}
+        
+      <SkPageNavMenu links={links} isDesktop={false}/>
 
-      {treatise.introContent2 && treatise.introContent2.length ? <>
-        <SkTextContentBlockDesktop textContent={treatise.introContent2} isMobile={true} isv2={true} justify={false} />
+      {treatise.introContent2 && treatise.introContent2.lines && treatise.introContent2.lines.length ? <>
+        <SkH2Mobile text="Опис твору" mt="xl" mb="md" id="description" />
+        <SkMetaTextView metaText={treatise.introContent2} isMobile={true} otherArgs={{ isv2: true }} />
         <Space h="lg" />
       </> : null}
       
-      <SkPageNavMenu links={links} isDesktop={false}/>
-     
       {/* Зміст */}
       { isZmistAvailable ? <>
+        <Space h={(treatise.image || treatise.introContent2) ? "xl" : 0}/>
         <SkH2Mobile text="Зміст твору" mb="lg" id="zmist" />
         <List spacing="md" mb="lg" size="sm" className={classes.zmistList} icon={<ZmistBullet />}>
           { treatise.zmist.list.map((item, index) => {
-            return <ZmistItem key={`zmist_${index}`} index={index} item={item} />;
+            return <ZmistItem key={`zmist_${index}`} index={index} 
+              item={item} 
+              chipsWithoutBackground={true}
+              isMobile={true} />;
           })}
         </List>
       </> : null}
 
       { isQuotesAvailable ? <>
-        <SkH2Mobile id="quotes" text="Цитати" mb="md" />
+        <SkH2Mobile id="quotes" mt={"xl"} text="Цитати" mb="md" />
         <SkQuotesDesktop quotes={treatise.quotes} />
       </> : null}
 

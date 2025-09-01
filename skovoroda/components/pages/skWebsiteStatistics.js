@@ -103,7 +103,6 @@ const SkWebsiteStatistics = () => {
       .then((data) => {
         prepareApiData(data);
         setData(data);
-        console.log('Website statistics data:', data);
         setLoading(false);
       })
       .catch((err) => {

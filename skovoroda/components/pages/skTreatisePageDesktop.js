@@ -6,7 +6,7 @@ import Link from "next/link";
 import SkDownloadButtonDesktop from "../shared/skDownloadButtonDesktop";
 import classes from './skTreatisePageDesktop.module.scss';
 import SkPageNavMenu from "../shared/skPageNavMenu";
-import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
+import SkMetaTextView from "../shared/skMetaTextView";
 import { ZmistItem } from "../shared/zmistItem";
 import getTreatiseMenuLinks from "./details/getTreatiseMenuLinks";
 import ZmistBullet from "./details/zmistBullet";
@@ -17,6 +17,7 @@ import { SkQuotesDesktop } from "../shared/skQuotesDesktop";
 import SkReadButtonDesktop from "../shared/skReadButtonDesktop";
 import SkSkovorodaTextSourcesDesktop from "./details/SkSkovorodaTextSourcesDesktop";
 import SkH2DesktopV2 from "../shared/skH2DesktopV2";
+import SkFountain from "../shared/skFountain";
 
 // Pure
 function filterZmistListForSongs(zmistList) {
@@ -38,11 +39,11 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
   const isZmistAvailable = treatise.zmist && treatise.zmist.list && treatise.zmist.list.length;
   const zmistSongs = isZmistAvailable ? filterZmistListForSongs(treatise.zmist.list) : [];
   const isZmistSongsAvailable = zmistSongs && zmistSongs.length > 0;
-  const links = getTreatiseMenuLinks(treatise);
   const sourcesParams = [];
   if (treatise.image) {
     sourcesParams.push(getIllustrationSourceParam(treatise.image));
   }
+  const links = getTreatiseMenuLinks(treatise, sourcesParams, skovorodaTextSourcesData);
   const videoBlock = VideoBlockDesktop(treatise);
   const highlightColor = treatise.image ? treatise.image.highlightColor : null;
 
@@ -81,10 +82,17 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
   }
 
   return <>
-    <SkH1Desktop text={preferedTitle} color={highlightColor} maxWidth={treatise.maxTitleWidth} isV2={true} withBlueImage={true} />
+    
+    <SkH1Desktop key="h1" text={preferedTitle} color={highlightColor} maxWidth={treatise.maxTitleWidth} isV2={true} withBlueImage={true} />
+    
     <SkColoredContainerDesktop py={0}>
       
       <SkPageNavMenu links={links} isDesktop={true}/>
+    
+      {/* {treatise.urlId === "bukvar_myru" ? <>
+        <SkFountain key={"fountain"} isMobile={false} />
+        <Space h={"xl"}/>
+      </> : null} */}
 
       {treatise.image || treatise.introContent2 ?
       <div className={classes.imageAndIntroContainer}>
@@ -96,17 +104,18 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
             }
           </div>
           : null}
-        <div>
-          <SkTextContentBlockDesktop textContent={treatise.introContent2} isv2={true} justify={false} />
-        </div>
+        {treatise.introContent2 ? <div>
+          <SkH2DesktopV2 text="Опис твору" mt="0" mb="md" id="description" />
+          <SkMetaTextView metaText={treatise.introContent2} otherArgs={{isv2: true, justify: false}} />
+        </div> : null}
       </div> : null}
 
       {/* Зміст */}
       { isZmistAvailable ? <>
-        <SkH2DesktopV2 text="Зміст твору" mt={treatise.image || treatise.introContent2 ? "xl" : 0} mb="lg" id="zmist" />
+        <SkH2DesktopV2 text="Зміст твору" mt={(treatise.image || treatise.introContent2) ? "xl" : 0} mb="lg" id="zmist" />
         <List spacing="xs" mb="xl" size="sm" className={classes.zmistList} icon={<ZmistBullet />}>
           { treatise.zmist.list.map((item, index) => {
-            return <ZmistItem key={`zmist_${index}`} index={index} item={item} />;
+            return <ZmistItem key={`zmist_${index}`} index={index} item={item} chipsWithoutBackground={true} />;
           })}
         </List>
       </> : null}
@@ -149,7 +158,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
           return <Paper key={`zmist_song_${song.songId}`} id={`song_${song.songId}`} withBorder={false} p="md" shadow="xs">
             <Title ta={'center'} fw={700} order={3} mb="md">{song.title}</Title>
             <div className={`normalContentText normalContentText_withoutIndent`}>
-              <SkTextContentBlockDesktop textContent={song.content} isv2={true} />
+              <SkMetaTextView metaText={song.content} otherArgs={{isv2: true}} />
             </div>
           </Paper>
         })}

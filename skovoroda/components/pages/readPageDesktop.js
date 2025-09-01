@@ -1,6 +1,6 @@
 import { Container, Space, Text } from "@mantine/core";
 import SkH1Desktop from "../shared/skH1Desktop";
-import SkTextContentBlockDesktop from "../shared/skTextContentBlockDesktop";
+import SkMetaTextView from "../shared/skMetaTextView";
 import SkImage from "../shared/skImage";
 import classes from "./readPageDesktop.module.scss";
 import { getAggregatedSourcesParams } from "./details/pureFunctions";
@@ -42,7 +42,7 @@ export default function ReadPageDesktop({ selectedRead }) {
         ) : null}
 
         <div>
-          <SkTextContentBlockDesktop textContent={selectedRead.content} isv2={true} />
+          <SkMetaTextView metaText={selectedRead.content} otherArgs={{isv2: true}} />
         </div>
       </div>
 

@@ -1,11 +1,10 @@
 import fs from "fs";
 import path from "path";
-import { fixText } from "./auxiliary";
-import { parseFileContent } from "../data/utils/readingTextsUtils";
 import { getReadRelatedItem, getTreariseRelatedItem, getTreatiseShortTitle } from "./details/auxiliaryMethods";
 import { readAllTreatises } from "./treatisesReader";
 import { readAllReads } from "./readsReader";
-import { getTreatisePath, pathJoinWithoutEndSlash } from "../skovorodaPath";
+import { getTreatisePath } from "../skovorodaPath";
+import { metaTextProcessor } from "../metaTextProcessor/metaTextProcessor";
 
 export function readAllThemes() {
 
@@ -24,7 +23,6 @@ export function readAllThemes() {
       if (!metadataFileContent || !metadataFileContent.length) {
         return undefined;
       }
-      metadataFileContent = fixText(metadataFileContent);
       const metadata = JSON.parse(metadataFileContent);
 
       // RELEVANT ITEMS {
@@ -69,7 +67,7 @@ export function readAllThemes() {
       if (!txtContentString || !txtContentString.length) {
         txtContentString = null;
       }
-      const introContent = txtContentString ? parseFileContent(txtContentString) : null;
+      const introContent = txtContentString ? metaTextProcessor(txtContentString) : null;
       metadata.content = introContent;
       return metadata;
     })

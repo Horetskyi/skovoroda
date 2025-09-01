@@ -1,0 +1,29 @@
+
+.titleH3 {
+  margin: -3px 0 12px 0;
+  font-family: "Ysabeau";
+  font-size: 24px;
+  font-weight: 500 !important;
+  line-height: 34px;
+}
+.titleLink {
+  color: #1A1B1E !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.number {
+  min-width: 36px;
+  min-height: 36px;
+  background: #EAF0F6;
+  border-radius: 50%;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 20px;
+  font-family: "Ysabeau";
+  margin-right: 0;
+}
+.listItemWrapper {
+  overflow-x: visible !important;
+}

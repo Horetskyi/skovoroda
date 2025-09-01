@@ -5,7 +5,7 @@ import { fablesPageKey } from "../skovorodaConstants";
 export function getFablesPageProps() {
   const allFables = readAllFables().allFables.map(fable => fable.metadata);
   const {fablesTopContent, allSourceIds} = readFablesTopContent();
-  const allSources = SkovorodaSourcesArray.filter(source => allSourceIds.includes(source.devNumber));
+  const allSources = SkovorodaSourcesArray.filter(source => allSourceIds.includes(''+source.devNumber));
   return {
     props: {
       pageKey: fablesPageKey,

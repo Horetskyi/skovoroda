@@ -26,6 +26,16 @@ $left-num-spacing: 100;
   text-align: left;
   position: relative;
   height: inherit;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.textContentBlockMobileNotes {
+  text-align: left;
+  position: relative;
+  height: inherit;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .textContentBlockLeftNotesEnabled {

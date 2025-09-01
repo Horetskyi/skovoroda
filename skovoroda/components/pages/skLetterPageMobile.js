@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router'
 import { SkovorodaLettersFromPath, pathJoin } from '../../lib/skovorodaPath';
 import { parseLanguages } from '../../lib/skovorodaLanguagesLogic';
-import SkTextContentBlockDesktop from '../shared/skTextContentBlockDesktop';
+import SkMetaTextView from '../shared/skMetaTextView';
 import { getLetterWriterByLetterMetadata } from '../../lib/staticProps/letterWriters';
 import SkSourcesContainerDesktop from '../shared/skSourcesContainerDesktop';
 import SkColoredContainerMobile from '../shared/skColoredContainerMobile';
@@ -90,11 +90,11 @@ export default function SkovorodaLetterPageMobile({
 
     <SkH1Mobile text={h1Text}/>   
     <Space h="lg"/>
-    <SkTextContentBlockDesktop textContent={selectedLetter.letterContent} isv2={true} />
-    
+    <SkMetaTextView metaText={selectedLetter.letterContent} otherArgs={{isv2: true}} />
+
     {(isAnyNotes) ? <>
       <SkH2Mobile my="lg" text={"Примітки"}/>
-      <SkTextContentBlockDesktop textContent={selectedNotes} isv3={true} />
+      <SkMetaTextView metaText={selectedNotes} otherArgs={{isv3: true}} />
     </> : null}
 
     <SkSourcesContainerDesktop sources={sourcesParams} />

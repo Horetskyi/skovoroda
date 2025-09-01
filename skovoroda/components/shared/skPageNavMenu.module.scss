@@ -38,6 +38,22 @@
   font-size: 20px;
 }
 
+.cardContainerMobile {
+  padding: var(--mantine-spacing-lg) var(--mantine-spacing-md);
+  background-color: #F5FBFE;
+  border-radius: 12px;
+}
+.topLabelMobile {
+  display: block;
+  width: 100%;
+  font-weight: 350 !important;
+  font-size: 20px;
+}
+.fontMediumSize {
+  font-size: 20px;
+  letter-spacing: 0.06rem !important;
+}
+
 .menuLink {
   text-decoration: none;
   color: #2c3e50;

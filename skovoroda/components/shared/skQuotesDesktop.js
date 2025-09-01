@@ -23,7 +23,6 @@ export function SkQuotesDesktop({ quotes }) {
   if (Array.isArray(quotes) && quotes[0].texts) {
     quotes = quotes.flatMap(q => q.texts);
   }
-  console.log('quotes', quotes);
   return <Flex direction="column" gap="lg" mb="lg" className={classes.quotesContainer}>
     { quotes.flatMap((text, index) => {
       var themes = [];

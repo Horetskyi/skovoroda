@@ -1,5 +1,5 @@
 import { SkovorodaSourcesArray } from "../data/skovorodaSources";
-import { getNoteNumberString } from "../data/utils/notesNumbersSymbols";
+import { getNoteNumberString } from "../utils/notesNumbersSymbols";
 import { readAllTreatises } from "../dataReaders/treatisesReader";
 import { treatisePageKey } from "../skovorodaConstants";
 import { newNotesService } from "./commonContent";
@@ -28,15 +28,14 @@ export function getTreatisesPageProps() {
     if (treatise.introSourceId) {
       const noteNumber = notesService.addNote(treatise.introSourceId);
       if (noteNumber) {
-        treatise.introContent[treatise.introContent.length - 1].text = [
-          {
-            text: treatise.introContent[treatise.introContent.length - 1].text,
-          },
-          { 
-            noteNumber: noteNumber,
-            text: " "+getNoteNumberString(noteNumber),
-          }
-        ];
+        const lastLine = treatise.introContent.lines[treatise.introContent.lines.length - 1];
+        if (!lastLine.innerParsedTextArray) {
+          lastLine.innerParsedTextArray = [];
+        }
+        lastLine.innerParsedTextArray.push({
+          text: " "+getNoteNumberString(noteNumber),
+          meta: { noteNumber: noteNumber }
+        });
       }
     }
     treatise.writtenDate.forEach(date => {

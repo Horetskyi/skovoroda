@@ -9,9 +9,9 @@ export function newNotesService(sources) {
     if (!sourceId) {
       return;
     }
-    const found = result.sourcesTextContent.find(x => x.sourceId == sourceId);
+    const found = result.sourcesTextContent.find(x => x.meta.sourceId == sourceId);
     if (found) {
-      return found.noteNumber; // already exists
+      return found.meta.noteNumber; // already exists
     }
     const source = sources.find(x => x.devNumber == sourceId);
     if (!source) {
@@ -19,11 +19,13 @@ export function newNotesService(sources) {
     }
     result.lastNoteNumber++;
     result.sourcesTextContent.push({
-      noteNumber: result.lastNoteNumber,
-      sourceId: sourceId,
       text: source.sourceFullName,
-      shortTitle: source.shortTitle,
-      isNoteBeginning: true,
+      meta: {
+        sourceId: sourceId,
+        shortTitle: source.shortTitle,
+        isNoteBeginning: true,
+        noteNumber: result.lastNoteNumber,
+      },
     });
     return result.lastNoteNumber;
   };

@@ -1,11 +1,11 @@
-[SkovorodaNoteNumber] ᵃ [SkovorodaNoteNumber][LetterNumber] 2 [LetterNumber] φόδιον - від дорога. TODO
-[SkovorodaNoteNumber] ᵇ [SkovorodaNoteNumber][LetterNumber] 2 [LetterNumber] TODO
-[SkovorodaNoteNumber] ᵉ [SkovorodaNoteNumber][LetterNumber] 2 [LetterNumber] Σεμνὸς - поважний, важливий; TODO
-[SkovorodaNoteNumber] ᵈ [SkovorodaNoteNumber][LetterNumber] 2 [LetterNumber] TODO
-[SkovorodaNoteNumber] ᵍ [SkovorodaNoteNumber][LetterNumber] 2 [LetterNumber] TODO
-[LetterNote][LetterNumber] 10 [LetterNumber] Лист у формі вірша. Подається в перекладі М. Зерова. 
-[LetterNote][LetterNumber] 60 [LetterNumber] У листі описується смерть ігумена Покровського колегіального монастиря Костянтина Бродського, що сталася 28 жовтня 1763 р. 
-[LetterNote][LetterNumber] 76 [LetterNumber] Листа написано впереміш мовою, наближеною до російської, і латинською. Остання фраза — латинська.
+<meta letterNumber="2" isNoteBeginning="true" skovorodaNoteNumber="ᵃ"> φόδιον - від дорога. TODO </meta>
+<meta letterNumber="2" isNoteBeginning="true" skovorodaNoteNumber="ᵇ"> TODO </meta>
+<meta letterNumber="2" isNoteBeginning="true" skovorodaNoteNumber="ᵉ"> Σεμνὸς - поважний, важливий; TODO </meta>
+<meta letterNumber="2" isNoteBeginning="true" skovorodaNoteNumber="ᵈ"> TODO </meta>
+<meta letterNumber="2" isNoteBeginning="true" skovorodaNoteNumber="ᵍ"> TODO </meta>
+<meta letterNumber="10" isNoteBeginning="true" noteNumber="0">Лист у формі вірша. Подається в перекладі М. Зерова.</meta>
+<meta letterNumber="60" isNoteBeginning="true" noteNumber="0">У листі описується смерть ігумена Покровського колегіального монастиря Костянтина Бродського, що сталася 28 жовтня 1763 р. </meta>
+<meta letterNumber="76" isNoteBeginning="true" noteNumber="0">Листа написано впереміш мовою, наближеною до російської, і латинською. Остання фраза — латинська.</meta>
 [NoteNumber] 1 [NoteNumber] [Italic]Ковалинський Михайло Іванович[Italic] (1745 — 1807) — син священика, вчився в Харківському колегіумі, де познайомився і подружив на все життя з Г. Сковородою. Пізніше — вихователь дітей Кирила Розумовського, служив у канцелярії князя Потьомкіна, був управителем Рязанського намісництва, куратором Московського університету. У 1794 р., після смерті філософа, написав його біографію «Життя Григорія Сковороди».
 [NoteNumber] 2 [NoteNumber] [Italic]Ісократ[Italic] (436 — 338 до н. е.) — афінський оратор і публіцист.
 [NoteNumber] 3 [NoteNumber] [Italic]Отець Петро[Italic] — дядько М. Ковалинського.

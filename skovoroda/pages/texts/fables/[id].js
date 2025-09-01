@@ -5,8 +5,9 @@ import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';
 import { SkovorodaConstants, fableSelectedPageKey } from '../../../lib/skovorodaConstants';
 import { readAllFables } from '../../../lib/dataReaders/fablesReader';
 import { skTranslatorsV2 } from '../../../lib/data/skovorodaTranslators';
-import getSelectedNoteNumbersByContent from '../../../lib/getSelectedNoteNumbersByContent';
 import dynamic from 'next/dynamic';
+import getSelectedNoteNumbersByContent from '../../../lib/metaTextUsages/getSelectedNoteNumbersByContent';
+import { isLineIncludesNoteNumbers } from '../../../lib/metaTextUsages/metaTextUsageUtils';
 
 const FablePageDesktop = dynamic(() => import('../../../components/pages/fablePageDesktop'));
 const FablePageMobile = dynamic(() => import('../../../components/pages/fablePageMobile'));
@@ -49,9 +50,11 @@ export async function getStaticProps({ params }) {
   // Notes
   const selectedNoteNumbers = getSelectedNoteNumbersByContent(selectedFable.content).concat(getSelectedNoteNumbersByContent(selectedFable.powerContent));
   let selectedNotes = allNotes[selectedFable.metadata.notesId];
+  selectedNotes = selectedNotes.lines;
   if (selectedNotes && selectedNotes.length) {
-    selectedNotes = selectedNotes.filter(note => selectedNoteNumbers.includes(note.noteNumber) ||
-      note.fableNumber == selectedFable.metadata.fableNumber);
+    selectedNotes = selectedNotes.filter(line => line && 
+      (isLineIncludesNoteNumbers(line, selectedNoteNumbers) ||
+      (line.meta && line.meta.fableNumber == selectedFable.metadata.fableNumber)));
   }
   
   // Comment

@@ -1,9 +1,9 @@
-[SkovorodaNoteNumber] ᵃ [SkovorodaNoteNumber][FableNumber] 18 [FableNumber] Слóво Еллинское. Значит: Обезя́на, Рóда и рóста Бóлшаго
-[SkovorodaNoteNumber] ᵃ [SkovorodaNoteNumber][FableNumber] 21 [FableNumber] Самое доброе дѣло есть скучным без ослабы, а одно только бездѣлья дѣлать во сто раз скучнѣе.
-[SkovorodaNoteNumber] ᵃ [SkovorodaNoteNumber][FableNumber] 30 [FableNumber] ОДИН БОГ ЕСТЬ СѢЯТЕЛЬ ДРУЖБЫ.
-[SkovorodaNoteNumber] ᵇ [SkovorodaNoteNumber][FableNumber] 30 [FableNumber] Сирѣчь: ПОДОБНАГО ДО ПОДОБН[АГО] ВЕДЕТ БОГ.
-[SkovorodaNoteNumber] ᵈ [SkovorodaNoteNumber][FableNumber] 30 [FableNumber] РАЗНОСНОСТЬ, или ПРОТИВОСТРАСТІЕ.
-[SkovorodaNoteNumber] ᵉ [SkovorodaNoteNumber][FableNumber] 30 [FableNumber] РАВНОСНОСНОСТЬ, или СОСТРАСТІЕ.
+<meta fableNumber="18" skovorodaNoteNumber="ᵃ"> Слóво Еллинское. Значит: Обезя́на, Рóда и рóста Бóлшаго </meta>
+<meta fableNumber="21" skovorodaNoteNumber="ᵃ"> Самое доброе дѣло есть скучным без ослабы, а одно только бездѣлья дѣлать во сто раз скучнѣе. </meta>
+<meta fableNumber="30" skovorodaNoteNumber="ᵃ"> ОДИН БОГ ЕСТЬ СѢЯТЕЛЬ ДРУЖБЫ. </meta>
+<meta fableNumber="30" skovorodaNoteNumber="ᵇ"> Сирѣчь: ПОДОБНАГО ДО ПОДОБН[АГО] ВЕДЕТ БОГ. </meta>
+<meta fableNumber="30" skovorodaNoteNumber="ᵈ"> РАЗНОСНОСТЬ, или ПРОТИВОСТРАСТІЕ. </meta>
+<meta fableNumber="30" skovorodaNoteNumber="ᵉ"> РАВНОСНОСНОСТЬ, или СОСТРАСТІЕ. </meta>
 [NoteNumber] 1 [NoteNumber] 
 [NoteNumber] 2 [NoteNumber] 
 [NoteNumber] 3 [NoteNumber] 

@@ -12,7 +12,7 @@ export default function SkSourcesContainerMobile({ sources }) {
   }
 
   return <SkColoredContainerMobile pt={0} mt={0}>
-    <SkH2Mobile text="Джерела" />
+    <SkH2Mobile text="Джерела" id="sources" />
     <Space h={"xl"}/>
     {sources.map((source, index) => {
       return <div key={source.sourceValue}>

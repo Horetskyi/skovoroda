@@ -9,7 +9,7 @@ import Link from 'next/link';
 import ListItemSeedSvg from '../components/svgs/listItemSeed.svg'
 import { getAdjustedHeight } from '../components/functions/imageFunctions';
 import SkNote from '../components/shared/skNote';
-import SkTextContentBlockDesktop from '../components/shared/skTextContentBlockDesktop';
+import SkMetaTextView from '../components/shared/skMetaTextView';
 
 function ArrowSvg() {
   return <svg width="201" height="8" viewBox="0 0 201 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,10 +43,10 @@ export default function HomePageDesktop({sourcesTextContent}) {
   }
 
   function Note(sourceId, pageNumber) {
-    const source = sourcesTextContent.find(source => source.sourceId === sourceId);
+    const source = sourcesTextContent.find(source => source.meta.sourceId == sourceId);
     if (!source) return null;
     const pageNumberText = pageNumber ? ` (сторінка ${pageNumber})` : '';
-    return <SkNote noteNumber={source.noteNumber} title={`Джерело: ${source.shortTitle}${pageNumberText}`} />;
+    return <SkNote noteNumber={source.meta.noteNumber} title={`Джерело: ${source.meta.shortTitle}${pageNumberText}`} />;
   }
 
   const openQuote = <svg width="28" height="26" viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -254,7 +254,7 @@ export default function HomePageDesktop({sourcesTextContent}) {
 
       <SkColoredContainerDesktop py={"xl"}>
         {CenterH2("Джерела")}
-        <SkTextContentBlockDesktop textContent={sourcesTextContent} isv3={true} />
+        <SkMetaTextView metaText={sourcesTextContent} otherArgs={{ isv3: true }} />
         <Space h='md'/>
       </SkColoredContainerDesktop>
         

@@ -1,11 +1,10 @@
 import fs from "fs";
 import path from "path";
-import { fixText } from "./auxiliary";
-import { parseFileContent } from "../data/utils/readingTextsUtils";
 import { SkImagesArray } from "../data/images/skImages";
 import { readFileSyncOrDefault } from "./dataReaderHelper";
 import { calculateTextStatistics } from "./details/calculateTextStatistics";
 import { prepareFrontSkovorodaTextSourcesData } from "./details/prepareFrontSkovorodaTextSourcesData";
+import { metaTextProcessor } from "../metaTextProcessor/metaTextProcessor";
 
 export function readAllTreatises(options) {
 
@@ -25,7 +24,6 @@ export function readAllTreatises(options) {
       if (!metadataFileContent || !metadataFileContent.length) {
         return undefined;
       }
-      metadataFileContent = fixText(metadataFileContent);
       const metadata = JSON.parse(metadataFileContent);
 
       // Transform zmist.list (pass filename for SEED support)
@@ -40,7 +38,7 @@ export function readAllTreatises(options) {
         if (!introContentString || !introContentString.length) {
           introContentString = null;
         }
-        const introContent = introContentString ? parseFileContent(introContentString) : null;
+        const introContent = introContentString ? metaTextProcessor(introContentString) : null;
         metadata.introContent = introContent;
 
         // File 3. "vstupni_dveri_do_khrystyianskoi_dobronravnosti INTRO-2.txt"
@@ -49,7 +47,7 @@ export function readAllTreatises(options) {
         if (!introContentString2 || !introContentString2.length) {
           introContentString2 = null;
         }
-        const introContent2 = introContentString2 ? parseFileContent(introContentString2) : null;
+        const introContent2 = introContentString2 ? metaTextProcessor(introContentString2) : null;
         if (introContent2) {
           metadata.introContent2 = introContent2;
         }
@@ -64,11 +62,11 @@ export function readAllTreatises(options) {
         originalVersion.isReadAvailable = readContentString ? true : false;
         if (!isExcludeReadContent && originalVersion.isReadAvailable) {
           const isOriginal = true;
-          const readContent = parseFileContent(readContentString, isOriginal);
+          const readContent = metaTextProcessor(readContentString, isOriginal);
           if (readContent) {
             fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', `debug_read_${metadata.urlId}.txt`), JSON.stringify(readContent, null, 2));
             originalVersion.readContent = readContent;
-            originalVersion.readContentNotes = parseFileContent(readContentNotesString, isOriginal);
+            originalVersion.readContentNotes = metaTextProcessor(readContentNotesString, isOriginal);
             if (isIncludeStatistics) {
               originalVersion.contentStatistics = calculateTextStatistics(originalVersion.readContent);
               if (originalVersion.contentStatistics) {
@@ -125,7 +123,7 @@ function transformZmistList(zmistList, treatiseFileName) {
         );
         if (fs.existsSync(seedFilePath)) {
           const seedContentString = fs.readFileSync(seedFilePath).toString();
-          item.seedContent = parseFileContent(seedContentString);
+          item.seedContent = metaTextProcessor(seedContentString);
         }
       }
       // ---
@@ -162,7 +160,7 @@ function transformZmistList(zmistList, treatiseFileName) {
             const songFilePath = path.join(process.cwd(), "lib", "data", "treatises", "songs", containedId + ".txt");
             if (fs.existsSync(songFilePath)) {
               const songContentString = fs.readFileSync(songFilePath).toString();
-              const content = parseFileContent(songContentString);
+              const content = metaTextProcessor(songContentString);
               songs.push({
                 songId,
                 content,

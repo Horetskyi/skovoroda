@@ -160,6 +160,43 @@ export function parseBibleCodeInCitation(citation) {
   }
 }
 
+export function parseBibleCode(bibleCode) {
+  if (!bibleCode) return null;
+  if (!bibleCode.length) return null;
+  if (bibleCode.includes("CONTINUE")) return {
+    bibleCode: bibleCode,
+    isContinue: true
+  };
+  const split = bibleCode.split('.');
+  const result = {};
+  if (split.length >= 1) {
+    result.bookCode = split[0].trim();
+  }
+  if (split.length >= 2) {
+    result.chapter = split[1].trim();
+  }
+  if (split.length >= 3) {
+    result.verse = split[2].trim();
+  }
+  if (split.length >= 4) {
+    const bibleType = getBibleType(split[3].trim());
+    if (bibleType) {
+      result.bibleType = bibleType;
+    }
+  }
+  result.bibleCode = `${result.bookCode}.${result.chapter}.${result.verse}`;
+  return result;
+}
+
+function getBibleType(type) {
+  if (!type || !type.length) return 0;
+  if (type === "EXACT") return 1;
+  if (type === "NOT_EXACT") return 2;
+  if (type === "PARAPHRASE") return 3;
+  if (type === "ALLUSION") return 4;
+  return 0;
+}
+
 const newTestamentCodes = new Set([
   'MAT', 'MRK', 'LUK', 'JHN', 'ACT', 'ROM', '1CO', '2CO', 'GAL', 'EPH',
   'PHP', '1TH', '2TH', '1TI', '2TI', 'HEB', 'JAS', '1PE', '2PE', '1JN',

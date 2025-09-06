@@ -1,0 +1,35 @@
+{
+  "id": "varsava",
+  "names": ["Варсава", "Григорїй", "Данїил", "Друг", "Сабаш"],
+  "uaNames": ["Григорій"],
+  "texts": [
+    "narcis",
+    "besida_nazvana_dvoie",
+    "besida_1sha_nazvana_observatorium_sion",
+    "besida_2ha_nazvana_observatorium_sion",
+    "dialog_pro_davnyi_svit",
+    "rozmova_pyiaty_podoroznih_pro_shasta",
+    "kilce",
+    "bukvar_myru",
+    "askhan",
+    "superechka_bisa_s_varsavoyu",
+    "ubohii_zhaivoronok"
+  ],
+  "about": [
+    {
+      "text": "Під цим ім’ям виступав сам Сковорода.",
+      "sourceId": 3,
+      "treatiseId": "besida_1sha_nazvana_observatorium_sion"
+    },
+    {
+      "text": "Очевидно, під цим ім’ям виступає сам Сковорода – “[Bold]Даниїл Мейнгард[Bold]”",
+      "sourceId": 3,
+      "treatiseId": "besida_nazvana_dvoie"
+    },
+    {
+      "text": "Під ім’ям Друга виступає сам Сковорода. Персонаж на ім’я Друг, як утілення авторської позиції, знаний із давніх часів. Досить пригадати бодай діалог Лукіана «Ікароменіпп, або Захмарний політ». До речі, цей письменник, за свідченням Михайла Ковалинського, входив до десятка найулюбленіших авторів Сковороди, а його діалоги були в бібліотеці Харківського колегіуму [див.: Каганов І. Що читали сучасники Г. Сковороди // Радянське літературознавство. – 1967. – № 6. – С. 80].",
+      "sourceId": 3,
+      "treatiseId": "narcis"
+    }
+  ] 
+}

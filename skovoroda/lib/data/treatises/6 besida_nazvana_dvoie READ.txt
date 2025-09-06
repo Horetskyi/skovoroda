@@ -1,5 +1,5 @@
 [Center] Персóны:
-[Center] Михаи́л. Данїи́л¹. Израи́л. <meta character="jacob">Ѳáрра</meta>². Наемáн³.
+[Center] <meta character="mykhayl">Михаи́л</meta>. <meta character="varsava">Данїи́л</meta>¹. <meta character="yzrayl">Израи́л</meta>. <meta character="jacob">Ѳáрра</meta>². <meta character="naeman">Наемáн</meta>³.
 
 ѲА́РРА. О Наемáн! Наемáн! Утѣшь мене, друг мой…
 НАЕМА́Н. Кто тебе перепугал, брате Ѳáрра? Дерзай! [BIBLE]JDG.6.23.NOT_EXACT[X]Мир тебѣ! Не бойся[X]Мир тобі, не бійся, не помреш![BIBLE]⁴! Конечно, ты сидѣл в сóньмищѣ оных:

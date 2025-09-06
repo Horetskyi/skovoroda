@@ -19,8 +19,22 @@
         },
         "innerParsedTextArray": [
           {
-            "text": "Михаи́л. Данїи́л",
-            "start": 0
+            "text": "Михаи́л",
+            "start": 0,
+            "meta": {
+              "character": "mykhayl"
+            }
+          },
+          {
+            "text": ". ",
+            "start": 7
+          },
+          {
+            "text": "Данїи́л",
+            "start": 9,
+            "meta": {
+              "character": "varsava"
+            }
           },
           {
             "text": "¹",
@@ -31,8 +45,19 @@
             }
           },
           {
-            "text": ". Израи́л. ",
+            "text": ". ",
             "start": 17
+          },
+          {
+            "text": "Израи́л",
+            "start": 19,
+            "meta": {
+              "character": "yzrayl"
+            }
+          },
+          {
+            "text": ". ",
+            "start": 26
           },
           {
             "text": "Ѳáрра",
@@ -50,8 +75,15 @@
             }
           },
           {
-            "text": ". Наемáн",
+            "text": ". ",
             "start": 34
+          },
+          {
+            "text": "Наемáн",
+            "start": 36,
+            "meta": {
+              "character": "naeman"
+            }
           },
           {
             "text": "³",

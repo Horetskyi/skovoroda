@@ -14,3 +14,9 @@ export function getCharacterUaCompoundName(character) {
   }
   return name;
 }
+
+export function getNamesSubHeader(character) {
+   return character.uaNames && character.uaNames.length > 0 
+    ? 'В перекладі: ' + character.uaNames.join(', ') 
+    : null;
+}

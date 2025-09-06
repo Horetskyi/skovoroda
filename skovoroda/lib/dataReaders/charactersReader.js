@@ -24,7 +24,9 @@ export function readAllCharacters() {
       metadata.about.forEach(item => {
         item.text = metaTextProcessor(item.text);
         const source = allSources.find(s => s.sourceId === item.sourceId);
-        item.source = source;
+        if (source) {
+          item.source = source;
+        }
       });
 
       metadata.texts = metadata.texts.map(urlId => {

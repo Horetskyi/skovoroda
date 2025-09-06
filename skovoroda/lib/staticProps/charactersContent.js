@@ -1,6 +1,6 @@
 
 export function getCharacterH2Texts(character) {
-  return `Твори Сковороди, де присутній ${getCharacterUaCompoundName(character)}`;
+  return `Твори Сковороди, в яких зустрічається ${getCharacterUaCompoundName(character)}`;
 }
 
 export function getCharacterH1(character) {

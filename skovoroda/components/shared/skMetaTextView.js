@@ -13,6 +13,7 @@ import { metaTextSomeLinePiece } from "../../lib/metaTextUsages/metaTextUsageUti
 import addOrderedNumbersToMetaText from "../../lib/metaTextUsages/addOrderedNumbersToMetaText";
 import { parseBibleCode } from "../../lib/shared/bible";
 import classes from './skMetaTextView.module.scss';
+import { getCharacterPath } from "../../lib/skovorodaPath";
 
 function onNoteClick(id) {
   gsap.to(window, {
@@ -23,7 +24,6 @@ function onNoteClick(id) {
 }
 
 export default function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes }) {
-
   if (!metaText) return null;
   if (Array.isArray(metaText)) {
     metaText = {
@@ -244,6 +244,19 @@ function SkMetaTextLinePiece({ piece, solvePieceFormatClassName, index, isMobile
       key={piece.n}
       text={piece.text}
       href={piece.meta.link}
+      isBlank={true}
+      title={piece.text}
+    />;
+  }
+  
+  // CHARACTER LINK:
+  if (piece.meta && piece.meta.character) {
+    const characterUrlId = piece.meta.character;
+    const characterPath = getCharacterPath(characterUrlId);
+    return <SkTextLink  
+      key={piece.n}
+      text={piece.text}
+      href={characterPath}
       isBlank={true}
       title={piece.text}
     />;

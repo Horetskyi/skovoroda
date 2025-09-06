@@ -17,7 +17,7 @@ export default function SkCharacterPageDesktop({ character }) {
       { character.about.map((item, index) => {
         const sourceText = `[${item.source.shortTitle}]`;
         return <div key={index} className="normalContentText">
-          <SkMetaTextView key={index} textContent={item.text} otherArgs={{isv3: true}} />
+          <SkMetaTextView key={index} metaText={item.text} otherArgs={{isv3: true}} />
           <SkTextLink 
             text={sourceText} 
             title={item.source.shortTitle} 

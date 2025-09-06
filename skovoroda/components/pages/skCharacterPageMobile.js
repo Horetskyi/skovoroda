@@ -17,7 +17,7 @@ export default function SkCharacterPageMobile({ character }) {
       { character.about.map((item, index) => {
         const sourceText = `[${item.source.shortTitle}]`;
         return <div key={index} className="normalContentText">
-          <SkMetaTextView key={index} textContent={item.text} otherArgs={{isv3: true}} isMobile={true} />
+          <SkMetaTextView key={index} metaText={item.text} otherArgs={{isv3: true}} isMobile={true} />
           <SkTextLink 
             text={sourceText} 
             title={item.source.shortTitle} 

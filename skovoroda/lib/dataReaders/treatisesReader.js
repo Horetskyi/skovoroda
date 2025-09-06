@@ -70,35 +70,43 @@ function readAllTreatisesInner(options) {
           metadata.introContent2 = introContent2;
         }
 
-        // File 4. "vstupni_dveri_do_khrystyianskoi_dobronravnosti READ.txt"
-        const readContentString = readContentStringOrDefault(jsonFilePath.replace(".json", " READ.txt"));
-        
-        // File 5. "vstupni_dveri_do_khrystyianskoi_dobronravnosti READ NOTES.txt"
-        const readContentNotesString = readContentStringOrDefault(jsonFilePath.replace(".json", " READ NOTES.txt"));
-        
-        const originalVersion = metadata.versions.find(version => version.translatorId === 0);
-        originalVersion.isReadAvailable = readContentString ? true : false;
-        if (!isExcludeReadContent && originalVersion.isReadAvailable) {
-          const isOriginal = true;
-          const readContent = metaTextProcessor(readContentString, isOriginal);
-          if (readContent) {
-            fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', `debug_read_${metadata.urlId}.txt`), JSON.stringify(readContent, null, 2));
-            originalVersion.readContent = readContent;
-            originalVersion.readContentNotes = metaTextProcessor(readContentNotesString, isOriginal);
-            if (isIncludeStatistics) {
-              originalVersion.contentStatistics = calculateTextStatistics(originalVersion.readContent);
-              if (originalVersion.contentStatistics) {
-                fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', `debug_statistics_${metadata.urlId}.txt`), JSON.stringify(originalVersion.contentStatistics, null, 2));
-                const skovorodaTextSourcesData = prepareFrontSkovorodaTextSourcesData(originalVersion.contentStatistics, metadata.skovorodaTextSourcesManual);
-                delete metadata.skovorodaTextSourcesManual;
-                if (skovorodaTextSourcesData) {
-                  originalVersion.skovorodaTextSourcesData = skovorodaTextSourcesData;
-                  fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', `debug_sk_sources_${metadata.urlId}.txt`), JSON.stringify(originalVersion.skovorodaTextSourcesData, null, 2));
+        metadata.versions.forEach(version => {
+          const readFileName = version.readFile;
+          if (!readFileName) return;
+          const readFilePath = path.join(directoryPath, readFileName);
+          
+          // File 4. "vstupni_dveri_do_khrystyianskoi_dobronravnosti READ.txt"
+          const readContentString = readContentStringOrDefault(readFilePath);
+          if (!readContentString || !readContentString.length) return;
+
+          // File 5. "vstupni_dveri_do_khrystyianskoi_dobronravnosti READ NOTES.txt"
+          const notesFilePath = readFilePath.replace(".txt", " NOTES.txt");
+          const readContentNotesString = readContentStringOrDefault(notesFilePath);
+          // console.log(`NOTES FILE PATH: ${notesFilePath}`);
+          version.isReadAvailable = true;
+            if (!isExcludeReadContent && version.isReadAvailable) {
+            const isOriginal = !version.translatorId ? true : false;
+            const readContent = metaTextProcessor(readContentString, isOriginal);
+            if (readContent) {
+              fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', `debug_read_${version.translatorId}_${metadata.urlId}.txt`), JSON.stringify(readContent, null, 2));
+              version.readContent = readContent;
+              version.readContentNotes = metaTextProcessor(readContentNotesString, isOriginal);
+              if (isIncludeStatistics && isOriginal) {
+                const contentStatistics = calculateTextStatistics(version.readContent);
+                if (contentStatistics) {
+                  version.contentStatistics = contentStatistics;
+                  fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', `debug_statistics_${version.translatorId}_${metadata.urlId}.txt`), JSON.stringify(version.contentStatistics, null, 2));
+                  const skovorodaTextSourcesData = prepareFrontSkovorodaTextSourcesData(version.contentStatistics, metadata.skovorodaTextSourcesManual);
+                  delete metadata.skovorodaTextSourcesManual;
+                  if (skovorodaTextSourcesData) {
+                    version.skovorodaTextSourcesData = skovorodaTextSourcesData;
+                    fs.writeFileSync(path.join(process.cwd(), "lib", "data", "treatises", 'debug', `debug_sk_sources_${version.translatorId}_${metadata.urlId}.txt`), JSON.stringify(version.skovorodaTextSourcesData, null, 2));
+                  }
                 }
               }
             }
           }
-        }
+        });
       }
 
       // Image

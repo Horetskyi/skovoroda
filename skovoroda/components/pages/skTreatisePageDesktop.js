@@ -48,8 +48,11 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
   const highlightColor = treatise.image ? treatise.image.highlightColor : null;
 
   function TreatisVersionBlock(version, source) {
+    
     const isTranslation = version.translatorId ? true : false;
     const translator = translators.find(t => t.translatorId == version.translatorId);
+    const readUrlId = treatise.urlId + (isTranslation ? ("_" + translator.urlId) : "");
+    
     return <Container className={classes.bookContainer} key={version.urlId}>
       <div className={classes.bookImage}>
         <SkImage 
@@ -75,7 +78,7 @@ export default function SkTreatisePageDesktop({ treatise, sources, translators, 
           {version.fileNames.map(fileName => {
             return <SkDownloadButtonDesktop key={fileName} fileName={fileName} device={'desktop'} textId={treatise.urlId} />
           })}
-          {version.isReadAvailable ? <SkReadButtonDesktop key={"read"} device={'desktop'} readUrlId={treatise.urlId} title={version.title} /> : null}
+          {version.isReadAvailable ? <SkReadButtonDesktop key={"read"} device={'desktop'} readUrlId={readUrlId} title={version.title} /> : null}
         </Group>
       </Stack>
     </Container>

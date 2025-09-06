@@ -1,0 +1,921 @@
+[
+  {
+    "title": "Старий Завіт",
+    "imageUrl": "/images/sk-text-sources/old-testament-background.jpg",
+    "imageSourceUrl": "https://www.pexels.com/photo/dramatic-rainbow-over-desert-landscape-at-sunset-28896836/",
+    "imageAuthorFullName": "Stephen Leonardi",
+    "items": [
+      {
+        "text": "Всього 218 цитат: 20.4% від обсягу твору",
+        "iconType": "book"
+      },
+      {
+        "text": "Псалми: 59 цитат",
+        "iconType": "book",
+        "isExpandedOnly": false
+      },
+      {
+        "text": "Пророка Ісаї: 58 цитат",
+        "iconType": "book",
+        "isExpandedOnly": false
+      },
+      {
+        "text": "booksTable",
+        "isExpandedOnly": true,
+        "booksTable": [
+          {
+            "bookName": "Псалми",
+            "citationsCount": 59
+          },
+          {
+            "bookName": "Пророка Ісаї",
+            "citationsCount": 58
+          },
+          {
+            "bookName": "Буття",
+            "citationsCount": 13
+          },
+          {
+            "bookName": "Четверта книга царств",
+            "citationsCount": 9
+          },
+          {
+            "bookName": "Притчі Соломонових",
+            "citationsCount": 9
+          },
+          {
+            "bookName": "Пророка Єремії",
+            "citationsCount": 7
+          },
+          {
+            "bookName": "Пісня над піснями",
+            "citationsCount": 6
+          },
+          {
+            "bookName": "Пророка Осії",
+            "citationsCount": 6
+          },
+          {
+            "bookName": "Пророка Михея",
+            "citationsCount": 5
+          },
+          {
+            "bookName": "Вихід",
+            "citationsCount": 5
+          },
+          {
+            "bookName": "Книга Йова",
+            "citationsCount": 4
+          },
+          {
+            "bookName": "Екклезіястова",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Премудрості Соломона",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Пророка Аввакума",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Пророка Даниїла",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Перша книга царств",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Повторення Закону",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Книга Суддів",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Третя книга царств",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Пророка Авдія",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Друга книга царств",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Пророка Софонії",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Пророка Захарії",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Друга книга Хронік",
+            "citationsCount": 1
+          },
+          {
+            "bookName": "Пророка Амоса",
+            "citationsCount": 1
+          },
+          {
+            "bookName": "Книга Рут",
+            "citationsCount": 1
+          },
+          {
+            "bookName": "Книга Ісуса, сина Сирахового",
+            "citationsCount": 1
+          },
+          {
+            "bookName": "Книга Ісуса Навина",
+            "citationsCount": 1
+          },
+          {
+            "bookName": "Пророка Варуха",
+            "citationsCount": 1
+          }
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Пророка Ісаї 38:14"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "7 разів"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Яко Ластовица, тако возопїю, и я́ко Голуб, тако поучуся",
+          "Яко Ластовица, тако возопїю",
+          "Яко Ластовица, тако возопїю…",
+          "Яко Ластовица",
+          "Ищезостѣ бо Очи мои",
+          "Иже избави мя и отъя Болѣзнь Души моея",
+          "Яко Ластовица, тако возопїю",
+          "И яко Павел, тако поучуся"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Псалми 112:5"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "3 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Кто, яко БОГ?",
+          "КТО, ЯКО БОГ?",
+          "КТО, ЯКО БОГ?",
+          "Кто, яко ПРАВДА"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Пророка Ісаї 8:14"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "3 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Той будет тебѣ во ОСВЯЩЕНЇЕ, аще будеши уповая на НЕГО",
+          "камень претыканїя, и камень паденїя",
+          "на Камень претыканїя и падéнїя",
+          "Той будет тебѣ во освященїе, аще будеши уповая на НЕГО"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Пророка Ісаї 8:13"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "3 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Господа сил, ТОГО освятите",
+          "ГО́СПОДА СИЛ, ТОГО ОСВЯТИТЕ",
+          "ГОСПОДА СИЛ, ТОГО ОСВЯТИТЕ"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Пророка Осії 11:10"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Яко Лев, возревет Господь, и ужаснутся чада вод",
+          "Сам Господь ему, яко Лев, возревéт",
+          "ужаснутся Чада вод…"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Пророка Авдія 1:4"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "‘Аще вознесешися, якоже Орéл, и оттуду свергу тя’, – глаголет Господь",
+          "Аще вознесеш[ися], яко Орел, и оттуду свергу тя…"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Буття 49:9"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "сей ли есть Ски́мен Львов Їу́да от тѣх",
+          "Возлег почи, Кто воздвигнет Его?"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Пророка Аввакума 2:1"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "стоять на Стражѣ со Авваку́мом, возвóдить О́чи",
+          "На Стрáжѣ моей стáну и взыйду на КАМЕНЬ",
+          "На Стражѣ моей стану и взыйду на КАМЕНЬ"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Четверта книга царств 2:9"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Да будет Дух, иже в тебѣ, сугу́б во мнѣ",
+          "Дух сугу́б, Дух, открывающїй ДВОЕ",
+          "Она есть Дух сугу́б, видящїй ДВО́Е"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Псалми 33:15"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Уклонися от зла и сотвори Благо",
+          "Уклонися от зла"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Псалми 44:9"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "ТЫ же тѣло, Зéрно, Ѳимїáм, Стáкти и Касїа",
+          "в ризах Его ни Сми́рны, ни Стáкты, ни Касїи"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Притчі Соломонових 3:8"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "ИСЦѢЛЕНЇЕ плóтем и ПРИЛОЖЕНЇЕ костем",
+          "Приложенїе костем твоим"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Псалми 72:26"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Боже сéрдца моегоp",
+          "Боже сéрдца моего",
+          "О Часть моя всесладчайшая"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Пророка Єремії 8:7"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Ерóдїй на небеси́ позна время свое",
+          "Познá врéмя свое",
+          "Еродїй позна время свое: Гóрлица и Лáстовица…",
+          "Еродїа позна время свое: Горлица и Ластовица… Людїе же мои сїи, не познаша судеб Господних"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Псалми 103:17"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Тамо птицы возгнѣзд[ятся]",
+          "Еродїево жилище предводительствует",
+          "Еродїево жилище"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Пророка Єремії 8:7"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Ерóдїй на небеси́ позна время свое",
+          "Познá врéмя свое",
+          "Еродїй позна время свое: Гóрлица и Лáстовица…",
+          "Еродїа позна время свое: Горлица и Ластовица… Людїе же мои сїи, не познаша судеб Господних"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Пророка Ісаї 33:17"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "провижу весьма издалеча Землю и Гáвань",
+          "Очи ваши узрят ЗЕМЛЮ издалеча",
+          "Царя со Славою узрите, и Очи ваши узрят ЗЕМЛЮ издалеча"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Псалми 54:7"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Кто даст мнѣ кри́лѣ…",
+          "Кто даст мнѣ крилѣ…",
+          "И полещу, и почїю"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Вихід 19:4"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Подъях вас, яко на Крилѣх Орлих, и приведох вас к себѣ",
+          "Подъях вас, яко на крилѣх Орлих, и приведох вас к себѣ"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Притчі Соломонових 20:5"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "вода Глубока – СОВѢТ в сердцѣ Мужей сих",
+          "Вода Глубока, Совѣт в сердцѣ МУЖА…"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Притчі Соломонових 14:22"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "злые дѣлатели",
+          "злых дѣлателей"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Пророка Михея 1:8"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Сотворит плач, аки Змїéв, и рыданїе, аки дщерей Сири́нских",
+          "Сотворит плач, аки Змїéв…"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Пророка Ісаї 57:20"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Возволнуются и почити не возмогут",
+          "Возволнуются, и почити не возмогут"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Пророка Ісаї 13:21"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Наполнятся дóмове шу́ма, и почїют ту Си́рины",
+          "Почїют ту Си́рины"
+        ]
+      }
+    ],
+    "isExpandable": true,
+    "colorType": "red"
+  },
+  {
+    "title": "Новий Завіт",
+    "imageUrl": "/images/sk-text-sources/new-testament-background-edited.webp",
+    "imageSourceUrl": "https://www.pexels.com/photo/statue-of-celsus-library-in-ephesus-21802617/",
+    "imageAuthorFullName": "Burak Hayıt",
+    "items": [
+      {
+        "text": "Всього 111 цитат: 10.4% від обсягу твору",
+        "iconType": "book"
+      },
+      {
+        "text": "Євангелія Івана: 25 цитат",
+        "iconType": "book",
+        "isExpandedOnly": false
+      },
+      {
+        "text": "booksTable",
+        "isExpandedOnly": true,
+        "booksTable": [
+          {
+            "bookName": "Євангелія Івана",
+            "citationsCount": 25
+          },
+          {
+            "bookName": "Євангелія Матвія",
+            "citationsCount": 18
+          },
+          {
+            "bookName": "Євангелія Луки",
+            "citationsCount": 16
+          },
+          {
+            "bookName": "Дії святих апостолів",
+            "citationsCount": 10
+          },
+          {
+            "bookName": "Апокаліпсис",
+            "citationsCount": 7
+          },
+          {
+            "bookName": "Друге послання до коринтян",
+            "citationsCount": 7
+          },
+          {
+            "bookName": "Перше послання до коринтян",
+            "citationsCount": 6
+          },
+          {
+            "bookName": "I соборне послання св. ап. Івана",
+            "citationsCount": 4
+          },
+          {
+            "bookName": "Послання до филип'ян",
+            "citationsCount": 4
+          },
+          {
+            "bookName": "Послання до ефесян",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Євангелія Марка",
+            "citationsCount": 3
+          },
+          {
+            "bookName": "Перше послання до солунян",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Соборне послання св. ап. Іуди",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Послання до Римлян",
+            "citationsCount": 2
+          },
+          {
+            "bookName": "Послання до євреїв",
+            "citationsCount": 1
+          },
+          {
+            "bookName": "I послання до Тимотея",
+            "citationsCount": 1
+          }
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Євангелія Луки 6:25"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Горе вам смѣющимся нынѣ!",
+          "Горе вам, смѣющимся нынѣ"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Євангелія Матвія 16:18"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Jesum",
+          "KЕ́PHAM"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Друге послання до коринтян 5:16"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "От нынѣ ни единаго вѣмы по Плоти. Аще же и разумѣхом по плоти Христа, но нынѣ ктому не разумѣем",
+          "Разумѣхом по плоти Христа, но нынѣ ктому не разумѣем"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Апокаліпсис 12:15"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Блаженныя сея Жены потопом Блевóтин своих не мог потопить Змїй седмиглавный",
+          "если не оная Змїи́на, Сирéнская Блевóтина"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Євангелія Івана 14:1"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Да не смущается сердце ваше",
+          "вѣруйте в Бога"
+        ]
+      },
+      {
+        "text": [
+          "Вірш ",
+          {
+            "type": "underline-text",
+            "text": "Євангелія Луки 17:37"
+          },
+          " цитується ",
+          {
+            "type": "underline-text",
+            "text": "2 рази"
+          }
+        ],
+        "isExpandedOnly": true,
+        "sublist": [
+          "Идѣже труп, тамо соберутся Орлы",
+          "Идѣже Труп, тамо соберутся Орлы"
+        ]
+      }
+    ],
+    "isExpandable": true,
+    "colorType": "red"
+  },
+  {
+    "title": "Античність",
+    "imageUrl": "/images/sk-text-sources/antiquity.webp",
+    "imageSourceUrl": "https://www.pexels.com/photo/statue-of-celsus-library-in-ephesus-21802617/",
+    "colorType": "red",
+    "items": [
+      {
+        "text": "Гомер – «Одіссея»",
+        "iconType": "book"
+      },
+      {
+        "text": "Вергілій – «Енеїда»",
+        "iconType": "book"
+      },
+      {
+        "text": "Притча Еврипіда",
+        "iconType": "book"
+      },
+      {
+        "text": "Латинські епіграми, афоризми",
+        "iconType": "book"
+      }
+    ]
+  },
+  {
+    "title": "Емблематика",
+    "imageUrl": "/images/sk-text-sources/Symbola_et_emblemata_1705_edited.webp",
+    "colorType": "red",
+    "items": [
+      {
+        "text": "Symbola et emblemata (1705 р.)",
+        "iconType": "book"
+      },
+      {
+        "text": "Емблемы и символы избранные (1739 р.)",
+        "iconType": "book"
+      },
+      {
+        "text": "Збірник Германа Гуго (1624 р.)",
+        "iconType": "book"
+      }
+    ]
+  },
+  {
+    "title": "Фольклор",
+    "imageUrl": "/images/sk-text-sources/folklore.jpg",
+    "colorType": "red",
+    "items": [
+      {
+        "text": "Прислів’я",
+        "iconType": "none"
+      }
+    ]
+  },
+  {
+    "title": "Поезія та поетика",
+    "imageUrl": "/images/sk-text-sources/serce.webp",
+    "colorType": "red",
+    "items": [
+      {
+        "text": "Поетика Києво-Могилянської академії",
+        "iconType": "none"
+      },
+      {
+        "text": "Барокова духовна поезія",
+        "iconType": "none"
+      }
+    ]
+  },
+  {
+    "title": "Етимологія",
+    "imageUrl": "/images/sk-text-sources/etymology.webp",
+    "imageSourceUrl": "https://www.pexels.com/photo/autumn-day-at-trakya-university-signpost-30789486/",
+    "colorType": "red",
+    "items": [
+      {
+        "text": "Українська, давньогрецька, латинська, німецька, польська, іврит",
+        "iconType": "none"
+      }
+    ]
+  },
+  {
+    "title": "Патристика",
+    "imageUrl": "/images/sk-text-sources/MHS_ojcowie_ks_Bazyli_Wlk_Jan_Chryzostom_Grzeg_Wlk_XVII_Lipie_p.webp",
+    "colorType": "red",
+    "items": [
+      {
+        "text": "Пустельники",
+        "iconType": "none"
+      }
+    ]
+  }
+]

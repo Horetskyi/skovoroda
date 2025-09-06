@@ -8,7 +8,6 @@ import SkReadSkovorodaSource from "./details/skReadSkovorodaSource";
 import { getAggregatedSourcesParams } from "./details/pureFunctions";
 import NotesDesktop from "./details/notesDesktop";
 import DownloadsDesktop from "./details/downloadsDesktop";
-import SkAuthorDesktop from "./details/skAuthorDesktop";
 import SkAuthorMobile from "./details/skAuthorMobile";
 
 export default function ReadPageMobile({ selectedRead }) {

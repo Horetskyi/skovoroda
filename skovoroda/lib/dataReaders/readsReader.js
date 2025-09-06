@@ -7,6 +7,7 @@ import { SkImagesArray } from "../data/images/skImages";
 import { applyNotesV4 } from "./dataReaderHelper";
 import { SkAuthors } from "../data/skAuthors";
 import { metaTextProcessor } from "../metaTextProcessor/metaTextProcessor";
+import { skTranslatorsV2 } from "../data/skovorodaTranslators";
 
 export function readAllReads(options) {
 
@@ -70,8 +71,10 @@ export function readAllReads(options) {
     .filter(item => item.version.isReadAvailable)
     .map(item => {
       const image = SkImagesArray.find(image => image.type === 'treatise' && image.urlId === item.urlId) || null
-      return {
-        urlId: item.urlId,
+      const translator = skTranslatorsV2.find(t => t.translatorId === item.version.translatorId);
+      const isOriginal = item.version.translatorId === 0;
+      const result = {
+        urlId: item.urlId + (isOriginal ? "" : ("_" + translator.urlId)),
         title: item.version.title,
         sourceId: item.version.sourceId,
         content: item.version.readContent,
@@ -81,7 +84,13 @@ export function readAllReads(options) {
         type: "treatise",
         image: image,
         mainTheme: null,
+        isOriginal: isOriginal,
+        translatorId: item.version.translatorId,
       };
+      if (!result.contentStatistics) {
+        delete result.contentStatistics;
+      }
+      return result;
     });
   readsTreatises.forEach(read => allParsedItems.push(read));
   // TREATISES }

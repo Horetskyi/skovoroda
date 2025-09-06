@@ -2,11 +2,17 @@ import { Title } from "@mantine/core";
 import SkMetaTextView from "../../shared/skMetaTextView";
 
 export default function NotesDesktop({ notes }) {
-  if (!notes || !notes.length) {
-    return null;
+  var metaText = notes;
+  if (!metaText) return null;
+  if (Array.isArray(metaText)) {
+    metaText = {
+      meta: {},
+      lines: metaText
+    };
   }
+  if (!metaText.lines || !metaText.lines.length) return null;
   return <>
     <Title ta={'center'} mt="xl" mb="md" order={2}>Примітки</Title>
-    <SkMetaTextView metaText={notes} isNotes={true} />
+    <SkMetaTextView metaText={metaText} isNotes={true} />
   </>
 }

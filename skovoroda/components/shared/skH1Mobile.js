@@ -2,7 +2,7 @@
 import { Title } from "@mantine/core";
 import classes from './skH1Mobile.module.scss'; 
 
-export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin, mb }) {
+export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin, mb, id }) {
   let styleObj = {};
   if (color && color.length) {
     styleObj.color = color;
@@ -26,6 +26,7 @@ export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin, m
       className={imageClassName} 
       style={styleObj}
       mb={mb}
+      id={id}
     >
       {text}
     </Title>

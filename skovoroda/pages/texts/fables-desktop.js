@@ -32,7 +32,7 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
     </List>
   }
   
-  const gridImages = SkImagesArray.filter(image => image.type === "fable").map((image, index) => {
+  const imagesList = SkImagesArray.filter(image => image.type === "fable").map((image, index) => {
     image = {...image};
     const fable = allFables.find(fable => fable.fableNumber === image.fableNumber);
     const title = `${image.fableNumber} - ${fable.fableTitle}`;
@@ -90,7 +90,7 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
     })}
 
     <SkH2DesktopV3 text="Ілюстрації" subHeader="до Збірки «Байки Харківські»" id="illustrations" />
-    <SkImagesGrid images={gridImages} gentlyShadow={true} isVFables={true} />
+    <SkImagesGrid images={imagesList} gentlyShadow={true} isVFables={true} />
 
     {/* Sources */}
     <SkColoredContainerDesktop py="0" my="0">

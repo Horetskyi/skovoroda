@@ -1,4 +1,4 @@
-import { Flex, List } from "@mantine/core";
+import { Flex, List, Space } from "@mantine/core";
 import SkMetaTextView from "../shared/skMetaTextView";
 import SkTextLink from "../shared/skTextLink";
 import { getSourcePath, getTreatisePath } from "../../lib/skovorodaPath";
@@ -12,7 +12,9 @@ export default function SkCharacterPageMobile({ character }) {
   
   return <div>
     
-    <SkH1Mobile text={getCharacterH1(character)}/>
+    <SkH1Mobile text={getCharacterH1(character)} withBlueImage={true} />
+
+    <Space h={"md"} />
 
     <SkH2MobileV2 text={character.names.join(', ')} subHeader={getNamesSubHeader(character)} />
 
@@ -20,14 +22,14 @@ export default function SkCharacterPageMobile({ character }) {
 
       <Flex gap={"md"} direction={"column"} mb={"lg"}>
         { character.about.map((item, index) => {
-          const sourceText = `[${item.source.shortTitle}]`;
+          const sourceText = item.source && item.source.shortTitle ? `[${item.source.shortTitle}]` : null;
           return <div key={index} className="normalContentText">
             <SkMetaTextView key={index} metaText={item.text} otherArgs={{isv3: true}} isMobile={true} />
-            <SkTextLink 
+            {sourceText ? <SkTextLink 
               text={sourceText} 
               title={item.source.shortTitle} 
               href={getSourcePath(item.source.id)}
-            />
+            /> : null}
           </div>
         })}
       </Flex>

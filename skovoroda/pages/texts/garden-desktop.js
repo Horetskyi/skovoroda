@@ -32,7 +32,7 @@ export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenIma
   const translatedSongsMetadataArray = Array.from(translatedSongsMetadataMap.values());
   translatedSongsMetadataArray.sort((a,b) => a.number - b.number)
 
-  const gridImages = translatedSongsMetadataArray.filter(song => song.songImage).map(song => {
+  const imagesList = translatedSongsMetadataArray.filter(song => song.songImage).map(song => {
     return {
       image: song.songImage,
       href: pathJoinWithoutEndSlash(SkovorodaGardenPath, song.id),
@@ -64,7 +64,7 @@ export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenIma
     </SkColoredContainerDesktop>
 
     <SkH2DesktopV2 text="Ілюстрації" subHeader="до Саду Божественних Пісень" />
-    <SkImagesGrid images={gridImages} />
+    <SkImagesGrid images={imagesList} />
 
   </>
 }

@@ -7,6 +7,7 @@ import SkH1Mobile from "../../components/shared/skH1Mobile";
 import SkImage from "../../components/shared/skImage";
 import Link from "next/link";
 import SkH2MobileV2 from "../../components/shared/skH2MobileV2";
+import SkImagesList from "../../components/shared/skImagesList";
 
 export default function SkovorodaGardenPageMobile({ allSongsMetadata, gardenImageByOlenka }) {
   
@@ -30,6 +31,14 @@ export default function SkovorodaGardenPageMobile({ allSongsMetadata, gardenImag
   const translatedSongsMetadataArray = Array.from(translatedSongsMetadataMap.values());
   translatedSongsMetadataArray.sort((a,b) => a.number - b.number)
 
+  const imagesList = translatedSongsMetadataArray.filter(song => song.songImage).map(song => {
+    return {
+      image: song.songImage,
+      href: pathJoinWithoutEndSlash(SkovorodaGardenPath, song.id),
+      name: song.name
+    }
+  });
+
   return <>
 
     {/* H1 */}
@@ -52,28 +61,8 @@ export default function SkovorodaGardenPageMobile({ allSongsMetadata, gardenImag
       </List>
     </SkColoredContainerMobile>
 
-    <SkH2MobileV2 text={"Ілюстрації"} />
-
-    <Flex mt={"lg"} mb={"xl"} px={"sm"} gap={"xl"} direction={"column"} ta={"center"}>
-      {translatedSongsMetadataArray.filter(song => song.songImage).map((song, index) => {
-        const image = song.songImage;
-        const href = pathJoinWithoutEndSlash(SkovorodaGardenPath, song.id);
-        return <Link href={href} title={song.name} key={"" + index + song.id} mx={"auto"}>
-          <SkImage 
-            image={image}
-            fullWidth={true}
-            priority={false} 
-            shadow={false}
-            alt={song.name}
-            optimize={false}
-            styleAction={(style) => {
-              style.marginLeft = "auto";
-              style.marginRight = "auto";
-            }}
-          />
-        </Link>
-      })}
-    </Flex>
+    <SkH2MobileV2 text={"Ілюстрації"} subHeader="до Саду Божественних Пісень" />
+    <SkImagesList images={imagesList} />
 
   </>
 }

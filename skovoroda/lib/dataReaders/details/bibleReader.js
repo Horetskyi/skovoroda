@@ -40,7 +40,7 @@ function _readFromSource(bookCode, chapter, bibleVersionCode) {
   const filePath = path.join(directoryPath, `${bookCode}.${chapter}.txt`);
   const fileContent = readFileSyncOrDefault(filePath);
   if (!fileContent) {
-    console.warn(`Bible file not found: ${filePath}`);
+    // console.warn(`Bible file not found: ${filePath}`);
     return;
   }
 

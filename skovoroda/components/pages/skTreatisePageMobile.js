@@ -8,7 +8,7 @@ import SkH2Mobile from "../shared/skH2Mobile";
 import SkPageNavMenu from "../shared/skPageNavMenu";
 import classes from './skTreatisePageMobile.module.scss';
 import SkMetaTextView from "../shared/skMetaTextView";
-import getTreatiseMenuLinks from "./details/getTreatiseMenuLinks";
+import getTreatiseMenuLinks from "../../lib/utils/menus/getTreatiseMenuLinks";
 import ZmistBullet from "./details/zmistBullet";
 import { ZmistItem } from "../shared/zmistItem";
 import { getIllustrationSourceParam } from "./details/pureFunctions";

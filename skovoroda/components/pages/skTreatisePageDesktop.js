@@ -8,7 +8,7 @@ import classes from './skTreatisePageDesktop.module.scss';
 import SkPageNavMenu from "../shared/skPageNavMenu";
 import SkMetaTextView from "../shared/skMetaTextView";
 import { ZmistItem } from "../shared/zmistItem";
-import getTreatiseMenuLinks from "./details/getTreatiseMenuLinks";
+import getTreatiseMenuLinks from "../../lib/utils/menus/getTreatiseMenuLinks";
 import ZmistBullet from "./details/zmistBullet";
 import SkSourcesContainerDesktop from "../shared/skSourcesContainerDesktop";
 import { getIllustrationSourceParam } from "./details/pureFunctions";
@@ -17,7 +17,6 @@ import { SkQuotesDesktop } from "../shared/skQuotesDesktop";
 import SkReadButtonDesktop from "../shared/skReadButtonDesktop";
 import SkSkovorodaTextSourcesDesktop from "./details/SkSkovorodaTextSourcesDesktop";
 import SkH2DesktopV2 from "../shared/skH2DesktopV2";
-import SkFountain from "../shared/skFountain";
 
 // Pure
 function filterZmistListForSongs(zmistList) {

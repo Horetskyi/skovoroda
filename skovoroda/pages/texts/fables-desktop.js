@@ -9,7 +9,11 @@ import { fablesPageContent } from "../../lib/staticProps/fablesContent";
 import SkH2Desktop from "../../components/shared/skH2Desktop";
 import SkMetaTextView from "../../components/shared/skMetaTextView";
 import classes from './fables-desktop.module.scss';
-import SkFablesCarousel from "../../components/shared/skFablesCarousel";
+import SkH2DesktopV3 from "../../components/shared/skH2DesktopV3";
+import SkImagesGrid from "../../components/shared/skImagesGrid";
+import { SkImagesArray } from "../../lib/data/images/skImages";
+import getFablesMenuLinks from "../../lib/utils/menus/getFablesMenuLinks";
+import SkPageNavMenu from "../../components/shared/skPageNavMenu";
 
 export default function FablesPage({ allFables, fablesTopContent, allSources }) {
   const fables = prepareFables(allFables);
@@ -28,16 +32,31 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
     </List>
   }
   
+  const gridImages = SkImagesArray.filter(image => image.type === "fable").map((image, index) => {
+    image = {...image};
+    const fable = allFables.find(fable => fable.fableNumber === image.fableNumber);
+    const title = `${image.fableNumber} - ${fable.fableTitle}`;
+    const href = pathJoin(SkovorodaFablesPath, fable.urlId);
+    return {
+      image: image,
+      name: title,
+      href: href
+    }
+  });
+
+  const menuLinks = getFablesMenuLinks();
+
   return <>
 
-    <SkH1Desktop text="Байки Харківські" withBlueImage={true}/>
+    <SkH1Desktop text="Байки Харківські" withBlueImage={true} id="list" />
 
     {/* Fables Links */}
     <SkColoredContainerDesktop pt={-20}>
+
+      <SkPageNavMenu links={menuLinks} isDesktop={true}/>
+
       {getListOfFables(0,30)}
     </SkColoredContainerDesktop>
-
-    <SkFablesCarousel allFables={allFables} />
 
     {/* FAQ */}
     {fablesTopContent.map((group,index) => {
@@ -52,10 +71,11 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
       const answer1 = group.contents.find(content => content.key === "answer1");
       const answer2 = group.contents.find(content => content.key === "answer2");
       const answer3 = group.contents.find(content => content.key === "answer3");
+      const id = index === 0 ? "faq" : null;
       return <Container key={group.key} p="0">
         <SkColoredContainerDesktop py="0">
           <Space h="lg"/>
-          <SkH2Desktop text={question.content.lines[0][0].text} type="qa" />
+          <SkH2Desktop text={question.content.lines[0][0].text} type="qa" id={id} />
         </SkColoredContainerDesktop>
         {answer1 ? <SkColoredContainerDesktop pt="md" pb="lg">
           {contentBlock(answer1)}
@@ -69,10 +89,12 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
       </Container> 
     })}
 
+    <SkH2DesktopV3 text="Ілюстрації" subHeader="до Збірки «Байки Харківські»" id="illustrations" />
+    <SkImagesGrid images={gridImages} gentlyShadow={true} isVFables={true} />
+
     {/* Sources */}
     <SkColoredContainerDesktop py="0" my="0">
-      <Space h="lg"/>
-      <SkH2Desktop text="Джерела" />
+      <SkH2Desktop text="Джерела" id="sources" />
       <Space h="lg"/>
       {allSources.map((source,index) => {
         const text = `[${source.sourceId}] ${source.sourceFullName}`;
@@ -85,8 +107,11 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
           {text}
         </Text>
       })}
-      <Space h="xl"/>
     </SkColoredContainerDesktop>
+      
+    <Space h="xl"/>
+    <Space h="xl"/>
+
   </>
 }
 

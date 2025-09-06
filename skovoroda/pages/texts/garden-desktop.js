@@ -8,6 +8,7 @@ import SkImage from "../../components/shared/skImage";
 import { getAdjustedWidth } from "../../components/functions/imageFunctions";
 import Link from "next/link";
 import SkH2DesktopV2 from "../../components/shared/skH2DesktopV2";
+import SkImagesGrid from "../../components/shared/skImagesGrid";
 
 export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenImageByOlenka }) {
   
@@ -30,6 +31,14 @@ export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenIma
     })
   const translatedSongsMetadataArray = Array.from(translatedSongsMetadataMap.values());
   translatedSongsMetadataArray.sort((a,b) => a.number - b.number)
+
+  const gridImages = translatedSongsMetadataArray.filter(song => song.songImage).map(song => {
+    return {
+      image: song.songImage,
+      href: pathJoinWithoutEndSlash(SkovorodaGardenPath, song.id),
+      name: song.name
+    }
+  });
 
   return <>
 
@@ -55,29 +64,7 @@ export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenIma
     </SkColoredContainerDesktop>
 
     <SkH2DesktopV2 text="Ілюстрації" subHeader="до Саду Божественних Пісень" />
-    <Grid mt={"lg"} mb={"lg"} px={"xl"}>
-      {translatedSongsMetadataArray.filter(song => song.songImage).map((song, index) => {
-        const image = song.songImage;
-        const href = pathJoinWithoutEndSlash(SkovorodaGardenPath, song.id);
-        const height = 500;
-        const width = getAdjustedWidth(height, 300, image);
-        image.height = height;
-        image.width = width;
-        return <Grid.Col key={"" + index + song.id} span={4} mb={"xl"} ta={"center"}>
-          <Link href={href} title={song.name}>
-            <SkImage 
-              image={image}
-              width={width} 
-              height={height} 
-              priority={false} 
-              shadow={false}
-              alt={song.name}
-              optimize={false}
-            />
-          </Link>
-        </Grid.Col>
-      })}
-    </Grid>
+    <SkImagesGrid images={gridImages} />
 
   </>
 }

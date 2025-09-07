@@ -23,8 +23,13 @@
       "sourceId": 4,
       "title": "Суперечка Біса з Варсавою",
       "fileNames": [
+        "Г. С. Сковорода - Суперечка Біса з Варсавою - М. Кашуба.docx",
+        "Г. С. Сковорода - Суперечка Біса з Варсавою - М. Кашуба.epub",
+        "Г. С. Сковорода - Суперечка Біса з Варсавою - М. Кашуба.fb2",
+        "Г. С. Сковорода - Суперечка Біса з Варсавою - М. Кашуба.pdf"
       ],
-      "preferedVersion": true
+      "preferedVersion": true,
+      "readFile": "16 superechka_bisa_s_varsavoyu kashuba READ.txt"
     }
   ],
   "introSourceId": 27

@@ -35,12 +35,12 @@ export async function getStaticProps({ params }) {
   const selectedSong = SkovorodaGardenRefactored.allSongs.find(song => song.songMetadata.id == id);
   const allSongsMetadata = SkovorodaGardenRefactored.allSongs.map(song => song.songMetadata);
   const selectedNoteNumbers = getSelectedNoteNumbersByContent(selectedSong.songContent);
-  
+
   const selectedNotes = SkovorodaGardenRefactored.allNotes.filter(notes => 
     notes.notesMetadata.source == selectedSong.songMetadata.source &&
     notes.notesMetadata.translatorName == selectedSong.songMetadata.translatorName)
     .flatMap(notes => notes.notes.lines)
-    .filter(line => line && isLineIncludesNoteNumbers(line, selectedNoteNumbers));
+    .filter(line => line && isLineIncludesNoteNumbers(line, selectedNoteNumbers, selectedSong.songMetadata.number, 'songNumber'));
 
   allSongsMetadata.sort((a,b) => a.number - b.number);
 

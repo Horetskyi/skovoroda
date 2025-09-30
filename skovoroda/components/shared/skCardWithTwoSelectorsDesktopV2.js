@@ -16,6 +16,19 @@ const SkCardWithTwoSelectorsDesktopV2 = memo(function SkCardWithTwoSelectorsDesk
     </div>
   );
 
+  const HiddenLinksDisplay = function ({data}) {
+    if (!data || !data.length) return null;
+    return <div className="kind-of-menu" style={{ visibility: "hidden", position: "absolute" }}>
+      { data
+        .map(item => {
+          if (!item.absoluteUrl) return null;
+          const label = item.linkTitle ? item.linkTitle : (item.label ? item.label : item.absoluteUrl);
+          return <a key={item.id} href={item.absoluteUrl}>{label}</a>;
+        })
+        .filter(x => x) }
+    </div>;
+  }
+
   return <Card withBorder={false} w={"100%"} p="0" m="0" >
 
     {/* Use Flex for 1/3 and 2/3 layout with gap */}
@@ -40,6 +53,7 @@ const SkCardWithTwoSelectorsDesktopV2 = memo(function SkCardWithTwoSelectorsDesk
           renderOption={renderSelectOption}
           aria-label={dropdown1.label}>
         </Select>
+        <HiddenLinksDisplay data={dropdown1.data} />
       </div>
       <div style={{ flex: "2 1 0", minWidth: 0, maxWidth: "66.66%" }}>
         <Text mb="sm" className={classes.labelText}>{dropdown2.label}</Text>
@@ -58,9 +72,11 @@ const SkCardWithTwoSelectorsDesktopV2 = memo(function SkCardWithTwoSelectorsDesk
           comboboxProps={{ keepMounted: true, middlewares: { flip: false, shift: false } }}
           aria-label={dropdown2.label}>
         </Select>
+        <HiddenLinksDisplay data={dropdown2.data} />
       </div>
     </div>
 
   </Card>
 });
+
 export default SkCardWithTwoSelectorsDesktopV2;

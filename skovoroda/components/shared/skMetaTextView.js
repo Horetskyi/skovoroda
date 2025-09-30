@@ -108,13 +108,19 @@ export default function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes 
     return '';
   }
   function getNormalClassName(piece) {
+
     const formatClassName = solvePieceFormatClassName(piece);
+    
     const vClassName = (otherArgs.isv2 ? classes.blockTextLineV2 
       : otherArgs.isv3 ? classes.blockTextLineV3 
       : classes.blockTextLine);
+    
+      const isThisPieceNoteBeginning = piece && piece.meta && piece.meta.isNoteBeginning;
+
     const normalClassName = formatClassName + " " + vClassName + " " +
-      ((piece && piece.meta && piece.meta.isNoteBeginning && !otherArgs.isMarginDisabled) ? (classes.noteBlockMarginBottom + " ") : "");
-    return normalClassName;
+      ((isThisPieceNoteBeginning && !otherArgs.isMarginDisabled) ? (classes.noteBlockMarginBottom + " ") : "");
+    
+      return normalClassName;
   }
   // FORMAT }
     
@@ -325,7 +331,8 @@ function SkMetaTextLine({
     />;
   }).filter(pieceNode => pieceNode);
   if (!lineNodes.length) return null;
-  const normalClassName = line.length === 1 ? getNormalClassName(line[0]) : getNormalClassName();
+
+  const normalClassName = ((line.length === 1) || (line.length && line[0] && line[0].meta && line[0].meta.isNoteBeginning)) ? getNormalClassName(line[0]) : getNormalClassName();
 
   // NOTE IN NOTES BLOCK:
   var noteInBlock = null;

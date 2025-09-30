@@ -53,7 +53,7 @@ export async function getStaticProps({ params }) {
   selectedNotes = selectedNotes.lines;
   if (selectedNotes && selectedNotes.length) {
     selectedNotes = selectedNotes.filter(line => line && 
-      (isLineIncludesNoteNumbers(line, selectedNoteNumbers) ||
+      (isLineIncludesNoteNumbers(line, selectedNoteNumbers, selectedFable.metadata.fableNumber, 'fableNumber') ||
       (line.meta && line.meta.fableNumber == selectedFable.metadata.fableNumber)));
   }
   

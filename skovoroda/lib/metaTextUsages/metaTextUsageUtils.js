@@ -44,14 +44,24 @@ export function metaTextSomeLinePiece(metaText, lineFunc) {
   return metaTextSomeLinePieceInner(lineFunc, metaText.lines);
 }
 
-export function isLineIncludesNoteNumbers(line, noteNumbers) {
+export function isLineIncludesNoteNumbers(line, noteNumbers, textNumber, textNumberKey) {
   if (!line) return false;
   if (Array.isArray(line)) line = line[0];
-  if (line.meta && line.meta.noteNumber && noteNumbers.includes(""+line.meta.noteNumber)) {
+  if (line.meta && line.meta.noteNumber && 
+    !line.meta.skovorodaNoteNumber &&
+    noteNumbers.includes(""+line.meta.noteNumber)) 
+  {
+    return true;
+  }
+  if (line.meta && line.meta.noteNumber && 
+    line.meta.skovorodaNoteNumber &&
+    line.meta[textNumberKey] == textNumber && 
+    noteNumbers.includes(""+line.meta.noteNumber)) 
+  {
     return true;
   }
   if (line.innerParsedTextArray && line.innerParsedTextArray.length) {
-    return line.innerParsedTextArray.some(innerPiece => isLineIncludesNoteNumbers(innerPiece, noteNumbers));
+    return line.innerParsedTextArray.some(innerPiece => isLineIncludesNoteNumbers(innerPiece, noteNumbers, textNumber, textNumberKey));
   }
   return false;
 }

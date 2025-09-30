@@ -16,6 +16,19 @@ const SkCardWithTwoSelectorsMobileV2 = memo(function SkCardWithTwoSelectorsMobil
     </div>
   );
 
+  const HiddenLinksDisplay = function ({data}) {
+    if (!data || !data.length) return null;
+    return <div className="kind-of-menu" style={{ visibility: "hidden", position: "absolute" }}>
+      { data
+        .map(item => {
+          if (!item.absoluteUrl) return null;
+          const label = item.linkTitle ? item.linkTitle : (item.label ? item.label : item.absoluteUrl);
+          return <a key={item.id} href={item.absoluteUrl}>{label}</a>;
+        })
+        .filter(x => x) }
+    </div>;
+  }
+
   const styles = {
     section: { width: 'auto' }
   };
@@ -48,7 +61,7 @@ const SkCardWithTwoSelectorsMobileV2 = memo(function SkCardWithTwoSelectorsMobil
       renderOption={renderSelectOption}
       aria-label={dropdown1.label}>
     </Select>
-      
+    <HiddenLinksDisplay data={dropdown1.data} />
 
     <Text mb="xs" className={classes.labelText}>{dropdown2.label}</Text>
     <Select 
@@ -66,6 +79,7 @@ const SkCardWithTwoSelectorsMobileV2 = memo(function SkCardWithTwoSelectorsMobil
       comboboxProps={{ keepMounted: true, middlewares: { flip: false, shift: false } }}
       aria-label={dropdown2.label}>
     </Select>
+    <HiddenLinksDisplay data={dropdown2.data} />
 
   </Card>
 });

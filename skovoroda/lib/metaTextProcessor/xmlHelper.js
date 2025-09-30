@@ -1,5 +1,5 @@
 
-import { NOTES_NUMBERS_SYMBOLS_MAP, parseNotesNumber } from "../utils/notesNumbersSymbols.js";
+import { getNoteNumberUpperString, NOTES_NUMBERS_SYMBOLS_MAP, parseNotesNumber } from "../utils/notesNumbersSymbols.js";
 
 /**
  * Parses a string with <meta ...>...</meta> tags (with arbitrary attributes and nesting)
@@ -309,14 +309,17 @@ function _postprocessMeta(meta, text) {
   if (meta.letterNumber) {
     meta.letterNumber = parseInt(meta.letterNumber, 10);
     meta.isNoteBeginning = true;
+    if (meta.skovorodaNoteNumber) meta.noteNumber = getNoteNumberUpperString(meta.skovorodaNoteNumber);
   }
   if (meta.fableNumber) {
     meta.fableNumber = parseInt(meta.fableNumber, 10);
     meta.isNoteBeginning = true;
+    if (meta.skovorodaNoteNumber) meta.noteNumber = getNoteNumberUpperString(meta.skovorodaNoteNumber);
   }
   if (meta.songNumber) {
     meta.songNumber = parseInt(meta.songNumber, 10);
     meta.isNoteBeginning = true;
+    if (meta.skovorodaNoteNumber) meta.noteNumber = getNoteNumberUpperString(meta.skovorodaNoteNumber);
   }
   if (meta.isNoteBeginning === "true") {
     meta.isNoteBeginning = true;

@@ -1,4 +1,4 @@
-import { getFableLinkTitle } from "../skovorodaPath";
+import { getFableLinkTitle, pathJoin, SkovorodaFablesPath } from "../skovorodaPath";
 
 // Auxiliary
 export function prepareFablesDropdownItems(allFablesMetadata, selectedTranlsatorId) {
@@ -24,6 +24,7 @@ export function prepareFablesDropdownItems(allFablesMetadata, selectedTranlsator
       id: metadata.urlId,
       disabled: false,
       linkTitle: getFableLinkTitle(metadata),
+      absoluteUrl: pathJoin(SkovorodaFablesPath, metadata.urlId),
     };
   });
 }
@@ -51,6 +52,7 @@ export function prepareTranslatorsDropdownItems(allFablesMetadata, fableNumber, 
       id: metadata.urlId,
       disabled: false,
       linkTitle: getFableLinkTitle(metadata),
+      absoluteUrl: pathJoin(SkovorodaFablesPath, metadata.urlId),
     };
   });
 }

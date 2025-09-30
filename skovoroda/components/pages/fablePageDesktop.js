@@ -60,7 +60,9 @@ export default function FablePageDesktop({
 
   // Dropdown 1
   function selectTranslatorDropdownValue(value) {
-    const urlId = translationsDropdownItems.find(item => item.value == value).urlId;
+    const foundItem = translationsDropdownItems.find(item => item.value == value);
+    if (!foundItem) return;
+    const urlId = foundItem.urlId;
     changeRouterPath(urlId).then(() => {
       selectTranslatorDropdownValueInner(""+value);
       changeFablesDropdownItems(prepareFablesDropdownItems(allFablesMetadata, value));
@@ -69,7 +71,9 @@ export default function FablePageDesktop({
 
   // Dropdown 2
   function selectFableDropdownValue(value) {
-    const urlId = fablesDropdownItems.find(item => item.value == value).urlId;
+    const foundItem = fablesDropdownItems.find(item => item.value == value);
+    if (!foundItem) return;
+    const urlId = foundItem.urlId;
     changeRouterPath(urlId).then(() => {
       selectFableDropdownValueInner(""+value);
       changeTranslationDropdownItems(prepareTranslatorsDropdownItems(allFablesMetadata, value, allTranslators));

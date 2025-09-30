@@ -1227,7 +1227,8 @@
         "meta": {
           "songNumber": 14,
           "skovorodaNoteNumber": "ᵃ",
-          "isNoteBeginning": true
+          "isNoteBeginning": true,
+          "noteNumber": "a"
         },
         "innerParsedTextArray": [
           {
@@ -1272,7 +1273,8 @@
         "meta": {
           "songNumber": 14,
           "skovorodaNoteNumber": "ᵇ",
-          "isNoteBeginning": true
+          "isNoteBeginning": true,
+          "noteNumber": "b"
         }
       },
       {
@@ -1287,7 +1289,8 @@
         "meta": {
           "songNumber": 14,
           "skovorodaNoteNumber": "ᵈ",
-          "isNoteBeginning": true
+          "isNoteBeginning": true,
+          "noteNumber": "d"
         },
         "innerParsedTextArray": [
           {
@@ -1320,7 +1323,8 @@
         "meta": {
           "songNumber": 14,
           "skovorodaNoteNumber": "ᵉ",
-          "isNoteBeginning": true
+          "isNoteBeginning": true,
+          "noteNumber": "e"
         }
       },
       {
@@ -1335,7 +1339,8 @@
         "meta": {
           "songNumber": 14,
           "skovorodaNoteNumber": "ᵍ",
-          "isNoteBeginning": true
+          "isNoteBeginning": true,
+          "noteNumber": "g"
         },
         "innerParsedTextArray": [
           {
@@ -1368,7 +1373,8 @@
         "meta": {
           "songNumber": 16,
           "skovorodaNoteNumber": "ᵃ",
-          "isNoteBeginning": true
+          "isNoteBeginning": true,
+          "noteNumber": "a"
         }
       }
     ]

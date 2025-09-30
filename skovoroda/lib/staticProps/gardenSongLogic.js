@@ -1,3 +1,4 @@
+import { pathJoin, SkovorodaGardenPath } from "../skovorodaPath";
 
 // Auxiliary
 export function prepareGardenSongsDropdownItems(allSongsMetadata, selectedTranlsatorId) {
@@ -23,6 +24,7 @@ export function prepareGardenSongsDropdownItems(allSongsMetadata, selectedTranls
       id: metadata.id,
       disabled: false,
       linkTitle: metadata.name,
+      absoluteUrl: pathJoin(SkovorodaGardenPath, metadata.id),
     };
   });
 }
@@ -50,6 +52,7 @@ export function prepareGardenSongsTranslatorsDropdownItems(allSongsMetadata, num
       id: metadata.id,
       disabled: false,
       linkTitle: metadata.name,
+      absoluteUrl: pathJoin(SkovorodaGardenPath, metadata.id),
     };
   });
 }

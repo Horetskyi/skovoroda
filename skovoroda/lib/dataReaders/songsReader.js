@@ -28,6 +28,8 @@ function readSongs() {
   const gardenFileNames = fs.readdirSync(gardenDirectoryPath);
   const allParsedSongs = gardenFileNames.filter(fileName => fileName.includes(".json") && !fileName.includes("Примітки")).map(jsonFileName => {
     
+    if (jsonFileName.includes('debug')) return null;
+
     const jsonFilePath = path.join(gardenDirectoryPath, jsonFileName);
     const txtFilePath = jsonFilePath.replace(".json", ".txt");
     

@@ -15,6 +15,8 @@ export function readAllCharacters() {
     .filter(fileName => fileName.includes(".json"))
     .map(jsonFileName => {
 
+      if (jsonFileName.includes('debug')) return null;
+
       // File 1. "Jacob.json"
       const jsonFilePath = path.join(directoryPath, jsonFileName); 
       let metadataFileContent = fs.readFileSync(jsonFilePath).toString();

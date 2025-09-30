@@ -17,6 +17,8 @@ export function readAllThemes() {
     .filter(fileName => fileName.includes(".json"))
     .map(jsonFileName => {
 
+      if (jsonFileName.includes('debug')) return null;
+      
       // File 1. "vstupni_dveri_do_khrystyianskoi_dobronravnosti.json"
       const jsonFilePath = path.join(directoryPath, jsonFileName); 
       let metadataFileContent = fs.readFileSync(jsonFilePath).toString();

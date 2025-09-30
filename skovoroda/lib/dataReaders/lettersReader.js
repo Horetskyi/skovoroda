@@ -28,6 +28,8 @@ function readLetters(letterType) {
   const lettersFileNames = fs.readdirSync(lettersDirectoryPath);
   const allParsedLetters = lettersFileNames.filter(fileName => fileName.includes(".json") && !fileName.includes("Примітки")).map(jsonFileName => {
     
+    if (jsonFileName.includes('debug')) return null;
+
     const jsonFilePath = path.join(lettersDirectoryPath, jsonFileName);
     const txtFilePath = jsonFilePath.replace(".json", ".txt");
     const letterMetadata = readJsonOrDefault(jsonFilePath);

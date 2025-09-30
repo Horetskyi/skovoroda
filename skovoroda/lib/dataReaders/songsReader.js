@@ -63,6 +63,8 @@ function readNotes() {
   const fileNames = fs.readdirSync(directoryPath);
   return fileNames.filter(fileName => fileName.includes(".json") && fileName.includes("Примітки")).map(jsonFileName => {
     
+    if (jsonFileName.includes('debug')) return null;
+
     const jsonFilePath = path.join(directoryPath, jsonFileName);
     const txtFilePath = jsonFilePath.replace(".json", ".txt");
     

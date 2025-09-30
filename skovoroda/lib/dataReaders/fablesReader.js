@@ -136,6 +136,9 @@ export function readFablesTopContent() {
   const fileNames = fs.readdirSync(directoryPath);
   const allContentGroups = [];
   fileNames.forEach(fileName => {
+
+    if (fileName.includes('debug')) return;
+
     const filePath = path.join(directoryPath, fileName); 
     const fileString = fs.readFileSync(filePath).toString();
     if (!fileString || !fileString.length) {

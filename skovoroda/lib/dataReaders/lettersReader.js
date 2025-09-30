@@ -56,6 +56,8 @@ function readNotes(letterType) {
   const lettersFileNames = fs.readdirSync(lettersDirectoryPath);
   return lettersFileNames.filter(fileName => fileName.includes(".json") && fileName.includes("Примітки")).map(jsonFileName => {
     
+    if (jsonFileName.includes('debug')) return null;
+    
     const jsonFilePath = path.join(lettersDirectoryPath, jsonFileName);
     const txtFilePath = jsonFilePath.replace(".json", ".txt");
     

@@ -33,6 +33,8 @@ function readSongs() {
     const jsonFilePath = path.join(gardenDirectoryPath, jsonFileName);
     const txtFilePath = jsonFilePath.replace(".json", ".txt");
     
+    if (jsonFilePath.includes('debug')) return null;
+
     const songMetadataFileContent = fs.readFileSync(jsonFilePath).toString();
     if (!songMetadataFileContent || !songMetadataFileContent.length) {
       return undefined;
@@ -60,29 +62,35 @@ function readSongs() {
 
 function readNotes() {
   const directoryPath = path.join(process.cwd(), "lib", "data", "gardenRefactored");
-  const fileNames = fs.readdirSync(directoryPath);
+  const fileNames = fs.readdirSync(directoryPath, { recursive: false });
   return fileNames.filter(fileName => fileName.includes(".json") && fileName.includes("Примітки")).map(jsonFileName => {
     
     if (jsonFileName.includes('debug')) return null;
 
     const jsonFilePath = path.join(directoryPath, jsonFileName);
     const txtFilePath = jsonFilePath.replace(".json", ".txt");
+
+    if (jsonFilePath.includes('debug')) return null;
     
     const notesMetadata = JSON.parse(fs.readFileSync(jsonFilePath).toString());
     const notesString = fs.readFileSync(txtFilePath).toString();
     const notes = metaTextProcessor(notesString);
 
-    if (notes) {
-      fs.writeFileSync(path.join(process.cwd(), "lib", "data", "gardenRefactored", 'debug', 
-        `debug_notes_${jsonFileName.replace('.json', '')}.txt`), 
-        JSON.stringify(notes, null, 2));
+    try {
+      if (notes) {
+        fs.writeFileSync(path.join(process.cwd(), "lib", "data", "gardenRefactored", 'debug', 
+          `debug_notes_${jsonFileName.replace('.json', '')}.txt`), 
+          JSON.stringify(notes, null, 2));
+      }
+    } catch(error) {
+      console.warn(error);
     }
-
+    
     return {
       notes: notes,
       notesMetadata: notesMetadata
     };
-  });
+  }).filter(x => x);
 }
 
 export const SkovorodaGardenRefactored = {

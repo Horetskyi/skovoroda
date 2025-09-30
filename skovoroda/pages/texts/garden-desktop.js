@@ -1,12 +1,10 @@
-import { Center, Grid, List } from "@mantine/core";
+import { Center, List } from "@mantine/core";
 import { pathJoinWithoutEndSlash, SkovorodaGardenPath } from "../../lib/skovorodaPath";
 import SkH1Desktop from "../../components/shared/skH1Desktop";
 import SkColoredContainerDesktop from "../../components/shared/skColoredContainerDesktop";
 import SkTextLink from "../../components/shared/skTextLink";
 import { getGardenPageProps } from "../../lib/staticProps/gardenStatic";
 import SkImage from "../../components/shared/skImage";
-import { getAdjustedWidth } from "../../components/functions/imageFunctions";
-import Link from "next/link";
 import SkH2DesktopV2 from "../../components/shared/skH2DesktopV2";
 import SkImagesGrid from "../../components/shared/skImagesGrid";
 

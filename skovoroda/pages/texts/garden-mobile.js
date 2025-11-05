@@ -1,36 +1,17 @@
-import { Center, Flex, List } from "@mantine/core";
+import { Center, List } from "@mantine/core";
 import { pathJoinWithoutEndSlash, SkovorodaGardenPath } from "../../lib/skovorodaPath";
 import SkTextLink from "../../components/shared/skTextLink";
 import { getGardenPageProps } from "../../lib/staticProps/gardenStatic";
 import SkColoredContainerMobile from "../../components/shared/skColoredContainerMobile";
 import SkH1Mobile from "../../components/shared/skH1Mobile";
 import SkImage from "../../components/shared/skImage";
-import Link from "next/link";
 import SkH2MobileV2 from "../../components/shared/skH2MobileV2";
 import SkImagesList from "../../components/shared/skImagesList";
+import { getPreparedSongsTranslationsList } from "../../lib/staticProps/gardenSongLogic";
 
 export default function SkovorodaGardenPageMobile({ allSongsMetadata, gardenImageByOlenka }) {
-  
-  const translatedSongsMetadataMap = new Map();
-  allSongsMetadata.forEach(songMetadata => {
-    if (songMetadata.translatorId === 0) {
-      return;
-    }
-    if (translatedSongsMetadataMap.has(songMetadata.number)) {
-      return;
-    }
-    translatedSongsMetadataMap.set(songMetadata.number, songMetadata);
-  });
-  allSongsMetadata
-    .filter(songMetadata => songMetadata.translatorId === 0)
-    .forEach(songMetadata => {
-      if (!translatedSongsMetadataMap.has(songMetadata.number)) {
-        translatedSongsMetadataMap.set(songMetadata.number, songMetadata);
-      }
-    })
-  const translatedSongsMetadataArray = Array.from(translatedSongsMetadataMap.values());
-  translatedSongsMetadataArray.sort((a,b) => a.number - b.number)
 
+  const translatedSongsMetadataArray = getPreparedSongsTranslationsList(allSongsMetadata);
   const imagesList = translatedSongsMetadataArray.filter(song => song.songImage).map(song => {
     return {
       image: song.songImage,

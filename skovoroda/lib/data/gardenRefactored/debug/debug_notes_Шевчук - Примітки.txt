@@ -1376,6 +1376,215 @@
           "isNoteBeginning": true,
           "noteNumber": "a"
         }
+      },
+      {
+        "text": "\r",
+        "start": 158
+      }
+    ],
+    [
+      {
+        "text": " В оригіналі: \"часть\", тобто частка, частина. До цього подається примітка автора: \"Частина ти моя є. Господи...\"⁶⁰, \"Боже серця мойого і частина моя. Боже, навіки\"⁶¹.",
+        "start": 0,
+        "meta": {
+          "songNumber": 22,
+          "skovorodaNoteNumber": "ᵃ",
+          "isNoteBeginning": true,
+          "noteNumber": "a"
+        },
+        "innerParsedTextArray": [
+          {
+            "text": " В оригіналі: \"часть\", тобто частка, частина. До цього подається примітка автора: \"Частина ти моя є. Господи...\"",
+            "start": 0
+          },
+          {
+            "text": "⁶⁰",
+            "start": 112,
+            "meta": {
+              "isNote": true,
+              "noteNumber": "60"
+            }
+          },
+          {
+            "text": ", \"Боже серця мойого і частина моя. Боже, навіки\"",
+            "start": 114
+          },
+          {
+            "text": "⁶¹",
+            "start": 163,
+            "meta": {
+              "isNote": true,
+              "noteNumber": "61"
+            }
+          },
+          {
+            "text": ".",
+            "start": 165
+          }
+        ]
+      },
+      {
+        "text": "\r",
+        "start": 166
+      }
+    ],
+    [
+      {
+        "text": " Сіон — слово єврейське. Значить те саме, що πνγρὸς σκοπιά, римське specula. Так зветься Ієрусалимський замок, словенське — зір, сторожа, горниця.",
+        "start": 0,
+        "meta": {
+          "songNumber": 22,
+          "skovorodaNoteNumber": "ᵇ",
+          "isNoteBeginning": true,
+          "noteNumber": "b"
+        }
+      },
+      {
+        "text": "\r",
+        "start": 146
+      }
+    ],
+    [
+      {
+        "text": " Ієрихон-град⁶² — це образ суєтного світу цього і звабного. Він широкий, тобто розкішним шляхом водить юних у розбійники, тобто у щелепи зміїні та гідрині, у смертні гріхи. Quaenam maxima peccaloribus poena? Ipsum peccalum. — Нічого немає лихішого гріха та жала, отже, нічого немає гіршого від нього в цьому і в тому світі. \"Жало смерті — гріх\". Гріхопадіння хто збагне? \"Блаженний той єдиний, хто пізнає\". \"Блажен муж, що не став на шлях грішних\". \"Розплющ очі свої\".",
+        "start": 0,
+        "meta": {
+          "songNumber": 22,
+          "skovorodaNoteNumber": "ᵈ",
+          "isNoteBeginning": true,
+          "noteNumber": "d"
+        },
+        "innerParsedTextArray": [
+          {
+            "text": " Ієрихон-град",
+            "start": 0
+          },
+          {
+            "text": "⁶²",
+            "start": 13,
+            "meta": {
+              "isNote": true,
+              "noteNumber": "62"
+            }
+          },
+          {
+            "text": " — це образ суєтного світу цього і звабного. Він широкий, тобто розкішним шляхом водить юних у розбійники, тобто у щелепи зміїні та гідрині, у смертні гріхи. Quaenam maxima peccaloribus poena? Ipsum peccalum. — Нічого немає лихішого гріха та жала, отже, нічого немає гіршого від нього в цьому і в тому світі. \"Жало смерті — гріх\". Гріхопадіння хто збагне? \"Блаженний той єдиний, хто пізнає\". \"Блажен муж, що не став на шлях грішних\". \"Розплющ очі свої\".",
+            "start": 15
+          }
+        ]
+      },
+      {
+        "text": "\r",
+        "start": 468
+      }
+    ],
+    [
+      {
+        "text": " Rogatus quidam philosophus: quid esset praetiosissimum? Pespondit: tempus (Один філософ, якого запитали, що він вважає за найцінніше, відповів: час (лат.))",
+        "start": 0,
+        "meta": {
+          "songNumber": 23,
+          "skovorodaNoteNumber": "ᵃ",
+          "isNoteBeginning": true,
+          "noteNumber": "a"
+        },
+        "innerParsedTextArray": [
+          {
+            "text": " Rogatus quidam philosophus: quid esset praetiosissimum? Pespondit: tempus (Один філософ, якого запитали, що він вважає за найцінніше, відповів: час ",
+            "start": 0
+          },
+          {
+            "text": "(лат.)",
+            "start": 149,
+            "meta": {
+              "f": "italic"
+            }
+          },
+          {
+            "text": ")",
+            "start": 155
+          }
+        ]
+      },
+      {
+        "text": "\r",
+        "start": 156
+      }
+    ],
+    [
+      {
+        "text": " Nihil est ab omni parte beatum — \"Є чаша всім людям\".",
+        "start": 0,
+        "meta": {
+          "songNumber": 24,
+          "skovorodaNoteNumber": "ᵃ",
+          "isNoteBeginning": true,
+          "noteNumber": "a"
+        }
+      },
+      {
+        "text": "\r",
+        "start": 54
+      }
+    ],
+    [
+      {
+        "text": " Версалія (Versailles) — так зветься французького царя едем, тобто рай чи солодкий сад, повний невимовних світських утіх",
+        "start": 0,
+        "meta": {
+          "songNumber": 28,
+          "skovorodaNoteNumber": "ᵃ",
+          "isNoteBeginning": true,
+          "noteNumber": "a"
+        }
+      },
+      {
+        "text": "\r",
+        "start": 120
+      }
+    ],
+    [
+      {
+        "text": " Коперник — це новітній астроном. Тепер його систему, тобто план чи типик небесних кіл, прийняв увесь світ. Народився над Віслою в польському місті Горуні. Систему свою видів у [1543 році] Сфера — це слово еллінське, по-слов'янському — круг, клуб, м'яч, глобус, гиря, куля, коло місяця, коло сонця.",
+        "start": 0,
+        "meta": {
+          "songNumber": 28,
+          "skovorodaNoteNumber": "ᵇ",
+          "isNoteBeginning": true,
+          "noteNumber": "b"
+        }
+      },
+      {
+        "text": "\r",
+        "start": 298
+      }
+    ],
+    [
+      {
+        "text": " Блаженна натура є ім'я Господа-Вседержителя",
+        "start": 0,
+        "meta": {
+          "songNumber": 28,
+          "skovorodaNoteNumber": "ᵈ",
+          "isNoteBeginning": true,
+          "noteNumber": "d"
+        }
+      },
+      {
+        "text": "\r",
+        "start": 44
+      }
+    ],
+    [
+      {
+        "text": " Ад — слово еллінське, значить темниця, місце підземне, позбавлене світла, веселості й найдорожчого золота — свободи. Адський в’язень — це дзеркало полонян мучительної своєї волі, і ця люта фурія безперервно, вічно їх мучить.",
+        "start": 0,
+        "meta": {
+          "songNumber": 28,
+          "skovorodaNoteNumber": "ᵍ",
+          "isNoteBeginning": true,
+          "noteNumber": "g"
+        }
       }
     ]
   ]

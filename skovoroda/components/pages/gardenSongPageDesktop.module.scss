@@ -25,3 +25,18 @@
   border-radius: var(--mantine-radius-md);
   box-shadow: 2px 4px 30px -5px #5e5e5e;
 }
+.h1 {
+  font-family: "Ysabeau";
+  text-align: center;
+  font-size: 48px;
+  line-height: 62px;
+  max-width: 900px;
+  color: black;
+  margin-top: 70px;
+  margin-bottom: 50px;
+  font-weight: 500;
+
+  p {
+    margin: 0;
+  }
+}

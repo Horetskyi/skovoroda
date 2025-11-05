@@ -65,8 +65,6 @@ export default function GardenSongPageMobile({
     });
   }, [songsDropdownItems, changeRouterPath, allSongsMetadata, allTranslators]);
 
-  const h1Text = selectedMetadata.name;
-
   const sourcesParams = [
     getBookSourceParam(selectedSong.source, selectedNotes, true),
   ];
@@ -126,7 +124,15 @@ export default function GardenSongPageMobile({
           />
         </div>
       ) : null}
-      <SkH1Mobile text={h1Text} color={highlightColor} />
+      
+      {selectedMetadata.nameArray ? <>
+        <h1 className={classes.h1}>
+          {selectedMetadata.nameArray.map((line, index) => (
+            <p key={index} style={{ color: highlightColor || 'inherit' }}>{line}</p>
+          ))}
+        </h1>
+      </> : <SkH1Mobile text={selectedMetadata.name} color={highlightColor} />}
+
       <Space h="lg"/>
 
       <SkMetaTextView metaText={selectedSong.songContent} otherArgs={{ isv3: true }} isMobile={true} />

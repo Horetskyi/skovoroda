@@ -69,8 +69,6 @@ export default function GardenSongPageDesktop({
     });
   }  
 
-  const h1Text = selectedMetadata.name;
-
   const sourcesParams = [
     getBookSourceParam(selectedSong.source, selectedNotes, true),
   ];
@@ -150,7 +148,16 @@ export default function GardenSongPageDesktop({
           />
         </div>
       ) : null}
-      <SkH1Desktop text={h1Text} color={highlightColor} isV2={true} disableBackground={true} isCurved={false} />
+
+      
+      {selectedMetadata.nameArray ? <>
+        <h1 className={classes.h1}>
+          {selectedMetadata.nameArray.map((line, index) => (
+            <p key={index} style={{ color: highlightColor || 'inherit' }}>{line}</p>
+          ))}
+        </h1>
+      </> : <SkH1Desktop text={selectedMetadata.name} color={highlightColor} isV2={true} disableBackground={true} isCurved={false} />}
+      
       <Space h="lg"/>
       
       

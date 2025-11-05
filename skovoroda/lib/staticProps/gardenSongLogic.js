@@ -56,3 +56,42 @@ export function prepareGardenSongsTranslatorsDropdownItems(allSongsMetadata, num
     };
   });
 }
+
+// Auxiliary
+export function getPreparedSongsTranslationsList(allSongsMetadata) {
+
+  if (!allSongsMetadata || allSongsMetadata.length === 0) return [];
+  
+  const preferredTranslationsOrder = [2]; // Shevchuk
+
+  const translatedSongsMetadataMap = new Map();
+
+  preferredTranslationsOrder.forEach(preferredTranslationId => {
+    allSongsMetadata.forEach(songMetadata => {
+      if (songMetadata.translatorId === preferredTranslationId) {
+        if (!translatedSongsMetadataMap.has(songMetadata.number)) {
+          translatedSongsMetadataMap.set(songMetadata.number, songMetadata); // set preferred translation
+        }
+      }
+    });
+  });
+
+  allSongsMetadata.forEach(songMetadata => {
+    if (songMetadata.translatorId === 0) return; // skip original
+    if (!translatedSongsMetadataMap.has(songMetadata.number)) {
+      translatedSongsMetadataMap.set(songMetadata.number, songMetadata); // set any translation
+    }
+  });
+
+  allSongsMetadata
+    .filter(songMetadata => songMetadata.translatorId === 0) // last trial - original
+    .forEach(songMetadata => {
+      if (!translatedSongsMetadataMap.has(songMetadata.number)) {
+        translatedSongsMetadataMap.set(songMetadata.number, songMetadata);
+      }
+    });
+
+  const translatedSongsMetadataArray = Array.from(translatedSongsMetadataMap.values());
+  translatedSongsMetadataArray.sort((a,b) => a.number - b.number);
+  return translatedSongsMetadataArray;
+}

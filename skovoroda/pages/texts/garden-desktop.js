@@ -7,29 +7,11 @@ import { getGardenPageProps } from "../../lib/staticProps/gardenStatic";
 import SkImage from "../../components/shared/skImage";
 import SkH2DesktopV2 from "../../components/shared/skH2DesktopV2";
 import SkImagesGrid from "../../components/shared/skImagesGrid";
+import { getPreparedSongsTranslationsList } from "../../lib/staticProps/gardenSongLogic";
 
 export default function SkovorodaGardenPageDesktop({ allSongsMetadata, gardenImageByOlenka }) {
   
-  const translatedSongsMetadataMap = new Map();
-  allSongsMetadata.forEach(songMetadata => {
-    if (songMetadata.translatorId === 0) {
-      return;
-    }
-    if (translatedSongsMetadataMap.has(songMetadata.number)) {
-      return;
-    }
-    translatedSongsMetadataMap.set(songMetadata.number, songMetadata);
-  });
-  allSongsMetadata
-    .filter(songMetadata => songMetadata.translatorId === 0)
-    .forEach(songMetadata => {
-      if (!translatedSongsMetadataMap.has(songMetadata.number)) {
-        translatedSongsMetadataMap.set(songMetadata.number, songMetadata);
-      }
-    })
-  const translatedSongsMetadataArray = Array.from(translatedSongsMetadataMap.values());
-  translatedSongsMetadataArray.sort((a,b) => a.number - b.number)
-
+  const translatedSongsMetadataArray = getPreparedSongsTranslationsList(allSongsMetadata);
   const imagesList = translatedSongsMetadataArray.filter(song => song.songImage).map(song => {
     return {
       image: song.songImage,

@@ -3,14 +3,15 @@ $mantine-breakpoint-sm: 900px;
 
 /* 
 Fonts:
-- "Oswald" (Top Menu, Dropdowns, Buttons, Labels) [variable font ✅] [important]
-- "Ysabeau" (H1, H2, Text, Bottom Menu) [variable font ✅] [important]
-- Irmologion ieUcs (Old Ukrainian Text) [auxiliary]
+- "Oswald" (Top Menu, Dropdowns, Buttons, Labels) [variable font ✅] [woff2 subset ✅] [important]
+- "Ysabeau" (H1, H2, Text, Bottom Menu) [variable font ✅] [woff2 subset ✅] [important]
+- Irmologion ieUcs (Old Ukrainian Text) [woff2 ✅] [auxiliary]
 */
 
 @font-face {
   font-family: 'Oswald';
-  src: url('/fonts/Oswald/Oswald-VariableFont_wght.ttf') format('truetype-variations');
+  src: url('/fonts/Oswald/Oswald-Subset.woff2') format('woff2'),
+       url('/fonts/Oswald/Oswald-VariableFont_wght.ttf') format('truetype-variations');
   font-weight: 100 1000;
   font-stretch: 25% 151%;
   font-display: swap;
@@ -43,7 +44,8 @@ Fonts:
 
 @font-face {
   font-family: 'Ysabeau';
-  src: url('/fonts/Ysabeau/Ysabeau-VariableFont_wght.ttf') format('truetype-variations');
+  src: url('/fonts/Ysabeau/Ysabeau-Subset.woff2') format('woff2'),
+       url('/fonts/Ysabeau/Ysabeau-VariableFont_wght.ttf') format('truetype-variations');
   font-weight: 100 1000;
   font-stretch: 25% 151%;
   font-style: normal;
@@ -51,7 +53,8 @@ Fonts:
 }
 @font-face {
   font-family: 'Ysabeau';
-  src: url('/fonts/Ysabeau/Ysabeau-Italic-VariableFont_wght.ttf') format('truetype-variations');
+  src: url('/fonts/Ysabeau/Ysabeau-ItalicSubset.woff2') format('woff2'),
+       url('/fonts/Ysabeau/Ysabeau-Italic-VariableFont_wght.ttf') format('truetype-variations');
   font-weight: 100 1000;
   font-stretch: 25% 151%;
   font-style: italic;

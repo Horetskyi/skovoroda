@@ -118,23 +118,23 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
         {/* Preload critical fonts for faster FCP/LCP */}
         <link
           rel="preload"
-          href="/fonts/Oswald/Oswald-VariableFont_wght.ttf"
+          href="/fonts/Oswald/Oswald-Subset.woff2"
           as="font"
-          type="font/ttf"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="/fonts/Ysabeau/Ysabeau-VariableFont_wght.ttf"
+          href="/fonts/Ysabeau/Ysabeau-Subset.woff2"
           as="font"
-          type="font/ttf"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="/fonts/Ysabeau/Ysabeau-Italic-VariableFont_wght.ttf"
+          href="/fonts/Ysabeau/Ysabeau-ItalicSubset.woff2"
           as="font"
-          type="font/ttf"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
         {/* DNS prefetch for external resources */}

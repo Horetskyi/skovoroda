@@ -3,8 +3,6 @@ import { SkovorodaAboutUsPath, SkovorodaContactPath, SkovorodaCopyrightPath } fr
 import { FacebookImageUrl, FacebookLink, TelegramImageUrl, TelegramLink } from "../../lib/smm";
 import SkTextLink from "./skTextLink";
 import classes from './skFooterDesktop.module.scss';
-import FacebookIcon from "../svgs/facebook.svg";
-import TelegramIcon from "../svgs/telegram.svg"; 
 import Link from "next/link";
 import SkImage from "./skImage";
 
@@ -28,10 +26,10 @@ export default function SkFooterDesktop() {
         {/* Social Media Icons */}
         <div className={classes.socialIcons}>
           <Link href={FacebookLink} className={classes.socialIcon} title="Facebook" target="_blank">
-            <SkImage imageUrl={FacebookImageUrl} width={40} height={40} optimize={false} gentlyShadow={true} additionalClassName={classes.smmImg}/>
+            <SkImage imageUrl={FacebookImageUrl} alt="Фейсбук сторінка Skovoroda Club" width={40} height={40} optimize={false} gentlyShadow={true} additionalClassName={classes.smmImg}/>
           </Link>
           <Link href={TelegramLink} className={classes.socialIcon} title="Telegram" target="_blank">
-            <SkImage imageUrl={TelegramImageUrl} width={40} height={40} optimize={false} gentlyShadow={true} additionalClassName={classes.smmImg}/>
+            <SkImage imageUrl={TelegramImageUrl} alt="Телеграм канал Skovoroda Club" width={40} height={40} optimize={false} gentlyShadow={true} additionalClassName={classes.smmImg}/>
           </Link>
         </div>
       </Flex>

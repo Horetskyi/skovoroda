@@ -55,7 +55,7 @@ const SkCardWithTwoSelectorsDesktopV2 = memo(function SkCardWithTwoSelectorsDesk
         </Select>
         <HiddenLinksDisplay data={dropdown1.data} />
       </div>
-      <div style={{ flex: "2 1 0", minWidth: 0, maxWidth: "66.66%" }}>
+      <div style={{ flex: "2 1 0", minWidth: 0, maxWidth: "66.66%", marginRight: 4 }}>
         <Text mb="sm" className={classes.labelText}>{dropdown2.label}</Text>
         <Select 
           id={"dropdown2-"+idSuffix}

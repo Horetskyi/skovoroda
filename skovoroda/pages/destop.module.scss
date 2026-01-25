@@ -3,13 +3,13 @@
 }
 .h1 {
   margin-top: 110px;
-  margin-left: 300px;
-  font-family: 'Amatic SC';
-  font-style: normal;
+  margin-left: 245px;
+  font-family: "Ysabeau";
+  font-style: italic;
   font-weight: 400;
-  font-size: 96px;
+  font-size: 90px;
   line-height: 100%;
-  letter-spacing: 0.05em;
+  letter-spacing: -0.003em;
   color: black;
 
   p {
@@ -45,7 +45,7 @@
 }
 .svgFromTitle {
   margin-top: -126px;
-  margin-left: 89px;
+  margin-left: 36px;
 }
 .imageSection {
   position: absolute;
@@ -103,27 +103,6 @@
 .flexContainer {
   margin-top: 280px;
 }
-.quoteSection {
-  margin-top: 50px;
-  color: black;
-  position: relative;
-}
-.quoteMark {
-  display: inline-block;
-}
-.quoteText {
-  width: 100%;
-  margin-top: -25px;
-  margin-left: 34px;
-}
-.quoteText, .quoteAuthor {
-  font-family: 'Arsenal SC';
-  font-style: italic;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 155%;
-  letter-spacing: 0.03em;
-}
 .indent2 {
   margin-left: 160px;
 }
@@ -132,17 +111,6 @@
   display: inline-block;
   width: 100%;
 }
-.quoteAuthor {
-  text-align: right;
-  display: inline-block;
-  width: 100%;
-  margin-top: 40px;
-}
-.quoteMarkClose {
-  right: -69px;
-  position: absolute;
-  bottom: 86px;
-} 
 
 @media screen and (max-width: 1270px) {
   .flexContainer {
@@ -193,30 +161,6 @@
     margin-top: 0;
     display: none;
   }
-  .quoteText, .quoteAuthor {
-    font-family: 'Arsenal SC';
-    font-style: italic;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 155%;
-    letter-spacing: 0.03em;
-  }
-  .quoteText {
-    width: auto;
-  }
-  .quoteSection {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .quoteAuthor {
-    margin-left: -60px;
-  }
-  .quoteMarkClose {
-    right: 0;
-    position: absolute;
-    bottom: 0;
-  } 
 }
 @media screen and (max-width: 1000px) {
   .h1 {

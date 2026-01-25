@@ -1,4 +1,4 @@
-import { Container, Flex, Space } from "@mantine/core";
+import { Container, Flex } from "@mantine/core";
 import { SkovorodaAboutUsPath, SkovorodaContactPath, SkovorodaCopyrightPath } from "../../lib/skovorodaPath";
 import SkTextLink from "./skTextLink";
 import classes from './skFooterMobile.module.scss'; 
@@ -26,10 +26,10 @@ export default function SkFooterMobile() {
         {/* Social Media Icons */}
         <div className={classes.socialIcons}>
           <Link href={FacebookLink} className={classes.socialIcon} title="Facebook" target="_blank">
-            <SkImage imageUrl={FacebookImageUrl} width={40} height={40} optimize={false} gentlyShadow={true} additionalClassName={classes.smmImg}/>
+            <SkImage imageUrl={FacebookImageUrl} alt="Фейсбук сторінка Skovoroda Club" width={40} height={40} optimize={false} gentlyShadow={true} additionalClassName={classes.smmImg}/>
           </Link>
           <Link href={TelegramLink} className={classes.socialIcon} title="Telegram" target="_blank">
-            <SkImage imageUrl={TelegramImageUrl} width={40} height={40} optimize={false} gentlyShadow={true} additionalClassName={classes.smmImg}/>
+            <SkImage imageUrl={TelegramImageUrl} alt="Телеграм канал Skovoroda Club" width={40} height={40} optimize={false} gentlyShadow={true} additionalClassName={classes.smmImg}/>
           </Link>
         </div>
 

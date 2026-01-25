@@ -1,11 +1,19 @@
 
 $mantine-breakpoint-sm: 900px;
 
+/* 
+Fonts:
+- "Oswald" (Top Menu, Dropdowns, Buttons, Labels) [variable font ✅] [important]
+- "Ysabeau" (H1, H2, Text, Bottom Menu) [variable font ✅] [important]
+- Irmologion ieUcs (Old Ukrainian Text) [auxiliary]
+*/
+
 @font-face {
   font-family: 'Oswald';
   src: url('/fonts/Oswald/Oswald-VariableFont_wght.ttf') format('truetype-variations');
   font-weight: 100 1000;
   font-stretch: 25% 151%;
+  // font-display: swap;
 }
 .firstFont {
   font-family: 'Oswald';
@@ -39,6 +47,7 @@ $mantine-breakpoint-sm: 900px;
   font-weight: 100 1000;
   font-stretch: 25% 151%;
   font-style: normal;
+  // font-display: swap;
 }
 @font-face {
   font-family: 'Ysabeau';
@@ -46,6 +55,7 @@ $mantine-breakpoint-sm: 900px;
   font-weight: 100 1000;
   font-stretch: 25% 151%;
   font-style: italic;
+  // font-display: swap;
 }
 .font-ysabeau {
   font-family: 'Ysabeau';
@@ -58,50 +68,50 @@ $mantine-breakpoint-sm: 900px;
   line-height: 64px;
 }
 
-@font-face {
-  font-family: 'Arsenal SC';
-  src: url('/fonts/Arsenal_SC/ArsenalSC-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Arsenal SC';
-  src: url('/fonts/Arsenal_SC/ArsenalSC-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Arsenal SC';
-  src: url('/fonts/Arsenal_SC/ArsenalSC-Italic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'Arsenal SC';
-  src: url('/fonts/Arsenal_SC/ArsenalSC-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-}
+// @font-face {
+//   font-family: 'Arsenal SC';
+//   src: url('/fonts/Arsenal_SC/ArsenalSC-Regular.ttf') format('truetype');
+//   font-weight: 400;
+//   font-style: normal;
+// }
+// @font-face {
+//   font-family: 'Arsenal SC';
+//   src: url('/fonts/Arsenal_SC/ArsenalSC-Bold.ttf') format('truetype');
+//   font-weight: 700;
+//   font-style: normal;
+// }
+// @font-face {
+//   font-family: 'Arsenal SC';
+//   src: url('/fonts/Arsenal_SC/ArsenalSC-Italic.ttf') format('truetype');
+//   font-weight: 400;
+//   font-style: italic;
+// }
+// @font-face {
+//   font-family: 'Arsenal SC';
+//   src: url('/fonts/Arsenal_SC/ArsenalSC-BoldItalic.ttf') format('truetype');
+//   font-weight: 700;
+//   font-style: italic;
+// }
 
-@font-face {
-  font-family: 'Amatic SC';
-  src: url('/fonts/Amatic_SC/AmaticSC-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Amatic SC';
-  src: url('/fonts/Amatic_SC/AmaticSC-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
+// @font-face {
+//   font-family: 'Amatic SC';
+//   src: url('/fonts/Amatic_SC/AmaticSC-Regular.ttf') format('truetype');
+//   font-weight: 400;
+//   font-style: normal;
+// }
+// @font-face {
+//   font-family: 'Amatic SC';
+//   src: url('/fonts/Amatic_SC/AmaticSC-Bold.ttf') format('truetype');
+//   font-weight: 700;
+//   font-style: normal;
+// }
 
 h1, h2, h3, h4, h5, h6, .headerFont {
-  font-family: 'Amatic SC';
+  font-family: 'Ysabeau';
   font-style: normal;
 }
 .textFont {
-  font-family: "Arsenal SC";
+  font-family: "Ysabeau";
   font-style: normal;
 }
 .readFont {
@@ -132,7 +142,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  font-family: 'Arsenal SC', serif;
+  font-family: 'Ysabeau', serif;
 }
 
 body {
@@ -299,6 +309,7 @@ input:focus {
   src: url('/IrmIEUcs.woff2') format("woff2");
   font-weight: 500;
   font-style: normal;
+  // font-display: swap;
 }
 
 .irmologion {

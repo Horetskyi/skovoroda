@@ -4,8 +4,8 @@
 }
 
 .h1 {
-  font-family: 'Amatic SC';
-  font-style: normal;
+  font-family: 'Ysabeau';
+  font-style: italic  ;
   font-weight: 700;
   font-size: 48px;
   line-height: 100%;
@@ -40,7 +40,7 @@
 }
 
 .date {
-  font-family: 'Arsenal SC';
+  font-family: 'Ysabeau';
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -86,7 +86,7 @@
   text-align: center;
 
   h2 {
-    font-family: 'Amatic SC';
+    font-family: 'Ysabeau';
     font-style: normal;
     font-weight: 400;
     font-size: 32px;
@@ -96,7 +96,7 @@
   }
 
   .normalContentText {
-    font-family: 'Arsenal SC';
+    font-family: 'Ysabeau';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -110,7 +110,7 @@
   margin: 20px auto;
 
   h2 {
-    font-family: 'Amatic SC';
+    font-family: 'Ysabeau';
     font-style: normal;
     font-weight: 400;
     font-size: 32px;
@@ -121,7 +121,7 @@
   }
 
   .normalContentText {
-    font-family: 'Arsenal SC';
+    font-family: 'Ysabeau';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -134,41 +134,6 @@
     margin-top: 20px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-}
-
-.quoteSection {
-  margin: 30px auto;
-  text-align: center;
-  padding: 0 20px;
-
-  .quoteMark {
-    font-family: 'Amatic SC';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 1;
-    color: black;
-  }
-
-  .quoteText {
-    font-family: 'Arsenal SC';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 1.5;
-    color: black;
-    margin-top: 10px;
-  }
-
-  .quoteAuthor {
-    font-family: 'Arsenal SC';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 22px;
-    line-height: 1.5;
-    color: black;
-    margin-top: 40px;
   }
 }
 
@@ -187,17 +152,5 @@
 
   .normalContentText {
     font-size: 14px;
-  }
-
-  .quoteMark {
-    font-size: 36px;
-  }
-
-  .quoteText {
-    font-size: 14px;
-  }
-
-  .quoteAuthor {
-    font-size: 16px;
   }
 }

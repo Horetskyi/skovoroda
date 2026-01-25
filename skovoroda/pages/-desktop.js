@@ -163,28 +163,6 @@ export default function HomePageDesktop({sourcesTextContent}) {
           </Box>
         </Flex>
 
-        <Box className={classes.quoteSection}>
-          <div className={classes.quoteMark}>{openQuote}</div>
-          <Text className={classes.quoteText}>
-            Не ору-бо, <br />
-            не сію, ані куплю дію, <br />
-            ані воюю, відкидаю усяку <br />
-            житейську печаль. <br />
-            <span className={classes.indent2}>Що ж дію?</span><br/>
-            Ось що: завжди благословляючи Господа, оспівуємо Воскресіння Його. Вчуся, друже мій, вдячності: це моя справа!<br/>
-            <span className={classes.indent3}>Вчуся бути задоволеним усім тим, що дав мені в </span><br />
-            <span className={classes.indent3}>житті Божий промисел.</span><br />
-            <span className={classes.indent3}>Невдячна воля – це ключ пекельних</span><br />
-            <span className={classes.indent3}>мук, а вдячне серце – це рай</span><br />
-            <span className={classes.indent3}>насолод.</span><br />
-            <span className={classes.quoteAuthor}>
-              Сковорода{Note(1, 287)}
-            </span>
-          </Text>
-          <div className={`${classes.quoteMark} ${classes.quoteMarkClose}`}>{closeQuote}</div>
-          {/* TODO: LATER ON: Читати більше */}
-        </Box>
-
         <Flex className={classes.flexContainer}>
           <Box mr={"xl"}>
             <SkImage

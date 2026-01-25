@@ -63,10 +63,10 @@ export default function App(props) {
   
   const theme = createTheme({
     colorScheme: 'light',
-    fontFamily: "Arsenal SC", 
+    fontFamily: "Ysabeau", 
     fontStyle: "normal",
     headings: {
-      fontFamily: "Arsenal SC",
+      fontFamily: "Ysabeau",
     },
     shadows: {
       sm: '3px 4px 8px 1px rgba(0, 0, 0, 0.15)',
@@ -103,8 +103,8 @@ export default function App(props) {
       {/* <Script src="https://plugin-api-4.nytroseo.com/api/site/c9f32217-5c9a-49d3-aa3a-9e912cb4f07c/nytroseo.min.js" /> */}
       {/* <Script type="text/javascript" src="data:text/javascript;base64,
 LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxzLG8sZixqcyxmanMpIHt3WydBbGxpSlNXaWRnZXQnXT1vO3dbb10gPSB3W29dIHx8IGZ1bmN0aW9uICgpIHsgKHdbb10ucSA9IHdbb10ucSB8fCBbXSkucHVzaChhcmd1bWVudHMpIH07anMgPSBkLmNyZWF0ZUVsZW1lbnQocyksIGZqcyA9IGQuZ2V0RWxlbWVudHNCeVRhZ05hbWUocylbMF07anMuaWQgPSBvOyBqcy5zcmMgPSBmOyBqcy5hc3luYyA9IDE7IGZqcy5wYXJlbnROb2RlLmluc2VydEJlZm9yZShqcywgZmpzKTt9KHdpbmRvdywgZG9jdW1lbnQsICdzY3JpcHQnLCAnYWxsaScsICdodHRwczovL3N0YXRpYy5hbGxpYWkuY29tL3dpZGdldC92MS5qcycpKTthbGxpKCdpbml0JywgJ3NpdGVfZFhVV3BncGlvWVhlVm1rOCcpO2FsbGkoJ29wdGltaXplJywgJ2FsbCcpOw==" /> */}
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-JL0EM7690R" strategy='lazyOnload'/>
-      <Script id="gtagScript" strategy='lazyOnload'>{`
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-JL0EM7690R" strategy='lazyOnload' async={true}/>
+      <Script id="gtagScript" strategy='lazyOnload' async={true}>{`
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -115,6 +115,25 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
         <meta name="description" content={pageProps.metadataDescription} />
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         
+        {/* Preload critical fonts for faster FCP/LCP */}
+        <link
+          rel="preload"
+          href="/fonts/Oswald/Oswald-VariableFont_wght.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Ysabeau/Ysabeau-VariableFont_wght.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+
         {/* Icons */}
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

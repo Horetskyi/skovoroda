@@ -109,6 +109,7 @@ export default function SkImage({
   const unoptimized = optimize ? false : true;
 
   const decoding = priority ? "sync" : "async";
+  const fetchPriority = priority ? "high" : "auto";
 
   return <div className={className} style={styleObj} onClick={onClick}>
     <Image 
@@ -124,6 +125,7 @@ export default function SkImage({
       quality={100}
       unoptimized={unoptimized}
       decoding={decoding}
+      fetchPriority={fetchPriority}
     />
   </div>
 }

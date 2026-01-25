@@ -1,5 +1,5 @@
 .titleH1 {
-  font-family: 'Amatic SC', serif;
+  font-family: 'Ysabeau', serif;
   font-weight: 700;
   font-style: normal;
   font-size: 48px;
@@ -11,7 +11,8 @@
   margin-bottom: 30px;
 }
 .titleH1V2 {
-  font-family: 'Ysabeau';
+  font-family: 'Ysabeau', serif;
+  font-style: italic;
   font-size: 48px;
   line-height: 62px;
   max-width: 900px;
@@ -26,6 +27,7 @@
 }
 .titleH1V2_noBg {
   font-family: 'Ysabeau';
+  font-style: italic;
   font-size: 48px;
   line-height: 62px;
   max-width: 900px;
@@ -36,6 +38,7 @@
 }
 .titleH1V2_withBg {
   font-family: 'Ysabeau';
+  font-style: italic;
   font-size: 48px;
   font-weight: 500;
   line-height: 62px;
@@ -45,7 +48,7 @@
   color: black;
   margin-top: 80px;
   margin-bottom: 80px;
-  border: 1px solid #575757;
+  // border: 1px solid #575757;
 }
 .titleBgImageContainer {
   position: absolute;
@@ -57,7 +60,7 @@
 }
 .titleBgImage {
   width: 1120px;
-  opacity: 0.4;
+  opacity: 0.25;
   transform: scaleY(-1);
   margin: auto;
   display: block;

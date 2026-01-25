@@ -42,7 +42,7 @@ export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin, m
           zIndex: -1,
           height: 'calc(100% + 3.2rem)'
         }}>
-          <img src="/images/Blue H1.webp" alt="Blue Background" style={{ width: '100%', opacity: 0.3, height: '100%', objectFit: 'fill', transform: 'scaleY(-1)' }} />
+          <img src="/images/Blue H1.webp" alt="Blue Background" style={{ width: '100%', opacity: 0.3, height: '100%', objectFit: 'fill', transform: 'scaleY(-1)' }} fetchPriority="high" />
         </div>
         {h1Result}
       </div>

@@ -119,7 +119,7 @@ export default function GardenSongPageMobile({
             maxHeight={600}
             maxWidth={"max-content"}
             priority={true}
-            optimize={false}
+            optimize={true}
             shadow={false}
           />
         </div>

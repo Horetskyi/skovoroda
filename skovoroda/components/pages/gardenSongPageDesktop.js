@@ -142,7 +142,7 @@ export default function GardenSongPageDesktop({
             height={selectedMetadata.songImage.height}
             fullWidth={false}
             priority={true}
-            optimize={false}
+            optimize={true}
             shadow={false}
             onClick={() => open()}
           />
@@ -156,7 +156,7 @@ export default function GardenSongPageDesktop({
             <p key={index} style={{ color: highlightColor || 'inherit' }}>{line}</p>
           ))}
         </h1>
-      </> : <SkH1Desktop text={selectedMetadata.name} color={highlightColor} isV2={true} disableBackground={true} isCurved={false} />}
+      </> : <SkH1Desktop text={selectedMetadata.name} color={highlightColor} isV2={true} disableBackground={true} />}
       
       <Space h="lg"/>
       

@@ -15,6 +15,15 @@ import { parseBibleCode } from "../../lib/shared/bible";
 import classes from './skMetaTextView.module.scss';
 import { getCharacterPath } from "../../lib/skovorodaPath";
 
+const neverCombineClasses = [
+  classes.formatTabs6,
+  classes.formatTabs5,
+  classes.formatTabs4,
+  classes.formatTabs3,
+  classes.formatTabs2,
+  classes.formatTabs1,
+];
+
 function onNoteClick(id) {
   gsap.to(window, {
     duration: 0.5, 
@@ -83,10 +92,10 @@ export default function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes 
     "header3": classes.formatHeader3,
     "header4": classes.formatHeader3,
   };
-  const solveFormatClassName = (format) => {
+  const solveFormatClassName = (format, shouldExcludeNeverCombineClass) => {
     if (!format) return "";
     if (!Array.isArray(format)) format = [format];
-    const classNames = format.map(f => {
+    var classNames = format.map(f => {
       if (isMobile) {
         if (f === "tabs2") f = "tabs1";
         if (f === "tabs3") f = "tabs1";
@@ -96,15 +105,18 @@ export default function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes 
       }
       return (f && formatClasses[f]) ? formatClasses[f] : "";
     }).filter(className => className);
+    if (shouldExcludeNeverCombineClass) {
+      classNames = classNames.filter(className => !neverCombineClasses.includes(className));
+    }
     if (!classNames.length) return '';
     const resultFormatClassName = classNames.join(' ');
     return resultFormatClassName;
   }
-  function solvePieceFormatClassName(piece) {
+  function solvePieceFormatClassName(piece, shouldExcludeNeverCombineClass) {
     if (!piece) return '';
     if (!piece.meta) return '';
-    if (piece.meta.f) return solveFormatClassName(piece.meta.f);
-    if (piece.meta.format) return solveFormatClassName(piece.meta.format);
+    if (piece.meta.f) return solveFormatClassName(piece.meta.f, shouldExcludeNeverCombineClass);
+    if (piece.meta.format) return solveFormatClassName(piece.meta.format, shouldExcludeNeverCombineClass);
     return '';
   }
   function getNormalClassName(piece) {
@@ -205,10 +217,11 @@ export default function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes 
   </div>
 }
 
-function SkMetaTextLinePiece({ piece, solvePieceFormatClassName, index, isMobile }) {
+function SkMetaTextLinePiece({ piece, solvePieceFormatClassName, index, isMobile, prevPieceFormatClassName, shouldExcludeNeverCombineClass }) {
 
   // PARAMETERS {
-  const pieceFormatClassName = solvePieceFormatClassName(piece);
+  const isIncludesNeverCombineClass = prevPieceFormatClassName && neverCombineClasses.some(c => prevPieceFormatClassName.includes(c));
+  const pieceFormatClassName = solvePieceFormatClassName(piece, isIncludesNeverCombineClass || shouldExcludeNeverCombineClass);
   // PARAMETERS }
 
   // NESTING {
@@ -221,6 +234,8 @@ function SkMetaTextLinePiece({ piece, solvePieceFormatClassName, index, isMobile
           solvePieceFormatClassName={solvePieceFormatClassName}
           index={(piece.text) + index + (subIndex * 1000)}
           isMobile={isMobile}
+          prevPieceFormatClassName={pieceFormatClassName}
+          shouldExcludeNeverCombineClass={shouldExcludeNeverCombineClass}
         />;
       })}
     </span>;
@@ -321,6 +336,10 @@ function SkMetaTextLine({
   // FOUNTAIN }
 
   if (!Array.isArray(line)) line = [line];
+
+  const normalClassName = ((line.length === 1) || (line.length && line[0] && line[0].meta && line[0].meta.isNoteBeginning)) ? getNormalClassName(line[0]) : getNormalClassName();
+  const isIncludesNeverCombineClass = normalClassName && neverCombineClasses.some(c => normalClassName.includes(c));
+
   const lineNodes = line.map((piece, index) => {
     return <SkMetaTextLinePiece
       key={piece.n}
@@ -328,11 +347,11 @@ function SkMetaTextLine({
       solvePieceFormatClassName={solvePieceFormatClassName}
       index={(lineIndex * 1000) + index}
       isMobile={isMobile}
+      shouldExcludeNeverCombineClass={isIncludesNeverCombineClass}
     />;
   }).filter(pieceNode => pieceNode);
   if (!lineNodes.length) return null;
 
-  const normalClassName = ((line.length === 1) || (line.length && line[0] && line[0].meta && line[0].meta.isNoteBeginning)) ? getNormalClassName(line[0]) : getNormalClassName();
 
   // NOTE IN NOTES BLOCK:
   var noteInBlock = null;

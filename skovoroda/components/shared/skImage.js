@@ -21,6 +21,7 @@ export default function SkImage({
   fullHeight,
   fullContainerWidth,
   fullContainerWidthPercent,
+  fullContainerWidthScreen,
   bordered,
   maxHeight,
   maxWidth
@@ -73,6 +74,12 @@ export default function SkImage({
   } else if (fullContainerWidthPercent) {
     styleObj = {
       width: `${fullContainerWidthPercent}%`,
+      height: "fit-content",
+      minWidth: "auto",
+    };
+  } else if (fullContainerWidthScreen) {
+    styleObj = {
+      width: `${fullContainerWidthScreen}vw`,
       height: "fit-content",
       minWidth: "auto",
     };

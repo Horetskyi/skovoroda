@@ -5,7 +5,8 @@ import imageResize from 'gulp-image-resize';
 const resizeOptions = {
   // width: 1900, 
   // width: 1200, 
-  width: 800, 
+  // width: 800,
+  height: 600, 
   // height: 243,
   // height will be calculated automatically to maintain aspect ratio
 };

@@ -72,7 +72,7 @@ export default function HomePageMobile({sourcesTextContent}) {
         {/* Image Section */}
         <Box className={classes.imageSection} mb="lg">
           <SkImage
-            imageUrl="/images/Skovoroda Statue.webp"
+            imageUrl="/images/Skovoroda Statue Mobile.webp"
             alt="Statue of Skovoroda"
             title="Statue of Skovoroda"
             width={300}
@@ -102,7 +102,7 @@ export default function HomePageMobile({sourcesTextContent}) {
         
         <Box mt="md" mb="lg" className={classes.centerImage}>
           <SkImage
-            imageUrl="/images/Old pocket watch.webp"
+            imageUrl="/images/Old pocket watch Mobile.webp"
             alt="Старий карманний годинник на старій книзі, а поруч жовті рози, що в'януть"
             title="Час, як філософська категорія, як невід'ємна частина життя і роздумів Сковороди"
             width={400}
@@ -129,7 +129,7 @@ export default function HomePageMobile({sourcesTextContent}) {
 
         <Box mt="xl" pt="xl" mb="lg">
           <SkImage
-            imageUrl="/images/Cherubs.webp"
+            imageUrl="/images/Cherubs Mobile.webp"
             alt="Зображення херувима на стіні храму"
             title="Херувим"
             width={400}
@@ -153,7 +153,7 @@ export default function HomePageMobile({sourcesTextContent}) {
         
         <Box mt="xl" pt="xl" mb="lg">
           <SkImage
-            imageUrl="/images/Skovoroda Poet.webp"
+            imageUrl="/images/Skovoroda Poet Mobile.webp"
             alt="Сковорода студент пише в зошиті пером, по старому паперу"
             title="Сковорода - поет"
             width={400}
@@ -186,7 +186,7 @@ export default function HomePageMobile({sourcesTextContent}) {
 
         <Box mt="xl" pt="xl" mb="lg">
           <SkImage
-            imageUrl="/images/Choir.webp"
+            imageUrl="/images/Choir Mobile.webp"
             alt="Хор, деталь з ікони 17 століття"
             title="Хор, деталь з ікони XVII століття"
             width={400}

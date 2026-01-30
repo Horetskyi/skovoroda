@@ -71,7 +71,17 @@ export default function FablePageMobile({
 
   const fableString = selectedMetadata.translatorId == 0 ? "Басня" : "Байка";
   const h1Text = `${fableString} ${selectedMetadata.fableNumber} – ${selectedMetadata.fableTitle}`;
-  const isFableImageExists = selectedMetadata.fableImage && selectedMetadata.fableImage.imageUrl && selectedMetadata.fableImage.imageUrl.length > 0;
+  var fableImage = selectedMetadata.fableImage;
+  if (fableImage) fableImage = {...fableImage};
+  const isFableImageExists = fableImage && fableImage.imageUrl && fableImage.imageUrl.length > 0;
+  if (isFableImageExists) {
+    fableImage.imageUrl = fableImage.imageUrl.replace("/fables/", "/fables mobile/");
+    if (fableImage.height) {
+      const prevHeight = fableImage.height;
+      fableImage.height = 600;
+      fableImage.width = Math.round((fableImage.width / prevHeight) * 600);
+    }
+  }
 
   const prevFableNumber = selectedMetadata.fableNumber - 1;
   const nextFableNumber = selectedMetadata.fableNumber + 1;
@@ -81,9 +91,9 @@ export default function FablePageMobile({
     getBookSourceParam(selectedFable.source, selectedNotes, true),
   ];
   if (isFableImageExists) {
-    sourcesParams.push(getIllustrationSourceParam(selectedMetadata.fableImage));
+    sourcesParams.push(getIllustrationSourceParam(fableImage));
   }
-  const highlightColor = isFableImageExists ? selectedMetadata.fableImage.highlightColor : null;
+  const highlightColor = isFableImageExists ? fableImage.highlightColor : null;
 
   return <>
 
@@ -112,8 +122,8 @@ export default function FablePageMobile({
     </Container>
      {isFableImageExists ? <>
       <Center>
-        <SkImage imageUrl={selectedMetadata.fableImage.imageUrl} width={221} height={306} 
-          shadow={"md"} alt={selectedMetadata.fableImage.alt} title={selectedMetadata.fableImage.title} 
+        <SkImage imageUrl={fableImage.imageUrl} width={221} height={306} 
+          shadow={"md"} alt={fableImage.alt} title={fableImage.title} 
           priority={true} optimize={true} />
       </Center>
       <Space h="sm"/>

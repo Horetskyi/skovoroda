@@ -20,6 +20,13 @@ export default function SkovorodaGardenPageMobile({ allSongsMetadata, gardenImag
     }
   });
 
+  gardenImageByOlenka.imageUrl = gardenImageByOlenka.imageUrl.replace("/garden/", "/garden mobile/");
+  if (gardenImageByOlenka.height) {
+    const prevHeight = gardenImageByOlenka.height;
+    gardenImageByOlenka.height = 600;
+    gardenImageByOlenka.width = Math.round((gardenImageByOlenka.width / prevHeight) * 600);
+  }
+
   return <>
 
     {/* H1 */}

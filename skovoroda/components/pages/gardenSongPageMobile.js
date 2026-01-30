@@ -15,6 +15,7 @@ import SkImage from '../shared/skImage';
 import { getBookSourceParam, getIllustrationSourceParam } from './details/pureFunctions';
 import SkH2Mobile from '../shared/skH2Mobile';
 import SkMetaTextView from '../shared/skMetaTextView';
+import { SkovorodaConstants } from '../../lib/skovorodaConstants';
 
 export default function GardenSongPageMobile({ 
   allSongsMetadata,
@@ -79,10 +80,19 @@ export default function GardenSongPageMobile({
   const nextSongNumber = useMemo(() => nextAvailableNumber(selectedMetadata.number, availableSongNumbers), [selectedMetadata.number, availableSongNumbers]);
   const randomSongNumber = useMemo(() => randomNumberInRangeExcept(1, 30, selectedMetadata.number, availableSongNumbers), [selectedMetadata.number, availableSongNumbers]);
 
-  const isSongImageExists = selectedMetadata.songImage && selectedMetadata.songImage.imageUrl && selectedMetadata.songImage.imageUrl.length > 0;
-  const highlightColor = selectedMetadata.songImage ? selectedMetadata.songImage.highlightColor : null;
+  const songImage = selectedMetadata.songImage ? {...selectedMetadata.songImage} : null;
+  const isSongImageExists = songImage && songImage.imageUrl && songImage.imageUrl.length > 0;
+  const highlightColor = songImage ? songImage.highlightColor : null;
   if (isSongImageExists) {
-    sourcesParams.push(getIllustrationSourceParam(selectedMetadata.songImage));
+
+    songImage.imageUrl = songImage.imageUrl.replace("/garden/", "/garden mobile/");
+    if (songImage.height) {
+      const prevHeight = songImage.height;
+      songImage.height = 600;
+      songImage.width = Math.round((songImage.width / prevHeight) * 600);
+    }
+
+    sourcesParams.push(getIllustrationSourceParam(songImage));
   }
 
   return <>
@@ -109,15 +119,15 @@ export default function GardenSongPageMobile({
         <SkButtonMobile text={">"} onClick={() => selectSongDropdownValue(nextSongNumber.number)} disabled={nextSongNumber.disabled}/>
       </Group>
       <Space h="lg"/>
-      {selectedMetadata.songImage ? (
+      {isSongImageExists ? (
         <div className={classes.songImageContainer}>
           <SkImage
-            image={selectedMetadata.songImage}
-            width={selectedMetadata.songImage.width}
-            height={selectedMetadata.songImage.height}
-            fullContainerWidthPercent={90}
+            image={songImage}
+            width={songImage.width}
+            height={songImage.height}
+            fullContainerWidthScreen={90}
             maxHeight={600}
-            maxWidth={"max-content"}
+            maxWidth={"auto"}
             priority={true}
             optimize={true}
             shadow={false}

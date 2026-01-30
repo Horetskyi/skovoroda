@@ -8,6 +8,8 @@ export default function RecommendedTreatisesMobile({
   recommendedTreatisesList, 
   treatises }) 
 {
+  var isFirstImage = true;
+
   return <List 
     type="ordered" 
     spacing="xl" 
@@ -25,6 +27,11 @@ export default function RecommendedTreatisesMobile({
       const preferedTitle = preferedVersion?.title || '';
       const linkTitle = `${preferedTitle} завантажити переклади, оригінал`;
       const image = treatise.image || foundTreatise.image || null;
+      const isFirstImageTmp = isFirstImage;
+      if (image) {
+        isFirstImage = false;
+      }
+      
       return <List.Item key={index} m={0} p={0} pb={"xl"}>
         <Group align="flex-start" spacing={0}>
           <div className={classes.number}>{index + 1}</div>
@@ -38,7 +45,7 @@ export default function RecommendedTreatisesMobile({
               {treatise.comments}
             </Text>
             {image && (
-              <SkImage image={image} fullContainerWidth={true} />
+              <SkImage image={image} fullContainerWidth={true} priority={isFirstImageTmp} optimize={true} />
             )}
           </div>
         </Group>

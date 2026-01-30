@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "browserslist": [
-    "last 2 Chrome versions",
-    "last 2 Firefox versions",
-    "last 2 Safari versions",
-    "last 2 Edge versions",
+    "Chrome >= 92",
+    "Firefox >= 91",
+    "Safari >= 15",
+    "Edge >= 92",
     "not dead",
     "not ie 11",
     "not op_mini all"

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { pathJoin, SkovorodaTreatisePath } from '../lib/skovorodaPath';
 import SkImage from './shared/skImage';
 import classes from './recommendedTreatisesDesktop.module.scss';
-import { adjustImageHeight, getAdjustedHeight, getAdjustedWidth } from './functions/imageFunctions';
+import { getAdjustedHeight } from './functions/imageFunctions';
 
 export default function RecommendedTreatisesDesktop({ 
   recommendedTreatisesList, 
@@ -43,6 +43,8 @@ export default function RecommendedTreatisesDesktop({
                 height={imageHeight} 
                 width={300} 
                 gentlyShadow={true}
+                priority={true}
+                optimize={true}
               />
             </div>
           )}

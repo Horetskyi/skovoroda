@@ -6,7 +6,8 @@ const resizeOptions = {
   // width: 1900, 
   // width: 1200, 
   // width: 800,
-  height: 600, 
+  width: 120, 
+  // height: 80, 
   // height: 243,
   // height will be calculated automatically to maintain aspect ratio
 };

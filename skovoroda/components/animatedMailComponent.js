@@ -1,5 +1,4 @@
 import AnimatedMailSvg from "./svgs/animatedMail.svg";
-import { gsap } from "gsap/dist/gsap";
 import { useEffect, useRef, useState } from "react";
 import { Container } from "@mantine/core";
 import classes from './animatedMailComponent.module.scss';
@@ -12,7 +11,14 @@ export default function AnimatedMailComponent({ uniqueId }) {
   
   useEffect(() => {
 
-    let ctx = gsap.context((self) => {
+    let gsapModule;
+    let ctx;
+
+    (async () => {
+      gsapModule = await import('gsap/dist/gsap');
+      const gsap = gsapModule.gsap;
+
+      ctx = gsap.context((self) => {
       
       let timeline = gsap.timeline({
         paused:true,
@@ -47,8 +53,9 @@ export default function AnimatedMailComponent({ uniqueId }) {
 
     }, root);
 
+    })();
 
-    return () => ctx.revert();
+    return () => { if (ctx) ctx.revert(); };
 
   }, [uniqueClassName]);
 

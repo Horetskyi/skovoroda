@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { getNoteNumberString } from "../lib/utils/notesNumbersSymbols";
 import { utils1PageKey } from "../lib/skovorodaConstants";
 import { getSchemaByPageKey } from '../components/schema/skSchemaFacade';
-import { gsap } from "gsap/dist/gsap";
 import classes from './utils1-destop.module.scss';
 import SkImage from "../components/shared/skImage";
 import { finalAccentsReplaces } from "../lib/utilsAccents";
@@ -16,9 +15,12 @@ export default function Utils1({ }) {
 
   useEffect(() => {
     if (!timeline) {
-      console.log("Timeline initialization")
-      timeline = gsap.timeline({paused: true, defaults: { ease: "none"}});
-      timeline.fromTo("#skovoroda-image", { scale: 0.25 }, { duration: 1, scale: 1, x: 500 });
+      (async () => {
+        const { gsap } = await import('gsap/dist/gsap');
+        console.log("Timeline initialization")
+        timeline = gsap.timeline({paused: true, defaults: { ease: "none"}});
+        timeline.fromTo("#skovoroda-image", { scale: 0.25 }, { duration: 1, scale: 1, x: 500 });
+      })();
     }
   });
 

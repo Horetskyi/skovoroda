@@ -15,7 +15,6 @@ import SkImage from '../shared/skImage';
 import { getBookSourceParam, getIllustrationSourceParam } from './details/pureFunctions';
 import SkH2Mobile from '../shared/skH2Mobile';
 import SkMetaTextView from '../shared/skMetaTextView';
-import { SkovorodaConstants } from '../../lib/skovorodaConstants';
 
 export default function GardenSongPageMobile({ 
   allSongsMetadata,

@@ -3,7 +3,7 @@ import SkSkovorodaLogo from "./skSkovorodaLogo3.svg";
 import SkDoveLogo from "./skDoveLogo3.svg";
 import Link from "next/link";
 import { SkovorodaArticlesPath, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaLettersPath, SkovorodaTreatisePath, getLinkTitle } from "../../lib/skovorodaPath";
-import { IconMenu2 } from "@tabler/icons";
+import { IconMenu2 } from "@tabler/icons-react";
 import { useState } from "react";
 import classes from './skHeaderMenuMobile.module.scss';
 import HeaderBlockSvg from "./../svgs/headerBlockMobile.svg";

@@ -1,6 +1,8 @@
 import { Grid, Text } from '@mantine/core';
 import Link from 'next/link';
-import AnimatedMailComponent from '../components/animatedMailComponent';
+import dynamic from 'next/dynamic';
+
+const AnimatedMailComponent = dynamic(() => import('../components/animatedMailComponent'), { ssr: false });
 import { pathJoin, SkovorodaLettersFromPath } from '../lib/skovorodaPath';
 import { lettersH1Text } from '../lib/staticProps/lettersContent';
 import { letterWriters } from '../lib/staticProps/letterWriters';

@@ -1,5 +1,5 @@
 import { Card, Flex, Text } from "@mantine/core";
-import { IconInfoCircle } from "@tabler/icons";
+import { IconInfoCircle } from "@tabler/icons-react";
 
 export default function SkovorodaFomattingInfoBlockDesktop({...others}) {
   return <>

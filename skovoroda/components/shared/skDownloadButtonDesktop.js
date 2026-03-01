@@ -1,5 +1,5 @@
 import { Button } from "@mantine/core";
-import { IconFileDownload } from "@tabler/icons";
+import { IconFileDownload } from "@tabler/icons-react";
 import Link from "next/link";
 import { useCallback } from "react";
 import classes from './skDownloadButtonDesktop.module.scss'; 

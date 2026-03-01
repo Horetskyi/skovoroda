@@ -1,4 +1,4 @@
-import { Popover, Text } from "@mantine/core";
+import { Popover } from "@mantine/core";
 import classes from "./skOldUaExplainedText.module.scss";
 
 export default function SkOldUaExplainedText({ explanations, text, skKey, additionalClassName }) {

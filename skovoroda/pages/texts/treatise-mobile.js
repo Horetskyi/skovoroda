@@ -5,7 +5,7 @@ import SkMetaTextView from '../../components/shared/skMetaTextView';
 import SkNote from '../../components/shared/skNote';
 import { getTreatisesPageProps } from '../../lib/staticProps/trearisesStatic';
 import { trearisesContent } from '../../lib/staticProps/treatisesContent';
-import { IconSearch } from '@tabler/icons';
+import { IconSearch } from '@tabler/icons-react';
 import SkH1Mobile from '../../components/shared/skH1Mobile';
 import SkColoredContainerMobile from '../../components/shared/skColoredContainerMobile';
 import SkH2Mobile from '../../components/shared/skH2Mobile';

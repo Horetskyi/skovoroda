@@ -7,7 +7,7 @@ import { SkovorodaConstants } from "../../lib/skovorodaConstants";
 import classes from './skHeaderMenuDesktop.module.scss';
 import HeaderBlockSvg from "./../svgs/headerBlock.svg";
 import { useState } from "react";
-import { IconChevronDown, IconChevronUp } from "@tabler/icons";
+import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 
 export default function SkHeaderMenuDesktop() {
   

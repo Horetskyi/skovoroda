@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Container, Space, Title } from '@mantine/core';
 import classes from './videoBlockMobile.module.scss';
 import SkH2Mobile from '../../shared/skH2Mobile';

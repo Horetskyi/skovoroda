@@ -1,5 +1,5 @@
 import { Button, Stack } from "@mantine/core";
-import { IconBookDownload } from "@tabler/icons";
+import { IconBookDownload } from "@tabler/icons-react";
 import Link from "next/link";
 import classes from './downloadStackV1.module.scss';
 

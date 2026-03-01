@@ -1,4 +1,4 @@
-import { Card, Group, Select, Text } from "@mantine/core";
+import { Card, Select, Text } from "@mantine/core";
 import classes from './skCardWithTwoSelectorsDesktopV2.module.scss'; 
 import { memo } from "react";
 import { getLeftSectionIcon } from "./icons/languageIcons";

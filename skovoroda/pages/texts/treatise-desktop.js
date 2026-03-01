@@ -8,7 +8,7 @@ import SkColoredContainerDesktop from '../../components/shared/skColoredContaine
 import SkNote from '../../components/shared/skNote';
 import { getTreatisesPageProps } from '../../lib/staticProps/trearisesStatic';
 import { trearisesContent } from '../../lib/staticProps/treatisesContent';
-import { IconSearch } from '@tabler/icons';
+import { IconSearch } from '@tabler/icons-react';
 import classes from './treatise-desktop.module.scss';
 import useTreatiseFilter from '../../hooks/useTreatiseFilter';
 import { recommendedTreatisesList } from '../../lib/data/treatises/generic/treatisesGenericData';

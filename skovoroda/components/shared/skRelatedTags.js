@@ -1,7 +1,7 @@
 import { Group } from "@mantine/core";
 import FountainIcon from "./../svgs/fountainIcon.svg";
 import SkTagChip from "./skTagChip";
-import { IconDeer } from "@tabler/icons";
+import { IconDeer } from "@tabler/icons-react";
 import classes from "./skRelatedTags.module.scss";
 
 const THEME_SLUGS_MAP = new Map([

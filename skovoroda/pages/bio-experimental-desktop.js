@@ -1,10 +1,8 @@
 import { Card, Container, Slider, Space, Title } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { gsap } from "gsap/dist/gsap";
 import SkovorodaBioMapComponent from "../components/skovorodaBioMapComponent";
 import FirstHouseComponent from "../components/firstHouseComponent";
 import { skovorodaPlaces, SkovorodaTravelData } from "../lib/data/skovorodaTravelData";
-import { CSSPlugin } from "gsap";
 import classes from './bio-experimental-desktop.module.scss';
 import SkBioInfographicsDesktop from "../components/shared/skBioInfographicsDesktop";
 
@@ -106,7 +104,9 @@ export default function HSBioExperimentalPageDesktop({ }) {
     };
   }
 
-  function initializeTimeline() {
+  async function initializeTimeline() {
+    const { gsap } = await import('gsap/dist/gsap');
+    const { CSSPlugin } = await import('gsap');
     
     CSSPlugin.defaultSmoothOrigin = true;
 

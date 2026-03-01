@@ -3,6 +3,7 @@ import { readAllThemes } from '../../lib/dataReaders/themesReader';
 import { themePageKey } from '../../lib/skovorodaConstants';
 import readDynamicIdCommon from '../../lib/readDynamicIdCommon';
 import getStaticPathsCommon from '../../lib/getStaticPathsCommon';
+import { getSchemaByPageKey } from '../../components/schema/skSchemaFacade';
 
 const ThemePageDesktop = dynamic(() => import('../../components/pages/themePageDesktop'));
 const ThemePageMobile = dynamic(() => import('../../components/pages/themePageMobile'));
@@ -41,6 +42,7 @@ export async function getStaticProps({ params }) {
       deviceEnding,
       selectedId: id,
       pageKey: themePageKey,
+      schemaOrg: getSchemaByPageKey(themePageKey),
       breadcrumbLabel: selectedTheme.title,
 
       shouldBeIndexed: false,

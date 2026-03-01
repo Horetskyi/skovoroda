@@ -2,12 +2,10 @@ import Head from 'next/head';
 import { MantineProvider, createTheme } from '@mantine/core';
 import { SkovorodaConstants } from '../lib/skovorodaConstants';
 import dynamic from 'next/dynamic';
-import Script from 'next/script';
 import '@mantine/core/styles.layer.css';
 import './app.styles.scss';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { useState, useEffect } from 'react';
-import { getSchemaByPageKey } from '../components/schema/skSchemaFacade';
 
 const SkHeaderMenuDesktop = dynamic(() => import('../components/shared/skHeaderMenuDesktop'));
 const SkHeaderMenuMobile = dynamic(() => import('../components/shared/skHeaderMenuMobile'));
@@ -96,7 +94,7 @@ export default function App(props) {
     },
   });
 
-  const schemaOrg = getSchemaByPageKey(pageProps.pageKey);
+  const schemaOrg = pageProps.schemaOrg ?? null;
 
   return (
     <>

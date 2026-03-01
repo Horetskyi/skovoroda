@@ -4,6 +4,7 @@ import getStaticPathsCommon from '../../lib/getStaticPathsCommon';
 import { readAllCharacters } from '../../lib/dataReaders/charactersReader';
 import { getCharacterH1, getCharacterUaCompoundName } from '../../lib/staticProps/charactersContent';
 import dynamic from 'next/dynamic';
+import { getSchemaByPageKey } from '../../components/schema/skSchemaFacade';
 
 const SkCharacterPageDesktop = dynamic(() => import('../../components/pages/skCharacterPageDesktop'));
 const SkCharacterPageMobile = dynamic(() => import('../../components/pages/skCharacterPageMobile'));
@@ -37,6 +38,7 @@ export async function getStaticProps({ params }) {
       isMobile,
       selectedId: id,
       pageKey: characterPageKey,
+      schemaOrg: getSchemaByPageKey(characterPageKey),
       breadcrumbLabel: `Персонаж ${compoundName}`,
       // APP LEVEL }
 

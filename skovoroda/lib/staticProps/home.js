@@ -1,6 +1,7 @@
 import { SkovorodaSourcesArray } from "../data/skovorodaSources";
 import { homePageKey } from "../skovorodaConstants";
 import { newNotesService } from "./commonContent";
+import { getSchemaByPageKey } from '../../components/schema/skSchemaFacade';
 
 export function getHomePageProps() {
   
@@ -12,6 +13,7 @@ export function getHomePageProps() {
   return {
     props: {
       pageKey: homePageKey,
+      schemaOrg: getSchemaByPageKey(homePageKey),
       metadataTitle: "Григорій Савич Сковорода — Український Філософ",
       metadataDescription: "Філософ-містик, богослов, поет, педагог і композитор літургійної музики. Мав значний вплив на сучасників і подальші покоління своїми байками, піснями, філософськими творами, а також способом життя, через що його називають ”Українським Сократом”.",
       metadataKeywords: ["Григорій Савич Сковорода", "Григорій Сковорода","Український філософ","Філософія Сковороди"],

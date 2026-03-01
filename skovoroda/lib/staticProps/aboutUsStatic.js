@@ -1,5 +1,6 @@
 import { metaTextProcessor } from "../metaTextProcessor/metaTextProcessor";
 import { aboutUsPageKey } from "../skovorodaConstants";
+import { getSchemaByPageKey } from '../../components/schema/skSchemaFacade';
 
 const content1 = `
 Cайт присвячений життю і творчості видатного українського філософа — Григорія Савича Сковороди.
@@ -54,6 +55,7 @@ export function getAboutUsPageProps() {
   return {
     props: {
       pageKey: aboutUsPageKey,
+      schemaOrg: getSchemaByPageKey(aboutUsPageKey),
       metadataTitle: "Про Нас - Skovoroda Club",
       metadataDescription: "Сайт присвячений життю і творчості видатного українського філософа — Григорія Савича Сковороди",
       metadataKeywords: ["Григорій Сковорода", "Команда", "Skovoroda Club", "Про нас"],

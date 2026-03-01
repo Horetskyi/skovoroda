@@ -2,6 +2,7 @@ import { Checkbox, Container, Select, Space, Textarea, Title } from "@mantine/co
 import { useEffect, useState } from "react";
 import { getNoteNumberString } from "../lib/utils/notesNumbersSymbols";
 import { utils1PageKey } from "../lib/skovorodaConstants";
+import { getSchemaByPageKey } from '../components/schema/skSchemaFacade';
 import { gsap } from "gsap/dist/gsap";
 import classes from './utils1-destop.module.scss';
 import SkImage from "../components/shared/skImage";
@@ -173,6 +174,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       pageKey: utils1PageKey,
+      schemaOrg: getSchemaByPageKey(utils1PageKey),
       metadataTitle: "Development - Григорій Савич Сковорода",
       metadataDescription: "Development - Григорій Савич Сковорода",
     },

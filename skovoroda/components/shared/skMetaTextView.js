@@ -1,14 +1,14 @@
-import { gsap } from "gsap/dist/gsap";
 import { Card, Container, List, Title } from "@mantine/core";
 import Link from "next/link";
 import { getNoteNumberString, getNoteNumberUpperString } from "../../lib/utils/notesNumbersSymbols";
-import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
 import SkH2Mobile from "./skH2Mobile";
 import SkH2Desktop from "./skH2Desktop";
 import SkTextLink from "./skTextLink";
-import SkBibleText from "./skBibleText";
-import SkOldUaExplainedText from "./skOldUaExplainedText";
-import SkFountain from "./skFountain";
+import dynamic from 'next/dynamic';
+
+const SkBibleText = dynamic(() => import('./skBibleText'), { ssr: true });
+const SkOldUaExplainedText = dynamic(() => import('./skOldUaExplainedText'), { ssr: true });
+const SkFountain = dynamic(() => import('./skFountain'), { ssr: false });
 import { metaTextSomeLinePiece } from "../../lib/metaTextUsages/metaTextUsageUtils";
 import addOrderedNumbersToMetaText from "../../lib/metaTextUsages/addOrderedNumbersToMetaText";
 import { parseBibleCode } from "../../lib/shared/bible";
@@ -24,7 +24,10 @@ const neverCombineClasses = [
   classes.formatTabs1,
 ];
 
-function onNoteClick(id) {
+async function onNoteClick(id) {
+  const { gsap } = await import('gsap/dist/gsap');
+  const ScrollToPlugin = (await import('gsap/dist/ScrollToPlugin')).default;
+  gsap.registerPlugin(ScrollToPlugin);
   gsap.to(window, {
     duration: 0.5, 
     scrollTo:{ y: "#" + id, offsetY: 24},
@@ -43,8 +46,6 @@ export default function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes 
   if (!metaText || !metaText.lines || !metaText.lines.length) return null;
 
   addOrderedNumbersToMetaText(metaText);
-
-  gsap.registerPlugin(ScrollToPlugin);
 
   // LEGACY {
   if (!otherArgs) otherArgs = {};

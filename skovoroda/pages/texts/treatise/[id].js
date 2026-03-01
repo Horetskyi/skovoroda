@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import { readAllTreatises } from '../../../lib/dataReaders/treatisesReader';
 import { SkovorodaSourcesArray } from '../../../lib/data/skovorodaSources';
 import { skTranslatorsV2 } from '../../../lib/data/skovorodaTranslators';
+import { getSchemaByPageKey } from '../../../components/schema/skSchemaFacade';
 
 const SkTreatisePageDesktop = dynamic(() => import('../../../components/pages/skTreatisePageDesktop'));
 const SkTreatisePageMobile = dynamic(() => import('../../../components/pages/skTreatisePageMobile'));
@@ -55,6 +56,7 @@ export async function getStaticProps({ params }) {
     props: {
       // APP LEVEL {
       pageKey: treatiseSelectedPageKey,
+      schemaOrg: getSchemaByPageKey(treatiseSelectedPageKey),
       selectedId: id,
       deviceEnding,
       // APP LEVEL }

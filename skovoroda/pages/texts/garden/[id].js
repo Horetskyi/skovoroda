@@ -9,6 +9,7 @@ import { getOriginalSongId } from '../../../lib/sadIds';
 import { gardenSelectedPageKey, SkovorodaConstants } from '../../../lib/skovorodaConstants';
 import dynamic from 'next/dynamic';
 import { isLineIncludesNoteNumbers } from '../../../lib/metaTextUsages/metaTextUsageUtils';
+import { getSchemaByPageKey } from '../../../components/schema/skSchemaFacade';
 
 const GardenSongPageDesktop = dynamic(() => import('../../../components/pages/gardenSongPageDesktop'));
 const GardenSongPageMobile = dynamic(() => import('../../../components/pages/gardenSongPageMobile'));
@@ -64,6 +65,7 @@ export async function getStaticProps({ params }) {
       // APP LEVEL {
       deviceEnding,
       pageKey: gardenSelectedPageKey,
+      schemaOrg: getSchemaByPageKey(gardenSelectedPageKey),
       breadcrumbLabel: selectedSong.songMetadata.name,
       selectedId: id,
       // APP LEVEL }

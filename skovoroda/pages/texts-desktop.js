@@ -1,6 +1,7 @@
 import { Card, Container, Image, SimpleGrid, Title } from '@mantine/core';
 import Link from 'next/link';
 import { textsPageKey } from '../lib/skovorodaConstants';
+import { getSchemaByPageKey } from '../components/schema/skSchemaFacade';
 import { SkovorodaDifferentPath, SkovorodaFablesPath, SkovorodaGardenPath, SkovorodaOtherPoemsPath, SkovorodaTranslatationsPath, SkovorodaTreatisePath } from '../lib/skovorodaPath';
 import classes from './texts-desktop.module.scss';
 
@@ -52,6 +53,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       pageKey: textsPageKey,
+      schemaOrg: getSchemaByPageKey(textsPageKey),
       metadataTitle: "Твори - Григорій Савич Сковорода",
       metadataDescription: "Твори - Григорій Савич Сковорода",
     },

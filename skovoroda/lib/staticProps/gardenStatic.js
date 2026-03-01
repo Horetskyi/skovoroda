@@ -1,6 +1,7 @@
 import { SkImages } from "../data/images/skImages";
 import { SkovorodaGardenRefactored } from "../dataReaders/songsReader";
 import { gardenPageKey } from "../skovorodaConstants";
+import { getSchemaByPageKey } from '../../components/schema/skSchemaFacade';
 
 export function getGardenPageProps() {
   const allSongsMetadata = SkovorodaGardenRefactored.allSongs.map(song => song.songMetadata);
@@ -9,6 +10,7 @@ export function getGardenPageProps() {
     props: {
       // APP LEVEL {
       pageKey: gardenPageKey,
+      schemaOrg: getSchemaByPageKey(gardenPageKey),
       // APP LEVEL }
 
       // SEO {

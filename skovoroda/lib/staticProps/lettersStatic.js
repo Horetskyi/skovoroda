@@ -2,6 +2,7 @@ import { SkovorodaLettersFrom, SkovorodaLettersTo } from "../dataReaders/letters
 import { lettersPageKey, SkovorodaConstants } from "../skovorodaConstants";
 import { lettersH1Text } from "./lettersContent";
 import { letterWriters } from "./letterWriters";
+import { getSchemaByPageKey } from '../../components/schema/skSchemaFacade';
 
 export function getLettersStaticProps(params) {
 
@@ -23,6 +24,7 @@ export function getLettersStaticProps(params) {
     props: {
       // APP LEVEL {
       pageKey: lettersPageKey,
+      schemaOrg: getSchemaByPageKey(lettersPageKey),
       // APP LEVEL }
       
       // SEO {

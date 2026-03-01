@@ -3,6 +3,7 @@ import { SkovorodaSourcesArray } from '../../../lib/data/skovorodaSources';
 import getStaticPathsCommon from '../../../lib/getStaticPathsCommon';
 import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';
 import { SkovorodaConstants, fableSelectedPageKey } from '../../../lib/skovorodaConstants';
+import { getSchemaByPageKey } from '../../../components/schema/skSchemaFacade';
 import { readAllFables } from '../../../lib/dataReaders/fablesReader';
 import { skTranslatorsV2 } from '../../../lib/data/skovorodaTranslators';
 import dynamic from 'next/dynamic';
@@ -85,6 +86,7 @@ export async function getStaticProps({ params }) {
       deviceEnding,
       selectedId: id,
       pageKey: fableSelectedPageKey,
+      schemaOrg: getSchemaByPageKey(fableSelectedPageKey),
       breadcrumbLabel: selectedFable.metadata.fableTitle,
       // APP LEVEL }
 

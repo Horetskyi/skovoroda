@@ -1,5 +1,6 @@
 import { readAllReads } from "../dataReaders/readsReader";
 import { articlesPageKey } from "../skovorodaConstants";
+import { getSchemaByPageKey } from '../../components/schema/skSchemaFacade';
 
 export async function getArticlesStaticProps(params) {
 
@@ -8,6 +9,7 @@ export async function getArticlesStaticProps(params) {
   return {
     props: {
       pageKey: articlesPageKey,
+      schemaOrg: getSchemaByPageKey(articlesPageKey),
       metadataTitle: "Статті про Григорія Сковороду",
       metadataDescription: "Статті в яких досліджується життя і творчість Григорія Сковороди",
       articles: articles,

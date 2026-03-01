@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import { SkovorodaLettersFrom } from '../../../lib/dataReaders/lettersReader';
 import { getLetterWriterByLetterMetadata } from '../../../lib/staticProps/letterWriters';
 import getSelectedNoteNumbersByContent from '../../../lib/metaTextUsages/getSelectedNoteNumbersByContent';
+import { getSchemaByPageKey } from '../../../components/schema/skSchemaFacade';
 const SkovorodaLetterPageDesktop = dynamic(() => import('../../../components/pages/skLetterPageDesktop'));
 const SkovorodaLetterPageMobile = dynamic(() => import('../../../components/pages/skLetterPageMobile'));
 
@@ -46,6 +47,7 @@ export function getStaticProps({ params }) {
     props: {
       // APP LEVEL {
       pageKey: lettersFromPageKey,
+      schemaOrg: getSchemaByPageKey(lettersFromPageKey),
       breadcrumbLabel: selectedLetter.letterMetadata.name + " - Лист № " + selectedLetter.letterMetadata.number,
       deviceEnding,
       // APP LEVEL }

@@ -1,6 +1,7 @@
 import { SkovorodaSourcesArray } from "../data/skovorodaSources";
 import { readAllFables, readFablesTopContent } from "../dataReaders/fablesReader";
 import { fablesPageKey } from "../skovorodaConstants";
+import { getSchemaByPageKey } from '../../components/schema/skSchemaFacade';
 
 export function getFablesPageProps() {
   const allFables = readAllFables().allFables.map(fable => fable.metadata);
@@ -9,6 +10,7 @@ export function getFablesPageProps() {
   return {
     props: {
       pageKey: fablesPageKey,
+      schemaOrg: getSchemaByPageKey(fablesPageKey),
       
       shouldBeIndexed: true,
       metadataTitle: "Байки Сковороди - Байки Харківські",

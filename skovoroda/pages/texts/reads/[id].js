@@ -3,6 +3,7 @@ import readDynamicIdCommon from '../../../lib/readDynamicIdCommon';
 import { readAllReads } from '../../../lib/dataReaders/readsReader';
 import dynamic from 'next/dynamic';
 import { readPageKey, SkovorodaConstants } from '../../../lib/skovorodaConstants';
+import { getSchemaByPageKey } from '../../../components/schema/skSchemaFacade';
 
 const ReadPageDesktop = dynamic(() => import('../../../components/pages/readPageDesktop'));
 const ReadPageMobile = dynamic(() => import('../../../components/pages/readPageMobile'));
@@ -33,6 +34,7 @@ export async function getStaticProps({ params }) {
       deviceEnding,
       selectedId: id,
       pageKey: readPageKey,
+      schemaOrg: getSchemaByPageKey(readPageKey),
       breadcrumbLabel: selectedRead.title,
       // APP LEVEL }
 

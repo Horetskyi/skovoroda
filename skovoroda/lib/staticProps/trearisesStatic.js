@@ -4,6 +4,7 @@ import { readAllTreatises } from "../dataReaders/treatisesReader";
 import { treatisePageKey } from "../skovorodaConstants";
 import { newNotesService } from "./commonContent";
 import { getTreatisesListSchemaOrg } from "../../components/schema/treatisesListSchema";
+import { getSchemaByPageKey } from '../../components/schema/skSchemaFacade';
 
 export function getTreatisesPageProps() {
   
@@ -52,6 +53,7 @@ export function getTreatisesPageProps() {
   return {
     props: {
       pageKey: treatisePageKey,
+      schemaOrg: getSchemaByPageKey(treatisePageKey),
       treatises: treatises,
       sourcesTextContent: notesService.sourcesTextContent,
       metadataTitle: "Трактати, Діалоги, Притчі Григорія Сковорода",

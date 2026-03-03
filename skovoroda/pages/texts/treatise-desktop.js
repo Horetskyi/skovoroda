@@ -117,8 +117,7 @@ export default function SkTreatisePageDesktop({ treatises, sourcesTextContent })
       const preferedVersion = treatise.versions.find(v => v.preferedVersion);
       const preferedTitle = preferedVersion.title;
       const introContent = treatise.introContent;
-      const writtenDate = treatise.writtenDate;
-      writtenDate.sort((a,b) => a.orderNumber - b.orderNumber);
+      const writtenDate = [...treatise.writtenDate].sort((a,b) => a.orderNumber - b.orderNumber);
       const linkTitle = `${preferedTitle} завантажити переклади, оригінал`;
 
       return <div key={treatise.urlId} className={classes.treatiseContainer2}><Container w={900} bg={"white"} className={classes.treatiseContainer} p={"md"} mb={"xl"}>

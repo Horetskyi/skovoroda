@@ -11,8 +11,8 @@ import dynamic from 'next/dynamic';
 import { isLineIncludesNoteNumbers } from '../../../lib/metaTextUsages/metaTextUsageUtils';
 import { getSchemaByPageKey } from '../../../components/schema/skSchemaFacade';
 
-const GardenSongPageDesktop = dynamic(() => import('../../../components/pages/gardenSongPageDesktop'));
-const GardenSongPageMobile = dynamic(() => import('../../../components/pages/gardenSongPageMobile'));
+const GardenSongPageDesktop = dynamic(() => import('../../../components/pages/gardenSongPageDesktop'), { ssr: true });
+const GardenSongPageMobile = dynamic(() => import('../../../components/pages/gardenSongPageMobile'), { ssr: true });
 
 export default function SkovorodaGardenSongPage(params)  {
   

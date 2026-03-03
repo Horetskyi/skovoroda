@@ -35,16 +35,19 @@ export function prepareGardenSongsTranslatorsDropdownItems(allSongsMetadata, num
   // Example: [ original-fable-3, fedorak-fable-3, shevchuk-fable-3 ]
   const selectedSongTranslations = allSongsMetadata.filter(metadata => metadata.number == number);
   
+  const seenTranslatorNames = new Set(selectedSongTranslations.map(m => m.translatorName));
   allSongsMetadata.forEach(metadata => {
-    if (selectedSongTranslations.some(translationMetadata => translationMetadata.translatorName == metadata.translatorName)) {
+    if (seenTranslatorNames.has(metadata.translatorName)) {
       return;
     }
+    seenTranslatorNames.add(metadata.translatorName);
     // Example: [..., kashuba-fable-1 ]
     selectedSongTranslations.push(metadata);
   });
 
+  const translatorsById = new Map(allTranslators.map(t => [t.translatorId, t]));
   return selectedSongTranslations.map(metadata => {
-    const translator = allTranslators.find(translator => translator.translatorId == metadata.translatorId);
+    const translator = translatorsById.get(Number(metadata.translatorId)) || allTranslators.find(t => t.translatorId == metadata.translatorId);
     return {
       value: ""+translator.translatorId,
       label: translator.fullName3,

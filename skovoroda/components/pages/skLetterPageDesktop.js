@@ -141,10 +141,12 @@ function prepareTranslationsDropdownItems(allLettersMetadata, personDropdownValu
   // DISTINCT {
   const result = allLettersMetadata
     .filter(metadata => newSelectedPersonValue(metadata, letterType) == personDropdownValue);
+  const seenTranslatorNames = new Set(result.map(m => m.translatorName));
   allLettersMetadata.forEach(metadata => {
-    if (result.some(translationMetadata => translationMetadata.translatorName == metadata.translatorName)) {
+    if (seenTranslatorNames.has(metadata.translatorName)) {
       return;
     }
+    seenTranslatorNames.add(metadata.translatorName);
     result.push(metadata);
   });
   // DISTINCT }

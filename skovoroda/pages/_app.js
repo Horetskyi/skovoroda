@@ -4,7 +4,6 @@ import { SkovorodaConstants } from '../lib/skovorodaConstants';
 import dynamic from 'next/dynamic';
 import '@mantine/core/styles.layer.css';
 import './app.styles.scss';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { useState, useEffect } from 'react';
 
 const SkHeaderMenuDesktop = dynamic(() => import('../components/shared/skHeaderMenuDesktop'));
@@ -12,6 +11,41 @@ const SkHeaderMenuMobile = dynamic(() => import('../components/shared/skHeaderMe
 
 const SkFooterDesktop = dynamic(() => import('../components/shared/skFooterDesktop'));
 const SkFooterMobile = dynamic(() => import('../components/shared/skFooterMobile'));
+
+const theme = createTheme({
+  colorScheme: 'light',
+  fontFamily: "Ysabeau", 
+  fontStyle: "normal",
+  headings: {
+    fontFamily: "Ysabeau",
+  },
+  shadows: {
+    sm: '3px 4px 8px 1px rgba(0, 0, 0, 0.15)',
+    md: '2px 2px 12px rgba(0, 0, 0, 0.15)',
+    lg: '4px 7px 20px rgba(0, 0, 0, 0.25)',
+  },
+  fontSizes: {
+    xs: "12px",
+    sm: "16px",
+    md: "20px",
+    lg: "24px",
+    xl: "28px"
+  },
+  radius: {
+    md: "12px",
+  },
+  spacing: {
+    xs: "6px",
+    sm: "12px",
+    md: "24px",
+    lg: "36px",
+    xl: "48px",
+  },
+  colors: {},
+  breakpoints: {
+    sm: '900px',
+  },
+});
 
 export default function App(props) {
 
@@ -59,41 +93,6 @@ export default function App(props) {
     console.warn(`You forgot to implement metadata title for current page ${pageProps.pageKey}`);
   }
   
-  const theme = createTheme({
-    colorScheme: 'light',
-    fontFamily: "Ysabeau", 
-    fontStyle: "normal",
-    headings: {
-      fontFamily: "Ysabeau",
-    },
-    shadows: {
-      sm: '3px 4px 8px 1px rgba(0, 0, 0, 0.15)',
-      md: '2px 2px 12px rgba(0, 0, 0, 0.15)',
-      lg: '4px 7px 20px rgba(0, 0, 0, 0.25)',
-    },
-    fontSizes: {
-      xs: "12px",
-      sm: "16px",
-      md: "20px",
-      lg: "24px",
-      xl: "28px"
-    },
-    radius: {
-      md: "12px",
-    },
-    spacing: {
-      xs: "6px",
-      sm: "12px",
-      md: "24px",
-      lg: "36px",
-      xl: "48px",
-    },
-    colors: {},
-    breakpoints: {
-      sm: '900px',
-    },
-  });
-
   const schemaOrg = pageProps.schemaOrg ?? null;
 
   return (
@@ -181,9 +180,10 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
         ></script> : null)}
 
         {/* Google Analytics - deferred scripts at bottom of head */}
-        <script src="https://www.googletagmanager.com/gtag/js?id=G-JL0EM7690R" defer></script>
+        <script src="https://www.googletagmanager.com/gtag/js?id=G-JL0EM7690R" async defer></script>
         <script
           id="gtagScript"
+          async 
           defer
           dangerouslySetInnerHTML={{
             __html: `
@@ -198,7 +198,7 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
       </Head>
       <MantineProvider theme={theme}>
         
-        <SpeedInsights />
+        {/* <SpeedInsights /> */}
 
         {isDektop ? 
           <SkHeaderMenuDesktop /> : 

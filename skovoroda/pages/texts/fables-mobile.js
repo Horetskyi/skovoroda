@@ -18,11 +18,13 @@ export default function FablesPage({ allFables, fablesTopContent, allSources }) 
   
   const fables = prepareFables(allFables);
   allSources.sort((a,b) => a.sourceId - b.sourceId);
-  fablesTopContent.sort((a,b) => fablesPageContent.contentOrder.indexOf(a.key) - fablesPageContent.contentOrder.indexOf(b.key));
+  const contentOrderRank = new Map(fablesPageContent.contentOrder.map((key, i) => [key, i]));
+  fablesTopContent.sort((a,b) => (contentOrderRank.get(a.key) ?? Infinity) - (contentOrderRank.get(b.key) ?? Infinity));
 
+  const fablesByNumber = new Map(allFables.map(f => [f.fableNumber, f]));
   const imagesList = SkImagesArray.filter(image => image.type === "fable").map((image, index) => {
       image = {...image};
-      const fable = allFables.find(fable => fable.fableNumber === image.fableNumber);
+      const fable = fablesByNumber.get(image.fableNumber);
       const title = `${image.fableNumber} - ${fable.fableTitle}`;
       const href = pathJoin(SkovorodaFablesPath, fable.urlId);
       return {

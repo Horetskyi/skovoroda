@@ -9,6 +9,7 @@ export default function RecommendedTreatisesMobile({
   treatises }) 
 {
   var isFirstImage = true;
+  const treatiseByUrlId = new Map(treatises.map(t => [t.urlId, t]));
 
   return <List 
     type="ordered" 
@@ -20,7 +21,7 @@ export default function RecommendedTreatisesMobile({
     classNames={{itemWrapper: classes.listItemWrapper}}
   >
     {recommendedTreatisesList.map((treatise, index) => {
-      const foundTreatise = treatises.find(t => t.urlId === treatise.id);
+      const foundTreatise = treatiseByUrlId.get(treatise.id);
       if (!foundTreatise) return null;
       const href = pathJoin(SkovorodaTreatisePath, foundTreatise.urlId);
       const preferedVersion = foundTreatise.versions.find(v => v.preferedVersion);

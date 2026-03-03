@@ -13,11 +13,12 @@ function useTreatiseFilter(treatises, inputFilters) {
   }
 
   useEffect(() => {
-    const filteredTreatiseKeys = filters.filter(f => f.checked).map(f => f.key);
-    let filtered = !filteredTreatiseKeys.length
+    const checkedFilters = filters.filter(f => f.checked);
+    const filteredTreatiseKeysSet = new Set(checkedFilters.map(f => f.key));
+    let filtered = !filteredTreatiseKeysSet.size
       ? treatises
       : treatises.filter(treatise =>
-          filteredTreatiseKeys.includes(treatise.treatiseType)
+          filteredTreatiseKeysSet.has(treatise.treatiseType)
         );
       
     if (searchText && searchText.length) {
@@ -28,7 +29,11 @@ function useTreatiseFilter(treatises, inputFilters) {
       );
     }
 
-    filtered.sort((a, b) => a.orderNumber - b.orderNumber);
+    // treatises are already sorted by orderNumber from getStaticProps;
+    // only re-sort when a filter/search may have changed the subset order
+    if (filteredTreatiseKeysSet.size || (searchText && searchText.length)) {
+      filtered = [...filtered].sort((a, b) => a.orderNumber - b.orderNumber);
+    }
 
     setFilteredTreatises(filtered);
   }, [searchText, filters, treatises]);

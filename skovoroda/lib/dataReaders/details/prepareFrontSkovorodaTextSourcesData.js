@@ -75,6 +75,19 @@ function _getBooksTable(bibleBooksByPopularity, isNewTestament) {
 function _addVersesByPopularityToBlock(contentStatistics, isNewTestament, newBlock) {
   const minPopularityToBeDisplayed = 2;
   const bibleVersesByPopularity = contentStatistics.bibleStatistics.bibleVersesByPopularity;
+
+  // Pre-group citations by book+quote key for O(1) lookups
+  const citationsByBookKey = new Map();
+  if (contentStatistics.bibleCitations) {
+    contentStatistics.bibleCitations.forEach(c => {
+      const key = getBibleBookNameAndQuoteNumberByCode(c.bibleCode);
+      if (!citationsByBookKey.has(key)) {
+        citationsByBookKey.set(key, []);
+      }
+      citationsByBookKey.get(key).push(c.text);
+    });
+  }
+
   bibleVersesByPopularity
     .filter(verse => verse.count >= minPopularityToBeDisplayed)
     .filter(verse => isNewTestamentBibleCode(verse.key) === isNewTestament)
@@ -82,15 +95,14 @@ function _addVersesByPopularityToBlock(contentStatistics, isNewTestament, newBlo
       newBlock.items.push({
         text: _toBibleVerseStatisticsObject(verse),
         isExpandedOnly: true,
-        sublist: _getVersesQuotes(verse, contentStatistics.bibleCitations),
+        sublist: _getVersesQuotes(verse, citationsByBookKey),
       });
     });
 }
 
-function _getVersesQuotes(verse, bibleCitations) {
+function _getVersesQuotes(verse, citationsByBookKey) {
   const bookKey = getBibleBookNameAndQuoteNumberByCode(verse.key);
-  return bibleCitations.filter(c => getBibleBookNameAndQuoteNumberByCode(c.bibleCode) === bookKey)
-    .map((c, i) => c.text);
+  return citationsByBookKey.get(bookKey) || [];
 }
 
 function _toBibleVerseStatisticsObject(verse) {

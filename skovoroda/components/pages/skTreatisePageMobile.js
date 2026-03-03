@@ -20,10 +20,12 @@ import SkSkovorodaTextSourcesDesktop from "./details/SkSkovorodaTextSourcesDeskt
 
 export default function SkTreatisePageMobile({ treatise, sources, translators, skovorodaTextSourcesData }) {
 
+  const sourcesById = new Map(sources.map(s => [s.sourceId, s]));
+  const translatorsById = new Map(translators.map(t => [t.translatorId, t]));
   const preferedVersion = treatise.versions.find(v => v.preferedVersion);
   const preferedTitle = preferedVersion.title;
   const original = treatise.versions.find(v => v.translatorId === 0);
-  const originalSource = sources.find(s => s.sourceId === original.sourceId);
+  const originalSource = sourcesById.get(original.sourceId);
   const sourceLabel = "Джерело: ";
   const translatorLabel = "Перекладач: ";
   const isQuotesAvailable = treatise.quotes && treatise.quotes.length;
@@ -39,7 +41,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators, s
   function TreatisVersionBlock(version, source) {
     
     const isTranslation = version.translatorId ? true : false;
-    const translator = translators.find(t => t.translatorId == version.translatorId);
+    const translator = translatorsById.get(version.translatorId);
     const readUrlId = treatise.urlId + (isTranslation ? ("_" + translator.urlId) : "");
 
     return <Container key={version.urlId} p="0">
@@ -121,7 +123,7 @@ export default function SkTreatisePageMobile({ treatise, sources, translators, s
       <SkH2Mobile text="Переклади" mb="md" />
       {treatise.versions.filter(v => v.translatorId).map((v, index, array) => {
         return <div key={"t"+v.translatorId}>
-          {TreatisVersionBlock(v, sources.find(s => s.sourceId === v.sourceId))}
+          {TreatisVersionBlock(v, sourcesById.get(v.sourceId))}
           {(index !== array.length - 1) ? <Space h="md"/> : null}
         </div>
       })}

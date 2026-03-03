@@ -1,5 +1,6 @@
 import { Card, Container, List, Title } from "@mantine/core";
 import Link from "next/link";
+import { useMemo } from "react";
 import { getNoteNumberString, getNoteNumberUpperString } from "../../lib/utils/notesNumbersSymbols";
 import SkH2Mobile from "./skH2Mobile";
 import SkH2Desktop from "./skH2Desktop";
@@ -24,9 +25,31 @@ const neverCombineClasses = [
   classes.formatTabs1,
 ];
 
+const orderedNumbersAssigned = new WeakSet();
+const parsedBibleCodeCache = new Map();
+let gsapModulesPromise = null;
+
+function getParsedBibleCodeCached(bibleCode) {
+  if (!bibleCode) return null;
+  if (!parsedBibleCodeCache.has(bibleCode)) {
+    parsedBibleCodeCache.set(bibleCode, parseBibleCode(bibleCode));
+  }
+  return parsedBibleCodeCache.get(bibleCode);
+}
+
+async function loadGsapModules() {
+  if (!gsapModulesPromise) {
+    gsapModulesPromise = Promise.all([
+      import('gsap/dist/gsap'),
+      import('gsap/dist/ScrollToPlugin')
+    ]);
+  }
+  const [{ gsap }, scrollToPluginModule] = await gsapModulesPromise;
+  return { gsap, ScrollToPlugin: scrollToPluginModule.default };
+}
+
 async function onNoteClick(id) {
-  const { gsap } = await import('gsap/dist/gsap');
-  const ScrollToPlugin = (await import('gsap/dist/ScrollToPlugin')).default;
+  const { gsap, ScrollToPlugin } = await loadGsapModules();
   gsap.registerPlugin(ScrollToPlugin);
   gsap.to(window, {
     duration: 0.5, 
@@ -36,16 +59,26 @@ async function onNoteClick(id) {
 }
 
 export default function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes }) {
-  if (!metaText) return null;
-  if (Array.isArray(metaText)) {
-    metaText = {
-      meta: {},
-      lines: metaText
-    };
-  }
-  if (!metaText || !metaText.lines || !metaText.lines.length) return null;
+  const preparedMetaText = useMemo(() => {
+    if (!metaText) return null;
+    const resultMetaText = Array.isArray(metaText)
+      ? {
+        meta: {},
+        lines: metaText
+      }
+      : metaText;
 
-  addOrderedNumbersToMetaText(metaText);
+    if (!resultMetaText || !resultMetaText.lines || !resultMetaText.lines.length) return null;
+
+    if (!orderedNumbersAssigned.has(resultMetaText)) {
+      addOrderedNumbersToMetaText(resultMetaText);
+      orderedNumbersAssigned.add(resultMetaText);
+    }
+
+    return resultMetaText;
+  }, [metaText]);
+
+  if (!preparedMetaText || !preparedMetaText.lines || !preparedMetaText.lines.length) return null;
 
   // LEGACY {
   if (!otherArgs) otherArgs = {};
@@ -58,7 +91,12 @@ export default function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes 
   const plusClassName = otherArgs.plusClassName;
   if (otherArgs.justify !== false) otherArgs.justify = true;
   const isJustifyEnabled = otherArgs.justify;
-  const isNotesBlock = metaTextSomeLinePiece(metaText, piece => piece.isNoteBeginning);
+  const isNotesBlock = metaTextSomeLinePiece(preparedMetaText, line => {
+    if (Array.isArray(line)) {
+      return line.some(piece => piece && piece.meta && piece.meta.isNoteBeginning);
+    }
+    return line && line.meta && line.meta.isNoteBeginning;
+  });
   // PARAMETERS }
 
   // FORMAT {
@@ -138,9 +176,9 @@ export default function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes 
   // FORMAT }
     
   // ALL IS LIST {
-  if (metaText.meta && metaText.meta.isAllIsList) {
+  if (preparedMetaText.meta && preparedMetaText.meta.isAllIsList) {
     return <List listStyleType="circle" className="readFont">
-      {metaText.lines.map((line,index) => {
+      {preparedMetaText.lines.map((line,index) => {
         return <List.Item key={line.n}>
           <SkMetaTextLine 
             key={line.n}
@@ -169,7 +207,7 @@ export default function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes 
 
   var isMainSectionWas = false;
   var isMainSectionNow = false;
-  metaText.lines.forEach((line,index) => {
+  preparedMetaText.lines.forEach((line,index) => {
     if (line === "MAIN_SECTION_BEGIN") {
       isMainSectionNow = true;
       isMainSectionWas = true;
@@ -374,7 +412,7 @@ function newOldUaElement(piece, pieceFormatClassName) {
 }
 
 function newBibleElement(piece, pieceFormatClassName, inner) {
-  const parsedBibleCode = parseBibleCode(piece.meta.bible);
+  const parsedBibleCode = getParsedBibleCodeCached(piece.meta.bible);
   return <SkBibleText 
     key={piece.n} 
     text={inner || piece.text} 

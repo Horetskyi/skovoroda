@@ -13,18 +13,21 @@ import SkH2Mobile from '../components/shared/skH2Mobile';
 
 export default function SkovorodaLettersPageMobile({ allLettersFrom, receiversList }) {
 
-  const uniqueLettersByToAndNumber = [];
-  allLettersFrom.forEach(letter => {
-    if (!uniqueLettersByToAndNumber.some(key => key.to == letter.to && key.number == letter.number)) {
-      uniqueLettersByToAndNumber.push(letter);
-    }
+  const seen = new Set();
+  const uniqueLettersByToAndNumber = allLettersFrom.filter(letter => {
+    const key = `${letter.to}::${letter.number}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
   });
+
+  const writersById = new Map(letterWriters.map(w => [w.id, w]));
 
   return <>
     <SkH1Mobile text={lettersH1Text} />
     <SkColoredContainerMobile>
       {receiversList.map(receiver => {
-        const writer = letterWriters.find(writer => writer.id === receiver.to);
+        const writer = writersById.get(receiver.to);
         return <div key={receiver.to}>
           <SkH2Mobile text={`Листи від Сковороди до ${writer.genetiveName}`} mb={"lg"} />
           <Grid columns={3} px={"md"}>

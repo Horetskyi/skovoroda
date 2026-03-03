@@ -181,7 +181,7 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
         ></script> : null)}
 
         {/* Google Analytics - deferred scripts at bottom of head */}
-        {/* <script src="https://www.googletagmanager.com/gtag/js?id=G-JL0EM7690R" defer></script>
+        <script src="https://www.googletagmanager.com/gtag/js?id=G-JL0EM7690R" defer></script>
         <script
           id="gtagScript"
           defer
@@ -193,7 +193,7 @@ LyogQWxsaSBBSSB3aWRnZXQgZm9yIHd3dy5za292b3JvZGEuY2x1YiAqLwooZnVuY3Rpb24gKHcsZCxz
               gtag('config', 'G-JL0EM7690R');
             `
           }}
-        /> */}
+        />
 
       </Head>
       <MantineProvider theme={theme}>

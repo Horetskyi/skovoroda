@@ -18,6 +18,7 @@ export function MusicBlockMobile({music, title}) {
             <iframe
               src={embedUrl}
               title={m.author}
+              loading="lazy"
               style={{
                 width: '100%',
                 height: '100%',

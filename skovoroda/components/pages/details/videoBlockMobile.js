@@ -22,6 +22,7 @@ export function VideoBlockMobile(treatise) {
           <iframe
             src={embedUrl}
             title={video.title}
+            loading="lazy"
             style={{
               width: '100%',
               height: '100%',

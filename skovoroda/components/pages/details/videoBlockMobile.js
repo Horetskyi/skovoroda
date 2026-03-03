@@ -2,8 +2,11 @@ import React from 'react';
 import { Box, Text, Title } from '@mantine/core';
 import classes from './videoBlockMobile.module.scss';
 import SkH2Mobile from '../../shared/skH2Mobile';
+import { useYouTubeInteractionGate } from '../../../hooks/useYouTubeInteractionGate';
 
 export function VideoBlockMobile(treatise) {
+  const isYouTubeActivated = useYouTubeInteractionGate();
+
   if (!treatise || !treatise.videos || !treatise.videos.length) {
     return null;
   }
@@ -20,7 +23,7 @@ export function VideoBlockMobile(treatise) {
         </Text>
         <Box className={classes.videoWrapper}>
           <iframe
-            src={embedUrl}
+            src={isYouTubeActivated ? embedUrl : undefined}
             title={video.title}
             loading="lazy"
             style={{

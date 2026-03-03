@@ -1,8 +1,11 @@
 import { Box, Text, Title } from '@mantine/core';
 import classes from './videoBlockDesktop.module.scss';
 import SkH2DesktopV2 from '../../shared/skH2DesktopV2';
+import { useYouTubeInteractionGate } from '../../../hooks/useYouTubeInteractionGate';
 
 export function VideoBlockDesktop(treatise) {
+  const isYouTubeActivated = useYouTubeInteractionGate();
+
   if (!treatise || !treatise.videos || !treatise.videos.length) {
     return null;
   }
@@ -19,7 +22,7 @@ export function VideoBlockDesktop(treatise) {
         </Text>
         <Box className={classes.videoWrapper}>
           <iframe
-            src={embedUrl}
+            src={isYouTubeActivated ? embedUrl : undefined}
             title={video.title}
             loading="lazy"
             style={{

@@ -1,8 +1,11 @@
 import { Box, Container, Space, Title } from '@mantine/core';
 import classes from './videoBlockDesktop.module.scss';
 import SkH2DesktopV2 from '../../shared/skH2DesktopV2';
+import { useYouTubeInteractionGate } from '../../../hooks/useYouTubeInteractionGate';
 
 export function MusicBlockDesktop({music, title}) {
+  const isYouTubeActivated = useYouTubeInteractionGate();
+
   if (!music || !music.length) {
     return null;
   }
@@ -16,7 +19,7 @@ export function MusicBlockDesktop({music, title}) {
           <Title order={3} ta={"left"} mb="md" fw={600}>{m.author}</Title>
           <Box className={classes.videoWrapper}>
             <iframe
-              src={embedUrl}
+              src={isYouTubeActivated ? embedUrl : undefined}
               title={m.author}
               loading="lazy"
               style={{

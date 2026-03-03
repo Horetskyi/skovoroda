@@ -1,8 +1,11 @@
 import { Box, Container, Space, Title } from '@mantine/core';
 import classes from './videoBlockMobile.module.scss';
 import SkH2Mobile from '../../shared/skH2Mobile';
+import { useYouTubeInteractionGate } from '../../../hooks/useYouTubeInteractionGate';
 
 export function MusicBlockMobile({music, title}) {
+  const isYouTubeActivated = useYouTubeInteractionGate();
+
   if (!music || !music.length) {
     return null;
   }
@@ -16,7 +19,7 @@ export function MusicBlockMobile({music, title}) {
           <Title order={3} ta={"left"} mb="md" fw={600}>{m.author}</Title>
           <Box className={classes.videoWrapper}>
             <iframe
-              src={embedUrl}
+              src={isYouTubeActivated ? embedUrl : undefined}
               title={m.author}
               loading="lazy"
               style={{

@@ -1,6 +1,6 @@
 import { Card, Container, List, Title } from "@mantine/core";
 import Link from "next/link";
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 import { getNoteNumberString, getNoteNumberUpperString } from "../../lib/utils/notesNumbersSymbols";
 import SkH2Mobile from "./skH2Mobile";
 import SkH2Desktop from "./skH2Desktop";
@@ -24,6 +24,78 @@ const neverCombineClasses = [
   classes.formatTabs2,
   classes.formatTabs1,
 ];
+
+// Module-level: avoids recreating a large object on every render
+const formatClassesMap = {
+  "center": classes.formatCenter,
+  "right": classes.formatRight,
+  "tabs6": classes.formatTabs6,
+  "tabs5": classes.formatTabs5,
+  "tabs4": classes.formatTabs4,
+  "tabs3": classes.formatTabs3,
+  "tabs2": classes.formatTabs2,
+  "tabs1": classes.formatTabs1,
+  "leftNum9": classes.formatLeftNum9,
+  "leftNum8": classes.formatLeftNum8,
+  "leftNum7": classes.formatLeftNum7,
+  "leftNum6": classes.formatLeftNum6,
+  "leftNum5": classes.formatLeftNum5,
+  "leftNum4": classes.formatLeftNum4,
+  "leftNum3": classes.formatLeftNum3,
+  "leftNum2": classes.formatLeftNum2,
+  "leftNum1": classes.formatLeftNum1,
+  "irmologion": classes.formatIrmologion,
+  "default": "",
+  "indent": classes.formatIndent,
+  "italic": classes.formatItalic,
+  "i": classes.formatItalic,
+  "underline": classes.formatUnderline,
+  "u": classes.formatUnderline,
+  "bold": classes.formatBold,
+  "b": classes.formatBold,
+  "header2": classes.formatHeader2,
+  "header3": classes.formatHeader3,
+  "header4": classes.formatHeader3,
+};
+
+// Module-level pure functions: no closure allocation per render
+function solveFormatClassName(format, shouldExcludeNeverCombineClass, isMobile) {
+  if (!format) return "";
+  if (!Array.isArray(format)) format = [format];
+  var classNames = format.map(f => {
+    if (isMobile) {
+      if (f === "tabs2") f = "tabs1";
+      if (f === "tabs3") f = "tabs1";
+      if (f === "tabs4") f = "tabs1";
+      if (f === "tabs5") f = "tabs1";
+      if (f === "tabs6") f = "tabs1";
+    }
+    return (f && formatClassesMap[f]) ? formatClassesMap[f] : "";
+  }).filter(className => className);
+  if (shouldExcludeNeverCombineClass) {
+    classNames = classNames.filter(className => !neverCombineClasses.includes(className));
+  }
+  if (!classNames.length) return '';
+  return classNames.join(' ');
+}
+
+function solvePieceFormatClassName(piece, shouldExcludeNeverCombineClass, isMobile) {
+  if (!piece) return '';
+  if (!piece.meta) return '';
+  if (piece.meta.f) return solveFormatClassName(piece.meta.f, shouldExcludeNeverCombineClass, isMobile);
+  if (piece.meta.format) return solveFormatClassName(piece.meta.format, shouldExcludeNeverCombineClass, isMobile);
+  return '';
+}
+
+function getNormalClassName(piece, otherArgs, isMobile) {
+  const formatClassName = solvePieceFormatClassName(piece, false, isMobile);
+  const vClassName = (otherArgs.isv2 ? classes.blockTextLineV2
+    : otherArgs.isv3 ? classes.blockTextLineV3
+    : classes.blockTextLine);
+  const isThisPieceNoteBeginning = piece && piece.meta && piece.meta.isNoteBeginning;
+  return formatClassName + " " + vClassName + " " +
+    ((isThisPieceNoteBeginning && !otherArgs.isMarginDisabled) ? (classes.noteBlockMarginBottom + " ") : "");
+}
 
 const orderedNumbersAssigned = new WeakSet();
 const parsedBibleCodeCache = new Map();
@@ -58,7 +130,7 @@ async function onNoteClick(id) {
   });
 }
 
-export default function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes }) {
+const SkMetaTextView = memo(function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes }) {
   const preparedMetaText = useMemo(() => {
     if (!metaText) return null;
     const resultMetaText = Array.isArray(metaText)
@@ -78,171 +150,85 @@ export default function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes 
     return resultMetaText;
   }, [metaText]);
 
-  if (!preparedMetaText || !preparedMetaText.lines || !preparedMetaText.lines.length) return null;
-
-  // LEGACY {
+  // LEGACY — normalize otherArgs before dependent memoizations
   if (!otherArgs) otherArgs = {};
   if (otherArgs.isNotes) otherArgs.isv3 = true;
-  // LEGACY }
-  
-  // PARAMETERS {
-  const disableLeftNotesDisplaying = otherArgs.disableLeftNotesDisplaying;
-  const isLeftNotesEnabled = !disableLeftNotesDisplaying;
-  const plusClassName = otherArgs.plusClassName;
   if (otherArgs.justify !== false) otherArgs.justify = true;
-  const isJustifyEnabled = otherArgs.justify;
-  const isNotesBlock = metaTextSomeLinePiece(preparedMetaText, line => {
-    if (Array.isArray(line)) {
-      return line.some(piece => piece && piece.meta && piece.meta.isNoteBeginning);
-    }
-    return line && line.meta && line.meta.isNoteBeginning;
-  });
-  // PARAMETERS }
 
-  // FORMAT {
-  const formatClasses = {
-    "center": classes.formatCenter,
-    "right": classes.formatRight,
-    "tabs6": classes.formatTabs6, 
-    "tabs5": classes.formatTabs5, 
-    "tabs4": classes.formatTabs4, 
-    "tabs3": classes.formatTabs3, 
-    "tabs2": classes.formatTabs2, 
-    "tabs1": classes.formatTabs1,  
-    "leftNum9": classes.formatLeftNum9, 
-    "leftNum8": classes.formatLeftNum8, 
-    "leftNum7": classes.formatLeftNum7, 
-    "leftNum6": classes.formatLeftNum6, 
-    "leftNum5": classes.formatLeftNum5, 
-    "leftNum4": classes.formatLeftNum4, 
-    "leftNum3": classes.formatLeftNum3, 
-    "leftNum2": classes.formatLeftNum2, 
-    "leftNum1": classes.formatLeftNum1, 
-    "irmologion": classes.formatIrmologion, 
-    "default": "", 
-    "indent": classes.formatIndent,
-    "italic": classes.formatItalic,
-    "i": classes.formatItalic,
-    "underline": classes.formatUnderline,
-    "u": classes.formatUnderline,
-    "bold": classes.formatBold,
-    "b": classes.formatBold,
-    "header2": classes.formatHeader2,
-    "header3": classes.formatHeader3,
-    "header4": classes.formatHeader3,
-  };
-  const solveFormatClassName = (format, shouldExcludeNeverCombineClass) => {
-    if (!format) return "";
-    if (!Array.isArray(format)) format = [format];
-    var classNames = format.map(f => {
-      if (isMobile) {
-        if (f === "tabs2") f = "tabs1";
-        if (f === "tabs3") f = "tabs1";
-        if (f === "tabs4") f = "tabs1";
-        if (f === "tabs5") f = "tabs1";
-        if (f === "tabs6") f = "tabs1";
+  const isNotesBlock = useMemo(() => {
+    if (!preparedMetaText) return false;
+    return metaTextSomeLinePiece(preparedMetaText, line => {
+      if (Array.isArray(line)) {
+        return line.some(piece => piece && piece.meta && piece.meta.isNoteBeginning);
       }
-      return (f && formatClasses[f]) ? formatClasses[f] : "";
-    }).filter(className => className);
-    if (shouldExcludeNeverCombineClass) {
-      classNames = classNames.filter(className => !neverCombineClasses.includes(className));
+      return line && line.meta && line.meta.isNoteBeginning;
+    });
+  }, [preparedMetaText]);
+
+  const allContentClassName = useMemo(() => {
+    if (!preparedMetaText) return '';
+    const isLeftNotesEnabled = !otherArgs.disableLeftNotesDisplaying;
+    const plusClassName = otherArgs.plusClassName;
+    const isJustifyEnabled = otherArgs.justify;
+    return (isMobile ? (isNotes ? classes.textContentBlockMobileNotes : classes.textContentBlockMobile) : classes.textContentBlock)
+      + (plusClassName ? ` ${plusClassName} ` : "")
+      + ((isLeftNotesEnabled && isNotesBlock) ? ` ${classes.textContentBlockLeftNotesEnabled} ` : "")
+      + (!isMobile && isJustifyEnabled ? ` normalContentText_justify ` : "")
+      + (` readFont `);
+  }, [preparedMetaText, isMobile, isNotes, otherArgs, isNotesBlock]);
+
+  const { beforeMainSectionNodes, mainSectionNodes, afterMainSectionNodes } = useMemo(() => {
+    const before = [], main = [], after = [];
+    if (!preparedMetaText || (preparedMetaText.meta && preparedMetaText.meta.isAllIsList)) {
+      return { beforeMainSectionNodes: before, mainSectionNodes: main, afterMainSectionNodes: after };
     }
-    if (!classNames.length) return '';
-    const resultFormatClassName = classNames.join(' ');
-    return resultFormatClassName;
-  }
-  function solvePieceFormatClassName(piece, shouldExcludeNeverCombineClass) {
-    if (!piece) return '';
-    if (!piece.meta) return '';
-    if (piece.meta.f) return solveFormatClassName(piece.meta.f, shouldExcludeNeverCombineClass);
-    if (piece.meta.format) return solveFormatClassName(piece.meta.format, shouldExcludeNeverCombineClass);
-    return '';
-  }
-  function getNormalClassName(piece) {
+    let isMainSectionWas = false;
+    let isMainSectionNow = false;
+    preparedMetaText.lines.forEach((line, index) => {
+      if (line === "MAIN_SECTION_BEGIN") { isMainSectionNow = true; isMainSectionWas = true; return; }
+      if (line === "MAIN_SECTION_END") { isMainSectionNow = false; return; }
+      const lineNode = <SkMetaTextLine
+        key={line.n}
+        line={line}
+        otherArgs={otherArgs}
+        index={index}
+        isMobile={isMobile}
+        isNotes={isNotes}
+      />;
+      if (!lineNode) return;
+      if (isMainSectionNow) main.push(lineNode);
+      else if (isMainSectionWas && !isMainSectionNow) after.push(lineNode);
+      else before.push(lineNode);
+    });
+    return { beforeMainSectionNodes: before, mainSectionNodes: main, afterMainSectionNodes: after };
+  }, [preparedMetaText, otherArgs, isMobile, isNotes]);
 
-    const formatClassName = solvePieceFormatClassName(piece);
-    
-    const vClassName = (otherArgs.isv2 ? classes.blockTextLineV2 
-      : otherArgs.isv3 ? classes.blockTextLineV3 
-      : classes.blockTextLine);
-    
-      const isThisPieceNoteBeginning = piece && piece.meta && piece.meta.isNoteBeginning;
+  if (!preparedMetaText || !preparedMetaText.lines || !preparedMetaText.lines.length) return null;
 
-    const normalClassName = formatClassName + " " + vClassName + " " +
-      ((isThisPieceNoteBeginning && !otherArgs.isMarginDisabled) ? (classes.noteBlockMarginBottom + " ") : "");
-    
-      return normalClassName;
-  }
-  // FORMAT }
-    
   // ALL IS LIST {
   if (preparedMetaText.meta && preparedMetaText.meta.isAllIsList) {
     return <List listStyleType="circle" className="readFont">
-      {preparedMetaText.lines.map((line,index) => {
+      {preparedMetaText.lines.map((line, index) => {
         return <List.Item key={line.n}>
-          <SkMetaTextLine 
+          <SkMetaTextLine
             key={line.n}
-            line={line} 
-            otherArgs={otherArgs} 
+            line={line}
+            otherArgs={otherArgs}
             index={index}
-            getNormalClassName={getNormalClassName}
-            solvePieceFormatClassName={solvePieceFormatClassName}
             isMobile={isMobile}
           />
-        </List.Item> 
+        </List.Item>
       })}
     </List>
   }
   // ALL IS LIST }
-
-  const allContentClassName = (isMobile ? (isNotes ? classes.textContentBlockMobileNotes : classes.textContentBlockMobile) : classes.textContentBlock) + 
-    (plusClassName ? ` ${plusClassName} ` : "") +
-    ((isLeftNotesEnabled && isNotesBlock) ? ` ${classes.textContentBlockLeftNotesEnabled} ` : "") +
-    (!isMobile && isJustifyEnabled ? ` normalContentText_justify ` : "") +
-    (` readFont `);
-
-  const beforeMainSectionNodes = [];
-  const mainSectionNodes = [];
-  const afterMainSectionNodes = [];
-
-  var isMainSectionWas = false;
-  var isMainSectionNow = false;
-  preparedMetaText.lines.forEach((line,index) => {
-    if (line === "MAIN_SECTION_BEGIN") {
-      isMainSectionNow = true;
-      isMainSectionWas = true;
-      return;
-    }
-    if (line === "MAIN_SECTION_END") {
-      isMainSectionNow = false;
-      return;
-    }
-    const lineNode = <SkMetaTextLine 
-      key={line.n}
-      line={line}
-      otherArgs={otherArgs}
-      getNormalClassName={getNormalClassName}
-      solvePieceFormatClassName={solvePieceFormatClassName}
-      index={index}
-      isMobile={isMobile}
-      isNotes={isNotes}
-    />;
-    if (!lineNode) return;
-    if (isMainSectionNow) {
-      mainSectionNodes.push(lineNode);
-    } else if (isMainSectionWas && !isMainSectionNow) {
-      afterMainSectionNodes.push(lineNode);
-    } else {
-      beforeMainSectionNodes.push(lineNode);
-    }
-  });
 
   if (!mainSectionNodes.length) {
     if (!beforeMainSectionNodes.length) return null;
     return <div key="metaTextView" className={allContentClassName}>{beforeMainSectionNodes}</div>;
   }
 
-  return <div key="metaTextView" 
+  return <div key="metaTextView"
     className={`normalContentText normalContentText_withoutIndent ${!isMobile && !isNotes ? 'w_100' : ''}`}>
     {beforeMainSectionNodes.length ? <div key="beforeMainSection" className={allContentClassName}>{beforeMainSectionNodes}</div> : null}
     {mainSectionNodes.length ? <>
@@ -254,13 +240,14 @@ export default function SkMetaTextView({ metaText, otherArgs, isMobile, isNotes 
     </> : null}
     {afterMainSectionNodes.length ? <div key="afterMainSection" className={allContentClassName}>{afterMainSectionNodes}</div> : null}
   </div>
-}
+});
+export default SkMetaTextView;
 
-function SkMetaTextLinePiece({ piece, solvePieceFormatClassName, index, isMobile, prevPieceFormatClassName, shouldExcludeNeverCombineClass }) {
+const SkMetaTextLinePiece = memo(function SkMetaTextLinePiece({ piece, index, isMobile, prevPieceFormatClassName, shouldExcludeNeverCombineClass }) {
 
   // PARAMETERS {
   const isIncludesNeverCombineClass = prevPieceFormatClassName && neverCombineClasses.some(c => prevPieceFormatClassName.includes(c));
-  const pieceFormatClassName = solvePieceFormatClassName(piece, isIncludesNeverCombineClass || shouldExcludeNeverCombineClass);
+  const pieceFormatClassName = solvePieceFormatClassName(piece, isIncludesNeverCombineClass || shouldExcludeNeverCombineClass, isMobile);
   // PARAMETERS }
 
   // NESTING {
@@ -270,7 +257,6 @@ function SkMetaTextLinePiece({ piece, solvePieceFormatClassName, index, isMobile
         return <SkMetaTextLinePiece
           key={subPiece.n}
           piece={subPiece}
-          solvePieceFormatClassName={solvePieceFormatClassName}
           index={(piece.text) + index + (subIndex * 1000)}
           isMobile={isMobile}
           prevPieceFormatClassName={pieceFormatClassName}
@@ -330,7 +316,7 @@ function SkMetaTextLinePiece({ piece, solvePieceFormatClassName, index, isMobile
 
   // NOTE IN TEXT:
   if (piece.meta && !piece.meta.isNoteBeginning && piece.meta.noteNumber) {
-    return newNoteInText(piece, solvePieceFormatClassName);
+    return newNoteInText(piece, pieceFormatClassName);
   }
 
   // SOURCE ID IN TEXT
@@ -342,13 +328,11 @@ function SkMetaTextLinePiece({ piece, solvePieceFormatClassName, index, isMobile
     return <span key={piece.n} className={pieceFormatClassName}>{piece.text}</span>;
   }
   return null;
-}
+});
 
-function SkMetaTextLine({ 
-  line, 
-  otherArgs, 
-  solvePieceFormatClassName, 
-  getNormalClassName, 
+const SkMetaTextLine = memo(function SkMetaTextLine({
+  line,
+  otherArgs,
   index,
   isMobile
 }) {
@@ -376,14 +360,15 @@ function SkMetaTextLine({
 
   if (!Array.isArray(line)) line = [line];
 
-  const normalClassName = ((line.length === 1) || (line.length && line[0] && line[0].meta && line[0].meta.isNoteBeginning)) ? getNormalClassName(line[0]) : getNormalClassName();
+  const normalClassName = ((line.length === 1) || (line.length && line[0] && line[0].meta && line[0].meta.isNoteBeginning))
+    ? getNormalClassName(line[0], otherArgs, isMobile)
+    : getNormalClassName(null, otherArgs, isMobile);
   const isIncludesNeverCombineClass = normalClassName && neverCombineClasses.some(c => normalClassName.includes(c));
 
   const lineNodes = line.map((piece, index) => {
     return <SkMetaTextLinePiece
       key={piece.n}
       piece={piece}
-      solvePieceFormatClassName={solvePieceFormatClassName}
       index={(lineIndex * 1000) + index}
       isMobile={isMobile}
       shouldExcludeNeverCombineClass={isIncludesNeverCombineClass}
@@ -400,7 +385,7 @@ function SkMetaTextLine({
   }
 
   return <p key={line[0].n} className={normalClassName}>{noteInBlock}{lineNodes}</p>;
-}
+});
 
 function newOldUaElement(piece, pieceFormatClassName) {
   return <SkOldUaExplainedText 

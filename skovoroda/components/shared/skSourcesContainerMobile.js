@@ -2,8 +2,9 @@ import { Space } from "@mantine/core";
 import SkColoredContainerMobile from "./skColoredContainerMobile";
 import SkSourceBlockMobile from "./skSourceBlockMobile";
 import SkH2Mobile from "./skH2Mobile";
+import { memo } from 'react';
 
-export default function SkSourcesContainerMobile({ sources }) {
+const SkSourcesContainerMobile = memo(function SkSourcesContainerMobile({ sources }) {
 
   if (!sources || !sources.length) {
     return <SkColoredContainerMobile>
@@ -22,4 +23,5 @@ export default function SkSourcesContainerMobile({ sources }) {
     })}
     <Space h="xl"/>
   </SkColoredContainerMobile>;
-}
+});
+export default SkSourcesContainerMobile;

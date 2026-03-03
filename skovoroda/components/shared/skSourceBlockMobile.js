@@ -3,6 +3,7 @@ import SkImage from "./skImage";
 import SkTextLink from "./skTextLink";
 import classes from './skSourceBlockMobile.module.scss';
 import { getAdjustedHeight } from "../functions/imageFunctions";
+import { memo } from 'react';
 
 // Convert image URL to 120px optimized version for mobile sources
 function getOptimized120pxImageUrl(imageUrl) {
@@ -15,11 +16,11 @@ function getOptimized120pxImageUrl(imageUrl) {
   return `/images/sources-mobile-120/${filename}`;
 }
 
-export default function SkSourceBlockMobile(params) {
+const paragraphClassName = "readFont textOverflow " + classes.paragraph;
+
+const SkSourceBlockMobile = memo(function SkSourceBlockMobile(params) {
 
   if (!params.sourceValue) return null;
-
-  const paragraphClassName = "readFont textOverflow " + classes.paragraph;
   const isLinkAndTextTheSame = (params.sourceHref && !params.sourceHrefAnchorText);
   const height = getAdjustedHeight(120, 200, params.image);
 
@@ -46,4 +47,5 @@ export default function SkSourceBlockMobile(params) {
         alt={params.image.alt} title={params.image.title} optimize={true} />
     </Center>
   </Container>;
-}
+});
+export default SkSourceBlockMobile;

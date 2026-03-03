@@ -2,12 +2,15 @@
 import { Title } from "@mantine/core";
 import classes from './skH1Mobile.module.scss'; 
 import { wrapYatInSpans } from './wrapYatInSpans';
+import { memo, useMemo } from 'react';
 
-export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin, mb, id }) {
-  let styleObj = {};
-  if (color && color.length) {
-    styleObj.color = color;
-  }
+const SkH1Mobile = memo(function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin, mb, id }) {
+  const styleObj = useMemo(() => {
+    if (color && color.length) {
+      return { color };
+    }
+    return {};
+  }, [color]);
 
   // Use a separate class if withBlueImage is true, else default
   let imageClassName = classes.titleH1;
@@ -20,7 +23,7 @@ export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin, m
     }
   }
 
-  const content = wrapYatInSpans(text);
+  const content = useMemo(() => wrapYatInSpans(text), [text]);
   const h1Result = (
     <Title 
       order={1} 
@@ -51,4 +54,5 @@ export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin, m
     );
   }
   return h1Result;
-}
+});
+export default SkH1Mobile;

@@ -1,0 +1,8 @@
+{
+  "chat.tools.terminal.autoApprove": {
+    "/^python -c \"import fitz,re; p=r'subProjects/research/yakiv_pravytskti/texts/ПЕРЕЯСЛАВСЬКІ СКОВОРОДИНІВСЬКІ СТУДІЇ - випуск 10 - 2024\\.pdf'; d=fitz\\.open\\(p\\)\nfor i in range\\(d\\.page_count\\):\n    t=d\\[i\\]\\.get_text\\('text'\\)\n    has_udk='УДК' in t\n    m=re\\.search\\(r'\\\\n\\(\\[А-ЯІЇЄҐ\\]\\[\\^\\\\n\\]\\{8,\\}\\)\\\\n\\\\n\\(\\?:Український\\|УКРАЇНСЬКИЙ\\|Українська\\|Анотація\\|Ключові\\)', t\\)\n    print\\(f'P\\{i\\+1:02d\\} UDK=\\{has_udk\\} titleCand=\\{m\\.group\\(1\\)\\[:80\\] if m else \"\"\\}'\\)\n\"$/": {
+      "approve": true,
+      "matchCommandLine": true
+    }
+  }
+}

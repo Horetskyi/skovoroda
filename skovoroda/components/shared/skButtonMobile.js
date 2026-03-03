@@ -1,18 +1,21 @@
 import { Button } from "@mantine/core";
 import classes from './skButtonMobile.module.scss'; 
+import { memo, useCallback, useMemo } from 'react';
 
-export default function SkButtonMobile({ text, onClick, disabled, color }) {
+const SkButtonMobile = memo(function SkButtonMobile({ text, onClick, disabled, color }) {
   
-  function onClickHere() {
+  const onClickHere = useCallback(() => {
     if (!disabled) {
       onClick();
     }
-  }
+  }, [disabled, onClick]);
 
-  let styleObj = {};
-  if (color && color.length) {
-    styleObj.color = color;
-  }
+  const styleObj = useMemo(() => {
+    if (color && color.length) {
+      return { color };
+    }
+    return {};
+  }, [color]);
 
   return <Button 
     className={`disableTextIndent firstFont ${classes.button}`}
@@ -25,4 +28,6 @@ export default function SkButtonMobile({ text, onClick, disabled, color }) {
   >
     {text}
   </Button>
-}
+});
+
+export default SkButtonMobile;

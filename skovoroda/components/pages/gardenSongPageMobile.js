@@ -1,7 +1,7 @@
 
 import { Container, Group, Space } from '@mantine/core';
 import { useRouter } from 'next/router';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { SkovorodaGardenPath, pathJoin } from '../../lib/skovorodaPath';
 import { nextAvailableNumber, prevAvailableNumber, randomNumberInRangeExcept } from '../../lib/auxiliary';
 import classes from './gardenSongPageMobile.module.scss';
@@ -16,6 +16,8 @@ import SkImage from '../shared/skImage';
 import { getBookSourceParam, getIllustrationSourceParam } from './details/pureFunctions';
 import SkH2Mobile from '../shared/skH2Mobile';
 import SkMetaTextView from '../shared/skMetaTextView';
+
+const SONG_VIEW_ARGS = { isv3: true };
 
 export default function GardenSongPageMobile({ 
   allSongsMetadata,
@@ -37,16 +39,20 @@ export default function GardenSongPageMobile({
   // Dropdown 1 hooks
   const [selectedTranslatorDropdownValue, selectTranslatorDropdownValueInner] = useState(""+selectedMetadata.translatorId);
   const [translationsDropdownItems, changeTranslationDropdownItems] = useState(prepareGardenSongsTranslatorsDropdownItems(allSongsMetadata, selectedMetadata.number, allTranslators));
-  if (translationsDropdownItems.every(item => item.value != selectedTranslatorDropdownValue)) {
-    selectTranslatorDropdownValueInner(""+selectedMetadata.translatorId);
-  }
+  useEffect(() => {
+    if (translationsDropdownItems.every(item => item.value != selectedTranslatorDropdownValue)) {
+      selectTranslatorDropdownValueInner(""+selectedMetadata.translatorId);
+    }
+  }, [translationsDropdownItems, selectedTranslatorDropdownValue, selectedMetadata.translatorId]);
 
   // Dropdown 2 hooks
   const [songsDropdownItems, changeSongsDropdownItems] = useState(prepareGardenSongsDropdownItems(allSongsMetadata, selectedMetadata.translatorId));
   const [selectedSongDropdownValue, selectSongDropdownValueInner] = useState(""+selectedMetadata.number);
-  if (songsDropdownItems.every(item => item.value != selectedSongDropdownValue)) {
-    selectSongDropdownValueInner(""+selectedMetadata.number);
-  }
+  useEffect(() => {
+    if (songsDropdownItems.every(item => item.value != selectedSongDropdownValue)) {
+      selectSongDropdownValueInner(""+selectedMetadata.number);
+    }
+  }, [songsDropdownItems, selectedSongDropdownValue, selectedMetadata.number]);
 
   // Dropdown 1
   const selectTranslatorDropdownValue = useCallback((value) => {
@@ -66,10 +72,6 @@ export default function GardenSongPageMobile({
     });
   }, [songsDropdownItems, changeRouterPath, allSongsMetadata, allTranslators]);
 
-  const sourcesParams = [
-    getBookSourceParam(selectedSong.source, selectedNotes, true),
-  ];
-
   const availableSongNumbers = useMemo(() => {
     return allSongsMetadata
       .filter(metadata => metadata.translatorId === selectedMetadata.translatorId)
@@ -80,20 +82,38 @@ export default function GardenSongPageMobile({
   const nextSongNumber = useMemo(() => nextAvailableNumber(selectedMetadata.number, availableSongNumbers), [selectedMetadata.number, availableSongNumbers]);
   const randomSongNumber = useMemo(() => randomNumberInRangeExcept(1, 30, selectedMetadata.number, availableSongNumbers), [selectedMetadata.number, availableSongNumbers]);
 
-  const songImage = selectedMetadata.songImage ? {...selectedMetadata.songImage} : null;
+  const songImage = useMemo(() => {
+    if (!selectedMetadata.songImage) return null;
+    const img = { ...selectedMetadata.songImage };
+    img.imageUrl = img.imageUrl.replace("/garden/", "/garden mobile/");
+    if (img.height) {
+      const prevHeight = img.height;
+      img.height = 600;
+      img.width = Math.round((img.width / prevHeight) * 600);
+    }
+    return img;
+  }, [selectedMetadata.songImage]);
   const isSongImageExists = songImage && songImage.imageUrl && songImage.imageUrl.length > 0;
   const highlightColor = songImage ? songImage.highlightColor : null;
-  if (isSongImageExists) {
 
-    songImage.imageUrl = songImage.imageUrl.replace("/garden/", "/garden mobile/");
-    if (songImage.height) {
-      const prevHeight = songImage.height;
-      songImage.height = 600;
-      songImage.width = Math.round((songImage.width / prevHeight) * 600);
+  const sourcesParams = useMemo(() => {
+    const params = [getBookSourceParam(selectedSong.source, selectedNotes, true)];
+    if (isSongImageExists) {
+      params.push(getIllustrationSourceParam(songImage));
     }
+    return params;
+  }, [selectedSong.source, selectedNotes, isSongImageExists, songImage]);
 
-    sourcesParams.push(getIllustrationSourceParam(songImage));
-  }
+  const onClickPrev = useCallback(() => selectSongDropdownValue(prevSongNumber.number), [selectSongDropdownValue, prevSongNumber]);
+  const onClickRandom = useCallback(() => selectSongDropdownValue(randomSongNumber), [selectSongDropdownValue, randomSongNumber]);
+  const onClickNext = useCallback(() => selectSongDropdownValue(nextSongNumber.number), [selectSongDropdownValue, nextSongNumber]);
+
+  const nameArrayNodes = useMemo(() => {
+    if (!selectedMetadata.nameArray) return null;
+    return selectedMetadata.nameArray.map((line, index) => (
+      <p key={index} style={{ color: highlightColor || 'inherit' }}>{wrapYatInSpans(line)}</p>
+    ));
+  }, [selectedMetadata.nameArray, highlightColor]);
 
   return <>
     <Container py="lg">
@@ -114,9 +134,9 @@ export default function GardenSongPageMobile({
         idSuffix="gardensong"
       />
       <Group w={"100%"} px="md" mt={"md"} mx={0} mb={0} grow className={classes.groupOfButtons} preventGrowOverflow={false}>
-        <SkButtonMobile text={"<"} onClick={() => selectSongDropdownValue(prevSongNumber.number)} disabled={prevSongNumber.disabled}/>
-        <SkButtonMobile text={"Пісня на щастя"} onClick={() => selectSongDropdownValue(randomSongNumber)} color={highlightColor} />
-        <SkButtonMobile text={">"} onClick={() => selectSongDropdownValue(nextSongNumber.number)} disabled={nextSongNumber.disabled}/>
+        <SkButtonMobile text={"<"} onClick={onClickPrev} disabled={prevSongNumber.disabled}/>
+        <SkButtonMobile text={"Пісня на щастя"} onClick={onClickRandom} color={highlightColor} />
+        <SkButtonMobile text={">"} onClick={onClickNext} disabled={nextSongNumber.disabled}/>
       </Group>
       <Space h="lg"/>
       {isSongImageExists ? (
@@ -135,17 +155,15 @@ export default function GardenSongPageMobile({
         </div>
       ) : null}
       
-      {selectedMetadata.nameArray ? <>
+      {nameArrayNodes ? <>
         <h1 className={classes.h1}>
-          {selectedMetadata.nameArray.map((line, index) => (
-            <p key={index} style={{ color: highlightColor || 'inherit' }}>{wrapYatInSpans(line)}</p>
-          ))}
+          {nameArrayNodes}
         </h1>
       </> : <SkH1Mobile text={selectedMetadata.name} color={highlightColor} />}
 
       <Space h="lg"/>
 
-      <SkMetaTextView metaText={selectedSong.songContent} otherArgs={{ isv3: true }} isMobile={true} />
+      <SkMetaTextView metaText={selectedSong.songContent} otherArgs={SONG_VIEW_ARGS} isMobile={true} />
 
       {(selectedNotes && selectedNotes.length) ? <>
         <SkH2Mobile my="lg" text={"Примітки"}/>

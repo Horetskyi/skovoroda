@@ -8,6 +8,7 @@ import classes from './gardenSongPageMobile.module.scss';
 import { prepareGardenSongsDropdownItems, prepareGardenSongsTranslatorsDropdownItems } from '../../lib/staticProps/gardenSongLogic';
 import SkCardWithTwoSelectorsMobileV2 from '../shared/skCardWithTwoSelectorsMobileV2';
 import SkButtonMobile from '../shared/skButtonMobile';
+import { wrapYatInSpans } from '../shared/wrapYatInSpans';
 import SkH1Mobile from '../shared/skH1Mobile';
 import SkSourcesContainerMobile from '../shared/skSourcesContainerMobile';
 import { MusicBlockMobile } from './details/musicBlockMobile';
@@ -137,7 +138,7 @@ export default function GardenSongPageMobile({
       {selectedMetadata.nameArray ? <>
         <h1 className={classes.h1}>
           {selectedMetadata.nameArray.map((line, index) => (
-            <p key={index} style={{ color: highlightColor || 'inherit' }}>{line}</p>
+            <p key={index} style={{ color: highlightColor || 'inherit' }}>{wrapYatInSpans(line)}</p>
           ))}
         </h1>
       </> : <SkH1Mobile text={selectedMetadata.name} color={highlightColor} />}

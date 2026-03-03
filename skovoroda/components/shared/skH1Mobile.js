@@ -1,6 +1,7 @@
 
 import { Title } from "@mantine/core";
 import classes from './skH1Mobile.module.scss'; 
+import { wrapYatInSpans } from './wrapYatInSpans';
 
 export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin, mb, id }) {
   let styleObj = {};
@@ -19,6 +20,7 @@ export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin, m
     }
   }
 
+  const content = wrapYatInSpans(text);
   const h1Result = (
     <Title 
       order={1} 
@@ -28,7 +30,7 @@ export default function SkH1Mobile({ text, color, withBlueImage, bgLeftMargin, m
       mb={mb}
       id={id}
     >
-      {text}
+      {content}
     </Title>
   );
 

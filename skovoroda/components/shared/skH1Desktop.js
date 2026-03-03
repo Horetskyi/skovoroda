@@ -1,5 +1,6 @@
 import { Title } from "@mantine/core";
 import classes from './skH1Desktop.module.scss'; 
+import { wrapYatInSpans } from './wrapYatInSpans';
 
 export default function SkH1Desktop({ text, color, maxWidth, fontSize,
   isV2, 
@@ -29,8 +30,9 @@ export default function SkH1Desktop({ text, color, maxWidth, fontSize,
       bgSt.marginLeft = `${bgLeftMargin}px`;
     }
   }
+  const content = wrapYatInSpans(text);
   const h1Result = <Title order={1} mx={"auto"} ta={"center"} className={imageClassName} style={styleObj}>
-    {text}
+    {content}
   </Title>;
   if (withBlueImage) {
     return <div className={classes.topContainer}>

@@ -16,6 +16,7 @@ import { adjustImageHeight } from '../functions/imageFunctions';
 import { useDisclosure } from '@mantine/hooks';
 import { getBookSourceParam, getIllustrationSourceParam } from './details/pureFunctions';
 import SkH2DesktopV2 from '../shared/skH2DesktopV2';
+import { wrapYatInSpans } from '../shared/wrapYatInSpans';
 
 export default function GardenSongPageDesktop({ 
   allSongsMetadata,
@@ -153,7 +154,7 @@ export default function GardenSongPageDesktop({
       {selectedMetadata.nameArray ? <>
         <h1 className={classes.h1}>
           {selectedMetadata.nameArray.map((line, index) => (
-            <p key={index} style={{ color: highlightColor || 'inherit' }}>{line}</p>
+            <p key={index} style={{ color: highlightColor || 'inherit' }}>{wrapYatInSpans(line)}</p>
           ))}
         </h1>
       </> : <SkH1Desktop text={selectedMetadata.name} color={highlightColor} isV2={true} disableBackground={true} />}
